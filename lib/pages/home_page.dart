@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/components/drawerComponent.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: const DrawerComponent(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

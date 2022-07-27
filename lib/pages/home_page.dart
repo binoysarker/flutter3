@@ -1,6 +1,8 @@
+import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/components/drawerComponent.dart';
 import 'package:ecommerce_app/components/graphqlComponents/getAllProductsComponent.dart';
 import 'package:ecommerce_app/services/util_service.dart';
+import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -15,16 +17,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int _selectedIndex = 0;
 
   UtilService _utilService = UtilService();
-  List<BottomNavigationBarItem> bottomNavigationBarItems = [
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'Home',
-    ),
-    const BottomNavigationBarItem(icon: Icon(Icons.login), label: 'Login'),
-  ];
+
 
   void _incrementCounter() {
     setState(() {
@@ -37,6 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              onPressed: () {
+                currentTheme.toggleTheme();
+              },
+              icon: Icon(Icons.brightness_4_rounded))
+        ],
       ),
       drawer: const DrawerComponent(),
       body: Center(
@@ -60,17 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavigationBarItems,
-        currentIndex: _selectedIndex,
-        onTap: (int index) {
-          Navigator.pushReplacementNamed(context,
-              '/${bottomNavigationBarItems[index].label.toString().toLowerCase()}');
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomNavigationComponent(), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

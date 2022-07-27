@@ -4,6 +4,7 @@ import 'package:ecommerce_app/pages/home_page.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/pages/page_not_found.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:ecommerce_app/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +45,11 @@ class _MyAppState extends State<MyApp> {
         event != null ? 'home' : 'login',
       );
     });
+    currentTheme.addListener(() {
+      setState(() {
+
+      });
+    });
   }
 
   @override
@@ -60,9 +66,9 @@ class _MyAppState extends State<MyApp> {
         title: 'Ecommerce App',
         debugShowCheckedModeBanner: false,
         navigatorKey: _navigatorKey,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: CustomTheme.lightTheme,
+        darkTheme: CustomTheme.darkTheme,
+        themeMode: currentTheme.currentThemeMode,
         initialRoute:
             FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
         onGenerateRoute: (settings) {

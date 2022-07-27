@@ -61,10 +61,6 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.w500,
                         fontSize: 30),
                   )),
-              Text(
-                _showSignIn ? 'Login' : 'Sign up',
-                style: const TextStyle(fontSize: 20),
-              ),
               Container(
                 padding: const EdgeInsets.all(10),
                 child: TextField(

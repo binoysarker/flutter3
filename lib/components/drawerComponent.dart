@@ -52,6 +52,13 @@ class _DrawerComponentState extends State<DrawerComponent> {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
           ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Sign out'),
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+          ),
         ],
       ),
     );

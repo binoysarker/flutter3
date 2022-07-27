@@ -3,14 +3,23 @@ import 'dart:async';
 import 'package:ecommerce_app/pages/home_page.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/pages/page_not_found.dart';
+import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+
 import 'firebase_options.dart';
+
+late GraphQlService graphQlService;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  graphQlService = GraphQlService();
+  graphQlService.client = await graphQlService.initializeGraphqlService();
   runApp(const MyApp());
 }
 
@@ -45,33 +54,33 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ecommerce App',
-      debugShowCheckedModeBanner: false,
-      navigatorKey: _navigatorKey,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return GraphQLProvider(
+      client: graphQlService.client,
+      child: MaterialApp(
+        title: 'Ecommerce App',
+        debugShowCheckedModeBanner: false,
+        navigatorKey: _navigatorKey,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute:
+            FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case 'home':
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (_) => MyHomePage(title: 'Home Page'),
+              );
+            case 'login':
+              return MaterialPageRoute(
+                  settings: settings, builder: (_) => LoginPage());
+            default:
+              return MaterialPageRoute(
+                  settings: settings, builder: (_) => PageNotFound());
+          }
+        },
       ),
-      initialRoute:
-      FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case 'home':
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (_) => MyHomePage(title: 'Home Page'),
-            );
-          case 'login':
-            return MaterialPageRoute(
-                settings: settings,
-                builder: (_) => LoginPage()
-            );
-          default:
-            return MaterialPageRoute(
-                settings: settings,
-                builder: (_) => PageNotFound());
-        }
-      },
     );
   }
 }

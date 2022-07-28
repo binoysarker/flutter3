@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigationComponent extends StatefulWidget {
   const BottomNavigationComponent({Key? key}) : super(key: key);
@@ -10,7 +12,6 @@ class BottomNavigationComponent extends StatefulWidget {
 }
 
 class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
-  int _selectedIndex = 0;
   List<BottomNavigationBarItem> bottomNavigationBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.store),
@@ -28,15 +29,18 @@ class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: bottomNavigationBarItems,
-      currentIndex: _selectedIndex,
+      currentIndex: context.read<BottomNavigationProvider>().selectedIndex,
       onTap: (int index) {
         final re = RegExp(r'\s');
-        final selectedLabel = bottomNavigationBarItems[index].label.toString().toLowerCase().split(re).join('-');
+        final selectedLabel = bottomNavigationBarItems[index]
+            .label
+            .toString()
+            .toLowerCase()
+            .split(re)
+            .join('-');
         Navigator.pushNamed(context,
             '/${selectedLabel == '${PageRouteNames.store.name}' ? '${PageRouteNames.home.name}' : '$selectedLabel'}');
-        setState(() {
-          _selectedIndex = index;
-        });
+        context.read<BottomNavigationProvider>().setItemIndex(index);
       },
     );
   }

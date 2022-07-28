@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:flutter/material.dart';
 
 class RewardsPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class RewardsPageState extends State<RewardsPage> {
       body: Container(
         child: Text('rewards page'),
       ),
+      bottomNavigationBar: BottomNavigationComponent(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:flutter/material.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _OrdersPageState extends State<OrdersPage> {
       body: Container(
         child: Text('orders page'),
       ),
+      bottomNavigationBar: BottomNavigationComponent(),
     );
   }
 }

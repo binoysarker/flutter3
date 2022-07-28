@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:flutter/material.dart';
 
 class MyAccountPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class MyAccountPageState extends State<MyAccountPage> {
       body: Container(
         child: Text('my account page'),
       ),
+      bottomNavigationBar: BottomNavigationComponent(),
     );
   }
 }

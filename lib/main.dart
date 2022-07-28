@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:ecommerce_app/pages/my_account_page.dart';
 import 'package:ecommerce_app/pages/orders_page.dart';
+import 'package:ecommerce_app/pages/page_not_found.dart';
 import 'package:ecommerce_app/pages/rewards_page.dart';
 import 'package:ecommerce_app/pages/store_page.dart';
+import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/themes.dart';
@@ -12,6 +14,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 
@@ -23,7 +26,14 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   graphQlService = GraphQlService();
   graphQlService.client = await graphQlService.initializeGraphqlService();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BottomNavigationProvider())
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -106,7 +116,7 @@ class _MyAppState extends State<MyApp> {
           } else {
             return MaterialPageRoute(
               settings: settings,
-              builder: (context) => StorePage(),
+              builder: (context) => PageNotFound(),
             );
           }
         },

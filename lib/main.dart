@@ -1,9 +1,7 @@
 import 'dart:async';
 
-import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/pages/my_account_page.dart';
 import 'package:ecommerce_app/pages/orders_page.dart';
-import 'package:ecommerce_app/pages/page_not_found.dart';
 import 'package:ecommerce_app/pages/rewards_page.dart';
 import 'package:ecommerce_app/pages/store_page.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
@@ -76,44 +74,40 @@ class _MyAppState extends State<MyApp> {
             : '/${PageRouteNames.home.name}',
         onGenerateRoute: (settings) {
           print('settings name ${settings.name}');
-
-          switch (settings.name) {
-            case '/':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => StorePage(),
-              );
-            case '/home':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => StorePage(),
-              );
-            case 'home':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => StorePage(),
-              );
-            case '/orders':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => OrdersPage(),
-              );
-            case '/rewards':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => RewardsPage(),
-              );
-            case '/my-account':
-              return MaterialPageRoute(
-                settings: settings,
-                builder: (context) => MyAccountPage(),
-              );
-            case '/login':
-              return MaterialPageRoute(
-                  settings: settings, builder: (context) => LoginPage());
-            default:
-              return MaterialPageRoute(
-                  settings: settings, builder: (context) => PageNotFound());
+          final homeRoutePat = RegExp(r'\/*home$');
+          final orderRoutePat = RegExp(r'\/*orders$');
+          final rewardsRoutePat = RegExp(r'\/*rewards$');
+          final myAccountRoutePat = RegExp(r'\/*my-account$');
+          if (homeRoutePat.hasMatch('${settings.name}')) {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => StorePage(),
+            );
+          } else if (orderRoutePat.hasMatch('${settings.name}')) {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => OrdersPage(),
+            );
+          } else if (rewardsRoutePat.hasMatch('${settings.name}')) {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => RewardsPage(),
+            );
+          } else if (myAccountRoutePat.hasMatch('${settings.name}')) {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => MyAccountPage(),
+            );
+          } else if (settings.name == '/') {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => StorePage(),
+            );
+          } else {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (context) => StorePage(),
+            );
           }
         },
       ),

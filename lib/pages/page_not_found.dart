@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 
 class PageNotFound extends StatelessWidget {
@@ -5,17 +6,19 @@ class PageNotFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Row(
-          children: [
-            Text('Page Not Found'),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, 'home');
-                },
-                child: Text('Go Home'))
-          ],
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Row(
+            children: [
+              Text('Page Not Found'),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName('/'));
+                  },
+                  child: Text('Go Home'))
+            ],
+          ),
         ),
       ),
     );

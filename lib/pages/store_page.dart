@@ -6,16 +6,15 @@ import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class StorePage extends StatefulWidget {
+  const StorePage({Key? key}) : super(key: key);
 
-  final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<StorePage> createState() => _StorePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _StorePageState extends State<StorePage> {
   int _counter = 0;
 
   UtilService _utilService = UtilService();
@@ -31,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Stores'),
         actions: [
           IconButton(
               onPressed: () {

@@ -15,29 +15,36 @@ class CustomTheme with ChangeNotifier {
 
   static get lightTheme {
     return ThemeData(
-        primaryColor: Colors.green,
+      primaryColor: Colors.green,
+      backgroundColor: Colors.lightGreen,
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.lightGreen,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.green),
-        scaffoldBackgroundColor: Colors.lightGreen,
-        textTheme: TextTheme(
-          headline1: TextStyle(color: Colors.black),
-          headline2: TextStyle(color: Colors.black),
-          bodyText1: TextStyle(color: Colors.black),
-          bodyText2: TextStyle(color: Colors.black),
-        ));
+        elevation: 0.0,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.grey,
+          selectedItemColor: Colors.lightGreen,
+          selectedLabelStyle: TextStyle(color: Colors.lightGreen),
+          showUnselectedLabels: true,
+          unselectedItemColor: Colors.black26,
+          unselectedLabelStyle: TextStyle(color: Colors.black26)),
+      scaffoldBackgroundColor: Colors.lightGreen,
+    );
   }
 
   static get darkTheme {
     return ThemeData(
-        primaryColor: Colors.black,
-        backgroundColor: Colors.grey,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.black),
-        scaffoldBackgroundColor: Colors.grey,
-        textTheme: TextTheme(
-          headline1: TextStyle(color: Colors.white),
-          headline2: TextStyle(color: Colors.white),
-          bodyText1: TextStyle(color: Colors.white),
-          bodyText2: TextStyle(color: Colors.white),
-        ));
+      primaryColor: Colors.black,
+      backgroundColor: Colors.grey,
+      appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.lightGreen,
+          showUnselectedLabels: true,
+          selectedLabelStyle: TextStyle(color: Colors.lightGreen),
+          unselectedItemColor: Colors.grey,
+          unselectedLabelStyle: TextStyle(color: Colors.grey)),
+      scaffoldBackgroundColor: Colors.grey,
+    );
   }
 }

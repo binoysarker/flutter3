@@ -1,8 +1,12 @@
 import 'dart:async';
 
-import 'package:ecommerce_app/pages/home_page.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
+import 'package:ecommerce_app/pages/my_account_page.dart';
+import 'package:ecommerce_app/pages/orders_page.dart';
 import 'package:ecommerce_app/pages/page_not_found.dart';
+import 'package:ecommerce_app/pages/rewards_page.dart';
+import 'package:ecommerce_app/pages/store_page.dart';
+import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -46,9 +50,7 @@ class _MyAppState extends State<MyApp> {
       );
     });
     currentTheme.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
@@ -69,21 +71,49 @@ class _MyAppState extends State<MyApp> {
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: currentTheme.currentThemeMode,
-        initialRoute:
-            FirebaseAuth.instance.currentUser == null ? 'login' : 'home',
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? '/${PageRouteNames.login.name}'
+            : '/${PageRouteNames.home.name}',
         onGenerateRoute: (settings) {
+          print('settings name ${settings.name}');
+
           switch (settings.name) {
+            case '/':
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (context) => StorePage(),
+              );
+            case '/home':
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (context) => StorePage(),
+              );
             case 'home':
               return MaterialPageRoute(
                 settings: settings,
-                builder: (_) => MyHomePage(title: 'Home Page'),
+                builder: (context) => StorePage(),
               );
-            case 'login':
+            case '/orders':
               return MaterialPageRoute(
-                  settings: settings, builder: (_) => LoginPage());
+                settings: settings,
+                builder: (context) => OrdersPage(),
+              );
+            case '/rewards':
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (context) => RewardsPage(),
+              );
+            case '/my-account':
+              return MaterialPageRoute(
+                settings: settings,
+                builder: (context) => MyAccountPage(),
+              );
+            case '/login':
+              return MaterialPageRoute(
+                  settings: settings, builder: (context) => LoginPage());
             default:
               return MaterialPageRoute(
-                  settings: settings, builder: (_) => PageNotFound());
+                  settings: settings, builder: (context) => PageNotFound());
           }
         },
       ),

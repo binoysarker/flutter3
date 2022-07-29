@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
+import 'package:ecommerce_app/providers/utilityProvider.dart';
 import 'package:ecommerce_app/routes/routeDefinations.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
@@ -25,7 +26,8 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => BottomNavigationProvider())
+        ChangeNotifierProvider(create: (_) => BottomNavigationProvider()),
+        ChangeNotifierProvider(create: (_) => UtilityProvider())
       ],
       child: MyApp(),
     ),

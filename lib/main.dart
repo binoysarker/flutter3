@@ -1,11 +1,7 @@
 import 'dart:async';
 
-import 'package:ecommerce_app/pages/my_account_page.dart';
-import 'package:ecommerce_app/pages/orders_page.dart';
-import 'package:ecommerce_app/pages/page_not_found.dart';
-import 'package:ecommerce_app/pages/rewards_page.dart';
-import 'package:ecommerce_app/pages/store_page.dart';
 import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
+import 'package:ecommerce_app/routes/routeDefinations.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/themes.dart';
@@ -54,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
     _subscription = FirebaseAuth.instance.userChanges().listen((event) {
       _navigatorKey.currentState!.pushReplacementNamed(
-        event != null ? 'home' : 'login',
+        event != null ? '/home' : '/login',
       );
     });
     currentTheme.addListener(() {
@@ -83,42 +79,7 @@ class _MyAppState extends State<MyApp> {
             ? '/${PageRouteNames.login.name}'
             : '/${PageRouteNames.home.name}',
         onGenerateRoute: (settings) {
-          print('settings name ${settings.name}');
-          final homeRoutePat = RegExp(r'\/*home$');
-          final orderRoutePat = RegExp(r'\/*orders$');
-          final rewardsRoutePat = RegExp(r'\/*rewards$');
-          final myAccountRoutePat = RegExp(r'\/*my-account$');
-          if (homeRoutePat.hasMatch('${settings.name}')) {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => StorePage(),
-            );
-          } else if (orderRoutePat.hasMatch('${settings.name}')) {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => OrdersPage(),
-            );
-          } else if (rewardsRoutePat.hasMatch('${settings.name}')) {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => RewardsPage(),
-            );
-          } else if (myAccountRoutePat.hasMatch('${settings.name}')) {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => MyAccountPage(),
-            );
-          } else if (settings.name == '/') {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => StorePage(),
-            );
-          } else {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => PageNotFound(),
-            );
-          }
+          return generatedRoute(settings);
         },
       ),
     );

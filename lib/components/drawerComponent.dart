@@ -11,7 +11,6 @@ class DrawerComponent extends StatefulWidget {
 class _DrawerComponentState extends State<DrawerComponent> {
   @override
   Widget build(BuildContext context) {
-    final User? firebaseUser = FirebaseAuth.instance.currentUser;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -21,18 +20,18 @@ class _DrawerComponentState extends State<DrawerComponent> {
               color: Colors.blue,
             ),
             child: Row(
-              children: [
-                const CircleAvatar(
+              children: const [
+                CircleAvatar(
                   radius: 20.0,
                   child: Image(
                     image: AssetImage('assets/images/avater.jpg'),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 20.0,
                 ),
                 Text(
-                  '${firebaseUser != null ? firebaseUser.email : ''}',
+                  'email',
                   style: TextStyle(
                     color: Colors.white
                   ),

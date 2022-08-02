@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
+import 'package:ecommerce_app/providers/loginPageProvider.dart';
 import 'package:ecommerce_app/providers/utilityProvider.dart';
 import 'package:ecommerce_app/routes/routeDefinations.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
@@ -22,12 +23,13 @@ void main() async {
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   graphQlService = GraphQlService();
-  graphQlService.client = await graphQlService.initializeGraphqlService();
+  await graphQlService.initializeGraphQl();
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => BottomNavigationProvider()),
-        ChangeNotifierProvider(create: (_) => UtilityProvider())
+        ChangeNotifierProvider(create: (_) => UtilityProvider()),
+        ChangeNotifierProvider(create: (_) => LoginPageProvider())
       ],
       child: MyApp(),
     ),
@@ -50,21 +52,13 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _subscription = FirebaseAuth.instance.userChanges().listen((event) {
-      _navigatorKey.currentState!.pushReplacementNamed(
-        event != null ? '/home' : '/login',
-      );
-    });
+
     currentTheme.addListener(() {
       setState(() {});
     });
   }
 
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +71,7 @@ class _MyAppState extends State<MyApp> {
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: currentTheme.currentThemeMode,
-        initialRoute: FirebaseAuth.instance.currentUser == null
-            ? '/${PageRouteNames.login.name}'
-            : '/${PageRouteNames.home.name}',
+        initialRoute: '/${PageRouteNames.home.name}',
         onGenerateRoute: (settings) {
           return generatedRoute(settings);
         },

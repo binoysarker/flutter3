@@ -1,0 +1,33 @@
+mutation SignIn($emailAddress: String!, $password: String!, $rememberMe: Boolean!) {
+    login(username: $emailAddress, password: $password, rememberMe: $rememberMe) {
+        ... on CurrentUser {
+            id
+            __typename
+        }
+        ...ErrorResult
+        __typename
+    }
+}
+
+fragment ErrorResult on ErrorResult {
+    errorCode
+    message
+    __typename
+}
+
+mutation Register($input: RegisterCustomerInput!) {
+    registerCustomerAccount(input: $input) {
+        ... on Success {
+            success
+            __typename
+        }
+        ...ErrorResult
+        __typename
+    }
+}
+
+fragment ErrorResult on ErrorResult {
+    errorCode
+    message
+    __typename
+}

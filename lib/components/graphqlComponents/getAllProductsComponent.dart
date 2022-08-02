@@ -1,53 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class GetAllProductsComponent extends StatefulWidget {
-  const GetAllProductsComponent({Key? key}) : super(key: key);
+import '../../graphqlSection/QueryStringData.dart';
 
-  @override
-  State<GetAllProductsComponent> createState() =>
-      _GetAllProductsComponentState();
-}
+class GetAllProductsComponent extends HookWidget {
+  GetAllProductsComponent({Key? key}) : super(key: key);
 
-class _GetAllProductsComponentState extends State<GetAllProductsComponent> {
-  String getProductsString = """
-  query{
-  products{
-    items{
-      name
-      slug
-    }
-  }
-}
-  """;
+
 
   @override
   Widget build(BuildContext context) {
-    return Query(
-      options: QueryOptions(
-        document: gql(getProductsString),
-      ),
-      builder: (QueryResult result,
-          {VoidCallback? refetch, FetchMore? fetchMore}) {
-        if (result.hasException) {
-          return Text(result.exception.toString());
-        }
-        if (result.isLoading) {
-          return Text('Loading');
-        }
-        if (result.data == null) {
-          return Text('No Products');
-        }
-        List allItems = result.data?['products']?['items'];
-        return Expanded(
-          child: ListView.builder(
-              itemCount: allItems.length,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return Text('${allItems[index]?['name']}');
-              }),
-        );
-      },
+    final allProducts =
+        useQuery(QueryOptions(document: gql(getProductsQueryString)));
+    final result = allProducts.result;
+    if (result.hasException) {
+      return Text(result.exception.toString());
+    }
+    if (result.isLoading) {
+      return Text('Loading');
+    }
+    if (result.data == null) {
+      return Text('No Products');
+    }
+    List allItems = result.data?['products']?['items'];
+    return Expanded(
+      child: ListView.builder(
+          itemCount: allItems.length,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return Text('${allItems[index]?['name']}');
+          }),
     );
   }
 }

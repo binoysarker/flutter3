@@ -1,32 +1,30 @@
-import 'dart:async';
-
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/components/drawerComponent.dart';
 import 'package:ecommerce_app/components/graphqlComponents/getAllProductsComponent.dart';
 import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
+import 'package:ecommerce_app/graphqlSection/QueryStringData.dart';
+import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
 import 'package:ecommerce_app/providers/utilityProvider.dart';
+import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:provider/provider.dart';
 
-class StorePage extends StatefulWidget {
-  const StorePage({Key? key}) : super(key: key);
+import '../services/commonVariables.dart';
 
-  @override
-  State<StorePage> createState() => _StorePageState();
-}
-
-class _StorePageState extends State<StorePage> {
+class StorePage extends HookWidget {
+  StorePage({Key? key}) : super(key: key);
   int _counter = 0;
 
   UtilService _utilService = UtilService();
+  GraphQlService graphQlService = GraphQlService();
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    _counter++;
   }
 
   @override
@@ -52,17 +50,17 @@ class _StorePageState extends State<StorePage> {
                   Text(
                     '${_utilService.shopApiUrl} test',
                   ),
-                  const GetAllProductsComponent(),
+                  GetAllProductsComponent(),
                   Text(
                     '$_counter',
                     style: Theme.of(context).textTheme.headline4,
                   ),
-                  ElevatedButton(onPressed: () {
-                    context.read<UtilityProvider>().setLoadingState(true);
-                    Future.delayed(Duration(seconds: 2), (){
-                      context.read<UtilityProvider>().setLoadingState(false);
-                    });
-                  }, child: Text('Get Data'))
+                  ElevatedButton(
+                      onPressed: ()  async{
+                        Navigator.pushNamed(context, '/${PageRouteNames.login.name}');
+
+                      },
+                      child: Text('login'))
                 ],
               ),
             ),

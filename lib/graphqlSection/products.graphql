@@ -1,0 +1,108 @@
+query GetAllProducts($take: Int){
+    products(options: {take: $take}){
+        items {
+            name
+        }
+    }
+}
+
+query SearchProducts($input: SearchInput!) {
+    search(input: $input) {
+        items {
+            productId
+            slug
+            productName
+            description
+            priceWithTax {
+                ... on PriceRange {
+                    min
+                    max
+                    __typename
+                }
+                __typename
+            }
+            productAsset {
+                id
+                preview
+                focalPoint {
+                    x
+                    y
+                    __typename
+                }
+                __typename
+            }
+            __typename
+        }
+        totalItems
+        facetValues {
+            count
+            facetValue {
+                id
+                name
+                facet {
+                    id
+                    name
+                    __typename
+                }
+                __typename
+            }
+            __typename
+        }
+        __typename
+    }
+}
+
+query GetProductDetail($slug: String!) {
+    product(slug: $slug) {
+        id
+        name
+        description
+        variants {
+            id
+            name
+            options {
+                code
+                name
+                __typename
+            }
+            price
+            priceWithTax
+            sku
+            __typename
+        }
+        featuredAsset {
+            ...Asset
+            __typename
+        }
+        assets {
+            ...Asset
+            __typename
+        }
+        collections {
+            id
+            slug
+            breadcrumbs {
+                id
+                name
+                slug
+                __typename
+            }
+            __typename
+        }
+        __typename
+    }
+}
+
+fragment Asset on Asset {
+    id
+    width
+    height
+    name
+    preview
+    focalPoint {
+        x
+        y
+        __typename
+    }
+    __typename
+}

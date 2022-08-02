@@ -1,0 +1,104 @@
+query GetCartTotals {
+    activeOrder {
+        id
+        active
+        totalQuantity
+        totalWithTax
+        __typename
+    }
+}
+
+mutation AddToCart($variantId: ID!, $qty: Int!) {
+    addItemToOrder(productVariantId: $variantId, quantity: $qty) {
+        ...Cart
+        ...ErrorResult
+        ... on InsufficientStockError {
+            order {
+                ...Cart
+                __typename
+            }
+            __typename
+        }
+        __typename
+    }
+}
+
+fragment Cart on Order {
+    id
+    code
+    state
+    active
+    lines {
+        id
+        featuredAsset {
+            ...Asset
+            __typename
+        }
+        unitPrice
+        unitPriceWithTax
+        quantity
+        linePriceWithTax
+        discountedLinePriceWithTax
+        productVariant {
+            id
+            name
+            __typename
+        }
+        discounts {
+            amount
+            amountWithTax
+            description
+            adjustmentSource
+            type
+            __typename
+        }
+        __typename
+    }
+    totalQuantity
+    subTotal
+    subTotalWithTax
+    total
+    totalWithTax
+    shipping
+    shippingWithTax
+    shippingLines {
+        priceWithTax
+        shippingMethod {
+            id
+            code
+            name
+            description
+            __typename
+        }
+        __typename
+    }
+    discounts {
+        amount
+        amountWithTax
+        description
+        adjustmentSource
+        type
+        __typename
+    }
+    __typename
+}
+
+fragment Asset on Asset {
+    id
+    width
+    height
+    name
+    preview
+    focalPoint {
+        x
+        y
+        __typename
+    }
+    __typename
+}
+
+fragment ErrorResult on ErrorResult {
+    errorCode
+    message
+    __typename
+}

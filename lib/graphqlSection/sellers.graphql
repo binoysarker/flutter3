@@ -1,0 +1,24 @@
+query GetTopSellers {
+    search(input: {take: 8, groupByProduct: true, sort: {price: ASC}}) {
+        items {
+            productId
+            slug
+            productAsset {
+                id
+                preview
+                __typename
+            }
+            priceWithTax {
+                ... on PriceRange {
+                    min
+                    max
+                    __typename
+                }
+                __typename
+            }
+            productName
+            __typename
+        }
+        __typename
+    }
+}

@@ -1,0 +1,11 @@
+# build.yaml
+
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          assetsPath: 'lib/graphqlSection/**.graphql'
+          clients:
+            - graphql
+            - graphql_flutter

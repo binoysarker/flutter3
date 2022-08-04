@@ -21,13 +21,8 @@ mutation Register($input: RegisterCustomerInput!) {
             success
             __typename
         }
+
         ...ErrorResult
         __typename
     }
-}
-
-fragment ErrorResult on ErrorResult {
-    errorCode
-    message
-    __typename
 }

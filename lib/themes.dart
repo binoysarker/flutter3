@@ -16,10 +16,19 @@ class CustomTheme with ChangeNotifier {
   static get lightTheme {
     return ThemeData(
       primaryColor: Colors.green,
+      buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.green[200])
+          )
+      ),
       backgroundColor: Colors.lightGreen,
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.lightGreen,
         elevation: 0.0,
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: Colors.green[200]
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.grey,
@@ -35,6 +44,15 @@ class CustomTheme with ChangeNotifier {
   static get darkTheme {
     return ThemeData(
       primaryColor: Colors.black,
+      buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.green[200])
+        )
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.green[200]
+      ),
       backgroundColor: Colors.grey,
       appBarTheme: AppBarTheme(backgroundColor: Colors.black),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

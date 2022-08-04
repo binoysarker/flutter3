@@ -65,7 +65,7 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_native_splash:
-  color: "#42a5f5"
+  color: '#D6D9E0'
   image: "assets/images/splash.png"
 # The following section is specific to Flutter packages.
 flutter:

@@ -1,9 +1,9 @@
+import 'cart_data.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-import 'products.graphql.dart';
 import 'schema.graphql.dart';
 part 'collections.graphql.g.dart';
 

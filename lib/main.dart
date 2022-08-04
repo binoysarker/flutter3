@@ -27,9 +27,14 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => BottomNavigationProvider()),
-        ChangeNotifierProvider(create: (_) => UtilityProvider()),
-        ChangeNotifierProvider(create: (_) => LoginPageProvider())
+        ChangeNotifierProvider<BottomNavigationProvider>(
+            create: (_) => BottomNavigationProvider()),
+        ChangeNotifierProvider<UtilityProvider>(
+            create: (_) => UtilityProvider()),
+        ChangeNotifierProxyProvider<UtilityProvider, LoginPageProvider>(
+            create: (_) => LoginPageProvider(null),
+            update: (_, utilityProvider, __) =>
+                LoginPageProvider(utilityProvider))
       ],
       child: MyApp(),
     ),
@@ -52,13 +57,16 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-
     currentTheme.addListener(() {
       setState(() {});
     });
+
   }
-
-
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

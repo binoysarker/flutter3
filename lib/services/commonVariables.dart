@@ -6,3 +6,7 @@ enum PageRouteNames {
   MyAccount,
   login
 }
+enum SignInProcessNames {
+  firebase,
+  normal
+}

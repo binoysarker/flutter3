@@ -4,7 +4,6 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-import 'products.graphql.dart';
 import 'schema.graphql.dart';
 part 'orders.graphql.g.dart';
 

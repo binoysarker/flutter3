@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
+import 'package:ecommerce_app/providers/homePageProvider.dart';
 import 'package:ecommerce_app/providers/loginPageProvider.dart';
 import 'package:ecommerce_app/providers/tokenPageProvider.dart';
 import 'package:ecommerce_app/providers/utilityProvider.dart';
@@ -40,6 +41,10 @@ void main() async {
             create: (_) => TokenPageProvider(null),
             update: (_, utilityProvider, __) =>
                 TokenPageProvider(utilityProvider)),
+        ChangeNotifierProxyProvider<UtilityProvider, HomePageProvider>(
+            create: (_) => HomePageProvider(null),
+            update: (_, utilityProvider, __) =>
+                HomePageProvider(utilityProvider)),
       ],
       child: MyApp(),
     ),

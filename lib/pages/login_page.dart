@@ -206,17 +206,17 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 10.0,
                         ),
-                        Container(
-                            height: 50,
-                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            child: ElevatedButton(
-                              child: Text(loginWatchProvider.showSignIn
-                                  ? 'Google Login'
-                                  : 'Google Sign up'),
-                              onPressed: () {
-                                loginWatchProvider.onGoogleSignIn(context);
-                              },
-                            )),
+                        // Container(
+                        //     height: 50,
+                        //     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        //     child: ElevatedButton(
+                        //       child: Text(loginWatchProvider.showSignIn
+                        //           ? 'Google Login'
+                        //           : 'Google Sign up'),
+                        //       onPressed: () {
+                        //         loginWatchProvider.onGoogleSignIn(context);
+                        //       },
+                        //     )),
                         Visibility(
                             visible: context.watch<UtilityProvider>().showError,
                             child: ErrorMessageComponent()),

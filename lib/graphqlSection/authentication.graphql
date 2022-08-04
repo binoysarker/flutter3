@@ -26,3 +26,25 @@ mutation Register($input: RegisterCustomerInput!) {
         __typename
     }
 }
+
+mutation VerifyCustomerAccount($token: String!, $password: String){
+    verifyCustomerAccount(
+        password: $password,
+        token: $token
+    ){
+        ... on CurrentUser {
+            id
+            __typename
+        }
+        ... on VerificationTokenInvalidError{
+            errorCode
+            message
+        }
+        ... on VerificationTokenExpiredError{
+            errorCode
+            message
+        }
+        ...ErrorResult
+        __typename
+    }
+}

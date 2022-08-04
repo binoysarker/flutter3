@@ -44,7 +44,7 @@ class LoginPageProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void onUserSignIn() async {
+  void onUserSignIn(BuildContext context) async {
     _utilityProvider?.setLoadingState(true);
     final signInResponse = await graphQlService.graphQLClient.mutate$SignIn(
         Options$Mutation$SignIn(
@@ -59,8 +59,18 @@ class LoginPageProvider with ChangeNotifier {
       debugPrint('${signInResponse.data}');
       final loginData =
           Map<String, dynamic>.from(signInResponse.data?['login']);
-
+      if(loginData['message'] != null){
       _utilityProvider?.setAlertMessage(true, loginData['message']);
+      _utilityProvider?.setLoadingState(false);
+      return;
+      }
+      if(loginData['errorCode'] == 'NOT_VERIFIED_ERROR'){
+        Navigator.pushReplacementNamed(context, '/${PageRouteNames.verifyToken}');
+      }else {
+        _utilityProvider?.setAlertMessage(true, 'Login Successful');
+        Navigator.pushReplacementNamed(context, '/${PageRouteNames.home.name}');
+      }
+      _utilityProvider?.setLoadingState(false);
 
     }
     _utilityProvider?.setLoadingState(false);
@@ -86,13 +96,13 @@ class LoginPageProvider with ChangeNotifier {
       final registerData = Map<String, dynamic>.from(
           registerResponse.data?['registerCustomerAccount']);
 
-      if (registerData['success']) {
+      if (registerData['success'] != null) {
         //  user is registered
         _utilityProvider?.setAlertMessage(false, '');
         _utilityProvider?.setLoadingState(false);
         UtilService.createSnakeBar(
             context: context, text: 'Registered Successfully');
-        setShowSignIn(true);
+        Navigator.pushReplacementNamed(context, '${PageRouteNames.verifyToken.name}');
       } else {
         _utilityProvider?.setAlertMessage(true, 'some error');
       }
@@ -128,4 +138,6 @@ class LoginPageProvider with ChangeNotifier {
       _utilityProvider?.setLoadingState(false);
     }
   }
+
+
 }

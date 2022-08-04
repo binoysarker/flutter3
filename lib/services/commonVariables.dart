@@ -4,7 +4,8 @@ enum PageRouteNames {
   order,
   reward,
   MyAccount,
-  login
+  login,
+  verifyToken
 }
 enum SignInProcessNames {
   firebase,

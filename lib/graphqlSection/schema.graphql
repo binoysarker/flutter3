@@ -2984,6 +2984,7 @@ input RegisterCustomerInput {
   password: String
 }
 
+
 input UpdateCustomerInput {
   title: String
   firstName: String

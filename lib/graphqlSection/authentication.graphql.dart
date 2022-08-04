@@ -2034,3 +2034,1487 @@ class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$PasswordValid
   call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
       _res;
 }
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Mutation$VerifyCustomerAccount {
+  Variables$Mutation$VerifyCustomerAccount(
+      {required this.token, this.password});
+
+  @override
+  factory Variables$Mutation$VerifyCustomerAccount.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$VerifyCustomerAccountFromJson(json);
+
+  final String token;
+
+  final String? password;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$VerifyCustomerAccountToJson(this);
+  int get hashCode {
+    final l$token = token;
+    final l$password = password;
+    return Object.hashAll([l$token, l$password]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$VerifyCustomerAccount) ||
+        runtimeType != other.runtimeType) return false;
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) return false;
+    final l$password = password;
+    final lOther$password = other.password;
+    if (l$password != lOther$password) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$VerifyCustomerAccount<
+          Variables$Mutation$VerifyCustomerAccount>
+      get copyWith =>
+          CopyWith$Variables$Mutation$VerifyCustomerAccount(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$VerifyCustomerAccount<TRes> {
+  factory CopyWith$Variables$Mutation$VerifyCustomerAccount(
+          Variables$Mutation$VerifyCustomerAccount instance,
+          TRes Function(Variables$Mutation$VerifyCustomerAccount) then) =
+      _CopyWithImpl$Variables$Mutation$VerifyCustomerAccount;
+
+  factory CopyWith$Variables$Mutation$VerifyCustomerAccount.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$VerifyCustomerAccount;
+
+  TRes call({String? token, String? password});
+}
+
+class _CopyWithImpl$Variables$Mutation$VerifyCustomerAccount<TRes>
+    implements CopyWith$Variables$Mutation$VerifyCustomerAccount<TRes> {
+  _CopyWithImpl$Variables$Mutation$VerifyCustomerAccount(
+      this._instance, this._then);
+
+  final Variables$Mutation$VerifyCustomerAccount _instance;
+
+  final TRes Function(Variables$Mutation$VerifyCustomerAccount) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? token = _undefined, Object? password = _undefined}) =>
+      _then(Variables$Mutation$VerifyCustomerAccount(
+          token: token == _undefined || token == null
+              ? _instance.token
+              : (token as String),
+          password: password == _undefined
+              ? _instance.password
+              : (password as String?)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$VerifyCustomerAccount<TRes>
+    implements CopyWith$Variables$Mutation$VerifyCustomerAccount<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$VerifyCustomerAccount(this._res);
+
+  TRes _res;
+
+  call({String? token, String? password}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount {
+  Mutation$VerifyCustomerAccount(
+      {required this.verifyCustomerAccount, required this.$__typename});
+
+  @override
+  factory Mutation$VerifyCustomerAccount.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccountFromJson(json);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount
+      verifyCustomerAccount;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$VerifyCustomerAccountToJson(this);
+  int get hashCode {
+    final l$verifyCustomerAccount = verifyCustomerAccount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$verifyCustomerAccount, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$VerifyCustomerAccount) ||
+        runtimeType != other.runtimeType) return false;
+    final l$verifyCustomerAccount = verifyCustomerAccount;
+    final lOther$verifyCustomerAccount = other.verifyCustomerAccount;
+    if (l$verifyCustomerAccount != lOther$verifyCustomerAccount) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount
+    on Mutation$VerifyCustomerAccount {
+  CopyWith$Mutation$VerifyCustomerAccount<Mutation$VerifyCustomerAccount>
+      get copyWith => CopyWith$Mutation$VerifyCustomerAccount(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount<TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount(
+          Mutation$VerifyCustomerAccount instance,
+          TRes Function(Mutation$VerifyCustomerAccount) then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount;
+
+  TRes call(
+      {Mutation$VerifyCustomerAccount$verifyCustomerAccount?
+          verifyCustomerAccount,
+      String? $__typename});
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes>
+      get verifyCustomerAccount;
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount<TRes>
+    implements CopyWith$Mutation$VerifyCustomerAccount<TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount(this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount _instance;
+
+  final TRes Function(Mutation$VerifyCustomerAccount) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? verifyCustomerAccount = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$VerifyCustomerAccount(
+          verifyCustomerAccount: verifyCustomerAccount == _undefined ||
+                  verifyCustomerAccount == null
+              ? _instance.verifyCustomerAccount
+              : (verifyCustomerAccount
+                  as Mutation$VerifyCustomerAccount$verifyCustomerAccount),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes>
+      get verifyCustomerAccount {
+    final local$verifyCustomerAccount = _instance.verifyCustomerAccount;
+    return CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+        local$verifyCustomerAccount, (e) => call(verifyCustomerAccount: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount<TRes>
+    implements CopyWith$Mutation$VerifyCustomerAccount<TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$VerifyCustomerAccount$verifyCustomerAccount?
+              verifyCustomerAccount,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes>
+      get verifyCustomerAccount =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount.stub(
+              _res);
+}
+
+const documentNodeMutationVerifyCustomerAccount = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'VerifyCustomerAccount'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'token')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'password')),
+            type: NamedTypeNode(
+                name: NameNode(value: 'String'), isNonNull: false),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'verifyCustomerAccount'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'password'),
+                  value: VariableNode(name: NameNode(value: 'password'))),
+              ArgumentNode(
+                  name: NameNode(value: 'token'),
+                  value: VariableNode(name: NameNode(value: 'token')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'CurrentUser'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name:
+                              NameNode(value: 'VerificationTokenInvalidError'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'errorCode'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'message'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name:
+                              NameNode(value: 'VerificationTokenExpiredError'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'errorCode'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'message'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FragmentSpreadNode(
+                  name: NameNode(value: 'ErrorResult'), directives: []),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  fragmentDefinitionErrorResult,
+]);
+Mutation$VerifyCustomerAccount _parserFn$Mutation$VerifyCustomerAccount(
+        Map<String, dynamic> data) =>
+    Mutation$VerifyCustomerAccount.fromJson(data);
+typedef OnMutationCompleted$Mutation$VerifyCustomerAccount = FutureOr<void>
+    Function(dynamic, Mutation$VerifyCustomerAccount?);
+
+class Options$Mutation$VerifyCustomerAccount
+    extends graphql.MutationOptions<Mutation$VerifyCustomerAccount> {
+  Options$Mutation$VerifyCustomerAccount(
+      {String? operationName,
+      required Variables$Mutation$VerifyCustomerAccount variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$VerifyCustomerAccount? onCompleted,
+      graphql.OnMutationUpdate<Mutation$VerifyCustomerAccount>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$VerifyCustomerAccount(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationVerifyCustomerAccount,
+            parserFn: _parserFn$Mutation$VerifyCustomerAccount);
+
+  final OnMutationCompleted$Mutation$VerifyCustomerAccount?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$VerifyCustomerAccount
+    extends graphql.WatchQueryOptions<Mutation$VerifyCustomerAccount> {
+  WatchOptions$Mutation$VerifyCustomerAccount(
+      {String? operationName,
+      required Variables$Mutation$VerifyCustomerAccount variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationVerifyCustomerAccount,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$VerifyCustomerAccount);
+}
+
+extension ClientExtension$Mutation$VerifyCustomerAccount
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$VerifyCustomerAccount>>
+      mutate$VerifyCustomerAccount(
+              Options$Mutation$VerifyCustomerAccount options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$VerifyCustomerAccount>
+      watchMutation$VerifyCustomerAccount(
+              WatchOptions$Mutation$VerifyCustomerAccount options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$VerifyCustomerAccount$HookResult {
+  Mutation$VerifyCustomerAccount$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$VerifyCustomerAccount runMutation;
+
+  final graphql.QueryResult<Mutation$VerifyCustomerAccount> result;
+}
+
+Mutation$VerifyCustomerAccount$HookResult useMutation$VerifyCustomerAccount(
+    [WidgetOptions$Mutation$VerifyCustomerAccount? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$VerifyCustomerAccount());
+  return Mutation$VerifyCustomerAccount$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$VerifyCustomerAccount>
+    useWatchMutation$VerifyCustomerAccount(
+            WatchOptions$Mutation$VerifyCustomerAccount options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$VerifyCustomerAccount
+    extends graphql.MutationOptions<Mutation$VerifyCustomerAccount> {
+  WidgetOptions$Mutation$VerifyCustomerAccount(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$VerifyCustomerAccount? onCompleted,
+      graphql.OnMutationUpdate<Mutation$VerifyCustomerAccount>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$VerifyCustomerAccount(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationVerifyCustomerAccount,
+            parserFn: _parserFn$Mutation$VerifyCustomerAccount);
+
+  final OnMutationCompleted$Mutation$VerifyCustomerAccount?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$VerifyCustomerAccount
+    = graphql.MultiSourceResult<Mutation$VerifyCustomerAccount> Function(
+        Variables$Mutation$VerifyCustomerAccount,
+        {Object? optimisticResult});
+typedef Builder$Mutation$VerifyCustomerAccount = widgets.Widget Function(
+    RunMutation$Mutation$VerifyCustomerAccount,
+    graphql.QueryResult<Mutation$VerifyCustomerAccount>?);
+
+class Mutation$VerifyCustomerAccount$Widget
+    extends graphql_flutter.Mutation<Mutation$VerifyCustomerAccount> {
+  Mutation$VerifyCustomerAccount$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$VerifyCustomerAccount? options,
+      required Builder$Mutation$VerifyCustomerAccount builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$VerifyCustomerAccount(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+      {required this.$__typename});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "CurrentUser":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+            .fromJson(json);
+      case "VerificationTokenInvalidError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+            .fromJson(json);
+      case "VerificationTokenExpiredError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+            .fromJson(json);
+      case "NativeAuthStrategyError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+            .fromJson(json);
+      case "MissingPasswordError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+            .fromJson(json);
+      case "PasswordValidationError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+            .fromJson(json);
+      case "PasswordAlreadySetError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+            .fromJson(json);
+      default:
+        return _$Mutation$VerifyCustomerAccount$verifyCustomerAccountFromJson(
+            json);
+    }
+  }
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccountToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$VerifyCustomerAccount$verifyCustomerAccount) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount instance,
+          TRes Function(Mutation$VerifyCustomerAccount$verifyCustomerAccount)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount _instance;
+
+  final TRes Function(Mutation$VerifyCustomerAccount$verifyCustomerAccount)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount<TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+    implements Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+      {required this.$__typename, required this.id});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUserFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  final String id;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUserToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$id = id;
+    return Object.hashAll([l$$__typename, l$id]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser;
+
+  TRes call({String? $__typename, String? id});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+      _instance;
+
+  final TRes Function(
+      Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined, Object? id = _undefined}) =>
+      _then(Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, String? id}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}

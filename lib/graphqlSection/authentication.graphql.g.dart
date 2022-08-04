@@ -287,3 +287,185 @@ Map<String, dynamic>
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
           'message': instance.message,
         };
+
+Variables$Mutation$VerifyCustomerAccount
+    _$Variables$Mutation$VerifyCustomerAccountFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$VerifyCustomerAccount(
+          token: json['token'] as String,
+          password: json['password'] as String?,
+        );
+
+Map<String, dynamic> _$Variables$Mutation$VerifyCustomerAccountToJson(
+        Variables$Mutation$VerifyCustomerAccount instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'password': instance.password,
+    };
+
+Mutation$VerifyCustomerAccount _$Mutation$VerifyCustomerAccountFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$VerifyCustomerAccount(
+      verifyCustomerAccount:
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount.fromJson(
+              json['verifyCustomerAccount'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$VerifyCustomerAccountToJson(
+        Mutation$VerifyCustomerAccount instance) =>
+    <String, dynamic>{
+      'verifyCustomerAccount': instance.verifyCustomerAccount.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccountFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccountToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUserFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser(
+          $__typename: json['__typename'] as String,
+          id: json['id'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUserToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$CurrentUser
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'id': instance.id,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenInvalidError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };

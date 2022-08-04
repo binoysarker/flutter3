@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                                       context: context);
                                 } else {
                                   if (loginWatchProvider.showSignIn) {
-                                    loginWatchProvider.onUserSignIn();
+                                    loginWatchProvider.onUserSignIn(context);
                                   } else {
                                     loginWatchProvider.onUserRegister(context);
                                   }

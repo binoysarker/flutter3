@@ -1,50 +1,35 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import "package:graphql_flutter/graphql_flutter.dart";
 
-class GraphQlService {
-  static final GraphQlService _graphQlService = GraphQlService._internal();
-  late ValueNotifier<GraphQLClient> _clientValueNotified;
-  late GraphQLClient _graphQLClient;
+class GraphqlService {
+  static dynamic link;
+  static HttpLink httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
 
-  GraphQLClient get graphQLClient => _graphQLClient;
-
-  set graphQLClient(GraphQLClient value) {
-    _graphQLClient = value;
+  static void setToken(String token) {
+    AuthLink alink = AuthLink(getToken: () async => 'Bearer $token');
+    GraphqlService.link = alink.concat(GraphqlService.httpLink);
   }
 
-  ValueNotifier<GraphQLClient> get client => _clientValueNotified;
-
-  set client(ValueNotifier<GraphQLClient> value) {
-    _clientValueNotified = value;
+  static void removeToken() {
+    GraphqlService.link = null;
   }
 
-  factory GraphQlService() => _graphQlService;
+  static Link getLink() {
+    return GraphqlService.link ?? GraphqlService.httpLink;
+  }
 
-  GraphQlService._internal() {}
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: getLink(),
+      cache: GraphQLCache(),
+    ),
+  );
 
-  Future<void> initializeGraphQl() async {
-    await initHiveForFlutter();
-    final url = '${dotenv.env['SHOP_API_URL']}';
-    print('url ${url}');
-    final HttpLink httpLink = HttpLink(url);
-
-    final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
-      // OR
-      // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
+  GraphQLClient clientToQuery() {
+    return GraphQLClient(
+      cache: GraphQLCache(),
+      link: getLink(),
     );
-
-    final Link link = httpLink;
-
-    _clientValueNotified = ValueNotifier(
-      GraphQLClient(
-        link: link,
-        // The default store is the InMemoryStore, which does NOT persist to disk
-        cache: GraphQLCache(store: HiveStore()),
-      ),
-    );
-    _graphQLClient =
-        GraphQLClient(link: link, cache: GraphQLCache(store: HiveStore()));
   }
 }

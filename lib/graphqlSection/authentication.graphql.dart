@@ -400,7 +400,44 @@ const documentNodeMutationSignIn = DocumentNode(definitions: [
                         alias: null,
                         arguments: [],
                         directives: [],
-                        selectionSet: null)
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'channels'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'token'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'permissions'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'code'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
                   ])),
               FragmentSpreadNode(
                   name: NameNode(value: 'ErrorResult'), directives: []),
@@ -674,7 +711,7 @@ class _CopyWithStubImpl$Mutation$SignIn$login<TRes>
 @JsonSerializable(explicitToJson: true)
 class Mutation$SignIn$login$$CurrentUser implements Mutation$SignIn$login {
   Mutation$SignIn$login$$CurrentUser(
-      {required this.$__typename, required this.id});
+      {required this.$__typename, required this.id, required this.channels});
 
   @override
   factory Mutation$SignIn$login$$CurrentUser.fromJson(
@@ -686,12 +723,16 @@ class Mutation$SignIn$login$$CurrentUser implements Mutation$SignIn$login {
 
   final String id;
 
+  final List<Mutation$SignIn$login$$CurrentUser$channels> channels;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$SignIn$login$$CurrentUserToJson(this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$id = id;
-    return Object.hashAll([l$$__typename, l$id]);
+    final l$channels = channels;
+    return Object.hashAll(
+        [l$$__typename, l$id, Object.hashAll(l$channels.map((v) => v))]);
   }
 
   @override
@@ -705,6 +746,15 @@ class Mutation$SignIn$login$$CurrentUser implements Mutation$SignIn$login {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
+    final l$channels = channels;
+    final lOther$channels = other.channels;
+    if (l$channels.length != lOther$channels.length) return false;
+    for (int i = 0; i < l$channels.length; i++) {
+      final l$channels$entry = l$channels[i];
+      final lOther$channels$entry = lOther$channels[i];
+      if (l$channels$entry != lOther$channels$entry) return false;
+    }
+
     return true;
   }
 }
@@ -726,7 +776,16 @@ abstract class CopyWith$Mutation$SignIn$login$$CurrentUser<TRes> {
   factory CopyWith$Mutation$SignIn$login$$CurrentUser.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser;
 
-  TRes call({String? $__typename, String? id});
+  TRes call(
+      {String? $__typename,
+      String? id,
+      List<Mutation$SignIn$login$$CurrentUser$channels>? channels});
+  TRes channels(
+      Iterable<Mutation$SignIn$login$$CurrentUser$channels> Function(
+              Iterable<
+                  CopyWith$Mutation$SignIn$login$$CurrentUser$channels<
+                      Mutation$SignIn$login$$CurrentUser$channels>>)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$SignIn$login$$CurrentUser<TRes>
@@ -739,12 +798,29 @@ class _CopyWithImpl$Mutation$SignIn$login$$CurrentUser<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined, Object? id = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? id = _undefined,
+          Object? channels = _undefined}) =>
       _then(Mutation$SignIn$login$$CurrentUser(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
-          id: id == _undefined || id == null ? _instance.id : (id as String)));
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          channels: channels == _undefined || channels == null
+              ? _instance.channels
+              : (channels
+                  as List<Mutation$SignIn$login$$CurrentUser$channels>)));
+  TRes channels(
+          Iterable<Mutation$SignIn$login$$CurrentUser$channels> Function(
+                  Iterable<
+                      CopyWith$Mutation$SignIn$login$$CurrentUser$channels<
+                          Mutation$SignIn$login$$CurrentUser$channels>>)
+              _fn) =>
+      call(
+          channels: _fn(_instance.channels.map((e) =>
+              CopyWith$Mutation$SignIn$login$$CurrentUser$channels(
+                  e, (i) => i))).toList());
 }
 
 class _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser<TRes>
@@ -753,7 +829,158 @@ class _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser<TRes>
 
   TRes _res;
 
-  call({String? $__typename, String? id}) => _res;
+  call(
+          {String? $__typename,
+          String? id,
+          List<Mutation$SignIn$login$$CurrentUser$channels>? channels}) =>
+      _res;
+  channels(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SignIn$login$$CurrentUser$channels {
+  Mutation$SignIn$login$$CurrentUser$channels(
+      {required this.token,
+      required this.permissions,
+      required this.code,
+      required this.id,
+      required this.$__typename});
+
+  @override
+  factory Mutation$SignIn$login$$CurrentUser$channels.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SignIn$login$$CurrentUser$channelsFromJson(json);
+
+  final String token;
+
+  @JsonKey(unknownEnumValue: Enum$Permission.$unknown)
+  final List<Enum$Permission> permissions;
+
+  final String code;
+
+  final String id;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SignIn$login$$CurrentUser$channelsToJson(this);
+  int get hashCode {
+    final l$token = token;
+    final l$permissions = permissions;
+    final l$code = code;
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$token,
+      Object.hashAll(l$permissions.map((v) => v)),
+      l$code,
+      l$id,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$SignIn$login$$CurrentUser$channels) ||
+        runtimeType != other.runtimeType) return false;
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) return false;
+    final l$permissions = permissions;
+    final lOther$permissions = other.permissions;
+    if (l$permissions.length != lOther$permissions.length) return false;
+    for (int i = 0; i < l$permissions.length; i++) {
+      final l$permissions$entry = l$permissions[i];
+      final lOther$permissions$entry = lOther$permissions[i];
+      if (l$permissions$entry != lOther$permissions$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SignIn$login$$CurrentUser$channels
+    on Mutation$SignIn$login$$CurrentUser$channels {
+  CopyWith$Mutation$SignIn$login$$CurrentUser$channels<
+          Mutation$SignIn$login$$CurrentUser$channels>
+      get copyWith =>
+          CopyWith$Mutation$SignIn$login$$CurrentUser$channels(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SignIn$login$$CurrentUser$channels<TRes> {
+  factory CopyWith$Mutation$SignIn$login$$CurrentUser$channels(
+          Mutation$SignIn$login$$CurrentUser$channels instance,
+          TRes Function(Mutation$SignIn$login$$CurrentUser$channels) then) =
+      _CopyWithImpl$Mutation$SignIn$login$$CurrentUser$channels;
+
+  factory CopyWith$Mutation$SignIn$login$$CurrentUser$channels.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser$channels;
+
+  TRes call(
+      {String? token,
+      List<Enum$Permission>? permissions,
+      String? code,
+      String? id,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SignIn$login$$CurrentUser$channels<TRes>
+    implements CopyWith$Mutation$SignIn$login$$CurrentUser$channels<TRes> {
+  _CopyWithImpl$Mutation$SignIn$login$$CurrentUser$channels(
+      this._instance, this._then);
+
+  final Mutation$SignIn$login$$CurrentUser$channels _instance;
+
+  final TRes Function(Mutation$SignIn$login$$CurrentUser$channels) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? token = _undefined,
+          Object? permissions = _undefined,
+          Object? code = _undefined,
+          Object? id = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SignIn$login$$CurrentUser$channels(
+          token: token == _undefined || token == null
+              ? _instance.token
+              : (token as String),
+          permissions: permissions == _undefined || permissions == null
+              ? _instance.permissions
+              : (permissions as List<Enum$Permission>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser$channels<TRes>
+    implements CopyWith$Mutation$SignIn$login$$CurrentUser$channels<TRes> {
+  _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser$channels(this._res);
+
+  TRes _res;
+
+  call(
+          {String? token,
+          List<Enum$Permission>? permissions,
+          String? code,
+          String? id,
+          String? $__typename}) =>
+      _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -3516,5 +3743,1448 @@ class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Pa
   TRes _res;
 
   call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer {
+  Query$GetActiveCustomer({this.activeCustomer, required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomerFromJson(json);
+
+  final Query$GetActiveCustomer$activeCustomer? activeCustomer;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetActiveCustomerToJson(this);
+  int get hashCode {
+    final l$activeCustomer = activeCustomer;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$activeCustomer, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer) || runtimeType != other.runtimeType)
+      return false;
+    final l$activeCustomer = activeCustomer;
+    final lOther$activeCustomer = other.activeCustomer;
+    if (l$activeCustomer != lOther$activeCustomer) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer on Query$GetActiveCustomer {
+  CopyWith$Query$GetActiveCustomer<Query$GetActiveCustomer> get copyWith =>
+      CopyWith$Query$GetActiveCustomer(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer<TRes> {
+  factory CopyWith$Query$GetActiveCustomer(Query$GetActiveCustomer instance,
+          TRes Function(Query$GetActiveCustomer) then) =
+      _CopyWithImpl$Query$GetActiveCustomer;
+
+  factory CopyWith$Query$GetActiveCustomer.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer;
+
+  TRes call(
+      {Query$GetActiveCustomer$activeCustomer? activeCustomer,
+      String? $__typename});
+  CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> get activeCustomer;
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer<TRes>
+    implements CopyWith$Query$GetActiveCustomer<TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer(this._instance, this._then);
+
+  final Query$GetActiveCustomer _instance;
+
+  final TRes Function(Query$GetActiveCustomer) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? activeCustomer = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer(
+          activeCustomer: activeCustomer == _undefined
+              ? _instance.activeCustomer
+              : (activeCustomer as Query$GetActiveCustomer$activeCustomer?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> get activeCustomer {
+    final local$activeCustomer = _instance.activeCustomer;
+    return local$activeCustomer == null
+        ? CopyWith$Query$GetActiveCustomer$activeCustomer.stub(_then(_instance))
+        : CopyWith$Query$GetActiveCustomer$activeCustomer(
+            local$activeCustomer, (e) => call(activeCustomer: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer<TRes>
+    implements CopyWith$Query$GetActiveCustomer<TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer(this._res);
+
+  TRes _res;
+
+  call(
+          {Query$GetActiveCustomer$activeCustomer? activeCustomer,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> get activeCustomer =>
+      CopyWith$Query$GetActiveCustomer$activeCustomer.stub(_res);
+}
+
+const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetActiveCustomer'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'activeCustomer'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'Customer'), isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'emailAddress'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'firstName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'lastName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'phoneNumber'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'orders'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'totalItems'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'items'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'active'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'discounts'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'amount'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$GetActiveCustomer _parserFn$Query$GetActiveCustomer(
+        Map<String, dynamic> data) =>
+    Query$GetActiveCustomer.fromJson(data);
+
+class Options$Query$GetActiveCustomer
+    extends graphql.QueryOptions<Query$GetActiveCustomer> {
+  Options$Query$GetActiveCustomer(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryGetActiveCustomer,
+            parserFn: _parserFn$Query$GetActiveCustomer);
+}
+
+class WatchOptions$Query$GetActiveCustomer
+    extends graphql.WatchQueryOptions<Query$GetActiveCustomer> {
+  WatchOptions$Query$GetActiveCustomer(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryGetActiveCustomer,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$GetActiveCustomer);
+}
+
+class FetchMoreOptions$Query$GetActiveCustomer
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetActiveCustomer(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+            updateQuery: updateQuery,
+            document: documentNodeQueryGetActiveCustomer);
+}
+
+extension ClientExtension$Query$GetActiveCustomer on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetActiveCustomer>> query$GetActiveCustomer(
+          [Options$Query$GetActiveCustomer? options]) async =>
+      await this.query(options ?? Options$Query$GetActiveCustomer());
+  graphql.ObservableQuery<Query$GetActiveCustomer> watchQuery$GetActiveCustomer(
+          [WatchOptions$Query$GetActiveCustomer? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetActiveCustomer());
+  void writeQuery$GetActiveCustomer(
+          {required Query$GetActiveCustomer data, bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryGetActiveCustomer)),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$GetActiveCustomer? readQuery$GetActiveCustomer(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryGetActiveCustomer)),
+        optimistic: optimistic);
+    return result == null ? null : Query$GetActiveCustomer.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetActiveCustomer>
+    useQuery$GetActiveCustomer([Options$Query$GetActiveCustomer? options]) =>
+        graphql_flutter.useQuery(options ?? Options$Query$GetActiveCustomer());
+graphql.ObservableQuery<Query$GetActiveCustomer>
+    useWatchQuery$GetActiveCustomer(
+            [WatchOptions$Query$GetActiveCustomer? options]) =>
+        graphql_flutter
+            .useWatchQuery(options ?? WatchOptions$Query$GetActiveCustomer());
+
+class Query$GetActiveCustomer$Widget
+    extends graphql_flutter.Query<Query$GetActiveCustomer> {
+  Query$GetActiveCustomer$Widget(
+      {widgets.Key? key,
+      Options$Query$GetActiveCustomer? options,
+      required graphql_flutter.QueryBuilder<Query$GetActiveCustomer> builder})
+      : super(
+            key: key,
+            options: options ?? Options$Query$GetActiveCustomer(),
+            builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer {
+  Query$GetActiveCustomer$activeCustomer(
+      {required this.emailAddress,
+      required this.firstName,
+      required this.lastName,
+      this.phoneNumber,
+      required this.orders,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomerFromJson(json);
+
+  final String emailAddress;
+
+  final String firstName;
+
+  final String lastName;
+
+  final String? phoneNumber;
+
+  final Query$GetActiveCustomer$activeCustomer$orders orders;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomerToJson(this);
+  int get hashCode {
+    final l$emailAddress = emailAddress;
+    final l$firstName = firstName;
+    final l$lastName = lastName;
+    final l$phoneNumber = phoneNumber;
+    final l$orders = orders;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$emailAddress,
+      l$firstName,
+      l$lastName,
+      l$phoneNumber,
+      l$orders,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer) ||
+        runtimeType != other.runtimeType) return false;
+    final l$emailAddress = emailAddress;
+    final lOther$emailAddress = other.emailAddress;
+    if (l$emailAddress != lOther$emailAddress) return false;
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) return false;
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) return false;
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (l$phoneNumber != lOther$phoneNumber) return false;
+    final l$orders = orders;
+    final lOther$orders = other.orders;
+    if (l$orders != lOther$orders) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer
+    on Query$GetActiveCustomer$activeCustomer {
+  CopyWith$Query$GetActiveCustomer$activeCustomer<
+          Query$GetActiveCustomer$activeCustomer>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer(
+          Query$GetActiveCustomer$activeCustomer instance,
+          TRes Function(Query$GetActiveCustomer$activeCustomer) then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer;
+
+  TRes call(
+      {String? emailAddress,
+      String? firstName,
+      String? lastName,
+      String? phoneNumber,
+      Query$GetActiveCustomer$activeCustomer$orders? orders,
+      String? $__typename});
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders;
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? emailAddress = _undefined,
+          Object? firstName = _undefined,
+          Object? lastName = _undefined,
+          Object? phoneNumber = _undefined,
+          Object? orders = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer(
+          emailAddress: emailAddress == _undefined || emailAddress == null
+              ? _instance.emailAddress
+              : (emailAddress as String),
+          firstName: firstName == _undefined || firstName == null
+              ? _instance.firstName
+              : (firstName as String),
+          lastName: lastName == _undefined || lastName == null
+              ? _instance.lastName
+              : (lastName as String),
+          phoneNumber: phoneNumber == _undefined
+              ? _instance.phoneNumber
+              : (phoneNumber as String?),
+          orders: orders == _undefined || orders == null
+              ? _instance.orders
+              : (orders as Query$GetActiveCustomer$activeCustomer$orders),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders {
+    final local$orders = _instance.orders;
+    return CopyWith$Query$GetActiveCustomer$activeCustomer$orders(
+        local$orders, (e) => call(orders: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer(this._res);
+
+  TRes _res;
+
+  call(
+          {String? emailAddress,
+          String? firstName,
+          String? lastName,
+          String? phoneNumber,
+          Query$GetActiveCustomer$activeCustomer$orders? orders,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders =>
+      CopyWith$Query$GetActiveCustomer$activeCustomer$orders.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders {
+  Query$GetActiveCustomer$activeCustomer$orders(
+      {required this.totalItems,
+      required this.items,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$ordersFromJson(json);
+
+  final int totalItems;
+
+  final List<Query$GetActiveCustomer$activeCustomer$orders$items> items;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$ordersToJson(this);
+  int get hashCode {
+    final l$totalItems = totalItems;
+    final l$items = items;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$totalItems, Object.hashAll(l$items.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer$orders) ||
+        runtimeType != other.runtimeType) return false;
+    final l$totalItems = totalItems;
+    final lOther$totalItems = other.totalItems;
+    if (l$totalItems != lOther$totalItems) return false;
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) return false;
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders
+    on Query$GetActiveCustomer$activeCustomer$orders {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders<
+          Query$GetActiveCustomer$activeCustomer$orders>
+      get copyWith => CopyWith$Query$GetActiveCustomer$activeCustomer$orders(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders(
+          Query$GetActiveCustomer$activeCustomer$orders instance,
+          TRes Function(Query$GetActiveCustomer$activeCustomer$orders) then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders;
+
+  TRes call(
+      {int? totalItems,
+      List<Query$GetActiveCustomer$activeCustomer$orders$items>? items,
+      String? $__typename});
+  TRes items(
+      Iterable<Query$GetActiveCustomer$activeCustomer$orders$items> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
+                      Query$GetActiveCustomer$activeCustomer$orders$items>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer$orders) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? totalItems = _undefined,
+          Object? items = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders(
+          totalItems: totalItems == _undefined || totalItems == null
+              ? _instance.totalItems
+              : (totalItems as int),
+          items: items == _undefined || items == null
+              ? _instance.items
+              : (items
+                  as List<Query$GetActiveCustomer$activeCustomer$orders$items>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes items(
+          Iterable<Query$GetActiveCustomer$activeCustomer$orders$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
+                          Query$GetActiveCustomer$activeCustomer$orders$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders(this._res);
+
+  TRes _res;
+
+  call(
+          {int? totalItems,
+          List<Query$GetActiveCustomer$activeCustomer$orders$items>? items,
+          String? $__typename}) =>
+      _res;
+  items(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items {
+  Query$GetActiveCustomer$activeCustomer$orders$items(
+      {required this.active,
+      required this.discounts,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$itemsFromJson(json);
+
+  final bool active;
+
+  final List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>
+      discounts;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$itemsToJson(this);
+  int get hashCode {
+    final l$active = active;
+    final l$discounts = discounts;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$active, Object.hashAll(l$discounts.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer$orders$items) ||
+        runtimeType != other.runtimeType) return false;
+    final l$active = active;
+    final lOther$active = other.active;
+    if (l$active != lOther$active) return false;
+    final l$discounts = discounts;
+    final lOther$discounts = other.discounts;
+    if (l$discounts.length != lOther$discounts.length) return false;
+    for (int i = 0; i < l$discounts.length; i++) {
+      final l$discounts$entry = l$discounts[i];
+      final lOther$discounts$entry = lOther$discounts[i];
+      if (l$discounts$entry != lOther$discounts$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items
+    on Query$GetActiveCustomer$activeCustomer$orders$items {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
+          Query$GetActiveCustomer$activeCustomer$orders$items>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items(
+          Query$GetActiveCustomer$activeCustomer$orders$items instance,
+          TRes Function(Query$GetActiveCustomer$activeCustomer$orders$items)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items;
+
+  TRes call(
+      {bool? active,
+      List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
+          discounts,
+      String? $__typename});
+  TRes discounts(
+      Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$discounts> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+                      Query$GetActiveCustomer$activeCustomer$orders$items$discounts>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer$orders$items)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? active = _undefined,
+          Object? discounts = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items(
+          active: active == _undefined || active == null
+              ? _instance.active
+              : (active as bool),
+          discounts: discounts == _undefined || discounts == null
+              ? _instance.discounts
+              : (discounts as List<
+                  Query$GetActiveCustomer$activeCustomer$orders$items$discounts>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes discounts(
+          Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$discounts> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+                          Query$GetActiveCustomer$activeCustomer$orders$items$discounts>>)
+              _fn) =>
+      call(
+          discounts: _fn(_instance.discounts.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {bool? active,
+          List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
+              discounts,
+          String? $__typename}) =>
+      _res;
+  discounts(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$discounts {
+  Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+      {required this.amount, required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$discounts.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$discountsFromJson(
+          json);
+
+  final int amount;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$discountsToJson(
+          this);
+  int get hashCode {
+    final l$amount = amount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$amount, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$discounts) ||
+        runtimeType != other.runtimeType) return false;
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (l$amount != lOther$amount) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$discounts
+    on Query$GetActiveCustomer$activeCustomer$orders$items$discounts {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+          Query$GetActiveCustomer$activeCustomer$orders$items$discounts>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+          Query$GetActiveCustomer$activeCustomer$orders$items$discounts instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$discounts)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts;
+
+  TRes call({int? amount, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$discounts _instance;
+
+  final TRes Function(
+      Query$GetActiveCustomer$activeCustomer$orders$items$discounts) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? amount = _undefined, Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+          amount: amount == _undefined || amount == null
+              ? _instance.amount
+              : (amount as int),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
+      this._res);
+
+  TRes _res;
+
+  call({int? amount, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetCurrentUser {
+  Query$GetCurrentUser({this.me, required this.$__typename});
+
+  @override
+  factory Query$GetCurrentUser.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetCurrentUserFromJson(json);
+
+  final Query$GetCurrentUser$me? me;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetCurrentUserToJson(this);
+  int get hashCode {
+    final l$me = me;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$me, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCurrentUser) || runtimeType != other.runtimeType)
+      return false;
+    final l$me = me;
+    final lOther$me = other.me;
+    if (l$me != lOther$me) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCurrentUser on Query$GetCurrentUser {
+  CopyWith$Query$GetCurrentUser<Query$GetCurrentUser> get copyWith =>
+      CopyWith$Query$GetCurrentUser(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCurrentUser<TRes> {
+  factory CopyWith$Query$GetCurrentUser(Query$GetCurrentUser instance,
+          TRes Function(Query$GetCurrentUser) then) =
+      _CopyWithImpl$Query$GetCurrentUser;
+
+  factory CopyWith$Query$GetCurrentUser.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCurrentUser;
+
+  TRes call({Query$GetCurrentUser$me? me, String? $__typename});
+  CopyWith$Query$GetCurrentUser$me<TRes> get me;
+}
+
+class _CopyWithImpl$Query$GetCurrentUser<TRes>
+    implements CopyWith$Query$GetCurrentUser<TRes> {
+  _CopyWithImpl$Query$GetCurrentUser(this._instance, this._then);
+
+  final Query$GetCurrentUser _instance;
+
+  final TRes Function(Query$GetCurrentUser) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? me = _undefined, Object? $__typename = _undefined}) =>
+      _then(Query$GetCurrentUser(
+          me: me == _undefined
+              ? _instance.me
+              : (me as Query$GetCurrentUser$me?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetCurrentUser$me<TRes> get me {
+    final local$me = _instance.me;
+    return local$me == null
+        ? CopyWith$Query$GetCurrentUser$me.stub(_then(_instance))
+        : CopyWith$Query$GetCurrentUser$me(local$me, (e) => call(me: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetCurrentUser<TRes>
+    implements CopyWith$Query$GetCurrentUser<TRes> {
+  _CopyWithStubImpl$Query$GetCurrentUser(this._res);
+
+  TRes _res;
+
+  call({Query$GetCurrentUser$me? me, String? $__typename}) => _res;
+  CopyWith$Query$GetCurrentUser$me<TRes> get me =>
+      CopyWith$Query$GetCurrentUser$me.stub(_res);
+}
+
+const documentNodeQueryGetCurrentUser = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetCurrentUser'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'me'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'CurrentUser'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'identifier'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'channels'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          InlineFragmentNode(
+                              typeCondition: TypeConditionNode(
+                                  on: NamedTypeNode(
+                                      name:
+                                          NameNode(value: 'CurrentUserChannel'),
+                                      isNonNull: false)),
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'permissions'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'token'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$GetCurrentUser _parserFn$Query$GetCurrentUser(
+        Map<String, dynamic> data) =>
+    Query$GetCurrentUser.fromJson(data);
+
+class Options$Query$GetCurrentUser
+    extends graphql.QueryOptions<Query$GetCurrentUser> {
+  Options$Query$GetCurrentUser(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryGetCurrentUser,
+            parserFn: _parserFn$Query$GetCurrentUser);
+}
+
+class WatchOptions$Query$GetCurrentUser
+    extends graphql.WatchQueryOptions<Query$GetCurrentUser> {
+  WatchOptions$Query$GetCurrentUser(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryGetCurrentUser,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$GetCurrentUser);
+}
+
+class FetchMoreOptions$Query$GetCurrentUser extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetCurrentUser(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+            updateQuery: updateQuery,
+            document: documentNodeQueryGetCurrentUser);
+}
+
+extension ClientExtension$Query$GetCurrentUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetCurrentUser>> query$GetCurrentUser(
+          [Options$Query$GetCurrentUser? options]) async =>
+      await this.query(options ?? Options$Query$GetCurrentUser());
+  graphql.ObservableQuery<Query$GetCurrentUser> watchQuery$GetCurrentUser(
+          [WatchOptions$Query$GetCurrentUser? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetCurrentUser());
+  void writeQuery$GetCurrentUser(
+          {required Query$GetCurrentUser data, bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation:
+                  graphql.Operation(document: documentNodeQueryGetCurrentUser)),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$GetCurrentUser? readQuery$GetCurrentUser({bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryGetCurrentUser)),
+        optimistic: optimistic);
+    return result == null ? null : Query$GetCurrentUser.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetCurrentUser> useQuery$GetCurrentUser(
+        [Options$Query$GetCurrentUser? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$GetCurrentUser());
+graphql.ObservableQuery<Query$GetCurrentUser> useWatchQuery$GetCurrentUser(
+        [WatchOptions$Query$GetCurrentUser? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$GetCurrentUser());
+
+class Query$GetCurrentUser$Widget
+    extends graphql_flutter.Query<Query$GetCurrentUser> {
+  Query$GetCurrentUser$Widget(
+      {widgets.Key? key,
+      Options$Query$GetCurrentUser? options,
+      required graphql_flutter.QueryBuilder<Query$GetCurrentUser> builder})
+      : super(
+            key: key,
+            options: options ?? Options$Query$GetCurrentUser(),
+            builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetCurrentUser$me {
+  Query$GetCurrentUser$me(
+      {required this.id,
+      required this.identifier,
+      required this.channels,
+      required this.$__typename});
+
+  @override
+  factory Query$GetCurrentUser$me.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetCurrentUser$meFromJson(json);
+
+  final String id;
+
+  final String identifier;
+
+  final List<Query$GetCurrentUser$me$channels> channels;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetCurrentUser$meToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$identifier = identifier;
+    final l$channels = channels;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$identifier,
+      Object.hashAll(l$channels.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCurrentUser$me) || runtimeType != other.runtimeType)
+      return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$identifier = identifier;
+    final lOther$identifier = other.identifier;
+    if (l$identifier != lOther$identifier) return false;
+    final l$channels = channels;
+    final lOther$channels = other.channels;
+    if (l$channels.length != lOther$channels.length) return false;
+    for (int i = 0; i < l$channels.length; i++) {
+      final l$channels$entry = l$channels[i];
+      final lOther$channels$entry = lOther$channels[i];
+      if (l$channels$entry != lOther$channels$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCurrentUser$me on Query$GetCurrentUser$me {
+  CopyWith$Query$GetCurrentUser$me<Query$GetCurrentUser$me> get copyWith =>
+      CopyWith$Query$GetCurrentUser$me(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCurrentUser$me<TRes> {
+  factory CopyWith$Query$GetCurrentUser$me(Query$GetCurrentUser$me instance,
+          TRes Function(Query$GetCurrentUser$me) then) =
+      _CopyWithImpl$Query$GetCurrentUser$me;
+
+  factory CopyWith$Query$GetCurrentUser$me.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCurrentUser$me;
+
+  TRes call(
+      {String? id,
+      String? identifier,
+      List<Query$GetCurrentUser$me$channels>? channels,
+      String? $__typename});
+  TRes channels(
+      Iterable<Query$GetCurrentUser$me$channels> Function(
+              Iterable<
+                  CopyWith$Query$GetCurrentUser$me$channels<
+                      Query$GetCurrentUser$me$channels>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetCurrentUser$me<TRes>
+    implements CopyWith$Query$GetCurrentUser$me<TRes> {
+  _CopyWithImpl$Query$GetCurrentUser$me(this._instance, this._then);
+
+  final Query$GetCurrentUser$me _instance;
+
+  final TRes Function(Query$GetCurrentUser$me) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? identifier = _undefined,
+          Object? channels = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCurrentUser$me(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          identifier: identifier == _undefined || identifier == null
+              ? _instance.identifier
+              : (identifier as String),
+          channels: channels == _undefined || channels == null
+              ? _instance.channels
+              : (channels as List<Query$GetCurrentUser$me$channels>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes channels(
+          Iterable<Query$GetCurrentUser$me$channels> Function(
+                  Iterable<
+                      CopyWith$Query$GetCurrentUser$me$channels<
+                          Query$GetCurrentUser$me$channels>>)
+              _fn) =>
+      call(
+          channels: _fn(_instance.channels.map((e) =>
+                  CopyWith$Query$GetCurrentUser$me$channels(e, (i) => i)))
+              .toList());
+}
+
+class _CopyWithStubImpl$Query$GetCurrentUser$me<TRes>
+    implements CopyWith$Query$GetCurrentUser$me<TRes> {
+  _CopyWithStubImpl$Query$GetCurrentUser$me(this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          String? identifier,
+          List<Query$GetCurrentUser$me$channels>? channels,
+          String? $__typename}) =>
+      _res;
+  channels(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetCurrentUser$me$channels {
+  Query$GetCurrentUser$me$channels(
+      {required this.id,
+      required this.permissions,
+      required this.token,
+      required this.$__typename});
+
+  @override
+  factory Query$GetCurrentUser$me$channels.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetCurrentUser$me$channelsFromJson(json);
+
+  final String id;
+
+  @JsonKey(unknownEnumValue: Enum$Permission.$unknown)
+  final List<Enum$Permission> permissions;
+
+  final String token;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetCurrentUser$me$channelsToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$permissions = permissions;
+    final l$token = token;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      Object.hashAll(l$permissions.map((v) => v)),
+      l$token,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCurrentUser$me$channels) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$permissions = permissions;
+    final lOther$permissions = other.permissions;
+    if (l$permissions.length != lOther$permissions.length) return false;
+    for (int i = 0; i < l$permissions.length; i++) {
+      final l$permissions$entry = l$permissions[i];
+      final lOther$permissions$entry = lOther$permissions[i];
+      if (l$permissions$entry != lOther$permissions$entry) return false;
+    }
+
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCurrentUser$me$channels
+    on Query$GetCurrentUser$me$channels {
+  CopyWith$Query$GetCurrentUser$me$channels<Query$GetCurrentUser$me$channels>
+      get copyWith => CopyWith$Query$GetCurrentUser$me$channels(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCurrentUser$me$channels<TRes> {
+  factory CopyWith$Query$GetCurrentUser$me$channels(
+          Query$GetCurrentUser$me$channels instance,
+          TRes Function(Query$GetCurrentUser$me$channels) then) =
+      _CopyWithImpl$Query$GetCurrentUser$me$channels;
+
+  factory CopyWith$Query$GetCurrentUser$me$channels.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCurrentUser$me$channels;
+
+  TRes call(
+      {String? id,
+      List<Enum$Permission>? permissions,
+      String? token,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetCurrentUser$me$channels<TRes>
+    implements CopyWith$Query$GetCurrentUser$me$channels<TRes> {
+  _CopyWithImpl$Query$GetCurrentUser$me$channels(this._instance, this._then);
+
+  final Query$GetCurrentUser$me$channels _instance;
+
+  final TRes Function(Query$GetCurrentUser$me$channels) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? permissions = _undefined,
+          Object? token = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCurrentUser$me$channels(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          permissions: permissions == _undefined || permissions == null
+              ? _instance.permissions
+              : (permissions as List<Enum$Permission>),
+          token: token == _undefined || token == null
+              ? _instance.token
+              : (token as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetCurrentUser$me$channels<TRes>
+    implements CopyWith$Query$GetCurrentUser$me$channels<TRes> {
+  _CopyWithStubImpl$Query$GetCurrentUser$me$channels(this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          List<Enum$Permission>? permissions,
+          String? token,
+          String? $__typename}) =>
       _res;
 }

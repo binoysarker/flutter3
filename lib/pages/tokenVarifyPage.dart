@@ -35,7 +35,7 @@ class TokenVerifyPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  autovalidateMode: AutovalidateMode.values.last,
                   controller: tokenPageProvider.tokenController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),

@@ -3,6 +3,13 @@ mutation SignIn($emailAddress: String!, $password: String!, $rememberMe: Boolean
         ... on CurrentUser {
             id
             __typename
+            channels {
+                token
+                permissions
+                code
+                id
+                __typename
+            }
         }
         ...ErrorResult
         __typename
@@ -46,5 +53,42 @@ mutation VerifyCustomerAccount($token: String!, $password: String){
         }
         ...ErrorResult
         __typename
+    }
+}
+
+query GetActiveCustomer{
+    activeCustomer {
+        ... on Customer{
+            emailAddress
+            firstName
+            lastName
+            phoneNumber
+            orders{
+                totalItems
+                items {
+                    active
+                    discounts {
+                        amount
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+query GetCurrentUser{
+    me {
+        ... on CurrentUser{
+            id
+            identifier
+            channels {
+                ... on CurrentUserChannel{
+                    id
+                    permissions
+                    token
+                }
+            }
+        }
     }
 }

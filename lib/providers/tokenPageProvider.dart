@@ -8,14 +8,15 @@ import 'package:flutter/material.dart';
 
 class TokenPageProvider with ChangeNotifier {
   TextEditingController tokenController = TextEditingController();
-  GraphQlService graphQlService = GraphQlService();
+  GraphqlService graphqlService = GraphqlService();
   late final UtilityProvider? _utilityProvider;
 
   TokenPageProvider(this._utilityProvider){}
 
   void onTokenSubmit(BuildContext context) async {
+    final navigator = Navigator.of(context);
     _utilityProvider?.setLoadingState(true);
-    final res = await graphQlService.graphQLClient
+    final res = await graphqlService.clientToQuery()
         .mutate$VerifyCustomerAccount(Options$Mutation$VerifyCustomerAccount(
             variables: Variables$Mutation$VerifyCustomerAccount(
       token: tokenController.text,
@@ -32,7 +33,7 @@ class TokenPageProvider with ChangeNotifier {
 
       }else {
         UtilService.createSnakeBar(context: context,text: 'user is verified');
-        Navigator.pushReplacementNamed(context, '/${PageRouteNames.home}');
+        navigator.pushReplacementNamed('/${PageRouteNames.login.name}');
       }
       _utilityProvider?.setLoadingState(false);
 

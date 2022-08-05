@@ -1,24 +1,52 @@
+query GetAvailableCountries{
+    availableCountries {
+        ... on Country{
+            enabled
+            languageCode
+            translations {
+                ... on CountryTranslation{
+                    languageCode
+                    name
+
+                }
+            }
+            name
+
+        }
+    }
+}
+query GetCollectionsByIdOrSlug($id: ID,$slug: String){
+    collection(id: $id,slug: $slug){
+        ...SingleItem
+
+    }
+}
 query GetCollections($options: CollectionListOptions) {
     collections(options: $options) {
         items {
-            id
-            name
-            slug
-            parent {
-                id
-                name
-                slug
-                __typename
-            }
-            featuredAsset {
-                ...Asset
-                __typename
-            }
-            __typename
+            ...SingleItem
         }
         __typename
     }
 }
+
+fragment SingleItem on Collection{
+    id
+    name
+    slug
+    parent {
+        id
+        name
+        slug
+        __typename
+    }
+    featuredAsset {
+        ...Asset
+        __typename
+    }
+    __typename
+}
+
 
 fragment Asset on Asset {
     id

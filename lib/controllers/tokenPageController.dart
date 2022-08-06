@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
@@ -11,13 +12,15 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class TokenPageController extends GetxController {
   TextEditingController tokenController = TextEditingController();
   GraphqlService graphqlService = GraphqlService();
+  UtilityController utilityController = Get.find<UtilityController>();
+  LoginPageController loginPageController = Get.find<LoginPageController>();
 
 
 
 
   void onTokenSubmit(BuildContext context) async {
     final navigator = Navigator.of(context);
-    Get.find<UtilityController>().setLoadingState(true);
+    utilityController.setLoadingState(true);
     final res = await graphqlService.clientToQuery()
         .mutate$VerifyCustomerAccount(Options$Mutation$VerifyCustomerAccount(
             variables: Variables$Mutation$VerifyCustomerAccount(
@@ -25,7 +28,7 @@ class TokenPageController extends GetxController {
     )));
     if (res.hasException) {
       debugPrint('${res.exception.toString()}');
-      Get.find<UtilityController>().setLoadingState(false);
+      utilityController.setLoadingState(false);
     }
     if (res.data != null) {
       debugPrint('${res.data?['verifyCustomerAccount']}');
@@ -35,9 +38,10 @@ class TokenPageController extends GetxController {
 
       }else {
         UtilService.createSnakeBar(context: context,text: 'user is verified');
+        loginPageController.setShowSignIn(true);
         navigator.pushReplacementNamed('/${PageRouteNames.login.name}');
       }
-      Get.find<UtilityController>().setLoadingState(false);
+      utilityController.setLoadingState(false);
 
     }
 

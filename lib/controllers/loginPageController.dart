@@ -32,6 +32,7 @@ class LoginPageController extends GetxController {
     firstName.text = '';
     lastName.text = '';
     phoneNumber.text = '';
+    checkboxStatus.value = false;
   }
 
   void setCurrentSignInProcess(String value) {

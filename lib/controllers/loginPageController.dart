@@ -1,61 +1,60 @@
+import 'package:ecommerce_app/controllers/userController.dart';
+import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
-import 'package:ecommerce_app/providers/userProvider.dart';
-import 'package:ecommerce_app/providers/utilityProvider.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class LoginPageProvider with ChangeNotifier {
+class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   GraphqlService graphqlService = GraphqlService();
-  bool showSignIn = true;
+  var showSignIn = true.obs;
 
-  String currentSignInProcessName = SignInProcessNames.normal.name;
+  var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
 
-  bool checkboxStatus = false;
-  late final UtilityProvider? _utilityProvider;
-  late final UserProvider? _userProvider;
-
-  LoginPageProvider(this._utilityProvider, this._userProvider) {}
+  var checkboxStatus = false.obs;
 
   void setShowSignIn(bool value) {
-    showSignIn = value;
-    notifyListeners();
+    showSignIn.value = value;
+  }
+  void resetFormField(){
+    emailController.text = '';
+    passwordController.text = '';
+    firstName.text = '';
+    lastName.text = '';
+    phoneNumber.text = '';
   }
 
   void setCurrentSignInProcess(String value) {
-    currentSignInProcessName = value;
-    notifyListeners();
+    currentSignInProcessName.value = value;
   }
 
   void toggleShowSignIn() {
-    showSignIn = !showSignIn;
-    notifyListeners();
+    showSignIn.value = !showSignIn.value;
   }
 
   void setCheckboxStatus(bool value) {
-    checkboxStatus = value;
-    notifyListeners();
+    checkboxStatus.value = value;
   }
 
   void onUserSignIn(BuildContext context) async {
     final navigator = Navigator.of(context);
-    _utilityProvider?.setLoadingState(true);
+    Get.find<UtilityController>().setLoadingState(true);
     final signInResponse = await graphqlService.clientToQuery().mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
                 emailAddress: emailController.text,
                 password: passwordController.text,
-                rememberMe: checkboxStatus)));
+                rememberMe: checkboxStatus.value)));
     if (signInResponse.hasException) {
       debugPrint('${signInResponse.exception.toString()}');
     }
@@ -65,8 +64,9 @@ class LoginPageProvider with ChangeNotifier {
       final loginData = signInResponse.parsedData?.login.toJson();
 
       if (loginData?['message'] != null) {
-        _utilityProvider?.setAlertMessage(true, loginData?['message']);
-        _utilityProvider?.setLoadingState(false);
+        Get.find<UtilityController>()
+            .setAlertMessage(true, loginData?['message']);
+        Get.find<UtilityController>().setLoadingState(false);
         return;
       }
       if (loginData?['errorCode'] == 'NOT_VERIFIED_ERROR') {
@@ -75,16 +75,16 @@ class LoginPageProvider with ChangeNotifier {
         UtilService.createSnakeBar(context: context, text: 'Login successful');
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
-        _userProvider?.setCurrentAuthToken(authToken);
+        Get.find<UserController>().setCurrentAuthToken(authToken);
         navigator.pushReplacementNamed('/${PageRouteNames.home.name}');
       }
-      _utilityProvider?.setLoadingState(false);
+      Get.find<UtilityController>().setLoadingState(false);
     }
-    _utilityProvider?.setLoadingState(false);
+    Get.find<UtilityController>().setLoadingState(false);
   }
 
   void onUserRegister(BuildContext context) async {
-    _utilityProvider?.setLoadingState(true);
+    Get.find<UtilityController>().setLoadingState(true);
     final navigator = Navigator.of(context);
     final registerResponse = await graphqlService
         .clientToQuery()
@@ -107,27 +107,27 @@ class LoginPageProvider with ChangeNotifier {
 
       if (registerData?['success'] != null) {
         //  user is registered
-        _utilityProvider?.setAlertMessage(false, '');
-        _utilityProvider?.setLoadingState(false);
+        Get.find<UtilityController>().setAlertMessage(false, '');
+        Get.find<UtilityController>().setLoadingState(false);
         UtilService.createSnakeBar(
             context: context, text: 'Registered Successfully');
         navigator.pushReplacementNamed('${PageRouteNames.verifyToken.name}');
       } else {
-        _utilityProvider?.setAlertMessage(true, 'some error');
+        Get.find<UtilityController>().setAlertMessage(true, 'some error');
       }
     }
-    _utilityProvider?.setLoadingState(false);
+    Get.find<UtilityController>().setLoadingState(false);
   }
 
   void onGoogleSignIn(BuildContext context) async {
-    _utilityProvider?.setLoadingState(true);
+    Get.find<UtilityController>().setLoadingState(true);
     try {
       setCurrentSignInProcess(SignInProcessNames.firebase.name);
       late UserCredential res;
       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
         UtilService.createSnakeBar(text: 'Fill up the form', context: context);
       } else {
-        if (showSignIn) {
+        if (showSignIn.value) {
           res = await FirebaseAuth.instance.signInWithEmailAndPassword(
               email: emailController.text, password: passwordController.text);
         } else {
@@ -140,11 +140,11 @@ class LoginPageProvider with ChangeNotifier {
         UtilService.createSnakeBar(context: context, text: 'Login Successfull');
         Navigator.pushReplacementNamed(context, '/home');
       }
-      _utilityProvider?.setLoadingState(false);
+      Get.find<UtilityController>().setLoadingState(false);
     } on FirebaseAuthException catch (e) {
       debugPrint('${e.message}');
       UtilService.createSnakeBar(context: context, text: '${e.message}');
-      _utilityProvider?.setLoadingState(false);
+      Get.find<UtilityController>().setLoadingState(false);
     }
   }
 }

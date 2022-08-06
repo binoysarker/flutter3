@@ -1,14 +1,13 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/components/drawerComponent.dart';
 import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
-import 'package:ecommerce_app/providers/homePageProvider.dart';
-import 'package:ecommerce_app/providers/userProvider.dart';
-import 'package:ecommerce_app/providers/utilityProvider.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:ecommerce_app/controllers/homePageController.dart';
+import 'package:ecommerce_app/controllers/userController.dart';
+import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../services/commonVariables.dart';
 
@@ -25,19 +24,19 @@ class _StorePageState extends State<StorePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      UserProvider userProvider = Provider.of(context, listen: false);
-      // userProvider.getActiveCustomer(context);
-      userProvider.getCurrentUser(context);
-    });
+    // UserController userController = Get.find<UserController>();
+    // userController.getActiveCustomer(context);
+    // userController.getCurrentUser(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final HomePageProvider homePageProvider = context.watch<HomePageProvider>();
-    final UserProvider userProvider = context.watch<UserProvider>();
+    final HomePageController homePageController =
+        Get.find<HomePageController>();
+    final UserController userController = Get.find<UserController>();
+    final UtilityController utilityController = Get.find<UtilityController>();
 
-    return context.watch<UtilityProvider>().showLoader
+    return utilityController.showLoader.isTrue
         ? const LoadingSpinnerComponent()
         : Scaffold(
             appBar: AppBar(
@@ -45,15 +44,15 @@ class _StorePageState extends State<StorePage> {
               actions: [
                 DropdownButton(
                     icon: Icon(Icons.verified_user),
-                    items: homePageProvider.dropDownItems
+                    items: homePageController.dropDownItems
                         .map((item) => DropdownMenuItem<String>(
                               child: Text('$item'),
-                              value: homePageProvider
-                                  .currentlySelectedDropdownItem,
+                              value: homePageController
+                                  .currentlySelectedDropdownItem.value,
                             ))
                         .toList(),
                     onChanged: (String? newValue) {
-                      homePageProvider.onDropdownItemSelected(newValue!);
+                      homePageController.onDropdownItemSelected(newValue!);
                     })
               ],
             ),
@@ -62,10 +61,12 @@ class _StorePageState extends State<StorePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('${userProvider.currentAuthToken}'),
-                  ElevatedButton(onPressed: () {
-                    userProvider.getCurrentUser(context);
-                  }, child: Text('get Data')),
+                  Text('${userController.currentAuthToken}'),
+                  ElevatedButton(
+                      onPressed: () {
+                        userController.getCurrentUser(context);
+                      },
+                      child: Text('get Data')),
                   Row(
                     children: [
                       Expanded(

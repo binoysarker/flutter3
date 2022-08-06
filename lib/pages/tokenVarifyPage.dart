@@ -1,7 +1,7 @@
-import 'package:ecommerce_app/providers/tokenPageProvider.dart';
+import 'package:ecommerce_app/controllers/tokenPageController.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 import '../components/bottomNavigationComponent.dart';
 
@@ -10,8 +10,8 @@ class TokenVerifyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TokenPageProvider tokenPageProvider =
-        context.watch<TokenPageProvider>();
+    final TokenPageController tokenPageController =
+        Get.find<TokenPageController>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Stores'),
@@ -22,12 +22,13 @@ class TokenVerifyPage extends StatelessWidget {
           child: ListView(
             children: [
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       'Please verify your email address by adding the token',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ),
                 ),
@@ -36,7 +37,7 @@ class TokenVerifyPage extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.values.last,
-                  controller: tokenPageProvider.tokenController,
+                  controller: tokenPageController.tokenController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Token',
@@ -47,8 +48,8 @@ class TokenVerifyPage extends StatelessWidget {
               Container(
                 child: ElevatedButton(
                     onPressed: () {
-                      // print('${tokenPageProvider.tokenController.text.length}');
-                      tokenPageProvider.onTokenSubmit(context);
+                      // print('${tokenPageController.tokenController.text.length}');
+                      tokenPageController.onTokenSubmit(context);
                     },
                     child: Text('Verify Token')),
               )

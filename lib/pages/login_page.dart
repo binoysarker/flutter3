@@ -1,53 +1,66 @@
 import 'package:ecommerce_app/components/errorMessageComponent.dart';
 import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
-import 'package:ecommerce_app/providers/loginPageProvider.dart';
-import 'package:ecommerce_app/providers/utilityProvider.dart';
+import 'package:ecommerce_app/controllers/loginPageController.dart';
+import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:ecommerce_app/validators/validatorDefinations.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
-  UtilityProvider utilityProvider = UtilityProvider();
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final loginController = Get.find<LoginPageController>();
+  final utilityController = Get.find<UtilityController>();
+
   @override
   void initState() {
     super.initState();
-
+    loginController.resetFormField();
   }
-
 
   @override
   Widget build(BuildContext context) {
-    final loginWatchProvider = context.watch<LoginPageProvider>();
-    String setText(){
+    String setText() {
       String text = '';
-      if(loginWatchProvider.showSignIn){
-        text = loginWatchProvider.currentSignInProcessName == SignInProcessNames.firebase.name ? 'Google Login' :  'Login';
-      }else {
-        text = loginWatchProvider.currentSignInProcessName == SignInProcessNames.firebase.name ? 'Google Sign up' :  'Sign up';
+      if (loginController.showSignIn.value) {
+        text = loginController.currentSignInProcessName ==
+                SignInProcessNames.firebase.name
+            ? 'Google Login'
+            : 'Login';
+      } else {
+        text = loginController.currentSignInProcessName ==
+                SignInProcessNames.firebase.name
+            ? 'Google Sign up'
+            : 'Sign up';
       }
       return text;
     }
-    String setSignupText(){
+
+    String setSignupText() {
       String text = '';
-      if(loginWatchProvider.showSignIn){
-        text = loginWatchProvider.currentSignInProcessName == SignInProcessNames.firebase.name ? 'Google Sign up' :  'Sign up';
-      }else {
-        text = loginWatchProvider.currentSignInProcessName == SignInProcessNames.firebase.name ? 'Google Login' :  'Login';
+      if (loginController.showSignIn.value) {
+        text = loginController.currentSignInProcessName ==
+                SignInProcessNames.firebase.name
+            ? 'Google Sign up'
+            : 'Sign up';
+      } else {
+        text = loginController.currentSignInProcessName ==
+                SignInProcessNames.firebase.name
+            ? 'Google Login'
+            : 'Login';
       }
       return text;
     }
-    return context.watch<UtilityProvider>().showLoader
+
+    return Obx(() => utilityController.showLoader.isTrue
         ? const LoadingSpinnerComponent()
         : Scaffold(
             appBar: AppBar(
@@ -71,15 +84,15 @@ class _LoginPageState extends State<LoginPage> {
                                   fontSize: 30),
                             )),
                         Visibility(
-                          visible: !loginWatchProvider.showSignIn &&
-                              loginWatchProvider.currentSignInProcessName !=
+                          visible: loginController.showSignIn.isFalse &&
+                              loginController.currentSignInProcessName.value !=
                                   SignInProcessNames.firebase.name,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: TextFormField(
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginWatchProvider.firstName,
+                              controller: loginController.firstName,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'First Name',
@@ -90,15 +103,15 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Visibility(
-                          visible: !loginWatchProvider.showSignIn &&
-                              loginWatchProvider.currentSignInProcessName !=
+                          visible: loginController.showSignIn.isFalse &&
+                              loginController.currentSignInProcessName.value !=
                                   SignInProcessNames.firebase.name,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: TextFormField(
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginWatchProvider.lastName,
+                              controller: loginController.lastName,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Last Name',
@@ -113,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            controller: loginWatchProvider.emailController,
+                            controller: loginController.emailController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Email Address',
@@ -122,15 +135,15 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Visibility(
-                          visible: !loginWatchProvider.showSignIn &&
-                              loginWatchProvider.currentSignInProcessName !=
+                          visible: loginController.showSignIn.isFalse &&
+                              loginController.currentSignInProcessName.value !=
                                   SignInProcessNames.firebase.name,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: TextFormField(
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginWatchProvider.phoneNumber,
+                              controller: loginController.phoneNumber,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Phone Number',
@@ -148,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                             autocorrect: false,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            controller: loginWatchProvider.passwordController,
+                            controller: loginController.passwordController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Password',
@@ -162,9 +175,9 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Text('Remember me'),
                             Checkbox(
-                                value: loginWatchProvider.checkboxStatus,
+                                value: loginController.checkboxStatus.value,
                                 onChanged: (value) {
-                                  loginWatchProvider.setCheckboxStatus(value!);
+                                  loginController.setCheckboxStatus(value!);
                                   print('checkbox $value');
                                 }),
                           ],
@@ -181,24 +194,24 @@ class _LoginPageState extends State<LoginPage> {
                             height: 50,
                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: ElevatedButton(
-                              child: Text(loginWatchProvider.showSignIn
+                              child: Text(loginController.showSignIn.isTrue
                                   ? 'Login'
                                   : 'Sign up'),
                               onPressed: () {
-                                loginWatchProvider.setCurrentSignInProcess(
+                                loginController.setCurrentSignInProcess(
                                     SignInProcessNames.normal.name);
-                                if (loginWatchProvider
+                                if (loginController
                                         .emailController.text.isEmpty ||
-                                    loginWatchProvider
+                                    loginController
                                         .passwordController.text.isEmpty) {
                                   UtilService.createSnakeBar(
                                       text: 'Fill up the form',
                                       context: context);
                                 } else {
-                                  if (loginWatchProvider.showSignIn) {
-                                    loginWatchProvider.onUserSignIn(context);
+                                  if (loginController.showSignIn.isTrue) {
+                                    loginController.onUserSignIn(context);
                                   } else {
-                                    loginWatchProvider.onUserRegister(context);
+                                    loginController.onUserRegister(context);
                                   }
                                 }
                               },
@@ -218,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                         //       },
                         //     )),
                         Visibility(
-                            visible: context.watch<UtilityProvider>().showError,
+                            visible: utilityController.showError.isTrue,
                             child: ErrorMessageComponent()),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -231,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () {
                                 //signup screen
-                                loginWatchProvider.toggleShowSignIn();
+                                loginController.toggleShowSignIn();
                               },
                             )
                           ],
@@ -240,6 +253,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 )),
-          );
+          ));
   }
 }

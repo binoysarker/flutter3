@@ -1,54 +1,36 @@
 import 'dart:async';
 
-import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
-import 'package:ecommerce_app/providers/homePageProvider.dart';
-import 'package:ecommerce_app/providers/loginPageProvider.dart';
-import 'package:ecommerce_app/providers/tokenPageProvider.dart';
-import 'package:ecommerce_app/providers/userProvider.dart';
-import 'package:ecommerce_app/providers/utilityProvider.dart';
-import 'package:ecommerce_app/routes/routeDefinations.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
+import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
+import 'package:ecommerce_app/controllers/homePageController.dart';
+import 'package:ecommerce_app/controllers/loginPageController.dart';
+import 'package:ecommerce_app/controllers/orderController.dart';
+import 'package:ecommerce_app/controllers/userController.dart';
+import 'package:ecommerce_app/controllers/utilityController.dart';
+import 'package:ecommerce_app/routes/allRoutes.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:provider/provider.dart';
 
+import 'controllers/tokenPageController.dart';
 import 'firebase_options.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<BottomNavigationProvider>(
-            create: (_) => BottomNavigationProvider()),
-        ChangeNotifierProvider<UserProvider>(
-            create: (_) => UserProvider()),
-        ChangeNotifierProvider<UtilityProvider>(
-            create: (_) => UtilityProvider()),
-        ChangeNotifierProxyProvider2<UtilityProvider,UserProvider, LoginPageProvider>(
-            create: (_) => LoginPageProvider(null, null),
-            update: (_, utilityProvider,userProvider, __) =>
-                LoginPageProvider(utilityProvider, userProvider)),
-        ChangeNotifierProxyProvider<UtilityProvider, TokenPageProvider>(
-            create: (_) => TokenPageProvider(null),
-            update: (_, utilityProvider, __) =>
-                TokenPageProvider(utilityProvider)),
-        ChangeNotifierProxyProvider<UtilityProvider, HomePageProvider>(
-            create: (_) => HomePageProvider(null),
-            update: (_, utilityProvider, __) =>
-                HomePageProvider(utilityProvider)),
-      ],
-      child: MyApp(),
-    ),
-  );
+  Get.put(UtilityController());
+  Get.put(UserController());
+  Get.put(BottomNavigationController());
+  Get.put(HomePageController());
+  Get.put(OrderController());
+  Get.put(LoginPageController());
+  Get.put(TokenPageController());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -83,17 +65,15 @@ class _MyAppState extends State<MyApp> {
     GraphqlService graphqlService = GraphqlService();
     return GraphQLProvider(
       client: graphqlService.client,
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'Ecommerce App',
         debugShowCheckedModeBanner: false,
         navigatorKey: _navigatorKey,
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: currentTheme.currentThemeMode,
-        initialRoute: '/${PageRouteNames.home.name}',
-        onGenerateRoute: (settings) {
-          return generatedRoute(settings);
-        },
+        initialRoute: '/',
+        getPages: RoutesClass.routes,
       ),
     );
   }

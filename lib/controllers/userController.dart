@@ -2,21 +2,22 @@ import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 
 import '../services/util_service.dart';
 
-class UserProvider with ChangeNotifier {
-  Map<String, dynamic>?  currentAuthenticatedUser = {};
-  String currentAuthToken = '';
+class UserController with ChangeNotifier {
+  var  currentAuthenticatedUser = {}.obs;
+  var currentAuthToken = ''.obs;
   final GraphqlService graphqlService = GraphqlService();
 
   void setCurrentUser(Map<String, dynamic> user){
-    currentAuthenticatedUser = user;
+    currentAuthenticatedUser.value = user;
     notifyListeners();
   }
   void setCurrentAuthToken(String text){
-    currentAuthToken = text;
+    currentAuthToken.value = text;
     notifyListeners();
   }
 
@@ -35,7 +36,7 @@ class UserProvider with ChangeNotifier {
 
   void getCurrentUser(BuildContext context) async {
     if(currentAuthToken.isNotEmpty){
-      GraphqlService.setToken(currentAuthToken);
+      GraphqlService.setToken(currentAuthToken.value);
     }
     final navigator = Navigator.of(context);
 

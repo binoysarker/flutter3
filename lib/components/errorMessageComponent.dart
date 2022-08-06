@@ -1,21 +1,21 @@
-import 'package:ecommerce_app/providers/utilityProvider.dart';
+import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:get/get.dart';
 class ErrorMessageComponent extends StatelessWidget {
   const ErrorMessageComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    UtilityController utilityController = Get.find<UtilityController>();
     return Column(
       children: [
         Container(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              '${context.watch<UtilityProvider>().errorMessage}',
+            child: Obx(() => Text(
+              utilityController.errorMessage.value,
               style: TextStyle(color: Colors.red),
-            ),
+            )),
           ),
         ),
       ],

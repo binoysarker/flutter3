@@ -1,7 +1,7 @@
-import 'package:ecommerce_app/providers/bottomNavigationProvider.dart';
+import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 class BottomNavigationComponent extends StatefulWidget {
   const BottomNavigationComponent({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: bottomNavigationBarItems,
-      currentIndex: context.read<BottomNavigationProvider>().selectedIndex,
+      currentIndex: Get.find<BottomNavigationController>().selectedIndex.value,
       onTap: (int index) {
         final re = RegExp(r'\s');
         final selectedLabel = bottomNavigationBarItems[index]
@@ -37,10 +37,10 @@ class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
             .toString()
             .toLowerCase()
             .split(re)
-            .join('-');
+            .join('');
         Navigator.pushNamed(context,
             '/${selectedLabel == '${PageRouteNames.store.name}' ? '${PageRouteNames.home.name}' : '$selectedLabel'}');
-        context.read<BottomNavigationProvider>().setItemIndex(index);
+        Get.find<BottomNavigationController>().setItemIndex(index);
       },
     );
   }

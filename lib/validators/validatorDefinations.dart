@@ -1,4 +1,5 @@
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 
 class ValidatorDefinition{
   static final emailMultiValidator = MultiValidator([
@@ -13,4 +14,6 @@ class ValidatorDefinition{
     RequiredValidator(errorText: 'Phone is Required'),
     PatternValidator(r'^(\+|\d)[0-9]{7,16}$', errorText: 'phone pattern does not match')
   ]);
+
+  
 }

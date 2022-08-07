@@ -13,6 +13,7 @@ class CustomTheme with ChangeNotifier {
     notifyListeners();
   }
 
+
   static get lightTheme {
     return ThemeData(
       primaryColor: Colors.green,
@@ -65,4 +66,6 @@ class CustomTheme with ChangeNotifier {
       scaffoldBackgroundColor: Colors.grey,
     );
   }
+
+
 }

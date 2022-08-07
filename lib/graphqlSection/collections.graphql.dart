@@ -8,381 +8,6 @@ import 'schema.graphql.dart';
 part 'collections.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Fragment$SingleItem {
-  Fragment$SingleItem(
-      {required this.id,
-      required this.name,
-      required this.slug,
-      this.parent,
-      this.featuredAsset,
-      required this.$__typename});
-
-  @override
-  factory Fragment$SingleItem.fromJson(Map<String, dynamic> json) =>
-      _$Fragment$SingleItemFromJson(json);
-
-  final String id;
-
-  final String name;
-
-  final String slug;
-
-  final Fragment$SingleItem$parent? parent;
-
-  final Fragment$Asset? featuredAsset;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() => _$Fragment$SingleItemToJson(this);
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$slug = slug;
-    final l$parent = parent;
-    final l$featuredAsset = featuredAsset;
-    final l$$__typename = $__typename;
-    return Object.hashAll(
-        [l$id, l$name, l$slug, l$parent, l$featuredAsset, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Fragment$SingleItem) || runtimeType != other.runtimeType)
-      return false;
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) return false;
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
-    final l$slug = slug;
-    final lOther$slug = other.slug;
-    if (l$slug != lOther$slug) return false;
-    final l$parent = parent;
-    final lOther$parent = other.parent;
-    if (l$parent != lOther$parent) return false;
-    final l$featuredAsset = featuredAsset;
-    final lOther$featuredAsset = other.featuredAsset;
-    if (l$featuredAsset != lOther$featuredAsset) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$SingleItem on Fragment$SingleItem {
-  CopyWith$Fragment$SingleItem<Fragment$SingleItem> get copyWith =>
-      CopyWith$Fragment$SingleItem(this, (i) => i);
-}
-
-abstract class CopyWith$Fragment$SingleItem<TRes> {
-  factory CopyWith$Fragment$SingleItem(Fragment$SingleItem instance,
-          TRes Function(Fragment$SingleItem) then) =
-      _CopyWithImpl$Fragment$SingleItem;
-
-  factory CopyWith$Fragment$SingleItem.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$SingleItem;
-
-  TRes call(
-      {String? id,
-      String? name,
-      String? slug,
-      Fragment$SingleItem$parent? parent,
-      Fragment$Asset? featuredAsset,
-      String? $__typename});
-  CopyWith$Fragment$SingleItem$parent<TRes> get parent;
-  CopyWith$Fragment$Asset<TRes> get featuredAsset;
-}
-
-class _CopyWithImpl$Fragment$SingleItem<TRes>
-    implements CopyWith$Fragment$SingleItem<TRes> {
-  _CopyWithImpl$Fragment$SingleItem(this._instance, this._then);
-
-  final Fragment$SingleItem _instance;
-
-  final TRes Function(Fragment$SingleItem) _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? id = _undefined,
-          Object? name = _undefined,
-          Object? slug = _undefined,
-          Object? parent = _undefined,
-          Object? featuredAsset = _undefined,
-          Object? $__typename = _undefined}) =>
-      _then(Fragment$SingleItem(
-          id: id == _undefined || id == null ? _instance.id : (id as String),
-          name: name == _undefined || name == null
-              ? _instance.name
-              : (name as String),
-          slug: slug == _undefined || slug == null
-              ? _instance.slug
-              : (slug as String),
-          parent: parent == _undefined
-              ? _instance.parent
-              : (parent as Fragment$SingleItem$parent?),
-          featuredAsset: featuredAsset == _undefined
-              ? _instance.featuredAsset
-              : (featuredAsset as Fragment$Asset?),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-  CopyWith$Fragment$SingleItem$parent<TRes> get parent {
-    final local$parent = _instance.parent;
-    return local$parent == null
-        ? CopyWith$Fragment$SingleItem$parent.stub(_then(_instance))
-        : CopyWith$Fragment$SingleItem$parent(
-            local$parent, (e) => call(parent: e));
-  }
-
-  CopyWith$Fragment$Asset<TRes> get featuredAsset {
-    final local$featuredAsset = _instance.featuredAsset;
-    return local$featuredAsset == null
-        ? CopyWith$Fragment$Asset.stub(_then(_instance))
-        : CopyWith$Fragment$Asset(
-            local$featuredAsset, (e) => call(featuredAsset: e));
-  }
-}
-
-class _CopyWithStubImpl$Fragment$SingleItem<TRes>
-    implements CopyWith$Fragment$SingleItem<TRes> {
-  _CopyWithStubImpl$Fragment$SingleItem(this._res);
-
-  TRes _res;
-
-  call(
-          {String? id,
-          String? name,
-          String? slug,
-          Fragment$SingleItem$parent? parent,
-          Fragment$Asset? featuredAsset,
-          String? $__typename}) =>
-      _res;
-  CopyWith$Fragment$SingleItem$parent<TRes> get parent =>
-      CopyWith$Fragment$SingleItem$parent.stub(_res);
-  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
-      CopyWith$Fragment$Asset.stub(_res);
-}
-
-const fragmentDefinitionSingleItem = FragmentDefinitionNode(
-    name: NameNode(value: 'SingleItem'),
-    typeCondition: TypeConditionNode(
-        on: NamedTypeNode(
-            name: NameNode(value: 'Collection'), isNonNull: false)),
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-          name: NameNode(value: 'id'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'name'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'slug'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null),
-      FieldNode(
-          name: NameNode(value: 'parent'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: SelectionSetNode(selections: [
-            FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            FieldNode(
-                name: NameNode(value: 'slug'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null)
-          ])),
-      FieldNode(
-          name: NameNode(value: 'featuredAsset'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: SelectionSetNode(selections: [
-            FragmentSpreadNode(name: NameNode(value: 'Asset'), directives: []),
-            FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null)
-          ])),
-      FieldNode(
-          name: NameNode(value: '__typename'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null)
-    ]));
-const documentNodeFragmentSingleItem = DocumentNode(definitions: [
-  fragmentDefinitionSingleItem,
-  fragmentDefinitionAsset,
-]);
-
-extension ClientExtension$Fragment$SingleItem on graphql.GraphQLClient {
-  void writeFragment$SingleItem(
-          {required Fragment$SingleItem data,
-          required Map<String, dynamic> idFields,
-          bool broadcast = true}) =>
-      this.writeFragment(
-          graphql.FragmentRequest(
-              idFields: idFields,
-              fragment: const graphql.Fragment(
-                  fragmentName: 'SingleItem',
-                  document: documentNodeFragmentSingleItem)),
-          data: data.toJson(),
-          broadcast: broadcast);
-  Fragment$SingleItem? readFragment$SingleItem(
-      {required Map<String, dynamic> idFields, bool optimistic = true}) {
-    final result = this.readFragment(
-        graphql.FragmentRequest(
-            idFields: idFields,
-            fragment: const graphql.Fragment(
-                fragmentName: 'SingleItem',
-                document: documentNodeFragmentSingleItem)),
-        optimistic: optimistic);
-    return result == null ? null : Fragment$SingleItem.fromJson(result);
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class Fragment$SingleItem$parent {
-  Fragment$SingleItem$parent(
-      {required this.id,
-      required this.name,
-      required this.slug,
-      required this.$__typename});
-
-  @override
-  factory Fragment$SingleItem$parent.fromJson(Map<String, dynamic> json) =>
-      _$Fragment$SingleItem$parentFromJson(json);
-
-  final String id;
-
-  final String name;
-
-  final String slug;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() => _$Fragment$SingleItem$parentToJson(this);
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$slug = slug;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$name, l$slug, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Fragment$SingleItem$parent) ||
-        runtimeType != other.runtimeType) return false;
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) return false;
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
-    final l$slug = slug;
-    final lOther$slug = other.slug;
-    if (l$slug != lOther$slug) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Fragment$SingleItem$parent
-    on Fragment$SingleItem$parent {
-  CopyWith$Fragment$SingleItem$parent<Fragment$SingleItem$parent>
-      get copyWith => CopyWith$Fragment$SingleItem$parent(this, (i) => i);
-}
-
-abstract class CopyWith$Fragment$SingleItem$parent<TRes> {
-  factory CopyWith$Fragment$SingleItem$parent(
-          Fragment$SingleItem$parent instance,
-          TRes Function(Fragment$SingleItem$parent) then) =
-      _CopyWithImpl$Fragment$SingleItem$parent;
-
-  factory CopyWith$Fragment$SingleItem$parent.stub(TRes res) =
-      _CopyWithStubImpl$Fragment$SingleItem$parent;
-
-  TRes call({String? id, String? name, String? slug, String? $__typename});
-}
-
-class _CopyWithImpl$Fragment$SingleItem$parent<TRes>
-    implements CopyWith$Fragment$SingleItem$parent<TRes> {
-  _CopyWithImpl$Fragment$SingleItem$parent(this._instance, this._then);
-
-  final Fragment$SingleItem$parent _instance;
-
-  final TRes Function(Fragment$SingleItem$parent) _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? id = _undefined,
-          Object? name = _undefined,
-          Object? slug = _undefined,
-          Object? $__typename = _undefined}) =>
-      _then(Fragment$SingleItem$parent(
-          id: id == _undefined || id == null ? _instance.id : (id as String),
-          name: name == _undefined || name == null
-              ? _instance.name
-              : (name as String),
-          slug: slug == _undefined || slug == null
-              ? _instance.slug
-              : (slug as String),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Fragment$SingleItem$parent<TRes>
-    implements CopyWith$Fragment$SingleItem$parent<TRes> {
-  _CopyWithStubImpl$Fragment$SingleItem$parent(this._res);
-
-  TRes _res;
-
-  call({String? id, String? name, String? slug, String? $__typename}) => _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Fragment$Asset {
   Fragment$Asset(
       {required this.id,
@@ -1448,7 +1073,7 @@ class Query$GetCollectionsByIdOrSlug {
   factory Query$GetCollectionsByIdOrSlug.fromJson(Map<String, dynamic> json) =>
       _$Query$GetCollectionsByIdOrSlugFromJson(json);
 
-  final Fragment$SingleItem? collection;
+  final Query$GetCollectionsByIdOrSlug$collection? collection;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -1490,8 +1115,10 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug<TRes> {
   factory CopyWith$Query$GetCollectionsByIdOrSlug.stub(TRes res) =
       _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug;
 
-  TRes call({Fragment$SingleItem? collection, String? $__typename});
-  CopyWith$Fragment$SingleItem<TRes> get collection;
+  TRes call(
+      {Query$GetCollectionsByIdOrSlug$collection? collection,
+      String? $__typename});
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> get collection;
 }
 
 class _CopyWithImpl$Query$GetCollectionsByIdOrSlug<TRes>
@@ -1510,15 +1137,16 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug<TRes>
       _then(Query$GetCollectionsByIdOrSlug(
           collection: collection == _undefined
               ? _instance.collection
-              : (collection as Fragment$SingleItem?),
+              : (collection as Query$GetCollectionsByIdOrSlug$collection?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-  CopyWith$Fragment$SingleItem<TRes> get collection {
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> get collection {
     final local$collection = _instance.collection;
     return local$collection == null
-        ? CopyWith$Fragment$SingleItem.stub(_then(_instance))
-        : CopyWith$Fragment$SingleItem(
+        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection.stub(
+            _then(_instance))
+        : CopyWith$Query$GetCollectionsByIdOrSlug$collection(
             local$collection, (e) => call(collection: e));
   }
 }
@@ -1529,9 +1157,12 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug<TRes>
 
   TRes _res;
 
-  call({Fragment$SingleItem? collection, String? $__typename}) => _res;
-  CopyWith$Fragment$SingleItem<TRes> get collection =>
-      CopyWith$Fragment$SingleItem.stub(_res);
+  call(
+          {Query$GetCollectionsByIdOrSlug$collection? collection,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> get collection =>
+      CopyWith$Query$GetCollectionsByIdOrSlug$collection.stub(_res);
 }
 
 const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
@@ -1566,8 +1197,80 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
-              FragmentSpreadNode(
-                  name: NameNode(value: 'SingleItem'), directives: []),
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'slug'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'parent'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'slug'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'featuredAsset'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'preview'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
               FieldNode(
                   name: NameNode(value: '__typename'),
                   alias: null,
@@ -1582,8 +1285,6 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             directives: [],
             selectionSet: null)
       ])),
-  fragmentDefinitionSingleItem,
-  fragmentDefinitionAsset,
 ]);
 Query$GetCollectionsByIdOrSlug _parserFn$Query$GetCollectionsByIdOrSlug(
         Map<String, dynamic> data) =>
@@ -1715,88 +1416,489 @@ class Query$GetCollectionsByIdOrSlug$Widget
 }
 
 @JsonSerializable(explicitToJson: true)
-class Variables$Query$GetCollections {
-  Variables$Query$GetCollections({this.options});
+class Query$GetCollectionsByIdOrSlug$collection {
+  Query$GetCollectionsByIdOrSlug$collection(
+      {required this.id,
+      required this.name,
+      required this.slug,
+      this.parent,
+      this.featuredAsset,
+      required this.$__typename});
 
   @override
-  factory Variables$Query$GetCollections.fromJson(Map<String, dynamic> json) =>
-      _$Variables$Query$GetCollectionsFromJson(json);
+  factory Query$GetCollectionsByIdOrSlug$collection.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetCollectionsByIdOrSlug$collectionFromJson(json);
 
-  final Input$CollectionListOptions? options;
+  final String id;
 
-  Map<String, dynamic> toJson() => _$Variables$Query$GetCollectionsToJson(this);
+  final String name;
+
+  final String slug;
+
+  final Query$GetCollectionsByIdOrSlug$collection$parent? parent;
+
+  final Query$GetCollectionsByIdOrSlug$collection$featuredAsset? featuredAsset;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetCollectionsByIdOrSlug$collectionToJson(this);
   int get hashCode {
-    final l$options = options;
-    return Object.hashAll([l$options]);
+    final l$id = id;
+    final l$name = name;
+    final l$slug = slug;
+    final l$parent = parent;
+    final l$featuredAsset = featuredAsset;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$id, l$name, l$slug, l$parent, l$featuredAsset, l$$__typename]);
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Variables$Query$GetCollections) ||
+    if (!(other is Query$GetCollectionsByIdOrSlug$collection) ||
         runtimeType != other.runtimeType) return false;
-    final l$options = options;
-    final lOther$options = other.options;
-    if (l$options != lOther$options) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$parent = parent;
+    final lOther$parent = other.parent;
+    if (l$parent != lOther$parent) return false;
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
     return true;
   }
-
-  CopyWith$Variables$Query$GetCollections<Variables$Query$GetCollections>
-      get copyWith => CopyWith$Variables$Query$GetCollections(this, (i) => i);
 }
 
-abstract class CopyWith$Variables$Query$GetCollections<TRes> {
-  factory CopyWith$Variables$Query$GetCollections(
-          Variables$Query$GetCollections instance,
-          TRes Function(Variables$Query$GetCollections) then) =
-      _CopyWithImpl$Variables$Query$GetCollections;
-
-  factory CopyWith$Variables$Query$GetCollections.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$GetCollections;
-
-  TRes call({Input$CollectionListOptions? options});
+extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection
+    on Query$GetCollectionsByIdOrSlug$collection {
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection<
+          Query$GetCollectionsByIdOrSlug$collection>
+      get copyWith =>
+          CopyWith$Query$GetCollectionsByIdOrSlug$collection(this, (i) => i);
 }
 
-class _CopyWithImpl$Variables$Query$GetCollections<TRes>
-    implements CopyWith$Variables$Query$GetCollections<TRes> {
-  _CopyWithImpl$Variables$Query$GetCollections(this._instance, this._then);
+abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> {
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection(
+          Query$GetCollectionsByIdOrSlug$collection instance,
+          TRes Function(Query$GetCollectionsByIdOrSlug$collection) then) =
+      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection;
 
-  final Variables$Query$GetCollections _instance;
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection;
 
-  final TRes Function(Variables$Query$GetCollections) _then;
+  TRes call(
+      {String? id,
+      String? name,
+      String? slug,
+      Query$GetCollectionsByIdOrSlug$collection$parent? parent,
+      Query$GetCollectionsByIdOrSlug$collection$featuredAsset? featuredAsset,
+      String? $__typename});
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> get parent;
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
+      get featuredAsset;
+}
+
+class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
+    implements CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> {
+  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection(
+      this._instance, this._then);
+
+  final Query$GetCollectionsByIdOrSlug$collection _instance;
+
+  final TRes Function(Query$GetCollectionsByIdOrSlug$collection) _then;
 
   static const _undefined = {};
 
-  TRes call({Object? options = _undefined}) => _then(
-      Variables$Query$GetCollections(
-          options: options == _undefined
-              ? _instance.options
-              : (options as Input$CollectionListOptions?)));
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? slug = _undefined,
+          Object? parent = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCollectionsByIdOrSlug$collection(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          slug: slug == _undefined || slug == null
+              ? _instance.slug
+              : (slug as String),
+          parent: parent == _undefined
+              ? _instance.parent
+              : (parent as Query$GetCollectionsByIdOrSlug$collection$parent?),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset
+                  as Query$GetCollectionsByIdOrSlug$collection$featuredAsset?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> get parent {
+    final local$parent = _instance.parent;
+    return local$parent == null
+        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent.stub(
+            _then(_instance))
+        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent(
+            local$parent, (e) => call(parent: e));
+  }
+
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
+      get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
+            _then(_instance))
+        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
 }
 
-class _CopyWithStubImpl$Variables$Query$GetCollections<TRes>
-    implements CopyWith$Variables$Query$GetCollections<TRes> {
-  _CopyWithStubImpl$Variables$Query$GetCollections(this._res);
+class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
+    implements CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> {
+  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection(this._res);
 
   TRes _res;
 
-  call({Input$CollectionListOptions? options}) => _res;
+  call(
+          {String? id,
+          String? name,
+          String? slug,
+          Query$GetCollectionsByIdOrSlug$collection$parent? parent,
+          Query$GetCollectionsByIdOrSlug$collection$featuredAsset?
+              featuredAsset,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> get parent =>
+      CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent.stub(_res);
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
+      get featuredAsset =>
+          CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
+              _res);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Query$GetCollections {
-  Query$GetCollections({required this.collections, required this.$__typename});
+class Query$GetCollectionsByIdOrSlug$collection$parent {
+  Query$GetCollectionsByIdOrSlug$collection$parent(
+      {required this.id,
+      required this.slug,
+      required this.name,
+      required this.$__typename});
 
   @override
-  factory Query$GetCollections.fromJson(Map<String, dynamic> json) =>
-      _$Query$GetCollectionsFromJson(json);
+  factory Query$GetCollectionsByIdOrSlug$collection$parent.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetCollectionsByIdOrSlug$collection$parentFromJson(json);
 
-  final Query$GetCollections$collections collections;
+  final String id;
+
+  final String slug;
+
+  final String name;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
-  Map<String, dynamic> toJson() => _$Query$GetCollectionsToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$Query$GetCollectionsByIdOrSlug$collection$parentToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$slug = slug;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$slug, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCollectionsByIdOrSlug$collection$parent) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$parent
+    on Query$GetCollectionsByIdOrSlug$collection$parent {
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<
+          Query$GetCollectionsByIdOrSlug$collection$parent>
+      get copyWith => CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> {
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent(
+          Query$GetCollectionsByIdOrSlug$collection$parent instance,
+          TRes Function(Query$GetCollectionsByIdOrSlug$collection$parent)
+              then) =
+      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$parent;
+
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$parent;
+
+  TRes call({String? id, String? slug, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$parent<TRes>
+    implements CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> {
+  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$parent(
+      this._instance, this._then);
+
+  final Query$GetCollectionsByIdOrSlug$collection$parent _instance;
+
+  final TRes Function(Query$GetCollectionsByIdOrSlug$collection$parent) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? slug = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCollectionsByIdOrSlug$collection$parent(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          slug: slug == _undefined || slug == null
+              ? _instance.slug
+              : (slug as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$parent<TRes>
+    implements CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent<TRes> {
+  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$parent(this._res);
+
+  TRes _res;
+
+  call({String? id, String? slug, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetCollectionsByIdOrSlug$collection$featuredAsset {
+  Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+      {required this.id, required this.preview, required this.$__typename});
+
+  @override
+  factory Query$GetCollectionsByIdOrSlug$collection$featuredAsset.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetFromJson(json);
+
+  final String id;
+
+  final String preview;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$preview = preview;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$preview, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCollectionsByIdOrSlug$collection$featuredAsset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$preview = preview;
+    final lOther$preview = other.preview;
+    if (l$preview != lOther$preview) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$featuredAsset
+    on Query$GetCollectionsByIdOrSlug$collection$featuredAsset {
+  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
+          Query$GetCollectionsByIdOrSlug$collection$featuredAsset>
+      get copyWith =>
+          CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
+    TRes> {
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+          Query$GetCollectionsByIdOrSlug$collection$featuredAsset instance,
+          TRes Function(Query$GetCollectionsByIdOrSlug$collection$featuredAsset)
+              then) =
+      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset;
+
+  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset;
+
+  TRes call({String? id, String? preview, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes> {
+  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+      this._instance, this._then);
+
+  final Query$GetCollectionsByIdOrSlug$collection$featuredAsset _instance;
+
+  final TRes Function(Query$GetCollectionsByIdOrSlug$collection$featuredAsset)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? preview = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          preview: preview == _undefined || preview == null
+              ? _instance.preview
+              : (preview as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes> {
+  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+      this._res);
+
+  TRes _res;
+
+  call({String? id, String? preview, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Query$GetAllCollections {
+  Variables$Query$GetAllCollections({this.input});
+
+  @override
+  factory Variables$Query$GetAllCollections.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Query$GetAllCollectionsFromJson(json);
+
+  final Input$CollectionListOptions? input;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Query$GetAllCollectionsToJson(this);
+  int get hashCode {
+    final l$input = input;
+    return Object.hashAll([l$input]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Query$GetAllCollections) ||
+        runtimeType != other.runtimeType) return false;
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input != lOther$input) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Query$GetAllCollections<Variables$Query$GetAllCollections>
+      get copyWith =>
+          CopyWith$Variables$Query$GetAllCollections(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Query$GetAllCollections<TRes> {
+  factory CopyWith$Variables$Query$GetAllCollections(
+          Variables$Query$GetAllCollections instance,
+          TRes Function(Variables$Query$GetAllCollections) then) =
+      _CopyWithImpl$Variables$Query$GetAllCollections;
+
+  factory CopyWith$Variables$Query$GetAllCollections.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$GetAllCollections;
+
+  TRes call({Input$CollectionListOptions? input});
+}
+
+class _CopyWithImpl$Variables$Query$GetAllCollections<TRes>
+    implements CopyWith$Variables$Query$GetAllCollections<TRes> {
+  _CopyWithImpl$Variables$Query$GetAllCollections(this._instance, this._then);
+
+  final Variables$Query$GetAllCollections _instance;
+
+  final TRes Function(Variables$Query$GetAllCollections) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? input = _undefined}) =>
+      _then(Variables$Query$GetAllCollections(
+          input: input == _undefined
+              ? _instance.input
+              : (input as Input$CollectionListOptions?)));
+}
+
+class _CopyWithStubImpl$Variables$Query$GetAllCollections<TRes>
+    implements CopyWith$Variables$Query$GetAllCollections<TRes> {
+  _CopyWithStubImpl$Variables$Query$GetAllCollections(this._res);
+
+  TRes _res;
+
+  call({Input$CollectionListOptions? input}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetAllCollections {
+  Query$GetAllCollections(
+      {required this.collections, required this.$__typename});
+
+  @override
+  factory Query$GetAllCollections.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetAllCollectionsFromJson(json);
+
+  final Query$GetAllCollections$collections collections;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetAllCollectionsToJson(this);
   int get hashCode {
     final l$collections = collections;
     final l$$__typename = $__typename;
@@ -1806,7 +1908,7 @@ class Query$GetCollections {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Query$GetCollections) || runtimeType != other.runtimeType)
+    if (!(other is Query$GetAllCollections) || runtimeType != other.runtimeType)
       return false;
     final l$collections = collections;
     final lOther$collections = other.collections;
@@ -1818,70 +1920,72 @@ class Query$GetCollections {
   }
 }
 
-extension UtilityExtension$Query$GetCollections on Query$GetCollections {
-  CopyWith$Query$GetCollections<Query$GetCollections> get copyWith =>
-      CopyWith$Query$GetCollections(this, (i) => i);
+extension UtilityExtension$Query$GetAllCollections on Query$GetAllCollections {
+  CopyWith$Query$GetAllCollections<Query$GetAllCollections> get copyWith =>
+      CopyWith$Query$GetAllCollections(this, (i) => i);
 }
 
-abstract class CopyWith$Query$GetCollections<TRes> {
-  factory CopyWith$Query$GetCollections(Query$GetCollections instance,
-          TRes Function(Query$GetCollections) then) =
-      _CopyWithImpl$Query$GetCollections;
+abstract class CopyWith$Query$GetAllCollections<TRes> {
+  factory CopyWith$Query$GetAllCollections(Query$GetAllCollections instance,
+          TRes Function(Query$GetAllCollections) then) =
+      _CopyWithImpl$Query$GetAllCollections;
 
-  factory CopyWith$Query$GetCollections.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetCollections;
+  factory CopyWith$Query$GetAllCollections.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections;
 
   TRes call(
-      {Query$GetCollections$collections? collections, String? $__typename});
-  CopyWith$Query$GetCollections$collections<TRes> get collections;
+      {Query$GetAllCollections$collections? collections, String? $__typename});
+  CopyWith$Query$GetAllCollections$collections<TRes> get collections;
 }
 
-class _CopyWithImpl$Query$GetCollections<TRes>
-    implements CopyWith$Query$GetCollections<TRes> {
-  _CopyWithImpl$Query$GetCollections(this._instance, this._then);
+class _CopyWithImpl$Query$GetAllCollections<TRes>
+    implements CopyWith$Query$GetAllCollections<TRes> {
+  _CopyWithImpl$Query$GetAllCollections(this._instance, this._then);
 
-  final Query$GetCollections _instance;
+  final Query$GetAllCollections _instance;
 
-  final TRes Function(Query$GetCollections) _then;
+  final TRes Function(Query$GetAllCollections) _then;
 
   static const _undefined = {};
 
   TRes call(
           {Object? collections = _undefined,
           Object? $__typename = _undefined}) =>
-      _then(Query$GetCollections(
+      _then(Query$GetAllCollections(
           collections: collections == _undefined || collections == null
               ? _instance.collections
-              : (collections as Query$GetCollections$collections),
+              : (collections as Query$GetAllCollections$collections),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-  CopyWith$Query$GetCollections$collections<TRes> get collections {
+  CopyWith$Query$GetAllCollections$collections<TRes> get collections {
     final local$collections = _instance.collections;
-    return CopyWith$Query$GetCollections$collections(
+    return CopyWith$Query$GetAllCollections$collections(
         local$collections, (e) => call(collections: e));
   }
 }
 
-class _CopyWithStubImpl$Query$GetCollections<TRes>
-    implements CopyWith$Query$GetCollections<TRes> {
-  _CopyWithStubImpl$Query$GetCollections(this._res);
+class _CopyWithStubImpl$Query$GetAllCollections<TRes>
+    implements CopyWith$Query$GetAllCollections<TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections(this._res);
 
   TRes _res;
 
-  call({Query$GetCollections$collections? collections, String? $__typename}) =>
+  call(
+          {Query$GetAllCollections$collections? collections,
+          String? $__typename}) =>
       _res;
-  CopyWith$Query$GetCollections$collections<TRes> get collections =>
-      CopyWith$Query$GetCollections$collections.stub(_res);
+  CopyWith$Query$GetAllCollections$collections<TRes> get collections =>
+      CopyWith$Query$GetAllCollections$collections.stub(_res);
 }
 
-const documentNodeQueryGetCollections = DocumentNode(definitions: [
+const documentNodeQueryGetAllCollections = DocumentNode(definitions: [
   OperationDefinitionNode(
       type: OperationType.query,
-      name: NameNode(value: 'GetCollections'),
+      name: NameNode(value: 'GetAllCollections'),
       variableDefinitions: [
         VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'options')),
+            variable: VariableNode(name: NameNode(value: 'input')),
             type: NamedTypeNode(
                 name: NameNode(value: 'CollectionListOptions'),
                 isNonNull: false),
@@ -1896,7 +2000,7 @@ const documentNodeQueryGetCollections = DocumentNode(definitions: [
             arguments: [
               ArgumentNode(
                   name: NameNode(value: 'options'),
-                  value: VariableNode(name: NameNode(value: 'options')))
+                  value: VariableNode(name: NameNode(value: 'input')))
             ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
@@ -1906,8 +2010,80 @@ const documentNodeQueryGetCollections = DocumentNode(definitions: [
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
-                    FragmentSpreadNode(
-                        name: NameNode(value: 'SingleItem'), directives: []),
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'slug'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'parent'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'slug'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'name'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'featuredAsset'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'preview'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
                     FieldNode(
                         name: NameNode(value: '__typename'),
                         alias: null,
@@ -1929,18 +2105,16 @@ const documentNodeQueryGetCollections = DocumentNode(definitions: [
             directives: [],
             selectionSet: null)
       ])),
-  fragmentDefinitionSingleItem,
-  fragmentDefinitionAsset,
 ]);
-Query$GetCollections _parserFn$Query$GetCollections(
+Query$GetAllCollections _parserFn$Query$GetAllCollections(
         Map<String, dynamic> data) =>
-    Query$GetCollections.fromJson(data);
+    Query$GetAllCollections.fromJson(data);
 
-class Options$Query$GetCollections
-    extends graphql.QueryOptions<Query$GetCollections> {
-  Options$Query$GetCollections(
+class Options$Query$GetAllCollections
+    extends graphql.QueryOptions<Query$GetAllCollections> {
+  Options$Query$GetAllCollections(
       {String? operationName,
-      Variables$Query$GetCollections? variables,
+      Variables$Query$GetAllCollections? variables,
       graphql.FetchPolicy? fetchPolicy,
       graphql.ErrorPolicy? errorPolicy,
       graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1956,15 +2130,15 @@ class Options$Query$GetCollections
             optimisticResult: optimisticResult,
             pollInterval: pollInterval,
             context: context,
-            document: documentNodeQueryGetCollections,
-            parserFn: _parserFn$Query$GetCollections);
+            document: documentNodeQueryGetAllCollections,
+            parserFn: _parserFn$Query$GetAllCollections);
 }
 
-class WatchOptions$Query$GetCollections
-    extends graphql.WatchQueryOptions<Query$GetCollections> {
-  WatchOptions$Query$GetCollections(
+class WatchOptions$Query$GetAllCollections
+    extends graphql.WatchQueryOptions<Query$GetAllCollections> {
+  WatchOptions$Query$GetAllCollections(
       {String? operationName,
-      Variables$Query$GetCollections? variables,
+      Variables$Query$GetAllCollections? variables,
       graphql.FetchPolicy? fetchPolicy,
       graphql.ErrorPolicy? errorPolicy,
       graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -1982,91 +2156,93 @@ class WatchOptions$Query$GetCollections
             cacheRereadPolicy: cacheRereadPolicy,
             optimisticResult: optimisticResult,
             context: context,
-            document: documentNodeQueryGetCollections,
+            document: documentNodeQueryGetAllCollections,
             pollInterval: pollInterval,
             eagerlyFetchResults: eagerlyFetchResults,
             carryForwardDataOnException: carryForwardDataOnException,
             fetchResults: fetchResults,
-            parserFn: _parserFn$Query$GetCollections);
+            parserFn: _parserFn$Query$GetAllCollections);
 }
 
-class FetchMoreOptions$Query$GetCollections extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetCollections(
+class FetchMoreOptions$Query$GetAllCollections
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetAllCollections(
       {required graphql.UpdateQuery updateQuery,
-      Variables$Query$GetCollections? variables})
+      Variables$Query$GetAllCollections? variables})
       : super(
             updateQuery: updateQuery,
             variables: variables?.toJson() ?? {},
-            document: documentNodeQueryGetCollections);
+            document: documentNodeQueryGetAllCollections);
 }
 
-extension ClientExtension$Query$GetCollections on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$GetCollections>> query$GetCollections(
-          [Options$Query$GetCollections? options]) async =>
-      await this.query(options ?? Options$Query$GetCollections());
-  graphql.ObservableQuery<Query$GetCollections> watchQuery$GetCollections(
-          [WatchOptions$Query$GetCollections? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetCollections());
-  void writeQuery$GetCollections(
-          {required Query$GetCollections data,
-          Variables$Query$GetCollections? variables,
+extension ClientExtension$Query$GetAllCollections on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetAllCollections>> query$GetAllCollections(
+          [Options$Query$GetAllCollections? options]) async =>
+      await this.query(options ?? Options$Query$GetAllCollections());
+  graphql.ObservableQuery<Query$GetAllCollections> watchQuery$GetAllCollections(
+          [WatchOptions$Query$GetAllCollections? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetAllCollections());
+  void writeQuery$GetAllCollections(
+          {required Query$GetAllCollections data,
+          Variables$Query$GetAllCollections? variables,
           bool broadcast = true}) =>
       this.writeQuery(
           graphql.Request(
-              operation:
-                  graphql.Operation(document: documentNodeQueryGetCollections),
+              operation: graphql.Operation(
+                  document: documentNodeQueryGetAllCollections),
               variables: variables?.toJson() ?? const {}),
           data: data.toJson(),
           broadcast: broadcast);
-  Query$GetCollections? readQuery$GetCollections(
-      {Variables$Query$GetCollections? variables, bool optimistic = true}) {
+  Query$GetAllCollections? readQuery$GetAllCollections(
+      {Variables$Query$GetAllCollections? variables, bool optimistic = true}) {
     final result = this.readQuery(
         graphql.Request(
             operation:
-                graphql.Operation(document: documentNodeQueryGetCollections),
+                graphql.Operation(document: documentNodeQueryGetAllCollections),
             variables: variables?.toJson() ?? const {}),
         optimistic: optimistic);
-    return result == null ? null : Query$GetCollections.fromJson(result);
+    return result == null ? null : Query$GetAllCollections.fromJson(result);
   }
 }
 
-graphql_flutter.QueryHookResult<Query$GetCollections> useQuery$GetCollections(
-        [Options$Query$GetCollections? options]) =>
-    graphql_flutter.useQuery(options ?? Options$Query$GetCollections());
-graphql.ObservableQuery<Query$GetCollections> useWatchQuery$GetCollections(
-        [WatchOptions$Query$GetCollections? options]) =>
-    graphql_flutter
-        .useWatchQuery(options ?? WatchOptions$Query$GetCollections());
+graphql_flutter.QueryHookResult<Query$GetAllCollections>
+    useQuery$GetAllCollections([Options$Query$GetAllCollections? options]) =>
+        graphql_flutter.useQuery(options ?? Options$Query$GetAllCollections());
+graphql.ObservableQuery<Query$GetAllCollections>
+    useWatchQuery$GetAllCollections(
+            [WatchOptions$Query$GetAllCollections? options]) =>
+        graphql_flutter
+            .useWatchQuery(options ?? WatchOptions$Query$GetAllCollections());
 
-class Query$GetCollections$Widget
-    extends graphql_flutter.Query<Query$GetCollections> {
-  Query$GetCollections$Widget(
+class Query$GetAllCollections$Widget
+    extends graphql_flutter.Query<Query$GetAllCollections> {
+  Query$GetAllCollections$Widget(
       {widgets.Key? key,
-      Options$Query$GetCollections? options,
-      required graphql_flutter.QueryBuilder<Query$GetCollections> builder})
+      Options$Query$GetAllCollections? options,
+      required graphql_flutter.QueryBuilder<Query$GetAllCollections> builder})
       : super(
             key: key,
-            options: options ?? Options$Query$GetCollections(),
+            options: options ?? Options$Query$GetAllCollections(),
             builder: builder);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Query$GetCollections$collections {
-  Query$GetCollections$collections(
+class Query$GetAllCollections$collections {
+  Query$GetAllCollections$collections(
       {required this.items, required this.$__typename});
 
   @override
-  factory Query$GetCollections$collections.fromJson(
+  factory Query$GetAllCollections$collections.fromJson(
           Map<String, dynamic> json) =>
-      _$Query$GetCollections$collectionsFromJson(json);
+      _$Query$GetAllCollections$collectionsFromJson(json);
 
-  final List<Fragment$SingleItem> items;
+  final List<Query$GetAllCollections$collections$items> items;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$Query$GetCollections$collectionsToJson(this);
+      _$Query$GetAllCollections$collectionsToJson(this);
   int get hashCode {
     final l$items = items;
     final l$$__typename = $__typename;
@@ -2077,7 +2253,7 @@ class Query$GetCollections$collections {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Query$GetCollections$collections) ||
+    if (!(other is Query$GetAllCollections$collections) ||
         runtimeType != other.runtimeType) return false;
     final l$items = items;
     final lOther$items = other.items;
@@ -2095,61 +2271,470 @@ class Query$GetCollections$collections {
   }
 }
 
-extension UtilityExtension$Query$GetCollections$collections
-    on Query$GetCollections$collections {
-  CopyWith$Query$GetCollections$collections<Query$GetCollections$collections>
-      get copyWith => CopyWith$Query$GetCollections$collections(this, (i) => i);
+extension UtilityExtension$Query$GetAllCollections$collections
+    on Query$GetAllCollections$collections {
+  CopyWith$Query$GetAllCollections$collections<
+          Query$GetAllCollections$collections>
+      get copyWith =>
+          CopyWith$Query$GetAllCollections$collections(this, (i) => i);
 }
 
-abstract class CopyWith$Query$GetCollections$collections<TRes> {
-  factory CopyWith$Query$GetCollections$collections(
-          Query$GetCollections$collections instance,
-          TRes Function(Query$GetCollections$collections) then) =
-      _CopyWithImpl$Query$GetCollections$collections;
+abstract class CopyWith$Query$GetAllCollections$collections<TRes> {
+  factory CopyWith$Query$GetAllCollections$collections(
+          Query$GetAllCollections$collections instance,
+          TRes Function(Query$GetAllCollections$collections) then) =
+      _CopyWithImpl$Query$GetAllCollections$collections;
 
-  factory CopyWith$Query$GetCollections$collections.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetCollections$collections;
+  factory CopyWith$Query$GetAllCollections$collections.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections$collections;
 
-  TRes call({List<Fragment$SingleItem>? items, String? $__typename});
+  TRes call(
+      {List<Query$GetAllCollections$collections$items>? items,
+      String? $__typename});
   TRes items(
-      Iterable<Fragment$SingleItem> Function(
-              Iterable<CopyWith$Fragment$SingleItem<Fragment$SingleItem>>)
+      Iterable<Query$GetAllCollections$collections$items> Function(
+              Iterable<
+                  CopyWith$Query$GetAllCollections$collections$items<
+                      Query$GetAllCollections$collections$items>>)
           _fn);
 }
 
-class _CopyWithImpl$Query$GetCollections$collections<TRes>
-    implements CopyWith$Query$GetCollections$collections<TRes> {
-  _CopyWithImpl$Query$GetCollections$collections(this._instance, this._then);
+class _CopyWithImpl$Query$GetAllCollections$collections<TRes>
+    implements CopyWith$Query$GetAllCollections$collections<TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections(this._instance, this._then);
 
-  final Query$GetCollections$collections _instance;
+  final Query$GetAllCollections$collections _instance;
 
-  final TRes Function(Query$GetCollections$collections) _then;
+  final TRes Function(Query$GetAllCollections$collections) _then;
 
   static const _undefined = {};
 
   TRes call({Object? items = _undefined, Object? $__typename = _undefined}) =>
-      _then(Query$GetCollections$collections(
+      _then(Query$GetAllCollections$collections(
           items: items == _undefined || items == null
               ? _instance.items
-              : (items as List<Fragment$SingleItem>),
+              : (items as List<Query$GetAllCollections$collections$items>),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
   TRes items(
-          Iterable<Fragment$SingleItem> Function(
-                  Iterable<CopyWith$Fragment$SingleItem<Fragment$SingleItem>>)
+          Iterable<Query$GetAllCollections$collections$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetAllCollections$collections$items<
+                          Query$GetAllCollections$collections$items>>)
               _fn) =>
       call(
-          items: _fn(_instance.items
-              .map((e) => CopyWith$Fragment$SingleItem(e, (i) => i))).toList());
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetAllCollections$collections$items(
+                  e, (i) => i))).toList());
 }
 
-class _CopyWithStubImpl$Query$GetCollections$collections<TRes>
-    implements CopyWith$Query$GetCollections$collections<TRes> {
-  _CopyWithStubImpl$Query$GetCollections$collections(this._res);
+class _CopyWithStubImpl$Query$GetAllCollections$collections<TRes>
+    implements CopyWith$Query$GetAllCollections$collections<TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections(this._res);
 
   TRes _res;
 
-  call({List<Fragment$SingleItem>? items, String? $__typename}) => _res;
+  call(
+          {List<Query$GetAllCollections$collections$items>? items,
+          String? $__typename}) =>
+      _res;
   items(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetAllCollections$collections$items {
+  Query$GetAllCollections$collections$items(
+      {required this.id,
+      required this.name,
+      required this.slug,
+      this.parent,
+      this.featuredAsset,
+      required this.$__typename});
+
+  @override
+  factory Query$GetAllCollections$collections$items.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetAllCollections$collections$itemsFromJson(json);
+
+  final String id;
+
+  final String name;
+
+  final String slug;
+
+  final Query$GetAllCollections$collections$items$parent? parent;
+
+  final Query$GetAllCollections$collections$items$featuredAsset? featuredAsset;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetAllCollections$collections$itemsToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$slug = slug;
+    final l$parent = parent;
+    final l$featuredAsset = featuredAsset;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$id, l$name, l$slug, l$parent, l$featuredAsset, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetAllCollections$collections$items) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$parent = parent;
+    final lOther$parent = other.parent;
+    if (l$parent != lOther$parent) return false;
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetAllCollections$collections$items
+    on Query$GetAllCollections$collections$items {
+  CopyWith$Query$GetAllCollections$collections$items<
+          Query$GetAllCollections$collections$items>
+      get copyWith =>
+          CopyWith$Query$GetAllCollections$collections$items(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetAllCollections$collections$items<TRes> {
+  factory CopyWith$Query$GetAllCollections$collections$items(
+          Query$GetAllCollections$collections$items instance,
+          TRes Function(Query$GetAllCollections$collections$items) then) =
+      _CopyWithImpl$Query$GetAllCollections$collections$items;
+
+  factory CopyWith$Query$GetAllCollections$collections$items.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections$collections$items;
+
+  TRes call(
+      {String? id,
+      String? name,
+      String? slug,
+      Query$GetAllCollections$collections$items$parent? parent,
+      Query$GetAllCollections$collections$items$featuredAsset? featuredAsset,
+      String? $__typename});
+  CopyWith$Query$GetAllCollections$collections$items$parent<TRes> get parent;
+  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
+      get featuredAsset;
+}
+
+class _CopyWithImpl$Query$GetAllCollections$collections$items<TRes>
+    implements CopyWith$Query$GetAllCollections$collections$items<TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections$items(
+      this._instance, this._then);
+
+  final Query$GetAllCollections$collections$items _instance;
+
+  final TRes Function(Query$GetAllCollections$collections$items) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? slug = _undefined,
+          Object? parent = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetAllCollections$collections$items(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          slug: slug == _undefined || slug == null
+              ? _instance.slug
+              : (slug as String),
+          parent: parent == _undefined
+              ? _instance.parent
+              : (parent as Query$GetAllCollections$collections$items$parent?),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset
+                  as Query$GetAllCollections$collections$items$featuredAsset?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetAllCollections$collections$items$parent<TRes> get parent {
+    final local$parent = _instance.parent;
+    return local$parent == null
+        ? CopyWith$Query$GetAllCollections$collections$items$parent.stub(
+            _then(_instance))
+        : CopyWith$Query$GetAllCollections$collections$items$parent(
+            local$parent, (e) => call(parent: e));
+  }
+
+  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
+      get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
+            _then(_instance))
+        : CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetAllCollections$collections$items<TRes>
+    implements CopyWith$Query$GetAllCollections$collections$items<TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections$items(this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          String? name,
+          String? slug,
+          Query$GetAllCollections$collections$items$parent? parent,
+          Query$GetAllCollections$collections$items$featuredAsset?
+              featuredAsset,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetAllCollections$collections$items$parent<TRes> get parent =>
+      CopyWith$Query$GetAllCollections$collections$items$parent.stub(_res);
+  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
+      get featuredAsset =>
+          CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
+              _res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetAllCollections$collections$items$parent {
+  Query$GetAllCollections$collections$items$parent(
+      {required this.id,
+      required this.slug,
+      required this.name,
+      required this.$__typename});
+
+  @override
+  factory Query$GetAllCollections$collections$items$parent.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetAllCollections$collections$items$parentFromJson(json);
+
+  final String id;
+
+  final String slug;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetAllCollections$collections$items$parentToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$slug = slug;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$slug, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetAllCollections$collections$items$parent) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetAllCollections$collections$items$parent
+    on Query$GetAllCollections$collections$items$parent {
+  CopyWith$Query$GetAllCollections$collections$items$parent<
+          Query$GetAllCollections$collections$items$parent>
+      get copyWith => CopyWith$Query$GetAllCollections$collections$items$parent(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetAllCollections$collections$items$parent<TRes> {
+  factory CopyWith$Query$GetAllCollections$collections$items$parent(
+          Query$GetAllCollections$collections$items$parent instance,
+          TRes Function(Query$GetAllCollections$collections$items$parent)
+              then) =
+      _CopyWithImpl$Query$GetAllCollections$collections$items$parent;
+
+  factory CopyWith$Query$GetAllCollections$collections$items$parent.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections$collections$items$parent;
+
+  TRes call({String? id, String? slug, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetAllCollections$collections$items$parent<TRes>
+    implements CopyWith$Query$GetAllCollections$collections$items$parent<TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections$items$parent(
+      this._instance, this._then);
+
+  final Query$GetAllCollections$collections$items$parent _instance;
+
+  final TRes Function(Query$GetAllCollections$collections$items$parent) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? slug = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetAllCollections$collections$items$parent(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          slug: slug == _undefined || slug == null
+              ? _instance.slug
+              : (slug as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetAllCollections$collections$items$parent<TRes>
+    implements CopyWith$Query$GetAllCollections$collections$items$parent<TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections$items$parent(this._res);
+
+  TRes _res;
+
+  call({String? id, String? slug, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetAllCollections$collections$items$featuredAsset {
+  Query$GetAllCollections$collections$items$featuredAsset(
+      {required this.id, required this.preview, required this.$__typename});
+
+  @override
+  factory Query$GetAllCollections$collections$items$featuredAsset.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetAllCollections$collections$items$featuredAssetFromJson(json);
+
+  final String id;
+
+  final String preview;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetAllCollections$collections$items$featuredAssetToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$preview = preview;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$preview, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetAllCollections$collections$items$featuredAsset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$preview = preview;
+    final lOther$preview = other.preview;
+    if (l$preview != lOther$preview) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetAllCollections$collections$items$featuredAsset
+    on Query$GetAllCollections$collections$items$featuredAsset {
+  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<
+          Query$GetAllCollections$collections$items$featuredAsset>
+      get copyWith =>
+          CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetAllCollections$collections$items$featuredAsset<
+    TRes> {
+  factory CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
+          Query$GetAllCollections$collections$items$featuredAsset instance,
+          TRes Function(Query$GetAllCollections$collections$items$featuredAsset)
+              then) =
+      _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset;
+
+  factory CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset;
+
+  TRes call({String? id, String? preview, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset(
+      this._instance, this._then);
+
+  final Query$GetAllCollections$collections$items$featuredAsset _instance;
+
+  final TRes Function(Query$GetAllCollections$collections$items$featuredAsset)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? preview = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetAllCollections$collections$items$featuredAsset(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          preview: preview == _undefined || preview == null
+              ? _instance.preview
+              : (preview as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset(
+      this._res);
+
+  TRes _res;
+
+  call({String? id, String? preview, String? $__typename}) => _res;
 }

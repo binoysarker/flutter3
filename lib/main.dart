@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
+import 'package:ecommerce_app/controllers/collectionsController.dart';
 import 'package:ecommerce_app/controllers/homePageController.dart';
 import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/orderController.dart';
@@ -30,6 +31,7 @@ void main() async {
   Get.put(OrderController());
   Get.put(LoginPageController());
   Get.put(TokenPageController());
+  Get.put(CollectionsController());
   runApp(MyApp());
 }
 
@@ -72,7 +74,7 @@ class _MyAppState extends State<MyApp> {
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: currentTheme.currentThemeMode,
-        initialRoute: '/',
+        initialRoute: '/login',
         getPages: RoutesClass.routes,
       ),
     );

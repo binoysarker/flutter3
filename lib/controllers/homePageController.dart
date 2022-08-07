@@ -6,6 +6,7 @@ import 'package:get/state_manager.dart';
 class HomePageController extends GetxController {
   var dropDownItems = ['Profile', 'Logout'].obs;
   var currentlySelectedDropdownItem = 'Profile'.obs;
+  TextEditingController productSearchController = TextEditingController();
 
   void onDropdownItemSelected(String item) {
     currentlySelectedDropdownItem.value = item;

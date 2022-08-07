@@ -1,15 +1,15 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/components/drawerComponent.dart';
 import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
+import 'package:ecommerce_app/controllers/collectionsController.dart';
 import 'package:ecommerce_app/controllers/homePageController.dart';
 import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-
-import '../services/commonVariables.dart';
 
 class StorePage extends StatefulWidget {
   StorePage({Key? key}) : super(key: key);
@@ -20,77 +20,114 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends State<StorePage> {
   UtilService _utilService = UtilService();
+  final HomePageController homePageController = Get.find<HomePageController>();
+  final UserController userController = Get.find<UserController>();
+  final UtilityController utilityController = Get.find<UtilityController>();
+  final CollectionsController collectionsController =
+      Get.find<CollectionsController>();
 
   @override
   void initState() {
     super.initState();
     // UserController userController = Get.find<UserController>();
-    // userController.getActiveCustomer(context);
+    userController.getActiveCustomer();
+    collectionsController.getAllCollections();
     // userController.getCurrentUser(context);
+    print('testing');
   }
 
   @override
   Widget build(BuildContext context) {
-    final HomePageController homePageController =
-        Get.find<HomePageController>();
-    final UserController userController = Get.find<UserController>();
-    final UtilityController utilityController = Get.find<UtilityController>();
-
-    return utilityController.showLoader.isTrue
+    final allCollections =
+        List.from(collectionsController.allCollectionsData['items']);
+    return Obx(() => utilityController.showLoader.isTrue
         ? const LoadingSpinnerComponent()
         : Scaffold(
             appBar: AppBar(
               title: Text('Welcome To ${_utilService.appName}'),
-              actions: [
-                DropdownButton(
-                    icon: Icon(Icons.verified_user),
-                    items: homePageController.dropDownItems
-                        .map((item) => DropdownMenuItem<String>(
-                              child: Text('$item'),
-                              value: homePageController
-                                  .currentlySelectedDropdownItem.value,
-                            ))
-                        .toList(),
-                    onChanged: (String? newValue) {
-                      homePageController.onDropdownItemSelected(newValue!);
-                    })
-              ],
             ),
             drawer: const DrawerComponent(),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('${userController.currentAuthToken}'),
-                  ElevatedButton(
-                      onPressed: () {
-                        userController.getCurrentUser(context);
-                      },
-                      child: Text('get Data')),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                              onPressed: () async {
-                                Navigator.pushNamed(
-                                    context, '/${PageRouteNames.login.name}');
-                              },
-                              child: const Text(
-                                'login',
-                                style: TextStyle(fontSize: 15),
-                              )),
-                        ),
+            body: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Center(
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage('assets/images/splash.png'),
+                  ),
+                ),
+                Center(
+                  child: Text('Absurdly fresh grocery, delivered',
+                      style: TextStyle(fontSize: 15)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Form(
+                      child: Container(
+                    color: Colors.white,
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: homePageController.productSearchController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'What are you looking for?',
                       ),
-                    ],
-                  )
-                ],
-              ),
+                      validator: RequiredValidator(
+                          errorText: 'Please Enter some name to search'),
+                    ),
+                  )),
+                ),
+                Expanded(
+                    child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //  all collections
+                        Text(
+                          'Shop by Category',
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          height: 200,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => Card(
+                              elevation: 0,
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Image(
+                                      image: NetworkImage(
+                                          '${allCollections[index]['featuredAsset']['preview']}'),
+                                      width: 150,
+                                      height: 100,
+                                      alignment: Alignment.center,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    SizedBox(height: 15,),
+                                    Center(
+                                        child: Text(
+                                      '${allCollections[index]['name']}',
+                                      style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                                    ))
+                                  ],
+                                ),
+                              ),
+                            ),
+                            itemCount: allCollections.length,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ))
+              ],
             ),
             bottomNavigationBar:
                 BottomNavigationComponent(), // This trailing comma makes auto-formatting nicer for build methods.
-          );
+          ));
   }
 }

@@ -2,6 +2,7 @@ import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
+import 'package:ecommerce_app/pages/store_page.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/services/util_service.dart';
@@ -17,6 +18,8 @@ class LoginPageController extends GetxController {
   TextEditingController lastName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   GraphqlService graphqlService = GraphqlService();
+  UtilityController utilityController = Get.find<UtilityController>();
+  UserController userController = Get.find<UserController>();
   var showSignIn = true.obs;
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
@@ -49,7 +52,7 @@ class LoginPageController extends GetxController {
 
   void onUserSignIn(BuildContext context) async {
     final navigator = Navigator.of(context);
-    Get.find<UtilityController>().setLoadingState(true);
+    utilityController.setLoadingState(true);
     final signInResponse = await graphqlService.clientToQuery().mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
@@ -65,27 +68,27 @@ class LoginPageController extends GetxController {
       final loginData = signInResponse.parsedData?.login.toJson();
 
       if (loginData?['message'] != null) {
-        Get.find<UtilityController>()
+        utilityController
             .setAlertMessage(true, loginData?['message']);
-        Get.find<UtilityController>().setLoadingState(false);
+        utilityController.setLoadingState(false);
         return;
       }
       if (loginData?['errorCode'] == 'NOT_VERIFIED_ERROR') {
         navigator.pushReplacementNamed('/${PageRouteNames.verifyToken.name}');
       } else {
+        // login successful
         UtilService.createSnakeBar(context: context, text: 'Login successful');
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
-        Get.find<UserController>().setCurrentAuthToken(authToken);
-        navigator.pushReplacementNamed('/${PageRouteNames.home.name}');
+        userController.currentAuthToken.value = authToken;
+        Get.to(() => StorePage());
       }
-      Get.find<UtilityController>().setLoadingState(false);
+      utilityController.setLoadingState(false);
     }
-    Get.find<UtilityController>().setLoadingState(false);
   }
 
   void onUserRegister(BuildContext context) async {
-    Get.find<UtilityController>().setLoadingState(true);
+    utilityController.setLoadingState(true);
     final navigator = Navigator.of(context);
     final registerResponse = await graphqlService
         .clientToQuery()
@@ -108,16 +111,16 @@ class LoginPageController extends GetxController {
 
       if (registerData?['success'] != null) {
         //  user is registered
-        Get.find<UtilityController>().setAlertMessage(false, '');
-        Get.find<UtilityController>().setLoadingState(false);
+        utilityController.setAlertMessage(false, '');
+        utilityController.setLoadingState(false);
         UtilService.createSnakeBar(
             context: context, text: 'Registered Successfully');
         navigator.pushReplacementNamed('${PageRouteNames.verifyToken.name}');
       } else {
-        Get.find<UtilityController>().setAlertMessage(true, 'some error');
+        utilityController.setAlertMessage(true, 'some error');
       }
     }
-    Get.find<UtilityController>().setLoadingState(false);
+    utilityController.setLoadingState(false);
   }
 
   void onGoogleSignIn(BuildContext context) async {

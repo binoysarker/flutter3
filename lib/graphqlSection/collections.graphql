@@ -17,34 +17,45 @@ query GetAvailableCountries{
 }
 query GetCollectionsByIdOrSlug($id: ID,$slug: String){
     collection(id: $id,slug: $slug){
-        ...SingleItem
-
-    }
-}
-query GetCollections($options: CollectionListOptions) {
-    collections(options: $options) {
-        items {
-            ...SingleItem
-        }
-        __typename
-    }
-}
-
-fragment SingleItem on Collection{
-    id
-    name
-    slug
-    parent {
         id
         name
         slug
+        parent {
+            id
+            slug
+            name
+            __typename
+        }
+        featuredAsset {
+            id
+            preview
+            __typename
+        }
+        __typename
+
+    }
+}
+query GetAllCollections($input: CollectionListOptions) {
+    collections(options: $input) {
+        items {
+            id
+            name
+            slug
+            parent {
+                id
+                slug
+                name
+                __typename
+            }
+            featuredAsset {
+                id
+                preview
+                __typename
+            }
+            __typename
+        }
         __typename
     }
-    featuredAsset {
-        ...Asset
-        __typename
-    }
-    __typename
 }
 
 

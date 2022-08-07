@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/controllers/userController.dart';
+import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({Key? key}) : super(key: key);
@@ -9,8 +12,10 @@ class DrawerComponent extends StatefulWidget {
 }
 
 class _DrawerComponentState extends State<DrawerComponent> {
+  final UserController userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
+    var currentAuthenticatedUser = userController.currentAuthenticatedUser.value;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -20,7 +25,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               color: Colors.blue,
             ),
             child: Row(
-              children: const [
+              children: [
                 CircleAvatar(
                   radius: 20.0,
                   child: Image(
@@ -31,9 +36,9 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   width: 20.0,
                 ),
                 Text(
-                  'email',
+                  '${currentAuthenticatedUser['emailAddress']}',
                   style: TextStyle(
-                    color: Colors.white
+                      color: Colors.white
                   ),
                 )
               ],

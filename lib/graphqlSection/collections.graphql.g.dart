@@ -6,51 +6,6 @@ part of 'collections.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Fragment$SingleItem _$Fragment$SingleItemFromJson(Map<String, dynamic> json) =>
-    Fragment$SingleItem(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      slug: json['slug'] as String,
-      parent: json['parent'] == null
-          ? null
-          : Fragment$SingleItem$parent.fromJson(
-              json['parent'] as Map<String, dynamic>),
-      featuredAsset: json['featuredAsset'] == null
-          ? null
-          : Fragment$Asset.fromJson(
-              json['featuredAsset'] as Map<String, dynamic>),
-      $__typename: json['__typename'] as String,
-    );
-
-Map<String, dynamic> _$Fragment$SingleItemToJson(
-        Fragment$SingleItem instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'slug': instance.slug,
-      'parent': instance.parent?.toJson(),
-      'featuredAsset': instance.featuredAsset?.toJson(),
-      '__typename': instance.$__typename,
-    };
-
-Fragment$SingleItem$parent _$Fragment$SingleItem$parentFromJson(
-        Map<String, dynamic> json) =>
-    Fragment$SingleItem$parent(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      slug: json['slug'] as String,
-      $__typename: json['__typename'] as String,
-    );
-
-Map<String, dynamic> _$Fragment$SingleItem$parentToJson(
-        Fragment$SingleItem$parent instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'slug': instance.slug,
-      '__typename': instance.$__typename,
-    };
-
 Fragment$Asset _$Fragment$AssetFromJson(Map<String, dynamic> json) =>
     Fragment$Asset(
       id: json['id'] as String,
@@ -339,7 +294,7 @@ Query$GetCollectionsByIdOrSlug _$Query$GetCollectionsByIdOrSlugFromJson(
     Query$GetCollectionsByIdOrSlug(
       collection: json['collection'] == null
           ? null
-          : Fragment$SingleItem.fromJson(
+          : Query$GetCollectionsByIdOrSlug$collection.fromJson(
               json['collection'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
@@ -351,48 +306,181 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlugToJson(
       '__typename': instance.$__typename,
     };
 
-Variables$Query$GetCollections _$Variables$Query$GetCollectionsFromJson(
-        Map<String, dynamic> json) =>
-    Variables$Query$GetCollections(
-      options: json['options'] == null
-          ? null
-          : Input$CollectionListOptions.fromJson(
-              json['options'] as Map<String, dynamic>),
-    );
+Query$GetCollectionsByIdOrSlug$collection
+    _$Query$GetCollectionsByIdOrSlug$collectionFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          slug: json['slug'] as String,
+          parent: json['parent'] == null
+              ? null
+              : Query$GetCollectionsByIdOrSlug$collection$parent.fromJson(
+                  json['parent'] as Map<String, dynamic>),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetCollectionsByIdOrSlug$collection$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
 
-Map<String, dynamic> _$Variables$Query$GetCollectionsToJson(
-        Variables$Query$GetCollections instance) =>
+Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collectionToJson(
+        Query$GetCollectionsByIdOrSlug$collection instance) =>
     <String, dynamic>{
-      'options': instance.options?.toJson(),
+      'id': instance.id,
+      'name': instance.name,
+      'slug': instance.slug,
+      'parent': instance.parent?.toJson(),
+      'featuredAsset': instance.featuredAsset?.toJson(),
+      '__typename': instance.$__typename,
     };
 
-Query$GetCollections _$Query$GetCollectionsFromJson(
+Query$GetCollectionsByIdOrSlug$collection$parent
+    _$Query$GetCollectionsByIdOrSlug$collection$parentFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$parent(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$parentToJson(
+        Query$GetCollectionsByIdOrSlug$collection$parent instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'slug': instance.slug,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCollectionsByIdOrSlug$collection$featuredAsset
+    _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+          id: json['id'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetToJson(
+            Query$GetCollectionsByIdOrSlug$collection$featuredAsset instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };
+
+Variables$Query$GetAllCollections _$Variables$Query$GetAllCollectionsFromJson(
         Map<String, dynamic> json) =>
-    Query$GetCollections(
-      collections: Query$GetCollections$collections.fromJson(
+    Variables$Query$GetAllCollections(
+      input: json['input'] == null
+          ? null
+          : Input$CollectionListOptions.fromJson(
+              json['input'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$Variables$Query$GetAllCollectionsToJson(
+        Variables$Query$GetAllCollections instance) =>
+    <String, dynamic>{
+      'input': instance.input?.toJson(),
+    };
+
+Query$GetAllCollections _$Query$GetAllCollectionsFromJson(
+        Map<String, dynamic> json) =>
+    Query$GetAllCollections(
+      collections: Query$GetAllCollections$collections.fromJson(
           json['collections'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
 
-Map<String, dynamic> _$Query$GetCollectionsToJson(
-        Query$GetCollections instance) =>
+Map<String, dynamic> _$Query$GetAllCollectionsToJson(
+        Query$GetAllCollections instance) =>
     <String, dynamic>{
       'collections': instance.collections.toJson(),
       '__typename': instance.$__typename,
     };
 
-Query$GetCollections$collections _$Query$GetCollections$collectionsFromJson(
-        Map<String, dynamic> json) =>
-    Query$GetCollections$collections(
-      items: (json['items'] as List<dynamic>)
-          .map((e) => Fragment$SingleItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      $__typename: json['__typename'] as String,
-    );
+Query$GetAllCollections$collections
+    _$Query$GetAllCollections$collectionsFromJson(Map<String, dynamic> json) =>
+        Query$GetAllCollections$collections(
+          items: (json['items'] as List<dynamic>)
+              .map((e) => Query$GetAllCollections$collections$items.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
 
-Map<String, dynamic> _$Query$GetCollections$collectionsToJson(
-        Query$GetCollections$collections instance) =>
+Map<String, dynamic> _$Query$GetAllCollections$collectionsToJson(
+        Query$GetAllCollections$collections instance) =>
     <String, dynamic>{
       'items': instance.items.map((e) => e.toJson()).toList(),
       '__typename': instance.$__typename,
     };
+
+Query$GetAllCollections$collections$items
+    _$Query$GetAllCollections$collections$itemsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllCollections$collections$items(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          slug: json['slug'] as String,
+          parent: json['parent'] == null
+              ? null
+              : Query$GetAllCollections$collections$items$parent.fromJson(
+                  json['parent'] as Map<String, dynamic>),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetAllCollections$collections$items$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetAllCollections$collections$itemsToJson(
+        Query$GetAllCollections$collections$items instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'slug': instance.slug,
+      'parent': instance.parent?.toJson(),
+      'featuredAsset': instance.featuredAsset?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllCollections$collections$items$parent
+    _$Query$GetAllCollections$collections$items$parentFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllCollections$collections$items$parent(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetAllCollections$collections$items$parentToJson(
+        Query$GetAllCollections$collections$items$parent instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'slug': instance.slug,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllCollections$collections$items$featuredAsset
+    _$Query$GetAllCollections$collections$items$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllCollections$collections$items$featuredAsset(
+          id: json['id'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetAllCollections$collections$items$featuredAssetToJson(
+            Query$GetAllCollections$collections$items$featuredAsset instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };

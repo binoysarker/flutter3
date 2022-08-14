@@ -72,4 +72,5 @@ class CollectionsController extends GetxController {
       print('$e');
     }
   }
+
 }

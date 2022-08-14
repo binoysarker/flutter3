@@ -32,6 +32,7 @@ class _StorePageState extends State<StorePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       userController.getActiveCustomer();
+      userController.getTopSellers();
       collectionsController.getAllCollections();
       productsController.getProductsList();
       print('testing');
@@ -144,6 +145,61 @@ class _StorePageState extends State<StorePage> {
                                     .collectionItems.length,
                               ),
                             ),
+                    ),
+                    // all top sellers
+                    Text(
+                      'Top Sellers',
+                      style:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Obx(
+                          () => userController.isLoading.isTrue
+                          ? Center(child: CircularProgressIndicator())
+                          : SizedBox(
+                        height: 250,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) =>
+                              GestureDetector(
+                                onTap: () {
+                                  // print('${collectionsController.collectionItems[index].toJson()}');
+                                },
+                                child: Card(
+                                  elevation: 0,
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Image(
+                                          image: NetworkImage(
+                                              '${userController.topSellers[index].productAsset!.preview}'),
+                                          width: 150,
+                                          height: 100,
+                                          alignment: Alignment.center,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Center(
+                                            child: Text(
+                                              '${userController.topSellers[index].productName}',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          itemCount:
+                          userController.topSellers.length,
+                        ),
+                      ),
                     ),
                     // all products
                     Text(

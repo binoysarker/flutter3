@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
+import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:flutter/foundation.dart';
@@ -14,6 +15,8 @@ class UserController with ChangeNotifier {
   var currentAuthToken = ''.obs;
   final GraphqlService graphqlService = GraphqlService();
   final UtilityController utilityController = Get.find<UtilityController>();
+  var topSellers = <Query$GetTopSellers$search$items>[].obs;
+  var isLoading = false.obs;
 
 
   void checkAndSetToken(){
@@ -41,6 +44,21 @@ class UserController with ChangeNotifier {
       //  get the auth user
         currentAuthenticatedUser.value = activeCustomer.toJson();
       }
+    }
+  }
+
+  void getTopSellers() async {
+    checkAndSetToken();
+    isLoading.value = true;
+    final res = await graphqlService
+        .clientToQuery().query$GetTopSellers(Options$Query$GetTopSellers());
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      isLoading.value = false;
+    }
+    if (res.data != null) {
+      topSellers.value = res.parsedData!.search.items.toList();
+      isLoading.value = false;
     }
   }
 

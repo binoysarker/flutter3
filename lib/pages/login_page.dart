@@ -83,44 +83,54 @@ class _LoginPageState extends State<LoginPage> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 30),
                             )),
-                        Visibility(
-                          visible: loginController.showSignIn.isFalse &&
-                              loginController.currentSignInProcessName.value !=
-                                  SignInProcessNames.firebase.name,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: TextFormField(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              controller: loginController.firstName,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'First Name',
-                              ),
-                              validator: RequiredValidator(
-                                  errorText: 'First Name is required'),
-                            ),
-                          ),
-                        ),
-                        Visibility(
-                          visible: loginController.showSignIn.isFalse &&
-                              loginController.currentSignInProcessName.value !=
-                                  SignInProcessNames.firebase.name,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            child: TextFormField(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              controller: loginController.lastName,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Last Name',
-                              ),
-                              validator: RequiredValidator(
-                                  errorText: 'Last Name is required'),
-                            ),
-                          ),
-                        ),
+                        AutofillGroup(
+                            child: Column(
+                              children: [
+                                Visibility(
+                                  visible: loginController.showSignIn.isFalse &&
+                                      loginController.currentSignInProcessName.value !=
+                                          SignInProcessNames.firebase.name,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: TextFormField(
+                                      autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                      controller: loginController.firstName,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'First Name',
+                                      ),
+                                      autofillHints: [AutofillHints.givenName],
+                                      keyboardType: TextInputType.name,
+                                      validator: RequiredValidator(
+                                          errorText: 'First Name is required'),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: loginController.showSignIn.isFalse &&
+                                      loginController.currentSignInProcessName.value !=
+                                          SignInProcessNames.firebase.name,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: TextFormField(
+                                      autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                      controller: loginController.lastName,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Last Name',
+                                      ),
+                                      keyboardType: TextInputType.name,
+                                      autofillHints: [AutofillHints.familyName],
+                                      validator: RequiredValidator(
+                                          errorText: 'Last Name is required'),
+                                    ),
+                                  ),
+                                ),
+                                ],
+                            )),
+
                         Container(
                           padding: const EdgeInsets.all(10),
                           child: TextFormField(
@@ -131,6 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                               border: OutlineInputBorder(),
                               labelText: 'Email Address',
                             ),
+                            keyboardType: TextInputType.emailAddress,
+                            autofillHints: [AutofillHints.email],
                             validator: ValidatorDefinition.emailMultiValidator,
                           ),
                         ),
@@ -148,6 +160,8 @@ class _LoginPageState extends State<LoginPage> {
                                 border: OutlineInputBorder(),
                                 labelText: 'Phone Number',
                               ),
+                              keyboardType: TextInputType.phone,
+                              autofillHints: [AutofillHints.telephoneNumber],
                               validator:
                                   ValidatorDefinition.phoneNumberMultiValidator,
                             ),

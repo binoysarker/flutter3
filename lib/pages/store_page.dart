@@ -62,22 +62,59 @@ class _StorePageState extends State<StorePage> {
                 style: TextStyle(fontSize: 15)),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Form(
                 child: Container(
               color: Colors.white,
               child: TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: homePageController.productSearchController,
-                decoration: const InputDecoration(
+                onChanged: (String value) {
+                  print('$value');
+                  productsController.searchForProducts(value);
+                },
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'What are you looking for?',
+                  labelText: 'Search for products',
+                  suffixIcon: IconButton(onPressed: () {
+                    homePageController.productSearchController.text = '';
+                    FocusScope.of(context).unfocus();
+                    productsController.searchResultList.value = [];
+                  }, icon: Icon(Icons.close)),
                 ),
-                validator: RequiredValidator(
-                    errorText: 'Please Enter some name to search'),
               ),
             )),
           ),
+          Obx(() => Visibility(
+            visible: productsController.searchResultList.length > 0,
+            child: productsController.searchInProgress.isTrue
+                ? Center(
+              child: CircularProgressIndicator(
+                color: Colors.lightGreen,
+              ),
+            )
+                : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+              height: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.00)
+                    ),
+                    child: ListView.builder(
+              itemBuilder: (context, index) => ListTile(
+                  leading: Image(
+                    height: 50,
+                    width: 50,
+                    image: NetworkImage('${productsController.searchResultList[index].productAsset!.preview}'),
+                  ),
+                      title: Text(
+                          '${productsController.searchResultList[index].productName}')),
+              itemCount: productsController.searchResultList.length,
+            ),
+                  ),
+                ),
+          )),
           Container(
             child: Padding(
               padding: const EdgeInsets.all(2.0),
@@ -85,6 +122,9 @@ class _StorePageState extends State<StorePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    SizedBox(
+                      height: 30,
+                    ),
                     Text(
                       'Shop by Category',
                       style:
@@ -150,56 +190,55 @@ class _StorePageState extends State<StorePage> {
                     Text(
                       'Top Sellers',
                       style:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 30,
                     ),
                     Obx(
-                          () => userController.isLoading.isTrue
+                      () => userController.isLoading.isTrue
                           ? Center(child: CircularProgressIndicator())
                           : SizedBox(
-                        height: 250,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) =>
-                              GestureDetector(
-                                onTap: () {
-                                  // print('${collectionsController.collectionItems[index].toJson()}');
-                                },
-                                child: Card(
-                                  elevation: 0,
-                                  child: Container(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Image(
-                                          image: NetworkImage(
-                                              '${userController.topSellers[index].productAsset!.preview}'),
-                                          width: 150,
-                                          height: 100,
-                                          alignment: Alignment.center,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Center(
-                                            child: Text(
-                                              '${userController.topSellers[index].productName}',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold),
-                                            ))
-                                      ],
+                              height: 250,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) =>
+                                    GestureDetector(
+                                  onTap: () {
+                                    // print('${collectionsController.collectionItems[index].toJson()}');
+                                  },
+                                  child: Card(
+                                    elevation: 0,
+                                    child: Container(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Image(
+                                            image: NetworkImage(
+                                                '${userController.topSellers[index].productAsset!.preview}'),
+                                            width: 150,
+                                            height: 100,
+                                            alignment: Alignment.center,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Center(
+                                              child: Text(
+                                            '${userController.topSellers[index].productName}',
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ))
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
+                                itemCount: userController.topSellers.length,
                               ),
-                          itemCount:
-                          userController.topSellers.length,
-                        ),
-                      ),
+                            ),
                     ),
                     // all products
                     Text(

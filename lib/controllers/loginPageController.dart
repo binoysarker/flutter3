@@ -74,7 +74,7 @@ class LoginPageController extends GetxController {
         return;
       }
       if (loginData?['errorCode'] == 'NOT_VERIFIED_ERROR') {
-        navigator.pushReplacementNamed('/${PageRouteNames.verifyToken.name}');
+        navigator.pushReplacementNamed('/${PageRouteNames.verify_token.name}');
       } else {
         // login successful
         UtilService.createSnakeBar(context: context, text: 'Login successful');
@@ -115,7 +115,7 @@ class LoginPageController extends GetxController {
         utilityController.setLoadingState(false);
         UtilService.createSnakeBar(
             context: context, text: 'Registered Successfully');
-        navigator.pushReplacementNamed('${PageRouteNames.verifyToken.name}');
+        navigator.pushReplacementNamed('${PageRouteNames.verify_token.name}');
       } else {
         utilityController.setAlertMessage(true, 'some error');
       }

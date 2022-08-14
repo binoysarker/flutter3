@@ -94,16 +94,116 @@ Map<String, dynamic> _$Query$GetAllProducts$productsToJson(
 Query$GetAllProducts$products$items
     _$Query$GetAllProducts$products$itemsFromJson(Map<String, dynamic> json) =>
         Query$GetAllProducts$products$items(
+          id: json['id'] as String,
           name: json['name'] as String,
+          slug: json['slug'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetAllProducts$products$items$featuredAsset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          assets: (json['assets'] as List<dynamic>)
+              .map((e) => Query$GetAllProducts$products$items$assets.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          collections: (json['collections'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetAllProducts$products$items$collections.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
           $__typename: json['__typename'] as String,
         );
 
 Map<String, dynamic> _$Query$GetAllProducts$products$itemsToJson(
         Query$GetAllProducts$products$items instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
+      'slug': instance.slug,
+      'featuredAsset': instance.featuredAsset?.toJson(),
+      'assets': instance.assets.map((e) => e.toJson()).toList(),
+      'collections': instance.collections.map((e) => e.toJson()).toList(),
       '__typename': instance.$__typename,
     };
+
+Query$GetAllProducts$products$items$featuredAsset
+    _$Query$GetAllProducts$products$items$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllProducts$products$items$featuredAsset(
+          name: json['name'] as String,
+          id: json['id'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetAllProducts$products$items$featuredAssetToJson(
+        Query$GetAllProducts$products$items$featuredAsset instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'id': instance.id,
+      'preview': instance.preview,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllProducts$products$items$assets
+    _$Query$GetAllProducts$products$items$assetsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllProducts$products$items$assets(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetAllProducts$products$items$assetsToJson(
+        Query$GetAllProducts$products$items$assets instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'preview': instance.preview,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllProducts$products$items$collections
+    _$Query$GetAllProducts$products$items$collectionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllProducts$products$items$collections(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          assets: (json['assets'] as List<dynamic>)
+              .map((e) => Query$GetAllProducts$products$items$collections$assets
+                  .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetAllProducts$products$items$collectionsToJson(
+        Query$GetAllProducts$products$items$collections instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'assets': instance.assets.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllProducts$products$items$collections$assets
+    _$Query$GetAllProducts$products$items$collections$assetsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllProducts$products$items$collections$assets(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetAllProducts$products$items$collections$assetsToJson(
+            Query$GetAllProducts$products$items$collections$assets instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };
 
 Variables$Query$SearchProducts _$Variables$Query$SearchProductsFromJson(
         Map<String, dynamic> json) =>

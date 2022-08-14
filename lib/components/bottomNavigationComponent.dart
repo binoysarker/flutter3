@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
+import 'package:ecommerce_app/pages/store_page.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,12 +7,14 @@ import 'package:get/get.dart';
 class BottomNavigationComponent extends StatefulWidget {
   const BottomNavigationComponent({Key? key}) : super(key: key);
 
+
   @override
   State<BottomNavigationComponent> createState() =>
       _BottomNavigationComponentState();
 }
 
 class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
+  final BottomNavigationController bottomNavigationController = Get.find<BottomNavigationController>();
   List<BottomNavigationBarItem> bottomNavigationBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.store),
@@ -29,18 +32,25 @@ class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: bottomNavigationBarItems,
-      currentIndex: Get.find<BottomNavigationController>().selectedIndex.value,
+      currentIndex: bottomNavigationController.selectedIndex.value,
       onTap: (int index) {
+        bottomNavigationController.selectedIndex.value = index;
         final re = RegExp(r'\s');
+        final commonRouteNameRegex = RegExp(r'(home|store)');
         final selectedLabel = bottomNavigationBarItems[index]
             .label
             .toString()
             .toLowerCase()
             .split(re)
-            .join('');
-        Navigator.pushNamed(context,
-            '/${selectedLabel == '${PageRouteNames.store.name}' ? '${PageRouteNames.home.name}' : '$selectedLabel'}');
-        Get.find<BottomNavigationController>().setItemIndex(index);
+            .join('_');
+        if(commonRouteNameRegex.hasMatch(selectedLabel)){
+          Get.offNamedUntil('home', (route) => route.isFirst);
+        }else {
+          Get.toNamed(selectedLabel);
+        }
+        // Navigator.pushNamed(context,
+        //     '/${selectedLabel == '${PageRouteNames.store.name}' ? '${PageRouteNames.home.name}' : '$selectedLabel'}');
+        // Get.find<BottomNavigationController>().setItemIndex(index);
       },
     );
   }

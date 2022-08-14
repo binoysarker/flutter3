@@ -26,6 +26,20 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
             name
             __typename
         }
+        breadcrumbs {
+            id
+            slug
+            name
+            __typename
+        }
+        children {
+            id
+            slug
+            featuredAsset {
+                ...Asset
+                __typename
+            }
+        }
         featuredAsset {
             id
             preview

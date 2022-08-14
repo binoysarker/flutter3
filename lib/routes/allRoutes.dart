@@ -10,11 +10,11 @@ class RoutesClass {
   static List<GetPage> routes = [
     GetPage(name: '/', page: () => StorePage()),
     GetPage(name: '/home', page: () => StorePage()),
-    GetPage(name: '/verifyToken', page: () => TokenVerifyPage()),
+    GetPage(name: '/verify_token', page: () => TokenVerifyPage()),
     GetPage(name: '/orders', page: () => OrdersPage()),
     GetPage(name: '/login', page: () => LoginPage()),
     GetPage(name: '/rewards', page: () => RewardsPage()),
-    GetPage(name: '/myAccount', page: () => MyAccountPage()),
-    GetPage(name: '/pageNotFound', page: () => PageNotFound()),
+    GetPage(name: '/my_account', page: () => MyAccountPage()),
+    GetPage(name: '/page_not_found', page: () => PageNotFound()),
   ];
 }

@@ -317,6 +317,15 @@ Query$GetCollectionsByIdOrSlug$collection
               ? null
               : Query$GetCollectionsByIdOrSlug$collection$parent.fromJson(
                   json['parent'] as Map<String, dynamic>),
+          breadcrumbs: (json['breadcrumbs'] as List<dynamic>)
+              .map((e) => Query$GetCollectionsByIdOrSlug$collection$breadcrumbs
+                  .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          children: (json['children'] as List<dynamic>?)
+              ?.map((e) =>
+                  Query$GetCollectionsByIdOrSlug$collection$children.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
           featuredAsset: json['featuredAsset'] == null
               ? null
               : Query$GetCollectionsByIdOrSlug$collection$featuredAsset
@@ -331,6 +340,8 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collectionToJson(
       'name': instance.name,
       'slug': instance.slug,
       'parent': instance.parent?.toJson(),
+      'breadcrumbs': instance.breadcrumbs.map((e) => e.toJson()).toList(),
+      'children': instance.children?.map((e) => e.toJson()).toList(),
       'featuredAsset': instance.featuredAsset?.toJson(),
       '__typename': instance.$__typename,
     };
@@ -351,6 +362,48 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$parentToJson(
       'id': instance.id,
       'slug': instance.slug,
       'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCollectionsByIdOrSlug$collection$breadcrumbs
+    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$breadcrumbs(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$breadcrumbs instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'slug': instance.slug,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children
+    _$Query$GetCollectionsByIdOrSlug$collection$childrenFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$childrenToJson(
+        Query$GetCollectionsByIdOrSlug$collection$children instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'slug': instance.slug,
+      'featuredAsset': instance.featuredAsset?.toJson(),
       '__typename': instance.$__typename,
     };
 

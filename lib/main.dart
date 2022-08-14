@@ -17,6 +17,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+import 'controllers/productsController.dart';
 import 'controllers/tokenPageController.dart';
 import 'firebase_options.dart';
 
@@ -32,6 +33,7 @@ void main() async {
   Get.put(LoginPageController());
   Get.put(TokenPageController());
   Get.put(CollectionsController());
+  Get.put(ProductsController());
   runApp(MyApp());
 }
 

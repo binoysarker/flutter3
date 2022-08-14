@@ -1,7 +1,28 @@
 query GetAllProducts($take: Int){
     products(options: {take: $take}){
         items {
+            id
             name
+            slug
+            featuredAsset {
+                name
+                id
+                preview
+            }
+            assets {
+                id
+                name
+                preview
+            }
+            collections {
+                id
+                name
+                assets {
+                    id
+                    name
+                    preview
+                }
+            }
         }
     }
 }

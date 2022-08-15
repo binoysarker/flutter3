@@ -2,6 +2,7 @@ import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
+import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/pages/store_page.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
@@ -20,6 +21,7 @@ class LoginPageController extends GetxController {
   GraphqlService graphqlService = GraphqlService();
   UtilityController utilityController = Get.find<UtilityController>();
   UserController userController = Get.find<UserController>();
+  final loginPageState = GlobalKey<LoginPageState>();
   var showSignIn = true.obs;
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
@@ -30,12 +32,14 @@ class LoginPageController extends GetxController {
     showSignIn.value = value;
   }
   void resetFormField(){
-    emailController.text = '';
-    passwordController.text = '';
-    firstName.text = '';
-    lastName.text = '';
-    phoneNumber.text = '';
+    emailController.clear();
+    passwordController.clear();
+    firstName.clear();
+    lastName.clear();
+    phoneNumber.clear();
     checkboxStatus.value = false;
+    loginPageState.currentState?.loginFormKey.currentState?.reset();
+
   }
 
   void setCurrentSignInProcess(String value) {

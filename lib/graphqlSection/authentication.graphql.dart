@@ -5188,3 +5188,2463 @@ class _CopyWithStubImpl$Query$GetCurrentUser$me$channels<TRes>
           String? $__typename}) =>
       _res;
 }
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$LogoutUser {
+  Mutation$LogoutUser({required this.logout, required this.$__typename});
+
+  @override
+  factory Mutation$LogoutUser.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$LogoutUserFromJson(json);
+
+  final Mutation$LogoutUser$logout logout;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$LogoutUserToJson(this);
+  int get hashCode {
+    final l$logout = logout;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$logout, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$LogoutUser) || runtimeType != other.runtimeType)
+      return false;
+    final l$logout = logout;
+    final lOther$logout = other.logout;
+    if (l$logout != lOther$logout) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$LogoutUser on Mutation$LogoutUser {
+  CopyWith$Mutation$LogoutUser<Mutation$LogoutUser> get copyWith =>
+      CopyWith$Mutation$LogoutUser(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$LogoutUser<TRes> {
+  factory CopyWith$Mutation$LogoutUser(Mutation$LogoutUser instance,
+          TRes Function(Mutation$LogoutUser) then) =
+      _CopyWithImpl$Mutation$LogoutUser;
+
+  factory CopyWith$Mutation$LogoutUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$LogoutUser;
+
+  TRes call({Mutation$LogoutUser$logout? logout, String? $__typename});
+  CopyWith$Mutation$LogoutUser$logout<TRes> get logout;
+}
+
+class _CopyWithImpl$Mutation$LogoutUser<TRes>
+    implements CopyWith$Mutation$LogoutUser<TRes> {
+  _CopyWithImpl$Mutation$LogoutUser(this._instance, this._then);
+
+  final Mutation$LogoutUser _instance;
+
+  final TRes Function(Mutation$LogoutUser) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? logout = _undefined, Object? $__typename = _undefined}) =>
+      _then(Mutation$LogoutUser(
+          logout: logout == _undefined || logout == null
+              ? _instance.logout
+              : (logout as Mutation$LogoutUser$logout),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$LogoutUser$logout<TRes> get logout {
+    final local$logout = _instance.logout;
+    return CopyWith$Mutation$LogoutUser$logout(
+        local$logout, (e) => call(logout: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$LogoutUser<TRes>
+    implements CopyWith$Mutation$LogoutUser<TRes> {
+  _CopyWithStubImpl$Mutation$LogoutUser(this._res);
+
+  TRes _res;
+
+  call({Mutation$LogoutUser$logout? logout, String? $__typename}) => _res;
+  CopyWith$Mutation$LogoutUser$logout<TRes> get logout =>
+      CopyWith$Mutation$LogoutUser$logout.stub(_res);
+}
+
+const documentNodeMutationLogoutUser = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'LogoutUser'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'logout'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'success'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Mutation$LogoutUser _parserFn$Mutation$LogoutUser(Map<String, dynamic> data) =>
+    Mutation$LogoutUser.fromJson(data);
+typedef OnMutationCompleted$Mutation$LogoutUser = FutureOr<void> Function(
+    dynamic, Mutation$LogoutUser?);
+
+class Options$Mutation$LogoutUser
+    extends graphql.MutationOptions<Mutation$LogoutUser> {
+  Options$Mutation$LogoutUser(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$LogoutUser? onCompleted,
+      graphql.OnMutationUpdate<Mutation$LogoutUser>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(data,
+                    data == null ? null : _parserFn$Mutation$LogoutUser(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationLogoutUser,
+            parserFn: _parserFn$Mutation$LogoutUser);
+
+  final OnMutationCompleted$Mutation$LogoutUser? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$LogoutUser
+    extends graphql.WatchQueryOptions<Mutation$LogoutUser> {
+  WatchOptions$Mutation$LogoutUser(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationLogoutUser,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$LogoutUser);
+}
+
+extension ClientExtension$Mutation$LogoutUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$LogoutUser>> mutate$LogoutUser(
+          [Options$Mutation$LogoutUser? options]) async =>
+      await this.mutate(options ?? Options$Mutation$LogoutUser());
+  graphql.ObservableQuery<Mutation$LogoutUser> watchMutation$LogoutUser(
+          [WatchOptions$Mutation$LogoutUser? options]) =>
+      this.watchMutation(options ?? WatchOptions$Mutation$LogoutUser());
+}
+
+class Mutation$LogoutUser$HookResult {
+  Mutation$LogoutUser$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$LogoutUser runMutation;
+
+  final graphql.QueryResult<Mutation$LogoutUser> result;
+}
+
+Mutation$LogoutUser$HookResult useMutation$LogoutUser(
+    [WidgetOptions$Mutation$LogoutUser? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$LogoutUser());
+  return Mutation$LogoutUser$HookResult(
+    ({optimisticResult}) => result.runMutation(
+      const {},
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$LogoutUser> useWatchMutation$LogoutUser(
+        [WatchOptions$Mutation$LogoutUser? options]) =>
+    graphql_flutter
+        .useWatchMutation(options ?? WatchOptions$Mutation$LogoutUser());
+
+class WidgetOptions$Mutation$LogoutUser
+    extends graphql.MutationOptions<Mutation$LogoutUser> {
+  WidgetOptions$Mutation$LogoutUser(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$LogoutUser? onCompleted,
+      graphql.OnMutationUpdate<Mutation$LogoutUser>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(data,
+                    data == null ? null : _parserFn$Mutation$LogoutUser(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationLogoutUser,
+            parserFn: _parserFn$Mutation$LogoutUser);
+
+  final OnMutationCompleted$Mutation$LogoutUser? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$LogoutUser
+    = graphql.MultiSourceResult<Mutation$LogoutUser> Function(
+        {Object? optimisticResult});
+typedef Builder$Mutation$LogoutUser = widgets.Widget Function(
+    RunMutation$Mutation$LogoutUser, graphql.QueryResult<Mutation$LogoutUser>?);
+
+class Mutation$LogoutUser$Widget
+    extends graphql_flutter.Mutation<Mutation$LogoutUser> {
+  Mutation$LogoutUser$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$LogoutUser? options,
+      required Builder$Mutation$LogoutUser builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$LogoutUser(),
+            builder: (run, result) => builder(
+                ({optimisticResult}) =>
+                    run(const {}, optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$LogoutUser$logout {
+  Mutation$LogoutUser$logout(
+      {required this.success, required this.$__typename});
+
+  @override
+  factory Mutation$LogoutUser$logout.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$LogoutUser$logoutFromJson(json);
+
+  final bool success;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$LogoutUser$logoutToJson(this);
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$success, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$LogoutUser$logout) ||
+        runtimeType != other.runtimeType) return false;
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$LogoutUser$logout
+    on Mutation$LogoutUser$logout {
+  CopyWith$Mutation$LogoutUser$logout<Mutation$LogoutUser$logout>
+      get copyWith => CopyWith$Mutation$LogoutUser$logout(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$LogoutUser$logout<TRes> {
+  factory CopyWith$Mutation$LogoutUser$logout(
+          Mutation$LogoutUser$logout instance,
+          TRes Function(Mutation$LogoutUser$logout) then) =
+      _CopyWithImpl$Mutation$LogoutUser$logout;
+
+  factory CopyWith$Mutation$LogoutUser$logout.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$LogoutUser$logout;
+
+  TRes call({bool? success, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$LogoutUser$logout<TRes>
+    implements CopyWith$Mutation$LogoutUser$logout<TRes> {
+  _CopyWithImpl$Mutation$LogoutUser$logout(this._instance, this._then);
+
+  final Mutation$LogoutUser$logout _instance;
+
+  final TRes Function(Mutation$LogoutUser$logout) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? success = _undefined, Object? $__typename = _undefined}) =>
+      _then(Mutation$LogoutUser$logout(
+          success: success == _undefined || success == null
+              ? _instance.success
+              : (success as bool),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$LogoutUser$logout<TRes>
+    implements CopyWith$Mutation$LogoutUser$logout<TRes> {
+  _CopyWithStubImpl$Mutation$LogoutUser$logout(this._res);
+
+  TRes _res;
+
+  call({bool? success, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Mutation$RequestPasswordReset {
+  Variables$Mutation$RequestPasswordReset({required this.email});
+
+  @override
+  factory Variables$Mutation$RequestPasswordReset.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$RequestPasswordResetFromJson(json);
+
+  final String email;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$RequestPasswordResetToJson(this);
+  int get hashCode {
+    final l$email = email;
+    return Object.hashAll([l$email]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$RequestPasswordReset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$RequestPasswordReset<
+          Variables$Mutation$RequestPasswordReset>
+      get copyWith =>
+          CopyWith$Variables$Mutation$RequestPasswordReset(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$RequestPasswordReset<TRes> {
+  factory CopyWith$Variables$Mutation$RequestPasswordReset(
+          Variables$Mutation$RequestPasswordReset instance,
+          TRes Function(Variables$Mutation$RequestPasswordReset) then) =
+      _CopyWithImpl$Variables$Mutation$RequestPasswordReset;
+
+  factory CopyWith$Variables$Mutation$RequestPasswordReset.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RequestPasswordReset;
+
+  TRes call({String? email});
+}
+
+class _CopyWithImpl$Variables$Mutation$RequestPasswordReset<TRes>
+    implements CopyWith$Variables$Mutation$RequestPasswordReset<TRes> {
+  _CopyWithImpl$Variables$Mutation$RequestPasswordReset(
+      this._instance, this._then);
+
+  final Variables$Mutation$RequestPasswordReset _instance;
+
+  final TRes Function(Variables$Mutation$RequestPasswordReset) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? email = _undefined}) =>
+      _then(Variables$Mutation$RequestPasswordReset(
+          email: email == _undefined || email == null
+              ? _instance.email
+              : (email as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$RequestPasswordReset<TRes>
+    implements CopyWith$Variables$Mutation$RequestPasswordReset<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RequestPasswordReset(this._res);
+
+  TRes _res;
+
+  call({String? email}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RequestPasswordReset {
+  Mutation$RequestPasswordReset(
+      {this.requestPasswordReset, required this.$__typename});
+
+  @override
+  factory Mutation$RequestPasswordReset.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$RequestPasswordResetFromJson(json);
+
+  final Mutation$RequestPasswordReset$requestPasswordReset?
+      requestPasswordReset;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$RequestPasswordResetToJson(this);
+  int get hashCode {
+    final l$requestPasswordReset = requestPasswordReset;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$requestPasswordReset, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$RequestPasswordReset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$requestPasswordReset = requestPasswordReset;
+    final lOther$requestPasswordReset = other.requestPasswordReset;
+    if (l$requestPasswordReset != lOther$requestPasswordReset) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RequestPasswordReset
+    on Mutation$RequestPasswordReset {
+  CopyWith$Mutation$RequestPasswordReset<Mutation$RequestPasswordReset>
+      get copyWith => CopyWith$Mutation$RequestPasswordReset(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RequestPasswordReset<TRes> {
+  factory CopyWith$Mutation$RequestPasswordReset(
+          Mutation$RequestPasswordReset instance,
+          TRes Function(Mutation$RequestPasswordReset) then) =
+      _CopyWithImpl$Mutation$RequestPasswordReset;
+
+  factory CopyWith$Mutation$RequestPasswordReset.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RequestPasswordReset;
+
+  TRes call(
+      {Mutation$RequestPasswordReset$requestPasswordReset? requestPasswordReset,
+      String? $__typename});
+  CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<TRes>
+      get requestPasswordReset;
+}
+
+class _CopyWithImpl$Mutation$RequestPasswordReset<TRes>
+    implements CopyWith$Mutation$RequestPasswordReset<TRes> {
+  _CopyWithImpl$Mutation$RequestPasswordReset(this._instance, this._then);
+
+  final Mutation$RequestPasswordReset _instance;
+
+  final TRes Function(Mutation$RequestPasswordReset) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? requestPasswordReset = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RequestPasswordReset(
+          requestPasswordReset: requestPasswordReset == _undefined
+              ? _instance.requestPasswordReset
+              : (requestPasswordReset
+                  as Mutation$RequestPasswordReset$requestPasswordReset?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<TRes>
+      get requestPasswordReset {
+    final local$requestPasswordReset = _instance.requestPasswordReset;
+    return local$requestPasswordReset == null
+        ? CopyWith$Mutation$RequestPasswordReset$requestPasswordReset.stub(
+            _then(_instance))
+        : CopyWith$Mutation$RequestPasswordReset$requestPasswordReset(
+            local$requestPasswordReset, (e) => call(requestPasswordReset: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$RequestPasswordReset<TRes>
+    implements CopyWith$Mutation$RequestPasswordReset<TRes> {
+  _CopyWithStubImpl$Mutation$RequestPasswordReset(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$RequestPasswordReset$requestPasswordReset?
+              requestPasswordReset,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<TRes>
+      get requestPasswordReset =>
+          CopyWith$Mutation$RequestPasswordReset$requestPasswordReset.stub(
+              _res);
+}
+
+const documentNodeMutationRequestPasswordReset = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'RequestPasswordReset'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'email')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'requestPasswordReset'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'emailAddress'),
+                  value: VariableNode(name: NameNode(value: 'email')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FragmentSpreadNode(
+                  name: NameNode(value: 'ErrorResult'), directives: [])
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  fragmentDefinitionErrorResult,
+]);
+Mutation$RequestPasswordReset _parserFn$Mutation$RequestPasswordReset(
+        Map<String, dynamic> data) =>
+    Mutation$RequestPasswordReset.fromJson(data);
+typedef OnMutationCompleted$Mutation$RequestPasswordReset = FutureOr<void>
+    Function(dynamic, Mutation$RequestPasswordReset?);
+
+class Options$Mutation$RequestPasswordReset
+    extends graphql.MutationOptions<Mutation$RequestPasswordReset> {
+  Options$Mutation$RequestPasswordReset(
+      {String? operationName,
+      required Variables$Mutation$RequestPasswordReset variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$RequestPasswordReset? onCompleted,
+      graphql.OnMutationUpdate<Mutation$RequestPasswordReset>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RequestPasswordReset(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationRequestPasswordReset,
+            parserFn: _parserFn$Mutation$RequestPasswordReset);
+
+  final OnMutationCompleted$Mutation$RequestPasswordReset?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$RequestPasswordReset
+    extends graphql.WatchQueryOptions<Mutation$RequestPasswordReset> {
+  WatchOptions$Mutation$RequestPasswordReset(
+      {String? operationName,
+      required Variables$Mutation$RequestPasswordReset variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationRequestPasswordReset,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$RequestPasswordReset);
+}
+
+extension ClientExtension$Mutation$RequestPasswordReset
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RequestPasswordReset>>
+      mutate$RequestPasswordReset(
+              Options$Mutation$RequestPasswordReset options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$RequestPasswordReset>
+      watchMutation$RequestPasswordReset(
+              WatchOptions$Mutation$RequestPasswordReset options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$RequestPasswordReset$HookResult {
+  Mutation$RequestPasswordReset$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$RequestPasswordReset runMutation;
+
+  final graphql.QueryResult<Mutation$RequestPasswordReset> result;
+}
+
+Mutation$RequestPasswordReset$HookResult useMutation$RequestPasswordReset(
+    [WidgetOptions$Mutation$RequestPasswordReset? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$RequestPasswordReset());
+  return Mutation$RequestPasswordReset$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$RequestPasswordReset>
+    useWatchMutation$RequestPasswordReset(
+            WatchOptions$Mutation$RequestPasswordReset options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$RequestPasswordReset
+    extends graphql.MutationOptions<Mutation$RequestPasswordReset> {
+  WidgetOptions$Mutation$RequestPasswordReset(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$RequestPasswordReset? onCompleted,
+      graphql.OnMutationUpdate<Mutation$RequestPasswordReset>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RequestPasswordReset(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationRequestPasswordReset,
+            parserFn: _parserFn$Mutation$RequestPasswordReset);
+
+  final OnMutationCompleted$Mutation$RequestPasswordReset?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$RequestPasswordReset
+    = graphql.MultiSourceResult<Mutation$RequestPasswordReset> Function(
+        Variables$Mutation$RequestPasswordReset,
+        {Object? optimisticResult});
+typedef Builder$Mutation$RequestPasswordReset = widgets.Widget Function(
+    RunMutation$Mutation$RequestPasswordReset,
+    graphql.QueryResult<Mutation$RequestPasswordReset>?);
+
+class Mutation$RequestPasswordReset$Widget
+    extends graphql_flutter.Mutation<Mutation$RequestPasswordReset> {
+  Mutation$RequestPasswordReset$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$RequestPasswordReset? options,
+      required Builder$Mutation$RequestPasswordReset builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$RequestPasswordReset(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RequestPasswordReset$requestPasswordReset {
+  Mutation$RequestPasswordReset$requestPasswordReset(
+      {required this.$__typename});
+
+  @override
+  factory Mutation$RequestPasswordReset$requestPasswordReset.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "NativeAuthStrategyError":
+        return Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+            .fromJson(json);
+      default:
+        return _$Mutation$RequestPasswordReset$requestPasswordResetFromJson(
+            json);
+    }
+  }
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RequestPasswordReset$requestPasswordResetToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$RequestPasswordReset$requestPasswordReset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RequestPasswordReset$requestPasswordReset
+    on Mutation$RequestPasswordReset$requestPasswordReset {
+  CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<
+          Mutation$RequestPasswordReset$requestPasswordReset>
+      get copyWith =>
+          CopyWith$Mutation$RequestPasswordReset$requestPasswordReset(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<
+    TRes> {
+  factory CopyWith$Mutation$RequestPasswordReset$requestPasswordReset(
+          Mutation$RequestPasswordReset$requestPasswordReset instance,
+          TRes Function(Mutation$RequestPasswordReset$requestPasswordReset)
+              then) =
+      _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset;
+
+  factory CopyWith$Mutation$RequestPasswordReset$requestPasswordReset.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset<TRes>
+    implements
+        CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<TRes> {
+  _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset(
+      this._instance, this._then);
+
+  final Mutation$RequestPasswordReset$requestPasswordReset _instance;
+
+  final TRes Function(Mutation$RequestPasswordReset$requestPasswordReset) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$RequestPasswordReset$requestPasswordReset(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset<TRes>
+    implements
+        CopyWith$Mutation$RequestPasswordReset$requestPasswordReset<TRes> {
+  _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+    implements
+        Fragment$ErrorResult,
+        Mutation$RequestPasswordReset$requestPasswordReset {
+  Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+    on Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError {
+  CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+          Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError>
+      get copyWith =>
+          CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+    TRes> {
+  factory CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+          Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+              instance,
+          TRes Function(
+                  Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError)
+              then) =
+      _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError;
+
+  factory CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+      this._instance, this._then);
+
+  final Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+      _instance;
+
+  final TRes Function(
+          Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Mutation$ResetPassword {
+  Variables$Mutation$ResetPassword(
+      {required this.token, required this.password});
+
+  @override
+  factory Variables$Mutation$ResetPassword.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$ResetPasswordFromJson(json);
+
+  final String token;
+
+  final String password;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$ResetPasswordToJson(this);
+  int get hashCode {
+    final l$token = token;
+    final l$password = password;
+    return Object.hashAll([l$token, l$password]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$ResetPassword) ||
+        runtimeType != other.runtimeType) return false;
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) return false;
+    final l$password = password;
+    final lOther$password = other.password;
+    if (l$password != lOther$password) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$ResetPassword<Variables$Mutation$ResetPassword>
+      get copyWith => CopyWith$Variables$Mutation$ResetPassword(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$ResetPassword<TRes> {
+  factory CopyWith$Variables$Mutation$ResetPassword(
+          Variables$Mutation$ResetPassword instance,
+          TRes Function(Variables$Mutation$ResetPassword) then) =
+      _CopyWithImpl$Variables$Mutation$ResetPassword;
+
+  factory CopyWith$Variables$Mutation$ResetPassword.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ResetPassword;
+
+  TRes call({String? token, String? password});
+}
+
+class _CopyWithImpl$Variables$Mutation$ResetPassword<TRes>
+    implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
+  _CopyWithImpl$Variables$Mutation$ResetPassword(this._instance, this._then);
+
+  final Variables$Mutation$ResetPassword _instance;
+
+  final TRes Function(Variables$Mutation$ResetPassword) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? token = _undefined, Object? password = _undefined}) =>
+      _then(Variables$Mutation$ResetPassword(
+          token: token == _undefined || token == null
+              ? _instance.token
+              : (token as String),
+          password: password == _undefined || password == null
+              ? _instance.password
+              : (password as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ResetPassword<TRes>
+    implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ResetPassword(this._res);
+
+  TRes _res;
+
+  call({String? token, String? password}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword {
+  Mutation$ResetPassword(
+      {required this.resetPassword, required this.$__typename});
+
+  @override
+  factory Mutation$ResetPassword.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$ResetPasswordFromJson(json);
+
+  final Mutation$ResetPassword$resetPassword resetPassword;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$ResetPasswordToJson(this);
+  int get hashCode {
+    final l$resetPassword = resetPassword;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$resetPassword, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ResetPassword) || runtimeType != other.runtimeType)
+      return false;
+    final l$resetPassword = resetPassword;
+    final lOther$resetPassword = other.resetPassword;
+    if (l$resetPassword != lOther$resetPassword) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword on Mutation$ResetPassword {
+  CopyWith$Mutation$ResetPassword<Mutation$ResetPassword> get copyWith =>
+      CopyWith$Mutation$ResetPassword(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword<TRes> {
+  factory CopyWith$Mutation$ResetPassword(Mutation$ResetPassword instance,
+          TRes Function(Mutation$ResetPassword) then) =
+      _CopyWithImpl$Mutation$ResetPassword;
+
+  factory CopyWith$Mutation$ResetPassword.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword;
+
+  TRes call(
+      {Mutation$ResetPassword$resetPassword? resetPassword,
+      String? $__typename});
+  CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword;
+}
+
+class _CopyWithImpl$Mutation$ResetPassword<TRes>
+    implements CopyWith$Mutation$ResetPassword<TRes> {
+  _CopyWithImpl$Mutation$ResetPassword(this._instance, this._then);
+
+  final Mutation$ResetPassword _instance;
+
+  final TRes Function(Mutation$ResetPassword) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? resetPassword = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$ResetPassword(
+          resetPassword: resetPassword == _undefined || resetPassword == null
+              ? _instance.resetPassword
+              : (resetPassword as Mutation$ResetPassword$resetPassword),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword {
+    final local$resetPassword = _instance.resetPassword;
+    return CopyWith$Mutation$ResetPassword$resetPassword(
+        local$resetPassword, (e) => call(resetPassword: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword<TRes>
+    implements CopyWith$Mutation$ResetPassword<TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$ResetPassword$resetPassword? resetPassword,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword =>
+      CopyWith$Mutation$ResetPassword$resetPassword.stub(_res);
+}
+
+const documentNodeMutationResetPassword = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ResetPassword'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'token')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'password')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'resetPassword'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'password'),
+                  value: VariableNode(name: NameNode(value: 'password'))),
+              ArgumentNode(
+                  name: NameNode(value: 'token'),
+                  value: VariableNode(name: NameNode(value: 'token')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'CurrentUser'),
+                          isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'channels'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'token'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'code'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'permissions'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FragmentSpreadNode(
+                  name: NameNode(value: 'ErrorResult'), directives: []),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  fragmentDefinitionErrorResult,
+]);
+Mutation$ResetPassword _parserFn$Mutation$ResetPassword(
+        Map<String, dynamic> data) =>
+    Mutation$ResetPassword.fromJson(data);
+typedef OnMutationCompleted$Mutation$ResetPassword = FutureOr<void> Function(
+    dynamic, Mutation$ResetPassword?);
+
+class Options$Mutation$ResetPassword
+    extends graphql.MutationOptions<Mutation$ResetPassword> {
+  Options$Mutation$ResetPassword(
+      {String? operationName,
+      required Variables$Mutation$ResetPassword variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$ResetPassword? onCompleted,
+      graphql.OnMutationUpdate<Mutation$ResetPassword>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ResetPassword(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationResetPassword,
+            parserFn: _parserFn$Mutation$ResetPassword);
+
+  final OnMutationCompleted$Mutation$ResetPassword? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$ResetPassword
+    extends graphql.WatchQueryOptions<Mutation$ResetPassword> {
+  WatchOptions$Mutation$ResetPassword(
+      {String? operationName,
+      required Variables$Mutation$ResetPassword variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationResetPassword,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$ResetPassword);
+}
+
+extension ClientExtension$Mutation$ResetPassword on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ResetPassword>> mutate$ResetPassword(
+          Options$Mutation$ResetPassword options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ResetPassword> watchMutation$ResetPassword(
+          WatchOptions$Mutation$ResetPassword options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$ResetPassword$HookResult {
+  Mutation$ResetPassword$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$ResetPassword runMutation;
+
+  final graphql.QueryResult<Mutation$ResetPassword> result;
+}
+
+Mutation$ResetPassword$HookResult useMutation$ResetPassword(
+    [WidgetOptions$Mutation$ResetPassword? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$ResetPassword());
+  return Mutation$ResetPassword$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$ResetPassword> useWatchMutation$ResetPassword(
+        WatchOptions$Mutation$ResetPassword options) =>
+    graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$ResetPassword
+    extends graphql.MutationOptions<Mutation$ResetPassword> {
+  WidgetOptions$Mutation$ResetPassword(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$ResetPassword? onCompleted,
+      graphql.OnMutationUpdate<Mutation$ResetPassword>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ResetPassword(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationResetPassword,
+            parserFn: _parserFn$Mutation$ResetPassword);
+
+  final OnMutationCompleted$Mutation$ResetPassword? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$ResetPassword
+    = graphql.MultiSourceResult<Mutation$ResetPassword>
+        Function(Variables$Mutation$ResetPassword, {Object? optimisticResult});
+typedef Builder$Mutation$ResetPassword = widgets.Widget Function(
+    RunMutation$Mutation$ResetPassword,
+    graphql.QueryResult<Mutation$ResetPassword>?);
+
+class Mutation$ResetPassword$Widget
+    extends graphql_flutter.Mutation<Mutation$ResetPassword> {
+  Mutation$ResetPassword$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$ResetPassword? options,
+      required Builder$Mutation$ResetPassword builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$ResetPassword(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword({required this.$__typename});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "CurrentUser":
+        return Mutation$ResetPassword$resetPassword$$CurrentUser.fromJson(json);
+      case "NativeAuthStrategyError":
+        return Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
+            .fromJson(json);
+      case "PasswordValidationError":
+        return Mutation$ResetPassword$resetPassword$$PasswordValidationError
+            .fromJson(json);
+      case "PasswordResetTokenInvalidError":
+        return Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+            .fromJson(json);
+      case "PasswordResetTokenExpiredError":
+        return Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+            .fromJson(json);
+      case "NotVerifiedError":
+        return Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
+            json);
+      default:
+        return _$Mutation$ResetPassword$resetPasswordFromJson(json);
+    }
+  }
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPasswordToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ResetPassword$resetPassword) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword
+    on Mutation$ResetPassword$resetPassword {
+  CopyWith$Mutation$ResetPassword$resetPassword<
+          Mutation$ResetPassword$resetPassword>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword(
+          Mutation$ResetPassword$resetPassword instance,
+          TRes Function(Mutation$ResetPassword$resetPassword) then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword<TRes>
+    implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword _instance;
+
+  final TRes Function(Mutation$ResetPassword$resetPassword) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword<TRes>
+    implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$CurrentUser
+    implements Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$CurrentUser(
+      {required this.$__typename, required this.id, required this.channels});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$CurrentUser.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$CurrentUserFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  final String id;
+
+  final List<Mutation$ResetPassword$resetPassword$$CurrentUser$channels>
+      channels;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$CurrentUserToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$id = id;
+    final l$channels = channels;
+    return Object.hashAll(
+        [l$$__typename, l$id, Object.hashAll(l$channels.map((v) => v))]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ResetPassword$resetPassword$$CurrentUser) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$channels = channels;
+    final lOther$channels = other.channels;
+    if (l$channels.length != lOther$channels.length) return false;
+    for (int i = 0; i < l$channels.length; i++) {
+      final l$channels$entry = l$channels[i];
+      final lOther$channels$entry = lOther$channels[i];
+      if (l$channels$entry != lOther$channels$entry) return false;
+    }
+
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$CurrentUser
+    on Mutation$ResetPassword$resetPassword$$CurrentUser {
+  CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser<
+          Mutation$ResetPassword$resetPassword$$CurrentUser>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser(
+          Mutation$ResetPassword$resetPassword$$CurrentUser instance,
+          TRes Function(Mutation$ResetPassword$resetPassword$$CurrentUser)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser;
+
+  TRes call(
+      {String? $__typename,
+      String? id,
+      List<Mutation$ResetPassword$resetPassword$$CurrentUser$channels>?
+          channels});
+  TRes channels(
+      Iterable<Mutation$ResetPassword$resetPassword$$CurrentUser$channels> Function(
+              Iterable<
+                  CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+                      Mutation$ResetPassword$resetPassword$$CurrentUser$channels>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser<TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser<TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$CurrentUser _instance;
+
+  final TRes Function(Mutation$ResetPassword$resetPassword$$CurrentUser) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? id = _undefined,
+          Object? channels = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$CurrentUser(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          channels: channels == _undefined || channels == null
+              ? _instance.channels
+              : (channels as List<
+                  Mutation$ResetPassword$resetPassword$$CurrentUser$channels>)));
+  TRes channels(
+          Iterable<Mutation$ResetPassword$resetPassword$$CurrentUser$channels> Function(
+                  Iterable<
+                      CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+                          Mutation$ResetPassword$resetPassword$$CurrentUser$channels>>)
+              _fn) =>
+      call(
+          channels: _fn(_instance.channels.map((e) =>
+              CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser<TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser<TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? $__typename,
+          String? id,
+          List<Mutation$ResetPassword$resetPassword$$CurrentUser$channels>?
+              channels}) =>
+      _res;
+  channels(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$CurrentUser$channels {
+  Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+      {required this.token,
+      required this.code,
+      required this.permissions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$CurrentUser$channels.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$CurrentUser$channelsFromJson(
+          json);
+
+  final String token;
+
+  final String code;
+
+  @JsonKey(unknownEnumValue: Enum$Permission.$unknown)
+  final List<Enum$Permission> permissions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$CurrentUser$channelsToJson(this);
+  int get hashCode {
+    final l$token = token;
+    final l$code = code;
+    final l$permissions = permissions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$token,
+      l$code,
+      Object.hashAll(l$permissions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$CurrentUser$channels) ||
+        runtimeType != other.runtimeType) return false;
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$permissions = permissions;
+    final lOther$permissions = other.permissions;
+    if (l$permissions.length != lOther$permissions.length) return false;
+    for (int i = 0; i < l$permissions.length; i++) {
+      final l$permissions$entry = l$permissions[i];
+      final lOther$permissions$entry = lOther$permissions[i];
+      if (l$permissions$entry != lOther$permissions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$CurrentUser$channels
+    on Mutation$ResetPassword$resetPassword$$CurrentUser$channels {
+  CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+          Mutation$ResetPassword$resetPassword$$CurrentUser$channels>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+          Mutation$ResetPassword$resetPassword$$CurrentUser$channels instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$CurrentUser$channels)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels;
+
+  TRes call(
+      {String? token,
+      String? code,
+      List<Enum$Permission>? permissions,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$CurrentUser$channels _instance;
+
+  final TRes Function(
+      Mutation$ResetPassword$resetPassword$$CurrentUser$channels) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? token = _undefined,
+          Object? code = _undefined,
+          Object? permissions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+          token: token == _undefined || token == null
+              ? _instance.token
+              : (token as String),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          permissions: permissions == _undefined || permissions == null
+              ? _instance.permissions
+              : (permissions as List<Enum$Permission>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$CurrentUser$channels<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? token,
+          String? code,
+          List<Enum$Permission>? permissions,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
+    on Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+          Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+          Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError _instance;
+
+  final TRes Function(
+      Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$PasswordValidationError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$PasswordValidationError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    on Mutation$ResetPassword$resetPassword$$PasswordValidationError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+          Mutation$ResetPassword$resetPassword$$PasswordValidationError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+          Mutation$ResetPassword$resetPassword$$PasswordValidationError instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$PasswordValidationError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$PasswordValidationError _instance;
+
+  final TRes Function(
+      Mutation$ResetPassword$resetPassword$$PasswordValidationError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+    on Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+              instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+      _instance;
+
+  final TRes Function(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+    on Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+              instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+      _instance;
+
+  final TRes Function(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$NotVerifiedError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ResetPassword$resetPassword$$NotVerifiedError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$NotVerifiedError
+    on Mutation$ResetPassword$resetPassword$$NotVerifiedError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+          Mutation$ResetPassword$resetPassword$$NotVerifiedError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+          Mutation$ResetPassword$resetPassword$$NotVerifiedError instance,
+          TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$NotVerifiedError _instance;
+
+  final TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}

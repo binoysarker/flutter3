@@ -92,3 +92,32 @@ query GetCurrentUser{
         }
     }
 }
+
+mutation LogoutUser{
+    logout {
+        success
+    }
+}
+
+mutation RequestPasswordReset($email: String!){
+    requestPasswordReset(emailAddress: $email){
+        __typename
+        ...ErrorResult
+    }
+}
+
+mutation ResetPassword($token: String!,$password: String!){
+    resetPassword(password: $password,token: $token){
+        ... on CurrentUser{
+            id
+            channels {
+                token
+                code
+                permissions
+            }
+        }
+        ...ErrorResult
+        __typename
+
+    }
+}

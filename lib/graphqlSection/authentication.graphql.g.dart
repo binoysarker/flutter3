@@ -751,3 +751,280 @@ Map<String, dynamic> _$Query$GetCurrentUser$me$channelsToJson(
       'token': instance.token,
       '__typename': instance.$__typename,
     };
+
+Mutation$LogoutUser _$Mutation$LogoutUserFromJson(Map<String, dynamic> json) =>
+    Mutation$LogoutUser(
+      logout: Mutation$LogoutUser$logout.fromJson(
+          json['logout'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$LogoutUserToJson(
+        Mutation$LogoutUser instance) =>
+    <String, dynamic>{
+      'logout': instance.logout.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$LogoutUser$logout _$Mutation$LogoutUser$logoutFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$LogoutUser$logout(
+      success: json['success'] as bool,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$LogoutUser$logoutToJson(
+        Mutation$LogoutUser$logout instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      '__typename': instance.$__typename,
+    };
+
+Variables$Mutation$RequestPasswordReset
+    _$Variables$Mutation$RequestPasswordResetFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$RequestPasswordReset(
+          email: json['email'] as String,
+        );
+
+Map<String, dynamic> _$Variables$Mutation$RequestPasswordResetToJson(
+        Variables$Mutation$RequestPasswordReset instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+    };
+
+Mutation$RequestPasswordReset _$Mutation$RequestPasswordResetFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$RequestPasswordReset(
+      requestPasswordReset: json['requestPasswordReset'] == null
+          ? null
+          : Mutation$RequestPasswordReset$requestPasswordReset.fromJson(
+              json['requestPasswordReset'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$RequestPasswordResetToJson(
+        Mutation$RequestPasswordReset instance) =>
+    <String, dynamic>{
+      'requestPasswordReset': instance.requestPasswordReset?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$RequestPasswordReset$requestPasswordReset
+    _$Mutation$RequestPasswordReset$requestPasswordResetFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RequestPasswordReset$requestPasswordReset(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$RequestPasswordReset$requestPasswordResetToJson(
+        Mutation$RequestPasswordReset$requestPasswordReset instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+    };
+
+Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+    _$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyErrorToJson(
+            Mutation$RequestPasswordReset$requestPasswordReset$$NativeAuthStrategyError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Variables$Mutation$ResetPassword _$Variables$Mutation$ResetPasswordFromJson(
+        Map<String, dynamic> json) =>
+    Variables$Mutation$ResetPassword(
+      token: json['token'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$Variables$Mutation$ResetPasswordToJson(
+        Variables$Mutation$ResetPassword instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'password': instance.password,
+    };
+
+Mutation$ResetPassword _$Mutation$ResetPasswordFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$ResetPassword(
+      resetPassword: Mutation$ResetPassword$resetPassword.fromJson(
+          json['resetPassword'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$ResetPasswordToJson(
+        Mutation$ResetPassword instance) =>
+    <String, dynamic>{
+      'resetPassword': instance.resetPassword.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$ResetPassword$resetPassword
+    _$Mutation$ResetPassword$resetPasswordFromJson(Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$ResetPassword$resetPasswordToJson(
+        Mutation$ResetPassword$resetPassword instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+    };
+
+Mutation$ResetPassword$resetPassword$$CurrentUser
+    _$Mutation$ResetPassword$resetPassword$$CurrentUserFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$CurrentUser(
+          $__typename: json['__typename'] as String,
+          id: json['id'] as String,
+          channels: (json['channels'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$ResetPassword$resetPassword$$CurrentUser$channels
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$Mutation$ResetPassword$resetPassword$$CurrentUserToJson(
+        Mutation$ResetPassword$resetPassword$$CurrentUser instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+      'id': instance.id,
+      'channels': instance.channels.map((e) => e.toJson()).toList(),
+    };
+
+Mutation$ResetPassword$resetPassword$$CurrentUser$channels
+    _$Mutation$ResetPassword$resetPassword$$CurrentUser$channelsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$CurrentUser$channels(
+          token: json['token'] as String,
+          code: json['code'] as String,
+          permissions: (json['permissions'] as List<dynamic>)
+              .map((e) => $enumDecode(_$Enum$PermissionEnumMap, e,
+                  unknownValue: Enum$Permission.$unknown))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$ResetPassword$resetPassword$$CurrentUser$channelsToJson(
+        Mutation$ResetPassword$resetPassword$$CurrentUser$channels instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'code': instance.code,
+      'permissions': instance.permissions
+          .map((e) => _$Enum$PermissionEnumMap[e]!)
+          .toList(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
+    _$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$NativeAuthStrategyErrorToJson(
+            Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
+            Mutation$ResetPassword$resetPassword$$PasswordValidationError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorToJson(
+            Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorToJson(
+            Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$ResetPassword$resetPassword$$NotVerifiedError
+    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(
+            Mutation$ResetPassword$resetPassword$$NotVerifiedError instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };

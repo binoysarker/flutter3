@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +14,7 @@ class DrawerComponent extends StatefulWidget {
 
 class _DrawerComponentState extends State<DrawerComponent> {
   final UserController userController = Get.find<UserController>();
+  final LoginPageController loginPageController = Get.find<LoginPageController>();
   @override
   Widget build(BuildContext context) {
     var currentAuthenticatedUser = userController.currentAuthenticatedUser.value;
@@ -59,8 +61,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('Sign out'),
-            onTap: () async {
-              await FirebaseAuth.instance.signOut();
+            onTap: () {
+              // await FirebaseAuth.instance.signOut();
+              loginPageController.resetFormField();
+              userController.onUserLogout();
             },
           ),
         ],

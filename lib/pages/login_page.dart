@@ -12,18 +12,20 @@ import 'package:get/get.dart';
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
+
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginPage> createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
+  final loginFormKey = GlobalKey<FormState>();
   final loginController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
 
   @override
   void initState() {
     super.initState();
-    loginController.resetFormField();
+
   }
 
   @override
@@ -71,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Card(
                   borderOnForeground: false,
                   child: Form(
+                    key: loginFormKey,
                     child: ListView(
                       children: <Widget>[
                         Container(
@@ -85,51 +88,53 @@ class _LoginPageState extends State<LoginPage> {
                             )),
                         AutofillGroup(
                             child: Column(
-                              children: [
-                                Visibility(
-                                  visible: loginController.showSignIn.isFalse &&
-                                      loginController.currentSignInProcessName.value !=
-                                          SignInProcessNames.firebase.name,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: TextFormField(
-                                      autovalidateMode:
+                          children: [
+                            Visibility(
+                              visible: loginController.showSignIn.isFalse &&
+                                  loginController
+                                          .currentSignInProcessName.value !=
+                                      SignInProcessNames.firebase.name,
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                child: TextFormField(
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                      controller: loginController.firstName,
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'First Name',
-                                      ),
-                                      autofillHints: [AutofillHints.givenName],
-                                      keyboardType: TextInputType.name,
-                                      validator: RequiredValidator(
-                                          errorText: 'First Name is required'),
-                                    ),
+                                  controller: loginController.firstName,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'First Name',
                                   ),
+                                  autofillHints: [AutofillHints.givenName],
+                                  keyboardType: TextInputType.name,
+                                  validator: RequiredValidator(
+                                      errorText: 'First Name is required'),
                                 ),
-                                Visibility(
-                                  visible: loginController.showSignIn.isFalse &&
-                                      loginController.currentSignInProcessName.value !=
-                                          SignInProcessNames.firebase.name,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: TextFormField(
-                                      autovalidateMode:
+                              ),
+                            ),
+                            Visibility(
+                              visible: loginController.showSignIn.isFalse &&
+                                  loginController
+                                          .currentSignInProcessName.value !=
+                                      SignInProcessNames.firebase.name,
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                child: TextFormField(
+                                  autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                      controller: loginController.lastName,
-                                      decoration: const InputDecoration(
-                                        border: OutlineInputBorder(),
-                                        labelText: 'Last Name',
-                                      ),
-                                      keyboardType: TextInputType.name,
-                                      autofillHints: [AutofillHints.familyName],
-                                      validator: RequiredValidator(
-                                          errorText: 'Last Name is required'),
-                                    ),
+                                  controller: loginController.lastName,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Last Name',
                                   ),
+                                  keyboardType: TextInputType.name,
+                                  autofillHints: [AutofillHints.familyName],
+                                  validator: RequiredValidator(
+                                      errorText: 'Last Name is required'),
                                 ),
-                                ],
-                            )),
+                              ),
+                            ),
+                          ],
+                        )),
 
                         Container(
                           padding: const EdgeInsets.all(10),

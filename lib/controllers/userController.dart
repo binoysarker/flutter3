@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
@@ -17,6 +18,7 @@ class UserController with ChangeNotifier {
   final UtilityController utilityController = Get.find<UtilityController>();
   var topSellers = <Query$GetTopSellers$search$items>[].obs;
   var isLoading = false.obs;
+  final loginPageState = GlobalKey<LoginPageState>();
 
 
   void checkAndSetToken(){
@@ -24,6 +26,19 @@ class UserController with ChangeNotifier {
       GraphqlService.setToken(currentAuthToken.value);
     }else {
       GraphqlService.removeToken();
+    }
+  }
+  void onUserLogout() async{
+    final res = await graphqlService.clientToQuery().mutate$LogoutUser(Options$Mutation$LogoutUser());
+    if(res.hasException){
+      print('${res.exception.toString()}');
+    }
+    if(res.data != null){
+      print('${res.parsedData!.logout.toJson()}');
+      if(res.parsedData!.logout.success){
+        Get.to(() => LoginPage());
+        Get.snackbar('', 'You are logged out');
+      }
     }
   }
   void getActiveCustomer() async {

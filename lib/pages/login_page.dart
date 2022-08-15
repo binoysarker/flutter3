@@ -2,6 +2,7 @@ import 'package:ecommerce_app/components/errorMessageComponent.dart';
 import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
 import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
+import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:ecommerce_app/validators/validatorDefinations.dart';
@@ -203,7 +204,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            //forgot password screen
+                            Get.to(()=> ForgetPasswordPage());
                           },
                           child: const Text(
                             'Forgot Password',

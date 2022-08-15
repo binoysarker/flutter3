@@ -4,6 +4,8 @@ enum PageRouteNames {
   order,
   reward,
   my_account,
+  forget_password,
+  reset_password,
   login,
   verify_token
 }

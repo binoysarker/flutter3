@@ -3,7 +3,9 @@ import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
+import 'package:ecommerce_app/pages/resetPasswordPage.dart';
 import 'package:ecommerce_app/pages/store_page.dart';
+import 'package:ecommerce_app/pages/tokenVarifyPage.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:ecommerce_app/services/util_service.dart';
@@ -14,6 +16,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
+  TextEditingController tokenController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
@@ -31,7 +34,8 @@ class LoginPageController extends GetxController {
   void setShowSignIn(bool value) {
     showSignIn.value = value;
   }
-  void resetFormField(){
+
+  void resetFormField() {
     emailController.clear();
     passwordController.clear();
     firstName.clear();
@@ -39,7 +43,6 @@ class LoginPageController extends GetxController {
     phoneNumber.clear();
     checkboxStatus.value = false;
     loginPageState.currentState?.loginFormKey.currentState?.reset();
-
   }
 
   void setCurrentSignInProcess(String value) {
@@ -72,8 +75,7 @@ class LoginPageController extends GetxController {
       final loginData = signInResponse.parsedData?.login.toJson();
 
       if (loginData?['message'] != null) {
-        utilityController
-            .setAlertMessage(true, loginData?['message']);
+        utilityController.setAlertMessage(true, loginData?['message']);
         utilityController.setLoadingState(false);
         return;
       }
@@ -125,6 +127,34 @@ class LoginPageController extends GetxController {
       }
     }
     utilityController.setLoadingState(false);
+  }
+
+  void requestPasswordReset(String email) async {
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
+            variables: Variables$Mutation$RequestPasswordReset(email: email)));
+    if(res.hasException){
+      print('${res.exception.toString()}');
+    }
+    if(res.data != null){
+      print('${res.parsedData!.requestPasswordReset!.toJson()}');
+      Get.to(() => ResetPasswordPage());
+      Get.snackbar('', 'Please check your email to get the token');
+    }
+  }
+  void resetUserPassword(String password, String token) async {
+    final res = await graphqlService
+        .clientToQuery().mutate$ResetPassword(Options$Mutation$ResetPassword(variables: Variables$Mutation$ResetPassword(password: password, token: token)));
+    if(res.hasException){
+      print('${res.exception.toString()}');
+    }
+    if(res.data != null){
+      print('${res.parsedData!.resetPassword.toJson()}');
+      resetFormField();
+      Get.to(()=> LoginPage());
+      Get.snackbar('Success', 'Password reset is successful');
+    }
   }
 
   void onGoogleSignIn(BuildContext context) async {

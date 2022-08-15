@@ -41,6 +41,7 @@ class UserController with ChangeNotifier {
       }
     }
   }
+
   void getActiveCustomer() async {
     checkAndSetToken();
     final res = await graphqlService

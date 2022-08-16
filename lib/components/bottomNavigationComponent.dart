@@ -1,12 +1,9 @@
 import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
-import 'package:ecommerce_app/pages/store_page.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomNavigationComponent extends StatefulWidget {
   const BottomNavigationComponent({Key? key}) : super(key: key);
-
 
   @override
   State<BottomNavigationComponent> createState() =>
@@ -14,7 +11,8 @@ class BottomNavigationComponent extends StatefulWidget {
 }
 
 class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
-  final BottomNavigationController bottomNavigationController = Get.find<BottomNavigationController>();
+  final BottomNavigationController bottomNavigationController =
+      Get.find<BottomNavigationController>();
   List<BottomNavigationBarItem> bottomNavigationBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.store),
@@ -43,9 +41,9 @@ class _BottomNavigationComponentState extends State<BottomNavigationComponent> {
             .toLowerCase()
             .split(re)
             .join('_');
-        if(commonRouteNameRegex.hasMatch(selectedLabel)){
+        if (commonRouteNameRegex.hasMatch(selectedLabel)) {
           Get.offNamedUntil('home', (route) => route.isFirst);
-        }else {
+        } else {
           Get.toNamed(selectedLabel);
         }
         // Navigator.pushNamed(context,

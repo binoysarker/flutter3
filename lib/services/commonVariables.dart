@@ -6,10 +6,17 @@ enum PageRouteNames {
   my_account,
   forget_password,
   reset_password,
+  product_detail,
   login,
   verify_token
 }
 enum SignInProcessNames {
   firebase,
   normal
+}
+enum ControllerTypeNames {
+  user,
+  product,
+  loginPage,
+  collection,
 }

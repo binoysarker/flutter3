@@ -1,7 +1,5 @@
 import 'package:ecommerce_app/controllers/loginPageController.dart';
 import 'package:ecommerce_app/controllers/userController.dart';
-import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,10 +12,13 @@ class DrawerComponent extends StatefulWidget {
 
 class _DrawerComponentState extends State<DrawerComponent> {
   final UserController userController = Get.find<UserController>();
-  final LoginPageController loginPageController = Get.find<LoginPageController>();
+  final LoginPageController loginPageController =
+      Get.find<LoginPageController>();
+
   @override
   Widget build(BuildContext context) {
-    var currentAuthenticatedUser = userController.currentAuthenticatedUser.value;
+    var currentAuthenticatedUser =
+        userController.currentAuthenticatedUser.value;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -39,9 +40,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 ),
                 Text(
                   '${currentAuthenticatedUser['emailAddress']}',
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 )
               ],
             ),

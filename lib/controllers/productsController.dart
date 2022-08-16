@@ -10,6 +10,8 @@ class ProductsController extends GetxController {
   var searchInProgress = false.obs;
   var productList = <Query$GetAllProducts$products$items>[].obs;
   var searchResultList = <Query$SearchProducts$search$items>[].obs;
+  var productDetail = {}.obs;
+
 
   void getProductsList() async {
     isLoading.value = true;
@@ -23,6 +25,22 @@ class ProductsController extends GetxController {
     if (res.data != null) {
       print('products list ${res.parsedData!.toJson()}');
       productList.value = res.parsedData!.products.items.toList();
+      isLoading.value = false;
+    }
+  }
+
+  void getProductDetail(String slug) async {
+    isLoading.value = true;
+    final res = await graphqlService.clientToQuery().query$GetProductDetail(
+        Options$Query$GetProductDetail(
+            variables: Variables$Query$GetProductDetail(slug: slug)));
+    if (res.hasException) {
+      print('${res.toString()}');
+      isLoading.value = false;
+    }
+    if (res.data != null) {
+      print('products detail ${res.parsedData!.toJson()}');
+      productDetail.value = res.parsedData!.product!.toJson();
       isLoading.value = false;
     }
   }

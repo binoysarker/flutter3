@@ -63,7 +63,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                           loginPageController.requestPasswordReset(loginPageController.emailController.text);
                         } else {
                           print('not validated');
-                          Get.snackbar('', 'Please Fill up the form');
+                          Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow);
                         }
                       },
                       child: Text('Submit'))

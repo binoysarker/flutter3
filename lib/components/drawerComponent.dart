@@ -24,7 +24,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
         children: <Widget>[
           DrawerHeader(
             decoration: const BoxDecoration(
-              color: Colors.blue,
+              color: Colors.lightGreen,
             ),
             child: Row(
               children: [
@@ -45,18 +45,6 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 )
               ],
             ),
-          ),
-          const ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Messages'),
-          ),
-          const ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
-          ),
-          const ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
           ),
           ListTile(
             leading: Icon(Icons.logout),

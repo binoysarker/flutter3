@@ -140,7 +140,7 @@ class LoginPageController extends GetxController {
     if(res.data != null){
       print('${res.parsedData!.requestPasswordReset!.toJson()}');
       Get.to(() => ResetPasswordPage());
-      Get.snackbar('', 'Please check your email to get the token');
+      Get.snackbar('', 'Please check your email to get the token',backgroundColor: Colors.green);
     }
   }
   void resetUserPassword(String password, String token) async {
@@ -153,7 +153,7 @@ class LoginPageController extends GetxController {
       print('${res.parsedData!.resetPassword.toJson()}');
       resetFormField();
       Get.to(()=> LoginPage());
-      Get.snackbar('Success', 'Password reset is successful');
+      Get.snackbar('Success', 'Password reset is successful',backgroundColor: Colors.green);
     }
   }
 

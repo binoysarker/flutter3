@@ -5,6 +5,7 @@ import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
@@ -37,7 +38,7 @@ class UserController with ChangeNotifier {
       print('${res.parsedData!.logout.toJson()}');
       if(res.parsedData!.logout.success){
         Get.to(() => LoginPage());
-        Get.snackbar('', 'You are logged out');
+        Get.snackbar('', 'You are logged out',backgroundColor: Colors.green);
       }
     }
   }
@@ -55,7 +56,7 @@ class UserController with ChangeNotifier {
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
         Get.to(() => LoginPage());
-        Get.snackbar('Alert', 'Need to login');
+        Get.snackbar('Alert', 'Need to login',backgroundColor: Colors.red);
       }else {
       //  get the auth user
         currentAuthenticatedUser.value = activeCustomer.toJson();

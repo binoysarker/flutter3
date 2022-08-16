@@ -51,6 +51,9 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: loginPageController.passwordController,
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Password',
@@ -68,7 +71,7 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                               loginPageController.tokenController.text);
                         } else {
                           print('not validated');
-                          Get.snackbar('', 'Please Fill up the form');
+                          Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow);
                         }
                       },
                       child: Text('Submit'))

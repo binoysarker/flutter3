@@ -7,10 +7,11 @@ class LoadingSpinnerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.lightGreen,
       body: Center(
         child: SpinKitCubeGrid(
           color: Colors.white,
+
           size: 50.0,
         ),
       ),

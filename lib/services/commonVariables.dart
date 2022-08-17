@@ -20,3 +20,9 @@ enum ControllerTypeNames {
   loginPage,
   collection,
 }
+
+enum CurrencyCodeEnum{
+  USD,
+  INR,
+  BDT
+}

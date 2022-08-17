@@ -5,6 +5,14 @@ CustomTheme currentTheme = CustomTheme();
 class CustomTheme with ChangeNotifier {
   static bool _isDarkTheme = false;
 
+  static TextStyle paragraphStyle = TextStyle(
+    fontWeight: FontWeight.normal,
+  );
+  static TextStyle headerStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 15
+  );
+
   ThemeMode get currentThemeMode =>
       _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 

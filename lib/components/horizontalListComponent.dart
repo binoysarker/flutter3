@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
+import 'package:ecommerce_app/pages/productDetailPage.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HorizontalListComponent extends StatefulWidget {
   final String headerTitle;
@@ -48,6 +51,15 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
     }
     return titleString;
   }
+  void onItemSelected(int index){
+    if (widget.controllerType == ControllerTypeNames.product.name) {
+      var productList = (widget.givenList[index] as Query$GetAllProducts$products$items);
+      print('${productList.id}');
+      Get.to(() => ProductDetailPage(), arguments: {
+        'slug': '${productList.slug}'
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +80,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
-                      // print('${collectionsController.collectionItems[index].toJson()}');
+                      onItemSelected(index);
                     },
                     child: Card(
                       elevation: 0,

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -26,6 +27,20 @@ class UtilService {
     _apiBaseUrl = dotenv.env['API_BASE_URL'] as String;
     _shopApiUrl = dotenv.env['SHOP_API_URL'] as String;
     appName = dotenv.env['App_Name'] as String;
+  }
+
+  static String getCurreycySymble(String currencyCode){
+    var symble = r'$';
+    if(currencyCode == CurrencyCodeEnum.USD){
+      symble = r'$';
+    }
+    if(currencyCode == CurrencyCodeEnum.INR){
+      symble = r'₹';
+    }
+    if(currencyCode == CurrencyCodeEnum.BDT){
+      symble = r'৳';
+    }
+    return symble;
   }
 
 

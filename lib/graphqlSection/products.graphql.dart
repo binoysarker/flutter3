@@ -3618,6 +3618,43 @@ const documentNodeQueryGetProductDetail = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: null),
                     FieldNode(
+                        name: NameNode(value: 'currencyCode'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'languageCode'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'assets'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'name'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'preview'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
                         name: NameNode(value: 'sku'),
                         alias: null,
                         arguments: [],
@@ -4107,6 +4144,9 @@ class Query$GetProductDetail$product$variants {
       required this.options,
       required this.price,
       required this.priceWithTax,
+      required this.currencyCode,
+      required this.languageCode,
+      required this.assets,
       required this.sku,
       required this.$__typename});
 
@@ -4125,6 +4165,14 @@ class Query$GetProductDetail$product$variants {
 
   final int priceWithTax;
 
+  @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
+  final Enum$CurrencyCode currencyCode;
+
+  @JsonKey(unknownEnumValue: Enum$LanguageCode.$unknown)
+  final Enum$LanguageCode languageCode;
+
+  final List<Query$GetProductDetail$product$variants$assets> assets;
+
   final String sku;
 
   @JsonKey(name: '__typename')
@@ -4138,6 +4186,9 @@ class Query$GetProductDetail$product$variants {
     final l$options = options;
     final l$price = price;
     final l$priceWithTax = priceWithTax;
+    final l$currencyCode = currencyCode;
+    final l$languageCode = languageCode;
+    final l$assets = assets;
     final l$sku = sku;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -4146,6 +4197,9 @@ class Query$GetProductDetail$product$variants {
       Object.hashAll(l$options.map((v) => v)),
       l$price,
       l$priceWithTax,
+      l$currencyCode,
+      l$languageCode,
+      Object.hashAll(l$assets.map((v) => v)),
       l$sku,
       l$$__typename
     ]);
@@ -4177,6 +4231,21 @@ class Query$GetProductDetail$product$variants {
     final l$priceWithTax = priceWithTax;
     final lOther$priceWithTax = other.priceWithTax;
     if (l$priceWithTax != lOther$priceWithTax) return false;
+    final l$currencyCode = currencyCode;
+    final lOther$currencyCode = other.currencyCode;
+    if (l$currencyCode != lOther$currencyCode) return false;
+    final l$languageCode = languageCode;
+    final lOther$languageCode = other.languageCode;
+    if (l$languageCode != lOther$languageCode) return false;
+    final l$assets = assets;
+    final lOther$assets = other.assets;
+    if (l$assets.length != lOther$assets.length) return false;
+    for (int i = 0; i < l$assets.length; i++) {
+      final l$assets$entry = l$assets[i];
+      final lOther$assets$entry = lOther$assets[i];
+      if (l$assets$entry != lOther$assets$entry) return false;
+    }
+
     final l$sku = sku;
     final lOther$sku = other.sku;
     if (l$sku != lOther$sku) return false;
@@ -4210,6 +4279,9 @@ abstract class CopyWith$Query$GetProductDetail$product$variants<TRes> {
       List<Query$GetProductDetail$product$variants$options>? options,
       int? price,
       int? priceWithTax,
+      Enum$CurrencyCode? currencyCode,
+      Enum$LanguageCode? languageCode,
+      List<Query$GetProductDetail$product$variants$assets>? assets,
       String? sku,
       String? $__typename});
   TRes options(
@@ -4217,6 +4289,12 @@ abstract class CopyWith$Query$GetProductDetail$product$variants<TRes> {
               Iterable<
                   CopyWith$Query$GetProductDetail$product$variants$options<
                       Query$GetProductDetail$product$variants$options>>)
+          _fn);
+  TRes assets(
+      Iterable<Query$GetProductDetail$product$variants$assets> Function(
+              Iterable<
+                  CopyWith$Query$GetProductDetail$product$variants$assets<
+                      Query$GetProductDetail$product$variants$assets>>)
           _fn);
 }
 
@@ -4237,6 +4315,9 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
           Object? options = _undefined,
           Object? price = _undefined,
           Object? priceWithTax = _undefined,
+          Object? currencyCode = _undefined,
+          Object? languageCode = _undefined,
+          Object? assets = _undefined,
           Object? sku = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetProductDetail$product$variants(
@@ -4254,6 +4335,16 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
               : (priceWithTax as int),
+          currencyCode: currencyCode == _undefined || currencyCode == null
+              ? _instance.currencyCode
+              : (currencyCode as Enum$CurrencyCode),
+          languageCode: languageCode == _undefined || languageCode == null
+              ? _instance.languageCode
+              : (languageCode as Enum$LanguageCode),
+          assets: assets == _undefined || assets == null
+              ? _instance.assets
+              : (assets
+                  as List<Query$GetProductDetail$product$variants$assets>),
           sku: sku == _undefined || sku == null
               ? _instance.sku
               : (sku as String),
@@ -4270,6 +4361,16 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
           options: _fn(_instance.options.map((e) =>
               CopyWith$Query$GetProductDetail$product$variants$options(
                   e, (i) => i))).toList());
+  TRes assets(
+          Iterable<Query$GetProductDetail$product$variants$assets> Function(
+                  Iterable<
+                      CopyWith$Query$GetProductDetail$product$variants$assets<
+                          Query$GetProductDetail$product$variants$assets>>)
+              _fn) =>
+      call(
+          assets: _fn(_instance.assets.map((e) =>
+              CopyWith$Query$GetProductDetail$product$variants$assets(
+                  e, (i) => i))).toList());
 }
 
 class _CopyWithStubImpl$Query$GetProductDetail$product$variants<TRes>
@@ -4284,10 +4385,14 @@ class _CopyWithStubImpl$Query$GetProductDetail$product$variants<TRes>
           List<Query$GetProductDetail$product$variants$options>? options,
           int? price,
           int? priceWithTax,
+          Enum$CurrencyCode? currencyCode,
+          Enum$LanguageCode? languageCode,
+          List<Query$GetProductDetail$product$variants$assets>? assets,
           String? sku,
           String? $__typename}) =>
       _res;
   options(_fn) => _res;
+  assets(_fn) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4389,6 +4494,107 @@ class _CopyWithStubImpl$Query$GetProductDetail$product$variants$options<TRes>
   TRes _res;
 
   call({String? code, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetProductDetail$product$variants$assets {
+  Query$GetProductDetail$product$variants$assets(
+      {required this.name, required this.preview, required this.$__typename});
+
+  @override
+  factory Query$GetProductDetail$product$variants$assets.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetProductDetail$product$variants$assetsFromJson(json);
+
+  final String name;
+
+  final String preview;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetProductDetail$product$variants$assetsToJson(this);
+  int get hashCode {
+    final l$name = name;
+    final l$preview = preview;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$preview, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetProductDetail$product$variants$assets) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$preview = preview;
+    final lOther$preview = other.preview;
+    if (l$preview != lOther$preview) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetProductDetail$product$variants$assets
+    on Query$GetProductDetail$product$variants$assets {
+  CopyWith$Query$GetProductDetail$product$variants$assets<
+          Query$GetProductDetail$product$variants$assets>
+      get copyWith => CopyWith$Query$GetProductDetail$product$variants$assets(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetProductDetail$product$variants$assets<TRes> {
+  factory CopyWith$Query$GetProductDetail$product$variants$assets(
+          Query$GetProductDetail$product$variants$assets instance,
+          TRes Function(Query$GetProductDetail$product$variants$assets) then) =
+      _CopyWithImpl$Query$GetProductDetail$product$variants$assets;
+
+  factory CopyWith$Query$GetProductDetail$product$variants$assets.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetProductDetail$product$variants$assets;
+
+  TRes call({String? name, String? preview, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetProductDetail$product$variants$assets<TRes>
+    implements CopyWith$Query$GetProductDetail$product$variants$assets<TRes> {
+  _CopyWithImpl$Query$GetProductDetail$product$variants$assets(
+      this._instance, this._then);
+
+  final Query$GetProductDetail$product$variants$assets _instance;
+
+  final TRes Function(Query$GetProductDetail$product$variants$assets) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? preview = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetProductDetail$product$variants$assets(
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          preview: preview == _undefined || preview == null
+              ? _instance.preview
+              : (preview as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetProductDetail$product$variants$assets<TRes>
+    implements CopyWith$Query$GetProductDetail$product$variants$assets<TRes> {
+  _CopyWithStubImpl$Query$GetProductDetail$product$variants$assets(this._res);
+
+  TRes _res;
+
+  call({String? name, String? preview, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)

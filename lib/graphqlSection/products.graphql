@@ -88,6 +88,12 @@ query GetProductDetail($slug: String!) {
             }
             price
             priceWithTax
+            currencyCode
+            languageCode
+            assets {
+                name
+                preview
+            }
             sku
             __typename
         }

@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
 import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
-import 'package:ecommerce_app/models/SingleCollectionDetailDataModel.dart';
-import 'package:ecommerce_app/models/collectionsModel.dart';
 import 'package:ecommerce_app/services/graphql_service.dart';
 import 'package:get/get.dart';
 
@@ -16,9 +12,8 @@ class CollectionsController extends GetxController {
   var collectionItems = <Query$GetAllCollections$collections$items>[].obs;
   var isLoading = false.obs;
   var collectionItemSelected = {}.obs;
-  SingleCollectionDetailDataModel? singleCollectionDetailDataModel;
-
-
+  var singleCollectionDetail = {}.obs;
+  var singleCollectionDetailChildrenList = <Query$GetCollectionsByIdOrSlug$collection$children>[].obs;
 
   void getAllCollections() async {
     try {
@@ -36,8 +31,7 @@ class CollectionsController extends GetxController {
         print('collection data ${res.parsedData!.collections.toJson()}');
 
         var jsonData = res.parsedData!.collections.toJson();
-        collectionItems.value =
-            res.parsedData!.collections.items.toList();
+        collectionItems.value = res.parsedData!.collections.items.toList();
         isLoading.value = false;
       }
     } catch (e) {
@@ -46,31 +40,28 @@ class CollectionsController extends GetxController {
     }
   }
 
-  void getSingleCollectionDetail() async {
+  void getSingleCollectionDetail(String slug) async {
     try {
       userController.checkAndSetToken();
       isLoading.value = true;
-      final res = await graphqlService.clientToQuery().query$GetCollectionsByIdOrSlug(
-        Options$Query$GetCollectionsByIdOrSlug(
-          variables: Variables$Query$GetCollectionsByIdOrSlug(
-            slug: collectionItemSelected.value['slug']
-          )
-        )
-      );
+      final res = await graphqlService
+          .clientToQuery()
+          .query$GetCollectionsByIdOrSlug(
+              Options$Query$GetCollectionsByIdOrSlug(
+                  variables:
+                      Variables$Query$GetCollectionsByIdOrSlug(slug: slug)));
       if (res.hasException) {
         print('${res.exception.toString()}');
         isLoading.value = false;
       }
       if (res.data != null) {
         print('collection data ${res.parsedData!.collection!.toJson()}');
-
-        // var jsonData = res.parsedData!.collection!.toJson();
-        singleCollectionDetailDataModel = SingleCollectionDetailDataModel.fromJson(res.parsedData!.collection!.toJson());
+        singleCollectionDetail.value = res.parsedData!.collection!.toJson();
+        singleCollectionDetailChildrenList.value = res.parsedData!.collection!.children!.toList();
         isLoading.value = false;
       }
     } catch (e) {
       print('$e');
     }
   }
-
 }

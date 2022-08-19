@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
+
 enum PageRouteNames {
   home,
   store,
@@ -7,6 +9,8 @@ enum PageRouteNames {
   forget_password,
   reset_password,
   product_detail,
+  category_detail,
+  sub_category_detail,
   login,
   verify_token
 }
@@ -19,6 +23,8 @@ enum ControllerTypeNames {
   product,
   loginPage,
   collection,
+  singleCollectionDetail,
+  productVariantItems
 }
 
 enum CurrencyCodeEnum{
@@ -26,3 +32,8 @@ enum CurrencyCodeEnum{
   INR,
   BDT
 }
+class CommonVariableData{
+  static String placeholder = 'assets/images/placeholder.jpg';
+
+}
+typedef TypeOfList = List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items>;

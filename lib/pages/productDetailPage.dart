@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/controllers/productsController.dart';
+import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   }
 
   String getPrice() {
-    return 'Price: ${UtilService.getCurreycySymble(productsController.selectedProductDetail.value['currencyCode'])}${productsController.updatedPrice.value}';
+    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value['currencyCode'])}${productsController.updatedPrice.value}';
   }
 
   @override
@@ -48,8 +49,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Obx(() =>
-            Text('${productsController.selectedProductDetail.value['name']}')),
+        title: Obx(() => productsController.isLoading.isTrue
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Text(
+                '${productsController.selectedProductDetail['name'] ?? ''}')),
       ),
       body: Card(
         child: Obx(() => productsController.isLoading.isTrue
@@ -65,8 +70,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 child: ListView(
                   children: [
                     Container(
-                      child: Image(
-                        image: NetworkImage('${getImage()}'),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: '${CommonVariableData.placeholder}',
+                        image: '${getImage()}',
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Image.asset('${CommonVariableData.placeholder}'),
                       ),
                     ),
                     SizedBox(
@@ -78,7 +86,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'Model: ${productsController.selectedProductDetail.value['sku']}',
+                            'Model: ${productsController.selectedProductDetail['sku']}',
                             style: CustomTheme.headerStyle,
                           ),
                         ),
@@ -105,7 +113,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -125,7 +135,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       height: 20,
                     ),
                     Text(
-                      '${productsController.productDetailResponse.value['description']}',
+                      '${productsController.productDetailResponse['description']}',
                     ),
                     Form(
                         child: Column(

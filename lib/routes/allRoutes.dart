@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/pages/categoryDetailPage.dart';
 import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
 import 'package:ecommerce_app/pages/my_account_page.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce_app/pages/productDetailPage.dart';
 import 'package:ecommerce_app/pages/resetPasswordPage.dart';
 import 'package:ecommerce_app/pages/rewards_page.dart';
 import 'package:ecommerce_app/pages/store_page.dart';
+import 'package:ecommerce_app/pages/subCategoryDetailPage.dart';
 import 'package:ecommerce_app/pages/tokenVarifyPage.dart';
 import 'package:get/get.dart';
 class RoutesClass {
@@ -21,6 +23,8 @@ class RoutesClass {
     GetPage(name: '/forget_password', page: () => ForgetPasswordPage(),transition: Transition.fade),
     GetPage(name: '/reset_password', page: () => ResetPasswordPage(),transition: Transition.fade),
     GetPage(name: '/product_detail', page: () => ProductDetailPage(),transition: Transition.fade),
+    GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
+    GetPage(name: '/sub_category_detail', page: () => SubCategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/page_not_found', page: () => PageNotFound(),transition: Transition.fade),
   ];
 }

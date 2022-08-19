@@ -312,6 +312,7 @@ Query$GetCollectionsByIdOrSlug$collection
         Query$GetCollectionsByIdOrSlug$collection(
           id: json['id'] as String,
           name: json['name'] as String,
+          description: json['description'] as String,
           slug: json['slug'] as String,
           parent: json['parent'] == null
               ? null
@@ -338,6 +339,7 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collectionToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'description': instance.description,
       'slug': instance.slug,
       'parent': instance.parent?.toJson(),
       'breadcrumbs': instance.breadcrumbs.map((e) => e.toJson()).toList(),
@@ -391,6 +393,11 @@ Query$GetCollectionsByIdOrSlug$collection$children
         Query$GetCollectionsByIdOrSlug$collection$children(
           id: json['id'] as String,
           slug: json['slug'] as String,
+          name: json['name'] as String,
+          position: json['position'] as int,
+          productVariants:
+              Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+                  .fromJson(json['productVariants'] as Map<String, dynamic>),
           featuredAsset: json['featuredAsset'] == null
               ? null
               : Fragment$Asset.fromJson(
@@ -403,9 +410,315 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$childrenToJson(
     <String, dynamic>{
       'id': instance.id,
       'slug': instance.slug,
+      'name': instance.name,
+      'position': instance.position,
+      'productVariants': instance.productVariants.toJson(),
       'featuredAsset': instance.featuredAsset?.toJson(),
       '__typename': instance.$__typename,
     };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants(
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+                instance) =>
+        <String, dynamic>{
+          'items': instance.items.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
+          name: json['name'] as String,
+          assets: (json['assets'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          currencyCode: $enumDecode(
+              _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
+              unknownValue: Enum$CurrencyCode.$unknown),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
+          product:
+              Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
+                  .fromJson(json['product'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'assets': instance.assets.map((e) => e.toJson()).toList(),
+          'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          'price': instance.price,
+          'priceWithTax': instance.priceWithTax,
+          'product': instance.product.toJson(),
+          '__typename': instance.$__typename,
+        };
+
+const _$Enum$CurrencyCodeEnumMap = {
+  Enum$CurrencyCode.AED: 'AED',
+  Enum$CurrencyCode.AFN: 'AFN',
+  Enum$CurrencyCode.ALL: 'ALL',
+  Enum$CurrencyCode.AMD: 'AMD',
+  Enum$CurrencyCode.ANG: 'ANG',
+  Enum$CurrencyCode.AOA: 'AOA',
+  Enum$CurrencyCode.ARS: 'ARS',
+  Enum$CurrencyCode.AUD: 'AUD',
+  Enum$CurrencyCode.AWG: 'AWG',
+  Enum$CurrencyCode.AZN: 'AZN',
+  Enum$CurrencyCode.BAM: 'BAM',
+  Enum$CurrencyCode.BBD: 'BBD',
+  Enum$CurrencyCode.BDT: 'BDT',
+  Enum$CurrencyCode.BGN: 'BGN',
+  Enum$CurrencyCode.BHD: 'BHD',
+  Enum$CurrencyCode.BIF: 'BIF',
+  Enum$CurrencyCode.BMD: 'BMD',
+  Enum$CurrencyCode.BND: 'BND',
+  Enum$CurrencyCode.BOB: 'BOB',
+  Enum$CurrencyCode.BRL: 'BRL',
+  Enum$CurrencyCode.BSD: 'BSD',
+  Enum$CurrencyCode.BTN: 'BTN',
+  Enum$CurrencyCode.BWP: 'BWP',
+  Enum$CurrencyCode.BYN: 'BYN',
+  Enum$CurrencyCode.BZD: 'BZD',
+  Enum$CurrencyCode.CAD: 'CAD',
+  Enum$CurrencyCode.CDF: 'CDF',
+  Enum$CurrencyCode.CHF: 'CHF',
+  Enum$CurrencyCode.CLP: 'CLP',
+  Enum$CurrencyCode.CNY: 'CNY',
+  Enum$CurrencyCode.COP: 'COP',
+  Enum$CurrencyCode.CRC: 'CRC',
+  Enum$CurrencyCode.CUC: 'CUC',
+  Enum$CurrencyCode.CUP: 'CUP',
+  Enum$CurrencyCode.CVE: 'CVE',
+  Enum$CurrencyCode.CZK: 'CZK',
+  Enum$CurrencyCode.DJF: 'DJF',
+  Enum$CurrencyCode.DKK: 'DKK',
+  Enum$CurrencyCode.DOP: 'DOP',
+  Enum$CurrencyCode.DZD: 'DZD',
+  Enum$CurrencyCode.EGP: 'EGP',
+  Enum$CurrencyCode.ERN: 'ERN',
+  Enum$CurrencyCode.ETB: 'ETB',
+  Enum$CurrencyCode.EUR: 'EUR',
+  Enum$CurrencyCode.FJD: 'FJD',
+  Enum$CurrencyCode.FKP: 'FKP',
+  Enum$CurrencyCode.GBP: 'GBP',
+  Enum$CurrencyCode.GEL: 'GEL',
+  Enum$CurrencyCode.GHS: 'GHS',
+  Enum$CurrencyCode.GIP: 'GIP',
+  Enum$CurrencyCode.GMD: 'GMD',
+  Enum$CurrencyCode.GNF: 'GNF',
+  Enum$CurrencyCode.GTQ: 'GTQ',
+  Enum$CurrencyCode.GYD: 'GYD',
+  Enum$CurrencyCode.HKD: 'HKD',
+  Enum$CurrencyCode.HNL: 'HNL',
+  Enum$CurrencyCode.HRK: 'HRK',
+  Enum$CurrencyCode.HTG: 'HTG',
+  Enum$CurrencyCode.HUF: 'HUF',
+  Enum$CurrencyCode.IDR: 'IDR',
+  Enum$CurrencyCode.ILS: 'ILS',
+  Enum$CurrencyCode.INR: 'INR',
+  Enum$CurrencyCode.IQD: 'IQD',
+  Enum$CurrencyCode.IRR: 'IRR',
+  Enum$CurrencyCode.ISK: 'ISK',
+  Enum$CurrencyCode.JMD: 'JMD',
+  Enum$CurrencyCode.JOD: 'JOD',
+  Enum$CurrencyCode.JPY: 'JPY',
+  Enum$CurrencyCode.KES: 'KES',
+  Enum$CurrencyCode.KGS: 'KGS',
+  Enum$CurrencyCode.KHR: 'KHR',
+  Enum$CurrencyCode.KMF: 'KMF',
+  Enum$CurrencyCode.KPW: 'KPW',
+  Enum$CurrencyCode.KRW: 'KRW',
+  Enum$CurrencyCode.KWD: 'KWD',
+  Enum$CurrencyCode.KYD: 'KYD',
+  Enum$CurrencyCode.KZT: 'KZT',
+  Enum$CurrencyCode.LAK: 'LAK',
+  Enum$CurrencyCode.LBP: 'LBP',
+  Enum$CurrencyCode.LKR: 'LKR',
+  Enum$CurrencyCode.LRD: 'LRD',
+  Enum$CurrencyCode.LSL: 'LSL',
+  Enum$CurrencyCode.LYD: 'LYD',
+  Enum$CurrencyCode.MAD: 'MAD',
+  Enum$CurrencyCode.MDL: 'MDL',
+  Enum$CurrencyCode.MGA: 'MGA',
+  Enum$CurrencyCode.MKD: 'MKD',
+  Enum$CurrencyCode.MMK: 'MMK',
+  Enum$CurrencyCode.MNT: 'MNT',
+  Enum$CurrencyCode.MOP: 'MOP',
+  Enum$CurrencyCode.MRU: 'MRU',
+  Enum$CurrencyCode.MUR: 'MUR',
+  Enum$CurrencyCode.MVR: 'MVR',
+  Enum$CurrencyCode.MWK: 'MWK',
+  Enum$CurrencyCode.MXN: 'MXN',
+  Enum$CurrencyCode.MYR: 'MYR',
+  Enum$CurrencyCode.MZN: 'MZN',
+  Enum$CurrencyCode.NAD: 'NAD',
+  Enum$CurrencyCode.NGN: 'NGN',
+  Enum$CurrencyCode.NIO: 'NIO',
+  Enum$CurrencyCode.NOK: 'NOK',
+  Enum$CurrencyCode.NPR: 'NPR',
+  Enum$CurrencyCode.NZD: 'NZD',
+  Enum$CurrencyCode.OMR: 'OMR',
+  Enum$CurrencyCode.PAB: 'PAB',
+  Enum$CurrencyCode.PEN: 'PEN',
+  Enum$CurrencyCode.PGK: 'PGK',
+  Enum$CurrencyCode.PHP: 'PHP',
+  Enum$CurrencyCode.PKR: 'PKR',
+  Enum$CurrencyCode.PLN: 'PLN',
+  Enum$CurrencyCode.PYG: 'PYG',
+  Enum$CurrencyCode.QAR: 'QAR',
+  Enum$CurrencyCode.RON: 'RON',
+  Enum$CurrencyCode.RSD: 'RSD',
+  Enum$CurrencyCode.RUB: 'RUB',
+  Enum$CurrencyCode.RWF: 'RWF',
+  Enum$CurrencyCode.SAR: 'SAR',
+  Enum$CurrencyCode.SBD: 'SBD',
+  Enum$CurrencyCode.SCR: 'SCR',
+  Enum$CurrencyCode.SDG: 'SDG',
+  Enum$CurrencyCode.SEK: 'SEK',
+  Enum$CurrencyCode.SGD: 'SGD',
+  Enum$CurrencyCode.SHP: 'SHP',
+  Enum$CurrencyCode.SLL: 'SLL',
+  Enum$CurrencyCode.SOS: 'SOS',
+  Enum$CurrencyCode.SRD: 'SRD',
+  Enum$CurrencyCode.SSP: 'SSP',
+  Enum$CurrencyCode.STN: 'STN',
+  Enum$CurrencyCode.SVC: 'SVC',
+  Enum$CurrencyCode.SYP: 'SYP',
+  Enum$CurrencyCode.SZL: 'SZL',
+  Enum$CurrencyCode.THB: 'THB',
+  Enum$CurrencyCode.TJS: 'TJS',
+  Enum$CurrencyCode.TMT: 'TMT',
+  Enum$CurrencyCode.TND: 'TND',
+  Enum$CurrencyCode.TOP: 'TOP',
+  Enum$CurrencyCode.TRY: 'TRY',
+  Enum$CurrencyCode.TTD: 'TTD',
+  Enum$CurrencyCode.TWD: 'TWD',
+  Enum$CurrencyCode.TZS: 'TZS',
+  Enum$CurrencyCode.UAH: 'UAH',
+  Enum$CurrencyCode.UGX: 'UGX',
+  Enum$CurrencyCode.USD: 'USD',
+  Enum$CurrencyCode.UYU: 'UYU',
+  Enum$CurrencyCode.UZS: 'UZS',
+  Enum$CurrencyCode.VES: 'VES',
+  Enum$CurrencyCode.VND: 'VND',
+  Enum$CurrencyCode.VUV: 'VUV',
+  Enum$CurrencyCode.WST: 'WST',
+  Enum$CurrencyCode.XAF: 'XAF',
+  Enum$CurrencyCode.XCD: 'XCD',
+  Enum$CurrencyCode.XOF: 'XOF',
+  Enum$CurrencyCode.XPF: 'XPF',
+  Enum$CurrencyCode.YER: 'YER',
+  Enum$CurrencyCode.ZAR: 'ZAR',
+  Enum$CurrencyCode.ZMW: 'ZMW',
+  Enum$CurrencyCode.ZWL: 'ZWL',
+  Enum$CurrencyCode.$unknown: r'$unknown',
+};
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assetsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets(
+          preview: json['preview'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assetsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
+                instance) =>
+        <String, dynamic>{
+          'preview': instance.preview,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
+          name: json['name'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$productFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product(
+          name: json['name'] as String,
+          slug: json['slug'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$productToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'slug': instance.slug,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
+          preview: json['preview'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
+                instance) =>
+        <String, dynamic>{
+          'preview': instance.preview,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
 
 Query$GetCollectionsByIdOrSlug$collection$featuredAsset
     _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetFromJson(

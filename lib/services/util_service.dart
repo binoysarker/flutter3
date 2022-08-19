@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:html/parser.dart' show parse;
 
 class UtilService {
   static final UtilService _utilService = UtilService._internal();
@@ -29,7 +30,7 @@ class UtilService {
     appName = dotenv.env['App_Name'] as String;
   }
 
-  static String getCurreycySymble(String currencyCode){
+  static String getCurrencySymble(String currencyCode){
     var symble = r'$';
     if(currencyCode == CurrencyCodeEnum.USD){
       symble = r'$';
@@ -41,6 +42,10 @@ class UtilService {
       symble = r'৳';
     }
     return symble;
+  }
+  static String parseHtmlData(String text){
+    var document = parse(text);
+    return parse(document.body!.text).documentElement!.text;
   }
 
 

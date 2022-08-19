@@ -19,6 +19,7 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
     collection(id: $id,slug: $slug){
         id
         name
+        description
         slug
         parent {
             id
@@ -35,6 +36,32 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
         children {
             id
             slug
+            name
+            position
+            productVariants{
+                items {
+                    name
+                    assets {
+                        preview
+                        name
+                    }
+                    currencyCode
+                    featuredAsset {
+                        name
+                        preview
+                    }
+                    price
+                    priceWithTax
+                    product {
+                        name
+                        slug
+                        featuredAsset {
+                            preview
+                            name
+                        }
+                    }
+                }
+            }
             featuredAsset {
                 ...Asset
                 __typename

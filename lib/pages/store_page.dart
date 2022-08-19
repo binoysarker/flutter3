@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../components/horizontalListComponent.dart';
+import '../components/searchComponent.dart';
 
 class StorePage extends StatefulWidget {
   StorePage({Key? key}) : super(key: key);
@@ -62,63 +63,7 @@ class _StorePageState extends State<StorePage> {
             child: Text('Absurdly fresh grocery, delivered',
                 style: TextStyle(fontSize: 15)),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Form(
-                child: Container(
-              color: Colors.white,
-              child: TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: homePageController.productSearchController,
-                onChanged: (String value) {
-                  print('$value');
-                  productsController.searchForProducts(value);
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Search for products',
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        homePageController.productSearchController.text = '';
-                        FocusScope.of(context).unfocus();
-                        productsController.searchResultList.value = [];
-                      },
-                      icon: Icon(Icons.close)),
-                ),
-              ),
-            )),
-          ),
-          Obx(() => Visibility(
-                visible: productsController.searchResultList.length > 0,
-                child: productsController.searchInProgress.isTrue
-                    ? Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.lightGreen,
-                        ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 150,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5.00)),
-                          child: ListView.builder(
-                            itemBuilder: (context, index) => ListTile(
-                                leading: Image(
-                                  height: 50,
-                                  width: 50,
-                                  image: NetworkImage(
-                                      '${productsController.searchResultList[index].productAsset!.preview}'),
-                                ),
-                                title: Text(
-                                    '${productsController.searchResultList[index].productName}')),
-                            itemCount:
-                                productsController.searchResultList.length,
-                          ),
-                        ),
-                      ),
-              )),
+          SearchComponent(homePageController: homePageController, productsController: productsController),
           Container(
             child: Padding(
               padding: const EdgeInsets.all(2.0),
@@ -163,3 +108,5 @@ class _StorePageState extends State<StorePage> {
     ));
   }
 }
+
+

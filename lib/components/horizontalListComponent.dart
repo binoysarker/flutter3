@@ -1,5 +1,9 @@
+import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
 import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
+import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
+import 'package:ecommerce_app/pages/categoryDetailPage.dart';
 import 'package:ecommerce_app/pages/productDetailPage.dart';
+import 'package:ecommerce_app/pages/subCategoryDetailPage.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,9 +34,14 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
       imageString = widget.givenList[index].productAsset!.preview;
     }
     if (widget.controllerType == ControllerTypeNames.product.name) {
-      imageString = widget.givenList[index].featuredAsset!.preview;
+      imageString =
+          (widget.givenList[index] as Query$GetAllProducts$products$items)
+              .featuredAsset!
+              .preview;
     }
-    if (widget.controllerType == ControllerTypeNames.collection.name) {
+    if (widget.controllerType == ControllerTypeNames.collection.name ||
+        widget.controllerType ==
+            ControllerTypeNames.singleCollectionDetail.name) {
       imageString = widget.givenList[index].featuredAsset!.preview;
     }
     return imageString;
@@ -46,17 +55,42 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
     if (widget.controllerType == ControllerTypeNames.product.name) {
       titleString = widget.givenList[index].name;
     }
-    if (widget.controllerType == ControllerTypeNames.collection.name) {
+    if (widget.controllerType == ControllerTypeNames.collection.name ||
+        widget.controllerType ==
+            ControllerTypeNames.singleCollectionDetail.name) {
       titleString = widget.givenList[index].name;
     }
     return titleString;
   }
-  void onItemSelected(int index){
+
+  void onItemSelected(int index) {
     if (widget.controllerType == ControllerTypeNames.product.name) {
-      var productList = (widget.givenList[index] as Query$GetAllProducts$products$items);
+      var productList =
+          (widget.givenList[index] as Query$GetAllProducts$products$items);
       print('${productList.id}');
-      Get.to(() => ProductDetailPage(), arguments: {
-        'slug': '${productList.slug}'
+      Get.to(() => ProductDetailPage(),
+          arguments: {'slug': '${productList.slug}'});
+    }
+    if (widget.controllerType == ControllerTypeNames.collection.name) {
+      var collectionSelected = (widget.givenList[index]
+          as Query$GetAllCollections$collections$items);
+      print('${collectionSelected.id}');
+      Get.to(() => CategoryDetailPage(),
+          arguments: {'slug': '${collectionSelected.slug}'});
+    }
+    if (widget.controllerType ==
+        ControllerTypeNames.singleCollectionDetail.name) {
+      var collectionSelected = (widget.givenList[index]
+          as Query$GetCollectionsByIdOrSlug$collection$children);
+      print('${collectionSelected.slug}');
+      Get.to(() => SubCategoryDetailPage(),
+          arguments: {'slug': '${collectionSelected.slug}'});
+    }
+    if (widget.controllerType ==
+        ControllerTypeNames.user.name) {
+      var selectedItem = (widget.givenList[index] as Query$GetTopSellers$search$items);
+      Get.to(()=> ProductDetailPage(), arguments: {
+        'slug': '${selectedItem.slug}'
       });
     }
   }
@@ -78,6 +112,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
                 height: 250,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
                       onItemSelected(index);
@@ -88,12 +123,17 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Image(
-                              image: NetworkImage('${(getImage(index))}'),
+                            FadeInImage.assetNetwork(
                               width: 150,
-                              height: 100,
-                              alignment: Alignment.center,
-                              fit: BoxFit.cover,
+                              height: 150,
+                              placeholder: '${CommonVariableData.placeholder}',
+                              image: '${getImage(index)}',
+                              imageErrorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                '${CommonVariableData.placeholder}',
+                                width: 150,
+                                height: 150,
+                              ),
                             ),
                             SizedBox(
                               height: 15,

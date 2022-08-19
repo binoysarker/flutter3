@@ -442,6 +442,8 @@ Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
     _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsFromJson(
             Map<String, dynamic> json) =>
         Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
+          id: json['id'] as String,
+          productId: json['productId'] as String,
           name: json['name'] as String,
           assets: (json['assets'] as List<dynamic>)
               .map((e) =>
@@ -468,6 +470,8 @@ Map<String, dynamic>
             Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
                 instance) =>
         <String, dynamic>{
+          'id': instance.id,
+          'productId': instance.productId,
           'name': instance.name,
           'assets': instance.assets.map((e) => e.toJson()).toList(),
           'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,

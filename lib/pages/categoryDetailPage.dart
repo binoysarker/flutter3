@@ -33,9 +33,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
         child: Scaffold(
       appBar: AppBar(
         title: Obx(() => collectionsController.isLoading.isTrue
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
+            ? SizedBox()
             : Text('${collectionsController.singleCollectionDetail['name']}')),
       ),
       body: Obx(() => collectionsController.isLoading.isTrue
@@ -50,7 +48,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                   FadeInImage.assetNetwork(
                     placeholder: '${CommonVariableData.placeholder}',
                     image:
-                        '${collectionsController.singleCollectionDetail['featuredAsset']['preview'] ?? ''}',
+                        '${collectionsController.singleCollectionDetail['featuredAsset'] != null ? collectionsController.singleCollectionDetail['featuredAsset']['preview'] : ''}',
                     imageErrorBuilder: (context, error, stackTrace) =>
                         Image.asset('${CommonVariableData.placeholder}'),
                   ),

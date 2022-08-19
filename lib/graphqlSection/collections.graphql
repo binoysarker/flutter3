@@ -40,6 +40,8 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
             position
             productVariants{
                 items {
+                    id
+                    productId
                     name
                     assets {
                         preview

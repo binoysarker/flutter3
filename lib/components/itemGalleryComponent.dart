@@ -2,15 +2,17 @@ import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../themes.dart';
 
 class ItemGalleryComponent extends StatefulWidget {
   final String headerTitle;
   final bool loadingState;
-  final TypeOfList givenList;
+  TypeOfList givenList = [];
+  final TypeOfList filteredList = [];
   final String controllerType;
-  var currentList;
+  TypeOfList currentList = [];
 
   ItemGalleryComponent(
       {Key? key,
@@ -39,8 +41,13 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
 
   checkList() {
     if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      widget.currentList = widget.givenList.cast<
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items>();
+      widget.givenList.forEach((element) {
+        if (widget.currentList.firstWhereOrNull(
+                (item) => item.productId == element.productId) ==
+            null) {
+          widget.currentList.add(element);
+        }
+      });
     }
   }
 
@@ -49,7 +56,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
           element) {
     String name = '';
     if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      name = element.name;
+      name = element.product.name;
     }
     return name;
   }
@@ -66,6 +73,12 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    checkList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return widget.loadingState
         ? Container(
@@ -77,8 +90,9 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
             height: 300,
             child: GridView.count(
               crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 2),
-              children: widget.givenList
+              childAspectRatio: MediaQuery.of(context).size.width /
+                  (MediaQuery.of(context).size.height / 2),
+              children: widget.currentList
                   .map((element) => Card(
                         elevation: 5,
                         child: Column(
@@ -90,7 +104,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                               image: getImage(element),
                               imageErrorBuilder: (context, error, stackTrace) =>
                                   Image.asset(
-                                      '${CommonVariableData.placeholder}'),
+                                '${CommonVariableData.placeholder}',
+                                width: 100,
+                                height: 100,
+                              ),
                             ),
                             Text(
                               getName(element),
@@ -103,7 +120,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                   getPrice(element),
                                   style: CustomTheme.headerStyle,
                                 ),
-                                IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.shopping_cart),
+                                  color: Colors.lightGreen,
+                                )
                               ],
                             )
                           ],

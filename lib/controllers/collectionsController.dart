@@ -29,8 +29,6 @@ class CollectionsController extends GetxController {
       }
       if (res.data != null) {
         print('collection data ${res.parsedData!.collections.toJson()}');
-
-        var jsonData = res.parsedData!.collections.toJson();
         collectionItems.value = res.parsedData!.collections.items.toList();
         isLoading.value = false;
       }

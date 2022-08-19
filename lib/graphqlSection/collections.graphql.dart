@@ -1326,6 +1326,18 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'productId'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
                                     name: NameNode(value: 'name'),
                                     alias: null,
                                     arguments: [],
@@ -2515,7 +2527,9 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
 @JsonSerializable(explicitToJson: true)
 class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
   Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
-      {required this.name,
+      {required this.id,
+      required this.productId,
+      required this.name,
       required this.assets,
       required this.currencyCode,
       this.featuredAsset,
@@ -2529,6 +2543,10 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
           Map<String, dynamic> json) =>
       _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsFromJson(
           json);
+
+  final String id;
+
+  final String productId;
 
   final String name;
 
@@ -2556,6 +2574,8 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
       _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsToJson(
           this);
   int get hashCode {
+    final l$id = id;
+    final l$productId = productId;
     final l$name = name;
     final l$assets = assets;
     final l$currencyCode = currencyCode;
@@ -2565,6 +2585,8 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
     final l$product = product;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
+      l$productId,
       l$name,
       Object.hashAll(l$assets.map((v) => v)),
       l$currencyCode,
@@ -2582,6 +2604,12 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
     if (!(other
             is Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items) ||
         runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) return false;
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) return false;
@@ -2640,7 +2668,9 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$produ
       _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
 
   TRes call(
-      {String? name,
+      {String? id,
+      String? productId,
+      String? name,
       List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets>?
           assets,
       Enum$CurrencyCode? currencyCode,
@@ -2681,7 +2711,9 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
   static const _undefined = {};
 
   TRes call(
-          {Object? name = _undefined,
+          {Object? id = _undefined,
+          Object? productId = _undefined,
+          Object? name = _undefined,
           Object? assets = _undefined,
           Object? currencyCode = _undefined,
           Object? featuredAsset = _undefined,
@@ -2690,6 +2722,10 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
           Object? product = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          productId: productId == _undefined || productId == null
+              ? _instance.productId
+              : (productId as String),
           name: name == _undefined || name == null
               ? _instance.name
               : (name as String),
@@ -2712,8 +2748,7 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
               : (priceWithTax as int),
           product: product == _undefined || product == null
               ? _instance.product
-              : (product
-                  as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product),
+              : (product as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   TRes assets(
           Iterable<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets> Function(
@@ -2754,7 +2789,9 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
   TRes _res;
 
   call(
-          {String? name,
+          {String? id,
+          String? productId,
+          String? name,
           List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets>?
               assets,
           Enum$CurrencyCode? currencyCode,

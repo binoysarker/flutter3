@@ -22,6 +22,7 @@ samples, guidance on mobile development, and a full API reference.
 - check all the output of flutter doctor -v
 - flutter pub run flutter_launcher_icons:main
 - flutter pub run flutter_native_splash:create
+- flutter pub run build_runner watch --delete-conflicting-outputs
 # jre class path related error:
 - change the jkd7 to jdk8 in build.gradle file
 - change minsdk to 21

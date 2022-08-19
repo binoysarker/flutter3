@@ -14,3 +14,16 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## to build the project from the code:
+- flutter clean
+- flutter pub get
+- check all the output of flutter doctor -v
+- flutter pub run flutter_launcher_icons:main
+- flutter pub run flutter_native_splash:create
+# jre class path related error:
+- change the jkd7 to jdk8 in build.gradle file
+- change minsdk to 21
+- change target sdk to 30
+

@@ -1,2 +1,2 @@
 API_BASE_URL=http://192.168.0.106:3000
-SHOP_API_URL=$API_BASE_URL/shop-api
+SHOP_API_URL=http://35.233.184.85/shop-api

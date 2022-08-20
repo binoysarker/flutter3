@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controllers/cartController.dart';
 import 'package:ecommerce_app/controllers/orderController.dart';
+import 'package:ecommerce_app/pages/cartDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +33,9 @@ class _CartButtonComponentState extends State<CartButtonComponent> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart)),
+              : IconButton(onPressed: () {
+                Get.to(() => CartDetailPage());
+          }, icon: Icon(Icons.shopping_cart)),
           Visibility(
             visible: orderController.activeOrderResponse.isNotEmpty,
             child: CircleAvatar(

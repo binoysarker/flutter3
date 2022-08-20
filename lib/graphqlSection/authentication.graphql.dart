@@ -1,4 +1,3 @@
-import 'cart_data.graphql.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -3905,6 +3904,12 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
+                                    name: NameNode(value: 'currencyCode'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
                                     name: NameNode(value: 'active'),
                                     alias: null,
                                     arguments: [],
@@ -4376,7 +4381,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders<TRes>
 @JsonSerializable(explicitToJson: true)
 class Query$GetActiveCustomer$activeCustomer$orders$items {
   Query$GetActiveCustomer$activeCustomer$orders$items(
-      {required this.active,
+      {required this.currencyCode,
+      required this.active,
       required this.discounts,
       required this.$__typename});
 
@@ -4384,6 +4390,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
   factory Query$GetActiveCustomer$activeCustomer$orders$items.fromJson(
           Map<String, dynamic> json) =>
       _$Query$GetActiveCustomer$activeCustomer$orders$itemsFromJson(json);
+
+  @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
+  final Enum$CurrencyCode currencyCode;
 
   final bool active;
 
@@ -4396,11 +4405,16 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
   Map<String, dynamic> toJson() =>
       _$Query$GetActiveCustomer$activeCustomer$orders$itemsToJson(this);
   int get hashCode {
+    final l$currencyCode = currencyCode;
     final l$active = active;
     final l$discounts = discounts;
     final l$$__typename = $__typename;
-    return Object.hashAll(
-        [l$active, Object.hashAll(l$discounts.map((v) => v)), l$$__typename]);
+    return Object.hashAll([
+      l$currencyCode,
+      l$active,
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$$__typename
+    ]);
   }
 
   @override
@@ -4408,6 +4422,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     if (identical(this, other)) return true;
     if (!(other is Query$GetActiveCustomer$activeCustomer$orders$items) ||
         runtimeType != other.runtimeType) return false;
+    final l$currencyCode = currencyCode;
+    final lOther$currencyCode = other.currencyCode;
+    if (l$currencyCode != lOther$currencyCode) return false;
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
@@ -4449,7 +4466,8 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items;
 
   TRes call(
-      {bool? active,
+      {Enum$CurrencyCode? currencyCode,
+      bool? active,
       List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
           discounts,
       String? $__typename});
@@ -4475,10 +4493,14 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? active = _undefined,
+          {Object? currencyCode = _undefined,
+          Object? active = _undefined,
           Object? discounts = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items(
+          currencyCode: currencyCode == _undefined || currencyCode == null
+              ? _instance.currencyCode
+              : (currencyCode as Enum$CurrencyCode),
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
@@ -4511,7 +4533,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
   TRes _res;
 
   call(
-          {bool? active,
+          {Enum$CurrencyCode? currencyCode,
+          bool? active,
           List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
               discounts,
           String? $__typename}) =>

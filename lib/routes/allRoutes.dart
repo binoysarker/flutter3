@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/pages/cartDetail.dart';
 import 'package:ecommerce_app/pages/categoryDetailPage.dart';
 import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
 import 'package:ecommerce_app/pages/login_page.dart';
@@ -25,6 +26,7 @@ class RoutesClass {
     GetPage(name: '/product_detail', page: () => ProductDetailPage(),transition: Transition.fade),
     GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/sub_category_detail', page: () => SubCategoryDetailPage(),transition: Transition.fade),
+    GetPage(name: '/cart_detail', page: () => CartDetailPage(),transition: Transition.fade),
     GetPage(name: '/page_not_found', page: () => PageNotFound(),transition: Transition.fade),
   ];
 }

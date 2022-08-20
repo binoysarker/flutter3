@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
+import 'package:ecommerce_app/controllers/cartController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../themes.dart';
 
 class ItemGalleryComponent extends StatefulWidget {
+
   final String headerTitle;
   final bool loadingState;
   TypeOfList givenList = [];
@@ -27,9 +28,9 @@ class ItemGalleryComponent extends StatefulWidget {
 }
 
 class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
-  String getImage(
-      Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
-          element) {
+  CartController cartController = Get.find<CartController>();
+
+  String getImage(SingleProductVariantItemType element) {
     String url = '';
     if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       url = element.product.featuredAsset != null
@@ -51,9 +52,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     }
   }
 
-  String getName(
-      Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
-          element) {
+  String getName(SingleProductVariantItemType element) {
     String name = '';
     if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       name = element.product.name;
@@ -61,9 +60,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     return name;
   }
 
-  String getPrice(
-      Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
-          element) {
+  String getPrice(SingleProductVariantItemType element) {
     String price = '';
     if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       price =
@@ -75,7 +72,12 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   @override
   void initState() {
     super.initState();
-    checkList();
+      checkList();
+
+  }
+
+  void addItemToCart(SingleProductVariantItemType singleProductVariantItemType) {
+    cartController.addItemToCart(singleProductVariantItemType.id, 1);
   }
 
   @override
@@ -121,7 +123,9 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    addItemToCart(element);
+                                  },
                                   icon: Icon(Icons.shopping_cart),
                                   color: Colors.lightGreen,
                                 )

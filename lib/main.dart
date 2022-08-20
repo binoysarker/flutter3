@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
+import 'package:ecommerce_app/controllers/cartController.dart';
 import 'package:ecommerce_app/controllers/collectionsController.dart';
 import 'package:ecommerce_app/controllers/homePageController.dart';
 import 'package:ecommerce_app/controllers/loginPageController.dart';
@@ -34,6 +35,7 @@ void main() async {
   Get.put(TokenPageController());
   Get.put(CollectionsController());
   Get.put(ProductsController());
+  Get.put(CartController());
   runApp(MyApp());
 }
 

@@ -37,3 +37,5 @@ class CommonVariableData{
 
 }
 typedef TypeOfList = List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items>;
+
+typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;

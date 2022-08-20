@@ -79,13 +79,12 @@ class LoginPageState extends State<LoginPage> {
                       children: <Widget>[
                         Container(
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.all(10),
-                            child: const Text(
-                              'Ecommerce',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 30),
+                            padding: EdgeInsets.all(10),
+                            child: Center(
+                              child: CircleAvatar(
+                                radius: 50,
+                                backgroundImage: AssetImage('assets/images/splash.png'),
+                              ),
                             )),
                         AutofillGroup(
                             child: Column(

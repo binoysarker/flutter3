@@ -68,6 +68,8 @@ class LoginPageController extends GetxController {
                 rememberMe: checkboxStatus.value)));
     if (signInResponse.hasException) {
       debugPrint('${signInResponse.exception.toString()}');
+      Get.snackbar('Sorry', 'Please Login again');
+      Get.to(() =>  LoginPage());
     }
     if (signInResponse.data != null) {
       debugPrint('${signInResponse.data}');

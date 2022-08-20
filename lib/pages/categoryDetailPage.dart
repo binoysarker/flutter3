@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
+import 'package:ecommerce_app/components/cartButton.dart';
 import 'package:ecommerce_app/components/itemGalleryComponent.dart';
 import 'package:ecommerce_app/controllers/collectionsController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
@@ -34,7 +35,12 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
       appBar: AppBar(
         title: Obx(() => collectionsController.isLoading.isTrue
             ? SizedBox()
-            : Text('${collectionsController.singleCollectionDetail['name']}')),
+            : Row(
+          children: [
+            Text('${collectionsController.singleCollectionDetail['name']}'),
+            CartButtonComponent()
+          ],
+        )),
       ),
       body: Obx(() => collectionsController.isLoading.isTrue
           ? Container(

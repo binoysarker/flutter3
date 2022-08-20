@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
+import 'package:ecommerce_app/components/cartButton.dart';
 import 'package:ecommerce_app/controllers/productsController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
@@ -50,11 +51,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         child: Scaffold(
       appBar: AppBar(
         title: Obx(() => productsController.isLoading.isTrue
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Text(
-                '${productsController.selectedProductDetail['name'] ?? ''}')),
+            ? SizedBox()
+            : Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+                '${productsController.selectedProductDetail['name'] ?? ''}'),
+            CartButtonComponent()
+          ],
+        )),
       ),
       body: Card(
         child: Obx(() => productsController.isLoading.isTrue

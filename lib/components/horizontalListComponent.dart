@@ -5,6 +5,7 @@ import 'package:ecommerce_app/pages/categoryDetailPage.dart';
 import 'package:ecommerce_app/pages/productDetailPage.dart';
 import 'package:ecommerce_app/pages/subCategoryDetailPage.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
+import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -107,7 +108,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
           height: 30,
         ),
         widget.loadingState
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,))
             : SizedBox(
                 height: 250,
                 child: ListView.builder(

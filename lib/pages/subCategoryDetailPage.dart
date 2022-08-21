@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/controllers/collectionsController.dart';
+import 'package:ecommerce_app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,7 @@ class _SubCategoryDetailPageState extends State<SubCategoryDetailPage> {
       body: Obx(() => collectionsController.isLoading.isTrue
           ? Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
               ),
             )
           : Card(

@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/components/cartButton.dart';
+import 'package:ecommerce_app/components/cartButtonComponent.dart';
+import 'package:ecommerce_app/controllers/cartController.dart';
+import 'package:ecommerce_app/controllers/orderController.dart';
 import 'package:ecommerce_app/controllers/productsController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
@@ -17,7 +19,9 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
-  final ProductsController productsController = Get.find<ProductsController>();
+  ProductsController productsController = Get.find<ProductsController>();
+  CartController cartController = Get.find<CartController>();
+  OrderController orderController = Get.find<OrderController>();
 
   @override
   void initState() {
@@ -35,14 +39,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       url =
           productsController.selectedProductDetail['featuredAsset']['preview'];
     } else {
-      url =
-          productsController.productDetailResponse['featuredAsset']['preview'];
+      url = '';
     }
     return url;
   }
 
   String getPrice() {
-    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value['currencyCode'])}${productsController.updatedPrice.value}';
+    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail['currencyCode'])}${productsController.updatedPrice.value}';
   }
 
   @override
@@ -53,13 +56,24 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         title: Obx(() => productsController.isLoading.isTrue
             ? SizedBox()
             : Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-                '${productsController.selectedProductDetail['name'] ?? ''}'),
-            CartButtonComponent()
-          ],
-        )),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                      '${productsController.selectedProductDetail['name'] ?? ''}'),
+                  cartController.isLoading.isTrue
+                      ? Center(
+                          child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                        )
+                      : orderController.activeOrderResponse['totalQuantity'] !=
+                              null
+                          ? CartButtonComponent(
+                              isLoading: orderController.isLoading.isTrue,
+                              totalQuantity: orderController
+                                  .activeOrderResponse['totalQuantity'],
+                            )
+                          : SizedBox()
+                ],
+              )),
       ),
       body: Card(
         child: Obx(() => productsController.isLoading.isTrue
@@ -131,8 +145,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ),
                         ),
                         Expanded(
-                          child: ElevatedButton(
-                              onPressed: () {}, child: Text('Add To Crat')),
+                          child: cartController.isLoading.isTrue
+                              ? Center(
+                                  child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                                )
+                              : ElevatedButton(
+                                  onPressed: () {
+                                    cartController.addItemToCart(
+                                        productsController
+                                            .selectedProductDetail['id'],
+                                        int.parse(productsController
+                                            .quantityController.text));
+                                  },
+                                  child: Text('Add To Crat')),
                         )
                       ],
                     ),
@@ -140,7 +165,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       height: 20,
                     ),
                     Text(
-                      '${productsController.productDetailResponse['description']}',
+                      '${UtilService.parseHtmlData(productsController.productDetailResponse['description'])}',
                     ),
                     Form(
                         child: Column(
@@ -154,7 +179,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           child: DropdownButtonFormField(
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  labelText: 'Select Variants'),
+                                  labelText: 'Select Variant'),
                               value: productsController
                                   .selectedDropdownItemId.value,
                               items: productsController.productDetailVariants

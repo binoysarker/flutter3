@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/controllers/cartController.dart';
+import 'package:ecommerce_app/controllers/orderController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:get/get.dart';
 import '../themes.dart';
 
 class ItemGalleryComponent extends StatefulWidget {
-
   final String headerTitle;
   final bool loadingState;
   TypeOfList givenList = [];
@@ -29,6 +29,7 @@ class ItemGalleryComponent extends StatefulWidget {
 
 class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   CartController cartController = Get.find<CartController>();
+  OrderController orderController = Get.find<OrderController>();
 
   String getImage(SingleProductVariantItemType element) {
     String url = '';
@@ -72,12 +73,13 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   @override
   void initState() {
     super.initState();
-      checkList();
-
+    checkList();
   }
 
-  void addItemToCart(SingleProductVariantItemType singleProductVariantItemType) {
+  void addItemToCart(
+      SingleProductVariantItemType singleProductVariantItemType) {
     cartController.addItemToCart(singleProductVariantItemType.id, 1);
+    checkList();
   }
 
   @override
@@ -85,7 +87,9 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     return widget.loadingState
         ? Container(
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: CustomTheme.progressIndicatorColor,
+              ),
             ),
           )
         : SizedBox(
@@ -122,13 +126,20 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                   getPrice(element),
                                   style: CustomTheme.headerStyle,
                                 ),
-                                IconButton(
-                                  onPressed: () {
-                                    addItemToCart(element);
-                                  },
-                                  icon: Icon(Icons.shopping_cart),
-                                  color: Colors.lightGreen,
-                                )
+                                orderController.isLoading.isTrue
+                                    ? Center(
+                                        child: CircularProgressIndicator(
+                                          color: CustomTheme
+                                              .progressIndicatorColor,
+                                        ),
+                                      )
+                                    : IconButton(
+                                        onPressed: () {
+                                          addItemToCart(element);
+                                        },
+                                        icon: Icon(Icons.shopping_cart),
+                                        color: Colors.lightGreen,
+                                      )
                               ],
                             )
                           ],

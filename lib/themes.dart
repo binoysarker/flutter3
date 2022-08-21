@@ -17,6 +17,7 @@ class CustomTheme with ChangeNotifier {
     fontSize: 18,
     color: Colors.white
   );
+  static Color progressIndicatorColor = Colors.lightGreenAccent;
 
   ThemeMode get currentThemeMode =>
       _isDarkTheme ? ThemeMode.dark : ThemeMode.light;

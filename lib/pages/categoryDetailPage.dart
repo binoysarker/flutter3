@@ -1,7 +1,8 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/components/cartButton.dart';
+import 'package:ecommerce_app/components/cartButtonComponent.dart';
 import 'package:ecommerce_app/components/itemGalleryComponent.dart';
 import 'package:ecommerce_app/controllers/collectionsController.dart';
+import 'package:ecommerce_app/controllers/orderController.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:ecommerce_app/themes.dart';
@@ -19,6 +20,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   dynamic routerArguments = Get.arguments;
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
+  final OrderController orderController = Get.find<OrderController>();
 
   @override
   void initState() {
@@ -36,16 +38,23 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
         title: Obx(() => collectionsController.isLoading.isTrue
             ? SizedBox()
             : Row(
-          children: [
-            Text('${collectionsController.singleCollectionDetail['name']}'),
-            CartButtonComponent()
-          ],
-        )),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                      '${collectionsController.singleCollectionDetail['name']}'),
+                  orderController.activeOrderResponse['totalQuantity'] !=
+                      null ? CartButtonComponent(
+                    isLoading: orderController.isLoading.isTrue,
+                    totalQuantity:
+                        orderController.activeOrderResponse['totalQuantity'],
+                  ) : SizedBox()
+                ],
+              )),
       ),
       body: Obx(() => collectionsController.isLoading.isTrue
           ? Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
               ),
             )
           : Card(

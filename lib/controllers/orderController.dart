@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class OrderController extends GetxController {
   GraphqlService graphqlService = GraphqlService();
+
   var activeOrderResponse = {}.obs;
   var isLoading = false.obs;
   var activeOrderItemList = <Fragment$Cart$lines>[].obs;
@@ -26,6 +27,20 @@ class OrderController extends GetxController {
     }
   }
 
+  void adjustOrderLine(String orderLineId, int quantity) async {
+    final res = await graphqlService.clientToQuery().mutate$AdjustOrderLine(
+        Options$Mutation$AdjustOrderLine(
+            variables: Variables$Mutation$AdjustOrderLine(
+                orderLineId: orderLineId, quantity: quantity)));
+    if(res.hasException){
+      print('${res.exception.toString()}');
+    }
+    if(res.data != null){
+      print('adjusted order ${res.parsedData!.adjustOrderLine.toJson()}');
+      getActiveOrders();
+    }
+  }
+
   void removeItemFromOrder(String orderLineId) async {
     isLoading.value = true;
     final res = await graphqlService.clientToQuery().mutate$RemoveOrderLine(
@@ -38,19 +53,22 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       print('${res.parsedData!.removeOrderLine.toJson()}');
+      getActiveOrders();
       isLoading.value = false;
     }
   }
 
-  void removeAllItemFromOrder(String orderLineId) async {
+  void removeAllItemFromOrder() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$RemoveAllOrderLines();
+    final res =
+        await graphqlService.clientToQuery().mutate$RemoveAllOrderLines();
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
     }
     if (res.data != null) {
       print('${res.parsedData!.removeAllOrderLines.toJson()}');
+      getActiveOrders();
       isLoading.value = false;
     }
   }

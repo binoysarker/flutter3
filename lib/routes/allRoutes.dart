@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/pages/cartDetail.dart';
+import 'package:ecommerce_app/pages/cartDetailPage.dart';
 import 'package:ecommerce_app/pages/categoryDetailPage.dart';
 import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
 import 'package:ecommerce_app/pages/login_page.dart';

@@ -10,10 +10,9 @@ import '../themes.dart';
 class ItemGalleryComponent extends StatefulWidget {
   final String headerTitle;
   final bool loadingState;
-  TypeOfList givenList = [];
-  final TypeOfList filteredList = [];
+  List<dynamic> givenList = [];
   final String controllerType;
-  TypeOfList currentList = [];
+  List<dynamic> currentList = [];
 
   ItemGalleryComponent(
       {Key? key,
@@ -30,19 +29,26 @@ class ItemGalleryComponent extends StatefulWidget {
 class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   CartController cartController = Get.find<CartController>();
   OrderController orderController = Get.find<OrderController>();
+  int selectedId = 0;
 
-  String getImage(SingleProductVariantItemType element) {
+  String getImage(dynamic element) {
     String url = '';
-    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name) {
       url = element.product.featuredAsset != null
           ? element.product.featuredAsset!.preview
+          : '';
+
+    }
+    if(widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+      url = element.featuredAsset != null
+          ? element.featuredAsset!.preview
           : '';
     }
     return url;
   }
 
   checkList() {
-    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       widget.givenList.forEach((element) {
         if (widget.currentList.firstWhereOrNull(
                 (item) => item.productId == element.productId) ==
@@ -51,21 +57,24 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
         }
       });
     }
+
   }
 
-  String getName(SingleProductVariantItemType element) {
+  String getName(dynamic element) {
     String name = '';
-    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      name = element.product.name;
+    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+      name = '${element.product.name}';
     }
+
     return name;
   }
 
-  String getPrice(SingleProductVariantItemType element) {
+  String getPrice(dynamic element) {
     String price = '';
-    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       price =
           '${UtilService.getCurrencySymble(element.currencyCode.toString())}${element.price}';
+      // var test = (element as SingleProductVariantItemType).currencyCode
     }
     return price;
   }
@@ -76,10 +85,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     checkList();
   }
 
-  void addItemToCart(
-      SingleProductVariantItemType singleProductVariantItemType) {
+  void addItemToCart(dynamic singleProductVariantItemType) {
     cartController.addItemToCart(singleProductVariantItemType.id, 1);
     checkList();
+
   }
 
   @override
@@ -126,20 +135,21 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                   getPrice(element),
                                   style: CustomTheme.headerStyle,
                                 ),
-                                orderController.isLoading.isTrue
+                                Obx(() => cartController.isLoading.isTrue && selectedId == int.parse(element.id)
                                     ? Center(
-                                        child: CircularProgressIndicator(
-                                          color: CustomTheme
-                                              .progressIndicatorColor,
-                                        ),
-                                      )
+                                  child: CircularProgressIndicator(
+                                    color: CustomTheme
+                                        .progressIndicatorColor,
+                                  ),
+                                )
                                     : IconButton(
-                                        onPressed: () {
-                                          addItemToCart(element);
-                                        },
-                                        icon: Icon(Icons.shopping_cart),
-                                        color: Colors.lightGreen,
-                                      )
+                                  onPressed: () {
+                                    selectedId = int.parse(element.id);
+                                    addItemToCart(element);
+                                  },
+                                  icon: Icon(Icons.shopping_cart),
+                                  color: Colors.lightGreen,
+                                ))
                               ],
                             )
                           ],

@@ -38,23 +38,26 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
         title: Obx(() => collectionsController.isLoading.isTrue
             ? SizedBox()
             : Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                       '${collectionsController.singleCollectionDetail['name']}'),
-                  orderController.activeOrderResponse['totalQuantity'] !=
-                      null ? CartButtonComponent(
-                    isLoading: orderController.isLoading.isTrue,
-                    totalQuantity:
-                        orderController.activeOrderResponse['totalQuantity'],
-                  ) : SizedBox()
+                  orderController.activeOrderResponse['totalQuantity'] != null
+                      ? CartButtonComponent(
+                          isLoading: orderController.isLoading.isTrue,
+                          totalQuantity: orderController
+                              .activeOrderResponse['totalQuantity'],
+                        )
+                      : SizedBox()
                 ],
               )),
       ),
       body: Obx(() => collectionsController.isLoading.isTrue
           ? Container(
               child: Center(
-                child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                child: CircularProgressIndicator(
+                  color: CustomTheme.progressIndicatorColor,
+                ),
               ),
             )
           : Card(
@@ -115,12 +118,25 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                           givenList:
                                               element.productVariants.items,
                                           controllerType: ControllerTypeNames
-                                              .productVariantItems.name),
+                                              .productChildrenVariantItems
+                                              .name),
                                 ],
                               ),
                             ))
                         .toList(),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ItemGalleryComponent(
+                      headerTitle: 'Products',
+                      loadingState: collectionsController
+                          .isLoading.isTrue,
+                      givenList:
+                      collectionsController.productVariantItemList,
+                      controllerType: ControllerTypeNames
+                          .productVariantItems
+                          .name)
                 ],
               ),
             )),

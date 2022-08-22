@@ -21,6 +21,23 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
         name
         description
         slug
+        productVariants{
+            items {
+                id
+                name
+                price
+                priceWithTax
+                currencyCode
+                featuredAsset {
+                    preview
+                }
+                productId
+                product {
+                    id
+                    name
+                }
+            }
+        }
         parent {
             id
             slug

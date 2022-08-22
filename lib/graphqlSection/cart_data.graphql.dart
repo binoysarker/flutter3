@@ -1,32 +1,30 @@
 import 'dart:async';
-
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-
 import 'schema.graphql.dart';
-
 part 'cart_data.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart {
-  Fragment$Cart({required this.id,
-    required this.code,
-    required this.state,
-    required this.active,
-    required this.lines,
-    required this.totalQuantity,
-    required this.subTotal,
-    required this.subTotalWithTax,
-    required this.total,
-    required this.totalWithTax,
-    required this.shipping,
-    required this.shippingWithTax,
-    required this.shippingLines,
-    required this.discounts,
-    required this.$__typename});
+  Fragment$Cart(
+      {required this.id,
+      required this.code,
+      required this.state,
+      required this.active,
+      required this.lines,
+      required this.totalQuantity,
+      required this.subTotal,
+      required this.subTotalWithTax,
+      required this.total,
+      required this.totalWithTax,
+      required this.shipping,
+      required this.shippingWithTax,
+      required this.shippingLines,
+      required this.discounts,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart.fromJson(Map<String, dynamic> json) =>
@@ -64,7 +62,6 @@ class Fragment$Cart {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$CartToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$code = code;
@@ -178,43 +175,44 @@ extension UtilityExtension$Fragment$Cart on Fragment$Cart {
 }
 
 abstract class CopyWith$Fragment$Cart<TRes> {
-  factory CopyWith$Fragment$Cart(Fragment$Cart instance,
-      TRes Function(Fragment$Cart) then) =
-  _CopyWithImpl$Fragment$Cart;
+  factory CopyWith$Fragment$Cart(
+          Fragment$Cart instance, TRes Function(Fragment$Cart) then) =
+      _CopyWithImpl$Fragment$Cart;
 
   factory CopyWith$Fragment$Cart.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart;
+      _CopyWithStubImpl$Fragment$Cart;
 
-  TRes call({String? id,
-    String? code,
-    String? state,
-    bool? active,
-    List<Fragment$Cart$lines>? lines,
-    int? totalQuantity,
-    int? subTotal,
-    int? subTotalWithTax,
-    int? total,
-    int? totalWithTax,
-    int? shipping,
-    int? shippingWithTax,
-    List<Fragment$Cart$shippingLines>? shippingLines,
-    List<Fragment$Cart$discounts>? discounts,
-    String? $__typename});
-
-  TRes lines(Iterable<Fragment$Cart$lines> Function(
-      Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
-  _fn);
-
-  TRes shippingLines(Iterable<Fragment$Cart$shippingLines> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$shippingLines<
-              Fragment$Cart$shippingLines>>)
-  _fn);
-
-  TRes discounts(Iterable<Fragment$Cart$discounts> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$discounts<Fragment$Cart$discounts>>)
-  _fn);
+  TRes call(
+      {String? id,
+      String? code,
+      String? state,
+      bool? active,
+      List<Fragment$Cart$lines>? lines,
+      int? totalQuantity,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
+      List<Fragment$Cart$shippingLines>? shippingLines,
+      List<Fragment$Cart$discounts>? discounts,
+      String? $__typename});
+  TRes lines(
+      Iterable<Fragment$Cart$lines> Function(
+              Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
+          _fn);
+  TRes shippingLines(
+      Iterable<Fragment$Cart$shippingLines> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$shippingLines<
+                      Fragment$Cart$shippingLines>>)
+          _fn);
+  TRes discounts(
+      Iterable<Fragment$Cart$discounts> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$discounts<Fragment$Cart$discounts>>)
+          _fn);
 }
 
 class _CopyWithImpl$Fragment$Cart<TRes>
@@ -227,21 +225,22 @@ class _CopyWithImpl$Fragment$Cart<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? code = _undefined,
-    Object? state = _undefined,
-    Object? active = _undefined,
-    Object? lines = _undefined,
-    Object? totalQuantity = _undefined,
-    Object? subTotal = _undefined,
-    Object? subTotalWithTax = _undefined,
-    Object? total = _undefined,
-    Object? totalWithTax = _undefined,
-    Object? shipping = _undefined,
-    Object? shippingWithTax = _undefined,
-    Object? shippingLines = _undefined,
-    Object? discounts = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? code = _undefined,
+          Object? state = _undefined,
+          Object? active = _undefined,
+          Object? lines = _undefined,
+          Object? totalQuantity = _undefined,
+          Object? subTotal = _undefined,
+          Object? subTotalWithTax = _undefined,
+          Object? total = _undefined,
+          Object? totalWithTax = _undefined,
+          Object? shipping = _undefined,
+          Object? shippingWithTax = _undefined,
+          Object? shippingLines = _undefined,
+          Object? discounts = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           code: code == _undefined || code == null
@@ -262,8 +261,7 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined ||
-              subTotalWithTax == null
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
               ? _instance.subTotalWithTax
               : (subTotalWithTax as int),
           total: total == _undefined || total == null
@@ -275,45 +273,39 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           shipping: shipping == _undefined || shipping == null
               ? _instance.shipping
               : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined ||
-              shippingWithTax == null
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
               ? _instance.shippingWithTax
               : (shippingWithTax as int),
           shippingLines:
-          shippingLines == _undefined || shippingLines == null ? _instance
-              .shippingLines : (shippingLines as List<
-              Fragment$Cart$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance
-              .discounts : (discounts as List<Fragment$Cart$discounts>),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-
-  TRes lines(Iterable<Fragment$Cart$lines> Function(
-      Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
-  _fn) =>
+              shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Fragment$Cart$shippingLines>),
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Fragment$Cart$discounts>),
+          $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
+  TRes lines(
+          Iterable<Fragment$Cart$lines> Function(
+                  Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
+              _fn) =>
       call(
           lines: _fn(_instance.lines
               .map((e) => CopyWith$Fragment$Cart$lines(e, (i) => i))).toList());
-
-  TRes shippingLines(Iterable<Fragment$Cart$shippingLines> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$shippingLines<
-              Fragment$Cart$shippingLines>>)
-  _fn) =>
+  TRes shippingLines(
+          Iterable<Fragment$Cart$shippingLines> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$shippingLines<
+                          Fragment$Cart$shippingLines>>)
+              _fn) =>
       call(
           shippingLines: _fn(_instance.shippingLines.map(
                   (e) => CopyWith$Fragment$Cart$shippingLines(e, (i) => i)))
               .toList());
-
-  TRes discounts(Iterable<Fragment$Cart$discounts> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$discounts<
-              Fragment$Cart$discounts>>)
-  _fn) =>
+  TRes discounts(
+          Iterable<Fragment$Cart$discounts> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$discounts<
+                          Fragment$Cart$discounts>>)
+              _fn) =>
       call(
           discounts: _fn(_instance.discounts
-              .map((e) => CopyWith$Fragment$Cart$discounts(e, (i) => i)))
+                  .map((e) => CopyWith$Fragment$Cart$discounts(e, (i) => i)))
               .toList());
 }
 
@@ -323,27 +315,25 @@ class _CopyWithStubImpl$Fragment$Cart<TRes>
 
   TRes _res;
 
-  call({String? id,
-    String? code,
-    String? state,
-    bool? active,
-    List<Fragment$Cart$lines>? lines,
-    int? totalQuantity,
-    int? subTotal,
-    int? subTotalWithTax,
-    int? total,
-    int? totalWithTax,
-    int? shipping,
-    int? shippingWithTax,
-    List<Fragment$Cart$shippingLines>? shippingLines,
-    List<Fragment$Cart$discounts>? discounts,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          String? code,
+          String? state,
+          bool? active,
+          List<Fragment$Cart$lines>? lines,
+          int? totalQuantity,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
+          List<Fragment$Cart$shippingLines>? shippingLines,
+          List<Fragment$Cart$discounts>? discounts,
+          String? $__typename}) =>
       _res;
-
   lines(_fn) => _res;
-
   shippingLines(_fn) => _res;
-
   discounts(_fn) => _res;
 }
 
@@ -663,9 +653,10 @@ const documentNodeFragmentCart = DocumentNode(definitions: [
 ]);
 
 extension ClientExtension$Fragment$Cart on graphql.GraphQLClient {
-  void writeFragment$Cart({required Fragment$Cart data,
-    required Map<String, dynamic> idFields,
-    bool broadcast = true}) =>
+  void writeFragment$Cart(
+          {required Fragment$Cart data,
+          required Map<String, dynamic> idFields,
+          bool broadcast = true}) =>
       this.writeFragment(
           graphql.FragmentRequest(
               idFields: idFields,
@@ -673,7 +664,6 @@ extension ClientExtension$Fragment$Cart on graphql.GraphQLClient {
                   fragmentName: 'Cart', document: documentNodeFragmentCart)),
           data: data.toJson(),
           broadcast: broadcast);
-
   Fragment$Cart? readFragment$Cart(
       {required Map<String, dynamic> idFields, bool optimistic = true}) {
     final result = this.readFragment(
@@ -688,16 +678,17 @@ extension ClientExtension$Fragment$Cart on graphql.GraphQLClient {
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart$lines {
-  Fragment$Cart$lines({required this.id,
-    this.featuredAsset,
-    required this.unitPrice,
-    required this.unitPriceWithTax,
-    required this.quantity,
-    required this.linePriceWithTax,
-    required this.discountedLinePriceWithTax,
-    required this.productVariant,
-    required this.discounts,
-    required this.$__typename});
+  Fragment$Cart$lines(
+      {required this.id,
+      this.featuredAsset,
+      required this.unitPrice,
+      required this.unitPriceWithTax,
+      required this.quantity,
+      required this.linePriceWithTax,
+      required this.discountedLinePriceWithTax,
+      required this.productVariant,
+      required this.discounts,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart$lines.fromJson(Map<String, dynamic> json) =>
@@ -725,7 +716,6 @@ class Fragment$Cart$lines {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$Cart$linesToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$featuredAsset = featuredAsset;
@@ -804,32 +794,31 @@ extension UtilityExtension$Fragment$Cart$lines on Fragment$Cart$lines {
 
 abstract class CopyWith$Fragment$Cart$lines<TRes> {
   factory CopyWith$Fragment$Cart$lines(Fragment$Cart$lines instance,
-      TRes Function(Fragment$Cart$lines) then) =
-  _CopyWithImpl$Fragment$Cart$lines;
+          TRes Function(Fragment$Cart$lines) then) =
+      _CopyWithImpl$Fragment$Cart$lines;
 
   factory CopyWith$Fragment$Cart$lines.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$lines;
+      _CopyWithStubImpl$Fragment$Cart$lines;
 
-  TRes call({String? id,
-    Fragment$Asset? featuredAsset,
-    int? unitPrice,
-    int? unitPriceWithTax,
-    int? quantity,
-    int? linePriceWithTax,
-    int? discountedLinePriceWithTax,
-    Fragment$Cart$lines$productVariant? productVariant,
-    List<Fragment$Cart$lines$discounts>? discounts,
-    String? $__typename});
-
+  TRes call(
+      {String? id,
+      Fragment$Asset? featuredAsset,
+      int? unitPrice,
+      int? unitPriceWithTax,
+      int? quantity,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
+      Fragment$Cart$lines$productVariant? productVariant,
+      List<Fragment$Cart$lines$discounts>? discounts,
+      String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
-
   CopyWith$Fragment$Cart$lines$productVariant<TRes> get productVariant;
-
-  TRes discounts(Iterable<Fragment$Cart$lines$discounts> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$lines$discounts<
-              Fragment$Cart$lines$discounts>>)
-  _fn);
+  TRes discounts(
+      Iterable<Fragment$Cart$lines$discounts> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$lines$discounts<
+                      Fragment$Cart$lines$discounts>>)
+          _fn);
 }
 
 class _CopyWithImpl$Fragment$Cart$lines<TRes>
@@ -842,16 +831,17 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? featuredAsset = _undefined,
-    Object? unitPrice = _undefined,
-    Object? unitPriceWithTax = _undefined,
-    Object? quantity = _undefined,
-    Object? linePriceWithTax = _undefined,
-    Object? discountedLinePriceWithTax = _undefined,
-    Object? productVariant = _undefined,
-    Object? discounts = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? unitPrice = _undefined,
+          Object? unitPriceWithTax = _undefined,
+          Object? quantity = _undefined,
+          Object? linePriceWithTax = _undefined,
+          Object? discountedLinePriceWithTax = _undefined,
+          Object? productVariant = _undefined,
+          Object? discounts = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           featuredAsset: featuredAsset == _undefined
@@ -860,20 +850,17 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
               : (unitPrice as int),
-          unitPriceWithTax: unitPriceWithTax == _undefined ||
-              unitPriceWithTax == null
+          unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
               : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
-          linePriceWithTax: linePriceWithTax == _undefined ||
-              linePriceWithTax == null
+          linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
               : (linePriceWithTax as int),
-          discountedLinePriceWithTax: discountedLinePriceWithTax ==
-              _undefined ||
-              discountedLinePriceWithTax == null
+          discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
+                  discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
               : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
@@ -885,13 +872,12 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
         ? CopyWith$Fragment$Asset.stub(_then(_instance))
         : CopyWith$Fragment$Asset(
-        local$featuredAsset, (e) => call(featuredAsset: e));
+            local$featuredAsset, (e) => call(featuredAsset: e));
   }
 
   CopyWith$Fragment$Cart$lines$productVariant<TRes> get productVariant {
@@ -900,11 +886,12 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
         local$productVariant, (e) => call(productVariant: e));
   }
 
-  TRes discounts(Iterable<Fragment$Cart$lines$discounts> Function(
-      Iterable<
-          CopyWith$Fragment$Cart$lines$discounts<
-              Fragment$Cart$lines$discounts>>)
-  _fn) =>
+  TRes discounts(
+          Iterable<Fragment$Cart$lines$discounts> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$lines$discounts<
+                          Fragment$Cart$lines$discounts>>)
+              _fn) =>
       call(
           discounts: _fn(_instance.discounts.map(
                   (e) => CopyWith$Fragment$Cart$lines$discounts(e, (i) => i)))
@@ -917,24 +904,22 @@ class _CopyWithStubImpl$Fragment$Cart$lines<TRes>
 
   TRes _res;
 
-  call({String? id,
-    Fragment$Asset? featuredAsset,
-    int? unitPrice,
-    int? unitPriceWithTax,
-    int? quantity,
-    int? linePriceWithTax,
-    int? discountedLinePriceWithTax,
-    Fragment$Cart$lines$productVariant? productVariant,
-    List<Fragment$Cart$lines$discounts>? discounts,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          Fragment$Asset? featuredAsset,
+          int? unitPrice,
+          int? unitPriceWithTax,
+          int? quantity,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
+          Fragment$Cart$lines$productVariant? productVariant,
+          List<Fragment$Cart$lines$discounts>? discounts,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
       CopyWith$Fragment$Asset.stub(_res);
-
   CopyWith$Fragment$Cart$lines$productVariant<TRes> get productVariant =>
       CopyWith$Fragment$Cart$lines$productVariant.stub(_res);
-
   discounts(_fn) => _res;
 }
 
@@ -945,7 +930,7 @@ class Fragment$Cart$lines$productVariant {
 
   @override
   factory Fragment$Cart$lines$productVariant.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Fragment$Cart$lines$productVariantFromJson(json);
 
   final String id;
@@ -957,7 +942,6 @@ class Fragment$Cart$lines$productVariant {
 
   Map<String, dynamic> toJson() =>
       _$Fragment$Cart$lines$productVariantToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$name = name;
@@ -984,21 +968,21 @@ class Fragment$Cart$lines$productVariant {
 }
 
 extension UtilityExtension$Fragment$Cart$lines$productVariant
-on Fragment$Cart$lines$productVariant {
+    on Fragment$Cart$lines$productVariant {
   CopyWith$Fragment$Cart$lines$productVariant<
-      Fragment$Cart$lines$productVariant>
-  get copyWith =>
-      CopyWith$Fragment$Cart$lines$productVariant(this, (i) => i);
+          Fragment$Cart$lines$productVariant>
+      get copyWith =>
+          CopyWith$Fragment$Cart$lines$productVariant(this, (i) => i);
 }
 
 abstract class CopyWith$Fragment$Cart$lines$productVariant<TRes> {
   factory CopyWith$Fragment$Cart$lines$productVariant(
-      Fragment$Cart$lines$productVariant instance,
-      TRes Function(Fragment$Cart$lines$productVariant) then) =
-  _CopyWithImpl$Fragment$Cart$lines$productVariant;
+          Fragment$Cart$lines$productVariant instance,
+          TRes Function(Fragment$Cart$lines$productVariant) then) =
+      _CopyWithImpl$Fragment$Cart$lines$productVariant;
 
   factory CopyWith$Fragment$Cart$lines$productVariant.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$lines$productVariant;
+      _CopyWithStubImpl$Fragment$Cart$lines$productVariant;
 
   TRes call({String? id, String? name, String? $__typename});
 }
@@ -1013,9 +997,10 @@ class _CopyWithImpl$Fragment$Cart$lines$productVariant<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$lines$productVariant(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           name: name == _undefined || name == null
@@ -1037,12 +1022,13 @@ class _CopyWithStubImpl$Fragment$Cart$lines$productVariant<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart$lines$discounts {
-  Fragment$Cart$lines$discounts({required this.amount,
-    required this.amountWithTax,
-    required this.description,
-    required this.adjustmentSource,
-    required this.type,
-    required this.$__typename});
+  Fragment$Cart$lines$discounts(
+      {required this.amount,
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart$lines$discounts.fromJson(Map<String, dynamic> json) =>
@@ -1063,7 +1049,6 @@ class Fragment$Cart$lines$discounts {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$Cart$lines$discountsToJson(this);
-
   int get hashCode {
     final l$amount = amount;
     final l$amountWithTax = amountWithTax;
@@ -1109,26 +1094,27 @@ class Fragment$Cart$lines$discounts {
 }
 
 extension UtilityExtension$Fragment$Cart$lines$discounts
-on Fragment$Cart$lines$discounts {
+    on Fragment$Cart$lines$discounts {
   CopyWith$Fragment$Cart$lines$discounts<Fragment$Cart$lines$discounts>
-  get copyWith => CopyWith$Fragment$Cart$lines$discounts(this, (i) => i);
+      get copyWith => CopyWith$Fragment$Cart$lines$discounts(this, (i) => i);
 }
 
 abstract class CopyWith$Fragment$Cart$lines$discounts<TRes> {
   factory CopyWith$Fragment$Cart$lines$discounts(
-      Fragment$Cart$lines$discounts instance,
-      TRes Function(Fragment$Cart$lines$discounts) then) =
-  _CopyWithImpl$Fragment$Cart$lines$discounts;
+          Fragment$Cart$lines$discounts instance,
+          TRes Function(Fragment$Cart$lines$discounts) then) =
+      _CopyWithImpl$Fragment$Cart$lines$discounts;
 
   factory CopyWith$Fragment$Cart$lines$discounts.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$lines$discounts;
+      _CopyWithStubImpl$Fragment$Cart$lines$discounts;
 
-  TRes call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename});
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Fragment$Cart$lines$discounts<TRes>
@@ -1141,12 +1127,13 @@ class _CopyWithImpl$Fragment$Cart$lines$discounts<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? amount = _undefined,
-    Object? amountWithTax = _undefined,
-    Object? description = _undefined,
-    Object? adjustmentSource = _undefined,
-    Object? type = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
@@ -1158,9 +1145,9 @@ class _CopyWithImpl$Fragment$Cart$lines$discounts<TRes>
               ? _instance.description
               : (description as String),
           adjustmentSource:
-          adjustmentSource == _undefined || adjustmentSource == null
-              ? _instance.adjustmentSource
-              : (adjustmentSource as String),
+              adjustmentSource == _undefined || adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
           type: type == _undefined || type == null
               ? _instance.type
               : (type as Enum$AdjustmentType),
@@ -1175,20 +1162,22 @@ class _CopyWithStubImpl$Fragment$Cart$lines$discounts<TRes>
 
   TRes _res;
 
-  call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename}) =>
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
       _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart$shippingLines {
-  Fragment$Cart$shippingLines({required this.priceWithTax,
-    required this.shippingMethod,
-    required this.$__typename});
+  Fragment$Cart$shippingLines(
+      {required this.priceWithTax,
+      required this.shippingMethod,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart$shippingLines.fromJson(Map<String, dynamic> json) =>
@@ -1202,7 +1191,6 @@ class Fragment$Cart$shippingLines {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$Cart$shippingLinesToJson(this);
-
   int get hashCode {
     final l$priceWithTax = priceWithTax;
     final l$shippingMethod = shippingMethod;
@@ -1229,24 +1217,24 @@ class Fragment$Cart$shippingLines {
 }
 
 extension UtilityExtension$Fragment$Cart$shippingLines
-on Fragment$Cart$shippingLines {
+    on Fragment$Cart$shippingLines {
   CopyWith$Fragment$Cart$shippingLines<Fragment$Cart$shippingLines>
-  get copyWith => CopyWith$Fragment$Cart$shippingLines(this, (i) => i);
+      get copyWith => CopyWith$Fragment$Cart$shippingLines(this, (i) => i);
 }
 
 abstract class CopyWith$Fragment$Cart$shippingLines<TRes> {
   factory CopyWith$Fragment$Cart$shippingLines(
-      Fragment$Cart$shippingLines instance,
-      TRes Function(Fragment$Cart$shippingLines) then) =
-  _CopyWithImpl$Fragment$Cart$shippingLines;
+          Fragment$Cart$shippingLines instance,
+          TRes Function(Fragment$Cart$shippingLines) then) =
+      _CopyWithImpl$Fragment$Cart$shippingLines;
 
   factory CopyWith$Fragment$Cart$shippingLines.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$shippingLines;
+      _CopyWithStubImpl$Fragment$Cart$shippingLines;
 
-  TRes call({int? priceWithTax,
-    Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
-    String? $__typename});
-
+  TRes call(
+      {int? priceWithTax,
+      Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
+      String? $__typename});
   CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes> get shippingMethod;
 }
 
@@ -1260,9 +1248,10 @@ class _CopyWithImpl$Fragment$Cart$shippingLines<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? priceWithTax = _undefined,
-    Object? shippingMethod = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? priceWithTax = _undefined,
+          Object? shippingMethod = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
@@ -1273,7 +1262,6 @@ class _CopyWithImpl$Fragment$Cart$shippingLines<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes> get shippingMethod {
     final local$shippingMethod = _instance.shippingMethod;
     return CopyWith$Fragment$Cart$shippingLines$shippingMethod(
@@ -1287,27 +1275,28 @@ class _CopyWithStubImpl$Fragment$Cart$shippingLines<TRes>
 
   TRes _res;
 
-  call({int? priceWithTax,
-    Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
-    String? $__typename}) =>
+  call(
+          {int? priceWithTax,
+          Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes>
-  get shippingMethod =>
-      CopyWith$Fragment$Cart$shippingLines$shippingMethod.stub(_res);
+      get shippingMethod =>
+          CopyWith$Fragment$Cart$shippingLines$shippingMethod.stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart$shippingLines$shippingMethod {
-  Fragment$Cart$shippingLines$shippingMethod({required this.id,
-    required this.code,
-    required this.name,
-    required this.description,
-    required this.$__typename});
+  Fragment$Cart$shippingLines$shippingMethod(
+      {required this.id,
+      required this.code,
+      required this.name,
+      required this.description,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart$shippingLines$shippingMethod.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Fragment$Cart$shippingLines$shippingMethodFromJson(json);
 
   final String id;
@@ -1323,7 +1312,6 @@ class Fragment$Cart$shippingLines$shippingMethod {
 
   Map<String, dynamic> toJson() =>
       _$Fragment$Cart$shippingLines$shippingMethodToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$code = code;
@@ -1358,33 +1346,34 @@ class Fragment$Cart$shippingLines$shippingMethod {
 }
 
 extension UtilityExtension$Fragment$Cart$shippingLines$shippingMethod
-on Fragment$Cart$shippingLines$shippingMethod {
+    on Fragment$Cart$shippingLines$shippingMethod {
   CopyWith$Fragment$Cart$shippingLines$shippingMethod<
-      Fragment$Cart$shippingLines$shippingMethod>
-  get copyWith =>
-      CopyWith$Fragment$Cart$shippingLines$shippingMethod(this, (i) => i);
+          Fragment$Cart$shippingLines$shippingMethod>
+      get copyWith =>
+          CopyWith$Fragment$Cart$shippingLines$shippingMethod(this, (i) => i);
 }
 
 abstract class CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes> {
   factory CopyWith$Fragment$Cart$shippingLines$shippingMethod(
-      Fragment$Cart$shippingLines$shippingMethod instance,
-      TRes Function(Fragment$Cart$shippingLines$shippingMethod) then) =
-  _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod;
+          Fragment$Cart$shippingLines$shippingMethod instance,
+          TRes Function(Fragment$Cart$shippingLines$shippingMethod) then) =
+      _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod;
 
   factory CopyWith$Fragment$Cart$shippingLines$shippingMethod.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$shippingLines$shippingMethod;
+      _CopyWithStubImpl$Fragment$Cart$shippingLines$shippingMethod;
 
-  TRes call({String? id,
-    String? code,
-    String? name,
-    String? description,
-    String? $__typename});
+  TRes call(
+      {String? id,
+      String? code,
+      String? name,
+      String? description,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod<TRes>
     implements CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes> {
-  _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod(this._instance,
-      this._then);
+  _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod(
+      this._instance, this._then);
 
   final Fragment$Cart$shippingLines$shippingMethod _instance;
 
@@ -1392,11 +1381,12 @@ class _CopyWithImpl$Fragment$Cart$shippingLines$shippingMethod<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? code = _undefined,
-    Object? name = _undefined,
-    Object? description = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? code = _undefined,
+          Object? name = _undefined,
+          Object? description = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$shippingLines$shippingMethod(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           code: code == _undefined || code == null
@@ -1419,22 +1409,24 @@ class _CopyWithStubImpl$Fragment$Cart$shippingLines$shippingMethod<TRes>
 
   TRes _res;
 
-  call({String? id,
-    String? code,
-    String? name,
-    String? description,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          String? code,
+          String? name,
+          String? description,
+          String? $__typename}) =>
       _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Cart$discounts {
-  Fragment$Cart$discounts({required this.amount,
-    required this.amountWithTax,
-    required this.description,
-    required this.adjustmentSource,
-    required this.type,
-    required this.$__typename});
+  Fragment$Cart$discounts(
+      {required this.amount,
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
 
   @override
   factory Fragment$Cart$discounts.fromJson(Map<String, dynamic> json) =>
@@ -1455,7 +1447,6 @@ class Fragment$Cart$discounts {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$Cart$discountsToJson(this);
-
   int get hashCode {
     final l$amount = amount;
     final l$amountWithTax = amountWithTax;
@@ -1507,18 +1498,19 @@ extension UtilityExtension$Fragment$Cart$discounts on Fragment$Cart$discounts {
 
 abstract class CopyWith$Fragment$Cart$discounts<TRes> {
   factory CopyWith$Fragment$Cart$discounts(Fragment$Cart$discounts instance,
-      TRes Function(Fragment$Cart$discounts) then) =
-  _CopyWithImpl$Fragment$Cart$discounts;
+          TRes Function(Fragment$Cart$discounts) then) =
+      _CopyWithImpl$Fragment$Cart$discounts;
 
   factory CopyWith$Fragment$Cart$discounts.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Cart$discounts;
+      _CopyWithStubImpl$Fragment$Cart$discounts;
 
-  TRes call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename});
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Fragment$Cart$discounts<TRes>
@@ -1531,12 +1523,13 @@ class _CopyWithImpl$Fragment$Cart$discounts<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? amount = _undefined,
-    Object? amountWithTax = _undefined,
-    Object? description = _undefined,
-    Object? adjustmentSource = _undefined,
-    Object? type = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
@@ -1548,9 +1541,9 @@ class _CopyWithImpl$Fragment$Cart$discounts<TRes>
               ? _instance.description
               : (description as String),
           adjustmentSource:
-          adjustmentSource == _undefined || adjustmentSource == null
-              ? _instance.adjustmentSource
-              : (adjustmentSource as String),
+              adjustmentSource == _undefined || adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
           type: type == _undefined || type == null
               ? _instance.type
               : (type as Enum$AdjustmentType),
@@ -1565,24 +1558,26 @@ class _CopyWithStubImpl$Fragment$Cart$discounts<TRes>
 
   TRes _res;
 
-  call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename}) =>
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
       _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$Asset {
-  Fragment$Asset({required this.id,
-    required this.width,
-    required this.height,
-    required this.name,
-    required this.preview,
-    this.focalPoint,
-    required this.$__typename});
+  Fragment$Asset(
+      {required this.id,
+      required this.width,
+      required this.height,
+      required this.name,
+      required this.preview,
+      this.focalPoint,
+      required this.$__typename});
 
   @override
   factory Fragment$Asset.fromJson(Map<String, dynamic> json) =>
@@ -1604,7 +1599,6 @@ class Fragment$Asset {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$AssetToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$width = width;
@@ -1660,21 +1654,21 @@ extension UtilityExtension$Fragment$Asset on Fragment$Asset {
 }
 
 abstract class CopyWith$Fragment$Asset<TRes> {
-  factory CopyWith$Fragment$Asset(Fragment$Asset instance,
-      TRes Function(Fragment$Asset) then) =
-  _CopyWithImpl$Fragment$Asset;
+  factory CopyWith$Fragment$Asset(
+          Fragment$Asset instance, TRes Function(Fragment$Asset) then) =
+      _CopyWithImpl$Fragment$Asset;
 
   factory CopyWith$Fragment$Asset.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Asset;
+      _CopyWithStubImpl$Fragment$Asset;
 
-  TRes call({String? id,
-    int? width,
-    int? height,
-    String? name,
-    String? preview,
-    Fragment$Asset$focalPoint? focalPoint,
-    String? $__typename});
-
+  TRes call(
+      {String? id,
+      int? width,
+      int? height,
+      String? name,
+      String? preview,
+      Fragment$Asset$focalPoint? focalPoint,
+      String? $__typename});
   CopyWith$Fragment$Asset$focalPoint<TRes> get focalPoint;
 }
 
@@ -1688,13 +1682,14 @@ class _CopyWithImpl$Fragment$Asset<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? width = _undefined,
-    Object? height = _undefined,
-    Object? name = _undefined,
-    Object? preview = _undefined,
-    Object? focalPoint = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? width = _undefined,
+          Object? height = _undefined,
+          Object? name = _undefined,
+          Object? preview = _undefined,
+          Object? focalPoint = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Asset(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           width: width == _undefined || width == null
@@ -1715,13 +1710,12 @@ class _CopyWithImpl$Fragment$Asset<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Fragment$Asset$focalPoint<TRes> get focalPoint {
     final local$focalPoint = _instance.focalPoint;
     return local$focalPoint == null
         ? CopyWith$Fragment$Asset$focalPoint.stub(_then(_instance))
         : CopyWith$Fragment$Asset$focalPoint(
-        local$focalPoint, (e) => call(focalPoint: e));
+            local$focalPoint, (e) => call(focalPoint: e));
   }
 }
 
@@ -1731,15 +1725,15 @@ class _CopyWithStubImpl$Fragment$Asset<TRes>
 
   TRes _res;
 
-  call({String? id,
-    int? width,
-    int? height,
-    String? name,
-    String? preview,
-    Fragment$Asset$focalPoint? focalPoint,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          int? width,
+          int? height,
+          String? name,
+          String? preview,
+          Fragment$Asset$focalPoint? focalPoint,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Fragment$Asset$focalPoint<TRes> get focalPoint =>
       CopyWith$Fragment$Asset$focalPoint.stub(_res);
 }
@@ -1817,9 +1811,10 @@ const documentNodeFragmentAsset = DocumentNode(definitions: [
 ]);
 
 extension ClientExtension$Fragment$Asset on graphql.GraphQLClient {
-  void writeFragment$Asset({required Fragment$Asset data,
-    required Map<String, dynamic> idFields,
-    bool broadcast = true}) =>
+  void writeFragment$Asset(
+          {required Fragment$Asset data,
+          required Map<String, dynamic> idFields,
+          bool broadcast = true}) =>
       this.writeFragment(
           graphql.FragmentRequest(
               idFields: idFields,
@@ -1827,7 +1822,6 @@ extension ClientExtension$Fragment$Asset on graphql.GraphQLClient {
                   fragmentName: 'Asset', document: documentNodeFragmentAsset)),
           data: data.toJson(),
           broadcast: broadcast);
-
   Fragment$Asset? readFragment$Asset(
       {required Map<String, dynamic> idFields, bool optimistic = true}) {
     final result = this.readFragment(
@@ -1857,7 +1851,6 @@ class Fragment$Asset$focalPoint {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$Asset$focalPointToJson(this);
-
   int get hashCode {
     final l$x = x;
     final l$y = y;
@@ -1884,18 +1877,18 @@ class Fragment$Asset$focalPoint {
 }
 
 extension UtilityExtension$Fragment$Asset$focalPoint
-on Fragment$Asset$focalPoint {
+    on Fragment$Asset$focalPoint {
   CopyWith$Fragment$Asset$focalPoint<Fragment$Asset$focalPoint> get copyWith =>
       CopyWith$Fragment$Asset$focalPoint(this, (i) => i);
 }
 
 abstract class CopyWith$Fragment$Asset$focalPoint<TRes> {
   factory CopyWith$Fragment$Asset$focalPoint(Fragment$Asset$focalPoint instance,
-      TRes Function(Fragment$Asset$focalPoint) then) =
-  _CopyWithImpl$Fragment$Asset$focalPoint;
+          TRes Function(Fragment$Asset$focalPoint) then) =
+      _CopyWithImpl$Fragment$Asset$focalPoint;
 
   factory CopyWith$Fragment$Asset$focalPoint.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$Asset$focalPoint;
+      _CopyWithStubImpl$Fragment$Asset$focalPoint;
 
   TRes call({double? x, double? y, String? $__typename});
 }
@@ -1910,9 +1903,10 @@ class _CopyWithImpl$Fragment$Asset$focalPoint<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? x = _undefined,
-    Object? y = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? x = _undefined,
+          Object? y = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$Asset$focalPoint(
           x: x == _undefined || x == null ? _instance.x : (x as double),
           y: y == _undefined || y == null ? _instance.y : (y as double),
@@ -1932,9 +1926,10 @@ class _CopyWithStubImpl$Fragment$Asset$focalPoint<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Fragment$ErrorResult {
-  Fragment$ErrorResult({required this.errorCode,
-    required this.message,
-    required this.$__typename});
+  Fragment$ErrorResult(
+      {required this.errorCode,
+      required this.message,
+      required this.$__typename});
 
   @override
   factory Fragment$ErrorResult.fromJson(Map<String, dynamic> json) =>
@@ -1949,7 +1944,6 @@ class Fragment$ErrorResult {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Fragment$ErrorResultToJson(this);
-
   int get hashCode {
     final l$errorCode = errorCode;
     final l$message = message;
@@ -1982,11 +1976,11 @@ extension UtilityExtension$Fragment$ErrorResult on Fragment$ErrorResult {
 
 abstract class CopyWith$Fragment$ErrorResult<TRes> {
   factory CopyWith$Fragment$ErrorResult(Fragment$ErrorResult instance,
-      TRes Function(Fragment$ErrorResult) then) =
-  _CopyWithImpl$Fragment$ErrorResult;
+          TRes Function(Fragment$ErrorResult) then) =
+      _CopyWithImpl$Fragment$ErrorResult;
 
   factory CopyWith$Fragment$ErrorResult.stub(TRes res) =
-  _CopyWithStubImpl$Fragment$ErrorResult;
+      _CopyWithStubImpl$Fragment$ErrorResult;
 
   TRes call({Enum$ErrorCode? errorCode, String? message, String? $__typename});
 }
@@ -2001,9 +1995,10 @@ class _CopyWithImpl$Fragment$ErrorResult<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? errorCode = _undefined,
-    Object? message = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? errorCode = _undefined,
+          Object? message = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Fragment$ErrorResult(
           errorCode: errorCode == _undefined || errorCode == null
               ? _instance.errorCode
@@ -2057,9 +2052,10 @@ const documentNodeFragmentErrorResult = DocumentNode(definitions: [
 ]);
 
 extension ClientExtension$Fragment$ErrorResult on graphql.GraphQLClient {
-  void writeFragment$ErrorResult({required Fragment$ErrorResult data,
-    required Map<String, dynamic> idFields,
-    bool broadcast = true}) =>
+  void writeFragment$ErrorResult(
+          {required Fragment$ErrorResult data,
+          required Map<String, dynamic> idFields,
+          bool broadcast = true}) =>
       this.writeFragment(
           graphql.FragmentRequest(
               idFields: idFields,
@@ -2068,7 +2064,6 @@ extension ClientExtension$Fragment$ErrorResult on graphql.GraphQLClient {
                   document: documentNodeFragmentErrorResult)),
           data: data.toJson(),
           broadcast: broadcast);
-
   Fragment$ErrorResult? readFragment$ErrorResult(
       {required Map<String, dynamic> idFields, bool optimistic = true}) {
     final result = this.readFragment(
@@ -2096,7 +2091,6 @@ class Query$GetCartTotals {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Query$GetCartTotalsToJson(this);
-
   int get hashCode {
     final l$activeOrder = activeOrder;
     final l$$__typename = $__typename;
@@ -2125,15 +2119,14 @@ extension UtilityExtension$Query$GetCartTotals on Query$GetCartTotals {
 
 abstract class CopyWith$Query$GetCartTotals<TRes> {
   factory CopyWith$Query$GetCartTotals(Query$GetCartTotals instance,
-      TRes Function(Query$GetCartTotals) then) =
-  _CopyWithImpl$Query$GetCartTotals;
+          TRes Function(Query$GetCartTotals) then) =
+      _CopyWithImpl$Query$GetCartTotals;
 
   factory CopyWith$Query$GetCartTotals.stub(TRes res) =
-  _CopyWithStubImpl$Query$GetCartTotals;
+      _CopyWithStubImpl$Query$GetCartTotals;
 
   TRes call(
       {Query$GetCartTotals$activeOrder? activeOrder, String? $__typename});
-
   CopyWith$Query$GetCartTotals$activeOrder<TRes> get activeOrder;
 }
 
@@ -2147,8 +2140,9 @@ class _CopyWithImpl$Query$GetCartTotals<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? activeOrder = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? activeOrder = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Query$GetCartTotals(
           activeOrder: activeOrder == _undefined
               ? _instance.activeOrder
@@ -2156,13 +2150,12 @@ class _CopyWithImpl$Query$GetCartTotals<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Query$GetCartTotals$activeOrder<TRes> get activeOrder {
     final local$activeOrder = _instance.activeOrder;
     return local$activeOrder == null
         ? CopyWith$Query$GetCartTotals$activeOrder.stub(_then(_instance))
         : CopyWith$Query$GetCartTotals$activeOrder(
-        local$activeOrder, (e) => call(activeOrder: e));
+            local$activeOrder, (e) => call(activeOrder: e));
   }
 }
 
@@ -2174,7 +2167,6 @@ class _CopyWithStubImpl$Query$GetCartTotals<TRes>
 
   call({Query$GetCartTotals$activeOrder? activeOrder, String? $__typename}) =>
       _res;
-
   CopyWith$Query$GetCartTotals$activeOrder<TRes> get activeOrder =>
       CopyWith$Query$GetCartTotals$activeOrder.stub(_res);
 }
@@ -2231,120 +2223,119 @@ const documentNodeQueryGetCartTotals = DocumentNode(definitions: [
             selectionSet: null)
       ])),
 ]);
-
 Query$GetCartTotals _parserFn$Query$GetCartTotals(Map<String, dynamic> data) =>
     Query$GetCartTotals.fromJson(data);
 
 class Options$Query$GetCartTotals
     extends graphql.QueryOptions<Query$GetCartTotals> {
-  Options$Query$GetCartTotals({String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context})
+  Options$Query$GetCartTotals(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
       : super(
-      operationName: operationName,
-      fetchPolicy: fetchPolicy,
-      errorPolicy: errorPolicy,
-      cacheRereadPolicy: cacheRereadPolicy,
-      optimisticResult: optimisticResult,
-      pollInterval: pollInterval,
-      context: context,
-      document: documentNodeQueryGetCartTotals,
-      parserFn: _parserFn$Query$GetCartTotals);
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryGetCartTotals,
+            parserFn: _parserFn$Query$GetCartTotals);
 }
 
 class WatchOptions$Query$GetCartTotals
     extends graphql.WatchQueryOptions<Query$GetCartTotals> {
-  WatchOptions$Query$GetCartTotals({String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false})
+  WatchOptions$Query$GetCartTotals(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
       : super(
-      operationName: operationName,
-      fetchPolicy: fetchPolicy,
-      errorPolicy: errorPolicy,
-      cacheRereadPolicy: cacheRereadPolicy,
-      optimisticResult: optimisticResult,
-      context: context,
-      document: documentNodeQueryGetCartTotals,
-      pollInterval: pollInterval,
-      eagerlyFetchResults: eagerlyFetchResults,
-      carryForwardDataOnException: carryForwardDataOnException,
-      fetchResults: fetchResults,
-      parserFn: _parserFn$Query$GetCartTotals);
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryGetCartTotals,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$GetCartTotals);
 }
 
 class FetchMoreOptions$Query$GetCartTotals extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetCartTotals(
       {required graphql.UpdateQuery updateQuery})
       : super(
-      updateQuery: updateQuery, document: documentNodeQueryGetCartTotals);
+            updateQuery: updateQuery, document: documentNodeQueryGetCartTotals);
 }
 
 extension ClientExtension$Query$GetCartTotals on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetCartTotals>> query$GetCartTotals(
-      [Options$Query$GetCartTotals? options]) async =>
+          [Options$Query$GetCartTotals? options]) async =>
       await this.query(options ?? Options$Query$GetCartTotals());
-
   graphql.ObservableQuery<Query$GetCartTotals> watchQuery$GetCartTotals(
-      [WatchOptions$Query$GetCartTotals? options]) =>
+          [WatchOptions$Query$GetCartTotals? options]) =>
       this.watchQuery(options ?? WatchOptions$Query$GetCartTotals());
-
   void writeQuery$GetCartTotals(
-      {required Query$GetCartTotals data, bool broadcast = true}) =>
+          {required Query$GetCartTotals data, bool broadcast = true}) =>
       this.writeQuery(
           graphql.Request(
               operation:
-              graphql.Operation(document: documentNodeQueryGetCartTotals)),
+                  graphql.Operation(document: documentNodeQueryGetCartTotals)),
           data: data.toJson(),
           broadcast: broadcast);
-
   Query$GetCartTotals? readQuery$GetCartTotals({bool optimistic = true}) {
     final result = this.readQuery(
         graphql.Request(
             operation:
-            graphql.Operation(document: documentNodeQueryGetCartTotals)),
+                graphql.Operation(document: documentNodeQueryGetCartTotals)),
         optimistic: optimistic);
     return result == null ? null : Query$GetCartTotals.fromJson(result);
   }
 }
 
 graphql_flutter.QueryHookResult<Query$GetCartTotals> useQuery$GetCartTotals(
-    [Options$Query$GetCartTotals? options]) =>
+        [Options$Query$GetCartTotals? options]) =>
     graphql_flutter.useQuery(options ?? Options$Query$GetCartTotals());
-
 graphql.ObservableQuery<Query$GetCartTotals> useWatchQuery$GetCartTotals(
-    [WatchOptions$Query$GetCartTotals? options]) =>
+        [WatchOptions$Query$GetCartTotals? options]) =>
     graphql_flutter
         .useWatchQuery(options ?? WatchOptions$Query$GetCartTotals());
 
 class Query$GetCartTotals$Widget
     extends graphql_flutter.Query<Query$GetCartTotals> {
-  Query$GetCartTotals$Widget({widgets.Key? key,
-    Options$Query$GetCartTotals? options,
-    required graphql_flutter.QueryBuilder<Query$GetCartTotals> builder})
+  Query$GetCartTotals$Widget(
+      {widgets.Key? key,
+      Options$Query$GetCartTotals? options,
+      required graphql_flutter.QueryBuilder<Query$GetCartTotals> builder})
       : super(
-      key: key,
-      options: options ?? Options$Query$GetCartTotals(),
-      builder: builder);
+            key: key,
+            options: options ?? Options$Query$GetCartTotals(),
+            builder: builder);
 }
 
 @JsonSerializable(explicitToJson: true)
 class Query$GetCartTotals$activeOrder {
-  Query$GetCartTotals$activeOrder({required this.id,
-    required this.active,
-    required this.totalQuantity,
-    required this.totalWithTax,
-    required this.$__typename});
+  Query$GetCartTotals$activeOrder(
+      {required this.id,
+      required this.active,
+      required this.totalQuantity,
+      required this.totalWithTax,
+      required this.$__typename});
 
   @override
   factory Query$GetCartTotals$activeOrder.fromJson(Map<String, dynamic> json) =>
@@ -2363,7 +2354,6 @@ class Query$GetCartTotals$activeOrder {
 
   Map<String, dynamic> toJson() =>
       _$Query$GetCartTotals$activeOrderToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$active = active;
@@ -2399,25 +2389,26 @@ class Query$GetCartTotals$activeOrder {
 }
 
 extension UtilityExtension$Query$GetCartTotals$activeOrder
-on Query$GetCartTotals$activeOrder {
+    on Query$GetCartTotals$activeOrder {
   CopyWith$Query$GetCartTotals$activeOrder<Query$GetCartTotals$activeOrder>
-  get copyWith => CopyWith$Query$GetCartTotals$activeOrder(this, (i) => i);
+      get copyWith => CopyWith$Query$GetCartTotals$activeOrder(this, (i) => i);
 }
 
 abstract class CopyWith$Query$GetCartTotals$activeOrder<TRes> {
   factory CopyWith$Query$GetCartTotals$activeOrder(
-      Query$GetCartTotals$activeOrder instance,
-      TRes Function(Query$GetCartTotals$activeOrder) then) =
-  _CopyWithImpl$Query$GetCartTotals$activeOrder;
+          Query$GetCartTotals$activeOrder instance,
+          TRes Function(Query$GetCartTotals$activeOrder) then) =
+      _CopyWithImpl$Query$GetCartTotals$activeOrder;
 
   factory CopyWith$Query$GetCartTotals$activeOrder.stub(TRes res) =
-  _CopyWithStubImpl$Query$GetCartTotals$activeOrder;
+      _CopyWithStubImpl$Query$GetCartTotals$activeOrder;
 
-  TRes call({String? id,
-    bool? active,
-    int? totalQuantity,
-    int? totalWithTax,
-    String? $__typename});
+  TRes call(
+      {String? id,
+      bool? active,
+      int? totalQuantity,
+      int? totalWithTax,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetCartTotals$activeOrder<TRes>
@@ -2430,11 +2421,12 @@ class _CopyWithImpl$Query$GetCartTotals$activeOrder<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? active = _undefined,
-    Object? totalQuantity = _undefined,
-    Object? totalWithTax = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? active = _undefined,
+          Object? totalQuantity = _undefined,
+          Object? totalWithTax = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Query$GetCartTotals$activeOrder(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           active: active == _undefined || active == null
@@ -2457,11 +2449,12 @@ class _CopyWithStubImpl$Query$GetCartTotals$activeOrder<TRes>
 
   TRes _res;
 
-  call({String? id,
-    bool? active,
-    int? totalQuantity,
-    int? totalWithTax,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          bool? active,
+          int? totalQuantity,
+          int? totalWithTax,
+          String? $__typename}) =>
       _res;
 }
 
@@ -2478,7 +2471,6 @@ class Variables$Mutation$AddToCart {
   final int qty;
 
   Map<String, dynamic> toJson() => _$Variables$Mutation$AddToCartToJson(this);
-
   int get hashCode {
     final l$variantId = variantId;
     final l$qty = qty;
@@ -2500,17 +2492,17 @@ class Variables$Mutation$AddToCart {
   }
 
   CopyWith$Variables$Mutation$AddToCart<Variables$Mutation$AddToCart>
-  get copyWith => CopyWith$Variables$Mutation$AddToCart(this, (i) => i);
+      get copyWith => CopyWith$Variables$Mutation$AddToCart(this, (i) => i);
 }
 
 abstract class CopyWith$Variables$Mutation$AddToCart<TRes> {
   factory CopyWith$Variables$Mutation$AddToCart(
-      Variables$Mutation$AddToCart instance,
-      TRes Function(Variables$Mutation$AddToCart) then) =
-  _CopyWithImpl$Variables$Mutation$AddToCart;
+          Variables$Mutation$AddToCart instance,
+          TRes Function(Variables$Mutation$AddToCart) then) =
+      _CopyWithImpl$Variables$Mutation$AddToCart;
 
   factory CopyWith$Variables$Mutation$AddToCart.stub(TRes res) =
-  _CopyWithStubImpl$Variables$Mutation$AddToCart;
+      _CopyWithStubImpl$Variables$Mutation$AddToCart;
 
   TRes call({String? variantId, int? qty});
 }
@@ -2531,7 +2523,7 @@ class _CopyWithImpl$Variables$Mutation$AddToCart<TRes>
               ? _instance.variantId
               : (variantId as String),
           qty:
-          qty == _undefined || qty == null ? _instance.qty : (qty as int)));
+              qty == _undefined || qty == null ? _instance.qty : (qty as int)));
 }
 
 class _CopyWithStubImpl$Variables$Mutation$AddToCart<TRes>
@@ -2557,7 +2549,6 @@ class Mutation$AddToCart {
   final String $__typename;
 
   Map<String, dynamic> toJson() => _$Mutation$AddToCartToJson(this);
-
   int get hashCode {
     final l$addItemToOrder = addItemToOrder;
     final l$$__typename = $__typename;
@@ -2585,16 +2576,15 @@ extension UtilityExtension$Mutation$AddToCart on Mutation$AddToCart {
 }
 
 abstract class CopyWith$Mutation$AddToCart<TRes> {
-  factory CopyWith$Mutation$AddToCart(Mutation$AddToCart instance,
-      TRes Function(Mutation$AddToCart) then) =
-  _CopyWithImpl$Mutation$AddToCart;
+  factory CopyWith$Mutation$AddToCart(
+          Mutation$AddToCart instance, TRes Function(Mutation$AddToCart) then) =
+      _CopyWithImpl$Mutation$AddToCart;
 
   factory CopyWith$Mutation$AddToCart.stub(TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart;
+      _CopyWithStubImpl$Mutation$AddToCart;
 
   TRes call(
       {Mutation$AddToCart$addItemToOrder? addItemToOrder, String? $__typename});
-
   CopyWith$Mutation$AddToCart$addItemToOrder<TRes> get addItemToOrder;
 }
 
@@ -2608,8 +2598,9 @@ class _CopyWithImpl$Mutation$AddToCart<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? addItemToOrder = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? addItemToOrder = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart(
           addItemToOrder: addItemToOrder == _undefined || addItemToOrder == null
               ? _instance.addItemToOrder
@@ -2617,7 +2608,6 @@ class _CopyWithImpl$Mutation$AddToCart<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Mutation$AddToCart$addItemToOrder<TRes> get addItemToOrder {
     final local$addItemToOrder = _instance.addItemToOrder;
     return CopyWith$Mutation$AddToCart$addItemToOrder(
@@ -2631,10 +2621,10 @@ class _CopyWithStubImpl$Mutation$AddToCart<TRes>
 
   TRes _res;
 
-  call({Mutation$AddToCart$addItemToOrder? addItemToOrder,
-    String? $__typename}) =>
+  call(
+          {Mutation$AddToCart$addItemToOrder? addItemToOrder,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Mutation$AddToCart$addItemToOrder<TRes> get addItemToOrder =>
       CopyWith$Mutation$AddToCart$addItemToOrder.stub(_res);
 }
@@ -2720,49 +2710,46 @@ const documentNodeMutationAddToCart = DocumentNode(definitions: [
   fragmentDefinitionAsset,
   fragmentDefinitionErrorResult,
 ]);
-
 Mutation$AddToCart _parserFn$Mutation$AddToCart(Map<String, dynamic> data) =>
     Mutation$AddToCart.fromJson(data);
-
 typedef OnMutationCompleted$Mutation$AddToCart = FutureOr<void> Function(
     dynamic, Mutation$AddToCart?);
 
 class Options$Mutation$AddToCart
     extends graphql.MutationOptions<Mutation$AddToCart> {
-  Options$Mutation$AddToCart({String? operationName,
-    required Variables$Mutation$AddToCart variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    graphql.Context? context,
-    OnMutationCompleted$Mutation$AddToCart? onCompleted,
-    graphql.OnMutationUpdate<Mutation$AddToCart>? update,
-    graphql.OnError? onError})
+  Options$Mutation$AddToCart(
+      {String? operationName,
+      required Variables$Mutation$AddToCart variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$AddToCart? onCompleted,
+      graphql.OnMutationUpdate<Mutation$AddToCart>? update,
+      graphql.OnError? onError})
       : onCompletedWithParsed = onCompleted,
         super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) =>
-              onCompleted(data,
-                  data == null ? null : _parserFn$Mutation$AddToCart(data)),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationAddToCart,
-          parserFn: _parserFn$Mutation$AddToCart);
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(data,
+                    data == null ? null : _parserFn$Mutation$AddToCart(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationAddToCart,
+            parserFn: _parserFn$Mutation$AddToCart);
 
   final OnMutationCompleted$Mutation$AddToCart? onCompletedWithParsed;
 
   @override
-  List<Object?> get properties =>
-      [
+  List<Object?> get properties => [
         ...super.onCompleted == null
             ? super.properties
             : super.properties.where((property) => property != onCompleted),
@@ -2772,40 +2759,40 @@ class Options$Mutation$AddToCart
 
 class WatchOptions$Mutation$AddToCart
     extends graphql.WatchQueryOptions<Mutation$AddToCart> {
-  WatchOptions$Mutation$AddToCart({String? operationName,
-    required Variables$Mutation$AddToCart variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false})
+  WatchOptions$Mutation$AddToCart(
+      {String? operationName,
+      required Variables$Mutation$AddToCart variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
       : super(
-      variables: variables.toJson(),
-      operationName: operationName,
-      fetchPolicy: fetchPolicy,
-      errorPolicy: errorPolicy,
-      cacheRereadPolicy: cacheRereadPolicy,
-      optimisticResult: optimisticResult,
-      context: context,
-      document: documentNodeMutationAddToCart,
-      pollInterval: pollInterval,
-      eagerlyFetchResults: eagerlyFetchResults,
-      carryForwardDataOnException: carryForwardDataOnException,
-      fetchResults: fetchResults,
-      parserFn: _parserFn$Mutation$AddToCart);
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationAddToCart,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$AddToCart);
 }
 
 extension ClientExtension$Mutation$AddToCart on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$AddToCart>> mutate$AddToCart(
-      Options$Mutation$AddToCart options) async =>
+          Options$Mutation$AddToCart options) async =>
       await this.mutate(options);
-
   graphql.ObservableQuery<Mutation$AddToCart> watchMutation$AddToCart(
-      WatchOptions$Mutation$AddToCart options) =>
+          WatchOptions$Mutation$AddToCart options) =>
       this.watchMutation(options);
 }
 
@@ -2822,53 +2809,51 @@ Mutation$AddToCart$HookResult useMutation$AddToCart(
   final result = graphql_flutter
       .useMutation(options ?? WidgetOptions$Mutation$AddToCart());
   return Mutation$AddToCart$HookResult(
-        (variables, {optimisticResult}) =>
-        result.runMutation(
-          variables.toJson(),
-          optimisticResult: optimisticResult,
-        ),
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
     result.result,
   );
 }
 
 graphql.ObservableQuery<Mutation$AddToCart> useWatchMutation$AddToCart(
-    WatchOptions$Mutation$AddToCart options) =>
+        WatchOptions$Mutation$AddToCart options) =>
     graphql_flutter.useWatchMutation(options);
 
 class WidgetOptions$Mutation$AddToCart
     extends graphql.MutationOptions<Mutation$AddToCart> {
-  WidgetOptions$Mutation$AddToCart({String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    graphql.Context? context,
-    OnMutationCompleted$Mutation$AddToCart? onCompleted,
-    graphql.OnMutationUpdate<Mutation$AddToCart>? update,
-    graphql.OnError? onError})
+  WidgetOptions$Mutation$AddToCart(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$AddToCart? onCompleted,
+      graphql.OnMutationUpdate<Mutation$AddToCart>? update,
+      graphql.OnError? onError})
       : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult,
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) =>
-              onCompleted(data,
-                  data == null ? null : _parserFn$Mutation$AddToCart(data)),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationAddToCart,
-          parserFn: _parserFn$Mutation$AddToCart);
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(data,
+                    data == null ? null : _parserFn$Mutation$AddToCart(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationAddToCart,
+            parserFn: _parserFn$Mutation$AddToCart);
 
   final OnMutationCompleted$Mutation$AddToCart? onCompletedWithParsed;
 
   @override
-  List<Object?> get properties =>
-      [
+  List<Object?> get properties => [
         ...super.onCompleted == null
             ? super.properties
             : super.properties.where((property) => property != onCompleted),
@@ -2877,24 +2862,24 @@ class WidgetOptions$Mutation$AddToCart
 }
 
 typedef RunMutation$Mutation$AddToCart
-= graphql.MultiSourceResult<Mutation$AddToCart>
-Function(Variables$Mutation$AddToCart, {Object? optimisticResult});
+    = graphql.MultiSourceResult<Mutation$AddToCart>
+        Function(Variables$Mutation$AddToCart, {Object? optimisticResult});
 typedef Builder$Mutation$AddToCart = widgets.Widget Function(
     RunMutation$Mutation$AddToCart, graphql.QueryResult<Mutation$AddToCart>?);
 
 class Mutation$AddToCart$Widget
     extends graphql_flutter.Mutation<Mutation$AddToCart> {
-  Mutation$AddToCart$Widget({widgets.Key? key,
-    WidgetOptions$Mutation$AddToCart? options,
-    required Builder$Mutation$AddToCart builder})
+  Mutation$AddToCart$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$AddToCart? options,
+      required Builder$Mutation$AddToCart builder})
       : super(
-      key: key,
-      options: options ?? WidgetOptions$Mutation$AddToCart(),
-      builder: (run, result) =>
-          builder(
-                  (variables, {optimisticResult}) =>
-                  run(variables.toJson(), optimisticResult: optimisticResult),
-              result));
+            key: key,
+            options: options ?? WidgetOptions$Mutation$AddToCart(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2929,7 +2914,6 @@ class Mutation$AddToCart$addItemToOrder {
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrderToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     return Object.hashAll([l$$__typename]);
@@ -2948,20 +2932,20 @@ class Mutation$AddToCart$addItemToOrder {
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder
-on Mutation$AddToCart$addItemToOrder {
+    on Mutation$AddToCart$addItemToOrder {
   CopyWith$Mutation$AddToCart$addItemToOrder<Mutation$AddToCart$addItemToOrder>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder(this, (i) => i);
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder(this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder<TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder(
-      Mutation$AddToCart$addItemToOrder instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder) then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder;
+          Mutation$AddToCart$addItemToOrder instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder) then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder.stub(TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder;
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder;
 
   TRes call({String? $__typename});
 }
@@ -2995,25 +2979,26 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder<TRes>
 @JsonSerializable(explicitToJson: true)
 class Mutation$AddToCart$addItemToOrder$$Order
     implements Fragment$Cart, Mutation$AddToCart$addItemToOrder {
-  Mutation$AddToCart$addItemToOrder$$Order({required this.$__typename,
-    required this.id,
-    required this.code,
-    required this.state,
-    required this.active,
-    required this.lines,
-    required this.totalQuantity,
-    required this.subTotal,
-    required this.subTotalWithTax,
-    required this.total,
-    required this.totalWithTax,
-    required this.shipping,
-    required this.shippingWithTax,
-    required this.shippingLines,
-    required this.discounts});
+  Mutation$AddToCart$addItemToOrder$$Order(
+      {required this.$__typename,
+      required this.id,
+      required this.code,
+      required this.state,
+      required this.active,
+      required this.lines,
+      required this.totalQuantity,
+      required this.subTotal,
+      required this.subTotalWithTax,
+      required this.total,
+      required this.totalWithTax,
+      required this.shipping,
+      required this.shippingWithTax,
+      required this.shippingLines,
+      required this.discounts});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$OrderFromJson(json);
 
   @JsonKey(name: '__typename')
@@ -3044,13 +3029,12 @@ class Mutation$AddToCart$addItemToOrder$$Order
   final int shippingWithTax;
 
   final List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>
-  shippingLines;
+      shippingLines;
 
   final List<Mutation$AddToCart$addItemToOrder$$Order$discounts> discounts;
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$OrderToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     final l$id = id;
@@ -3159,64 +3143,63 @@ class Mutation$AddToCart$addItemToOrder$$Order
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order
-on Mutation$AddToCart$addItemToOrder$$Order {
+    on Mutation$AddToCart$addItemToOrder$$Order {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order<
-      Mutation$AddToCart$addItemToOrder$$Order>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order(this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order(this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order<TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order(
-      Mutation$AddToCart$addItemToOrder$$Order instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder$$Order) then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order;
+          Mutation$AddToCart$addItemToOrder$$Order instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$Order) then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order.stub(TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order;
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order;
 
-  TRes call({String? $__typename,
-    String? id,
-    String? code,
-    String? state,
-    bool? active,
-    List<Mutation$AddToCart$addItemToOrder$$Order$lines>? lines,
-    int? totalQuantity,
-    int? subTotal,
-    int? subTotalWithTax,
-    int? total,
-    int? totalWithTax,
-    int? shipping,
-    int? shippingWithTax,
-    List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>?
-    shippingLines,
-    List<Mutation$AddToCart$addItemToOrder$$Order$discounts>? discounts});
-
-  TRes lines(Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines> Function(
-      Iterable<
-          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<
-              Mutation$AddToCart$addItemToOrder$$Order$lines>>)
-  _fn);
-
+  TRes call(
+      {String? $__typename,
+      String? id,
+      String? code,
+      String? state,
+      bool? active,
+      List<Mutation$AddToCart$addItemToOrder$$Order$lines>? lines,
+      int? totalQuantity,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
+      List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>?
+          shippingLines,
+      List<Mutation$AddToCart$addItemToOrder$$Order$discounts>? discounts});
+  TRes lines(
+      Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines> Function(
+              Iterable<
+                  CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<
+                      Mutation$AddToCart$addItemToOrder$$Order$lines>>)
+          _fn);
   TRes shippingLines(
       Iterable<Mutation$AddToCart$addItemToOrder$$Order$shippingLines> Function(
-          Iterable<
-              CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
-                  Mutation$AddToCart$addItemToOrder$$Order$shippingLines>>)
-      _fn);
-
+              Iterable<
+                  CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
+                      Mutation$AddToCart$addItemToOrder$$Order$shippingLines>>)
+          _fn);
   TRes discounts(
       Iterable<Mutation$AddToCart$addItemToOrder$$Order$discounts> Function(
-          Iterable<
-              CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
-                  Mutation$AddToCart$addItemToOrder$$Order$discounts>>)
-      _fn);
+              Iterable<
+                  CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
+                      Mutation$AddToCart$addItemToOrder$$Order$discounts>>)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order<TRes>
     implements CopyWith$Mutation$AddToCart$addItemToOrder$$Order<TRes> {
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order(this._instance,
-      this._then);
+  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order(
+      this._instance, this._then);
 
   final Mutation$AddToCart$addItemToOrder$$Order _instance;
 
@@ -3224,21 +3207,22 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined,
-    Object? id = _undefined,
-    Object? code = _undefined,
-    Object? state = _undefined,
-    Object? active = _undefined,
-    Object? lines = _undefined,
-    Object? totalQuantity = _undefined,
-    Object? subTotal = _undefined,
-    Object? subTotalWithTax = _undefined,
-    Object? total = _undefined,
-    Object? totalWithTax = _undefined,
-    Object? shipping = _undefined,
-    Object? shippingWithTax = _undefined,
-    Object? shippingLines = _undefined,
-    Object? discounts = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? id = _undefined,
+          Object? code = _undefined,
+          Object? state = _undefined,
+          Object? active = _undefined,
+          Object? lines = _undefined,
+          Object? totalQuantity = _undefined,
+          Object? subTotal = _undefined,
+          Object? subTotalWithTax = _undefined,
+          Object? total = _undefined,
+          Object? totalWithTax = _undefined,
+          Object? shipping = _undefined,
+          Object? shippingWithTax = _undefined,
+          Object? shippingLines = _undefined,
+          Object? discounts = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -3262,8 +3246,7 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined ||
-              subTotalWithTax == null
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
               ? _instance.subTotalWithTax
               : (subTotalWithTax as int),
           total: total == _undefined || total == null
@@ -3275,45 +3258,38 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order<TRes>
           shipping: shipping == _undefined || shipping == null
               ? _instance.shipping
               : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined ||
-              shippingWithTax == null
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
               ? _instance.shippingWithTax
               : (shippingWithTax as int),
           shippingLines:
-          shippingLines == _undefined || shippingLines == null ? _instance
-              .shippingLines : (shippingLines as List<
-              Mutation$AddToCart$addItemToOrder$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance
-              .discounts : (discounts as List<
-              Mutation$AddToCart$addItemToOrder$$Order$discounts>)));
-
-  TRes lines(Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines> Function(
-      Iterable<
-          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<
-              Mutation$AddToCart$addItemToOrder$$Order$lines>>)
-  _fn) =>
+              shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>),
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AddToCart$addItemToOrder$$Order$discounts>)));
+  TRes lines(
+          Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<
+                          Mutation$AddToCart$addItemToOrder$$Order$lines>>)
+              _fn) =>
       call(
           lines: _fn(_instance.lines.map((e) =>
               CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines(
                   e, (i) => i))).toList());
-
   TRes shippingLines(
-      Iterable<Mutation$AddToCart$addItemToOrder$$Order$shippingLines> Function(
-          Iterable<
-              CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
-                  Mutation$AddToCart$addItemToOrder$$Order$shippingLines>>)
-      _fn) =>
+          Iterable<Mutation$AddToCart$addItemToOrder$$Order$shippingLines> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
+                          Mutation$AddToCart$addItemToOrder$$Order$shippingLines>>)
+              _fn) =>
       call(
           shippingLines: _fn(_instance.shippingLines.map((e) =>
               CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
                   e, (i) => i))).toList());
-
   TRes discounts(
-      Iterable<Mutation$AddToCart$addItemToOrder$$Order$discounts> Function(
-          Iterable<
-              CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
-                  Mutation$AddToCart$addItemToOrder$$Order$discounts>>)
-      _fn) =>
+          Iterable<Mutation$AddToCart$addItemToOrder$$Order$discounts> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
+                          Mutation$AddToCart$addItemToOrder$$Order$discounts>>)
+              _fn) =>
       call(
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts(
@@ -3326,49 +3302,48 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order<TRes>
 
   TRes _res;
 
-  call({String? $__typename,
-    String? id,
-    String? code,
-    String? state,
-    bool? active,
-    List<Mutation$AddToCart$addItemToOrder$$Order$lines>? lines,
-    int? totalQuantity,
-    int? subTotal,
-    int? subTotalWithTax,
-    int? total,
-    int? totalWithTax,
-    int? shipping,
-    int? shippingWithTax,
-    List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>?
-    shippingLines,
-    List<Mutation$AddToCart$addItemToOrder$$Order$discounts>?
-    discounts}) =>
+  call(
+          {String? $__typename,
+          String? id,
+          String? code,
+          String? state,
+          bool? active,
+          List<Mutation$AddToCart$addItemToOrder$$Order$lines>? lines,
+          int? totalQuantity,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
+          List<Mutation$AddToCart$addItemToOrder$$Order$shippingLines>?
+              shippingLines,
+          List<Mutation$AddToCart$addItemToOrder$$Order$discounts>?
+              discounts}) =>
       _res;
-
   lines(_fn) => _res;
-
   shippingLines(_fn) => _res;
-
   discounts(_fn) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Mutation$AddToCart$addItemToOrder$$Order$lines
     implements Fragment$Cart$lines {
-  Mutation$AddToCart$addItemToOrder$$Order$lines({required this.id,
-    this.featuredAsset,
-    required this.unitPrice,
-    required this.unitPriceWithTax,
-    required this.quantity,
-    required this.linePriceWithTax,
-    required this.discountedLinePriceWithTax,
-    required this.productVariant,
-    required this.discounts,
-    required this.$__typename});
+  Mutation$AddToCart$addItemToOrder$$Order$lines(
+      {required this.id,
+      this.featuredAsset,
+      required this.unitPrice,
+      required this.unitPriceWithTax,
+      required this.quantity,
+      required this.linePriceWithTax,
+      required this.discountedLinePriceWithTax,
+      required this.productVariant,
+      required this.discounts,
+      required this.$__typename});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$lines.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$linesFromJson(json);
 
   final String id;
@@ -3386,17 +3361,16 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines
   final int discountedLinePriceWithTax;
 
   final Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
-  productVariant;
+      productVariant;
 
   final List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>
-  discounts;
+      discounts;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$linesToJson(this);
-
   int get hashCode {
     final l$id = id;
     final l$featuredAsset = featuredAsset;
@@ -3469,53 +3443,50 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$lines
-on Mutation$AddToCart$addItemToOrder$$Order$lines {
+    on Mutation$AddToCart$addItemToOrder$$Order$lines {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<
-      Mutation$AddToCart$addItemToOrder$$Order$lines>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines(
+          Mutation$AddToCart$addItemToOrder$$Order$lines>
+      get copyWith => CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines(
           this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines(
-      Mutation$AddToCart$addItemToOrder$$Order$lines instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder$$Order$lines) then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines;
+          Mutation$AddToCart$addItemToOrder$$Order$lines instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$Order$lines) then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines;
 
-  TRes call({String? id,
-    Fragment$Asset? featuredAsset,
-    int? unitPrice,
-    int? unitPriceWithTax,
-    int? quantity,
-    int? linePriceWithTax,
-    int? discountedLinePriceWithTax,
-    Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant?
-    productVariant,
-    List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>? discounts,
-    String? $__typename});
-
+  TRes call(
+      {String? id,
+      Fragment$Asset? featuredAsset,
+      int? unitPrice,
+      int? unitPriceWithTax,
+      int? quantity,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
+      Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant?
+          productVariant,
+      List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>? discounts,
+      String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
-
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<TRes>
-  get productVariant;
-
-  TRes discounts(Iterable<
-      Mutation$AddToCart$addItemToOrder$$Order$lines$discounts> Function(
-      Iterable<
-          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-              Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>>)
-  _fn);
+      get productVariant;
+  TRes discounts(
+      Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts> Function(
+              Iterable<
+                  CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
+                      Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>>)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes>
     implements CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes> {
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines(this._instance,
-      this._then);
+  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines(
+      this._instance, this._then);
 
   final Mutation$AddToCart$addItemToOrder$$Order$lines _instance;
 
@@ -3523,16 +3494,17 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? featuredAsset = _undefined,
-    Object? unitPrice = _undefined,
-    Object? unitPriceWithTax = _undefined,
-    Object? quantity = _undefined,
-    Object? linePriceWithTax = _undefined,
-    Object? discountedLinePriceWithTax = _undefined,
-    Object? productVariant = _undefined,
-    Object? discounts = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? unitPrice = _undefined,
+          Object? unitPriceWithTax = _undefined,
+          Object? quantity = _undefined,
+          Object? linePriceWithTax = _undefined,
+          Object? discountedLinePriceWithTax = _undefined,
+          Object? productVariant = _undefined,
+          Object? discounts = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           featuredAsset: featuredAsset == _undefined
@@ -3541,55 +3513,48 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes>
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
               : (unitPrice as int),
-          unitPriceWithTax: unitPriceWithTax == _undefined ||
-              unitPriceWithTax == null
+          unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
               : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
-          linePriceWithTax: linePriceWithTax == _undefined ||
-              linePriceWithTax == null
+          linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
               : (linePriceWithTax as int),
-          discountedLinePriceWithTax: discountedLinePriceWithTax ==
-              _undefined ||
-              discountedLinePriceWithTax == null
+          discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
+                  discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
               : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
-          as Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant),
+                  as Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant),
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
-              : (discounts as List<
-              Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-
+              : (discounts as List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>),
+          $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
         ? CopyWith$Fragment$Asset.stub(_then(_instance))
         : CopyWith$Fragment$Asset(
-        local$featuredAsset, (e) => call(featuredAsset: e));
+            local$featuredAsset, (e) => call(featuredAsset: e));
   }
 
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<TRes>
-  get productVariant {
+      get productVariant {
     final local$productVariant = _instance.productVariant;
     return CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant(
         local$productVariant, (e) => call(productVariant: e));
   }
 
-  TRes discounts(Iterable<
-      Mutation$AddToCart$addItemToOrder$$Order$lines$discounts> Function(
-      Iterable<
-          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-              Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>>)
-  _fn) =>
+  TRes discounts(
+          Iterable<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
+                          Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>>)
+              _fn) =>
       call(
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
@@ -3602,28 +3567,26 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines<TRes>
 
   TRes _res;
 
-  call({String? id,
-    Fragment$Asset? featuredAsset,
-    int? unitPrice,
-    int? unitPriceWithTax,
-    int? quantity,
-    int? linePriceWithTax,
-    int? discountedLinePriceWithTax,
-    Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant?
-    productVariant,
-    List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>?
-    discounts,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          Fragment$Asset? featuredAsset,
+          int? unitPrice,
+          int? unitPriceWithTax,
+          int? quantity,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
+          Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant?
+              productVariant,
+          List<Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>?
+              discounts,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
       CopyWith$Fragment$Asset.stub(_res);
-
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<TRes>
-  get productVariant =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
-          .stub(_res);
-
+      get productVariant =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
+              .stub(_res);
   discounts(_fn) => _res;
 }
 
@@ -3635,7 +3598,7 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariantFromJson(
           json);
 
@@ -3649,7 +3612,6 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariantToJson(
           this);
-
   int get hashCode {
     final l$id = id;
     final l$name = name;
@@ -3661,7 +3623,7 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-    is Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant) ||
+            is Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant) ||
         runtimeType != other.runtimeType) return false;
     final l$id = id;
     final lOther$id = other.id;
@@ -3677,32 +3639,32 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
-on Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant {
+    on Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
-      Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant(
-      Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant;
+          Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant;
 
   TRes call({String? id, String? name, String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
             TRes> {
@@ -3716,9 +3678,10 @@ TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant(
           id: id == _undefined || id == null ? _instance.id : (id as String),
           name: name == _undefined || name == null
@@ -3730,7 +3693,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant<
             TRes> {
@@ -3747,15 +3710,15 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
     implements Fragment$Cart$lines$discounts {
   Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
       {required this.amount,
-        required this.amountWithTax,
-        required this.description,
-        required this.adjustmentSource,
-        required this.type,
-        required this.$__typename});
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$lines$discounts.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$lines$discountsFromJson(json);
 
   final int amount;
@@ -3774,7 +3737,6 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$lines$discountsToJson(this);
-
   int get hashCode {
     final l$amount = amount;
     final l$amountWithTax = amountWithTax;
@@ -3820,37 +3782,38 @@ class Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
-on Mutation$AddToCart$addItemToOrder$$Order$lines$discounts {
+    on Mutation$AddToCart$addItemToOrder$$Order$lines$discounts {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-      Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order$lines$discounts>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
-      Mutation$AddToCart$addItemToOrder$$Order$lines$discounts instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$Order$lines$discounts)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts;
+          Mutation$AddToCart$addItemToOrder$$Order$lines$discounts instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$Order$lines$discounts)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts;
 
-  TRes call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename});
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
             TRes> {
@@ -3860,16 +3823,17 @@ TRes>
   final Mutation$AddToCart$addItemToOrder$$Order$lines$discounts _instance;
 
   final TRes Function(Mutation$AddToCart$addItemToOrder$$Order$lines$discounts)
-  _then;
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? amount = _undefined,
-    Object? amountWithTax = _undefined,
-    Object? description = _undefined,
-    Object? adjustmentSource = _undefined,
-    Object? type = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
@@ -3881,9 +3845,9 @@ TRes>
               ? _instance.description
               : (description as String),
           adjustmentSource:
-          adjustmentSource == _undefined || adjustmentSource == null
-              ? _instance.adjustmentSource
-              : (adjustmentSource as String),
+              adjustmentSource == _undefined || adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
           type: type == _undefined || type == null
               ? _instance.type
               : (type as Enum$AdjustmentType),
@@ -3893,7 +3857,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$lines$discounts<
             TRes> {
@@ -3902,12 +3866,13 @@ TRes>
 
   TRes _res;
 
-  call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename}) =>
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
       _res;
 }
 
@@ -3916,25 +3881,24 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines
     implements Fragment$Cart$shippingLines {
   Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
       {required this.priceWithTax,
-        required this.shippingMethod,
-        required this.$__typename});
+      required this.shippingMethod,
+      required this.$__typename});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$shippingLines.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$shippingLinesFromJson(json);
 
   final int priceWithTax;
 
   final Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
-  shippingMethod;
+      shippingMethod;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$shippingLinesToJson(this);
-
   int get hashCode {
     final l$priceWithTax = priceWithTax;
     final l$shippingMethod = shippingMethod;
@@ -3961,31 +3925,31 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$shippingLines
-on Mutation$AddToCart$addItemToOrder$$Order$shippingLines {
+    on Mutation$AddToCart$addItemToOrder$$Order$shippingLines {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
-      Mutation$AddToCart$addItemToOrder$$Order$shippingLines>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
-      Mutation$AddToCart$addItemToOrder$$Order$shippingLines instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder$$Order$shippingLines)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines;
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$Order$shippingLines)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines;
 
-  TRes call({int? priceWithTax,
-    Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod?
-    shippingMethod,
-    String? $__typename});
-
+  TRes call(
+      {int? priceWithTax,
+      Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod?
+          shippingMethod,
+      String? $__typename});
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
       TRes> get shippingMethod;
 }
@@ -3999,13 +3963,14 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<TRes>
   final Mutation$AddToCart$addItemToOrder$$Order$shippingLines _instance;
 
   final TRes Function(Mutation$AddToCart$addItemToOrder$$Order$shippingLines)
-  _then;
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? priceWithTax = _undefined,
-    Object? shippingMethod = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? priceWithTax = _undefined,
+          Object? shippingMethod = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
@@ -4013,11 +3978,10 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<TRes>
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
-          as Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod),
+                  as Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
       TRes> get shippingMethod {
     final local$shippingMethod = _instance.shippingMethod;
@@ -4027,7 +3991,7 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines<TRes> {
   _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
@@ -4035,17 +3999,17 @@ TRes>
 
   TRes _res;
 
-  call({int? priceWithTax,
-    Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod?
-    shippingMethod,
-    String? $__typename}) =>
+  call(
+          {int? priceWithTax,
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod?
+              shippingMethod,
+          String? $__typename}) =>
       _res;
-
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
-      TRes>
-  get shippingMethod =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
-          .stub(_res);
+          TRes>
+      get shippingMethod =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
+              .stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4053,14 +4017,14 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
     implements Fragment$Cart$shippingLines$shippingMethod {
   Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod(
       {required this.id,
-        required this.code,
-        required this.name,
-        required this.description,
-        required this.$__typename});
+      required this.code,
+      required this.name,
+      required this.description,
+      required this.$__typename});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethodFromJson(
           json);
 
@@ -4078,7 +4042,6 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethodToJson(
           this);
-
   int get hashCode {
     final l$id = id;
     final l$code = code;
@@ -4092,7 +4055,7 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-    is Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod) ||
+            is Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod) ||
         runtimeType != other.runtimeType) return false;
     final l$id = id;
     final lOther$id = other.id;
@@ -4114,37 +4077,38 @@ class Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
-on Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod {
+    on Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
-      Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod(
-      Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
-      instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod;
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
+              instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod;
 
-  TRes call({String? id,
-    String? code,
-    String? name,
-    String? description,
-    String? $__typename});
+  TRes call(
+      {String? id,
+      String? code,
+      String? name,
+      String? description,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
             TRes> {
@@ -4152,19 +4116,20 @@ TRes>
       this._instance, this._then);
 
   final Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
-  _instance;
+      _instance;
 
   final TRes Function(
-      Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod)
-  _then;
+          Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod)
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined,
-    Object? code = _undefined,
-    Object? name = _undefined,
-    Object? description = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? code = _undefined,
+          Object? name = _undefined,
+          Object? description = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(
           Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod(
               id: id == _undefined || id == null
@@ -4185,7 +4150,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod<
             TRes> {
@@ -4194,27 +4159,29 @@ TRes>
 
   TRes _res;
 
-  call({String? id,
-    String? code,
-    String? name,
-    String? description,
-    String? $__typename}) =>
+  call(
+          {String? id,
+          String? code,
+          String? name,
+          String? description,
+          String? $__typename}) =>
       _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Mutation$AddToCart$addItemToOrder$$Order$discounts
     implements Fragment$Cart$discounts {
-  Mutation$AddToCart$addItemToOrder$$Order$discounts({required this.amount,
-    required this.amountWithTax,
-    required this.description,
-    required this.adjustmentSource,
-    required this.type,
-    required this.$__typename});
+  Mutation$AddToCart$addItemToOrder$$Order$discounts(
+      {required this.amount,
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$Order$discounts.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$Order$discountsFromJson(json);
 
   final int amount;
@@ -4233,7 +4200,6 @@ class Mutation$AddToCart$addItemToOrder$$Order$discounts
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$Order$discountsToJson(this);
-
   int get hashCode {
     final l$amount = amount;
     final l$amountWithTax = amountWithTax;
@@ -4279,32 +4245,33 @@ class Mutation$AddToCart$addItemToOrder$$Order$discounts
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$Order$discounts
-on Mutation$AddToCart$addItemToOrder$$Order$discounts {
+    on Mutation$AddToCart$addItemToOrder$$Order$discounts {
   CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
-      Mutation$AddToCart$addItemToOrder$$Order$discounts>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$Order$discounts>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts(
-      Mutation$AddToCart$addItemToOrder$$Order$discounts instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder$$Order$discounts)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts;
+          Mutation$AddToCart$addItemToOrder$$Order$discounts instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$Order$discounts)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$Order$discounts.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts;
 
-  TRes call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename});
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts<TRes>
@@ -4319,12 +4286,13 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? amount = _undefined,
-    Object? amountWithTax = _undefined,
-    Object? description = _undefined,
-    Object? adjustmentSource = _undefined,
-    Object? type = _undefined,
-    Object? $__typename = _undefined}) =>
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
@@ -4336,9 +4304,9 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts<TRes>
               ? _instance.description
               : (description as String),
           adjustmentSource:
-          adjustmentSource == _undefined || adjustmentSource == null
-              ? _instance.adjustmentSource
-              : (adjustmentSource as String),
+              adjustmentSource == _undefined || adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
           type: type == _undefined || type == null
               ? _instance.type
               : (type as Enum$AdjustmentType),
@@ -4355,25 +4323,27 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts<TRes>
 
   TRes _res;
 
-  call({int? amount,
-    int? amountWithTax,
-    String? description,
-    String? adjustmentSource,
-    Enum$AdjustmentType? type,
-    String? $__typename}) =>
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
       _res;
 }
 
 @JsonSerializable(explicitToJson: true)
 class Mutation$AddToCart$addItemToOrder$$OrderLimitError
     implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
-  Mutation$AddToCart$addItemToOrder$$OrderLimitError({required this.$__typename,
-    required this.errorCode,
-    required this.message});
+  Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$OrderLimitError.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorFromJson(json);
 
   @JsonKey(name: '__typename')
@@ -4386,7 +4356,6 @@ class Mutation$AddToCart$addItemToOrder$$OrderLimitError
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -4413,25 +4382,25 @@ class Mutation$AddToCart$addItemToOrder$$OrderLimitError
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$OrderLimitError
-on Mutation$AddToCart$addItemToOrder$$OrderLimitError {
+    on Mutation$AddToCart$addItemToOrder$$OrderLimitError {
   CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
-      Mutation$AddToCart$addItemToOrder$$OrderLimitError>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$OrderLimitError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-      Mutation$AddToCart$addItemToOrder$$OrderLimitError instance,
-      TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
+          Mutation$AddToCart$addItemToOrder$$OrderLimitError instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
@@ -4448,9 +4417,10 @@ class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined,
-    Object? errorCode = _undefined,
-    Object? message = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$OrderLimitError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -4480,12 +4450,12 @@ class Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
     implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
   Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
       {required this.$__typename,
-        required this.errorCode,
-        required this.message});
+      required this.errorCode,
+      required this.message});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorFromJson(json);
 
   @JsonKey(name: '__typename')
@@ -4498,7 +4468,6 @@ class Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -4525,32 +4494,32 @@ class Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
-on Mutation$AddToCart$addItemToOrder$$NegativeQuantityError {
+    on Mutation$AddToCart$addItemToOrder$$NegativeQuantityError {
   CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-      Mutation$AddToCart$addItemToOrder$$NegativeQuantityError>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-      Mutation$AddToCart$addItemToOrder$$NegativeQuantityError instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
+          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
             TRes> {
@@ -4560,13 +4529,14 @@ TRes>
   final Mutation$AddToCart$addItemToOrder$$NegativeQuantityError _instance;
 
   final TRes Function(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
-  _then;
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined,
-    Object? errorCode = _undefined,
-    Object? message = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -4580,7 +4550,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
             TRes> {
@@ -4598,13 +4568,13 @@ class Mutation$AddToCart$addItemToOrder$$InsufficientStockError
     implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
   Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
       {required this.$__typename,
-        required this.errorCode,
-        required this.message,
-        required this.order});
+      required this.errorCode,
+      required this.message,
+      required this.order});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$InsufficientStockError.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorFromJson(json);
 
   @JsonKey(name: '__typename')
@@ -4619,7 +4589,6 @@ class Mutation$AddToCart$addItemToOrder$$InsufficientStockError
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -4650,37 +4619,37 @@ class Mutation$AddToCart$addItemToOrder$$InsufficientStockError
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$InsufficientStockError
-on Mutation$AddToCart$addItemToOrder$$InsufficientStockError {
+    on Mutation$AddToCart$addItemToOrder$$InsufficientStockError {
   CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
-      Mutation$AddToCart$addItemToOrder$$InsufficientStockError>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$InsufficientStockError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
-      Mutation$AddToCart$addItemToOrder$$InsufficientStockError instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$InsufficientStockError)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError;
+          Mutation$AddToCart$addItemToOrder$$InsufficientStockError instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$InsufficientStockError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError;
 
-  TRes call({String? $__typename,
-    Enum$ErrorCode? errorCode,
-    String? message,
-    Fragment$Cart? order});
-
+  TRes call(
+      {String? $__typename,
+      Enum$ErrorCode? errorCode,
+      String? message,
+      Fragment$Cart? order});
   CopyWith$Fragment$Cart<TRes> get order;
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
             TRes> {
@@ -4690,14 +4659,15 @@ TRes>
   final Mutation$AddToCart$addItemToOrder$$InsufficientStockError _instance;
 
   final TRes Function(Mutation$AddToCart$addItemToOrder$$InsufficientStockError)
-  _then;
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined,
-    Object? errorCode = _undefined,
-    Object? message = _undefined,
-    Object? order = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined,
+          Object? order = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -4711,7 +4681,6 @@ TRes>
           order: order == _undefined || order == null
               ? _instance.order
               : (order as Fragment$Cart)));
-
   CopyWith$Fragment$Cart<TRes> get order {
     final local$order = _instance.order;
     return CopyWith$Fragment$Cart(local$order, (e) => call(order: e));
@@ -4719,7 +4688,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$InsufficientStockError<
             TRes> {
@@ -4728,12 +4697,12 @@ TRes>
 
   TRes _res;
 
-  call({String? $__typename,
-    Enum$ErrorCode? errorCode,
-    String? message,
-    Fragment$Cart? order}) =>
+  call(
+          {String? $__typename,
+          Enum$ErrorCode? errorCode,
+          String? message,
+          Fragment$Cart? order}) =>
       _res;
-
   CopyWith$Fragment$Cart<TRes> get order => CopyWith$Fragment$Cart.stub(_res);
 }
 
@@ -4742,12 +4711,12 @@ class Mutation$AddToCart$addItemToOrder$$OrderModificationError
     implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
   Mutation$AddToCart$addItemToOrder$$OrderModificationError(
       {required this.$__typename,
-        required this.errorCode,
-        required this.message});
+      required this.errorCode,
+      required this.message});
 
   @override
   factory Mutation$AddToCart$addItemToOrder$$OrderModificationError.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$Mutation$AddToCart$addItemToOrder$$OrderModificationErrorFromJson(json);
 
   @JsonKey(name: '__typename')
@@ -4760,7 +4729,6 @@ class Mutation$AddToCart$addItemToOrder$$OrderModificationError
 
   Map<String, dynamic> toJson() =>
       _$Mutation$AddToCart$addItemToOrder$$OrderModificationErrorToJson(this);
-
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -4787,32 +4755,32 @@ class Mutation$AddToCart$addItemToOrder$$OrderModificationError
 }
 
 extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$OrderModificationError
-on Mutation$AddToCart$addItemToOrder$$OrderModificationError {
+    on Mutation$AddToCart$addItemToOrder$$OrderModificationError {
   CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
-      Mutation$AddToCart$addItemToOrder$$OrderModificationError>
-  get copyWith =>
-      CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError(
-          this, (i) => i);
+          Mutation$AddToCart$addItemToOrder$$OrderModificationError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError(
+              this, (i) => i);
 }
 
 abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
-TRes> {
+    TRes> {
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError(
-      Mutation$AddToCart$addItemToOrder$$OrderModificationError instance,
-      TRes Function(
-          Mutation$AddToCart$addItemToOrder$$OrderModificationError)
-      then) =
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError;
+          Mutation$AddToCart$addItemToOrder$$OrderModificationError instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$OrderModificationError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError;
 
   factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError.stub(
-      TRes res) =
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError;
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
 class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
             TRes> {
@@ -4822,13 +4790,14 @@ TRes>
   final Mutation$AddToCart$addItemToOrder$$OrderModificationError _instance;
 
   final TRes Function(Mutation$AddToCart$addItemToOrder$$OrderModificationError)
-  _then;
+      _then;
 
   static const _undefined = {};
 
-  TRes call({Object? $__typename = _undefined,
-    Object? errorCode = _undefined,
-    Object? message = _undefined}) =>
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
       _then(Mutation$AddToCart$addItemToOrder$$OrderModificationError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -4842,7 +4811,7 @@ TRes>
 }
 
 class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
-TRes>
+        TRes>
     implements
         CopyWith$Mutation$AddToCart$addItemToOrder$$OrderModificationError<
             TRes> {

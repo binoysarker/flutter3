@@ -314,6 +314,9 @@ Query$GetCollectionsByIdOrSlug$collection
           name: json['name'] as String,
           description: json['description'] as String,
           slug: json['slug'] as String,
+          productVariants:
+              Query$GetCollectionsByIdOrSlug$collection$productVariants
+                  .fromJson(json['productVariants'] as Map<String, dynamic>),
           parent: json['parent'] == null
               ? null
               : Query$GetCollectionsByIdOrSlug$collection$parent.fromJson(
@@ -341,6 +344,7 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collectionToJson(
       'name': instance.name,
       'description': instance.description,
       'slug': instance.slug,
+      'productVariants': instance.productVariants.toJson(),
       'parent': instance.parent?.toJson(),
       'breadcrumbs': instance.breadcrumbs.map((e) => e.toJson()).toList(),
       'children': instance.children?.map((e) => e.toJson()).toList(),
@@ -348,136 +352,60 @@ Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collectionToJson(
       '__typename': instance.$__typename,
     };
 
-Query$GetCollectionsByIdOrSlug$collection$parent
-    _$Query$GetCollectionsByIdOrSlug$collection$parentFromJson(
+Query$GetCollectionsByIdOrSlug$collection$productVariants
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariantsFromJson(
             Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$parent(
-          id: json['id'] as String,
-          slug: json['slug'] as String,
-          name: json['name'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$parentToJson(
-        Query$GetCollectionsByIdOrSlug$collection$parent instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'slug': instance.slug,
-      'name': instance.name,
-      '__typename': instance.$__typename,
-    };
-
-Query$GetCollectionsByIdOrSlug$collection$breadcrumbs
-    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$breadcrumbs(
-          id: json['id'] as String,
-          slug: json['slug'] as String,
-          name: json['name'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsToJson(
-            Query$GetCollectionsByIdOrSlug$collection$breadcrumbs instance) =>
-        <String, dynamic>{
-          'id': instance.id,
-          'slug': instance.slug,
-          'name': instance.name,
-          '__typename': instance.$__typename,
-        };
-
-Query$GetCollectionsByIdOrSlug$collection$children
-    _$Query$GetCollectionsByIdOrSlug$collection$childrenFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$children(
-          id: json['id'] as String,
-          slug: json['slug'] as String,
-          name: json['name'] as String,
-          position: json['position'] as int,
-          productVariants:
-              Query$GetCollectionsByIdOrSlug$collection$children$productVariants
-                  .fromJson(json['productVariants'] as Map<String, dynamic>),
-          featuredAsset: json['featuredAsset'] == null
-              ? null
-              : Fragment$Asset.fromJson(
-                  json['featuredAsset'] as Map<String, dynamic>),
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$childrenToJson(
-        Query$GetCollectionsByIdOrSlug$collection$children instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'slug': instance.slug,
-      'name': instance.name,
-      'position': instance.position,
-      'productVariants': instance.productVariants.toJson(),
-      'featuredAsset': instance.featuredAsset?.toJson(),
-      '__typename': instance.$__typename,
-    };
-
-Query$GetCollectionsByIdOrSlug$collection$children$productVariants
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$children$productVariants(
+        Query$GetCollectionsByIdOrSlug$collection$productVariants(
           items: (json['items'] as List<dynamic>)
               .map((e) =>
-                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+                  Query$GetCollectionsByIdOrSlug$collection$productVariants$items
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           $__typename: json['__typename'] as String,
         );
 
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsToJson(
-            Query$GetCollectionsByIdOrSlug$collection$children$productVariants
-                instance) =>
-        <String, dynamic>{
-          'items': instance.items.map((e) => e.toJson()).toList(),
-          '__typename': instance.$__typename,
-        };
+Map<String,
+    dynamic> _$Query$GetCollectionsByIdOrSlug$collection$productVariantsToJson(
+        Query$GetCollectionsByIdOrSlug$collection$productVariants instance) =>
+    <String, dynamic>{
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
 
-Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsFromJson(
+Query$GetCollectionsByIdOrSlug$collection$productVariants$items
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$itemsFromJson(
             Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
+        Query$GetCollectionsByIdOrSlug$collection$productVariants$items(
           id: json['id'] as String,
-          productId: json['productId'] as String,
           name: json['name'] as String,
-          assets: (json['assets'] as List<dynamic>)
-              .map((e) =>
-                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
-                      .fromJson(e as Map<String, dynamic>))
-              .toList(),
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
+              : Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
                   .fromJson(json['featuredAsset'] as Map<String, dynamic>),
-          price: json['price'] as int,
-          priceWithTax: json['priceWithTax'] as int,
+          productId: json['productId'] as String,
           product:
-              Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
+              Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
                   .fromJson(json['product'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
 Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsToJson(
-            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$itemsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$productVariants$items
                 instance) =>
         <String, dynamic>{
           'id': instance.id,
-          'productId': instance.productId,
           'name': instance.name,
-          'assets': instance.assets.map((e) => e.toJson()).toList(),
-          'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
-          'featuredAsset': instance.featuredAsset?.toJson(),
           'price': instance.price,
           'priceWithTax': instance.priceWithTax,
+          'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          'productId': instance.productId,
           'product': instance.product.toJson(),
           '__typename': instance.$__typename,
         };
@@ -642,6 +570,176 @@ const _$Enum$CurrencyCodeEnumMap = {
   Enum$CurrencyCode.ZWL: 'ZWL',
   Enum$CurrencyCode.$unknown: r'$unknown',
 };
+
+Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetToJson(
+            Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
+                instance) =>
+        <String, dynamic>{
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$productFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$productToJson(
+            Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$parent
+    _$Query$GetCollectionsByIdOrSlug$collection$parentFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$parent(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$parentToJson(
+        Query$GetCollectionsByIdOrSlug$collection$parent instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'slug': instance.slug,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCollectionsByIdOrSlug$collection$breadcrumbs
+    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$breadcrumbs(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$breadcrumbsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$breadcrumbs instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'slug': instance.slug,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children
+    _$Query$GetCollectionsByIdOrSlug$collection$childrenFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children(
+          id: json['id'] as String,
+          slug: json['slug'] as String,
+          name: json['name'] as String,
+          position: json['position'] as int,
+          productVariants:
+              Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+                  .fromJson(json['productVariants'] as Map<String, dynamic>),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCollectionsByIdOrSlug$collection$childrenToJson(
+        Query$GetCollectionsByIdOrSlug$collection$children instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'slug': instance.slug,
+      'name': instance.name,
+      'position': instance.position,
+      'productVariants': instance.productVariants.toJson(),
+      'featuredAsset': instance.featuredAsset?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants(
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariantsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants
+                instance) =>
+        <String, dynamic>{
+          'items': instance.items.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items(
+          id: json['id'] as String,
+          productId: json['productId'] as String,
+          name: json['name'] as String,
+          assets: (json['assets'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          currencyCode: $enumDecode(
+              _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
+              unknownValue: Enum$CurrencyCode.$unknown),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
+          product:
+              Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
+                  .fromJson(json['product'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$itemsToJson(
+            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'productId': instance.productId,
+          'name': instance.name,
+          'assets': instance.assets.map((e) => e.toJson()).toList(),
+          'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          'price': instance.price,
+          'priceWithTax': instance.priceWithTax,
+          'product': instance.product.toJson(),
+          '__typename': instance.$__typename,
+        };
 
 Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets
     _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assetsFromJson(

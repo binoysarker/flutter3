@@ -24,7 +24,8 @@ enum ControllerTypeNames {
   loginPage,
   collection,
   singleCollectionDetail,
-  productVariantItems
+  productChildrenVariantItems,
+  productVariantItems,
 }
 
 enum CurrencyCodeEnum{
@@ -38,4 +39,6 @@ class CommonVariableData{
 }
 typedef TypeOfList = List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items>;
 
-typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
+typedef SingleProductChildrenVariantItemType = Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
+
+typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection$productVariants$items;

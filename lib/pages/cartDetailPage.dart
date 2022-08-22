@@ -87,19 +87,22 @@ class _CartDetailPageState extends State<CartDetailPage> {
         ],
       ),
       body: Obx(() => orderController.activeOrderItemList.isEmpty
-          ? Container(
-              child: Center(
-                child: Column(
-                  children: [
-                    Text('No Items are in Cart', style: CustomTheme.headerStyle,),
-                    Text('Please add an Item'),
-                    TextButton(onPressed: (){
-                      Get.offNamedUntil('home', (route) => route.isFirst);
-                    }, child: Text('Go To Home'))
-                  ],
+          ? Card(
+            child: Container(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('No Items are in Cart', style: CustomTheme.headerStyle,),
+                      Text('Please add an Item'),
+                      TextButton(onPressed: (){
+                        Get.offNamedUntil('home', (route) => route.isFirst);
+                      }, child: Text('Go To Home'))
+                    ],
+                  ),
                 ),
               ),
-            )
+          )
           : Card(
               child: ListView.builder(
                   itemBuilder: (context, index) => Card(

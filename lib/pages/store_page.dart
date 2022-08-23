@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
 import 'package:ecommerce_app/components/drawerComponent.dart';
+import 'package:ecommerce_app/components/productListComponent.dart';
+import 'package:ecommerce_app/controllers/cartController.dart';
 import 'package:ecommerce_app/controllers/collectionsController.dart';
 import 'package:ecommerce_app/controllers/homePageController.dart';
+import 'package:ecommerce_app/controllers/orderController.dart';
 import 'package:ecommerce_app/controllers/productsController.dart';
 import 'package:ecommerce_app/controllers/userController.dart';
 import 'package:ecommerce_app/controllers/utilityController.dart';
@@ -10,6 +13,7 @@ import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../components/cartButtonComponent.dart';
 import '../components/horizontalListComponent.dart';
 import '../components/searchComponent.dart';
 
@@ -26,6 +30,8 @@ class _StorePageState extends State<StorePage> {
   final UserController userController = Get.find<UserController>();
   final UtilityController utilityController = Get.find<UtilityController>();
   final ProductsController productsController = Get.find<ProductsController>();
+  final CartController cartController = Get.find<CartController>();
+  final OrderController orderController = Get.find<OrderController>();
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
 
@@ -35,8 +41,8 @@ class _StorePageState extends State<StorePage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       userController.getActiveCustomer();
       userController.getTopSellers();
-      collectionsController.getAllCollections();
       productsController.getProductsList();
+      collectionsController.getAllCollections();
       print('testing');
     });
   }
@@ -46,7 +52,22 @@ class _StorePageState extends State<StorePage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Welcome To ${_utilService.appName}'),
+        title: Obx(() => collectionsController.isLoading.isTrue
+            ? SizedBox()
+            : Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+                '${collectionsController.singleCollectionDetail['name']}'),
+            orderController.activeOrderResponse['totalQuantity'] != null
+                ? CartButtonComponent(
+              isLoading: orderController.isLoading.isTrue,
+              totalQuantity: orderController
+                  .activeOrderResponse['totalQuantity'],
+            )
+                : SizedBox()
+          ],
+        )),
       ),
       drawer: const DrawerComponent(),
       body: ListView(
@@ -63,7 +84,9 @@ class _StorePageState extends State<StorePage> {
             child: Text('Absurdly fresh grocery, delivered',
                 style: TextStyle(fontSize: 15)),
           ),
-          SearchComponent(homePageController: homePageController, productsController: productsController),
+          SearchComponent(
+              homePageController: homePageController,
+              productsController: productsController),
           Container(
             child: Padding(
               padding: const EdgeInsets.all(2.0),
@@ -82,6 +105,14 @@ class _StorePageState extends State<StorePage> {
                               collectionsController.collectionItems.toList(),
                           loadingState: collectionsController.isLoading.isTrue,
                         )),
+                    // all products
+                    Obx(() => ProductListComponent(
+                      isLoading: productsController.isLoading.isTrue,
+                      productList: productsController.productList,
+                    )),
+                    SizedBox(
+                      height: 20,
+                    ),
                     // all top sellers
                     Obx(() => HorizontalListComponent(
                           headerTitle: 'Top Sellers',
@@ -89,24 +120,14 @@ class _StorePageState extends State<StorePage> {
                           givenList: userController.topSellers.toList(),
                           loadingState: userController.isLoading.isTrue,
                         )),
-
-                    // all products
-                    Obx(() => HorizontalListComponent(
-                          headerTitle: 'Products',
-                          controllerType: '${ControllerTypeNames.product.name}',
-                          givenList: productsController.productList.toList(),
-                          loadingState: productsController.isLoading.isTrue,
-                        )),
                   ],
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationComponent(),
     ));
   }
 }
-
-

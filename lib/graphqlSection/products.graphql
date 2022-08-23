@@ -4,6 +4,17 @@ query GetAllProducts($take: Int){
             id
             name
             slug
+            variants {
+                id
+                name
+                currencyCode
+                price
+                priceWithTax
+                productId
+                featuredAsset {
+                    preview
+                }
+            }
             featuredAsset {
                 name
                 id

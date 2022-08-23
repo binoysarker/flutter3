@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
+import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
 
 enum PageRouteNames {
   home,
@@ -26,6 +27,7 @@ enum ControllerTypeNames {
   singleCollectionDetail,
   productChildrenVariantItems,
   productVariantItems,
+  normalProductList
 }
 
 enum CurrencyCodeEnum{
@@ -42,3 +44,5 @@ typedef TypeOfList = List<Query$GetCollectionsByIdOrSlug$collection$children$pro
 typedef SingleProductChildrenVariantItemType = Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
 
 typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+
+typedef SingleProductListItemType = Query$GetAllProducts$products$items;

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controllers/cartController.dart';
 import 'package:ecommerce_app/controllers/orderController.dart';
+import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
 import 'package:ecommerce_app/services/commonVariables.dart';
 import 'package:ecommerce_app/services/util_service.dart';
 import 'package:flutter/material.dart';
@@ -33,22 +34,24 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
 
   String getImage(dynamic element) {
     String url = '';
-    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name) {
+    if (widget.controllerType ==
+        ControllerTypeNames.productChildrenVariantItems.name) {
       url = element.product.featuredAsset != null
           ? element.product.featuredAsset!.preview
           : '';
+    }
+    if (widget.controllerType == ControllerTypeNames.productVariantItems.name ||
+        widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      url = element.featuredAsset != null ? element.featuredAsset!.preview : '';
+    }
 
-    }
-    if(widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      url = element.featuredAsset != null
-          ? element.featuredAsset!.preview
-          : '';
-    }
     return url;
   }
 
   checkList() {
-    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType ==
+            ControllerTypeNames.productChildrenVariantItems.name ||
+        widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       widget.givenList.forEach((element) {
         if (widget.currentList.firstWhereOrNull(
                 (item) => item.productId == element.productId) ==
@@ -57,13 +60,21 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
         }
       });
     }
+    if(widget.controllerType == ControllerTypeNames.normalProductList.name){
+      widget.currentList = widget.givenList.cast<List<SingleProductListItemType>>();
+    }
 
   }
 
   String getName(dynamic element) {
     String name = '';
-    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType ==
+            ControllerTypeNames.productChildrenVariantItems.name ||
+        widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       name = '${element.product.name}';
+    }
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      name = '${element.name}';
     }
 
     return name;
@@ -71,10 +82,15 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
 
   String getPrice(dynamic element) {
     String price = '';
-    if (widget.controllerType == ControllerTypeNames.productChildrenVariantItems.name || widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType ==
+            ControllerTypeNames.productChildrenVariantItems.name ||
+        widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       price =
           '${UtilService.getCurrencySymble(element.currencyCode.toString())}${element.price}';
-      // var test = (element as SingleProductVariantItemType).currencyCode
+      // var test = (element as SingleProductListItemType).u
+    }
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      price = '${element.variants[0].price}';
     }
     return price;
   }
@@ -82,13 +98,22 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     checkList();
+    });
   }
 
   void addItemToCart(dynamic singleProductVariantItemType) {
-    cartController.addItemToCart(singleProductVariantItemType.id, 1);
+    var id;
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      id = (singleProductVariantItemType as SingleProductListItemType)
+          .variants[0]
+          .id;
+    } else {
+      id = singleProductVariantItemType.id;
+    }
+    cartController.addItemToCart(id, 1);
     checkList();
-
   }
 
   @override
@@ -135,21 +160,22 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                   getPrice(element),
                                   style: CustomTheme.headerStyle,
                                 ),
-                                Obx(() => cartController.isLoading.isTrue && selectedId == int.parse(element.id)
+                                Obx(() => cartController.isLoading.isTrue &&
+                                        selectedId == int.parse(element.id)
                                     ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: CustomTheme
-                                        .progressIndicatorColor,
-                                  ),
-                                )
+                                        child: CircularProgressIndicator(
+                                          color: CustomTheme
+                                              .progressIndicatorColor,
+                                        ),
+                                      )
                                     : IconButton(
-                                  onPressed: () {
-                                    selectedId = int.parse(element.id);
-                                    addItemToCart(element);
-                                  },
-                                  icon: Icon(Icons.shopping_cart),
-                                  color: Colors.lightGreen,
-                                ))
+                                        onPressed: () {
+                                          selectedId = int.parse(element.id);
+                                          addItemToCart(element);
+                                        },
+                                        icon: Icon(Icons.shopping_cart),
+                                        color: Colors.lightGreen,
+                                      ))
                               ],
                             )
                           ],

@@ -52,13 +52,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     if (widget.controllerType ==
             ControllerTypeNames.productChildrenVariantItems.name ||
         widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      widget.givenList.forEach((element) {
-        if (widget.currentList.firstWhereOrNull(
-                (item) => item.productId == element.productId) ==
-            null) {
-          widget.currentList.add(element);
-        }
-      });
+      print('current list ${widget.currentList}');
     }
     if(widget.controllerType == ControllerTypeNames.normalProductList.name){
       widget.currentList = widget.givenList.cast<List<SingleProductListItemType>>();
@@ -132,7 +126,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
               crossAxisCount: 2,
               childAspectRatio: MediaQuery.of(context).size.width /
                   (MediaQuery.of(context).size.height / 2),
-              children: widget.currentList
+              children: widget.givenList
                   .map((element) => Card(
                         elevation: 5,
                         child: Column(

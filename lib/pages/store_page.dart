@@ -58,7 +58,7 @@ class _StorePageState extends State<StorePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-                '${collectionsController.singleCollectionDetail['name']}'),
+                'Welcome To ${_utilService.appName}'),
             orderController.activeOrderResponse['totalQuantity'] != null
                 ? CartButtonComponent(
               isLoading: orderController.isLoading.isTrue,

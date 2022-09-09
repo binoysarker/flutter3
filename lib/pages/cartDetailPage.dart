@@ -121,7 +121,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           title: Text(
                               '${orderController.activeOrderItemList[index].productVariant.name}'),
                           subtitle: Text(
-                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser['orders']['items'][0]['currencyCode'])}${orderController.activeOrderItemList[index].unitPriceWithTax} Quantity: ${orderController.activeOrderItemList[index].quantity}',
+                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser['orders']['items'][0]['currencyCode'] ?? '')}${orderController.activeOrderItemList[index].unitPriceWithTax} Quantity: ${orderController.activeOrderItemList[index].quantity}',
                             style: CustomTheme.headerStyle,
                           ),
                           onTap: () {

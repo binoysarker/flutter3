@@ -30,7 +30,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
 
   String getPrice(Query$GetAllProducts$products$items element) {
     var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
-    return '${UtilService.getCurrencySymble(item!.currencyCode.toString())}${item?.price}';
+    return '${UtilService.getCurrencySymble(item!.currencyCode.toString())}${item.price}';
   }
 
   @override

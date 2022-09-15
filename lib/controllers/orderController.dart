@@ -35,13 +35,17 @@ class OrderController extends GetxController {
   var shippingMethodSelected = '1'.obs;
   var clientToken = ''.obs;
   var currencyCode = ''.obs;
-  var productLines = <Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>[].obs;
-  var shippingLines = <Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>[].obs;
+  var productLines =
+      <Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>[].obs;
+  var shippingLines =
+      <Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>[]
+          .obs;
   Fragment$OrderAddress? finalShippingAddress;
-  // ignore: unnecessary_cast
-  var shippingAddressOrder = (null as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?).obs;
-  var currentNonce = ''.obs;
 
+  // ignore: unnecessary_cast
+  var shippingAddressOrder =
+      (null as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?).obs;
+  var currentNonce = ''.obs;
 
   void getActiveOrders() async {
     isLoading.value = true;
@@ -58,7 +62,7 @@ class OrderController extends GetxController {
         currencyCode.value = res.parsedData!.activeOrder!.currencyCode.name;
         activeOrderResponse.value = res.parsedData!.activeOrder!.toJson();
         activeOrderItemList.value = res.parsedData!.activeOrder!.lines;
-  }
+      }
       isLoading.value = false;
     }
   }
@@ -76,7 +80,9 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      var orderResponse = Mutation$SetShippingMethod$setOrderShippingMethod$$Order.fromJson(res.parsedData!.setOrderShippingMethod.toJson()) ;
+      var orderResponse =
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order.fromJson(
+              res.parsedData!.setOrderShippingMethod.toJson());
       print('set shipping method ${orderResponse}');
       productLines.value = orderResponse.lines.toList();
       shippingLines.value = orderResponse.shippingLines.toList();
@@ -100,17 +106,6 @@ class OrderController extends GetxController {
     }
   }
 
-  void getClientToken() async {
-    try {
-      final url = Uri.http('${dotenv.env['BRAINTREE_URL']}', 'client_token');
-      final res = await http.get(url);
-      print('client token ${res.body}');
-      clientToken.value = res.body;
-    } on Exception catch (e) {
-      print('${e.toString()}');
-    }
-  }
-
   void setShippingAddress() async {
     final res = await this
         .graphqlService
@@ -131,24 +126,23 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      shippingAddressOrder.value = Mutation$SetShippingAddress$setOrderShippingAddress$$Order.fromJson(res.parsedData!.setOrderShippingAddress.toJson());
+      shippingAddressOrder.value =
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order.fromJson(
+              res.parsedData!.setOrderShippingAddress.toJson());
       finalShippingAddress = shippingAddressOrder.value!.shippingAddress;
-
     }
   }
-  void onUserCheckout() async{
-    try{
+
+  void onUserCheckout() async {
+    try {
       final url = Uri.http('${dotenv.env['BRAINTREE_URL']}', 'checkout');
-      final res = await http.post(url,body: jsonEncode({
-        'payment_method_nonce': currentNonce.value
-      }),headers: {
-        "Content-Type": "application/json"
-      });
+      final res = await http.post(url,
+          body: jsonEncode({'payment_method_nonce': currentNonce.value}),
+          headers: {"Content-Type": "application/json"});
       print(res.body);
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
-
   }
 
   void getEligibleShippingMethod() async {

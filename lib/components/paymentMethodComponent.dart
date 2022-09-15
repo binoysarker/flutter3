@@ -83,7 +83,7 @@ class PaymentMethodComponent extends StatelessWidget {
                     style: CustomTheme.headerStyle,
                   ),
                   trailing: Text(
-                    '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.shippingAddressOrder.value!.totalWithTax}',
+                    '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.shippingAddressOrder.value?.totalWithTax}',
                     style: CustomTheme.headerStyle,
                   ),
                 ),

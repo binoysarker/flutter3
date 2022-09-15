@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_braintree/flutter_braintree.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
@@ -17,37 +16,11 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
 
-  void startBrainTreeProcess() async {
-    final request = BraintreeDropInRequest(
-      clientToken: '${orderController.clientToken.value}',
-      collectDeviceData: true,
-      googlePaymentRequest: BraintreeGooglePaymentRequest(
-        totalPrice: '${orderController.shippingAddressOrder.value!.totalWithTax}',
-        currencyCode: '${orderController.currencyCode}',
-        billingAddressRequired: false,
-      ),
-      paypalRequest: BraintreePayPalRequest(
-        amount: '${orderController.shippingAddressOrder.value!.totalWithTax}',
-        displayName: 'Example company',
-      ),
-    );
-
-    final result = await BraintreeDropIn.start(request);
-    if (result != null) {
-      print('Nonce: ${result.paymentMethodNonce.nonce}');
-      orderController.currentNonce.value = result.paymentMethodNonce.nonce;
-      orderController.onUserCheckout();
-    } else {
-      print('Selection was canceled.');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getOrderForCheckout();
-      orderController.getClientToken();
       orderController.getEligibleShippingMethod();
       orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
@@ -105,14 +78,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       } else {
                         print('invalid');
                       }
-                    }
-                    else if (orderController.currentStep.value ==
-                        2) {
+                    } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
-                    }
-                    else if(orderController.currentStep.value == 1){
-                      startBrainTreeProcess();
-                    }
+                    } else if (orderController.currentStep.value == 1) {}
                   },
                   onStepCancel: () {
                     if (orderController.currentStep.value == 0) {
@@ -125,8 +93,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   controlsBuilder: (context, details) => Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(onPressed: details.onStepContinue, child: Text(orderController.currentStep.value == 1 ? 'Start Payment' : 'Continue')),
-                      ElevatedButton(onPressed: details.onStepCancel, child: Text('Cancle')),
+                      ElevatedButton(
+                          onPressed: details.onStepContinue,
+                          child: Text(orderController.currentStep.value == 1
+                              ? 'Start Payment'
+                              : 'Continue')),
+                      ElevatedButton(
+                          onPressed: details.onStepCancel,
+                          child: Text('Cancle')),
                     ],
                   ),
                 ),

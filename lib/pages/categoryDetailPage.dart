@@ -1,11 +1,11 @@
-import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/components/cartButtonComponent.dart';
-import 'package:ecommerce_app/components/itemGalleryComponent.dart';
-import 'package:ecommerce_app/controllers/collectionsController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/util_service.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/components/cartButtonComponent.dart';
+import 'package:recipe.app/components/itemGalleryComponent.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

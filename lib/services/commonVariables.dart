@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
+import 'package:recipe.app/graphqlSection/products.graphql.dart';
 
 enum PageRouteNames {
   home,

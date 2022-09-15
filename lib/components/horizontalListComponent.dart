@@ -1,11 +1,11 @@
-import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
-import 'package:ecommerce_app/pages/categoryDetailPage.dart';
-import 'package:ecommerce_app/pages/productDetailPage.dart';
-import 'package:ecommerce_app/pages/subCategoryDetailPage.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
+import 'package:recipe.app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
+import 'package:recipe.app/pages/categoryDetailPage.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
+import 'package:recipe.app/pages/subCategoryDetailPage.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

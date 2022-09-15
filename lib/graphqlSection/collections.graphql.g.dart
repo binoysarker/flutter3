@@ -69,6 +69,9 @@ Query$GetAvailableCountries$availableCountries
     _$Query$GetAvailableCountries$availableCountriesFromJson(
             Map<String, dynamic> json) =>
         Query$GetAvailableCountries$availableCountries(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          code: json['code'] as String,
           enabled: json['enabled'] as bool,
           languageCode: $enumDecode(
               _$Enum$LanguageCodeEnumMap, json['languageCode'],
@@ -78,17 +81,18 @@ Query$GetAvailableCountries$availableCountries
                   Query$GetAvailableCountries$availableCountries$translations
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
-          name: json['name'] as String,
           $__typename: json['__typename'] as String,
         );
 
 Map<String, dynamic> _$Query$GetAvailableCountries$availableCountriesToJson(
         Query$GetAvailableCountries$availableCountries instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'code': instance.code,
       'enabled': instance.enabled,
       'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
       'translations': instance.translations.map((e) => e.toJson()).toList(),
-      'name': instance.name,
       '__typename': instance.$__typename,
     };
 

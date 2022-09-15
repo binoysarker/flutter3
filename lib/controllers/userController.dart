@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/controllers/loginPageController.dart';
-import 'package:ecommerce_app/controllers/utilityController.dart';
-import 'package:ecommerce_app/graphqlSection/authentication.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/sellers.graphql.dart';
-import 'package:ecommerce_app/pages/login_page.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:recipe.app/controllers/loginPageController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
+import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
+import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

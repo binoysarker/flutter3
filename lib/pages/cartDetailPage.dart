@@ -1,12 +1,13 @@
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
-import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/controllers/cartController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/controllers/userController.dart';
-import 'package:ecommerce_app/graphqlSection/orders.graphql.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/util_service.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/graphqlSection/orders.graphql.dart';
+import 'package:recipe.app/pages/checkout_page.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +41,9 @@ class _CartDetailPageState extends State<CartDetailPage> {
         BottomSheetAction(
             title: Obx(() => cartController.isLoading.isTrue
                 ? Center(
-                    child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                    child: CircularProgressIndicator(
+                      color: CustomTheme.progressIndicatorColor,
+                    ),
                   )
                 : Text('Increase Quantity')),
             onPressed: (_) {
@@ -49,7 +52,9 @@ class _CartDetailPageState extends State<CartDetailPage> {
         BottomSheetAction(
             title: Obx(() => orderController.isLoading.isTrue
                 ? Center(
-                    child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                    child: CircularProgressIndicator(
+                      color: CustomTheme.progressIndicatorColor,
+                    ),
                   )
                 : Text('Delete Item')),
             onPressed: (_) {
@@ -72,37 +77,43 @@ class _CartDetailPageState extends State<CartDetailPage> {
           IconButton(
               onPressed: () {
                 Get.defaultDialog(
-                  title: 'Warning',
-                  content: Column(
-                    children: [Text('Are you sure to delete all items')],
-                  ),
-                  actions: [
-                    TextButton(onPressed: (){
-                      orderController.removeAllItemFromOrder();
-                    }, child: Text('OK')),
-                  ]
-                );
+                    title: 'Warning',
+                    content: Column(
+                      children: [Text('Are you sure to delete all items')],
+                    ),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            orderController.removeAllItemFromOrder();
+                          },
+                          child: Text('OK')),
+                    ]);
               },
               icon: Icon(Icons.remove_shopping_cart_outlined))
         ],
       ),
       body: Obx(() => orderController.activeOrderItemList.isEmpty
           ? Card(
-            child: Container(
+              child: Container(
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('No Items are in Cart', style: CustomTheme.headerStyle,),
+                      Text(
+                        'No Items are in Cart',
+                        style: CustomTheme.headerStyle,
+                      ),
                       Text('Please add an Item'),
-                      TextButton(onPressed: (){
-                        Get.offNamedUntil('home', (route) => route.isFirst);
-                      }, child: Text('Go To Home'))
+                      TextButton(
+                          onPressed: () {
+                            Get.offNamedUntil('home', (route) => route.isFirst);
+                          },
+                          child: Text('Go To Home'))
                     ],
                   ),
                 ),
               ),
-          )
+            )
           : Card(
               child: ListView.builder(
                   itemBuilder: (context, index) => Card(
@@ -134,6 +145,13 @@ class _CartDetailPageState extends State<CartDetailPage> {
                   itemCount: orderController.activeOrderItemList.length),
             )),
       bottomNavigationBar: BottomNavigationComponent(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Get.to(() => CheckoutPage());
+        },
+        label: Text('Checkout'),
+        icon: Icon(Icons.card_travel),
+      ),
     ));
   }
 }

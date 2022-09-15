@@ -1,11 +1,12 @@
-import 'package:ecommerce_app/components/errorMessageComponent.dart';
-import 'package:ecommerce_app/components/loadingSpinnerComponent.dart';
-import 'package:ecommerce_app/controllers/loginPageController.dart';
-import 'package:ecommerce_app/controllers/utilityController.dart';
-import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/util_service.dart';
-import 'package:ecommerce_app/validators/validatorDefinations.dart';
+import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/components/errorMessageComponent.dart';
+import 'package:recipe.app/components/loadingSpinnerComponent.dart';
+import 'package:recipe.app/controllers/loginPageController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/pages/forgetPasswordPage.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
+import 'package:recipe.app/validators/validatorDefinations.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -272,6 +273,7 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 )),
+      bottomNavigationBar: BottomNavigationComponent(),
           ));
   }
 }

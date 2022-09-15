@@ -1,8 +1,8 @@
-import 'package:ecommerce_app/controllers/cartController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/util_service.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

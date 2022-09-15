@@ -53,16 +53,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyBySpnhjB2oT67iSi7WClvDan19EhfYv5Y',
     appId: '1:346495285420:android:3b26308f4ee602c6564709',
     messagingSenderId: '346495285420',
-    projectId: 'ecommerce-app-b90a9',
-    storageBucket: 'ecommerce-app-b90a9.appspot.com',
+    projectId: 'recipe.app-b90a9',
+    storageBucket: 'recipe.app-b90a9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAevr5RhAihsl2jMHhumddCmWGb7q3G5Os',
     appId: '1:346495285420:ios:7b4755606f332e54564709',
     messagingSenderId: '346495285420',
-    projectId: 'ecommerce-app-b90a9',
-    storageBucket: 'ecommerce-app-b90a9.appspot.com',
+    projectId: 'recipe.app-b90a9',
+    storageBucket: 'recipe.app-b90a9.appspot.com',
     iosClientId: '346495285420-859e29o6jg10l7kjbs4lip4gb1mqj34e.apps.googleusercontent.com',
     iosBundleId: 'com.example.ecommerceApp',
   );

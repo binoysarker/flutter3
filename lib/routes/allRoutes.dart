@@ -1,16 +1,17 @@
-import 'package:ecommerce_app/pages/cartDetailPage.dart';
-import 'package:ecommerce_app/pages/categoryDetailPage.dart';
-import 'package:ecommerce_app/pages/forgetPasswordPage.dart';
-import 'package:ecommerce_app/pages/login_page.dart';
-import 'package:ecommerce_app/pages/my_account_page.dart';
-import 'package:ecommerce_app/pages/orders_page.dart';
-import 'package:ecommerce_app/pages/page_not_found.dart';
-import 'package:ecommerce_app/pages/productDetailPage.dart';
-import 'package:ecommerce_app/pages/resetPasswordPage.dart';
-import 'package:ecommerce_app/pages/rewards_page.dart';
-import 'package:ecommerce_app/pages/store_page.dart';
-import 'package:ecommerce_app/pages/subCategoryDetailPage.dart';
-import 'package:ecommerce_app/pages/tokenVarifyPage.dart';
+import 'package:recipe.app/pages/cartDetailPage.dart';
+import 'package:recipe.app/pages/categoryDetailPage.dart';
+import 'package:recipe.app/pages/checkout_page.dart';
+import 'package:recipe.app/pages/forgetPasswordPage.dart';
+import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/pages/my_account_page.dart';
+import 'package:recipe.app/pages/orders_page.dart';
+import 'package:recipe.app/pages/page_not_found.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
+import 'package:recipe.app/pages/resetPasswordPage.dart';
+import 'package:recipe.app/pages/rewards_page.dart';
+import 'package:recipe.app/pages/store_page.dart';
+import 'package:recipe.app/pages/subCategoryDetailPage.dart';
+import 'package:recipe.app/pages/tokenVarifyPage.dart';
 import 'package:get/get.dart';
 class RoutesClass {
   static List<GetPage> routes = [
@@ -27,6 +28,7 @@ class RoutesClass {
     GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/sub_category_detail', page: () => SubCategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/cart_detail', page: () => CartDetailPage(),transition: Transition.fade),
+    GetPage(name: '/checkout', page: () => CheckoutPage(),transition: Transition.fade),
     GetPage(name: '/page_not_found', page: () => PageNotFound(),transition: Transition.fade),
   ];
 }

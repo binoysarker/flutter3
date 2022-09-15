@@ -1,9 +1,22 @@
 query GetActiveOrder {
     activeOrder {
+        currencyCode
         ...Cart
         __typename
     }
 }
+
+query GetOrderForCheckout {
+    activeOrder {
+        ...Cart
+        shippingAddress {
+            ...OrderAddress
+            __typename
+        }
+        __typename
+    }
+}
+
 
 mutation RemoveOrderLine($orderLineId: ID!){
     removeOrderLine(orderLineId: $orderLineId){
@@ -26,6 +39,56 @@ mutation RemoveAllOrderLines{
         }
     }
 }
+query GetEligibleShippingMethods {
+    eligibleShippingMethods {
+        id
+        name
+        description
+        price
+        priceWithTax
+        metadata
+        __typename
+    }
+}
+
+query GetEligiblePaymentMethods {
+    eligiblePaymentMethods {
+        id
+        code
+        eligibilityMessage
+        isEligible
+        __typename
+    }
+}
+
+query GetOrderByCode($code: String!) {
+    orderByCode(code: $code) {
+        ...Cart
+        updatedAt
+        customer {
+            id
+            emailAddress
+            firstName
+            lastName
+            user {
+                id
+                identifier
+                verified
+                __typename
+            }
+            __typename
+        }
+        __typename
+    }
+}
+
+mutation AddPayment($input: PaymentInput!) {
+    addPaymentToOrder(input: $input) {
+        ...Cart
+        ...ErrorResult
+        __typename
+    }
+}
 
 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!){
     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity){
@@ -38,6 +101,59 @@ mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!){
         }
     }
 }
+
+mutation SetShippingAddress($input: CreateAddressInput!) {
+    setOrderShippingAddress(input: $input) {
+        ...Cart
+        ... on Order {
+            shippingAddress {
+                ...OrderAddress
+                __typename
+            }
+            __typename
+        }
+        ...ErrorResult
+        __typename
+    }
+}
+
+mutation SetShippingMethod($id: ID!) {
+    setOrderShippingMethod(shippingMethodId: $id) {
+        ...Cart
+        ...ErrorResult
+        __typename
+    }
+}
+
+mutation TransitionToArrangingPayment {
+    transitionOrderToState(state: "ArrangingPayment") {
+        ...Cart
+        ...ErrorResult
+        __typename
+    }
+}
+
+
+fragment OrderAddress on OrderAddress {
+    fullName
+    company
+    streetLine1
+    streetLine2
+    city
+    province
+    postalCode
+    country
+    phoneNumber
+    __typename
+}
+
+fragment ErrorResult on ErrorResult {
+    errorCode
+    message
+    __typename
+}
+
+
 fragment Cart on Order {
     id
     code

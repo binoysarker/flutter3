@@ -1,9 +1,9 @@
-import 'package:ecommerce_app/controllers/userController.dart';
-import 'package:ecommerce_app/controllers/utilityController.dart';
-import 'package:ecommerce_app/graphqlSection/collections.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
+import 'package:recipe.app/graphqlSection/schema.graphql.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:get/get.dart';
 
 class CollectionsController extends GetxController {

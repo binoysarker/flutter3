@@ -1,6 +1,9 @@
 query GetAvailableCountries{
     availableCountries {
         ... on Country{
+            id
+            name
+            code
             enabled
             languageCode
             translations {

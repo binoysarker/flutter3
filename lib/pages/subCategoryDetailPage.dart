@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/controllers/collectionsController.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/graphqlSection/products.graphql.dart';
-import 'package:ecommerce_app/graphqlSection/schema.graphql.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:recipe.app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/graphqlSection/schema.graphql.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';

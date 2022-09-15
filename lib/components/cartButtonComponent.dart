@@ -1,7 +1,7 @@
-import 'package:ecommerce_app/controllers/cartController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/pages/cartDetailPage.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/pages/cartDetailPage.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

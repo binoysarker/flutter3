@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/services/commonVariables.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:html/parser.dart' show parse;

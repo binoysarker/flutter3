@@ -1,16 +1,16 @@
 import 'dart:async';
 
-import 'package:ecommerce_app/controllers/bottomNavigationController.dart';
-import 'package:ecommerce_app/controllers/cartController.dart';
-import 'package:ecommerce_app/controllers/collectionsController.dart';
-import 'package:ecommerce_app/controllers/homePageController.dart';
-import 'package:ecommerce_app/controllers/loginPageController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/controllers/userController.dart';
-import 'package:ecommerce_app/controllers/utilityController.dart';
-import 'package:ecommerce_app/routes/allRoutes.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
-import 'package:ecommerce_app/themes.dart';
+import 'package:recipe.app/controllers/bottomNavigationController.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
+import 'package:recipe.app/controllers/homePageController.dart';
+import 'package:recipe.app/controllers/loginPageController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/routes/allRoutes.dart';
+import 'package:recipe.app/services/graphql_service.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

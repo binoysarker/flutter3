@@ -502,6 +502,24 @@ const documentNodeQueryGetAvailableCountries = DocumentNode(definitions: [
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
                     FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'code'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
                         name: NameNode(value: 'enabled'),
                         alias: null,
                         arguments: [],
@@ -699,16 +717,24 @@ class Query$GetAvailableCountries$Widget
 @JsonSerializable(explicitToJson: true)
 class Query$GetAvailableCountries$availableCountries {
   Query$GetAvailableCountries$availableCountries(
-      {required this.enabled,
+      {required this.id,
+      required this.name,
+      required this.code,
+      required this.enabled,
       required this.languageCode,
       required this.translations,
-      required this.name,
       required this.$__typename});
 
   @override
   factory Query$GetAvailableCountries$availableCountries.fromJson(
           Map<String, dynamic> json) =>
       _$Query$GetAvailableCountries$availableCountriesFromJson(json);
+
+  final String id;
+
+  final String name;
+
+  final String code;
 
   final bool enabled;
 
@@ -718,24 +744,26 @@ class Query$GetAvailableCountries$availableCountries {
   final List<Query$GetAvailableCountries$availableCountries$translations>
       translations;
 
-  final String name;
-
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
       _$Query$GetAvailableCountries$availableCountriesToJson(this);
   int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$code = code;
     final l$enabled = enabled;
     final l$languageCode = languageCode;
     final l$translations = translations;
-    final l$name = name;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
+      l$name,
+      l$code,
       l$enabled,
       l$languageCode,
       Object.hashAll(l$translations.map((v) => v)),
-      l$name,
       l$$__typename
     ]);
   }
@@ -745,6 +773,15 @@ class Query$GetAvailableCountries$availableCountries {
     if (identical(this, other)) return true;
     if (!(other is Query$GetAvailableCountries$availableCountries) ||
         runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
     final l$enabled = enabled;
     final lOther$enabled = other.enabled;
     if (l$enabled != lOther$enabled) return false;
@@ -760,9 +797,6 @@ class Query$GetAvailableCountries$availableCountries {
       if (l$translations$entry != lOther$translations$entry) return false;
     }
 
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -789,11 +823,13 @@ abstract class CopyWith$Query$GetAvailableCountries$availableCountries<TRes> {
       _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries;
 
   TRes call(
-      {bool? enabled,
+      {String? id,
+      String? name,
+      String? code,
+      bool? enabled,
       Enum$LanguageCode? languageCode,
       List<Query$GetAvailableCountries$availableCountries$translations>?
           translations,
-      String? name,
       String? $__typename});
   TRes translations(
       Iterable<Query$GetAvailableCountries$availableCountries$translations> Function(
@@ -815,12 +851,21 @@ class _CopyWithImpl$Query$GetAvailableCountries$availableCountries<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? enabled = _undefined,
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? code = _undefined,
+          Object? enabled = _undefined,
           Object? languageCode = _undefined,
           Object? translations = _undefined,
-          Object? name = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetAvailableCountries$availableCountries(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
           enabled: enabled == _undefined || enabled == null
               ? _instance.enabled
               : (enabled as bool),
@@ -831,9 +876,6 @@ class _CopyWithImpl$Query$GetAvailableCountries$availableCountries<TRes>
               ? _instance.translations
               : (translations as List<
                   Query$GetAvailableCountries$availableCountries$translations>),
-          name: name == _undefined || name == null
-              ? _instance.name
-              : (name as String),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -856,11 +898,13 @@ class _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries<TRes>
   TRes _res;
 
   call(
-          {bool? enabled,
+          {String? id,
+          String? name,
+          String? code,
+          bool? enabled,
           Enum$LanguageCode? languageCode,
           List<Query$GetAvailableCountries$availableCountries$translations>?
               translations,
-          String? name,
           String? $__typename}) =>
       _res;
   translations(_fn) => _res;

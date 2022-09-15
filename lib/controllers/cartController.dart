@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/graphqlSection/cart_data.graphql.dart';
-import 'package:ecommerce_app/services/graphql_service.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/graphqlSection/cart_data.graphql.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {

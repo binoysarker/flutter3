@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/controllers/loginPageController.dart';
-import 'package:ecommerce_app/controllers/userController.dart';
+import 'package:recipe.app/controllers/loginPageController.dart';
+import 'package:recipe.app/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';

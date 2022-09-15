@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/pages/productDetailPage.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

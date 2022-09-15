@@ -32,6 +32,7 @@ class CustomTheme with ChangeNotifier {
     return ThemeData(
       primaryColor: Colors.green,
       buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
+      colorScheme: ColorScheme.light(primary: Colors.lightGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green[200])

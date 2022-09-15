@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controllers/utilityController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class ErrorMessageComponent extends StatelessWidget {

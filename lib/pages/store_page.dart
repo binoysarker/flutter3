@@ -1,15 +1,15 @@
-import 'package:ecommerce_app/components/bottomNavigationComponent.dart';
-import 'package:ecommerce_app/components/drawerComponent.dart';
-import 'package:ecommerce_app/components/productListComponent.dart';
-import 'package:ecommerce_app/controllers/cartController.dart';
-import 'package:ecommerce_app/controllers/collectionsController.dart';
-import 'package:ecommerce_app/controllers/homePageController.dart';
-import 'package:ecommerce_app/controllers/orderController.dart';
-import 'package:ecommerce_app/controllers/productsController.dart';
-import 'package:ecommerce_app/controllers/userController.dart';
-import 'package:ecommerce_app/controllers/utilityController.dart';
-import 'package:ecommerce_app/services/commonVariables.dart';
-import 'package:ecommerce_app/services/util_service.dart';
+import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/components/drawerComponent.dart';
+import 'package:recipe.app/components/productListComponent.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
+import 'package:recipe.app/controllers/homePageController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/productsController.dart';
+import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,13 +59,11 @@ class _StorePageState extends State<StorePage> {
           children: [
             Text(
                 'Welcome To ${_utilService.appName}'),
-            orderController.activeOrderResponse['totalQuantity'] != null
-                ? CartButtonComponent(
+            CartButtonComponent(
               isLoading: orderController.isLoading.isTrue,
               totalQuantity: orderController
-                  .activeOrderResponse['totalQuantity'],
+                  .activeOrderResponse['totalQuantity'] ?? 0,
             )
-                : SizedBox()
           ],
         )),
       ),

@@ -1,4 +1,6 @@
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
@@ -8,8 +10,6 @@ import 'package:recipe.app/pages/checkout_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CartDetailPage extends StatefulWidget {
   const CartDetailPage({Key? key}) : super(key: key);
@@ -29,6 +29,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getActiveOrders();
+      if (orderController.activeOrderResponse.value!.state ==
+          OrderStateEnums.ArrangingPayment) {
+        orderController.transitionToAddingItems();
+      }
     });
   }
 
@@ -48,6 +52,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                 : Text('Increase Quantity')),
             onPressed: (_) {
               cartController.addItemToCart(item.productVariant.id, 1);
+              Navigator.pop(context);
             }),
         BottomSheetAction(
             title: Obx(() => orderController.isLoading.isTrue
@@ -59,6 +64,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                 : Text('Delete Item')),
             onPressed: (_) {
               orderController.removeItemFromOrder(item.id);
+              Navigator.pop(context);
             }),
       ],
       cancelAction: CancelAction(
@@ -85,6 +91,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       TextButton(
                           onPressed: () {
                             orderController.removeAllItemFromOrder();
+                            Navigator.pop(context);
                           },
                           child: Text('OK')),
                     ]);
@@ -92,7 +99,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
               icon: Icon(Icons.remove_shopping_cart_outlined))
         ],
       ),
-      body: Obx(() => orderController.activeOrderItemList.isEmpty
+      body: Obx(() => orderController.activeOrderResponse.value!.lines.isEmpty
           ? Card(
               child: Container(
                 child: Center(
@@ -124,25 +131,28 @@ class _CartDetailPageState extends State<CartDetailPage> {
                             height: 50,
                             placeholder: '${CommonVariableData.placeholder}',
                             image:
-                                '${orderController.activeOrderItemList[index].featuredAsset?.preview}',
+                                '${orderController.activeOrderResponse.value!.lines[index].featuredAsset?.preview}',
                             imageErrorBuilder: (context, error, stackTrace) =>
                                 Image.asset(
                                     '${CommonVariableData.placeholder}'),
                           ),
                           title: Text(
-                              '${orderController.activeOrderItemList[index].productVariant.name}'),
+                              '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}'),
                           subtitle: Text(
-                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser['orders']['items'][0]['currencyCode'] ?? '')}${orderController.activeOrderItemList[index].unitPriceWithTax} Quantity: ${orderController.activeOrderItemList[index].quantity}',
+                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value?.orders.items.first.currencyCode.name ?? '')}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
                             style: CustomTheme.headerStyle,
                           ),
                           onTap: () {
-                            showActionSheet(context,
-                                orderController.activeOrderItemList[index]);
+                            showActionSheet(
+                                context,
+                                orderController
+                                    .activeOrderResponse.value!.lines[index]);
                           },
                           trailing: Icon(Icons.more_vert),
                         ),
                       ),
-                  itemCount: orderController.activeOrderItemList.length),
+                  itemCount:
+                      orderController.activeOrderResponse.value!.lines.length),
             )),
       bottomNavigationBar: BottomNavigationComponent(),
       floatingActionButton: FloatingActionButton.extended(

@@ -39,7 +39,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   width: 20.0,
                 ),
                 Text(
-                  '${currentAuthenticatedUser['emailAddress']}',
+                  '${currentAuthenticatedUser!.emailAddress}',
                   style: TextStyle(color: Colors.white),
                 )
               ],

@@ -91,7 +91,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   border: OutlineInputBorder(),
                   labelText: 'Phone',
                 ),
-                autofillHints: [AutofillHints.telephoneNumberNational],
+                autofillHints: [AutofillHints.telephoneNumber,AutofillHints.telephoneNumberCountryCode],
                 keyboardType: TextInputType.phone,
                 validator: ValidatorDefinition.phoneNumberMultiValidator,
               ),
@@ -170,6 +170,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     .toList(),
                 onChanged: (dynamic data) {
                   print(data);
+                  widget.orderController.currentlySelectedShippingMethod.value = widget.orderController.eligibleShippingMethodList.firstWhere((element) => element.id == data);
                   widget.orderController.currentlySelectedShippingMethodId.value = data;
                 },
               ),

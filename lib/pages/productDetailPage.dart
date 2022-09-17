@@ -35,17 +35,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   String getImage() {
     String url = '';
-    if (productsController.selectedProductDetail['featuredAsset'] != null) {
-      url =
-          productsController.selectedProductDetail['featuredAsset']['preview'];
-    } else {
-      url = '';
+    if(productsController.selectedProductDetail.value!.assets.isNotEmpty){
+        url = productsController.selectedProductDetail.value?.assets.first.preview ?? '';
     }
     return url;
   }
 
   String getPrice() {
-    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail['currencyCode'])}${productsController.updatedPrice.value}';
+    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${productsController.updatedPrice.value}';
   }
 
   @override
@@ -59,24 +56,23 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                      '${productsController.selectedProductDetail['name'] ?? ''}'),
+                      productsController.selectedProductDetail.value?.name ?? ''),
                   cartController.isLoading.isTrue
                       ? Center(
                           child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
                         )
-                      : orderController.activeOrderResponse['totalQuantity'] !=
-                              null
+                      : orderController.activeOrderResponse.value?.totalQuantity != null
                           ? CartButtonComponent(
                               isLoading: orderController.isLoading.isTrue,
                               totalQuantity: orderController
-                                  .activeOrderResponse['totalQuantity'],
+                                  .activeOrderResponse.value!.totalQuantity,
                             )
                           : SizedBox()
                 ],
               )),
       ),
       body: Card(
-        child: Obx(() => productsController.isLoading.isTrue
+        child: Obx(() => productsController.selectedProductDetail.value == null
             ? Container(
                 child: Center(
                   child: CircularProgressIndicator(
@@ -91,7 +87,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     Container(
                       child: FadeInImage.assetNetwork(
                         placeholder: '${CommonVariableData.placeholder}',
-                        image: '${getImage()}',
+                        image: getImage(),
                         imageErrorBuilder: (context, error, stackTrace) =>
                             Image.asset('${CommonVariableData.placeholder}'),
                       ),
@@ -105,7 +101,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'Model: ${productsController.selectedProductDetail['sku']}',
+                            'Model: ${productsController.selectedProductDetail.value!.sku}',
                             style: CustomTheme.headerStyle,
                           ),
                         ),
@@ -153,7 +149,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   onPressed: () {
                                     cartController.addItemToCart(
                                         productsController
-                                            .selectedProductDetail['id'],
+                                            .selectedProductDetail.value!.id,
                                         int.parse(productsController
                                             .quantityController.text));
                                   },

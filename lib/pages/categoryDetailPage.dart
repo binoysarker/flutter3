@@ -42,11 +42,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                 children: [
                   Text(
                       '${collectionsController.singleCollectionDetail['name']}'),
-                  orderController.activeOrderResponse['totalQuantity'] != null
+                  orderController.activeOrderResponse.value!.totalQuantity != null
                       ? CartButtonComponent(
                           isLoading: orderController.isLoading.isTrue,
                           totalQuantity: orderController
-                              .activeOrderResponse['totalQuantity'],
+                              .activeOrderResponse.value!.totalQuantity,
                         )
                       : SizedBox()
                 ],

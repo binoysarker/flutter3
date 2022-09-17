@@ -62,7 +62,7 @@ class _StorePageState extends State<StorePage> {
             CartButtonComponent(
               isLoading: orderController.isLoading.isTrue,
               totalQuantity: orderController
-                  .activeOrderResponse['totalQuantity'] ?? 0,
+                  .activeOrderResponse.value?.totalQuantity ?? 0,
             )
           ],
         )),

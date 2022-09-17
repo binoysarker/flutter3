@@ -43,6 +43,7 @@ query GetEligibleShippingMethods {
     eligibleShippingMethods {
         id
         name
+        code
         description
         price
         priceWithTax
@@ -127,6 +128,13 @@ mutation SetShippingMethod($id: ID!) {
 
 mutation TransitionToArrangingPayment {
     transitionOrderToState(state: "ArrangingPayment") {
+        ...Cart
+        ...ErrorResult
+        __typename
+    }
+}
+mutation TransitionToAddingItems {
+    transitionOrderToState(state: "AddingItems") {
         ...Cart
         ...ErrorResult
         __typename

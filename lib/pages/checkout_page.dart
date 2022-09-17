@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/components/paymentMethodComponent.dart';
 import 'package:recipe.app/components/shippingAddressComponent.dart';
 import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/paymentServices.dart';
+
+import '../allGlobalKeys.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({Key? key}) : super(key: key);
@@ -15,6 +19,7 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
+  UserController userController = Get.find<UserController>();
 
   @override
   void initState() {
@@ -22,9 +27,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getOrderForCheckout();
       orderController.getEligibleShippingMethod();
+      orderController.getEligiblePaymentMethod();
       orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
+
+      PaymentServices.initializeRazorPay();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    PaymentServices.razorpay.clear();
   }
 
   @override
@@ -37,7 +51,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ? StepState.complete
                   : StepState.indexed,
               content: orderController.availableCountryList.isEmpty
-                  ? CircularProgressIndicator()
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
                   : ShippingAddressComponent(orderController: orderController)),
           Step(
               title: Text('Payment'),
@@ -45,8 +61,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               state: orderController.currentStep.value > 1
                   ? StepState.complete
                   : StepState.indexed,
-              content:
-                  PaymentMethodComponent(orderController: orderController)),
+              content: PaymentMethodComponent(orderController: orderController)),
           Step(
               title: Text('Complete'),
               isActive: orderController.currentStep.value > 1,
@@ -70,17 +85,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     print('current step ${orderController.currentStep.value}');
 
                     if (orderController.currentStep.value == 0) {
+                      print(
+                          '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
                       final form = shippingAddressFormKey.currentState!;
                       if (form.validate()) {
                         print('validated');
-                        orderController.setShippingAddress();
                         orderController.setShippingMethod();
+                        orderController.setShippingAddress();
                       } else {
                         print('invalid');
+                        Get.snackbar('', 'Please fill up the form');
                       }
                     } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
-                    } else if (orderController.currentStep.value == 1) {}
+                    } else if (orderController.currentStep.value == 1) {
+                      orderController.createRazorPayOrder();
+                    }
                   },
                   onStepCancel: () {
                     if (orderController.currentStep.value == 0) {
@@ -94,10 +114,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                          onPressed: details.onStepContinue,
-                          child: Text(orderController.currentStep.value == 1
-                              ? 'Start Payment'
-                              : 'Continue')),
+                          onPressed: orderController.isLoading.isTrue
+                              ? null
+                              : details.onStepContinue,
+                          child: orderController.isLoading.isTrue
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Text(orderController.currentStep.value == 1
+                                  ? 'Start Payment'
+                                  : 'Continue')),
                       ElevatedButton(
                           onPressed: details.onStepCancel,
                           child: Text('Cancle')),

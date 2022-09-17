@@ -1481,6 +1481,7 @@ Query$GetEligibleShippingMethods$eligibleShippingMethods
         Query$GetEligibleShippingMethods$eligibleShippingMethods(
           id: json['id'] as String,
           name: json['name'] as String,
+          code: json['code'] as String,
           description: json['description'] as String,
           price: json['price'] as int,
           priceWithTax: json['priceWithTax'] as int,
@@ -1494,6 +1495,7 @@ Map<String,
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'code': instance.code,
       'description': instance.description,
       'price': instance.price,
       'priceWithTax': instance.priceWithTax,
@@ -3362,6 +3364,270 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransiti
 Map<String, dynamic>
     _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransitionErrorToJson(
             Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransitionError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$TransitionToAddingItems _$Mutation$TransitionToAddingItemsFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$TransitionToAddingItems(
+      transitionOrderToState: json['transitionOrderToState'] == null
+          ? null
+          : Mutation$TransitionToAddingItems$transitionOrderToState.fromJson(
+              json['transitionOrderToState'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$TransitionToAddingItemsToJson(
+        Mutation$TransitionToAddingItems instance) =>
+    <String, dynamic>{
+      'transitionOrderToState': instance.transitionOrderToState?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$TransitionToAddingItems$transitionOrderToState
+    _$Mutation$TransitionToAddingItems$transitionOrderToStateFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToStateToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$OrderFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order(
+          $__typename: json['__typename'] as String,
+          id: json['id'] as String,
+          code: json['code'] as String,
+          state: json['state'] as String,
+          active: json['active'] as bool,
+          lines: (json['lines'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          totalQuantity: json['totalQuantity'] as int,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
+          shippingLines: (json['shippingLines'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          discounts: (json['discounts'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$OrderToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'id': instance.id,
+          'code': instance.code,
+          'state': instance.state,
+          'active': instance.active,
+          'lines': instance.lines.map((e) => e.toJson()).toList(),
+          'totalQuantity': instance.totalQuantity,
+          'subTotal': instance.subTotal,
+          'subTotalWithTax': instance.subTotalWithTax,
+          'total': instance.total,
+          'totalWithTax': instance.totalWithTax,
+          'shipping': instance.shipping,
+          'shippingWithTax': instance.shippingWithTax,
+          'shippingLines':
+              instance.shippingLines.map((e) => e.toJson()).toList(),
+          'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$linesFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines(
+          id: json['id'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
+          quantity: json['quantity'] as int,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
+          productVariant:
+              Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant
+                  .fromJson(json['productVariant'] as Map<String, dynamic>),
+          discounts: (json['discounts'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$linesToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          'unitPrice': instance.unitPrice,
+          'unitPriceWithTax': instance.unitPriceWithTax,
+          'quantity': instance.quantity,
+          'linePriceWithTax': instance.linePriceWithTax,
+          'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
+          'productVariant': instance.productVariant.toJson(),
+          'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariantFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariantToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discountsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts(
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
+          description: json['description'] as String,
+          adjustmentSource: json['adjustmentSource'] as String,
+          type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
+              unknownValue: Enum$AdjustmentType.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discountsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts
+                instance) =>
+        <String, dynamic>{
+          'amount': instance.amount,
+          'amountWithTax': instance.amountWithTax,
+          'description': instance.description,
+          'adjustmentSource': instance.adjustmentSource,
+          'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLinesFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines(
+          priceWithTax: json['priceWithTax'] as int,
+          shippingMethod:
+              Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod
+                  .fromJson(json['shippingMethod'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLinesToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines
+                instance) =>
+        <String, dynamic>{
+          'priceWithTax': instance.priceWithTax,
+          'shippingMethod': instance.shippingMethod.toJson(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethodFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod(
+          id: json['id'] as String,
+          code: json['code'] as String,
+          name: json['name'] as String,
+          description: json['description'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethodToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'code': instance.code,
+          'name': instance.name,
+          'description': instance.description,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discountsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts(
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
+          description: json['description'] as String,
+          adjustmentSource: json['adjustmentSource'] as String,
+          type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
+              unknownValue: Enum$AdjustmentType.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discountsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
+                instance) =>
+        <String, dynamic>{
+          'amount': instance.amount,
+          'amountWithTax': instance.amountWithTax,
+          'description': instance.description,
+          'adjustmentSource': instance.adjustmentSource,
+          'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$OrderStateTransitionError
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$OrderStateTransitionErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$OrderStateTransitionError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$OrderStateTransitionErrorToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$OrderStateTransitionError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,

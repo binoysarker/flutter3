@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -14,8 +15,8 @@ class PaymentMethodComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: orderController.productLines.isEmpty &&
-              orderController.shippingLines.isEmpty
+      child: orderController.activeOrderForCheckout.value!.lines.isEmpty &&
+              orderController.activeOrderForCheckout.value!.shippingLines.isEmpty
           ? Center(
               child: CircularProgressIndicator(),
             )
@@ -28,25 +29,31 @@ class PaymentMethodComponent extends StatelessWidget {
                     style: CustomTheme.headerStyle,
                   ),
                 ),
-                ...orderController.productLines
-                    .map((element) => ListTile(
-                          dense: true,
-                          title: Text(element.productVariant.name),
-                          leading: FadeInImage.assetNetwork(
-                            width: 100,
-                            height: 100,
-                            placeholder: '${CommonVariableData.placeholder}',
-                            image: '${element.featuredAsset?.preview}',
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset(
-                              '${CommonVariableData.placeholder}',
-                              width: 100,
-                              height: 100,
+                ...orderController.activeOrderForCheckout.value!.lines
+                    .map((element) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            FadeInImage.assetNetwork(
+                              width: 50,
+                              height: 50,
+                              placeholder: '${CommonVariableData.placeholder}',
+                              image: '${element.featuredAsset?.preview}',
+                              imageErrorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                '${CommonVariableData.placeholder}',
+                                width: 50,
+                                height: 50,
+                              ),
                             ),
-                          ),
-                          subtitle: Text('Quantity: ${element.quantity}'),
-                          trailing: Text(
-                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.unitPriceWithTax}'),
+                            Column(
+                              children: [
+                                Text(element.productVariant.name),
+                                Text('Quantity: ${element.quantity}'),
+                              ],
+                            ),
+                            Text(
+                                '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.linePriceWithTax}')
+                          ],
                         ))
                     .toList(),
                 SizedBox(
@@ -63,7 +70,7 @@ class PaymentMethodComponent extends StatelessWidget {
                     style: CustomTheme.headerStyle,
                   ),
                 ),
-                ...orderController.shippingLines
+                ...orderController.activeOrderForCheckout.value!.shippingLines
                     .map((element) => ListTile(
                           title: Text(element.shippingMethod.name),
                           trailing: Text(
@@ -77,15 +84,29 @@ class PaymentMethodComponent extends StatelessWidget {
                   direction: Axis.horizontal,
                   dashLength: 4.0,
                 ),
-                ListTile(
-                  title: Text(
-                    'Total',
-                    style: CustomTheme.headerStyle,
-                  ),
-                  trailing: Text(
-                    '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.shippingAddressOrder.value?.totalWithTax}',
-                    style: CustomTheme.headerStyle,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Total',
+                        style: CustomTheme.headerStyle,
+                      ),
+                    ),
+                    orderController.shippingAddressOrder.value == null
+                        ? Container(
+                            child: Center(
+                            child: CircularProgressIndicator(),
+                          ))
+                        : Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Text(
+                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.shippingAddressOrder.value?.totalWithTax ?? ''}',
+                              style: CustomTheme.headerStyle,
+                            ),
+                        ),
+                  ],
                 ),
                 Text(
                   'Shipping Address',
@@ -97,28 +118,29 @@ class PaymentMethodComponent extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
                       elevation: 8.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(orderController.finalShippingAddress?.fullName ??
-                              ''),
-                          Text(orderController
-                                  .finalShippingAddress?.streetLine1 ??
-                              ''),
-                          Text(orderController
-                                  .finalShippingAddress?.streetLine2 ??
-                              ''),
-                          Text(
-                              orderController.finalShippingAddress?.city ?? ''),
-                          Text(orderController
-                                  .finalShippingAddress?.postalCode ??
-                              ''),
-                          Text(orderController.finalShippingAddress?.country ??
-                              ''),
-                          Text(
-                              'Mobile Number: ${orderController.finalShippingAddress?.phoneNumber ?? ''}'),
-                        ],
-                      ),
+                      child: orderController.shippingAddressOrder.value == null
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.fullName ??
+                                    ''),
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.streetLine1 ??
+                                    ''),
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.streetLine2 ??
+                                    ''),
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.city ??
+                                    ''),
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.postalCode ??
+                                    ''),
+                                Text(orderController.shippingAddressOrder.value?.shippingAddress?.country ??
+                                    ''),
+                                Text(
+                                    'Mobile Number: ${orderController.shippingAddressOrder.value?.shippingAddress?.phoneNumber ?? ''}'),
+                              ],
+                            ),
                     ),
                   ),
                 )

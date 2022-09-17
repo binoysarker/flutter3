@@ -15,7 +15,8 @@ class ProductsController extends GetxController {
   var searchResultList = <Query$SearchProducts$search$items>[].obs;
   var productDetailVariants = <Query$GetProductDetail$product$variants>[].obs;
   var selectedDropdownItemId = ''.obs;
-  var selectedProductDetail = {}.obs;
+  // ignore: unnecessary_cast
+  var selectedProductDetail = (null as Query$GetProductDetail$product$variants?).obs;
   var productDetailResponse = {}.obs;
   var basePrice = 0.obs;
   var updatedPrice = 0.obs;
@@ -53,9 +54,8 @@ class ProductsController extends GetxController {
   void updateProductDetail(dynamic data) {
     selectedDropdownItemId.value = data;
     selectedProductDetail.value = productDetailVariants
-        .firstWhere((element) => element.id == data)
-        .toJson();
-    basePrice.value = selectedProductDetail.value['price'];
+        .firstWhere((element) => element.id == data);
+    basePrice.value = selectedProductDetail.value!.price;
     updatedPrice.value = basePrice.value;
   }
 

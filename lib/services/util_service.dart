@@ -17,6 +17,7 @@ class UtilService {
   }
 
   late String _shopApiUrl;
+  static Map<String, String> customHeader = {"Content-Type": "application/json"};
 
   String get shopApiUrl => _shopApiUrl;
 
@@ -30,15 +31,23 @@ class UtilService {
     appName = dotenv.env['App_Name'] as String;
   }
 
+  static int getConvertedIndianAmount(int givenValue) {
+    int value = givenValue;
+    int exchangeRate = int.parse(dotenv.env['INR_EXCHANGE_RATE'].toString());
+    int smallestUnit = 100;
+    value = givenValue * exchangeRate * smallestUnit;
+    return value;
+  }
+
   static String getCurrencySymble(String currencyCode){
     var symble = r'$';
-    if(currencyCode == CurrencyCodeEnum.USD){
+    if(currencyCode == CurrencyCodeEnum.USD.name){
       symble = r'$';
     }
-    if(currencyCode == CurrencyCodeEnum.INR){
+    if(currencyCode == CurrencyCodeEnum.INR.name){
       symble = r'₹';
     }
-    if(currencyCode == CurrencyCodeEnum.BDT){
+    if(currencyCode == CurrencyCodeEnum.BDT.name){
       symble = r'৳';
     }
     return symble;

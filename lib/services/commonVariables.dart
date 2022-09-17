@@ -46,3 +46,8 @@ typedef SingleProductChildrenVariantItemType = Query$GetCollectionsByIdOrSlug$co
 typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
 
 typedef SingleProductListItemType = Query$GetAllProducts$products$items;
+
+enum OrderStateEnums {
+  ArrangingPayment,
+  AddingItems
+}

@@ -13,7 +13,8 @@ import 'package:graphql/client.dart';
 import '../services/util_service.dart';
 
 class UserController with ChangeNotifier {
-  var currentAuthenticatedUser = {}.obs;
+  // ignore: unnecessary_cast
+  var currentAuthenticatedUser = (null as Query$GetActiveCustomer$activeCustomer?).obs;
   var currentAuthToken = ''.obs;
   final GraphqlService graphqlService = GraphqlService();
   final UtilityController utilityController = Get.find<UtilityController>();
@@ -59,7 +60,7 @@ class UserController with ChangeNotifier {
         Get.snackbar('Alert', 'Need to login',backgroundColor: Colors.red);
       }else {
       //  get the auth user
-        currentAuthenticatedUser.value = activeCustomer.toJson();
+        currentAuthenticatedUser.value = activeCustomer;
       }
     }
   }

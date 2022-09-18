@@ -30,7 +30,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getActiveOrders();
       if (orderController.activeOrderResponse.value!.state ==
-          OrderStateEnums.ArrangingPayment) {
+          OrderStateEnums.ArrangingPayment.name) {
         orderController.transitionToAddingItems();
       }
     });

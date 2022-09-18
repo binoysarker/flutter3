@@ -29,33 +29,37 @@ class PaymentMethodComponent extends StatelessWidget {
                     style: CustomTheme.headerStyle,
                   ),
                 ),
-                ...orderController.activeOrderForCheckout.value!.lines
-                    .map((element) => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            FadeInImage.assetNetwork(
-                              width: 50,
-                              height: 50,
-                              placeholder: '${CommonVariableData.placeholder}',
-                              image: '${element.featuredAsset?.preview}',
-                              imageErrorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
+                Container(
+                  child: Column(
+                    children: orderController.activeOrderForCheckout.value!.lines
+                        .map((element) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        FadeInImage.assetNetwork(
+                          width: 50,
+                          height: 50,
+                          placeholder: '${CommonVariableData.placeholder}',
+                          image: '${element.featuredAsset?.preview}',
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              Image.asset(
                                 '${CommonVariableData.placeholder}',
                                 width: 50,
                                 height: 50,
                               ),
-                            ),
-                            Column(
-                              children: [
-                                Text(element.productVariant.name),
-                                Text('Quantity: ${element.quantity}'),
-                              ],
-                            ),
-                            Text(
-                                '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.linePriceWithTax}')
+                        ),
+                        Column(
+                          children: [
+                            Text(element.productVariant.name),
+                            Text('Quantity: ${element.quantity}'),
                           ],
-                        ))
-                    .toList(),
+                        ),
+                        Text(
+                            '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.linePriceWithTax}')
+                      ],
+                    ))
+                        .toList(),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -70,13 +74,17 @@ class PaymentMethodComponent extends StatelessWidget {
                     style: CustomTheme.headerStyle,
                   ),
                 ),
-                ...orderController.activeOrderForCheckout.value!.shippingLines
-                    .map((element) => ListTile(
-                          title: Text(element.shippingMethod.name),
-                          trailing: Text(
-                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.priceWithTax}'),
-                        ))
-                    .toList(),
+                Container(
+                  child: Column(
+                    children: orderController.activeOrderForCheckout.value!.shippingLines
+                        .map((element) => ListTile(
+                      title: Text(element.shippingMethod.name),
+                      trailing: Text(
+                          '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.priceWithTax}'),
+                    ))
+                        .toList(),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),

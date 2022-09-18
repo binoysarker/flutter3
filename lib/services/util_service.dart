@@ -31,11 +31,11 @@ class UtilService {
     appName = dotenv.env['App_Name'] as String;
   }
 
-  static int getConvertedIndianAmount(int givenValue) {
-    int value = givenValue;
+  static double getConvertedIndianAmount(int givenValue) {
+    double value = givenValue.toDouble();
     int exchangeRate = int.parse(dotenv.env['INR_EXCHANGE_RATE'].toString());
     int smallestUnit = 100;
-    value = givenValue * exchangeRate * smallestUnit;
+    value = (givenValue * exchangeRate * smallestUnit).toDouble();
     return value;
   }
 

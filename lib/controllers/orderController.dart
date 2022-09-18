@@ -53,7 +53,8 @@ class OrderController extends GetxController {
   var createOrderResponse = (null as CreateOrderResponseModel?).obs;
   var paymentSuccessResponse = (null as PaymentSuccessResponse?).obs;
   var eligiblePaymentMethods = <Query$GetEligiblePaymentMethods$eligiblePaymentMethods>[].obs;
-  var addPaymentToOrderResponse = (null as Mutation$AddPayment$addPaymentToOrder?).obs;
+  var addPaymentToOrderResponse = (null as Mutation$AddPayment$addPaymentToOrder$$Order?).obs;
+  var getOrderByCodeResponse = (null as Query$GetOrderByCode$orderByCode?).obs;
 
   void getActiveOrders() async {
     isLoading.value = true;
@@ -119,9 +120,24 @@ class OrderController extends GetxController {
     }
     if(res.data != null){
       print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
-      addPaymentToOrderResponse.value = res.parsedData!.addPaymentToOrder;
+      addPaymentToOrderResponse.value = Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(res.parsedData!.addPaymentToOrder.toJson()) ;
+      getOrderByCode(addPaymentToOrderResponse.value!.code);
       isLoading.value = false;
       currentStep.value++;
+    }
+  }
+  void getOrderByCode(String code) async{
+    isLoading.value = true;
+    final res = await graphqlService.clientToQuery().query$GetOrderByCode(Options$Query$GetOrderByCode(variables: Variables$Query$GetOrderByCode(code: code)));
+    if(res.hasException){
+      print(res.exception.toString());
+      isLoading.value = false;
+    }
+    if(res.data != null){
+      print('getOrderByCode ${res.parsedData!.orderByCode!.toJson()}');
+      getOrderByCodeResponse.value = res.parsedData!.orderByCode;
+      isLoading.value = false;
+
     }
   }
 
@@ -216,6 +232,7 @@ class OrderController extends GetxController {
                     streetLine1: streetLine1.text,
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
+                    province: province.text,
                     city: city.text,
                     company: company.text,
                     fullName: fullName.text,
@@ -226,6 +243,7 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
+      print('setShippingAddress ${jsonEncode(res.parsedData!.setOrderShippingAddress)}');
       shippingAddressOrder.value = res.parsedData!.setOrderShippingAddress as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
       currentStep.value++;
@@ -318,6 +336,8 @@ class OrderController extends GetxController {
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
+      Get.snackbar('Error', res.exception.toString());
+      removeAllItemFromOrder();
     }
     if (res.data != null) {
       print('${res.parsedData!.removeOrderLine.toJson()}');

@@ -1,14 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/pages/cartDetailPage.dart';
-import 'package:recipe.app/themes.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CartButtonComponent extends StatefulWidget {
   bool isLoading = false;
   int totalQuantity = 0;
-  CartButtonComponent({Key? key, required this.isLoading, required this.totalQuantity}) : super(key: key);
+
+  CartButtonComponent(
+      {Key? key, required this.isLoading, required this.totalQuantity})
+      : super(key: key);
 
   @override
   State<CartButtonComponent> createState() => _CartButtonComponentState();
@@ -32,17 +34,18 @@ class _CartButtonComponentState extends State<CartButtonComponent> {
       child: Stack(
         alignment: AlignmentDirectional.topEnd,
         children: [
-          widget.isLoading
-              ? Center(
-                  child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
-                )
-              : IconButton(onPressed: () {
+          IconButton(
+              onPressed: () {
                 Get.to(() => CartDetailPage());
-          }, icon: Icon(Icons.shopping_cart)),
+              },
+              icon: Icon(Icons.shopping_cart)),
           CircleAvatar(
             radius: 10,
             backgroundColor: Colors.greenAccent,
-            child: Text('${widget.totalQuantity}'),
+            child: Obx(() => orderController.activeOrderResponse.value == null
+                ? Text('0')
+                : Text(
+                    '${orderController.activeOrderResponse.value!.totalQuantity}')),
           )
         ],
       ),

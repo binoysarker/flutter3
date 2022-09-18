@@ -10,10 +10,7 @@ class CartController extends GetxController {
   var isLoading = false.obs;
 
   void addItemToCart(String variantId, int qty) async {
-    if (orderController.activeOrderResponse.value!.state ==
-        OrderStateEnums.ArrangingPayment.name) {
-      orderController.transitionToAddingItems();
-    }
+
     isLoading.value = true;
     final res = await graphqlService.clientToQuery().mutate$AddToCart(
         Options$Mutation$AddToCart(
@@ -22,6 +19,8 @@ class CartController extends GetxController {
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
+      Get.snackbar('Error', res.exception.toString());
+      orderController.removeAllItemFromOrder();
     }
     if (res.data != null) {
       print('${res.parsedData!.addItemToOrder.toJson()}');

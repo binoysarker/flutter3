@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/components/invoiceComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/components/paymentMethodComponent.dart';
 import 'package:recipe.app/components/shippingAddressComponent.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
-import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 
 import '../allGlobalKeys.dart';
@@ -41,6 +42,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
     PaymentServices.razorpay.clear();
   }
 
+  String checkText(int stepValue) {
+    String finalText = 'Continue';
+    if (stepValue == 2) {
+      finalText = 'Go To Home';
+    } else if (stepValue == 1) {
+      finalText = 'Start Payment';
+    }
+    return finalText;
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Step> getSteps() => [
@@ -61,14 +72,21 @@ class _CheckoutPageState extends State<CheckoutPage> {
               state: orderController.currentStep.value > 1
                   ? StepState.complete
                   : StepState.indexed,
-              content: PaymentMethodComponent(orderController: orderController)),
+              content: Obx(() => orderController.activeOrderForCheckout.value ==
+                      null
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : PaymentMethodComponent(orderController: orderController))),
           Step(
               title: Text('Complete'),
               isActive: orderController.currentStep.value > 1,
-              state: orderController.currentStep.value > 2
+              state: orderController.currentStep.value == 2
                   ? StepState.complete
                   : StepState.indexed,
-              content: Text('complete')),
+              content: InvoiceComponent(
+                orderController: orderController,
+              )),
         ];
     return Scaffold(
       appBar: AppBar(
@@ -90,20 +108,23 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       final form = shippingAddressFormKey.currentState!;
                       if (form.validate()) {
                         print('validated');
-                        orderController.setShippingMethod();
                         orderController.setShippingAddress();
+                        orderController.setShippingMethod();
                       } else {
                         print('invalid');
                         Get.snackbar('', 'Please fill up the form');
                       }
                     } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
+                      orderController.getActiveOrders();
+                      Get.to(() => StorePage());
                     } else if (orderController.currentStep.value == 1) {
                       orderController.createRazorPayOrder();
                     }
                   },
                   onStepCancel: () {
-                    if (orderController.currentStep.value == 0) {
+                    if (orderController.currentStep.value == 0 ||
+                        orderController.currentStep.value == 2) {
                       null;
                     } else {
                       orderController.currentStep.value--;
@@ -121,12 +142,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               ? Center(
                                   child: CircularProgressIndicator(),
                                 )
-                              : Text(orderController.currentStep.value == 1
-                                  ? 'Start Payment'
-                                  : 'Continue')),
-                      ElevatedButton(
-                          onPressed: details.onStepCancel,
-                          child: Text('Cancle')),
+                              : Text(checkText(
+                                  orderController.currentStep.value))),
+                      orderController.currentStep.value != 2
+                          ? ElevatedButton(
+                              onPressed: details.onStepCancel,
+                              child: Text('Cancle'))
+                          : SizedBox(),
                     ],
                   ),
                 ),

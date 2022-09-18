@@ -4,6 +4,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/services/util_service.dart';
 
 class PaymentServices{
@@ -24,6 +25,7 @@ class PaymentServices{
       'key': dotenv.env['RAZORPAY_KEY'],
       'amount': UtilService.getConvertedIndianAmount(orderController.shippingAddressOrder.value!.totalWithTax),
       'order_id': orderController.createOrderResponse.value!.id,
+      'currency': Enum$CurrencyCode.USD.name,
       'name':'Company Name',
       'description':
       orderController.shippingAddressOrder.value!.lines.isNotEmpty

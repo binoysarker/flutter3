@@ -128,10 +128,10 @@ Map<String, dynamic> _$Fragment$Cart$lines$discountsToJson(
     };
 
 const _$Enum$AdjustmentTypeEnumMap = {
-  Enum$AdjustmentType.PROMOTION: 'PROMOTION',
   Enum$AdjustmentType.DISTRIBUTED_ORDER_PROMOTION:
       'DISTRIBUTED_ORDER_PROMOTION',
   Enum$AdjustmentType.OTHER: 'OTHER',
+  Enum$AdjustmentType.PROMOTION: 'PROMOTION',
   Enum$AdjustmentType.$unknown: r'$unknown',
 };
 
@@ -255,43 +255,43 @@ Map<String, dynamic> _$Fragment$ErrorResultToJson(
     };
 
 const _$Enum$ErrorCodeEnumMap = {
-  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
-  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
-  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
-  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
-  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
-  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
-  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
-  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
-  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
-  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
-  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
-  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
-  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
-      'INELIGIBLE_SHIPPING_METHOD_ERROR',
-  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
-  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
-      'INELIGIBLE_PAYMENT_METHOD_ERROR',
-  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
-  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
   Enum$ErrorCode.ALREADY_LOGGED_IN_ERROR: 'ALREADY_LOGGED_IN_ERROR',
-  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
-  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
-  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
-      'VERIFICATION_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
-      'VERIFICATION_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
-      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
+  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
+  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
-      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
-      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
+      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
+      'INELIGIBLE_PAYMENT_METHOD_ERROR',
+  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
+      'INELIGIBLE_SHIPPING_METHOD_ERROR',
+  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
+  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
+  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
+  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
+  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
   Enum$ErrorCode.NOT_VERIFIED_ERROR: 'NOT_VERIFIED_ERROR',
   Enum$ErrorCode.NO_ACTIVE_ORDER_ERROR: 'NO_ACTIVE_ORDER_ERROR',
+  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
+  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
+  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
+  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
+  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
+      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
+      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
+  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
+  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
+  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
+      'VERIFICATION_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
+      'VERIFICATION_TOKEN_INVALID_ERROR',
   Enum$ErrorCode.$unknown: r'$unknown',
 };
 
@@ -573,22 +573,25 @@ Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$Order$discountsToJson(
       '__typename': instance.$__typename,
     };
 
-Mutation$AddToCart$addItemToOrder$$OrderLimitError
-    _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorFromJson(
+Mutation$AddToCart$addItemToOrder$$InsufficientStockError
+    _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+        Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
           message: json['message'] as String,
+          order: Fragment$Cart.fromJson(json['order'] as Map<String, dynamic>),
         );
 
-Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorToJson(
-        Mutation$AddToCart$addItemToOrder$$OrderLimitError instance) =>
+Map<String,
+    dynamic> _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorToJson(
+        Mutation$AddToCart$addItemToOrder$$InsufficientStockError instance) =>
     <String, dynamic>{
       '__typename': instance.$__typename,
       'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
       'message': instance.message,
+      'order': instance.order.toJson(),
     };
 
 Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
@@ -610,25 +613,22 @@ Map<String,
       'message': instance.message,
     };
 
-Mutation$AddToCart$addItemToOrder$$InsufficientStockError
-    _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorFromJson(
+Mutation$AddToCart$addItemToOrder$$OrderLimitError
+    _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
+        Mutation$AddToCart$addItemToOrder$$OrderLimitError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
           message: json['message'] as String,
-          order: Fragment$Cart.fromJson(json['order'] as Map<String, dynamic>),
         );
 
-Map<String,
-    dynamic> _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorToJson(
-        Mutation$AddToCart$addItemToOrder$$InsufficientStockError instance) =>
+Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorToJson(
+        Mutation$AddToCart$addItemToOrder$$OrderLimitError instance) =>
     <String, dynamic>{
       '__typename': instance.$__typename,
       'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
       'message': instance.message,
-      'order': instance.order.toJson(),
     };
 
 Mutation$AddToCart$addItemToOrder$$OrderModificationError

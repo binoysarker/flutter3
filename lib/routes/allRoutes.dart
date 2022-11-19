@@ -13,6 +13,7 @@ import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/subCategoryDetailPage.dart';
 import 'package:recipe.app/pages/tokenVarifyPage.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/pages/verifyOTPPage.dart';
 class RoutesClass {
   static List<GetPage> routes = [
     GetPage(name: '/', page: () => StorePage(), transition: Transition.fade),
@@ -24,6 +25,7 @@ class RoutesClass {
     GetPage(name: '/my_account', page: () => MyAccountPage(),transition: Transition.fade),
     GetPage(name: '/forget_password', page: () => ForgetPasswordPage(),transition: Transition.fade),
     GetPage(name: '/reset_password', page: () => ResetPasswordPage(),transition: Transition.fade),
+    GetPage(name: '/verify_otp', page: () => VerifyOTPPage(),transition: Transition.fade),
     GetPage(name: '/product_detail', page: () => ProductDetailPage(),transition: Transition.fade),
     GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/sub_category_detail', page: () => SubCategoryDetailPage(),transition: Transition.fade),

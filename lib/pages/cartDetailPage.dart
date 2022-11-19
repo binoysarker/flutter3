@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +31,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getActiveOrders();
+      userController.getActiveCustomer();
       if (orderController.activeOrderResponse.value!.state ==
           OrderStateEnums.ArrangingPayment.name) {
         orderController.transitionToAddingItems();
@@ -91,6 +94,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       TextButton(
                           onPressed: () {
                             orderController.removeAllItemFromOrder();
+                            sleep(Duration(seconds: 1));
                             Navigator.pop(context);
                           },
                           child: Text('OK')),
@@ -138,10 +142,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           ),
                           title: Text(
                               '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}'),
-                          subtitle: Text(
-                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value?.orders.items.first.currencyCode.name ?? '')}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                          subtitle: userController.currentAuthenticatedUser.value!.orders.items.isNotEmpty ? Text(
+                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
                             style: CustomTheme.headerStyle,
-                          ),
+                          ) : Text(''),
                           onTap: () {
                             showActionSheet(
                                 context,

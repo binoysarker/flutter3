@@ -635,10 +635,10 @@ class Mutation$SignIn$login {
     switch (json["__typename"] as String) {
       case "CurrentUser":
         return Mutation$SignIn$login$$CurrentUser.fromJson(json);
-      case "NativeAuthStrategyError":
-        return Mutation$SignIn$login$$NativeAuthStrategyError.fromJson(json);
       case "InvalidCredentialsError":
         return Mutation$SignIn$login$$InvalidCredentialsError.fromJson(json);
+      case "NativeAuthStrategyError":
+        return Mutation$SignIn$login$$NativeAuthStrategyError.fromJson(json);
       case "NotVerifiedError":
         return Mutation$SignIn$login$$NotVerifiedError.fromJson(json);
       default:
@@ -984,112 +984,6 @@ class _CopyWithStubImpl$Mutation$SignIn$login$$CurrentUser$channels<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$SignIn$login$$NativeAuthStrategyError
-    implements Fragment$ErrorResult, Mutation$SignIn$login {
-  Mutation$SignIn$login$$NativeAuthStrategyError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$SignIn$login$$NativeAuthStrategyError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$SignIn$login$$NativeAuthStrategyErrorFromJson(json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$SignIn$login$$NativeAuthStrategyErrorToJson(this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Mutation$SignIn$login$$NativeAuthStrategyError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$SignIn$login$$NativeAuthStrategyError
-    on Mutation$SignIn$login$$NativeAuthStrategyError {
-  CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<
-          Mutation$SignIn$login$$NativeAuthStrategyError>
-      get copyWith => CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError(
-          this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
-  factory CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError(
-          Mutation$SignIn$login$$NativeAuthStrategyError instance,
-          TRes Function(Mutation$SignIn$login$$NativeAuthStrategyError) then) =
-      _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError;
-
-  factory CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError<TRes>
-    implements CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
-  _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError(
-      this._instance, this._then);
-
-  final Mutation$SignIn$login$$NativeAuthStrategyError _instance;
-
-  final TRes Function(Mutation$SignIn$login$$NativeAuthStrategyError) _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(Mutation$SignIn$login$$NativeAuthStrategyError(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String),
-          errorCode: errorCode == _undefined || errorCode == null
-              ? _instance.errorCode
-              : (errorCode as Enum$ErrorCode),
-          message: message == _undefined || message == null
-              ? _instance.message
-              : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError<TRes>
-    implements CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
-  _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError(this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Mutation$SignIn$login$$InvalidCredentialsError
     implements Fragment$ErrorResult, Mutation$SignIn$login {
   Mutation$SignIn$login$$InvalidCredentialsError(
@@ -1188,6 +1082,112 @@ class _CopyWithImpl$Mutation$SignIn$login$$InvalidCredentialsError<TRes>
 class _CopyWithStubImpl$Mutation$SignIn$login$$InvalidCredentialsError<TRes>
     implements CopyWith$Mutation$SignIn$login$$InvalidCredentialsError<TRes> {
   _CopyWithStubImpl$Mutation$SignIn$login$$InvalidCredentialsError(this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SignIn$login$$NativeAuthStrategyError
+    implements Fragment$ErrorResult, Mutation$SignIn$login {
+  Mutation$SignIn$login$$NativeAuthStrategyError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$SignIn$login$$NativeAuthStrategyError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SignIn$login$$NativeAuthStrategyErrorFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SignIn$login$$NativeAuthStrategyErrorToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$SignIn$login$$NativeAuthStrategyError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SignIn$login$$NativeAuthStrategyError
+    on Mutation$SignIn$login$$NativeAuthStrategyError {
+  CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<
+          Mutation$SignIn$login$$NativeAuthStrategyError>
+      get copyWith => CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
+  factory CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError(
+          Mutation$SignIn$login$$NativeAuthStrategyError instance,
+          TRes Function(Mutation$SignIn$login$$NativeAuthStrategyError) then) =
+      _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError;
+
+  factory CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError<TRes>
+    implements CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
+  _CopyWithImpl$Mutation$SignIn$login$$NativeAuthStrategyError(
+      this._instance, this._then);
+
+  final Mutation$SignIn$login$$NativeAuthStrategyError _instance;
+
+  final TRes Function(Mutation$SignIn$login$$NativeAuthStrategyError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$SignIn$login$$NativeAuthStrategyError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError<TRes>
+    implements CopyWith$Mutation$SignIn$login$$NativeAuthStrategyError<TRes> {
+  _CopyWithStubImpl$Mutation$SignIn$login$$NativeAuthStrategyError(this._res);
 
   TRes _res;
 
@@ -1715,11 +1715,11 @@ class Mutation$Register$registerCustomerAccount {
       case "Success":
         return Mutation$Register$registerCustomerAccount$$Success.fromJson(
             json);
-      case "NativeAuthStrategyError":
-        return Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
-            .fromJson(json);
       case "MissingPasswordError":
         return Mutation$Register$registerCustomerAccount$$MissingPasswordError
+            .fromJson(json);
+      case "NativeAuthStrategyError":
+        return Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
             .fromJson(json);
       case "PasswordValidationError":
         return Mutation$Register$registerCustomerAccount$$PasswordValidationError
@@ -1895,6 +1895,128 @@ class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$Success<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Mutation$Register$registerCustomerAccount$$MissingPasswordError
+    implements Fragment$ErrorResult, Mutation$Register$registerCustomerAccount {
+  Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$Register$registerCustomerAccount$$MissingPasswordError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$Register$registerCustomerAccount$$MissingPasswordError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$Register$registerCustomerAccount$$MissingPasswordError
+    on Mutation$Register$registerCustomerAccount$$MissingPasswordError {
+  CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+          Mutation$Register$registerCustomerAccount$$MissingPasswordError>
+      get copyWith =>
+          CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+    TRes> {
+  factory CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+          Mutation$Register$registerCustomerAccount$$MissingPasswordError instance,
+          TRes Function(
+                  Mutation$Register$registerCustomerAccount$$MissingPasswordError)
+              then) =
+      _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError;
+
+  factory CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+        TRes>
+    implements
+        CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+            TRes> {
+  _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+      this._instance, this._then);
+
+  final Mutation$Register$registerCustomerAccount$$MissingPasswordError
+      _instance;
+
+  final TRes Function(
+      Mutation$Register$registerCustomerAccount$$MissingPasswordError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+        TRes>
+    implements
+        CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
     implements Fragment$ErrorResult, Mutation$Register$registerCustomerAccount {
   Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError(
@@ -2009,128 +2131,6 @@ class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$NativeAuthStr
         CopyWith$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError<
             TRes> {
   _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
-class Mutation$Register$registerCustomerAccount$$MissingPasswordError
-    implements Fragment$ErrorResult, Mutation$Register$registerCustomerAccount {
-  Mutation$Register$registerCustomerAccount$$MissingPasswordError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$Register$registerCustomerAccount$$MissingPasswordError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorFromJson(
-          json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorToJson(
-          this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$Register$registerCustomerAccount$$MissingPasswordError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$Register$registerCustomerAccount$$MissingPasswordError
-    on Mutation$Register$registerCustomerAccount$$MissingPasswordError {
-  CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-          Mutation$Register$registerCustomerAccount$$MissingPasswordError>
-      get copyWith =>
-          CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-    TRes> {
-  factory CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
-          Mutation$Register$registerCustomerAccount$$MissingPasswordError instance,
-          TRes Function(
-                  Mutation$Register$registerCustomerAccount$$MissingPasswordError)
-              then) =
-      _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError;
-
-  factory CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-        TRes>
-    implements
-        CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-            TRes> {
-  _CopyWithImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
-      this._instance, this._then);
-
-  final Mutation$Register$registerCustomerAccount$$MissingPasswordError
-      _instance;
-
-  final TRes Function(
-      Mutation$Register$registerCustomerAccount$$MissingPasswordError) _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(Mutation$Register$registerCustomerAccount$$MissingPasswordError(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String),
-          errorCode: errorCode == _undefined || errorCode == null
-              ? _instance.errorCode
-              : (errorCode as Enum$ErrorCode),
-          message: message == _undefined || message == null
-              ? _instance.message
-              : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-        TRes>
-    implements
-        CopyWith$Mutation$Register$registerCustomerAccount$$MissingPasswordError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$MissingPasswordError(
       this._res);
 
   TRes _res;
@@ -2783,17 +2783,17 @@ class Mutation$VerifyCustomerAccount$verifyCustomerAccount {
       case "VerificationTokenExpiredError":
         return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$VerificationTokenExpiredError
             .fromJson(json);
-      case "NativeAuthStrategyError":
-        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-            .fromJson(json);
       case "MissingPasswordError":
         return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
             .fromJson(json);
-      case "PasswordValidationError":
-        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+      case "NativeAuthStrategyError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
             .fromJson(json);
       case "PasswordAlreadySetError":
         return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+            .fromJson(json);
+      case "PasswordValidationError":
+        return Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
             .fromJson(json);
       default:
         return _$Mutation$VerifyCustomerAccount$verifyCustomerAccountFromJson(
@@ -3239,133 +3239,6 @@ class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Ve
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-    implements
-        Fragment$ErrorResult,
-        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
-  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
-          json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
-          this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError {
-  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError>
-      get copyWith =>
-          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-    TRes> {
-  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-              instance,
-          TRes Function(
-                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
-              then) =
-      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
-
-  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-        TRes>
-    implements
-        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-            TRes> {
-  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-      this._instance, this._then);
-
-  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-      _instance;
-
-  final TRes Function(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String),
-              errorCode: errorCode == _undefined || errorCode == null
-                  ? _instance.errorCode
-                  : (errorCode as Enum$ErrorCode),
-              message: message == _undefined || message == null
-                  ? _instance.message
-                  : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-        TRes>
-    implements
-        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
     implements
         Fragment$ErrorResult,
@@ -3493,19 +3366,19 @@ class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Mi
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
     implements
         Fragment$ErrorResult,
         Mutation$VerifyCustomerAccount$verifyCustomerAccount {
-  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.fromJson(
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
           json);
 
   @JsonKey(name: '__typename')
@@ -3517,7 +3390,7 @@ class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationEr
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
           this);
   int get hashCode {
     final l$$__typename = $__typename;
@@ -3530,7 +3403,7 @@ class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationEr
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError) ||
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -3545,45 +3418,45 @@ class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationEr
   }
 }
 
-extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
-    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError {
-  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError>
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError>
       get copyWith =>
-          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
     TRes> {
-  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
               instance,
           TRes Function(
-                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
               then) =
-      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
 
-  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.stub(
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
         TRes>
     implements
-        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
             TRes> {
-  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
       this._instance, this._then);
 
-  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
       _instance;
 
   final TRes Function(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError)
       _then;
 
   static const _undefined = {};
@@ -3593,7 +3466,7 @@ class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Passwo
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
       _then(
-          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
               $__typename: $__typename == _undefined || $__typename == null
                   ? _instance.$__typename
                   : ($__typename as String),
@@ -3605,12 +3478,12 @@ class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Passwo
                   : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
         TRes>
     implements
-        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError<
             TRes> {
-  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
       this._res);
 
   TRes _res;
@@ -3738,6 +3611,133 @@ class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Pa
         CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError<
             TRes> {
   _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    implements
+        Fragment$ErrorResult,
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount {
+  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    on Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError {
+  CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError>
+      get copyWith =>
+          CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+    TRes> {
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+              instance,
+          TRes Function(
+                  Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+              then) =
+      _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+
+  factory CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+            TRes> {
+  _CopyWithImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+      this._instance, this._then);
+
+  final Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+      _instance;
+
+  final TRes Function(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
       this._res);
 
   TRes _res;
@@ -6691,18 +6691,18 @@ class Mutation$ResetPassword$resetPassword {
       case "NativeAuthStrategyError":
         return Mutation$ResetPassword$resetPassword$$NativeAuthStrategyError
             .fromJson(json);
-      case "PasswordValidationError":
-        return Mutation$ResetPassword$resetPassword$$PasswordValidationError
+      case "NotVerifiedError":
+        return Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
+            json);
+      case "PasswordResetTokenExpiredError":
+        return Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
             .fromJson(json);
       case "PasswordResetTokenInvalidError":
         return Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
             .fromJson(json);
-      case "PasswordResetTokenExpiredError":
-        return Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+      case "PasswordValidationError":
+        return Mutation$ResetPassword$resetPassword$$PasswordValidationError
             .fromJson(json);
-      case "NotVerifiedError":
-        return Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
-            json);
       default:
         return _$Mutation$ResetPassword$resetPasswordFromJson(json);
     }
@@ -7189,18 +7189,17 @@ class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NativeAuthStrategy
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$ResetPassword$resetPassword$$PasswordValidationError
+class Mutation$ResetPassword$resetPassword$$NotVerifiedError
     implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
-  Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+  Mutation$ResetPassword$resetPassword$$NotVerifiedError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$ResetPassword$resetPassword$$PasswordValidationError.fromJson(
+  factory Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
-          json);
+      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(json);
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -7211,8 +7210,7 @@ class Mutation$ResetPassword$resetPassword$$PasswordValidationError
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
-          this);
+      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -7223,8 +7221,7 @@ class Mutation$ResetPassword$resetPassword$$PasswordValidationError
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$ResetPassword$resetPassword$$PasswordValidationError) ||
+    if (!(other is Mutation$ResetPassword$resetPassword$$NotVerifiedError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -7239,43 +7236,40 @@ class Mutation$ResetPassword$resetPassword$$PasswordValidationError
   }
 }
 
-extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordValidationError
-    on Mutation$ResetPassword$resetPassword$$PasswordValidationError {
-  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
-          Mutation$ResetPassword$resetPassword$$PasswordValidationError>
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$NotVerifiedError
+    on Mutation$ResetPassword$resetPassword$$NotVerifiedError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+          Mutation$ResetPassword$resetPassword$$NotVerifiedError>
       get copyWith =>
-          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+          CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
     TRes> {
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
-          Mutation$ResetPassword$resetPassword$$PasswordValidationError instance,
-          TRes Function(
-                  Mutation$ResetPassword$resetPassword$$PasswordValidationError)
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+          Mutation$ResetPassword$resetPassword$$NotVerifiedError instance,
+          TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
               then) =
-      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
 
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError.stub(
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
-        TRes>
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes>
     implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
-            TRes> {
-  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
       this._instance, this._then);
 
-  final Mutation$ResetPassword$resetPassword$$PasswordValidationError _instance;
+  final Mutation$ResetPassword$resetPassword$$NotVerifiedError _instance;
 
-  final TRes Function(
-      Mutation$ResetPassword$resetPassword$$PasswordValidationError) _then;
+  final TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
+      _then;
 
   static const _undefined = {};
 
@@ -7283,7 +7277,7 @@ class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationErro
           {Object? $__typename = _undefined,
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
-      _then(Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      _then(Mutation$ResetPassword$resetPassword$$NotVerifiedError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -7295,137 +7289,11 @@ class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationErro
               : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
         TRes>
     implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
-class Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
-    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
-  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorFromJson(
-          json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorToJson(
-          this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
-    on Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError {
-  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError>
-      get copyWith =>
-          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-    TRes> {
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
-          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
-              instance,
-          TRes Function(
-                  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
-              then) =
-      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
-
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-        TRes>
-    implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-            TRes> {
-  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
-      this._instance, this._then);
-
-  final Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
-      _instance;
-
-  final TRes Function(
-          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(
-          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String),
-              errorCode: errorCode == _undefined || errorCode == null
-                  ? _instance.errorCode
-                  : (errorCode as Enum$ErrorCode),
-              message: message == _undefined || message == null
-                  ? _instance.message
-                  : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-        TRes>
-    implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
       this._res);
 
   TRes _res;
@@ -7560,17 +7428,18 @@ class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetToken
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$ResetPassword$resetPassword$$NotVerifiedError
+class Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
     implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
-  Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$ResetPassword$resetPassword$$NotVerifiedError.fromJson(
+  factory Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(json);
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorFromJson(
+          json);
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -7581,7 +7450,8 @@ class Mutation$ResetPassword$resetPassword$$NotVerifiedError
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(this);
+      _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidErrorToJson(
+          this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -7592,7 +7462,8 @@ class Mutation$ResetPassword$resetPassword$$NotVerifiedError
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Mutation$ResetPassword$resetPassword$$NotVerifiedError) ||
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -7607,39 +7478,45 @@ class Mutation$ResetPassword$resetPassword$$NotVerifiedError
   }
 }
 
-extension UtilityExtension$Mutation$ResetPassword$resetPassword$$NotVerifiedError
-    on Mutation$ResetPassword$resetPassword$$NotVerifiedError {
-  CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
-          Mutation$ResetPassword$resetPassword$$NotVerifiedError>
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+    on Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError>
       get copyWith =>
-          CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
     TRes> {
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
-          Mutation$ResetPassword$resetPassword$$NotVerifiedError instance,
-          TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+              instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
               then) =
-      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
 
-  factory CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError.stub(
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError;
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes>
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+        TRes>
     implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
-  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
       this._instance, this._then);
 
-  final Mutation$ResetPassword$resetPassword$$NotVerifiedError _instance;
+  final Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError
+      _instance;
 
-  final TRes Function(Mutation$ResetPassword$resetPassword$$NotVerifiedError)
+  final TRes Function(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError)
       _then;
 
   static const _undefined = {};
@@ -7648,7 +7525,129 @@ class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes>
           {Object? $__typename = _undefined,
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
-      _then(Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+      _then(
+          Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordResetTokenInvalidError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    implements Fragment$ErrorResult, Mutation$ResetPassword$resetPassword {
+  Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$ResetPassword$resetPassword$$PasswordValidationError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$ResetPassword$resetPassword$$PasswordValidationError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    on Mutation$ResetPassword$resetPassword$$PasswordValidationError {
+  CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+          Mutation$ResetPassword$resetPassword$$PasswordValidationError>
+      get copyWith =>
+          CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+    TRes> {
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+          Mutation$ResetPassword$resetPassword$$PasswordValidationError instance,
+          TRes Function(
+                  Mutation$ResetPassword$resetPassword$$PasswordValidationError)
+              then) =
+      _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+
+  factory CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+        TRes>
+    implements
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+            TRes> {
+  _CopyWithImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+      this._instance, this._then);
+
+  final Mutation$ResetPassword$resetPassword$$PasswordValidationError _instance;
+
+  final TRes Function(
+      Mutation$ResetPassword$resetPassword$$PasswordValidationError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$ResetPassword$resetPassword$$PasswordValidationError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -7660,11 +7659,12 @@ class _CopyWithImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes>
               : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError<
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
         TRes>
     implements
-        CopyWith$Mutation$ResetPassword$resetPassword$$NotVerifiedError<TRes> {
-  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$NotVerifiedError(
+        CopyWith$Mutation$ResetPassword$resetPassword$$PasswordValidationError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$ResetPassword$resetPassword$$PasswordValidationError(
       this._res);
 
   TRes _res;

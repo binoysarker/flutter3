@@ -231,7 +231,7 @@ class LoginPageState extends State<LoginPage> {
                                   if (loginController.showSignIn.isTrue) {
                                     loginController.onUserSignIn(context);
                                   } else {
-                                    loginController.onUserRegister(context);
+                                    loginController.sendOtpToUser();
                                   }
                                 }
                               },

@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
@@ -6,10 +9,11 @@ import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/tokenVarifyPage.dart';
+import 'package:http/http.dart' as http;
+import 'package:recipe.app/pages/verifyOTPPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/util_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -18,6 +22,7 @@ class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController tokenController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
@@ -26,6 +31,17 @@ class LoginPageController extends GetxController {
   UserController userController = Get.find<UserController>();
   final loginPageState = GlobalKey<LoginPageState>();
   var showSignIn = true.obs;
+  var currentlyGivenOTP = 0.obs;
+  var smsQuery = {
+    'userid':'1671',
+    'password':'trP2V3o5bhZTK9JM',
+    'sender':'SMSKAI',
+    'to':'9972898288',
+    'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
+    'reqid': '1',
+    'format':'\{json|text\}',
+    'route_id':'3'
+  }.obs;
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
 
@@ -33,6 +49,11 @@ class LoginPageController extends GetxController {
 
   void setShowSignIn(bool value) {
     showSignIn.value = value;
+  }
+  void generateRandomDigit() {
+    var rng = new Random();
+    var code = rng.nextInt(9000) + 1000;
+    currentlyGivenOTP.value = code;
   }
 
   void resetFormField() {
@@ -95,10 +116,26 @@ class LoginPageController extends GetxController {
       utilityController.setLoadingState(false);
     }
   }
+  void sendOtpToUser() async{
+    try{
+      generateRandomDigit();
+      print('current otp is ${currentlyGivenOTP.value}');
+      smsQuery.value['message'] = 'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
+      smsQuery.value['to'] = '${phoneNumber.text}';
 
-  void onUserRegister(BuildContext context) async {
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final res = await http.get(url);
+      print('${res.body}');
+      Get.to(() => VerifyOTPPage());
+    }on Exception catch(e){
+      print(e.toString());
+    }
+
+
+  }
+
+  void onUserRegister() async {
     utilityController.setLoadingState(true);
-    final navigator = Navigator.of(context);
     final registerResponse = await graphqlService
         .clientToQuery()
         .mutate$Register(Options$Mutation$Register(
@@ -111,10 +148,10 @@ class LoginPageController extends GetxController {
           phoneNumber: phoneNumber.text,
         ))));
     if (registerResponse.hasException) {
-      debugPrint('${registerResponse.exception.toString()}');
+      print('${registerResponse.exception.toString()}');
     }
     if (registerResponse.data != null) {
-      debugPrint('${registerResponse.data}');
+      print('${registerResponse.data}');
       final registerData =
           registerResponse.parsedData?.registerCustomerAccount.toJson();
 
@@ -122,9 +159,10 @@ class LoginPageController extends GetxController {
         //  user is registered
         utilityController.setAlertMessage(false, '');
         utilityController.setLoadingState(false);
-        UtilService.createSnakeBar(
-            context: context, text: 'Registered Successfully');
-        navigator.pushReplacementNamed('${PageRouteNames.verify_token.name}');
+        Get.snackbar('', 'Registered Successfully', backgroundColor: Colors.greenAccent);
+        showSignIn.value = true;
+        Get.to(() => LoginPage());
+
       } else {
         utilityController.setAlertMessage(true, 'some error');
       }
@@ -160,7 +198,7 @@ class LoginPageController extends GetxController {
     }
   }
 
-  void onGoogleSignIn(BuildContext context) async {
+  /*void onGoogleSignIn(BuildContext context) async {
     Get.find<UtilityController>().setLoadingState(true);
     try {
       setCurrentSignInProcess(SignInProcessNames.firebase.name);
@@ -187,5 +225,5 @@ class LoginPageController extends GetxController {
       UtilService.createSnakeBar(context: context, text: '${e.message}');
       Get.find<UtilityController>().setLoadingState(false);
     }
-  }
+  }*/
 }

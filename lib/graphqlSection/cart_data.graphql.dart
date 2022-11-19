@@ -2892,15 +2892,15 @@ class Mutation$AddToCart$addItemToOrder {
     switch (json["__typename"] as String) {
       case "Order":
         return Mutation$AddToCart$addItemToOrder$$Order.fromJson(json);
-      case "OrderLimitError":
-        return Mutation$AddToCart$addItemToOrder$$OrderLimitError.fromJson(
-            json);
-      case "NegativeQuantityError":
-        return Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
-            .fromJson(json);
       case "InsufficientStockError":
         return Mutation$AddToCart$addItemToOrder$$InsufficientStockError
             .fromJson(json);
+      case "NegativeQuantityError":
+        return Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
+            .fromJson(json);
+      case "OrderLimitError":
+        return Mutation$AddToCart$addItemToOrder$$OrderLimitError.fromJson(
+            json);
       case "OrderModificationError":
         return Mutation$AddToCart$addItemToOrder$$OrderModificationError
             .fromJson(json);
@@ -4334,236 +4334,6 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$Order$discounts<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AddToCart$addItemToOrder$$OrderLimitError
-    implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
-  Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$AddToCart$addItemToOrder$$OrderLimitError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorFromJson(json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorToJson(this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Mutation$AddToCart$addItemToOrder$$OrderLimitError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$OrderLimitError
-    on Mutation$AddToCart$addItemToOrder$$OrderLimitError {
-  CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
-          Mutation$AddToCart$addItemToOrder$$OrderLimitError>
-      get copyWith =>
-          CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
-    TRes> {
-  factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-          Mutation$AddToCart$addItemToOrder$$OrderLimitError instance,
-          TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError)
-              then) =
-      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
-
-  factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes>
-    implements
-        CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes> {
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-      this._instance, this._then);
-
-  final Mutation$AddToCart$addItemToOrder$$OrderLimitError _instance;
-
-  final TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError) _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String),
-          errorCode: errorCode == _undefined || errorCode == null
-              ? _instance.errorCode
-              : (errorCode as Enum$ErrorCode),
-          message: message == _undefined || message == null
-              ? _instance.message
-              : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes>
-    implements
-        CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes> {
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
-class Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
-    implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
-  Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorFromJson(json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorToJson(this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Mutation$AddToCart$addItemToOrder$$NegativeQuantityError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
-    on Mutation$AddToCart$addItemToOrder$$NegativeQuantityError {
-  CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError>
-      get copyWith =>
-          CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-    TRes> {
-  factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError instance,
-          TRes Function(
-                  Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
-              then) =
-      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
-
-  factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-        TRes>
-    implements
-        CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-            TRes> {
-  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-      this._instance, this._then);
-
-  final Mutation$AddToCart$addItemToOrder$$NegativeQuantityError _instance;
-
-  final TRes Function(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String),
-          errorCode: errorCode == _undefined || errorCode == null
-              ? _instance.errorCode
-              : (errorCode as Enum$ErrorCode),
-          message: message == _undefined || message == null
-              ? _instance.message
-              : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-        TRes>
-    implements
-        CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Mutation$AddToCart$addItemToOrder$$InsufficientStockError
     implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
   Mutation$AddToCart$addItemToOrder$$InsufficientStockError(
@@ -4704,6 +4474,236 @@ class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$InsufficientStockErro
           Fragment$Cart? order}) =>
       _res;
   CopyWith$Fragment$Cart<TRes> get order => CopyWith$Fragment$Cart.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
+    implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
+  Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddToCart$addItemToOrder$$NegativeQuantityErrorToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$AddToCart$addItemToOrder$$NegativeQuantityError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError
+    on Mutation$AddToCart$addItemToOrder$$NegativeQuantityError {
+  CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+    TRes> {
+  factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+          Mutation$AddToCart$addItemToOrder$$NegativeQuantityError instance,
+          TRes Function(
+                  Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
+
+  factory CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+        TRes>
+    implements
+        CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+            TRes> {
+  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+      this._instance, this._then);
+
+  final Mutation$AddToCart$addItemToOrder$$NegativeQuantityError _instance;
+
+  final TRes Function(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+        TRes>
+    implements
+        CopyWith$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$NegativeQuantityError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddToCart$addItemToOrder$$OrderLimitError
+    implements Fragment$ErrorResult, Mutation$AddToCart$addItemToOrder {
+  Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$AddToCart$addItemToOrder$$OrderLimitError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddToCart$addItemToOrder$$OrderLimitErrorToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$AddToCart$addItemToOrder$$OrderLimitError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddToCart$addItemToOrder$$OrderLimitError
+    on Mutation$AddToCart$addItemToOrder$$OrderLimitError {
+  CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
+          Mutation$AddToCart$addItemToOrder$$OrderLimitError>
+      get copyWith =>
+          CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<
+    TRes> {
+  factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+          Mutation$AddToCart$addItemToOrder$$OrderLimitError instance,
+          TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError)
+              then) =
+      _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
+
+  factory CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes>
+    implements
+        CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes> {
+  _CopyWithImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+      this._instance, this._then);
+
+  final Mutation$AddToCart$addItemToOrder$$OrderLimitError _instance;
+
+  final TRes Function(Mutation$AddToCart$addItemToOrder$$OrderLimitError) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes>
+    implements
+        CopyWith$Mutation$AddToCart$addItemToOrder$$OrderLimitError<TRes> {
+  _CopyWithStubImpl$Mutation$AddToCart$addItemToOrder$$OrderLimitError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
 }
 
 @JsonSerializable(explicitToJson: true)

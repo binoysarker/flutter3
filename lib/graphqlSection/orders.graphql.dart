@@ -12887,23 +12887,23 @@ class Mutation$AddPayment$addPaymentToOrder {
     switch (json["__typename"] as String) {
       case "Order":
         return Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(json);
-      case "OrderStateTransitionError":
-        return Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+      case "IneligiblePaymentMethodError":
+        return Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+            .fromJson(json);
+      case "NoActiveOrderError":
+        return Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
             .fromJson(json);
       case "OrderPaymentStateError":
         return Mutation$AddPayment$addPaymentToOrder$$OrderPaymentStateError
             .fromJson(json);
-      case "IneligiblePaymentMethodError":
-        return Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
-            .fromJson(json);
-      case "PaymentFailedError":
-        return Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
+      case "OrderStateTransitionError":
+        return Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
             .fromJson(json);
       case "PaymentDeclinedError":
         return Mutation$AddPayment$addPaymentToOrder$$PaymentDeclinedError
             .fromJson(json);
-      case "NoActiveOrderError":
-        return Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
+      case "PaymentFailedError":
+        return Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
             .fromJson(json);
       default:
         return _$Mutation$AddPayment$addPaymentToOrderFromJson(json);
@@ -14358,17 +14358,17 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+class Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
     implements Fragment$ErrorResult, Mutation$AddPayment$addPaymentToOrder {
-  Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+  Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError.fromJson(
+  factory Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorFromJson(
+      _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorFromJson(
           json);
 
   @JsonKey(name: '__typename')
@@ -14380,7 +14380,7 @@ class Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorToJson(
+      _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorToJson(
           this);
   int get hashCode {
     final l$$__typename = $__typename;
@@ -14393,7 +14393,7 @@ class Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-            is Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError) ||
+            is Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -14408,44 +14408,46 @@ class Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
   }
 }
 
-extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
-    on Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError {
-  CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
-          Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError>
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+    on Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError>
       get copyWith =>
-          CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
     TRes> {
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
-          Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError instance,
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+              instance,
           TRes Function(
-                  Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError)
+                  Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError)
               then) =
-      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError;
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError;
 
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError.stub(
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError;
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
             TRes> {
-  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
       this._instance, this._then);
 
-  final Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+  final Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
       _instance;
 
   final TRes Function(
-      Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError) _then;
+          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError)
+      _then;
 
   static const _undefined = {};
 
@@ -14453,7 +14455,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionE
           {Object? $__typename = _undefined,
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
-      _then(Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+      _then(Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -14465,12 +14467,130 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionE
               : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
             TRes> {
-  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
+    implements Fragment$ErrorResult, Mutation$AddPayment$addPaymentToOrder {
+  Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
+    on Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+          Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+          Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError _instance;
+
+  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          errorCode: errorCode == _undefined || errorCode == null
+              ? _instance.errorCode
+              : (errorCode as Enum$ErrorCode),
+          message: message == _undefined || message == null
+              ? _instance.message
+              : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
       this._res);
 
   TRes _res;
@@ -14601,17 +14721,17 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderPaymentState
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+class Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
     implements Fragment$ErrorResult, Mutation$AddPayment$addPaymentToOrder {
-  Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+  Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError.fromJson(
+  factory Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorFromJson(
+      _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorFromJson(
           json);
 
   @JsonKey(name: '__typename')
@@ -14623,7 +14743,7 @@ class Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorToJson(
+      _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorToJson(
           this);
   int get hashCode {
     final l$$__typename = $__typename;
@@ -14636,7 +14756,7 @@ class Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (!(other
-            is Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError) ||
+            is Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -14651,46 +14771,44 @@ class Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
   }
 }
 
-extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
-    on Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError {
-  CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
-          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError>
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+    on Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
+          Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError>
       get copyWith =>
-          CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
     TRes> {
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
-          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
-              instance,
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+          Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError instance,
           TRes Function(
-                  Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError)
+                  Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError)
               then) =
-      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError;
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError;
 
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError.stub(
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError;
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
             TRes> {
-  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
       this._instance, this._then);
 
-  final Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+  final Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
       _instance;
 
   final TRes Function(
-          Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError)
-      _then;
+      Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError) _then;
 
   static const _undefined = {};
 
@@ -14698,7 +14816,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMeth
           {Object? $__typename = _undefined,
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
-      _then(Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+      _then(Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -14710,130 +14828,12 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMeth
               : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError<
             TRes> {
-  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
-class Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
-    implements Fragment$ErrorResult, Mutation$AddPayment$addPaymentToOrder {
-  Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorFromJson(json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorToJson(this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
-    on Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError {
-  CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-          Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError>
-      get copyWith =>
-          CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-    TRes> {
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-          Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError instance,
-          TRes Function(
-                  Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError)
-              then) =
-      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError;
-
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-        TRes>
-    implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-            TRes> {
-  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-      this._instance, this._then);
-
-  final Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError _instance;
-
-  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String),
-          errorCode: errorCode == _undefined || errorCode == null
-              ? _instance.errorCode
-              : (errorCode as Enum$ErrorCode),
-          message: message == _undefined || message == null
-              ? _instance.message
-              : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-        TRes>
-    implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
       this._res);
 
   TRes _res;
@@ -14963,17 +14963,17 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentDeclinedEr
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
+class Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
     implements Fragment$ErrorResult, Mutation$AddPayment$addPaymentToOrder {
-  Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+  Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
       {required this.$__typename,
       required this.errorCode,
       required this.message});
 
   @override
-  factory Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError.fromJson(
+  factory Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorFromJson(json);
+      _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorFromJson(json);
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -14984,7 +14984,7 @@ class Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
   final String message;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorToJson(this);
+      _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorToJson(this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$errorCode = errorCode;
@@ -14995,7 +14995,7 @@ class Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError) ||
+    if (!(other is Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -15010,42 +15010,42 @@ class Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
   }
 }
 
-extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
-    on Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError {
-  CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
-          Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError>
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
+    on Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
+          Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError>
       get copyWith =>
-          CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
     TRes> {
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
-          Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError instance,
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
+          Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError instance,
           TRes Function(
-                  Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError)
+                  Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError)
               then) =
-      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError;
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError;
 
-  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError.stub(
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError;
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError;
 
   TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
 }
 
-class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
             TRes> {
-  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
       this._instance, this._then);
 
-  final Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError _instance;
+  final Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError _instance;
 
-  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError)
+  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError)
       _then;
 
   static const _undefined = {};
@@ -15054,7 +15054,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
           {Object? $__typename = _undefined,
           Object? errorCode = _undefined,
           Object? message = _undefined}) =>
-      _then(Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+      _then(Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -15066,12 +15066,12 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
               : (message as String)));
 }
 
-class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
         TRes>
     implements
-        CopyWith$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError<
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError<
             TRes> {
-  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
       this._res);
 
   TRes _res;
@@ -15529,14 +15529,14 @@ class Mutation$AdjustOrderLine$adjustOrderLine {
     switch (json["__typename"] as String) {
       case "Order":
         return Mutation$AdjustOrderLine$adjustOrderLine$$Order.fromJson(json);
-      case "OrderLimitError":
-        return Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
+      case "InsufficientStockError":
+        return Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
             .fromJson(json);
       case "NegativeQuantityError":
         return Mutation$AdjustOrderLine$adjustOrderLine$$NegativeQuantityError
             .fromJson(json);
-      case "InsufficientStockError":
-        return Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+      case "OrderLimitError":
+        return Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
             .fromJson(json);
       case "OrderModificationError":
         return Mutation$AdjustOrderLine$adjustOrderLine$$OrderModificationError
@@ -17006,17 +17006,18 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discount
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
+class Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
     implements Mutation$AdjustOrderLine$adjustOrderLine {
-  Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+  Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
       {required this.$__typename,
       required this.message,
       required this.errorCode});
 
   @override
-  factory Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError.fromJson(
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorFromJson(json);
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorFromJson(
+          json);
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -17027,7 +17028,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
   final Enum$ErrorCode errorCode;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorToJson(this);
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorToJson(
+          this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$message = message;
@@ -17038,7 +17040,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError) ||
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -17053,43 +17056,44 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
   }
 }
 
-extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
-    on Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError {
-  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
-          Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError>
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+    on Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+          Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError>
       get copyWith =>
-          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
     TRes> {
-  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
-          Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError instance,
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+          Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError instance,
           TRes Function(
-                  Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError)
+                  Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError)
               then) =
-      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError;
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError;
 
-  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError.stub(
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError;
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError;
 
   TRes call({String? $__typename, String? message, Enum$ErrorCode? errorCode});
 }
 
-class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
         TRes>
     implements
-        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
             TRes> {
-  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
       this._instance, this._then);
 
-  final Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError _instance;
+  final Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+      _instance;
 
-  final TRes Function(Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError)
-      _then;
+  final TRes Function(
+      Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError) _then;
 
   static const _undefined = {};
 
@@ -17097,7 +17101,7 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
           {Object? $__typename = _undefined,
           Object? message = _undefined,
           Object? errorCode = _undefined}) =>
-      _then(Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -17109,12 +17113,12 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
               : (errorCode as Enum$ErrorCode)));
 }
 
-class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
         TRes>
     implements
-        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
             TRes> {
-  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
       this._res);
 
   TRes _res;
@@ -17246,18 +17250,17 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$NegativeQuanti
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+class Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
     implements Mutation$AdjustOrderLine$adjustOrderLine {
-  Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+  Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
       {required this.$__typename,
       required this.message,
       required this.errorCode});
 
   @override
-  factory Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError.fromJson(
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError.fromJson(
           Map<String, dynamic> json) =>
-      _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorFromJson(
-          json);
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorFromJson(json);
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -17268,8 +17271,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
   final Enum$ErrorCode errorCode;
 
   Map<String, dynamic> toJson() =>
-      _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorToJson(
-          this);
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorToJson(this);
   int get hashCode {
     final l$$__typename = $__typename;
     final l$message = message;
@@ -17280,8 +17282,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError) ||
+    if (!(other is Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError) ||
         runtimeType != other.runtimeType) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
@@ -17296,44 +17297,43 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
   }
 }
 
-extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
-    on Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError {
-  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
-          Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError>
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
+    on Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
+          Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError>
       get copyWith =>
-          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
               this, (i) => i);
 }
 
-abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
     TRes> {
-  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
-          Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError instance,
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+          Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError instance,
           TRes Function(
-                  Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError)
+                  Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError)
               then) =
-      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError;
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError;
 
-  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError.stub(
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError.stub(
           TRes res) =
-      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError;
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError;
 
   TRes call({String? $__typename, String? message, Enum$ErrorCode? errorCode});
 }
 
-class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
         TRes>
     implements
-        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
             TRes> {
-  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
       this._instance, this._then);
 
-  final Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
-      _instance;
+  final Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError _instance;
 
-  final TRes Function(
-      Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError) _then;
+  final TRes Function(Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError)
+      _then;
 
   static const _undefined = {};
 
@@ -17341,7 +17341,7 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockE
           {Object? $__typename = _undefined,
           Object? message = _undefined,
           Object? errorCode = _undefined}) =>
-      _then(Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
@@ -17353,12 +17353,12 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockE
               : (errorCode as Enum$ErrorCode)));
 }
 
-class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
         TRes>
     implements
-        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError<
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError<
             TRes> {
-  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
       this._res);
 
   TRes _res;
@@ -20027,14 +20027,14 @@ class Mutation$SetShippingMethod$setOrderShippingMethod {
       case "Order":
         return Mutation$SetShippingMethod$setOrderShippingMethod$$Order
             .fromJson(json);
-      case "OrderModificationError":
-        return Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-            .fromJson(json);
       case "IneligibleShippingMethodError":
         return Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodError
             .fromJson(json);
       case "NoActiveOrderError":
         return Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderError
+            .fromJson(json);
+      case "OrderModificationError":
+        return Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
             .fromJson(json);
       default:
         return _$Mutation$SetShippingMethod$setOrderShippingMethodFromJson(
@@ -21546,133 +21546,6 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
 }
 
 @JsonSerializable(explicitToJson: true)
-class Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-    implements
-        Fragment$ErrorResult,
-        Mutation$SetShippingMethod$setOrderShippingMethod {
-  Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-      {required this.$__typename,
-      required this.errorCode,
-      required this.message});
-
-  @override
-  factory Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError.fromJson(
-          Map<String, dynamic> json) =>
-      _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorFromJson(
-          json);
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
-  final Enum$ErrorCode errorCode;
-
-  final String message;
-
-  Map<String, dynamic> toJson() =>
-      _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorToJson(
-          this);
-  int get hashCode {
-    final l$$__typename = $__typename;
-    final l$errorCode = errorCode;
-    final l$message = message;
-    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError) ||
-        runtimeType != other.runtimeType) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    final l$errorCode = errorCode;
-    final lOther$errorCode = other.errorCode;
-    if (l$errorCode != lOther$errorCode) return false;
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-    on Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError {
-  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError>
-      get copyWith =>
-          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-    TRes> {
-  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-              instance,
-          TRes Function(
-                  Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError)
-              then) =
-      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError;
-
-  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError;
-
-  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
-}
-
-class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-        TRes>
-    implements
-        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-            TRes> {
-  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-      this._instance, this._then);
-
-  final Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-      _instance;
-
-  final TRes Function(
-          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? $__typename = _undefined,
-          Object? errorCode = _undefined,
-          Object? message = _undefined}) =>
-      _then(
-          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String),
-              errorCode: errorCode == _undefined || errorCode == null
-                  ? _instance.errorCode
-                  : (errorCode as Enum$ErrorCode),
-              message: message == _undefined || message == null
-                  ? _instance.message
-                  : (message as String)));
-}
-
-class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-        TRes>
-    implements
-        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
-            TRes> {
-  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-      this._res);
-
-  TRes _res;
-
-  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
-      _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodError
     implements
         Fragment$ErrorResult,
@@ -21918,6 +21791,133 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$NoAct
         CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderError<
             TRes> {
   _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
+    implements
+        Fragment$ErrorResult,
+        Mutation$SetShippingMethod$setOrderShippingMethod {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
       this._res);
 
   TRes _res;

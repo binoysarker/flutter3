@@ -54,43 +54,43 @@ Map<String, dynamic> _$Fragment$ErrorResultToJson(
     };
 
 const _$Enum$ErrorCodeEnumMap = {
-  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
-  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
-  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
-  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
-  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
-  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
-  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
-  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
-  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
-  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
-  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
-  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
-  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
-      'INELIGIBLE_SHIPPING_METHOD_ERROR',
-  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
-  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
-      'INELIGIBLE_PAYMENT_METHOD_ERROR',
-  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
-  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
   Enum$ErrorCode.ALREADY_LOGGED_IN_ERROR: 'ALREADY_LOGGED_IN_ERROR',
-  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
-  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
-  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
-      'VERIFICATION_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
-      'VERIFICATION_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
-      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
+  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
+  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
-      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
-      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
+      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
+      'INELIGIBLE_PAYMENT_METHOD_ERROR',
+  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
+      'INELIGIBLE_SHIPPING_METHOD_ERROR',
+  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
+  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
+  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
+  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
+  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
   Enum$ErrorCode.NOT_VERIFIED_ERROR: 'NOT_VERIFIED_ERROR',
   Enum$ErrorCode.NO_ACTIVE_ORDER_ERROR: 'NO_ACTIVE_ORDER_ERROR',
+  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
+  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
+  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
+  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
+  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
+      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
+      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
+  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
+  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
+  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
+      'VERIFICATION_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
+      'VERIFICATION_TOKEN_INVALID_ERROR',
   Enum$ErrorCode.$unknown: r'$unknown',
 };
 
@@ -216,10 +216,10 @@ Map<String, dynamic> _$Fragment$Cart$lines$discountsToJson(
     };
 
 const _$Enum$AdjustmentTypeEnumMap = {
-  Enum$AdjustmentType.PROMOTION: 'PROMOTION',
   Enum$AdjustmentType.DISTRIBUTED_ORDER_PROMOTION:
       'DISTRIBUTED_ORDER_PROMOTION',
   Enum$AdjustmentType.OTHER: 'OTHER',
+  Enum$AdjustmentType.PROMOTION: 'PROMOTION',
   Enum$AdjustmentType.$unknown: r'$unknown',
 };
 
@@ -2066,10 +2066,10 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
-Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
-    _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorFromJson(
+Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+    _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
+        Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -2077,14 +2077,33 @@ Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
         );
 
 Map<String, dynamic>
-    _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorToJson(
-            Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+    _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorToJson(
+            Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
           'message': instance.message,
         };
+
+Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
+    _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorToJson(
+        Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+      'message': instance.message,
+    };
 
 Mutation$AddPayment$addPaymentToOrder$$OrderPaymentStateError
     _$Mutation$AddPayment$addPaymentToOrder$$OrderPaymentStateErrorFromJson(
@@ -2106,10 +2125,10 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
-    _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorFromJson(
+Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
+    _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError(
+        Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -2117,33 +2136,14 @@ Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
         );
 
 Map<String, dynamic>
-    _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorToJson(
-            Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
+    _$Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionErrorToJson(
+            Mutation$AddPayment$addPaymentToOrder$$OrderStateTransitionError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
           'message': instance.message,
         };
-
-Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
-    _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String,
-    dynamic> _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorToJson(
-        Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError instance) =>
-    <String, dynamic>{
-      '__typename': instance.$__typename,
-      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-      'message': instance.message,
-    };
 
 Mutation$AddPayment$addPaymentToOrder$$PaymentDeclinedError
     _$Mutation$AddPayment$addPaymentToOrder$$PaymentDeclinedErrorFromJson(
@@ -2165,10 +2165,10 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
-    _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorFromJson(
+Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError
+    _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError(
+        Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -2176,8 +2176,8 @@ Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError
         );
 
 Map<String,
-    dynamic> _$Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderErrorToJson(
-        Mutation$AddPayment$addPaymentToOrder$$NoActiveOrderError instance) =>
+    dynamic> _$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErrorToJson(
+        Mutation$AddPayment$addPaymentToOrder$$PaymentFailedError instance) =>
     <String, dynamic>{
       '__typename': instance.$__typename,
       'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
@@ -2433,24 +2433,25 @@ Map<String,
       '__typename': instance.$__typename,
     };
 
-Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
-    _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorFromJson(
+Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
+        Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
           $__typename: json['__typename'] as String,
           message: json['message'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
         );
 
-Map<String,
-    dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorToJson(
-        Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError instance) =>
-    <String, dynamic>{
-      '__typename': instance.$__typename,
-      'message': instance.message,
-      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-    };
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'message': instance.message,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+        };
 
 Mutation$AdjustOrderLine$adjustOrderLine$$NegativeQuantityError
     _$Mutation$AdjustOrderLine$adjustOrderLine$$NegativeQuantityErrorFromJson(
@@ -2472,25 +2473,24 @@ Map<String, dynamic>
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
         };
 
-Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
-    _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorFromJson(
+Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError(
+        Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError(
           $__typename: json['__typename'] as String,
           message: json['message'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
         );
 
-Map<String, dynamic>
-    _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorToJson(
-            Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
-                instance) =>
-        <String, dynamic>{
-          '__typename': instance.$__typename,
-          'message': instance.message,
-          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-        };
+Map<String,
+    dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitErrorToJson(
+        Mutation$AdjustOrderLine$adjustOrderLine$$OrderLimitError instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+      'message': instance.message,
+      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+    };
 
 Mutation$AdjustOrderLine$adjustOrderLine$$OrderModificationError
     _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderModificationErrorFromJson(
@@ -3044,26 +3044,6 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
-Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-    _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String, dynamic>
-    _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorToJson(
-            Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
-                instance) =>
-        <String, dynamic>{
-          '__typename': instance.$__typename,
-          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-          'message': instance.message,
-        };
-
 Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodError
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodErrorFromJson(
             Map<String, dynamic> json) =>
@@ -3097,6 +3077,26 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderError
 Map<String, dynamic>
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderErrorToJson(
             Mutation$SetShippingMethod$setOrderShippingMethod$$NoActiveOrderError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationErrorToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,

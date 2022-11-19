@@ -24,43 +24,43 @@ Map<String, dynamic> _$Fragment$ErrorResultToJson(
     };
 
 const _$Enum$ErrorCodeEnumMap = {
-  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
-  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
-  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
-  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
-  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
-  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
-  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
-  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
-  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
-  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
-  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
-  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
-  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
-      'INELIGIBLE_SHIPPING_METHOD_ERROR',
-  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
-  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
-      'INELIGIBLE_PAYMENT_METHOD_ERROR',
-  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
-  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
   Enum$ErrorCode.ALREADY_LOGGED_IN_ERROR: 'ALREADY_LOGGED_IN_ERROR',
-  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
-  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
-  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
-      'VERIFICATION_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
-      'VERIFICATION_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
-      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_EXPIRED_ERROR: 'COUPON_CODE_EXPIRED_ERROR',
+  Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
+  Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
+  Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
-      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
-  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
-      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
+      'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.INELIGIBLE_PAYMENT_METHOD_ERROR:
+      'INELIGIBLE_PAYMENT_METHOD_ERROR',
+  Enum$ErrorCode.INELIGIBLE_SHIPPING_METHOD_ERROR:
+      'INELIGIBLE_SHIPPING_METHOD_ERROR',
+  Enum$ErrorCode.INSUFFICIENT_STOCK_ERROR: 'INSUFFICIENT_STOCK_ERROR',
+  Enum$ErrorCode.INVALID_CREDENTIALS_ERROR: 'INVALID_CREDENTIALS_ERROR',
+  Enum$ErrorCode.MISSING_PASSWORD_ERROR: 'MISSING_PASSWORD_ERROR',
+  Enum$ErrorCode.NATIVE_AUTH_STRATEGY_ERROR: 'NATIVE_AUTH_STRATEGY_ERROR',
+  Enum$ErrorCode.NEGATIVE_QUANTITY_ERROR: 'NEGATIVE_QUANTITY_ERROR',
   Enum$ErrorCode.NOT_VERIFIED_ERROR: 'NOT_VERIFIED_ERROR',
   Enum$ErrorCode.NO_ACTIVE_ORDER_ERROR: 'NO_ACTIVE_ORDER_ERROR',
+  Enum$ErrorCode.ORDER_LIMIT_ERROR: 'ORDER_LIMIT_ERROR',
+  Enum$ErrorCode.ORDER_MODIFICATION_ERROR: 'ORDER_MODIFICATION_ERROR',
+  Enum$ErrorCode.ORDER_PAYMENT_STATE_ERROR: 'ORDER_PAYMENT_STATE_ERROR',
+  Enum$ErrorCode.ORDER_STATE_TRANSITION_ERROR: 'ORDER_STATE_TRANSITION_ERROR',
+  Enum$ErrorCode.PASSWORD_ALREADY_SET_ERROR: 'PASSWORD_ALREADY_SET_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_EXPIRED_ERROR:
+      'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.PASSWORD_RESET_TOKEN_INVALID_ERROR:
+      'PASSWORD_RESET_TOKEN_INVALID_ERROR',
+  Enum$ErrorCode.PASSWORD_VALIDATION_ERROR: 'PASSWORD_VALIDATION_ERROR',
+  Enum$ErrorCode.PAYMENT_DECLINED_ERROR: 'PAYMENT_DECLINED_ERROR',
+  Enum$ErrorCode.PAYMENT_FAILED_ERROR: 'PAYMENT_FAILED_ERROR',
+  Enum$ErrorCode.UNKNOWN_ERROR: 'UNKNOWN_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_EXPIRED_ERROR:
+      'VERIFICATION_TOKEN_EXPIRED_ERROR',
+  Enum$ErrorCode.VERIFICATION_TOKEN_INVALID_ERROR:
+      'VERIFICATION_TOKEN_INVALID_ERROR',
   Enum$ErrorCode.$unknown: r'$unknown',
 };
 
@@ -152,110 +152,92 @@ Map<String, dynamic> _$Mutation$SignIn$login$$CurrentUser$channelsToJson(
 
 const _$Enum$PermissionEnumMap = {
   Enum$Permission.Authenticated: 'Authenticated',
-  Enum$Permission.SuperAdmin: 'SuperAdmin',
+  Enum$Permission.CreateAdministrator: 'CreateAdministrator',
+  Enum$Permission.CreateAsset: 'CreateAsset',
+  Enum$Permission.CreateCatalog: 'CreateCatalog',
+  Enum$Permission.CreateChannel: 'CreateChannel',
+  Enum$Permission.CreateCollection: 'CreateCollection',
+  Enum$Permission.CreateCountry: 'CreateCountry',
+  Enum$Permission.CreateCustomer: 'CreateCustomer',
+  Enum$Permission.CreateCustomerGroup: 'CreateCustomerGroup',
+  Enum$Permission.CreateFacet: 'CreateFacet',
+  Enum$Permission.CreateOrder: 'CreateOrder',
+  Enum$Permission.CreatePaymentMethod: 'CreatePaymentMethod',
+  Enum$Permission.CreateProduct: 'CreateProduct',
+  Enum$Permission.CreatePromotion: 'CreatePromotion',
+  Enum$Permission.CreateSettings: 'CreateSettings',
+  Enum$Permission.CreateShippingMethod: 'CreateShippingMethod',
+  Enum$Permission.CreateSystem: 'CreateSystem',
+  Enum$Permission.CreateTag: 'CreateTag',
+  Enum$Permission.CreateTaxCategory: 'CreateTaxCategory',
+  Enum$Permission.CreateTaxRate: 'CreateTaxRate',
+  Enum$Permission.CreateZone: 'CreateZone',
+  Enum$Permission.DeleteAdministrator: 'DeleteAdministrator',
+  Enum$Permission.DeleteAsset: 'DeleteAsset',
+  Enum$Permission.DeleteCatalog: 'DeleteCatalog',
+  Enum$Permission.DeleteChannel: 'DeleteChannel',
+  Enum$Permission.DeleteCollection: 'DeleteCollection',
+  Enum$Permission.DeleteCountry: 'DeleteCountry',
+  Enum$Permission.DeleteCustomer: 'DeleteCustomer',
+  Enum$Permission.DeleteCustomerGroup: 'DeleteCustomerGroup',
+  Enum$Permission.DeleteFacet: 'DeleteFacet',
+  Enum$Permission.DeleteOrder: 'DeleteOrder',
+  Enum$Permission.DeletePaymentMethod: 'DeletePaymentMethod',
+  Enum$Permission.DeleteProduct: 'DeleteProduct',
+  Enum$Permission.DeletePromotion: 'DeletePromotion',
+  Enum$Permission.DeleteSettings: 'DeleteSettings',
+  Enum$Permission.DeleteShippingMethod: 'DeleteShippingMethod',
+  Enum$Permission.DeleteSystem: 'DeleteSystem',
+  Enum$Permission.DeleteTag: 'DeleteTag',
+  Enum$Permission.DeleteTaxCategory: 'DeleteTaxCategory',
+  Enum$Permission.DeleteTaxRate: 'DeleteTaxRate',
+  Enum$Permission.DeleteZone: 'DeleteZone',
   Enum$Permission.Owner: 'Owner',
   Enum$Permission.Public: 'Public',
-  Enum$Permission.UpdateGlobalSettings: 'UpdateGlobalSettings',
-  Enum$Permission.CreateCatalog: 'CreateCatalog',
-  Enum$Permission.ReadCatalog: 'ReadCatalog',
-  Enum$Permission.UpdateCatalog: 'UpdateCatalog',
-  Enum$Permission.DeleteCatalog: 'DeleteCatalog',
-  Enum$Permission.CreateSettings: 'CreateSettings',
-  Enum$Permission.ReadSettings: 'ReadSettings',
-  Enum$Permission.UpdateSettings: 'UpdateSettings',
-  Enum$Permission.DeleteSettings: 'DeleteSettings',
-  Enum$Permission.CreateAdministrator: 'CreateAdministrator',
   Enum$Permission.ReadAdministrator: 'ReadAdministrator',
-  Enum$Permission.UpdateAdministrator: 'UpdateAdministrator',
-  Enum$Permission.DeleteAdministrator: 'DeleteAdministrator',
-  Enum$Permission.CreateAsset: 'CreateAsset',
   Enum$Permission.ReadAsset: 'ReadAsset',
-  Enum$Permission.UpdateAsset: 'UpdateAsset',
-  Enum$Permission.DeleteAsset: 'DeleteAsset',
-  Enum$Permission.CreateChannel: 'CreateChannel',
+  Enum$Permission.ReadCatalog: 'ReadCatalog',
   Enum$Permission.ReadChannel: 'ReadChannel',
-  Enum$Permission.UpdateChannel: 'UpdateChannel',
-  Enum$Permission.DeleteChannel: 'DeleteChannel',
-  Enum$Permission.CreateCollection: 'CreateCollection',
   Enum$Permission.ReadCollection: 'ReadCollection',
-  Enum$Permission.UpdateCollection: 'UpdateCollection',
-  Enum$Permission.DeleteCollection: 'DeleteCollection',
-  Enum$Permission.CreateCountry: 'CreateCountry',
   Enum$Permission.ReadCountry: 'ReadCountry',
-  Enum$Permission.UpdateCountry: 'UpdateCountry',
-  Enum$Permission.DeleteCountry: 'DeleteCountry',
-  Enum$Permission.CreateCustomer: 'CreateCustomer',
   Enum$Permission.ReadCustomer: 'ReadCustomer',
-  Enum$Permission.UpdateCustomer: 'UpdateCustomer',
-  Enum$Permission.DeleteCustomer: 'DeleteCustomer',
-  Enum$Permission.CreateCustomerGroup: 'CreateCustomerGroup',
   Enum$Permission.ReadCustomerGroup: 'ReadCustomerGroup',
-  Enum$Permission.UpdateCustomerGroup: 'UpdateCustomerGroup',
-  Enum$Permission.DeleteCustomerGroup: 'DeleteCustomerGroup',
-  Enum$Permission.CreateFacet: 'CreateFacet',
   Enum$Permission.ReadFacet: 'ReadFacet',
-  Enum$Permission.UpdateFacet: 'UpdateFacet',
-  Enum$Permission.DeleteFacet: 'DeleteFacet',
-  Enum$Permission.CreateOrder: 'CreateOrder',
   Enum$Permission.ReadOrder: 'ReadOrder',
-  Enum$Permission.UpdateOrder: 'UpdateOrder',
-  Enum$Permission.DeleteOrder: 'DeleteOrder',
-  Enum$Permission.CreatePaymentMethod: 'CreatePaymentMethod',
   Enum$Permission.ReadPaymentMethod: 'ReadPaymentMethod',
-  Enum$Permission.UpdatePaymentMethod: 'UpdatePaymentMethod',
-  Enum$Permission.DeletePaymentMethod: 'DeletePaymentMethod',
-  Enum$Permission.CreateProduct: 'CreateProduct',
   Enum$Permission.ReadProduct: 'ReadProduct',
-  Enum$Permission.UpdateProduct: 'UpdateProduct',
-  Enum$Permission.DeleteProduct: 'DeleteProduct',
-  Enum$Permission.CreatePromotion: 'CreatePromotion',
   Enum$Permission.ReadPromotion: 'ReadPromotion',
-  Enum$Permission.UpdatePromotion: 'UpdatePromotion',
-  Enum$Permission.DeletePromotion: 'DeletePromotion',
-  Enum$Permission.CreateShippingMethod: 'CreateShippingMethod',
+  Enum$Permission.ReadSettings: 'ReadSettings',
   Enum$Permission.ReadShippingMethod: 'ReadShippingMethod',
-  Enum$Permission.UpdateShippingMethod: 'UpdateShippingMethod',
-  Enum$Permission.DeleteShippingMethod: 'DeleteShippingMethod',
-  Enum$Permission.CreateTag: 'CreateTag',
-  Enum$Permission.ReadTag: 'ReadTag',
-  Enum$Permission.UpdateTag: 'UpdateTag',
-  Enum$Permission.DeleteTag: 'DeleteTag',
-  Enum$Permission.CreateTaxCategory: 'CreateTaxCategory',
-  Enum$Permission.ReadTaxCategory: 'ReadTaxCategory',
-  Enum$Permission.UpdateTaxCategory: 'UpdateTaxCategory',
-  Enum$Permission.DeleteTaxCategory: 'DeleteTaxCategory',
-  Enum$Permission.CreateTaxRate: 'CreateTaxRate',
-  Enum$Permission.ReadTaxRate: 'ReadTaxRate',
-  Enum$Permission.UpdateTaxRate: 'UpdateTaxRate',
-  Enum$Permission.DeleteTaxRate: 'DeleteTaxRate',
-  Enum$Permission.CreateSystem: 'CreateSystem',
   Enum$Permission.ReadSystem: 'ReadSystem',
-  Enum$Permission.UpdateSystem: 'UpdateSystem',
-  Enum$Permission.DeleteSystem: 'DeleteSystem',
-  Enum$Permission.CreateZone: 'CreateZone',
+  Enum$Permission.ReadTag: 'ReadTag',
+  Enum$Permission.ReadTaxCategory: 'ReadTaxCategory',
+  Enum$Permission.ReadTaxRate: 'ReadTaxRate',
   Enum$Permission.ReadZone: 'ReadZone',
+  Enum$Permission.SuperAdmin: 'SuperAdmin',
+  Enum$Permission.UpdateAdministrator: 'UpdateAdministrator',
+  Enum$Permission.UpdateAsset: 'UpdateAsset',
+  Enum$Permission.UpdateCatalog: 'UpdateCatalog',
+  Enum$Permission.UpdateChannel: 'UpdateChannel',
+  Enum$Permission.UpdateCollection: 'UpdateCollection',
+  Enum$Permission.UpdateCountry: 'UpdateCountry',
+  Enum$Permission.UpdateCustomer: 'UpdateCustomer',
+  Enum$Permission.UpdateCustomerGroup: 'UpdateCustomerGroup',
+  Enum$Permission.UpdateFacet: 'UpdateFacet',
+  Enum$Permission.UpdateGlobalSettings: 'UpdateGlobalSettings',
+  Enum$Permission.UpdateOrder: 'UpdateOrder',
+  Enum$Permission.UpdatePaymentMethod: 'UpdatePaymentMethod',
+  Enum$Permission.UpdateProduct: 'UpdateProduct',
+  Enum$Permission.UpdatePromotion: 'UpdatePromotion',
+  Enum$Permission.UpdateSettings: 'UpdateSettings',
+  Enum$Permission.UpdateShippingMethod: 'UpdateShippingMethod',
+  Enum$Permission.UpdateSystem: 'UpdateSystem',
+  Enum$Permission.UpdateTag: 'UpdateTag',
+  Enum$Permission.UpdateTaxCategory: 'UpdateTaxCategory',
+  Enum$Permission.UpdateTaxRate: 'UpdateTaxRate',
   Enum$Permission.UpdateZone: 'UpdateZone',
-  Enum$Permission.DeleteZone: 'DeleteZone',
   Enum$Permission.$unknown: r'$unknown',
 };
-
-Mutation$SignIn$login$$NativeAuthStrategyError
-    _$Mutation$SignIn$login$$NativeAuthStrategyErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$SignIn$login$$NativeAuthStrategyError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String, dynamic> _$Mutation$SignIn$login$$NativeAuthStrategyErrorToJson(
-        Mutation$SignIn$login$$NativeAuthStrategyError instance) =>
-    <String, dynamic>{
-      '__typename': instance.$__typename,
-      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-      'message': instance.message,
-    };
 
 Mutation$SignIn$login$$InvalidCredentialsError
     _$Mutation$SignIn$login$$InvalidCredentialsErrorFromJson(
@@ -269,6 +251,24 @@ Mutation$SignIn$login$$InvalidCredentialsError
 
 Map<String, dynamic> _$Mutation$SignIn$login$$InvalidCredentialsErrorToJson(
         Mutation$SignIn$login$$InvalidCredentialsError instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+      'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+      'message': instance.message,
+    };
+
+Mutation$SignIn$login$$NativeAuthStrategyError
+    _$Mutation$SignIn$login$$NativeAuthStrategyErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SignIn$login$$NativeAuthStrategyError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$SignIn$login$$NativeAuthStrategyErrorToJson(
+        Mutation$SignIn$login$$NativeAuthStrategyError instance) =>
     <String, dynamic>{
       '__typename': instance.$__typename,
       'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
@@ -348,26 +348,6 @@ Map<String, dynamic> _$Mutation$Register$registerCustomerAccount$$SuccessToJson(
       'success': instance.success,
     };
 
-Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
-    _$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String, dynamic>
-    _$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyErrorToJson(
-            Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
-                instance) =>
-        <String, dynamic>{
-          '__typename': instance.$__typename,
-          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-          'message': instance.message,
-        };
-
 Mutation$Register$registerCustomerAccount$$MissingPasswordError
     _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorFromJson(
             Map<String, dynamic> json) =>
@@ -381,6 +361,26 @@ Mutation$Register$registerCustomerAccount$$MissingPasswordError
 Map<String, dynamic>
     _$Mutation$Register$registerCustomerAccount$$MissingPasswordErrorToJson(
             Mutation$Register$registerCustomerAccount$$MissingPasswordError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
+    _$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$Register$registerCustomerAccount$$NativeAuthStrategyErrorToJson(
+            Mutation$Register$registerCustomerAccount$$NativeAuthStrategyError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
@@ -510,26 +510,6 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String, dynamic>
-    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
-            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
-                instance) =>
-        <String, dynamic>{
-          '__typename': instance.$__typename,
-          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-          'message': instance.message,
-        };
-
 Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordError
     _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$MissingPasswordErrorFromJson(
             Map<String, dynamic> json) =>
@@ -550,10 +530,10 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
-    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -561,8 +541,8 @@ Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
         );
 
 Map<String, dynamic>
-    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
-            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$NativeAuthStrategyError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
@@ -583,6 +563,26 @@ Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
 Map<String, dynamic>
     _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetErrorToJson(
             Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordAlreadySetError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationErrorToJson(
+            Mutation$VerifyCustomerAccount$verifyCustomerAccount$$PasswordValidationError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
@@ -1115,10 +1115,10 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$ResetPassword$resetPassword$$PasswordValidationError
-    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
+Mutation$ResetPassword$resetPassword$$NotVerifiedError
+    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$ResetPassword$resetPassword$$PasswordValidationError(
+        Mutation$ResetPassword$resetPassword$$NotVerifiedError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -1126,8 +1126,27 @@ Mutation$ResetPassword$resetPassword$$PasswordValidationError
         );
 
 Map<String, dynamic>
-    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
-            Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(
+            Mutation$ResetPassword$resetPassword$$NotVerifiedError instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
+Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorToJson(
+            Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
                 instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
@@ -1155,10 +1174,10 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
-Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
-    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorFromJson(
+Mutation$ResetPassword$resetPassword$$PasswordValidationError
+    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorFromJson(
             Map<String, dynamic> json) =>
-        Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError(
+        Mutation$ResetPassword$resetPassword$$PasswordValidationError(
           $__typename: json['__typename'] as String,
           errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
               unknownValue: Enum$ErrorCode.$unknown),
@@ -1166,28 +1185,9 @@ Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
         );
 
 Map<String, dynamic>
-    _$Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredErrorToJson(
-            Mutation$ResetPassword$resetPassword$$PasswordResetTokenExpiredError
+    _$Mutation$ResetPassword$resetPassword$$PasswordValidationErrorToJson(
+            Mutation$ResetPassword$resetPassword$$PasswordValidationError
                 instance) =>
-        <String, dynamic>{
-          '__typename': instance.$__typename,
-          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
-          'message': instance.message,
-        };
-
-Mutation$ResetPassword$resetPassword$$NotVerifiedError
-    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorFromJson(
-            Map<String, dynamic> json) =>
-        Mutation$ResetPassword$resetPassword$$NotVerifiedError(
-          $__typename: json['__typename'] as String,
-          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
-              unknownValue: Enum$ErrorCode.$unknown),
-          message: json['message'] as String,
-        );
-
-Map<String, dynamic>
-    _$Mutation$ResetPassword$resetPassword$$NotVerifiedErrorToJson(
-            Mutation$ResetPassword$resetPassword$$NotVerifiedError instance) =>
         <String, dynamic>{
           '__typename': instance.$__typename,
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,

@@ -22,6 +22,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
   UserController userController = Get.find<UserController>();
 
+
   @override
   void initState() {
     super.initState();
@@ -29,7 +30,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       orderController.getOrderForCheckout();
       orderController.getEligibleShippingMethod();
       orderController.getEligiblePaymentMethod();
-      orderController.getAvailableCountries();
+      // orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
 
       PaymentServices.initializeRazorPay();
@@ -61,7 +62,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               state: orderController.currentStep.value > 0
                   ? StepState.complete
                   : StepState.indexed,
-              content: orderController.availableCountryList.isEmpty
+              content: orderController.eligiblePaymentMethods.isEmpty
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
@@ -117,6 +118,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
                       orderController.getActiveOrders();
+
                       Get.to(() => StorePage());
                     } else if (orderController.currentStep.value == 1) {
                       orderController.createRazorPayOrder();

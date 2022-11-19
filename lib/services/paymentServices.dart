@@ -23,7 +23,7 @@ class PaymentServices{
   static void startRazorPay() async {
     var options = {
       'key': dotenv.env['RAZORPAY_KEY'],
-      'amount': UtilService.getConvertedIndianAmount(orderController.shippingAddressOrder.value!.totalWithTax),
+      'amount': orderController.shippingAddressOrder.value!.totalWithTax,
       'order_id': orderController.createOrderResponse.value!.id,
       'currency': Enum$CurrencyCode.USD.name,
       'name':'Company Name',

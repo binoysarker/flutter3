@@ -124,31 +124,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 validator: RequiredValidator(errorText: 'Postal Code is Required'),
               ),
             ),
-            widget.orderController.availableCountryList.isEmpty
-                ? CircularProgressIndicator()
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DropdownButtonFormField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(), labelText: 'Countries'),
-                      value: widget.orderController.currentlySelectedCountryCode.value,
-                      validator:
-                          RequiredValidator(errorText: 'Counties are required'),
-                      icon: Icon(Icons.arrow_downward),
-                      isExpanded: true,
-                      items: widget.orderController.availableCountryList
-                          .map<DropdownMenuItem<String>>(
-                              (element) => DropdownMenuItem(
-                                    child: Text(element.name),
-                                    value: element.code,
-                                  ))
-                          .toList(),
-                      onChanged: (dynamic data) {
-                        print(data);
-                        widget.orderController.currentlySelectedCountryCode.value = data;
-                      },
-                    ),
-                  ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -163,7 +139,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 validator: RequiredValidator(errorText: 'City is required'),
               ),
             ),
-            widget.orderController.isLoading.isTrue
+            widget.orderController.eligiblePaymentIsLoading.isTrue
                 ? CircularProgressIndicator()
                 : Padding(
               padding: const EdgeInsets.all(8.0),
@@ -183,9 +159,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     ))
                     .toList(),
                 onChanged: (dynamic data) {
-                  print(data);
-                  widget.orderController.currentlySelectedShippingMethod.value = widget.orderController.eligibleShippingMethodList.firstWhere((element) => element.id == data);
-                  widget.orderController.currentlySelectedShippingMethodId.value = data;
+                  print('shipping method selected $data');
+                    widget.orderController.currentlySelectedShippingMethod.value = widget.orderController.eligibleShippingMethodList.firstWhere((element) => element.id == data);
+                    widget.orderController.currentlySelectedShippingMethodId.value = data;
+
                 },
               ),
             ),

@@ -14,7 +14,7 @@ class TokenVerifyPage extends StatelessWidget {
         Get.find<TokenPageController>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stores'),
+        title: Text('Verify Token'),
       ),
       body: Center(
         child: Card(

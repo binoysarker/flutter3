@@ -32,9 +32,10 @@ class OrderController extends GetxController {
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
+  var eligiblePaymentIsLoading = false.obs;
   var availableCountryList =
       <Query$GetAvailableCountries$availableCountries>[].obs;
-  var currentlySelectedCountryCode = ''.obs;
+  var currentlySelectedCountryCode = 'IN'.obs;
   var currentlySelectedShippingMethod = (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
   var currentlySelectedShippingMethodId = ''.obs;
   var eligibleShippingMethodList =
@@ -83,8 +84,10 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if(res.data != null){
+      var currentState = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToArrangingPayment ${res.parsedData!.transitionOrderToState!.toJson()}');
-      isLoading.value = true;
+
+      isLoading.value = false;
       addPaymentToOrder();
     }
   }
@@ -171,15 +174,16 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      availableCountryList.value = res.parsedData!.availableCountries.toList();
-      currentlySelectedCountryCode.value = availableCountryList.first.code;
+      availableCountryList.value = res.parsedData!.availableCountries;
+      print('available countries ${availableCountryList}');
+      // currentlySelectedCountryCode.value = availableCountryList.first.code;
       isLoading.value = false;
     }
   }
   void createRazorPayOrder() async{
       isLoading.value = true;
     try{
-      final url = Uri.http(dotenv.env['RAZORPAY_URL'].toString(), 'create-order');
+      final url = Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'create-order');
       final res = await http.post(url,headers: UtilService.customHeader,body: jsonEncode({
             'amount': shippingAddressOrder.value!.totalWithTax,
             'currency': currencyCode.value,
@@ -197,7 +201,7 @@ class OrderController extends GetxController {
   void verifyPayment() async {
     try{
       isLoading.value = true;
-      final url = Uri.http(dotenv.env['RAZORPAY_URL'].toString(), 'verify-payment');
+      final url = Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'verify-payment');
       final res = await http.post(url,headers: UtilService.customHeader,body: jsonEncode({
         'razorpayOrderId': createOrderResponse.value!.id,
         'razorpayPaymentId': paymentSuccessResponse.value!.paymentId,
@@ -264,14 +268,16 @@ class OrderController extends GetxController {
   }
 
   void getEligiblePaymentMethod() async {
-    isLoading.value = true;
+    eligiblePaymentIsLoading.value = true;
     final res = await graphqlService.clientToQuery().query$GetEligiblePaymentMethods();
     if(res.hasException){
       print(res.exception.toString());
+      eligiblePaymentIsLoading.value = false;
     }
     if(res.data != null){
       print('getEligiblePaymentMethod ${jsonEncode(res.parsedData!.eligiblePaymentMethods)}');
       eligiblePaymentMethods.value = res.parsedData!.eligiblePaymentMethods;
+      eligiblePaymentIsLoading.value = false;
     }
   }
 

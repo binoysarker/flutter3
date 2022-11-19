@@ -43,6 +43,7 @@ class _StorePageState extends State<StorePage> {
       userController.getTopSellers();
       productsController.getProductsList();
       collectionsController.getAllCollections();
+      orderController.getActiveOrders();
       print('testing');
     });
   }

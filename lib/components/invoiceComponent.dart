@@ -12,6 +12,7 @@ class InvoiceComponent extends StatelessWidget {
   InvoiceComponent({Key? key, required this.orderController}) : super(key: key);
   OrderController orderController;
 
+
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
       var dateTime = DateTime.parse(dateText).toLocal();

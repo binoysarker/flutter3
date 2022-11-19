@@ -12,6 +12,11 @@ class CustomTheme with ChangeNotifier {
     fontWeight: FontWeight.bold,
     fontSize: 15
   );
+  static TextStyle headerStyle4 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 15,
+    color: Colors.red
+  );
   static TextStyle headerStyle3 = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 18

@@ -7,6 +7,7 @@ import 'package:recipe.app/pages/my_account_page.dart';
 import 'package:recipe.app/pages/orders_page.dart';
 import 'package:recipe.app/pages/page_not_found.dart';
 import 'package:recipe.app/pages/productDetailPage.dart';
+import 'package:recipe.app/pages/register_success_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/rewards_page.dart';
 import 'package:recipe.app/pages/store_page.dart';
@@ -21,6 +22,7 @@ class RoutesClass {
     GetPage(name: '/verify_token', page: () => TokenVerifyPage(), transition: Transition.fade),
     GetPage(name: '/orders', page: () => OrdersPage(), transition: Transition.fade),
     GetPage(name: '/login', page: () => LoginPage(),transition: Transition.fade),
+    GetPage(name: '/register_success', page: () => RegisterSuccessPage(),transition: Transition.fade),
     GetPage(name: '/rewards', page: () => RewardsPage(),transition: Transition.fade),
     GetPage(name: '/my_account', page: () => MyAccountPage(),transition: Transition.fade),
     GetPage(name: '/forget_password', page: () => ForgetPasswordPage(),transition: Transition.fade),

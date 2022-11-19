@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/invoiceComponent.dart';
@@ -117,9 +119,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       }
                     } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
-                      orderController.getActiveOrders();
-
-                      Get.to(() => StorePage());
+                      orderController.removeAllItemFromOrder();
+                      var timer = Timer(Duration(seconds: 1), () => Get.to(() => StorePage()));
+                      timer.cancel();
                     } else if (orderController.currentStep.value == 1) {
                       orderController.createRazorPayOrder();
                     }

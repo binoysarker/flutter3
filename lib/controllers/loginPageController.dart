@@ -6,6 +6,7 @@ import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/pages/register_success_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/tokenVarifyPage.dart';
@@ -36,7 +37,7 @@ class LoginPageController extends GetxController {
     'userid':'1671',
     'password':'trP2V3o5bhZTK9JM',
     'sender':'SMSKAI',
-    'to':'9972898288',
+    'to':'9894089302',
     'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
     'reqid': '1',
     'format':'\{json|text\}',
@@ -161,7 +162,7 @@ class LoginPageController extends GetxController {
         utilityController.setLoadingState(false);
         Get.snackbar('', 'Registered Successfully', backgroundColor: Colors.greenAccent);
         showSignIn.value = true;
-        Get.to(() => LoginPage());
+        Get.to(() => RegisterSuccessPage());
 
       } else {
         utilityController.setAlertMessage(true, 'some error');

@@ -23,6 +23,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
         child: Scaffold(
       appBar: AppBar(
         title: Text('Verify OTP'),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

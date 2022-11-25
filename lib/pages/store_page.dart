@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/productListComponent.dart';
+import 'package:recipe.app/components/verticalListComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
 import 'package:recipe.app/controllers/homePageController.dart';
@@ -10,12 +11,10 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/productsController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
-import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../components/cartButtonComponent.dart';
-import '../components/horizontalListComponent.dart';
 import '../components/searchComponent.dart';
 
 class StorePage extends StatefulWidget {
@@ -59,7 +58,10 @@ class _StorePageState extends State<StorePage> {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Welcome To ${_utilService.appName}'),
+                  Text(
+                    'Welcome To ${_utilService.appName}',
+                    style: CustomTheme.headerStyle2,
+                  ),
                   CartButtonComponent(
                     isLoading: orderController.isLoading.isTrue,
                     totalQuantity: orderController
@@ -88,7 +90,7 @@ class _StorePageState extends State<StorePage> {
           ),
           Center(
             child: Text('Absurdly fresh grocery, delivered',
-                style: TextStyle(fontSize: 15)),
+                style: CustomTheme.headerStyle),
           ),
           SearchComponent(
               homePageController: homePageController,
@@ -101,13 +103,12 @@ class _StorePageState extends State<StorePage> {
                   SizedBox(
                     height: 0,
                   ),
-                  Obx(() => HorizontalListComponent(
-                        headerTitle: 'Shop by Category',
-                        controllerType:
-                            '${ControllerTypeNames.collection.name}',
-                        givenList:
-                            collectionsController.collectionItems.toList(),
-                        loadingState: collectionsController.isLoading.isTrue,
+                  Obx(() => VerticalListComponent(
+                        isLoading: collectionsController.isLoading.isTrue,
+                        givenList: collectionsController.collectionItems,
+                        givenTitle: 'Shop By Category',
+                        controllerType: 'collection',
+                        givenHeight: 300,
                       )),
                   // all products
                   Obx(() => ProductListComponent(
@@ -118,12 +119,12 @@ class _StorePageState extends State<StorePage> {
                     height: 20,
                   ),
                   // all top sellers
-                  Obx(() => HorizontalListComponent(
-                        headerTitle: 'Top Sellers',
-                        controllerType: '${ControllerTypeNames.user.name}',
-                        givenList: userController.topSellers.toList(),
-                        loadingState: userController.isLoading.isTrue,
-                      )),
+                  Obx(() => VerticalListComponent(
+                      isLoading: userController.isLoading.isTrue,
+                      givenList: userController.topSellers,
+                      givenTitle: 'Featured Items',
+                      controllerType: 'user',
+                      givenHeight: 300)),
                 ],
               ),
             ),

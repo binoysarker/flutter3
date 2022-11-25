@@ -46,6 +46,9 @@ class _ProductListComponentState extends State<ProductListComponent> {
       )
           : Column(
         children: [
+          SizedBox(
+            height: 20,
+          ),
           Text(
             'Products',
             style: CustomTheme.headerStyle,

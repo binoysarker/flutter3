@@ -100,9 +100,12 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 20,
+        ),
         Text(
           widget.headerTitle,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          style: CustomTheme.headerStyle,
         ),
         SizedBox(
           height: 30,
@@ -142,8 +145,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
                             Center(
                                 child: Text(
                               '${getTitle(index)}',
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              style: CustomTheme.headerStyle,
                             ))
                           ],
                         ),

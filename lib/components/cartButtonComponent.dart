@@ -4,6 +4,8 @@ import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/pages/cartDetailPage.dart';
 
+import '../themes.dart';
+
 class CartButtonComponent extends StatefulWidget {
   bool isLoading = false;
   int totalQuantity = 0;
@@ -43,9 +45,9 @@ class _CartButtonComponentState extends State<CartButtonComponent> {
             radius: 10,
             backgroundColor: Colors.greenAccent,
             child: Obx(() => orderController.activeOrderResponse.value == null
-                ? Text('0')
+                ? Text('0', style: CustomTheme.headerStyle,)
                 : Text(
-                    '${orderController.activeOrderResponse.value!.totalQuantity}')),
+                    '${orderController.activeOrderResponse.value!.totalQuantity}',style: CustomTheme.headerStyle,)),
           )
         ],
       ),

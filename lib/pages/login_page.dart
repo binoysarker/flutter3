@@ -273,7 +273,6 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 )),
-      bottomNavigationBar: BottomNavigationComponent(),
           ));
   }
 }

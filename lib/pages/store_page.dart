@@ -94,40 +94,37 @@ class _StorePageState extends State<StorePage> {
               homePageController: homePageController,
               productsController: productsController),
           Container(
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      height: 0,
-                    ),
-                    Obx(() => HorizontalListComponent(
-                          headerTitle: 'Shop by Category',
-                          controllerType:
-                              '${ControllerTypeNames.collection.name}',
-                          givenList:
-                              collectionsController.collectionItems.toList(),
-                          loadingState: collectionsController.isLoading.isTrue,
-                        )),
-                    // all products
-                    Obx(() => ProductListComponent(
-                          isLoading: productsController.isLoading.isTrue,
-                          productList: productsController.productList,
-                        )),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    // all top sellers
-                    Obx(() => HorizontalListComponent(
-                          headerTitle: 'Top Sellers',
-                          controllerType: '${ControllerTypeNames.user.name}',
-                          givenList: userController.topSellers.toList(),
-                          loadingState: userController.isLoading.isTrue,
-                        )),
-                  ],
-                ),
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 0,
+                  ),
+                  Obx(() => HorizontalListComponent(
+                        headerTitle: 'Shop by Category',
+                        controllerType:
+                            '${ControllerTypeNames.collection.name}',
+                        givenList:
+                            collectionsController.collectionItems.toList(),
+                        loadingState: collectionsController.isLoading.isTrue,
+                      )),
+                  // all products
+                  Obx(() => ProductListComponent(
+                        isLoading: productsController.isLoading.isTrue,
+                        productList: productsController.productList,
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  // all top sellers
+                  Obx(() => HorizontalListComponent(
+                        headerTitle: 'Top Sellers',
+                        controllerType: '${ControllerTypeNames.user.name}',
+                        givenList: userController.topSellers.toList(),
+                        loadingState: userController.isLoading.isTrue,
+                      )),
+                ],
               ),
             ),
           ),

@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 CustomTheme currentTheme = CustomTheme();
 
 class CustomTheme with ChangeNotifier {
   static bool _isDarkTheme = false;
 
-  static TextStyle paragraphStyle = TextStyle(
-    fontWeight: FontWeight.normal,
+  static TextStyle paragraphStyle = GoogleFonts.raleway(
+    fontWeight: FontWeight.normal
   );
-  static TextStyle headerStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 15
+  static TextStyle headerStyle = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      fontSize: 15
   );
-  static TextStyle headerStyle4 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 15,
-    color: Colors.red
+  static TextStyle headerStyle4 = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      fontSize: 15,
+      color: Colors.red
   );
-  static TextStyle headerStyle3 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18
+  static TextStyle headerStyle3 = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      fontSize: 18
   );
-  static TextStyle headerStyle2 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 18,
-    color: Colors.white
+  static TextStyle headerStyle2 = GoogleFonts.raleway(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: Colors.white
   );
   static Color progressIndicatorColor = Colors.lightGreenAccent;
 
@@ -40,11 +41,12 @@ class CustomTheme with ChangeNotifier {
   static get lightTheme {
     return ThemeData(
       primaryColor: Colors.green,
+      textTheme: GoogleFonts.ralewayTextTheme(),
       buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
       colorScheme: ColorScheme.light(primary: Colors.lightGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.green[200])
+              backgroundColor: MaterialStateProperty.all(Colors.green[200]),
           )
       ),
       backgroundColor: Colors.lightGreen,
@@ -56,7 +58,7 @@ class CustomTheme with ChangeNotifier {
         backgroundColor: Colors.green[200]
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.white,
           selectedItemColor: Colors.lightGreen,
           selectedLabelStyle: TextStyle(color: Colors.lightGreen),
           showUnselectedLabels: true,
@@ -69,6 +71,7 @@ class CustomTheme with ChangeNotifier {
   static get darkTheme {
     return ThemeData(
       primaryColor: Colors.black,
+      textTheme: GoogleFonts.ralewayTextTheme(),
       buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(

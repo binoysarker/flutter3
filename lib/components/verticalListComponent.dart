@@ -76,64 +76,66 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                 ),
               ),
             )
-          : Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  '${widget.givenTitle}',
-                  style: CustomTheme.headerStyle,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: widget.givenHeight.toDouble(),
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2/1.5,
-                    children: widget.givenList
-                        .map((element) => Card(
-                              elevation: 5,
-                              child: Column(
-                                children: [
-                                  FadeInImage.assetNetwork(
-                                    width: 100,
-                                    height: 100,
-                                    placeholder:
-                                        '${CommonVariableData.placeholder}',
-                                    image: '${getImage(element)}',
-                                    imageErrorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(
-                                      CommonVariableData.placeholder,
-                                      width: 100,
-                                      height: 100,
-                                    ),
-                                  ),
-                                  Text(
-                                    getName(element),
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        '',
-                                        style: CustomTheme.headerStyle,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ))
-                        .toList(),
-                  ),
-                )
-              ],
+          : Card(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
             ),
+            Text(
+              '${widget.givenTitle}',
+              style: CustomTheme.headerStyle,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: widget.givenHeight.toDouble(),
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: 2/1.5,
+                children: widget.givenList
+                    .map((element) => Card(
+                  elevation: 5,
+                  child: Column(
+                    children: [
+                      FadeInImage.assetNetwork(
+                        width: 100,
+                        height: 100,
+                        placeholder:
+                        '${CommonVariableData.placeholder}',
+                        image: '${getImage(element)}',
+                        imageErrorBuilder:
+                            (context, error, stackTrace) =>
+                            Image.asset(
+                              CommonVariableData.placeholder,
+                              width: 100,
+                              height: 100,
+                            ),
+                      ),
+                      Text(
+                        getName(element),
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            '',
+                            style: CustomTheme.headerStyle,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ))
+                    .toList(),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

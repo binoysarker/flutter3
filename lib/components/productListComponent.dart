@@ -44,86 +44,88 @@ class _ProductListComponentState extends State<ProductListComponent> {
           ),
         ),
       )
-          : Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Products',
-            style: CustomTheme.headerStyle,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 300,
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).size.width /
-                  (MediaQuery.of(context).size.height / 2),
-              children: widget.productList
-                  .where((p) =>
-              // showing products that has price
-              p.variants
-                  .firstWhereOrNull((item) => item.id.isNotEmpty)
-                  ?.price !=
-                  null)
-                  .map((element) => Card(
-                elevation: 5,
-                child: Column(
-                  children: [
-                    FadeInImage.assetNetwork(
-                      width: 100,
-                      height: 100,
-                      placeholder:
-                      '${CommonVariableData.placeholder}',
-                      image: '${element.featuredAsset?.preview}',
-                      imageErrorBuilder:
-                          (context, error, stackTrace) =>
-                          Image.asset(
-                            CommonVariableData.placeholder,
-                            width: 100,
-                            height: 100,
-                          ),
-                    ),
-                    Text(
-                      element.name,
-                      style: CustomTheme.headerStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          getPrice(element),
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Obx(() => cartController.isLoading.isTrue &&
-                            selectedId == int.parse(element.id)
-                            ? Center(
-                          child: CircularProgressIndicator(
-                            color: CustomTheme
-                                .progressIndicatorColor,
-                          ),
-                        )
-                            : IconButton(
-                          onPressed: () {
-                            selectedId = int.parse(element.id);
-                            addItemToCart(element);
-                          },
-                          icon: Icon(Icons.shopping_cart),
-                          color: Colors.lightGreen,
-                        ))
-                      ],
-                    )
-                  ],
-                ),
-              ))
-                  .toList(),
+          : Card(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
             ),
-          )
-        ],
+            Text(
+              'Products',
+              style: CustomTheme.headerStyle,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 300,
+              child: GridView.count(
+                crossAxisCount: 2,
+                childAspectRatio: MediaQuery.of(context).size.width /
+                    (MediaQuery.of(context).size.height / 2),
+                children: widget.productList
+                    .where((p) =>
+                // showing products that has price
+                p.variants
+                    .firstWhereOrNull((item) => item.id.isNotEmpty)
+                    ?.price !=
+                    null)
+                    .map((element) => Card(
+                  elevation: 5,
+                  child: Column(
+                    children: [
+                      FadeInImage.assetNetwork(
+                        width: 100,
+                        height: 100,
+                        placeholder:
+                        '${CommonVariableData.placeholder}',
+                        image: '${element.featuredAsset?.preview}',
+                        imageErrorBuilder:
+                            (context, error, stackTrace) =>
+                            Image.asset(
+                              CommonVariableData.placeholder,
+                              width: 100,
+                              height: 100,
+                            ),
+                      ),
+                      Text(
+                        element.name,
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            getPrice(element),
+                            style: CustomTheme.headerStyle,
+                          ),
+                          Obx(() => cartController.isLoading.isTrue &&
+                              selectedId == int.parse(element.id)
+                              ? Center(
+                            child: CircularProgressIndicator(
+                              color: CustomTheme
+                                  .progressIndicatorColor,
+                            ),
+                          )
+                              : IconButton(
+                            onPressed: () {
+                              selectedId = int.parse(element.id);
+                              addItemToCart(element);
+                            },
+                            icon: Icon(Icons.shopping_cart),
+                            color: Colors.lightGreen,
+                          ))
+                        ],
+                      )
+                    ],
+                  ),
+                ))
+                    .toList(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

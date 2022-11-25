@@ -659,12 +659,43 @@ Query$GetActiveCustomer$activeCustomer$orders$items
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),
+          orderPlacedAt: json['orderPlacedAt'] as String?,
+          lines: (json['lines'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetActiveCustomer$activeCustomer$orders$items$lines
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           active: json['active'] as bool,
           discounts: (json['discounts'] as List<dynamic>)
               .map((e) =>
                   Query$GetActiveCustomer$activeCustomer$orders$items$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          code: json['code'] as String,
+          state: json['state'] as String,
+          customer: json['customer'] == null
+              ? null
+              : Query$GetActiveCustomer$activeCustomer$orders$items$customer
+                  .fromJson(json['customer'] as Map<String, dynamic>),
+          shippingAddress: json['shippingAddress'] == null
+              ? null
+              : Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+                  .fromJson(json['shippingAddress'] as Map<String, dynamic>),
+          surcharges: (json['surcharges'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          payments: (json['payments'] as List<dynamic>?)
+              ?.map((e) =>
+                  Query$GetActiveCustomer$activeCustomer$orders$items$payments
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          totalQuantity: json['totalQuantity'] as int,
+          totalWithTax: json['totalWithTax'] as int,
           $__typename: json['__typename'] as String,
         );
 
@@ -673,8 +704,19 @@ Map<String, dynamic>
             Query$GetActiveCustomer$activeCustomer$orders$items instance) =>
         <String, dynamic>{
           'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
+          'orderPlacedAt': instance.orderPlacedAt,
+          'lines': instance.lines.map((e) => e.toJson()).toList(),
           'active': instance.active,
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          'state': instance.state,
+          'customer': instance.customer?.toJson(),
+          'shippingAddress': instance.shippingAddress?.toJson(),
+          'surcharges': instance.surcharges.map((e) => e.toJson()).toList(),
+          'couponCodes': instance.couponCodes,
+          'payments': instance.payments?.map((e) => e.toJson()).toList(),
+          'totalQuantity': instance.totalQuantity,
+          'totalWithTax': instance.totalWithTax,
           '__typename': instance.$__typename,
         };
 
@@ -839,6 +881,67 @@ const _$Enum$CurrencyCodeEnumMap = {
   Enum$CurrencyCode.$unknown: r'$unknown',
 };
 
+Query$GetActiveCustomer$activeCustomer$orders$items$lines
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$linesFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+          productVariant:
+              Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+                  .fromJson(json['productVariant'] as Map<String, dynamic>),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetActiveCustomer$activeCustomer$orders$items$linesToJson(
+        Query$GetActiveCustomer$activeCustomer$orders$items$lines instance) =>
+    <String, dynamic>{
+      'productVariant': instance.productVariant.toJson(),
+      'featuredAsset': instance.featuredAsset?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariantFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+          name: json['name'] as String,
+          priceWithTax: json['priceWithTax'] as int,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariantToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'priceWithTax': instance.priceWithTax,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAssetFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+          name: json['name'] as String,
+          preview: json['preview'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAssetToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'preview': instance.preview,
+          '__typename': instance.$__typename,
+        };
+
 Query$GetActiveCustomer$activeCustomer$orders$items$discounts
     _$Query$GetActiveCustomer$activeCustomer$orders$items$discountsFromJson(
             Map<String, dynamic> json) =>
@@ -853,6 +956,88 @@ Map<String, dynamic>
                 instance) =>
         <String, dynamic>{
           'amount': instance.amount,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$customer
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$customerFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+          firstName: json['firstName'] as String,
+          lastName: json['lastName'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$customerToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$customer
+                instance) =>
+        <String, dynamic>{
+          'firstName': instance.firstName,
+          'lastName': instance.lastName,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddressFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+          country: json['country'] as String?,
+          city: json['city'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddressToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+                instance) =>
+        <String, dynamic>{
+          'country': instance.country,
+          'city': instance.city,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
+                instance) =>
+        <String, dynamic>{
+          'price': instance.price,
+          'priceWithTax': instance.priceWithTax,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$payments
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$paymentsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+          state: json['state'] as String,
+          createdAt: json['createdAt'] as String,
+          method: json['method'] as String,
+          amount: json['amount'] as int,
+          transactionId: json['transactionId'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$paymentsToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$payments
+                instance) =>
+        <String, dynamic>{
+          'state': instance.state,
+          'createdAt': instance.createdAt,
+          'method': instance.method,
+          'amount': instance.amount,
+          'transactionId': instance.transactionId,
           '__typename': instance.$__typename,
         };
 

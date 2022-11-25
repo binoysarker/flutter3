@@ -20,6 +20,7 @@ class UserController with ChangeNotifier {
   final UtilityController utilityController = Get.find<UtilityController>();
   var topSellers = <Query$GetTopSellers$search$items>[].obs;
   var isLoading = false.obs;
+  var isLoading2 = false.obs;
   final loginPageState = GlobalKey<LoginPageState>();
 
 
@@ -45,15 +46,17 @@ class UserController with ChangeNotifier {
   }
 
   void getActiveCustomer() async {
+    isLoading2.value =  true;
     checkAndSetToken();
     final res = await graphqlService
         .clientToQuery()
         .query$GetActiveCustomer(Options$Query$GetActiveCustomer());
     if (res.hasException) {
       print('${res.exception.toString()}');
+      isLoading2.value = false;
     }
     if (res.data != null) {
-      print('${res.parsedData?.activeCustomer?.toJson()}');
+      print('active customer ${res.parsedData?.activeCustomer?.toJson()}');
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
         Get.to(() => LoginPage());
@@ -62,6 +65,7 @@ class UserController with ChangeNotifier {
       //  get the auth user
         currentAuthenticatedUser.value = activeCustomer;
       }
+      isLoading2.value = false;
     }
   }
 

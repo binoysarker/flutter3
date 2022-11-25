@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/productListComponent.dart';
@@ -10,8 +12,7 @@ import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 
 import '../components/cartButtonComponent.dart';
 import '../components/horizontalListComponent.dart';
@@ -56,19 +57,25 @@ class _StorePageState extends State<StorePage> {
         title: Obx(() => collectionsController.isLoading.isTrue
             ? SizedBox()
             : Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-                'Welcome To ${_utilService.appName}'),
-            CartButtonComponent(
-              isLoading: orderController.isLoading.isTrue,
-              totalQuantity: orderController
-                  .activeOrderResponse.value?.totalQuantity ?? 0,
-            )
-          ],
-        )),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Welcome To ${_utilService.appName}'),
+                  CartButtonComponent(
+                    isLoading: orderController.isLoading.isTrue,
+                    totalQuantity: orderController
+                            .activeOrderResponse.value?.totalQuantity ??
+                        0,
+                  )
+                ],
+              )),
       ),
-      drawer: const DrawerComponent(),
+      drawer: Obx(() => userController.isLoading2.isTrue
+          ? Center(
+              child: CircularProgressIndicator(
+                color: CustomTheme.progressIndicatorColor,
+              ),
+            )
+          : DrawerComponent()),
       body: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
@@ -106,9 +113,9 @@ class _StorePageState extends State<StorePage> {
                         )),
                     // all products
                     Obx(() => ProductListComponent(
-                      isLoading: productsController.isLoading.isTrue,
-                      productList: productsController.productList,
-                    )),
+                          isLoading: productsController.isLoading.isTrue,
+                          productList: productsController.productList,
+                        )),
                     SizedBox(
                       height: 20,
                     ),

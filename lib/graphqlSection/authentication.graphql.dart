@@ -3911,6 +3911,83 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                                     directives: [],
                                     selectionSet: null),
                                 FieldNode(
+                                    name: NameNode(value: 'orderPlacedAt'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'lines'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name:
+                                              NameNode(value: 'productVariant'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet:
+                                              SelectionSetNode(selections: [
+                                            FieldNode(
+                                                name: NameNode(value: 'name'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null),
+                                            FieldNode(
+                                                name: NameNode(
+                                                    value: 'priceWithTax'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null),
+                                            FieldNode(
+                                                name: NameNode(
+                                                    value: '__typename'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null)
+                                          ])),
+                                      FieldNode(
+                                          name:
+                                              NameNode(value: 'featuredAsset'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet:
+                                              SelectionSetNode(selections: [
+                                            FieldNode(
+                                                name: NameNode(value: 'name'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null),
+                                            FieldNode(
+                                                name:
+                                                    NameNode(value: 'preview'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null),
+                                            FieldNode(
+                                                name: NameNode(
+                                                    value: '__typename'),
+                                                alias: null,
+                                                arguments: [],
+                                                directives: [],
+                                                selectionSet: null)
+                                          ])),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
                                     name: NameNode(value: 'active'),
                                     alias: null,
                                     arguments: [],
@@ -3935,6 +4012,155 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                                           directives: [],
                                           selectionSet: null)
                                     ])),
+                                FieldNode(
+                                    name: NameNode(value: 'code'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'state'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'customer'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'firstName'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'lastName'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'shippingAddress'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'country'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'city'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'surcharges'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'price'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'priceWithTax'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'couponCodes'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'payments'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'state'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'createdAt'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'method'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: 'amount'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name:
+                                              NameNode(value: 'transactionId'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'totalQuantity'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'totalWithTax'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
                                 FieldNode(
                                     name: NameNode(value: '__typename'),
                                     alias: null,
@@ -4383,8 +4609,19 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders<TRes>
 class Query$GetActiveCustomer$activeCustomer$orders$items {
   Query$GetActiveCustomer$activeCustomer$orders$items(
       {required this.currencyCode,
+      this.orderPlacedAt,
+      required this.lines,
       required this.active,
       required this.discounts,
+      required this.code,
+      required this.state,
+      this.customer,
+      this.shippingAddress,
+      required this.surcharges,
+      required this.couponCodes,
+      this.payments,
+      required this.totalQuantity,
+      required this.totalWithTax,
       required this.$__typename});
 
   @override
@@ -4395,10 +4632,35 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
 
+  final String? orderPlacedAt;
+
+  final List<Query$GetActiveCustomer$activeCustomer$orders$items$lines> lines;
+
   final bool active;
 
   final List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>
       discounts;
+
+  final String code;
+
+  final String state;
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$customer? customer;
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress?
+      shippingAddress;
+
+  final List<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>
+      surcharges;
+
+  final List<String> couponCodes;
+
+  final List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?
+      payments;
+
+  final int totalQuantity;
+
+  final int totalWithTax;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -4407,13 +4669,35 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
       _$Query$GetActiveCustomer$activeCustomer$orders$itemsToJson(this);
   int get hashCode {
     final l$currencyCode = currencyCode;
+    final l$orderPlacedAt = orderPlacedAt;
+    final l$lines = lines;
     final l$active = active;
     final l$discounts = discounts;
+    final l$code = code;
+    final l$state = state;
+    final l$customer = customer;
+    final l$shippingAddress = shippingAddress;
+    final l$surcharges = surcharges;
+    final l$couponCodes = couponCodes;
+    final l$payments = payments;
+    final l$totalQuantity = totalQuantity;
+    final l$totalWithTax = totalWithTax;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$currencyCode,
+      l$orderPlacedAt,
+      Object.hashAll(l$lines.map((v) => v)),
       l$active,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$code,
+      l$state,
+      l$customer,
+      l$shippingAddress,
+      Object.hashAll(l$surcharges.map((v) => v)),
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      l$payments == null ? null : Object.hashAll(l$payments.map((v) => v)),
+      l$totalQuantity,
+      l$totalWithTax,
       l$$__typename
     ]);
   }
@@ -4426,6 +4710,18 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     final l$currencyCode = currencyCode;
     final lOther$currencyCode = other.currencyCode;
     if (l$currencyCode != lOther$currencyCode) return false;
+    final l$orderPlacedAt = orderPlacedAt;
+    final lOther$orderPlacedAt = other.orderPlacedAt;
+    if (l$orderPlacedAt != lOther$orderPlacedAt) return false;
+    final l$lines = lines;
+    final lOther$lines = other.lines;
+    if (l$lines.length != lOther$lines.length) return false;
+    for (int i = 0; i < l$lines.length; i++) {
+      final l$lines$entry = l$lines[i];
+      final lOther$lines$entry = lOther$lines[i];
+      if (l$lines$entry != lOther$lines$entry) return false;
+    }
+
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
@@ -4438,6 +4734,55 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$state = state;
+    final lOther$state = other.state;
+    if (l$state != lOther$state) return false;
+    final l$customer = customer;
+    final lOther$customer = other.customer;
+    if (l$customer != lOther$customer) return false;
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) return false;
+    final l$surcharges = surcharges;
+    final lOther$surcharges = other.surcharges;
+    if (l$surcharges.length != lOther$surcharges.length) return false;
+    for (int i = 0; i < l$surcharges.length; i++) {
+      final l$surcharges$entry = l$surcharges[i];
+      final lOther$surcharges$entry = lOther$surcharges[i];
+      if (l$surcharges$entry != lOther$surcharges$entry) return false;
+    }
+
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$payments = payments;
+    final lOther$payments = other.payments;
+    if (l$payments != null && lOther$payments != null) {
+      if (l$payments.length != lOther$payments.length) return false;
+      for (int i = 0; i < l$payments.length; i++) {
+        final l$payments$entry = l$payments[i];
+        final lOther$payments$entry = lOther$payments[i];
+        if (l$payments$entry != lOther$payments$entry) return false;
+      }
+    } else if (l$payments != lOther$payments) {
+      return false;
+    }
+
+    final l$totalQuantity = totalQuantity;
+    final lOther$totalQuantity = other.totalQuantity;
+    if (l$totalQuantity != lOther$totalQuantity) return false;
+    final l$totalWithTax = totalWithTax;
+    final lOther$totalWithTax = other.totalWithTax;
+    if (l$totalWithTax != lOther$totalWithTax) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -4468,15 +4813,51 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
 
   TRes call(
       {Enum$CurrencyCode? currencyCode,
+      String? orderPlacedAt,
+      List<Query$GetActiveCustomer$activeCustomer$orders$items$lines>? lines,
       bool? active,
       List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
           discounts,
+      String? code,
+      String? state,
+      Query$GetActiveCustomer$activeCustomer$orders$items$customer? customer,
+      Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress?
+          shippingAddress,
+      List<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>?
+          surcharges,
+      List<String>? couponCodes,
+      List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?
+          payments,
+      int? totalQuantity,
+      int? totalWithTax,
       String? $__typename});
+  TRes lines(
+      Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+                      Query$GetActiveCustomer$activeCustomer$orders$items$lines>>)
+          _fn);
   TRes discounts(
       Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$discounts> Function(
               Iterable<
                   CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
                       Query$GetActiveCustomer$activeCustomer$orders$items$discounts>>)
+          _fn);
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<TRes>
+      get customer;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+      TRes> get shippingAddress;
+  TRes surcharges(
+      Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+                      Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>>)
+          _fn);
+  TRes payments(
+      Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$payments>? Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+                      Query$GetActiveCustomer$activeCustomer$orders$items$payments>>?)
           _fn);
 }
 
@@ -4495,13 +4876,31 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
 
   TRes call(
           {Object? currencyCode = _undefined,
+          Object? orderPlacedAt = _undefined,
+          Object? lines = _undefined,
           Object? active = _undefined,
           Object? discounts = _undefined,
+          Object? code = _undefined,
+          Object? state = _undefined,
+          Object? customer = _undefined,
+          Object? shippingAddress = _undefined,
+          Object? surcharges = _undefined,
+          Object? couponCodes = _undefined,
+          Object? payments = _undefined,
+          Object? totalQuantity = _undefined,
+          Object? totalWithTax = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items(
           currencyCode: currencyCode == _undefined || currencyCode == null
               ? _instance.currencyCode
               : (currencyCode as Enum$CurrencyCode),
+          orderPlacedAt: orderPlacedAt == _undefined
+              ? _instance.orderPlacedAt
+              : (orderPlacedAt as String?),
+          lines: lines == _undefined || lines == null
+              ? _instance.lines
+              : (lines as List<
+                  Query$GetActiveCustomer$activeCustomer$orders$items$lines>),
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
@@ -4509,9 +4908,30 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
               ? _instance.discounts
               : (discounts as List<
                   Query$GetActiveCustomer$activeCustomer$orders$items$discounts>),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          state: state == _undefined || state == null
+              ? _instance.state
+              : (state as String),
+          customer: customer == _undefined ? _instance.customer : (customer as Query$GetActiveCustomer$activeCustomer$orders$items$customer?),
+          shippingAddress: shippingAddress == _undefined ? _instance.shippingAddress : (shippingAddress as Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress?),
+          surcharges: surcharges == _undefined || surcharges == null ? _instance.surcharges : (surcharges as List<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>),
+          couponCodes: couponCodes == _undefined || couponCodes == null ? _instance.couponCodes : (couponCodes as List<String>),
+          payments: payments == _undefined ? _instance.payments : (payments as List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?),
+          totalQuantity: totalQuantity == _undefined || totalQuantity == null ? _instance.totalQuantity : (totalQuantity as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
+  TRes lines(
+          Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+                          Query$GetActiveCustomer$activeCustomer$orders$items$lines>>)
+              _fn) =>
+      call(
+          lines: _fn(_instance.lines.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+                  e, (i) => i))).toList());
   TRes discounts(
           Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$discounts> Function(
                   Iterable<
@@ -4522,6 +4942,46 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<TRes>
+      get customer {
+    final local$customer = _instance.customer;
+    return local$customer == null
+        ? CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer
+            .stub(_then(_instance))
+        : CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+            local$customer, (e) => call(customer: e));
+  }
+
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+      TRes> get shippingAddress {
+    final local$shippingAddress = _instance.shippingAddress;
+    return local$shippingAddress == null
+        ? CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+            .stub(_then(_instance))
+        : CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+            local$shippingAddress, (e) => call(shippingAddress: e));
+  }
+
+  TRes surcharges(
+          Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+                          Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>>)
+              _fn) =>
+      call(
+          surcharges: _fn(_instance.surcharges.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+                  e, (i) => i))).toList());
+  TRes payments(
+          Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$payments>? Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+                          Query$GetActiveCustomer$activeCustomer$orders$items$payments>>?)
+              _fn) =>
+      call(
+          payments: _fn(_instance.payments?.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+                  e, (i) => i)))?.toList());
 }
 
 class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
@@ -4535,12 +4995,442 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
 
   call(
           {Enum$CurrencyCode? currencyCode,
+          String? orderPlacedAt,
+          List<Query$GetActiveCustomer$activeCustomer$orders$items$lines>?
+              lines,
           bool? active,
           List<Query$GetActiveCustomer$activeCustomer$orders$items$discounts>?
               discounts,
+          String? code,
+          String? state,
+          Query$GetActiveCustomer$activeCustomer$orders$items$customer?
+              customer,
+          Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress?
+              shippingAddress,
+          List<Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>?
+              surcharges,
+          List<String>? couponCodes,
+          List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?
+              payments,
+          int? totalQuantity,
+          int? totalWithTax,
           String? $__typename}) =>
       _res;
+  lines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<TRes>
+      get customer =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer
+              .stub(_res);
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+          TRes>
+      get shippingAddress =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+              .stub(_res);
+  surcharges(_fn) => _res;
+  payments(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
+  Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+      {required this.productVariant,
+      this.featuredAsset,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$lines.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$linesFromJson(json);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+      productVariant;
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
+      featuredAsset;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$linesToJson(this);
+  int get hashCode {
+    final l$productVariant = productVariant;
+    final l$featuredAsset = featuredAsset;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$productVariant, l$featuredAsset, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer$orders$items$lines) ||
+        runtimeType != other.runtimeType) return false;
+    final l$productVariant = productVariant;
+    final lOther$productVariant = other.productVariant;
+    if (l$productVariant != lOther$productVariant) return false;
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$lines
+    on Query$GetActiveCustomer$activeCustomer$orders$items$lines {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$lines)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines;
+
+  TRes call(
+      {Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
+          productVariant,
+      Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
+          featuredAsset,
+      String? $__typename});
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+      TRes> get productVariant;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+      TRes> get featuredAsset;
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$lines _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer$orders$items$lines)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? productVariant = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+          productVariant: productVariant == _undefined || productVariant == null
+              ? _instance.productVariant
+              : (productVariant
+                  as Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset
+                  as Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+      TRes> get productVariant {
+    final local$productVariant = _instance.productVariant;
+    return CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+        local$productVariant, (e) => call(productVariant: e));
+  }
+
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+      TRes> get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+            .stub(_then(_instance))
+        : CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
+              productVariant,
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
+              featuredAsset,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+          TRes>
+      get productVariant =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+              .stub(_res);
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+          TRes>
+      get featuredAsset =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant {
+  Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+      {required this.name,
+      required this.priceWithTax,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariantFromJson(
+          json);
+
+  final String name;
+
+  final int priceWithTax;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariantToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$priceWithTax = priceWithTax;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$priceWithTax, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$priceWithTax = priceWithTax;
+    final lOther$priceWithTax = other.priceWithTax;
+    if (l$priceWithTax != lOther$priceWithTax) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+    on Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+              instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant;
+
+  TRes call({String? name, int? priceWithTax, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
+      _instance;
+
+  final TRes Function(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? priceWithTax = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              priceWithTax: priceWithTax == _undefined || priceWithTax == null
+                  ? _instance.priceWithTax
+                  : (priceWithTax as int),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, int? priceWithTax, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset {
+  Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+      {required this.name, required this.preview, required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAssetFromJson(
+          json);
+
+  final String name;
+
+  final String preview;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAssetToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$preview = preview;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$preview, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$preview = preview;
+    final lOther$preview = other.preview;
+    if (l$preview != lOther$preview) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+    on Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+              instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset;
+
+  TRes call({String? name, String? preview, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset
+      _instance;
+
+  final TRes Function(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? preview = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              preview: preview == _undefined || preview == null
+                  ? _instance.preview
+                  : (preview as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? preview, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4645,6 +5535,530 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$disc
   TRes _res;
 
   call({int? amount, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$customer {
+  Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+      {required this.firstName,
+      required this.lastName,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$customer.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$customerFromJson(
+          json);
+
+  final String firstName;
+
+  final String lastName;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$customerToJson(
+          this);
+  int get hashCode {
+    final l$firstName = firstName;
+    final l$lastName = lastName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$firstName, l$lastName, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$customer) ||
+        runtimeType != other.runtimeType) return false;
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) return false;
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$customer
+    on Query$GetActiveCustomer$activeCustomer$orders$items$customer {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+          Query$GetActiveCustomer$activeCustomer$orders$items$customer>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+          Query$GetActiveCustomer$activeCustomer$orders$items$customer instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$customer)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer;
+
+  TRes call({String? firstName, String? lastName, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$customer _instance;
+
+  final TRes Function(
+      Query$GetActiveCustomer$activeCustomer$orders$items$customer) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? firstName = _undefined,
+          Object? lastName = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+          firstName: firstName == _undefined || firstName == null
+              ? _instance.firstName
+              : (firstName as String),
+          lastName: lastName == _undefined || lastName == null
+              ? _instance.lastName
+              : (lastName as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customer<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customer(
+      this._res);
+
+  TRes _res;
+
+  call({String? firstName, String? lastName, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress {
+  Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+      {this.country, this.city, required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddressFromJson(
+          json);
+
+  final String? country;
+
+  final String? city;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddressToJson(
+          this);
+  int get hashCode {
+    final l$country = country;
+    final l$city = city;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$country, l$city, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress) ||
+        runtimeType != other.runtimeType) return false;
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) return false;
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+    on Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+          Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+          Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+              instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress;
+
+  TRes call({String? country, String? city, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress
+      _instance;
+
+  final TRes Function(
+          Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? country = _undefined,
+          Object? city = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+          country:
+              country == _undefined ? _instance.country : (country as String?),
+          city: city == _undefined ? _instance.city : (city as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$shippingAddress(
+      this._res);
+
+  TRes _res;
+
+  call({String? country, String? city, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$surcharges {
+  Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+      {required this.price,
+      required this.priceWithTax,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$surcharges.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesFromJson(
+          json);
+
+  final int price;
+
+  final int priceWithTax;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesToJson(
+          this);
+  int get hashCode {
+    final l$price = price;
+    final l$priceWithTax = priceWithTax;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$price, l$priceWithTax, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$surcharges) ||
+        runtimeType != other.runtimeType) return false;
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) return false;
+    final l$priceWithTax = priceWithTax;
+    final lOther$priceWithTax = other.priceWithTax;
+    if (l$priceWithTax != lOther$priceWithTax) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
+    on Query$GetActiveCustomer$activeCustomer$orders$items$surcharges {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+          Query$GetActiveCustomer$activeCustomer$orders$items$surcharges>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+          Query$GetActiveCustomer$activeCustomer$orders$items$surcharges instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$surcharges)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges;
+
+  TRes call({int? price, int? priceWithTax, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
+      _instance;
+
+  final TRes Function(
+      Query$GetActiveCustomer$activeCustomer$orders$items$surcharges) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? price = _undefined,
+          Object? priceWithTax = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+          price: price == _undefined || price == null
+              ? _instance.price
+              : (price as int),
+          priceWithTax: priceWithTax == _undefined || priceWithTax == null
+              ? _instance.priceWithTax
+              : (priceWithTax as int),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
+      this._res);
+
+  TRes _res;
+
+  call({int? price, int? priceWithTax, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$payments {
+  Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+      {required this.state,
+      required this.createdAt,
+      required this.method,
+      required this.amount,
+      this.transactionId,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$payments.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$paymentsFromJson(
+          json);
+
+  final String state;
+
+  final String createdAt;
+
+  final String method;
+
+  final int amount;
+
+  final String? transactionId;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$paymentsToJson(
+          this);
+  int get hashCode {
+    final l$state = state;
+    final l$createdAt = createdAt;
+    final l$method = method;
+    final l$amount = amount;
+    final l$transactionId = transactionId;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$state,
+      l$createdAt,
+      l$method,
+      l$amount,
+      l$transactionId,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$payments) ||
+        runtimeType != other.runtimeType) return false;
+    final l$state = state;
+    final lOther$state = other.state;
+    if (l$state != lOther$state) return false;
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) return false;
+    final l$method = method;
+    final lOther$method = other.method;
+    if (l$method != lOther$method) return false;
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (l$amount != lOther$amount) return false;
+    final l$transactionId = transactionId;
+    final lOther$transactionId = other.transactionId;
+    if (l$transactionId != lOther$transactionId) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$payments
+    on Query$GetActiveCustomer$activeCustomer$orders$items$payments {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+          Query$GetActiveCustomer$activeCustomer$orders$items$payments>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+          Query$GetActiveCustomer$activeCustomer$orders$items$payments instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$payments)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments;
+
+  TRes call(
+      {String? state,
+      String? createdAt,
+      String? method,
+      int? amount,
+      String? transactionId,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$payments _instance;
+
+  final TRes Function(
+      Query$GetActiveCustomer$activeCustomer$orders$items$payments) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? state = _undefined,
+          Object? createdAt = _undefined,
+          Object? method = _undefined,
+          Object? amount = _undefined,
+          Object? transactionId = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+          state: state == _undefined || state == null
+              ? _instance.state
+              : (state as String),
+          createdAt: createdAt == _undefined || createdAt == null
+              ? _instance.createdAt
+              : (createdAt as String),
+          method: method == _undefined || method == null
+              ? _instance.method
+              : (method as String),
+          amount: amount == _undefined || amount == null
+              ? _instance.amount
+              : (amount as int),
+          transactionId: transactionId == _undefined
+              ? _instance.transactionId
+              : (transactionId as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? state,
+          String? createdAt,
+          String? method,
+          int? amount,
+          String? transactionId,
+          String? $__typename}) =>
+      _res;
 }
 
 @JsonSerializable(explicitToJson: true)

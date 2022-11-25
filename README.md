@@ -28,3 +28,10 @@ samples, guidance on mobile development, and a full API reference.
 - change minsdk to 21
 - change target sdk to 30
 
+# if splash screen does not show on start then chnage this in androidmanifest file
+```
+<meta-data
+                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+                android:resource="@drawable/launch_background" />
+              />
+```

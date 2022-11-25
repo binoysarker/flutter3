@@ -67,11 +67,45 @@ query GetActiveCustomer{
                 totalItems
                 items {
                     currencyCode
+                    orderPlacedAt
+                    lines {
+                        productVariant {
+                            name
+                            priceWithTax
+                        }
+                        featuredAsset {
+                            name
+                            preview
+                        }
+                    }
                     active
                     discounts {
                         amount
                     }
-
+                    code
+                    state
+                    customer {
+                        firstName
+                        lastName
+                    }
+                    shippingAddress {
+                        country
+                        city
+                    }
+                    surcharges {
+                        price
+                        priceWithTax
+                    }
+                    couponCodes
+                    payments {
+                        state
+                        createdAt
+                        method
+                        amount
+                        transactionId
+                    }
+                    totalQuantity
+                    totalWithTax
                 }
             }
         }

@@ -120,8 +120,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     } else if (orderController.currentStep.value == 2) {
                       print('last step ${orderController.currentStep.value}');
                       orderController.removeAllItemFromOrder();
-                      var timer = Timer(Duration(seconds: 1), () => Get.to(() => StorePage()));
-                      timer.cancel();
+                      Get.to(() => StorePage());
                     } else if (orderController.currentStep.value == 1) {
                       orderController.createRazorPayOrder();
                     }

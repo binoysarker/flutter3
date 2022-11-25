@@ -85,10 +85,13 @@ class OrderController extends GetxController {
     }
     if(res.data != null){
       var currentState = res.parsedData!.transitionOrderToState!.toJson();
-      print('transitionToArrangingPayment ${res.parsedData!.transitionOrderToState!.toJson()}');
-
+      print('transitionToArrangingPayment ${currentState['message']}');
+      if(currentState['message'] != null){
+        Get.snackbar('Error', "${currentState['message']}",colorText: Colors.red);
+      }else {
+        addPaymentToOrder();
+      }
       isLoading.value = false;
-      addPaymentToOrder();
     }
   }
   void transitionToAddingItems() async {

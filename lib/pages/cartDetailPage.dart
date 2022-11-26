@@ -142,17 +142,38 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           ),
                           title: Text(
                               '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}'),
-                          subtitle: userController.currentAuthenticatedUser.value!.orders.items.isNotEmpty ? Text(
-                            'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
-                            style: CustomTheme.headerStyle,
-                          ) : Text(''),
-                          onTap: () {
-                            showActionSheet(
-                                context,
-                                orderController
-                                    .activeOrderResponse.value!.lines[index]);
-                          },
-                          trailing: Icon(Icons.more_vert),
+                          subtitle: userController.currentAuthenticatedUser
+                                  .value!.orders.items.isNotEmpty
+                              ? Text(
+                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                                  style: CustomTheme.headerStyle,
+                                )
+                              : Text(''),
+                          trailing: Wrap(
+                            children: [
+                              cartController.isLoading.isTrue ? SizedBox(width: 30,child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,)) : IconButton(
+                                onPressed: () {
+                                  var item = orderController
+                                      .activeOrderResponse.value!.lines[index];
+                                  cartController.addItemToCart(
+                                      item.productVariant.id, 1);
+                                },
+                                icon: Icon(Icons.add_circle_outline),
+                              ),
+                              orderController.isLoading.isTrue ? Center(
+                                child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                              ) : IconButton(
+                                  onPressed: () {
+                                    var item = orderController
+                                        .activeOrderResponse
+                                        .value!
+                                        .lines[index];
+                                    orderController
+                                        .removeItemFromOrder(item.id);
+                                  },
+                                  icon: Icon(Icons.delete_outline)),
+                            ],
+                          ),
                         ),
                       ),
                   itemCount:

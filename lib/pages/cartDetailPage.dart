@@ -135,7 +135,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                             height: 50,
                             placeholder: '${CommonVariableData.placeholder}',
                             image:
-                                '${orderController.activeOrderResponse.value!.lines[index].featuredAsset?.preview}',
+                                '${orderController.activeOrderResponse.value!.lines[index].featuredAsset!.preview}',
                             imageErrorBuilder: (context, error, stackTrace) =>
                                 Image.asset(
                                     '${CommonVariableData.placeholder}'),
@@ -149,20 +149,39 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                   style: CustomTheme.headerStyle,
                                 )
                               : Text(''),
-                          trailing: Wrap(
+                          trailing: Obx(() => orderController.isLoading.isTrue
+                              ? SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: CircularProgressIndicator(
+                              color: CustomTheme.progressIndicatorColor,
+                            ),
+                          )
+                              : Wrap(
                             children: [
-                              cartController.isLoading.isTrue ? SizedBox(width: 30,child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,)) : IconButton(
+                              IconButton(
                                 onPressed: () {
                                   var item = orderController
-                                      .activeOrderResponse.value!.lines[index];
+                                      .activeOrderResponse
+                                      .value!
+                                      .lines[index];
                                   cartController.addItemToCart(
                                       item.productVariant.id, 1);
                                 },
                                 icon: Icon(Icons.add_circle_outline),
                               ),
-                              orderController.isLoading.isTrue ? Center(
-                                child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
-                              ) : IconButton(
+                              IconButton(
+                                onPressed: () {
+                                  var item = orderController
+                                      .activeOrderResponse
+                                      .value!
+                                      .lines[index];
+                                  cartController.adjustCartItem(
+                                      item.id, item.quantity - 1);
+                                },
+                                icon: Icon(Icons.remove_circle_outline),
+                              ),
+                              IconButton(
                                   onPressed: () {
                                     var item = orderController
                                         .activeOrderResponse
@@ -173,7 +192,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                   },
                                   icon: Icon(Icons.delete_outline)),
                             ],
-                          ),
+                          )),
                         ),
                       ),
                   itemCount:

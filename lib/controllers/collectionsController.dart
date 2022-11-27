@@ -13,9 +13,7 @@ class CollectionsController extends GetxController {
   var collectionItems = <Query$GetAllCollections$collections$items>[].obs;
   var isLoading = false.obs;
   var collectionItemSelected = {}.obs;
-  var singleCollectionDetail = {}.obs;
-  var singleCollectionDetailChildrenList = <Query$GetCollectionsByIdOrSlug$collection$children>[].obs;
-  var productVariantItemList = <SingleProductVariantItemType>[].obs;
+  var singleCollectionDetail = (null as Query$GetCollectionsByIdOrSlug$collection?).obs;
 
   void getAllCollections() async {
     try {
@@ -56,9 +54,7 @@ class CollectionsController extends GetxController {
       }
       if (res.data != null) {
         print('collection data ${res.parsedData!.collection!.toJson()}');
-        singleCollectionDetail.value = res.parsedData!.collection!.toJson();
-        singleCollectionDetailChildrenList.value = res.parsedData!.collection!.children!.toList();
-        productVariantItemList.value = res.parsedData!.collection!.productVariants.items;
+        singleCollectionDetail.value = res.parsedData!.collection!;
         isLoading.value = false;
       }
     } catch (e) {

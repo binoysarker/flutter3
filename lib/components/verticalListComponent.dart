@@ -4,6 +4,8 @@ import 'package:recipe.app/controllers/cartController.dart';
 
 import '../graphqlSection/collections.graphql.dart';
 import '../graphqlSection/sellers.graphql.dart';
+import '../pages/categoryDetailPage.dart';
+import '../pages/productDetailPage.dart';
 import '../services/commonVariables.dart';
 import '../themes.dart';
 
@@ -66,6 +68,23 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
       }
       return name;
     }
+    void goToPage(element){
+      if(widget.controllerType == ControllerTypeNames.user.name){
+        var index = widget.givenList.indexOf(element);
+        var item =
+        (widget.givenList
+        as List<Query$GetTopSellers$search$items>)[index];
+        Get.to(() => ProductDetailPage(),
+            arguments: {'slug': '${item.slug}'});
+      }
+      if (widget.controllerType == ControllerTypeNames.collection.name) {
+        var index = widget.givenList.indexOf(element);
+        var item = (widget.givenList
+        as List<Query$GetAllCollections$collections$items>)[index];
+        Get.to(() => CategoryDetailPage(),
+            arguments: {'slug': '${item.slug}'});
+      }
+    }
 
     return Container(
       child: widget.isLoading
@@ -89,7 +108,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
             SizedBox(
               height: 20,
             ),
-            SizedBox(
+            Container(
               height: widget.givenHeight.toDouble(),
               child: GridView.count(
                 crossAxisCount: 2,
@@ -97,37 +116,42 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                 children: widget.givenList
                     .map((element) => Card(
                   elevation: 5,
-                  child: Column(
-                    children: [
-                      FadeInImage.assetNetwork(
-                        width: 100,
-                        height: 100,
-                        placeholder:
-                        '${CommonVariableData.placeholder}',
-                        image: '${getImage(element)}',
-                        imageErrorBuilder:
-                            (context, error, stackTrace) =>
-                            Image.asset(
-                              CommonVariableData.placeholder,
-                              width: 100,
-                              height: 100,
+                  child: GestureDetector(
+                    onTap: (){
+                      goToPage(element);
+                    },
+                    child: Column(
+                      children: [
+                        FadeInImage.assetNetwork(
+                          width: 100,
+                          height: 100,
+                          placeholder:
+                          '${CommonVariableData.placeholder}',
+                          image: '${getImage(element)}',
+                          imageErrorBuilder:
+                              (context, error, stackTrace) =>
+                              Image.asset(
+                                CommonVariableData.placeholder,
+                                width: 100,
+                                height: 100,
+                              ),
+                        ),
+                        Text(
+                          getName(element),
+                          style: CustomTheme.headerStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              '',
+                              style: CustomTheme.headerStyle,
                             ),
-                      ),
-                      Text(
-                        getName(element),
-                        style: CustomTheme.headerStyle,
-                      ),
-                      Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            '',
-                            style: CustomTheme.headerStyle,
-                          ),
-                        ],
-                      )
-                    ],
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ))
                     .toList(),

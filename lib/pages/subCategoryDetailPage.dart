@@ -33,7 +33,7 @@ class _SubCategoryDetailPageState extends State<SubCategoryDetailPage> {
         child: Scaffold(
       appBar: AppBar(
         title: Obx(() =>
-            Text('${collectionsController.singleCollectionDetail['name']}')),
+            Text('${collectionsController.singleCollectionDetail.value!.name}')),
       ),
       body: Obx(() => collectionsController.isLoading.isTrue
           ? Container(
@@ -47,13 +47,13 @@ class _SubCategoryDetailPageState extends State<SubCategoryDetailPage> {
                   FadeInImage.assetNetwork(
                       placeholder: '${CommonVariableData.placeholder}',
                       image:
-                      '${collectionsController.singleCollectionDetail['featuredAsset']['preview']}'
+                      '${collectionsController.singleCollectionDetail.value!.featuredAsset!.preview}'
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   Text(
-                      '${collectionsController.singleCollectionDetail['description'] ?? ''}'
+                      '${collectionsController.singleCollectionDetail.value!.description}'
                   ),
                   SizedBox(
                     height: 20,

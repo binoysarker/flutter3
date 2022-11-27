@@ -41,7 +41,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                      '${collectionsController.singleCollectionDetail['name']}'),
+                      '${collectionsController.singleCollectionDetail.value!.name}'),
                   orderController.activeOrderResponse.value?.totalQuantity != null
                       ? CartButtonComponent(
                           isLoading: orderController.isLoading.isTrue,
@@ -66,7 +66,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                   FadeInImage.assetNetwork(
                     placeholder: '${CommonVariableData.placeholder}',
                     image:
-                        '${collectionsController.singleCollectionDetail['featuredAsset'] != null ? collectionsController.singleCollectionDetail['featuredAsset']['preview'] : ''}',
+                        '${collectionsController.singleCollectionDetail.value!.featuredAsset!.preview}',
                     imageErrorBuilder: (context, error, stackTrace) =>
                         Image.asset('${CommonVariableData.placeholder}'),
                   ),
@@ -74,14 +74,12 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                     height: 20,
                   ),
                   Text(
-                      '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail['description'])}'),
+                      '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}'),
                   SizedBox(
                     height: 20,
                   ),
                   Column(
-                    children: collectionsController
-                        .singleCollectionDetailChildrenList
-                        .map((element) => Card(
+                    children: collectionsController.singleCollectionDetail.value!.children!.map((element) => Card(
                               child: Column(
                                 children: [
                                   SizedBox(
@@ -133,7 +131,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                       loadingState: collectionsController
                           .isLoading.isTrue,
                       givenList:
-                      collectionsController.productVariantItemList,
+                      collectionsController.singleCollectionDetail.value!.productVariants.items,
                       controllerType: ControllerTypeNames
                           .productVariantItems
                           .name)

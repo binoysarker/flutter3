@@ -70,7 +70,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                     .firstWhereOrNull((item) => item.id.isNotEmpty)
                     ?.price !=
                     null)
-                    .map((element) => Card(
+                    .map((element) => element == null ? SizedBox() : Card(
                   elevation: 5,
                   child: Column(
                     children: [

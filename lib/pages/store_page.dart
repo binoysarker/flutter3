@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
+import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/components/productListComponent.dart';
 import 'package:recipe.app/components/verticalListComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
@@ -50,89 +51,89 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Obx(() => productsController.isLoading.isTrue ? LoadingSpinnerComponent() : SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: Obx(() => collectionsController.isLoading.isTrue
-            ? SizedBox()
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Welcome To ${_utilService.appName}',
-                    style: CustomTheme.headerStyle2,
-                  ),
-                  CartButtonComponent(
-                    isLoading: orderController.isLoading.isTrue,
-                    totalQuantity: orderController
-                            .activeOrderResponse.value?.totalQuantity ??
-                        0,
-                  )
-                ],
-              )),
-      ),
-      drawer: Obx(() => userController.isLoading2.isTrue
-          ? Center(
-              child: CircularProgressIndicator(
-                color: CustomTheme.progressIndicatorColor,
-              ),
-            )
-          : DrawerComponent()),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: [
-          Center(
-            child: CircleAvatar(
-              radius: 40,
-              backgroundImage: AssetImage('assets/images/splash.png'),
+          appBar: AppBar(
+            title: Obx(() => collectionsController.isLoading.isTrue
+                ? SizedBox()
+                : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Welcome To ${_utilService.appName}',
+                  style: CustomTheme.headerStyle2,
+                ),
+                CartButtonComponent(
+                  isLoading: orderController.isLoading.isTrue,
+                  totalQuantity: orderController
+                      .activeOrderResponse.value?.totalQuantity ??
+                      0,
+                )
+              ],
+            )),
+          ),
+          drawer: Obx(() => userController.isLoading2.isTrue
+              ? Center(
+            child: CircularProgressIndicator(
+              color: CustomTheme.progressIndicatorColor,
             ),
-          ),
-          Center(
-            child: Text('Absurdly fresh grocery, delivered',
-                style: CustomTheme.headerStyle),
-          ),
-          SearchComponent(
-              homePageController: homePageController,
-              productsController: productsController),
-          Container(
-            child: Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 0,
-                  ),
-                  Obx(() => VerticalListComponent(
+          )
+              : DrawerComponent()),
+          body: ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            children: [
+              Center(
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: AssetImage('assets/images/splash.png'),
+                ),
+              ),
+              Center(
+                child: Text('Absurdly fresh grocery, delivered',
+                    style: CustomTheme.headerStyle),
+              ),
+              SearchComponent(
+                  homePageController: homePageController,
+                  productsController: productsController),
+              Container(
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        height: 0,
+                      ),
+                      Obx(() => VerticalListComponent(
                         isLoading: collectionsController.isLoading.isTrue,
                         givenList: collectionsController.collectionItems,
                         givenTitle: 'Shop By Category',
                         controllerType: 'collection',
                         givenHeight: 300,
                       )),
-                  // all products
-                  Obx(() => ProductListComponent(
+                      // all products
+                      Obx(() => ProductListComponent(
                         isLoading: productsController.isLoading.isTrue,
                         productList: productsController.productList,
                       )),
-                  SizedBox(
-                    height: 20,
+                      SizedBox(
+                        height: 20,
+                      ),
+                      // all top sellers
+                      Obx(() => userController.isLoading.isTrue
+                          ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),) : VerticalListComponent(
+                          isLoading: userController.isLoading.isTrue,
+                          givenList: userController.topSellers,
+                          givenTitle: 'Featured Items',
+                          controllerType: 'user',
+                          givenHeight: 300)),
+                    ],
                   ),
-                  // all top sellers
-                  Obx(() => userController.isLoading.isTrue
-                      ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),) : VerticalListComponent(
-                      isLoading: userController.isLoading.isTrue,
-                      givenList: userController.topSellers,
-                      givenTitle: 'Featured Items',
-                      controllerType: 'user',
-                      givenHeight: 300)),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationComponent(),
-    ));
+          bottomNavigationBar: BottomNavigationComponent(),
+        )));
   }
 }

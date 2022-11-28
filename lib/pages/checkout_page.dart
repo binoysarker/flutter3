@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/invoiceComponent.dart';
@@ -24,7 +22,6 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
   UserController userController = Get.find<UserController>();
-
 
   @override
   void initState() {
@@ -88,9 +85,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
               state: orderController.currentStep.value == 2
                   ? StepState.complete
                   : StepState.indexed,
-              content: InvoiceComponent(
-                orderController: orderController,
-              )),
+              content:
+                  Obx(() => orderController.getOrderByCodeResponse.value == null
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : InvoiceComponent(
+                          orderController: orderController,
+                        ))),
         ];
     return Scaffold(
       appBar: AppBar(
@@ -139,13 +141,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-
                           onPressed: orderController.isLoading.isTrue
                               ? null
                               : details.onStepContinue,
                           child: orderController.isLoading.isTrue
                               ? Center(
-                                  child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
+                                  child: CircularProgressIndicator(
+                                    color: CustomTheme.progressIndicatorColor,
+                                  ),
                                 )
                               : Text(checkText(
                                   orderController.currentStep.value))),

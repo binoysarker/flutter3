@@ -141,7 +141,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                     '${CommonVariableData.placeholder}'),
                           ),
                           title: Text(
-                              '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}'),
+                              '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}',style: CustomTheme.headerStyle,),
                           subtitle: userController.currentAuthenticatedUser
                                   .value!.orders.items.isNotEmpty
                               ? Text(

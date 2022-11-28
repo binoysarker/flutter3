@@ -10,6 +10,7 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/paymentServices.dart';
+import 'package:recipe.app/themes.dart';
 
 import '../allGlobalKeys.dart';
 
@@ -138,19 +139,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
+
                           onPressed: orderController.isLoading.isTrue
                               ? null
                               : details.onStepContinue,
                           child: orderController.isLoading.isTrue
                               ? Center(
-                                  child: CircularProgressIndicator(),
+                                  child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
                                 )
                               : Text(checkText(
                                   orderController.currentStep.value))),
                       orderController.currentStep.value != 2
                           ? ElevatedButton(
                               onPressed: details.onStepCancel,
-                              child: Text('Cancle'))
+                              child: Text('Cancel'))
                           : SizedBox(),
                     ],
                   ),

@@ -24,7 +24,6 @@ class OrderController extends GetxController {
   TextEditingController streetLine1 = TextEditingController();
   TextEditingController streetLine2 = TextEditingController();
   TextEditingController city = TextEditingController();
-  TextEditingController province = TextEditingController();
   TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
@@ -239,7 +238,6 @@ class OrderController extends GetxController {
                     streetLine1: streetLine1.text,
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
-                    province: province.text,
                     city: city.text,
                     company: company.text,
                     fullName: fullName.text,

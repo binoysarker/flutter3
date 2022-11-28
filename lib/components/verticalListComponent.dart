@@ -46,9 +46,9 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
       }
       if(widget.controllerType == ControllerTypeNames.user.name){
         var index = widget.givenList.indexOf(element);
-        imageString = (widget.givenList
-        as List<Query$GetTopSellers$search$items>)[index]
-            .productAsset!.preview;
+        var item = (widget.givenList
+        as List<Query$GetTopSellers$search$items>)[index];
+        imageString = item != null ? item.productAsset!.preview : '';
       }
       return imageString;
     }
@@ -114,7 +114,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                 crossAxisCount: 2,
                 childAspectRatio: 2/1.5,
                 children: widget.givenList
-                    .map((element) => Card(
+                    .map((element) => element == null ? SizedBox() : Card(
                   elevation: 5,
                   child: GestureDetector(
                     onTap: (){

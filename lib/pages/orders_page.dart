@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
@@ -27,7 +28,6 @@ class _OrdersPageState extends State<OrdersPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       userController.getActiveCustomer();
-      orderController.getActiveOrders();
     });
   }
 
@@ -40,7 +40,7 @@ class _OrdersPageState extends State<OrdersPage> {
       }
       return currentStat;
     }
-    return Scaffold(
+    return Obx(() => userController.isLoading2.isTrue ? LoadingSpinnerComponent(): Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,45 +57,46 @@ class _OrdersPageState extends State<OrdersPage> {
       ),
       body: Card(
         child: Container(
-          child: Obx(() => userController.isLoading2.isTrue
-              ? Center(
-                  child: CircularProgressIndicator(
-                    color: CustomTheme.progressIndicatorColor,
-                  ),
-                )
-              : ListView(
-                  children: userController
-                      .currentAuthenticatedUser.value!.orders.items
-                      .map((e) => ExpansionTile(
-                            title: Text('Code: ${e.code}'),
-                            textColor: Colors.black,
-                            subtitle: Text(
-                                'Status: ${checkStatus(e.state)}'
-                                    '\nTotal Quantity ${e.totalQuantity}'
-                                    '\nTotal Price: ${UtilService.getCurrencySymble(e.currencyCode.toString())}${e.totalWithTax}'),
-                            children: e.lines
-                                .map((subItem) => ListTile(
-                                    title:
-                                        Text('${subItem.productVariant.name}'),
-                                    leading: FadeInImage.assetNetwork(
-                                      width: 50,
-                                      height: 50,
-                                      placeholder:
-                                          '${CommonVariableData.placeholder}',
-                                      image:
-                                          '${subItem.featuredAsset!.preview}',
-                                      imageErrorBuilder: (context, error,
-                                              stackTrace) =>
-                                          Image.asset(
-                                              '${CommonVariableData.placeholder}'),
-                                    ),subtitle: Text('Price: ${UtilService.getCurrencySymble(e.currencyCode.toString())}${subItem.productVariant.priceWithTax}'),))
-                                .toList(),
-                          ))
-                      .toList(),
-                )),
+          child: ListView(
+            children: userController
+                .currentAuthenticatedUser.value!.orders.items
+                .map((e) => Card(
+                  child: ExpansionTile(
+              title: Text('Code: ${e.code}',style: CustomTheme.headerStyle,),
+              textColor: Colors.black,
+              subtitle: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Status: ${checkStatus(e.state)}',style: CustomTheme.headerStyle,),
+                  Text('Total Quantity ${e.totalQuantity}',style: CustomTheme.headerStyle,),
+                  Text('Total Price: ${UtilService.getCurrencySymble(e.currencyCode.toString())}${e.totalWithTax}',style: CustomTheme.headerStyle,),
+                ],
+              ),
+              children: e.lines
+                    .map((subItem) => ListTile(
+                  title:
+                  Text('${subItem.productVariant.name}',style: CustomTheme.headerStyle,),
+                  leading: FadeInImage.assetNetwork(
+                    width: 50,
+                    height: 50,
+                    placeholder:
+                    '${CommonVariableData.placeholder}',
+                    image:
+                    '${subItem.featuredAsset!.preview}',
+                    imageErrorBuilder: (context, error,
+                        stackTrace) =>
+                        Image.asset(
+                            '${CommonVariableData.placeholder}'),
+                  ),subtitle: Text('Price: ${UtilService.getCurrencySymble(e.currencyCode.toString())}${subItem.productVariant.priceWithTax}'),))
+                    .toList(),
+            ),
+                ))
+                .toList(),
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationComponent(),
-    );
+    ));
   }
 }

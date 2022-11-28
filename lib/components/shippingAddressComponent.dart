@@ -55,20 +55,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 validator: RequiredValidator(errorText: 'Company is Required'),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: widget.orderController.province,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Province',
-                ),
-                autofillHints: [AutofillHints.countryName],
-                keyboardType: TextInputType.name,
-                validator: RequiredValidator(errorText: 'Province is Required'),
-              ),
-            ),
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(

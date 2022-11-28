@@ -119,7 +119,8 @@ class _StorePageState extends State<StorePage> {
                     height: 20,
                   ),
                   // all top sellers
-                  Obx(() => VerticalListComponent(
+                  Obx(() => userController.isLoading.isTrue
+                      ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),) : VerticalListComponent(
                       isLoading: userController.isLoading.isTrue,
                       givenList: userController.topSellers,
                       givenTitle: 'Featured Items',

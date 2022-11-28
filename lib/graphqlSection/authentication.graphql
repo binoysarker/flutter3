@@ -55,11 +55,48 @@ mutation VerifyCustomerAccount($token: String!, $password: String){
         __typename
     }
 }
+mutation UpdateCustomer($input: UpdateCustomerInput!){
+    updateCustomer(input: $input){
+        ... on Customer{
+            addresses {
+                city
+                company
+                country {
+                    code
+                    id
+                    name
+                    languageCode
+                }
+                fullName
+                phoneNumber
+                streetLine1
+                streetLine2
+                postalCode
+            }
+        }
+    }
+}
 
 query GetActiveCustomer{
     activeCustomer {
         ... on Customer{
             emailAddress
+            addresses {
+                id
+                postalCode
+                streetLine1
+                streetLine2
+                fullName
+                country {
+                    id
+                    name
+                    code
+                    languageCode
+                }
+                phoneNumber
+                company
+                city
+            }
             firstName
             lastName
             phoneNumber

@@ -3747,6 +3747,981 @@ class _CopyWithStubImpl$Mutation$VerifyCustomerAccount$verifyCustomerAccount$$Pa
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Mutation$UpdateCustomer {
+  Variables$Mutation$UpdateCustomer({required this.input});
+
+  @override
+  factory Variables$Mutation$UpdateCustomer.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$UpdateCustomerFromJson(json);
+
+  final Input$UpdateCustomerInput input;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$UpdateCustomerToJson(this);
+  int get hashCode {
+    final l$input = input;
+    return Object.hashAll([l$input]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$UpdateCustomer) ||
+        runtimeType != other.runtimeType) return false;
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input != lOther$input) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$UpdateCustomer<Variables$Mutation$UpdateCustomer>
+      get copyWith =>
+          CopyWith$Variables$Mutation$UpdateCustomer(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$UpdateCustomer<TRes> {
+  factory CopyWith$Variables$Mutation$UpdateCustomer(
+          Variables$Mutation$UpdateCustomer instance,
+          TRes Function(Variables$Mutation$UpdateCustomer) then) =
+      _CopyWithImpl$Variables$Mutation$UpdateCustomer;
+
+  factory CopyWith$Variables$Mutation$UpdateCustomer.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateCustomer;
+
+  TRes call({Input$UpdateCustomerInput? input});
+}
+
+class _CopyWithImpl$Variables$Mutation$UpdateCustomer<TRes>
+    implements CopyWith$Variables$Mutation$UpdateCustomer<TRes> {
+  _CopyWithImpl$Variables$Mutation$UpdateCustomer(this._instance, this._then);
+
+  final Variables$Mutation$UpdateCustomer _instance;
+
+  final TRes Function(Variables$Mutation$UpdateCustomer) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? input = _undefined}) =>
+      _then(Variables$Mutation$UpdateCustomer(
+          input: input == _undefined || input == null
+              ? _instance.input
+              : (input as Input$UpdateCustomerInput)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UpdateCustomer<TRes>
+    implements CopyWith$Variables$Mutation$UpdateCustomer<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UpdateCustomer(this._res);
+
+  TRes _res;
+
+  call({Input$UpdateCustomerInput? input}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$UpdateCustomer {
+  Mutation$UpdateCustomer(
+      {required this.updateCustomer, required this.$__typename});
+
+  @override
+  factory Mutation$UpdateCustomer.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$UpdateCustomerFromJson(json);
+
+  final Mutation$UpdateCustomer$updateCustomer updateCustomer;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$UpdateCustomerToJson(this);
+  int get hashCode {
+    final l$updateCustomer = updateCustomer;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$updateCustomer, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$UpdateCustomer) || runtimeType != other.runtimeType)
+      return false;
+    final l$updateCustomer = updateCustomer;
+    final lOther$updateCustomer = other.updateCustomer;
+    if (l$updateCustomer != lOther$updateCustomer) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateCustomer on Mutation$UpdateCustomer {
+  CopyWith$Mutation$UpdateCustomer<Mutation$UpdateCustomer> get copyWith =>
+      CopyWith$Mutation$UpdateCustomer(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$UpdateCustomer<TRes> {
+  factory CopyWith$Mutation$UpdateCustomer(Mutation$UpdateCustomer instance,
+          TRes Function(Mutation$UpdateCustomer) then) =
+      _CopyWithImpl$Mutation$UpdateCustomer;
+
+  factory CopyWith$Mutation$UpdateCustomer.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateCustomer;
+
+  TRes call(
+      {Mutation$UpdateCustomer$updateCustomer? updateCustomer,
+      String? $__typename});
+  CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> get updateCustomer;
+}
+
+class _CopyWithImpl$Mutation$UpdateCustomer<TRes>
+    implements CopyWith$Mutation$UpdateCustomer<TRes> {
+  _CopyWithImpl$Mutation$UpdateCustomer(this._instance, this._then);
+
+  final Mutation$UpdateCustomer _instance;
+
+  final TRes Function(Mutation$UpdateCustomer) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? updateCustomer = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$UpdateCustomer(
+          updateCustomer: updateCustomer == _undefined || updateCustomer == null
+              ? _instance.updateCustomer
+              : (updateCustomer as Mutation$UpdateCustomer$updateCustomer),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> get updateCustomer {
+    final local$updateCustomer = _instance.updateCustomer;
+    return CopyWith$Mutation$UpdateCustomer$updateCustomer(
+        local$updateCustomer, (e) => call(updateCustomer: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateCustomer<TRes>
+    implements CopyWith$Mutation$UpdateCustomer<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateCustomer(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$UpdateCustomer$updateCustomer? updateCustomer,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> get updateCustomer =>
+      CopyWith$Mutation$UpdateCustomer$updateCustomer.stub(_res);
+}
+
+const documentNodeMutationUpdateCustomer = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'UpdateCustomer'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'input')),
+            type: NamedTypeNode(
+                name: NameNode(value: 'UpdateCustomerInput'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'updateCustomer'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'input'),
+                  value: VariableNode(name: NameNode(value: 'input')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              InlineFragmentNode(
+                  typeCondition: TypeConditionNode(
+                      on: NamedTypeNode(
+                          name: NameNode(value: 'Customer'), isNonNull: false)),
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'addresses'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'city'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'company'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'country'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'code'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'name'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'languageCode'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'fullName'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'phoneNumber'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'streetLine1'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'streetLine2'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'postalCode'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Mutation$UpdateCustomer _parserFn$Mutation$UpdateCustomer(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateCustomer.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateCustomer = FutureOr<void> Function(
+    dynamic, Mutation$UpdateCustomer?);
+
+class Options$Mutation$UpdateCustomer
+    extends graphql.MutationOptions<Mutation$UpdateCustomer> {
+  Options$Mutation$UpdateCustomer(
+      {String? operationName,
+      required Variables$Mutation$UpdateCustomer variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$UpdateCustomer? onCompleted,
+      graphql.OnMutationUpdate<Mutation$UpdateCustomer>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateCustomer(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationUpdateCustomer,
+            parserFn: _parserFn$Mutation$UpdateCustomer);
+
+  final OnMutationCompleted$Mutation$UpdateCustomer? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$UpdateCustomer
+    extends graphql.WatchQueryOptions<Mutation$UpdateCustomer> {
+  WatchOptions$Mutation$UpdateCustomer(
+      {String? operationName,
+      required Variables$Mutation$UpdateCustomer variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationUpdateCustomer,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$UpdateCustomer);
+}
+
+extension ClientExtension$Mutation$UpdateCustomer on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateCustomer>> mutate$UpdateCustomer(
+          Options$Mutation$UpdateCustomer options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateCustomer> watchMutation$UpdateCustomer(
+          WatchOptions$Mutation$UpdateCustomer options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$UpdateCustomer$HookResult {
+  Mutation$UpdateCustomer$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$UpdateCustomer runMutation;
+
+  final graphql.QueryResult<Mutation$UpdateCustomer> result;
+}
+
+Mutation$UpdateCustomer$HookResult useMutation$UpdateCustomer(
+    [WidgetOptions$Mutation$UpdateCustomer? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$UpdateCustomer());
+  return Mutation$UpdateCustomer$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$UpdateCustomer>
+    useWatchMutation$UpdateCustomer(
+            WatchOptions$Mutation$UpdateCustomer options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$UpdateCustomer
+    extends graphql.MutationOptions<Mutation$UpdateCustomer> {
+  WidgetOptions$Mutation$UpdateCustomer(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$UpdateCustomer? onCompleted,
+      graphql.OnMutationUpdate<Mutation$UpdateCustomer>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateCustomer(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationUpdateCustomer,
+            parserFn: _parserFn$Mutation$UpdateCustomer);
+
+  final OnMutationCompleted$Mutation$UpdateCustomer? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$UpdateCustomer
+    = graphql.MultiSourceResult<Mutation$UpdateCustomer>
+        Function(Variables$Mutation$UpdateCustomer, {Object? optimisticResult});
+typedef Builder$Mutation$UpdateCustomer = widgets.Widget Function(
+    RunMutation$Mutation$UpdateCustomer,
+    graphql.QueryResult<Mutation$UpdateCustomer>?);
+
+class Mutation$UpdateCustomer$Widget
+    extends graphql_flutter.Mutation<Mutation$UpdateCustomer> {
+  Mutation$UpdateCustomer$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$UpdateCustomer? options,
+      required Builder$Mutation$UpdateCustomer builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$UpdateCustomer(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$UpdateCustomer$updateCustomer {
+  Mutation$UpdateCustomer$updateCustomer(
+      {this.addresses, required this.$__typename});
+
+  @override
+  factory Mutation$UpdateCustomer$updateCustomer.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$UpdateCustomer$updateCustomerFromJson(json);
+
+  final List<Mutation$UpdateCustomer$updateCustomer$addresses>? addresses;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$UpdateCustomer$updateCustomerToJson(this);
+  int get hashCode {
+    final l$addresses = addresses;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$addresses == null ? null : Object.hashAll(l$addresses.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$UpdateCustomer$updateCustomer) ||
+        runtimeType != other.runtimeType) return false;
+    final l$addresses = addresses;
+    final lOther$addresses = other.addresses;
+    if (l$addresses != null && lOther$addresses != null) {
+      if (l$addresses.length != lOther$addresses.length) return false;
+      for (int i = 0; i < l$addresses.length; i++) {
+        final l$addresses$entry = l$addresses[i];
+        final lOther$addresses$entry = lOther$addresses[i];
+        if (l$addresses$entry != lOther$addresses$entry) return false;
+      }
+    } else if (l$addresses != lOther$addresses) {
+      return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateCustomer$updateCustomer
+    on Mutation$UpdateCustomer$updateCustomer {
+  CopyWith$Mutation$UpdateCustomer$updateCustomer<
+          Mutation$UpdateCustomer$updateCustomer>
+      get copyWith =>
+          CopyWith$Mutation$UpdateCustomer$updateCustomer(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> {
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer(
+          Mutation$UpdateCustomer$updateCustomer instance,
+          TRes Function(Mutation$UpdateCustomer$updateCustomer) then) =
+      _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer;
+
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer;
+
+  TRes call(
+      {List<Mutation$UpdateCustomer$updateCustomer$addresses>? addresses,
+      String? $__typename});
+  TRes addresses(
+      Iterable<Mutation$UpdateCustomer$updateCustomer$addresses>? Function(
+              Iterable<
+                  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<
+                      Mutation$UpdateCustomer$updateCustomer$addresses>>?)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer<TRes>
+    implements CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> {
+  _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer(
+      this._instance, this._then);
+
+  final Mutation$UpdateCustomer$updateCustomer _instance;
+
+  final TRes Function(Mutation$UpdateCustomer$updateCustomer) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? addresses = _undefined, Object? $__typename = _undefined}) =>
+      _then(Mutation$UpdateCustomer$updateCustomer(
+          addresses: addresses == _undefined
+              ? _instance.addresses
+              : (addresses
+                  as List<Mutation$UpdateCustomer$updateCustomer$addresses>?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes addresses(
+          Iterable<Mutation$UpdateCustomer$updateCustomer$addresses>? Function(
+                  Iterable<
+                      CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<
+                          Mutation$UpdateCustomer$updateCustomer$addresses>>?)
+              _fn) =>
+      call(
+          addresses: _fn(_instance.addresses?.map((e) =>
+              CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses(
+                  e, (i) => i)))?.toList());
+}
+
+class _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer<TRes>
+    implements CopyWith$Mutation$UpdateCustomer$updateCustomer<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer(this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$UpdateCustomer$updateCustomer$addresses>? addresses,
+          String? $__typename}) =>
+      _res;
+  addresses(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$UpdateCustomer$updateCustomer$addresses {
+  Mutation$UpdateCustomer$updateCustomer$addresses(
+      {this.city,
+      this.company,
+      required this.country,
+      this.fullName,
+      this.phoneNumber,
+      required this.streetLine1,
+      this.streetLine2,
+      this.postalCode,
+      required this.$__typename});
+
+  @override
+  factory Mutation$UpdateCustomer$updateCustomer$addresses.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$UpdateCustomer$updateCustomer$addressesFromJson(json);
+
+  final String? city;
+
+  final String? company;
+
+  final Mutation$UpdateCustomer$updateCustomer$addresses$country country;
+
+  final String? fullName;
+
+  final String? phoneNumber;
+
+  final String streetLine1;
+
+  final String? streetLine2;
+
+  final String? postalCode;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$UpdateCustomer$updateCustomer$addressesToJson(this);
+  int get hashCode {
+    final l$city = city;
+    final l$company = company;
+    final l$country = country;
+    final l$fullName = fullName;
+    final l$phoneNumber = phoneNumber;
+    final l$streetLine1 = streetLine1;
+    final l$streetLine2 = streetLine2;
+    final l$postalCode = postalCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$city,
+      l$company,
+      l$country,
+      l$fullName,
+      l$phoneNumber,
+      l$streetLine1,
+      l$streetLine2,
+      l$postalCode,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$UpdateCustomer$updateCustomer$addresses) ||
+        runtimeType != other.runtimeType) return false;
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) return false;
+    final l$company = company;
+    final lOther$company = other.company;
+    if (l$company != lOther$company) return false;
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) return false;
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) return false;
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (l$phoneNumber != lOther$phoneNumber) return false;
+    final l$streetLine1 = streetLine1;
+    final lOther$streetLine1 = other.streetLine1;
+    if (l$streetLine1 != lOther$streetLine1) return false;
+    final l$streetLine2 = streetLine2;
+    final lOther$streetLine2 = other.streetLine2;
+    if (l$streetLine2 != lOther$streetLine2) return false;
+    final l$postalCode = postalCode;
+    final lOther$postalCode = other.postalCode;
+    if (l$postalCode != lOther$postalCode) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateCustomer$updateCustomer$addresses
+    on Mutation$UpdateCustomer$updateCustomer$addresses {
+  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<
+          Mutation$UpdateCustomer$updateCustomer$addresses>
+      get copyWith => CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<TRes> {
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses(
+          Mutation$UpdateCustomer$updateCustomer$addresses instance,
+          TRes Function(Mutation$UpdateCustomer$updateCustomer$addresses)
+              then) =
+      _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses;
+
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses;
+
+  TRes call(
+      {String? city,
+      String? company,
+      Mutation$UpdateCustomer$updateCustomer$addresses$country? country,
+      String? fullName,
+      String? phoneNumber,
+      String? streetLine1,
+      String? streetLine2,
+      String? postalCode,
+      String? $__typename});
+  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<TRes>
+      get country;
+}
+
+class _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses<TRes>
+    implements CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<TRes> {
+  _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses(
+      this._instance, this._then);
+
+  final Mutation$UpdateCustomer$updateCustomer$addresses _instance;
+
+  final TRes Function(Mutation$UpdateCustomer$updateCustomer$addresses) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? city = _undefined,
+          Object? company = _undefined,
+          Object? country = _undefined,
+          Object? fullName = _undefined,
+          Object? phoneNumber = _undefined,
+          Object? streetLine1 = _undefined,
+          Object? streetLine2 = _undefined,
+          Object? postalCode = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$UpdateCustomer$updateCustomer$addresses(
+          city: city == _undefined ? _instance.city : (city as String?),
+          company:
+              company == _undefined ? _instance.company : (company as String?),
+          country: country == _undefined || country == null
+              ? _instance.country
+              : (country
+                  as Mutation$UpdateCustomer$updateCustomer$addresses$country),
+          fullName: fullName == _undefined
+              ? _instance.fullName
+              : (fullName as String?),
+          phoneNumber: phoneNumber == _undefined
+              ? _instance.phoneNumber
+              : (phoneNumber as String?),
+          streetLine1: streetLine1 == _undefined || streetLine1 == null
+              ? _instance.streetLine1
+              : (streetLine1 as String),
+          streetLine2: streetLine2 == _undefined
+              ? _instance.streetLine2
+              : (streetLine2 as String?),
+          postalCode: postalCode == _undefined
+              ? _instance.postalCode
+              : (postalCode as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<TRes>
+      get country {
+    final local$country = _instance.country;
+    return CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country(
+        local$country, (e) => call(country: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses<TRes>
+    implements CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses(this._res);
+
+  TRes _res;
+
+  call(
+          {String? city,
+          String? company,
+          Mutation$UpdateCustomer$updateCustomer$addresses$country? country,
+          String? fullName,
+          String? phoneNumber,
+          String? streetLine1,
+          String? streetLine2,
+          String? postalCode,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<TRes>
+      get country =>
+          CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$UpdateCustomer$updateCustomer$addresses$country {
+  Mutation$UpdateCustomer$updateCustomer$addresses$country(
+      {required this.code,
+      required this.id,
+      required this.name,
+      required this.languageCode,
+      required this.$__typename});
+
+  @override
+  factory Mutation$UpdateCustomer$updateCustomer$addresses$country.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$UpdateCustomer$updateCustomer$addresses$countryFromJson(json);
+
+  final String code;
+
+  final String id;
+
+  final String name;
+
+  @JsonKey(unknownEnumValue: Enum$LanguageCode.$unknown)
+  final Enum$LanguageCode languageCode;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$UpdateCustomer$updateCustomer$addresses$countryToJson(this);
+  int get hashCode {
+    final l$code = code;
+    final l$id = id;
+    final l$name = name;
+    final l$languageCode = languageCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, l$id, l$name, l$languageCode, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$UpdateCustomer$updateCustomer$addresses$country) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$languageCode = languageCode;
+    final lOther$languageCode = other.languageCode;
+    if (l$languageCode != lOther$languageCode) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateCustomer$updateCustomer$addresses$country
+    on Mutation$UpdateCustomer$updateCustomer$addresses$country {
+  CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+          Mutation$UpdateCustomer$updateCustomer$addresses$country>
+      get copyWith =>
+          CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+    TRes> {
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country(
+          Mutation$UpdateCustomer$updateCustomer$addresses$country instance,
+          TRes Function(
+                  Mutation$UpdateCustomer$updateCustomer$addresses$country)
+              then) =
+      _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country;
+
+  factory CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country;
+
+  TRes call(
+      {String? code,
+      String? id,
+      String? name,
+      Enum$LanguageCode? languageCode,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+            TRes> {
+  _CopyWithImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country(
+      this._instance, this._then);
+
+  final Mutation$UpdateCustomer$updateCustomer$addresses$country _instance;
+
+  final TRes Function(Mutation$UpdateCustomer$updateCustomer$addresses$country)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? id = _undefined,
+          Object? name = _undefined,
+          Object? languageCode = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$UpdateCustomer$updateCustomer$addresses$country(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          languageCode: languageCode == _undefined || languageCode == null
+              ? _instance.languageCode
+              : (languageCode as Enum$LanguageCode),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateCustomer$updateCustomer$addresses$country<
+            TRes> {
+  _CopyWithStubImpl$Mutation$UpdateCustomer$updateCustomer$addresses$country(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          String? id,
+          String? name,
+          Enum$LanguageCode? languageCode,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Query$GetActiveCustomer {
   Query$GetActiveCustomer({this.activeCustomer, required this.$__typename});
 
@@ -3868,6 +4843,104 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                         arguments: [],
                         directives: [],
                         selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'addresses'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'id'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'postalCode'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'streetLine1'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'streetLine2'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'fullName'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'country'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'name'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'code'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'languageCode'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'phoneNumber'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'company'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: 'city'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
                     FieldNode(
                         name: NameNode(value: 'firstName'),
                         alias: null,
@@ -4311,6 +5384,7 @@ class Query$GetActiveCustomer$Widget
 class Query$GetActiveCustomer$activeCustomer {
   Query$GetActiveCustomer$activeCustomer(
       {required this.emailAddress,
+      this.addresses,
       required this.firstName,
       required this.lastName,
       this.phoneNumber,
@@ -4323,6 +5397,8 @@ class Query$GetActiveCustomer$activeCustomer {
       _$Query$GetActiveCustomer$activeCustomerFromJson(json);
 
   final String emailAddress;
+
+  final List<Query$GetActiveCustomer$activeCustomer$addresses>? addresses;
 
   final String firstName;
 
@@ -4339,6 +5415,7 @@ class Query$GetActiveCustomer$activeCustomer {
       _$Query$GetActiveCustomer$activeCustomerToJson(this);
   int get hashCode {
     final l$emailAddress = emailAddress;
+    final l$addresses = addresses;
     final l$firstName = firstName;
     final l$lastName = lastName;
     final l$phoneNumber = phoneNumber;
@@ -4346,6 +5423,7 @@ class Query$GetActiveCustomer$activeCustomer {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$emailAddress,
+      l$addresses == null ? null : Object.hashAll(l$addresses.map((v) => v)),
       l$firstName,
       l$lastName,
       l$phoneNumber,
@@ -4362,6 +5440,19 @@ class Query$GetActiveCustomer$activeCustomer {
     final l$emailAddress = emailAddress;
     final lOther$emailAddress = other.emailAddress;
     if (l$emailAddress != lOther$emailAddress) return false;
+    final l$addresses = addresses;
+    final lOther$addresses = other.addresses;
+    if (l$addresses != null && lOther$addresses != null) {
+      if (l$addresses.length != lOther$addresses.length) return false;
+      for (int i = 0; i < l$addresses.length; i++) {
+        final l$addresses$entry = l$addresses[i];
+        final lOther$addresses$entry = lOther$addresses[i];
+        if (l$addresses$entry != lOther$addresses$entry) return false;
+      }
+    } else if (l$addresses != lOther$addresses) {
+      return false;
+    }
+
     final l$firstName = firstName;
     final lOther$firstName = other.firstName;
     if (l$firstName != lOther$firstName) return false;
@@ -4400,11 +5491,18 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer<TRes> {
 
   TRes call(
       {String? emailAddress,
+      List<Query$GetActiveCustomer$activeCustomer$addresses>? addresses,
       String? firstName,
       String? lastName,
       String? phoneNumber,
       Query$GetActiveCustomer$activeCustomer$orders? orders,
       String? $__typename});
+  TRes addresses(
+      Iterable<Query$GetActiveCustomer$activeCustomer$addresses>? Function(
+              Iterable<
+                  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<
+                      Query$GetActiveCustomer$activeCustomer$addresses>>?)
+          _fn);
   CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders;
 }
 
@@ -4421,6 +5519,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer<TRes>
 
   TRes call(
           {Object? emailAddress = _undefined,
+          Object? addresses = _undefined,
           Object? firstName = _undefined,
           Object? lastName = _undefined,
           Object? phoneNumber = _undefined,
@@ -4430,6 +5529,10 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer<TRes>
           emailAddress: emailAddress == _undefined || emailAddress == null
               ? _instance.emailAddress
               : (emailAddress as String),
+          addresses: addresses == _undefined
+              ? _instance.addresses
+              : (addresses
+                  as List<Query$GetActiveCustomer$activeCustomer$addresses>?),
           firstName: firstName == _undefined || firstName == null
               ? _instance.firstName
               : (firstName as String),
@@ -4445,6 +5548,16 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer<TRes>
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
+  TRes addresses(
+          Iterable<Query$GetActiveCustomer$activeCustomer$addresses>? Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<
+                          Query$GetActiveCustomer$activeCustomer$addresses>>?)
+              _fn) =>
+      call(
+          addresses: _fn(_instance.addresses?.map((e) =>
+              CopyWith$Query$GetActiveCustomer$activeCustomer$addresses(
+                  e, (i) => i)))?.toList());
   CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders {
     final local$orders = _instance.orders;
     return CopyWith$Query$GetActiveCustomer$activeCustomer$orders(
@@ -4460,14 +5573,385 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer<TRes>
 
   call(
           {String? emailAddress,
+          List<Query$GetActiveCustomer$activeCustomer$addresses>? addresses,
           String? firstName,
           String? lastName,
           String? phoneNumber,
           Query$GetActiveCustomer$activeCustomer$orders? orders,
           String? $__typename}) =>
       _res;
+  addresses(_fn) => _res;
   CopyWith$Query$GetActiveCustomer$activeCustomer$orders<TRes> get orders =>
       CopyWith$Query$GetActiveCustomer$activeCustomer$orders.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$addresses {
+  Query$GetActiveCustomer$activeCustomer$addresses(
+      {required this.id,
+      this.postalCode,
+      required this.streetLine1,
+      this.streetLine2,
+      this.fullName,
+      required this.country,
+      this.phoneNumber,
+      this.company,
+      this.city,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$addresses.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$addressesFromJson(json);
+
+  final String id;
+
+  final String? postalCode;
+
+  final String streetLine1;
+
+  final String? streetLine2;
+
+  final String? fullName;
+
+  final Query$GetActiveCustomer$activeCustomer$addresses$country country;
+
+  final String? phoneNumber;
+
+  final String? company;
+
+  final String? city;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$addressesToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$postalCode = postalCode;
+    final l$streetLine1 = streetLine1;
+    final l$streetLine2 = streetLine2;
+    final l$fullName = fullName;
+    final l$country = country;
+    final l$phoneNumber = phoneNumber;
+    final l$company = company;
+    final l$city = city;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$postalCode,
+      l$streetLine1,
+      l$streetLine2,
+      l$fullName,
+      l$country,
+      l$phoneNumber,
+      l$company,
+      l$city,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer$addresses) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$postalCode = postalCode;
+    final lOther$postalCode = other.postalCode;
+    if (l$postalCode != lOther$postalCode) return false;
+    final l$streetLine1 = streetLine1;
+    final lOther$streetLine1 = other.streetLine1;
+    if (l$streetLine1 != lOther$streetLine1) return false;
+    final l$streetLine2 = streetLine2;
+    final lOther$streetLine2 = other.streetLine2;
+    if (l$streetLine2 != lOther$streetLine2) return false;
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) return false;
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) return false;
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (l$phoneNumber != lOther$phoneNumber) return false;
+    final l$company = company;
+    final lOther$company = other.company;
+    if (l$company != lOther$company) return false;
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$addresses
+    on Query$GetActiveCustomer$activeCustomer$addresses {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<
+          Query$GetActiveCustomer$activeCustomer$addresses>
+      get copyWith => CopyWith$Query$GetActiveCustomer$activeCustomer$addresses(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$addresses(
+          Query$GetActiveCustomer$activeCustomer$addresses instance,
+          TRes Function(Query$GetActiveCustomer$activeCustomer$addresses)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$addresses.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses;
+
+  TRes call(
+      {String? id,
+      String? postalCode,
+      String? streetLine1,
+      String? streetLine2,
+      String? fullName,
+      Query$GetActiveCustomer$activeCustomer$addresses$country? country,
+      String? phoneNumber,
+      String? company,
+      String? city,
+      String? $__typename});
+  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<TRes>
+      get country;
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$addresses _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer$addresses) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? postalCode = _undefined,
+          Object? streetLine1 = _undefined,
+          Object? streetLine2 = _undefined,
+          Object? fullName = _undefined,
+          Object? country = _undefined,
+          Object? phoneNumber = _undefined,
+          Object? company = _undefined,
+          Object? city = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$addresses(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          postalCode: postalCode == _undefined
+              ? _instance.postalCode
+              : (postalCode as String?),
+          streetLine1: streetLine1 == _undefined || streetLine1 == null
+              ? _instance.streetLine1
+              : (streetLine1 as String),
+          streetLine2: streetLine2 == _undefined
+              ? _instance.streetLine2
+              : (streetLine2 as String?),
+          fullName: fullName == _undefined
+              ? _instance.fullName
+              : (fullName as String?),
+          country: country == _undefined || country == null
+              ? _instance.country
+              : (country
+                  as Query$GetActiveCustomer$activeCustomer$addresses$country),
+          phoneNumber: phoneNumber == _undefined
+              ? _instance.phoneNumber
+              : (phoneNumber as String?),
+          company:
+              company == _undefined ? _instance.company : (company as String?),
+          city: city == _undefined ? _instance.city : (city as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<TRes>
+      get country {
+    final local$country = _instance.country;
+    return CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country(
+        local$country, (e) => call(country: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses<TRes>
+    implements CopyWith$Query$GetActiveCustomer$activeCustomer$addresses<TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses(this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          String? postalCode,
+          String? streetLine1,
+          String? streetLine2,
+          String? fullName,
+          Query$GetActiveCustomer$activeCustomer$addresses$country? country,
+          String? phoneNumber,
+          String? company,
+          String? city,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<TRes>
+      get country =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$addresses$country {
+  Query$GetActiveCustomer$activeCustomer$addresses$country(
+      {required this.id,
+      required this.name,
+      required this.code,
+      required this.languageCode,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$addresses$country.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$addresses$countryFromJson(json);
+
+  final String id;
+
+  final String name;
+
+  final String code;
+
+  @JsonKey(unknownEnumValue: Enum$LanguageCode.$unknown)
+  final Enum$LanguageCode languageCode;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$addresses$countryToJson(this);
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$code = code;
+    final l$languageCode = languageCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$id, l$name, l$code, l$languageCode, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveCustomer$activeCustomer$addresses$country) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$languageCode = languageCode;
+    final lOther$languageCode = other.languageCode;
+    if (l$languageCode != lOther$languageCode) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$addresses$country
+    on Query$GetActiveCustomer$activeCustomer$addresses$country {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<
+          Query$GetActiveCustomer$activeCustomer$addresses$country>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country(
+          Query$GetActiveCustomer$activeCustomer$addresses$country instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$addresses$country)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses$country;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses$country;
+
+  TRes call(
+      {String? id,
+      String? name,
+      String? code,
+      Enum$LanguageCode? languageCode,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses$country<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$addresses$country(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$addresses$country _instance;
+
+  final TRes Function(Query$GetActiveCustomer$activeCustomer$addresses$country)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? code = _undefined,
+          Object? languageCode = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$addresses$country(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          languageCode: languageCode == _undefined || languageCode == null
+              ? _instance.languageCode
+              : (languageCode as Enum$LanguageCode),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses$country<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$addresses$country<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$addresses$country(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          String? name,
+          String? code,
+          Enum$LanguageCode? languageCode,
+          String? $__typename}) =>
+      _res;
 }
 
 @JsonSerializable(explicitToJson: true)

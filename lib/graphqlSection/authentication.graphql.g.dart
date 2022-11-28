@@ -590,6 +590,269 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
+Variables$Mutation$UpdateCustomer _$Variables$Mutation$UpdateCustomerFromJson(
+        Map<String, dynamic> json) =>
+    Variables$Mutation$UpdateCustomer(
+      input: Input$UpdateCustomerInput.fromJson(
+          json['input'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$Variables$Mutation$UpdateCustomerToJson(
+        Variables$Mutation$UpdateCustomer instance) =>
+    <String, dynamic>{
+      'input': instance.input.toJson(),
+    };
+
+Mutation$UpdateCustomer _$Mutation$UpdateCustomerFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$UpdateCustomer(
+      updateCustomer: Mutation$UpdateCustomer$updateCustomer.fromJson(
+          json['updateCustomer'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$UpdateCustomerToJson(
+        Mutation$UpdateCustomer instance) =>
+    <String, dynamic>{
+      'updateCustomer': instance.updateCustomer.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$UpdateCustomer$updateCustomer
+    _$Mutation$UpdateCustomer$updateCustomerFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$UpdateCustomer$updateCustomer(
+          addresses: (json['addresses'] as List<dynamic>?)
+              ?.map((e) =>
+                  Mutation$UpdateCustomer$updateCustomer$addresses.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$UpdateCustomer$updateCustomerToJson(
+        Mutation$UpdateCustomer$updateCustomer instance) =>
+    <String, dynamic>{
+      'addresses': instance.addresses?.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$UpdateCustomer$updateCustomer$addresses
+    _$Mutation$UpdateCustomer$updateCustomer$addressesFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$UpdateCustomer$updateCustomer$addresses(
+          city: json['city'] as String?,
+          company: json['company'] as String?,
+          country:
+              Mutation$UpdateCustomer$updateCustomer$addresses$country.fromJson(
+                  json['country'] as Map<String, dynamic>),
+          fullName: json['fullName'] as String?,
+          phoneNumber: json['phoneNumber'] as String?,
+          streetLine1: json['streetLine1'] as String,
+          streetLine2: json['streetLine2'] as String?,
+          postalCode: json['postalCode'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$UpdateCustomer$updateCustomer$addressesToJson(
+        Mutation$UpdateCustomer$updateCustomer$addresses instance) =>
+    <String, dynamic>{
+      'city': instance.city,
+      'company': instance.company,
+      'country': instance.country.toJson(),
+      'fullName': instance.fullName,
+      'phoneNumber': instance.phoneNumber,
+      'streetLine1': instance.streetLine1,
+      'streetLine2': instance.streetLine2,
+      'postalCode': instance.postalCode,
+      '__typename': instance.$__typename,
+    };
+
+Mutation$UpdateCustomer$updateCustomer$addresses$country
+    _$Mutation$UpdateCustomer$updateCustomer$addresses$countryFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$UpdateCustomer$updateCustomer$addresses$country(
+          code: json['code'] as String,
+          id: json['id'] as String,
+          name: json['name'] as String,
+          languageCode: $enumDecode(
+              _$Enum$LanguageCodeEnumMap, json['languageCode'],
+              unknownValue: Enum$LanguageCode.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$UpdateCustomer$updateCustomer$addresses$countryToJson(
+        Mutation$UpdateCustomer$updateCustomer$addresses$country instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'id': instance.id,
+      'name': instance.name,
+      'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
+      '__typename': instance.$__typename,
+    };
+
+const _$Enum$LanguageCodeEnumMap = {
+  Enum$LanguageCode.af: 'af',
+  Enum$LanguageCode.ak: 'ak',
+  Enum$LanguageCode.am: 'am',
+  Enum$LanguageCode.ar: 'ar',
+  Enum$LanguageCode.$as: 'as',
+  Enum$LanguageCode.az: 'az',
+  Enum$LanguageCode.be: 'be',
+  Enum$LanguageCode.bg: 'bg',
+  Enum$LanguageCode.bm: 'bm',
+  Enum$LanguageCode.bn: 'bn',
+  Enum$LanguageCode.bo: 'bo',
+  Enum$LanguageCode.br: 'br',
+  Enum$LanguageCode.bs: 'bs',
+  Enum$LanguageCode.ca: 'ca',
+  Enum$LanguageCode.ce: 'ce',
+  Enum$LanguageCode.co: 'co',
+  Enum$LanguageCode.cs: 'cs',
+  Enum$LanguageCode.cu: 'cu',
+  Enum$LanguageCode.cy: 'cy',
+  Enum$LanguageCode.da: 'da',
+  Enum$LanguageCode.de: 'de',
+  Enum$LanguageCode.de_AT: 'de_AT',
+  Enum$LanguageCode.de_CH: 'de_CH',
+  Enum$LanguageCode.dz: 'dz',
+  Enum$LanguageCode.ee: 'ee',
+  Enum$LanguageCode.el: 'el',
+  Enum$LanguageCode.en: 'en',
+  Enum$LanguageCode.en_AU: 'en_AU',
+  Enum$LanguageCode.en_CA: 'en_CA',
+  Enum$LanguageCode.en_GB: 'en_GB',
+  Enum$LanguageCode.en_US: 'en_US',
+  Enum$LanguageCode.eo: 'eo',
+  Enum$LanguageCode.es: 'es',
+  Enum$LanguageCode.es_ES: 'es_ES',
+  Enum$LanguageCode.es_MX: 'es_MX',
+  Enum$LanguageCode.et: 'et',
+  Enum$LanguageCode.eu: 'eu',
+  Enum$LanguageCode.fa: 'fa',
+  Enum$LanguageCode.fa_AF: 'fa_AF',
+  Enum$LanguageCode.ff: 'ff',
+  Enum$LanguageCode.fi: 'fi',
+  Enum$LanguageCode.fo: 'fo',
+  Enum$LanguageCode.fr: 'fr',
+  Enum$LanguageCode.fr_CA: 'fr_CA',
+  Enum$LanguageCode.fr_CH: 'fr_CH',
+  Enum$LanguageCode.fy: 'fy',
+  Enum$LanguageCode.ga: 'ga',
+  Enum$LanguageCode.gd: 'gd',
+  Enum$LanguageCode.gl: 'gl',
+  Enum$LanguageCode.gu: 'gu',
+  Enum$LanguageCode.gv: 'gv',
+  Enum$LanguageCode.ha: 'ha',
+  Enum$LanguageCode.he: 'he',
+  Enum$LanguageCode.hi: 'hi',
+  Enum$LanguageCode.hr: 'hr',
+  Enum$LanguageCode.ht: 'ht',
+  Enum$LanguageCode.hu: 'hu',
+  Enum$LanguageCode.hy: 'hy',
+  Enum$LanguageCode.ia: 'ia',
+  Enum$LanguageCode.id: 'id',
+  Enum$LanguageCode.ig: 'ig',
+  Enum$LanguageCode.ii: 'ii',
+  Enum$LanguageCode.$is: 'is',
+  Enum$LanguageCode.it: 'it',
+  Enum$LanguageCode.ja: 'ja',
+  Enum$LanguageCode.jv: 'jv',
+  Enum$LanguageCode.ka: 'ka',
+  Enum$LanguageCode.ki: 'ki',
+  Enum$LanguageCode.kk: 'kk',
+  Enum$LanguageCode.kl: 'kl',
+  Enum$LanguageCode.km: 'km',
+  Enum$LanguageCode.kn: 'kn',
+  Enum$LanguageCode.ko: 'ko',
+  Enum$LanguageCode.ks: 'ks',
+  Enum$LanguageCode.ku: 'ku',
+  Enum$LanguageCode.kw: 'kw',
+  Enum$LanguageCode.ky: 'ky',
+  Enum$LanguageCode.la: 'la',
+  Enum$LanguageCode.lb: 'lb',
+  Enum$LanguageCode.lg: 'lg',
+  Enum$LanguageCode.ln: 'ln',
+  Enum$LanguageCode.lo: 'lo',
+  Enum$LanguageCode.lt: 'lt',
+  Enum$LanguageCode.lu: 'lu',
+  Enum$LanguageCode.lv: 'lv',
+  Enum$LanguageCode.mg: 'mg',
+  Enum$LanguageCode.mi: 'mi',
+  Enum$LanguageCode.mk: 'mk',
+  Enum$LanguageCode.ml: 'ml',
+  Enum$LanguageCode.mn: 'mn',
+  Enum$LanguageCode.mr: 'mr',
+  Enum$LanguageCode.ms: 'ms',
+  Enum$LanguageCode.mt: 'mt',
+  Enum$LanguageCode.my: 'my',
+  Enum$LanguageCode.nb: 'nb',
+  Enum$LanguageCode.nd: 'nd',
+  Enum$LanguageCode.ne: 'ne',
+  Enum$LanguageCode.nl: 'nl',
+  Enum$LanguageCode.nl_BE: 'nl_BE',
+  Enum$LanguageCode.nn: 'nn',
+  Enum$LanguageCode.ny: 'ny',
+  Enum$LanguageCode.om: 'om',
+  Enum$LanguageCode.or: 'or',
+  Enum$LanguageCode.os: 'os',
+  Enum$LanguageCode.pa: 'pa',
+  Enum$LanguageCode.pl: 'pl',
+  Enum$LanguageCode.ps: 'ps',
+  Enum$LanguageCode.pt: 'pt',
+  Enum$LanguageCode.pt_BR: 'pt_BR',
+  Enum$LanguageCode.pt_PT: 'pt_PT',
+  Enum$LanguageCode.qu: 'qu',
+  Enum$LanguageCode.rm: 'rm',
+  Enum$LanguageCode.rn: 'rn',
+  Enum$LanguageCode.ro: 'ro',
+  Enum$LanguageCode.ro_MD: 'ro_MD',
+  Enum$LanguageCode.ru: 'ru',
+  Enum$LanguageCode.rw: 'rw',
+  Enum$LanguageCode.sa: 'sa',
+  Enum$LanguageCode.sd: 'sd',
+  Enum$LanguageCode.se: 'se',
+  Enum$LanguageCode.sg: 'sg',
+  Enum$LanguageCode.si: 'si',
+  Enum$LanguageCode.sk: 'sk',
+  Enum$LanguageCode.sl: 'sl',
+  Enum$LanguageCode.sm: 'sm',
+  Enum$LanguageCode.sn: 'sn',
+  Enum$LanguageCode.so: 'so',
+  Enum$LanguageCode.sq: 'sq',
+  Enum$LanguageCode.sr: 'sr',
+  Enum$LanguageCode.st: 'st',
+  Enum$LanguageCode.su: 'su',
+  Enum$LanguageCode.sv: 'sv',
+  Enum$LanguageCode.sw: 'sw',
+  Enum$LanguageCode.sw_CD: 'sw_CD',
+  Enum$LanguageCode.ta: 'ta',
+  Enum$LanguageCode.te: 'te',
+  Enum$LanguageCode.tg: 'tg',
+  Enum$LanguageCode.th: 'th',
+  Enum$LanguageCode.ti: 'ti',
+  Enum$LanguageCode.tk: 'tk',
+  Enum$LanguageCode.to: 'to',
+  Enum$LanguageCode.tr: 'tr',
+  Enum$LanguageCode.tt: 'tt',
+  Enum$LanguageCode.ug: 'ug',
+  Enum$LanguageCode.uk: 'uk',
+  Enum$LanguageCode.ur: 'ur',
+  Enum$LanguageCode.uz: 'uz',
+  Enum$LanguageCode.vi: 'vi',
+  Enum$LanguageCode.vo: 'vo',
+  Enum$LanguageCode.wo: 'wo',
+  Enum$LanguageCode.xh: 'xh',
+  Enum$LanguageCode.yi: 'yi',
+  Enum$LanguageCode.yo: 'yo',
+  Enum$LanguageCode.zh: 'zh',
+  Enum$LanguageCode.zh_Hans: 'zh_Hans',
+  Enum$LanguageCode.zh_Hant: 'zh_Hant',
+  Enum$LanguageCode.zu: 'zu',
+  Enum$LanguageCode.$unknown: r'$unknown',
+};
+
 Query$GetActiveCustomer _$Query$GetActiveCustomerFromJson(
         Map<String, dynamic> json) =>
     Query$GetActiveCustomer(
@@ -612,6 +875,11 @@ Query$GetActiveCustomer$activeCustomer
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer(
           emailAddress: json['emailAddress'] as String,
+          addresses: (json['addresses'] as List<dynamic>?)
+              ?.map((e) =>
+                  Query$GetActiveCustomer$activeCustomer$addresses.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
           firstName: json['firstName'] as String,
           lastName: json['lastName'] as String,
           phoneNumber: json['phoneNumber'] as String?,
@@ -624,10 +892,68 @@ Map<String, dynamic> _$Query$GetActiveCustomer$activeCustomerToJson(
         Query$GetActiveCustomer$activeCustomer instance) =>
     <String, dynamic>{
       'emailAddress': instance.emailAddress,
+      'addresses': instance.addresses?.map((e) => e.toJson()).toList(),
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'phoneNumber': instance.phoneNumber,
       'orders': instance.orders.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetActiveCustomer$activeCustomer$addresses
+    _$Query$GetActiveCustomer$activeCustomer$addressesFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$addresses(
+          id: json['id'] as String,
+          postalCode: json['postalCode'] as String?,
+          streetLine1: json['streetLine1'] as String,
+          streetLine2: json['streetLine2'] as String?,
+          fullName: json['fullName'] as String?,
+          country:
+              Query$GetActiveCustomer$activeCustomer$addresses$country.fromJson(
+                  json['country'] as Map<String, dynamic>),
+          phoneNumber: json['phoneNumber'] as String?,
+          company: json['company'] as String?,
+          city: json['city'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetActiveCustomer$activeCustomer$addressesToJson(
+        Query$GetActiveCustomer$activeCustomer$addresses instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'postalCode': instance.postalCode,
+      'streetLine1': instance.streetLine1,
+      'streetLine2': instance.streetLine2,
+      'fullName': instance.fullName,
+      'country': instance.country.toJson(),
+      'phoneNumber': instance.phoneNumber,
+      'company': instance.company,
+      'city': instance.city,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetActiveCustomer$activeCustomer$addresses$country
+    _$Query$GetActiveCustomer$activeCustomer$addresses$countryFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$addresses$country(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          code: json['code'] as String,
+          languageCode: $enumDecode(
+              _$Enum$LanguageCodeEnumMap, json['languageCode'],
+              unknownValue: Enum$LanguageCode.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetActiveCustomer$activeCustomer$addresses$countryToJson(
+        Query$GetActiveCustomer$activeCustomer$addresses$country instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'code': instance.code,
+      'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
       '__typename': instance.$__typename,
     };
 

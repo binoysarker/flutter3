@@ -25,7 +25,7 @@ class ProductsController extends GetxController {
     isLoading.value = true;
     final res = await graphqlService.clientToQuery().query$GetAllProducts(
         Options$Query$GetAllProducts(
-            variables: Variables$Query$GetAllProducts(take: 60)));
+            variables: Variables$Query$GetAllProducts(take: 10)));
     if (res.hasException) {
       print('${res.toString()}');
       isLoading.value = false;

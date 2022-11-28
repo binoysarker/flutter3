@@ -29,6 +29,11 @@ class GraphqlService {
   GraphQLClient clientToQuery() {
     return GraphQLClient(
       cache: GraphQLCache(),
+      defaultPolicies: DefaultPolicies(
+        watchQuery: Policies(
+          fetch: FetchPolicy.cacheFirst
+        )
+      ),
       link: getLink(),
     );
   }

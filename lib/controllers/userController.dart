@@ -32,13 +32,16 @@ class UserController with ChangeNotifier {
     }
   }
   void onUserLogout() async{
+    isLoading2.value =  true;
     final res = await graphqlService.clientToQuery().mutate$LogoutUser(Options$Mutation$LogoutUser());
     if(res.hasException){
       print('${res.exception.toString()}');
+      isLoading2.value =  false;
     }
     if(res.data != null){
       print('${res.parsedData!.logout.toJson()}');
       if(res.parsedData!.logout.success){
+        isLoading2.value =  false;
         Get.to(() => LoginPage());
         Get.snackbar('', 'You are logged out',backgroundColor: Colors.green);
       }

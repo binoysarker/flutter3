@@ -76,6 +76,27 @@ mutation UpdateCustomer($input: UpdateCustomerInput!){
         }
     }
 }
+mutation UpdateCustomerAddress($input: UpdateAddressInput!){
+    updateCustomerAddress(input: $input){
+        createdAt
+        city
+        country {
+            name
+            code
+            id
+            languageCode
+        }
+        id
+        company
+        defaultBillingAddress
+        defaultShippingAddress
+        fullName
+        phoneNumber
+        streetLine1
+        streetLine2
+
+    }
+}
 
 query GetActiveCustomer{
     activeCustomer {

@@ -853,6 +853,98 @@ const _$Enum$LanguageCodeEnumMap = {
   Enum$LanguageCode.$unknown: r'$unknown',
 };
 
+Variables$Mutation$UpdateCustomerAddress
+    _$Variables$Mutation$UpdateCustomerAddressFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$UpdateCustomerAddress(
+          input: Input$UpdateAddressInput.fromJson(
+              json['input'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$Variables$Mutation$UpdateCustomerAddressToJson(
+        Variables$Mutation$UpdateCustomerAddress instance) =>
+    <String, dynamic>{
+      'input': instance.input.toJson(),
+    };
+
+Mutation$UpdateCustomerAddress _$Mutation$UpdateCustomerAddressFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$UpdateCustomerAddress(
+      updateCustomerAddress:
+          Mutation$UpdateCustomerAddress$updateCustomerAddress.fromJson(
+              json['updateCustomerAddress'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$UpdateCustomerAddressToJson(
+        Mutation$UpdateCustomerAddress instance) =>
+    <String, dynamic>{
+      'updateCustomerAddress': instance.updateCustomerAddress.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$UpdateCustomerAddress$updateCustomerAddress
+    _$Mutation$UpdateCustomerAddress$updateCustomerAddressFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$UpdateCustomerAddress$updateCustomerAddress(
+          createdAt: json['createdAt'] as String,
+          city: json['city'] as String?,
+          country: Mutation$UpdateCustomerAddress$updateCustomerAddress$country
+              .fromJson(json['country'] as Map<String, dynamic>),
+          id: json['id'] as String,
+          company: json['company'] as String?,
+          defaultBillingAddress: json['defaultBillingAddress'] as bool?,
+          defaultShippingAddress: json['defaultShippingAddress'] as bool?,
+          fullName: json['fullName'] as String?,
+          phoneNumber: json['phoneNumber'] as String?,
+          streetLine1: json['streetLine1'] as String,
+          streetLine2: json['streetLine2'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$UpdateCustomerAddress$updateCustomerAddressToJson(
+            Mutation$UpdateCustomerAddress$updateCustomerAddress instance) =>
+        <String, dynamic>{
+          'createdAt': instance.createdAt,
+          'city': instance.city,
+          'country': instance.country.toJson(),
+          'id': instance.id,
+          'company': instance.company,
+          'defaultBillingAddress': instance.defaultBillingAddress,
+          'defaultShippingAddress': instance.defaultShippingAddress,
+          'fullName': instance.fullName,
+          'phoneNumber': instance.phoneNumber,
+          'streetLine1': instance.streetLine1,
+          'streetLine2': instance.streetLine2,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$UpdateCustomerAddress$updateCustomerAddress$country
+    _$Mutation$UpdateCustomerAddress$updateCustomerAddress$countryFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$UpdateCustomerAddress$updateCustomerAddress$country(
+          name: json['name'] as String,
+          code: json['code'] as String,
+          id: json['id'] as String,
+          languageCode: $enumDecode(
+              _$Enum$LanguageCodeEnumMap, json['languageCode'],
+              unknownValue: Enum$LanguageCode.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$UpdateCustomerAddress$updateCustomerAddress$countryToJson(
+            Mutation$UpdateCustomerAddress$updateCustomerAddress$country
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'code': instance.code,
+          'id': instance.id,
+          'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
+          '__typename': instance.$__typename,
+        };
+
 Query$GetActiveCustomer _$Query$GetActiveCustomerFromJson(
         Map<String, dynamic> json) =>
     Query$GetActiveCustomer(

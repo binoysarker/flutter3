@@ -1,20 +1,21 @@
-import 'package:recipe.app/controllers/loginPageController.dart';
-import 'package:recipe.app/controllers/utilityController.dart';
-import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
-import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
-import 'package:recipe.app/pages/login_page.dart';
-import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
+import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
+import 'package:recipe.app/graphqlSection/schema.graphql.dart';
+import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
+import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 
 import '../services/util_service.dart';
 
 class UserController with ChangeNotifier {
   // ignore: unnecessary_cast
-  var currentAuthenticatedUser = (null as Query$GetActiveCustomer$activeCustomer?).obs;
+  var currentAuthenticatedUser =
+      (null as Query$GetActiveCustomer$activeCustomer?).obs;
   var currentAuthToken = ''.obs;
   final GraphqlService graphqlService = GraphqlService();
   final UtilityController utilityController = Get.find<UtilityController>();
@@ -23,33 +24,35 @@ class UserController with ChangeNotifier {
   var isLoading2 = false.obs;
   final loginPageState = GlobalKey<LoginPageState>();
 
-
-  void checkAndSetToken(){
-    if(currentAuthToken.isNotEmpty){
+  void checkAndSetToken() {
+    if (currentAuthToken.isNotEmpty) {
       GraphqlService.setToken(currentAuthToken.value);
-    }else {
+    } else {
       GraphqlService.removeToken();
     }
   }
-  void onUserLogout() async{
-    isLoading2.value =  true;
-    final res = await graphqlService.clientToQuery().mutate$LogoutUser(Options$Mutation$LogoutUser());
-    if(res.hasException){
+
+  void onUserLogout() async {
+    isLoading2.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$LogoutUser(Options$Mutation$LogoutUser());
+    if (res.hasException) {
       print('${res.exception.toString()}');
-      isLoading2.value =  false;
+      isLoading2.value = false;
     }
-    if(res.data != null){
+    if (res.data != null) {
       print('${res.parsedData!.logout.toJson()}');
-      if(res.parsedData!.logout.success){
-        isLoading2.value =  false;
+      if (res.parsedData!.logout.success) {
+        isLoading2.value = false;
         Get.to(() => LoginPage());
-        Get.snackbar('', 'You are logged out',backgroundColor: Colors.green);
+        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
       }
     }
   }
 
   void getActiveCustomer() async {
-    isLoading2.value =  true;
+    isLoading2.value = true;
     checkAndSetToken();
     final res = await graphqlService
         .clientToQuery()
@@ -63,9 +66,9 @@ class UserController with ChangeNotifier {
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
         Get.to(() => LoginPage());
-        Get.snackbar('Alert', 'Need to login',backgroundColor: Colors.red);
-      }else {
-      //  get the auth user
+        Get.snackbar('Alert', 'Need to login', backgroundColor: Colors.red);
+      } else {
+        //  get the auth user
         currentAuthenticatedUser.value = activeCustomer;
       }
       isLoading2.value = false;
@@ -76,7 +79,8 @@ class UserController with ChangeNotifier {
     checkAndSetToken();
     isLoading.value = true;
     final res = await graphqlService
-        .clientToQuery().query$GetTopSellers(Options$Query$GetTopSellers());
+        .clientToQuery()
+        .query$GetTopSellers(Options$Query$GetTopSellers());
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
@@ -84,6 +88,62 @@ class UserController with ChangeNotifier {
     if (res.data != null) {
       topSellers.value = res.parsedData!.search.items.toList();
       isLoading.value = false;
+    }
+  }
+
+  void updateCustomer(
+      String firstName, String lastName, String phoneNumber) async {
+    isLoading2.value = true;
+    final res = await graphqlService.clientToQuery().mutate$UpdateCustomer(
+        Options$Mutation$UpdateCustomer(
+            variables: Variables$Mutation$UpdateCustomer(
+                input: Input$UpdateCustomerInput(
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phoneNumber))));
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      isLoading2.value = false;
+    }
+    if (res.data != null) {
+      isLoading2.value = false;
+      print('updated customer ${res.parsedData!.updateCustomer.toJson()}');
+      getActiveCustomer();
+    }
+  }
+
+  void updateCustomerAddress(String id, String city, String streetLine1,
+      String streetLine2,String fullName, postalCode, phoneNumber) async {
+    isLoading2.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$UpdateCustomerAddress(Options$Mutation$UpdateCustomerAddress(
+            variables: Variables$Mutation$UpdateCustomerAddress(
+                input: Input$UpdateAddressInput(
+                    id: id,
+                    city: city,
+                    streetLine1: streetLine1,
+                    streetLine2: streetLine2,
+                  fullName: fullName,
+                  company: 'Test Company',
+                  province: 'Test Province',
+                  postalCode: postalCode,
+                  phoneNumber: phoneNumber,
+                  defaultShippingAddress: true,
+                  defaultBillingAddress: false
+                    ))));
+    if(res.hasException){
+      print('${res.exception.toString()}');
+      isLoading2.value = false;
+    }
+    if(res.data != null){
+      print('update customer address ${res.parsedData!.updateCustomerAddress.toJson()}');
+      // currentAuthenticatedUser.value!.addresses?.forEach((element) {
+      //   if(element.id == res.parsedData!.updateCustomerAddress.id){
+      //     element.phoneNumber = res.parsedData!.updateCustomerAddress.phoneNumber;
+      //   }
+      // });
+      isLoading2.value = false;
     }
   }
 
@@ -110,7 +170,6 @@ class UserController with ChangeNotifier {
     if (res.data != null) {
       print('response ${res.data}');
       final userInfo = res.parsedData?.me?.toJson();
-
     }
   }
 }

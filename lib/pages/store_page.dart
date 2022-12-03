@@ -120,7 +120,7 @@ class _StorePageState extends State<StorePage> {
                         height: 20,
                       ),
                       // all top sellers
-                      Obx(() => userController.isLoading.isTrue
+                      Obx(() => userController.isLoading.isTrue && userController.topSellers.isEmpty
                           ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),) : VerticalListComponent(
                           isLoading: userController.isLoading.isTrue,
                           givenList: userController.topSellers,

@@ -9,6 +9,7 @@ class CustomTheme with ChangeNotifier {
   static TextStyle paragraphStyle = GoogleFonts.raleway(
     fontWeight: FontWeight.normal
   );
+
   static TextStyle headerStyle = GoogleFonts.raleway(
       fontWeight: FontWeight.bold,
       fontSize: 15
@@ -60,10 +61,19 @@ class CustomTheme with ChangeNotifier {
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
           selectedItemColor: Colors.lightGreen,
-          selectedLabelStyle: TextStyle(color: Colors.lightGreen),
+          selectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: Colors.green,
+            fontFamily: 'Raleway'
+          ),
           showUnselectedLabels: true,
           unselectedItemColor: Colors.black26,
-          unselectedLabelStyle: TextStyle(color: Colors.black26)),
+          unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: Colors.black,
+              fontFamily: 'Raleway')),
       scaffoldBackgroundColor: Colors.lightGreen,
     );
   }

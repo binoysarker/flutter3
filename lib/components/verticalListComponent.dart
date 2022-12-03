@@ -48,7 +48,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
         var index = widget.givenList.indexOf(element);
         var item = (widget.givenList
         as List<Query$GetTopSellers$search$items>)[index];
-        imageString = item != null ? item.productAsset!.preview : '';
+        imageString = item.productAsset != null ? item.productAsset!.preview : '';
       }
       return imageString;
     }

@@ -20,7 +20,6 @@ import 'package:recipe.app/services/util_service.dart';
 class OrderController extends GetxController {
   GraphqlService graphqlService = GraphqlService();
   TextEditingController fullName = TextEditingController();
-  TextEditingController company = TextEditingController();
   TextEditingController streetLine1 = TextEditingController();
   TextEditingController streetLine2 = TextEditingController();
   TextEditingController city = TextEditingController();
@@ -239,7 +238,6 @@ class OrderController extends GetxController {
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
                     city: city.text,
-                    company: company.text,
                     fullName: fullName.text,
                     postalCode: postalCode.text,
                     phoneNumber: phoneNumber.text))));

@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/themes.dart';
@@ -18,7 +21,6 @@ class MyAccountPage extends StatefulWidget {
 class MyAccountPageState extends State<MyAccountPage> {
   final UserController userController = Get.find<UserController>();
 
-
   @override
   void initState() {
     super.initState();
@@ -27,17 +29,143 @@ class MyAccountPageState extends State<MyAccountPage> {
     });
   }
 
+  Column creteColumn(
+    int index,
+    TextEditingController street1Ctr,
+    TextEditingController street2Ctr,
+    TextEditingController cityCtr,
+    TextEditingController postalCodeCtr,
+    TextEditingController phoneNumberCtr,
+  ) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Text(
+            'Address #${index + 1}',
+            style: CustomTheme.headerStyle,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: street1Ctr,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Street 1',
+            ),
+            keyboardType: TextInputType.name,
+            autofillHints: [AutofillHints.familyName],
+            validator: RequiredValidator(errorText: 'Streeet 1 required'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: street2Ctr,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Street 2',
+            ),
+            keyboardType: TextInputType.name,
+            autofillHints: [AutofillHints.familyName],
+            validator: RequiredValidator(errorText: 'Street 2 is required'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: cityCtr,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'City',
+            ),
+            keyboardType: TextInputType.name,
+            autofillHints: [AutofillHints.familyName],
+            validator: RequiredValidator(errorText: 'City is required'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: postalCodeCtr,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Postal Code',
+            ),
+            keyboardType: TextInputType.number,
+            autofillHints: [AutofillHints.postalCode],
+            validator: RequiredValidator(errorText: 'Postal Code is required'),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            controller: phoneNumberCtr,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Phone Number',
+            ),
+            keyboardType: TextInputType.phone,
+            autofillHints: [AutofillHints.telephoneNumber],
+            validator: RequiredValidator(errorText: 'Phone Number is required'),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var showForm = false.obs;
-    TextEditingController fullNameCtr = TextEditingController();
-    TextEditingController emailCtr = TextEditingController();
+    List<TextEditingController> street1Controllers = [];
+    List<TextEditingController> street2Controllers = [];
+    List<TextEditingController> cityControllers = [];
+    List<TextEditingController> postalCodeControllers = [];
+    List<TextEditingController> phoneNumberControllers = [];
+    List<Column> fields = [];
+    TextEditingController fnameCtr = TextEditingController();
+    TextEditingController lnameCtr = TextEditingController();
     TextEditingController phoneCtr = TextEditingController();
-    TextEditingController street1Ctr = TextEditingController();
-    TextEditingController street2Ctr = TextEditingController();
-    TextEditingController cityCtr = TextEditingController();
-    TextEditingController companyCtr = TextEditingController();
-    TextEditingController countryCtr = TextEditingController();
+
+    void updateInputField() {
+      fields = [];
+      fnameCtr.text = userController.currentAuthenticatedUser.value!.firstName;
+      lnameCtr.text = userController.currentAuthenticatedUser.value!.lastName;
+
+      phoneCtr.text =
+          userController.currentAuthenticatedUser.value!.phoneNumber.toString();
+      userController.currentAuthenticatedUser.value!.addresses
+          ?.asMap()
+          .forEach((index, element) {
+        final street1Ctr = TextEditingController();
+        final street2Ctr = TextEditingController();
+        final cityCtr = TextEditingController();
+        final postalCodeCtr = TextEditingController();
+        final phoneNumberCtr = TextEditingController();
+        street1Ctr.text = element.streetLine1.toString();
+        street2Ctr.text = element.streetLine2.toString();
+        cityCtr.text = element.city.toString();
+        postalCodeCtr.text = element.postalCode.toString();
+        phoneNumberCtr.text = element.phoneNumber.toString();
+        street1Controllers.add(street1Ctr);
+        street2Controllers.add(street2Ctr);
+        cityControllers.add(cityCtr);
+        postalCodeControllers.add(postalCodeCtr);
+        phoneNumberControllers.add(phoneNumberCtr);
+        final currentColumnField = creteColumn(index, street1Ctr, street2Ctr,
+            cityCtr, postalCodeCtr, phoneNumberCtr);
+        fields.add(currentColumnField);
+      });
+    }
+
     return Obx(() => userController.isLoading2.isTrue
         ? LoadingSpinnerComponent()
         : Scaffold(
@@ -47,12 +175,22 @@ class MyAccountPageState extends State<MyAccountPage> {
                 style: CustomTheme.headerStyle,
               ),
               actions: [
-                IconButton(
-                  icon: showForm.isTrue ? Icon(Icons.close_outlined) : Icon(Icons.edit),
-                  onPressed: () {
-                    showForm.value = !showForm.value;
-                  },
-                )
+                ElevatedButton.icon(
+                    onPressed: () {
+                      showForm.value = !showForm.value;
+                      if (showForm.value) {
+                        updateInputField();
+                      } else {
+                        myAccountFormKey.currentState!.reset();
+                      }
+                    },
+                    icon: showForm.isTrue
+                        ? Icon(Icons.close_outlined)
+                        : Icon(Icons.edit),
+                    label: Text(
+                      '${showForm.isTrue ? '' : 'Edit'}',
+                      style: CustomTheme.headerStyle,
+                    )),
               ],
             ),
             body: Container(
@@ -61,234 +199,271 @@ class MyAccountPageState extends State<MyAccountPage> {
                 height: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Obx(() => showForm.isTrue ? ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: fullNameCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Full Name',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'Full Name is required'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: emailCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email Address',
-                          ),
-                          keyboardType: TextInputType.emailAddress,
-                          autofillHints: [AutofillHints.email],
-                          validator: ValidatorDefinition.emailMultiValidator,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: phoneCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Phone Number',
-                          ),
-                          keyboardType: TextInputType.phone,
-                          autofillHints: [AutofillHints.telephoneNumber],
-                          validator:
-                          ValidatorDefinition.phoneNumberMultiValidator,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: street1Ctr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Street 1',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'Streeet 1 required'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: street2Ctr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Street 2',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'Street 2 is required'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: cityCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'City',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'City is required'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: companyCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Company',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'Company is required'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        child: TextFormField(
-                          autovalidateMode:
-                          AutovalidateMode.onUserInteraction,
-                          controller: countryCtr,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Country',
-                          ),
-                          keyboardType: TextInputType.name,
-                          autofillHints: [AutofillHints.familyName],
-                          validator: RequiredValidator(
-                              errorText: 'Country is required'),
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: ElevatedButton(
-                        onPressed: () {  },
-                        child: Text('Submit'),
-                      ),)
-                    ],
-                  ) : ListView(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Full Name:',
-                            style: CustomTheme.headerStyle,
-                          ),Text(
-                            '${userController.currentAuthenticatedUser.value!.firstName} ${userController.currentAuthenticatedUser.value!.lastName}',
-                            style: CustomTheme.paragraphStyle,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Email:',
-                            style: CustomTheme.headerStyle,
-                          ),Text(
-                            '${userController.currentAuthenticatedUser.value!.emailAddress}',
-                            style: CustomTheme.paragraphStyle,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Phone Number:',
-                            style: CustomTheme.headerStyle,
-                          ),Text(
-                            '${userController.currentAuthenticatedUser.value!.phoneNumber}',
-                            style: CustomTheme.paragraphStyle,
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Address List: ',
-                        style: CustomTheme.headerStyle,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: userController
-                              .currentAuthenticatedUser.value!.addresses!
-                              .map((e) => Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Obx(() => showForm.isTrue
+                      ? Form(
+                          key: myAccountFormKey,
+                          child: ListView(
                             children: [
-                              Row(
-                                children: [
-                                  Text('Street 1:',style: CustomTheme.headerStyle,),
-                                  Text('${e.streetLine1}',style: CustomTheme.paragraphStyle,),
-                                ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                child: TextFormField(
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  controller: fnameCtr,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'First Name',
+                                  ),
+                                  keyboardType: TextInputType.name,
+                                  autofillHints: [AutofillHints.familyName],
+                                  validator: RequiredValidator(
+                                      errorText: 'First Name is required'),
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Text('Street 2:',style: CustomTheme.headerStyle,),
-                                  Text(' ${e.streetLine2}',style: CustomTheme.paragraphStyle,),
-                                ],
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                child: TextFormField(
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  controller: lnameCtr,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Last Name',
+                                  ),
+                                  keyboardType: TextInputType.name,
+                                  autofillHints: [AutofillHints.familyName],
+                                  validator: RequiredValidator(
+                                      errorText: 'Last Name is required'),
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Text('city:',style: CustomTheme.headerStyle,),
-                                  Text('${e.city}',style: CustomTheme.paragraphStyle,),
-                                ],
+
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                child: TextFormField(
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  controller: phoneCtr,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Phone Number',
+                                  ),
+                                  keyboardType: TextInputType.phone,
+                                  autofillHints: [
+                                    AutofillHints.telephoneNumber
+                                  ],
+                                  validator: ValidatorDefinition
+                                      .phoneNumberMultiValidator,
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Text('Company:',style: CustomTheme.headerStyle,),
-                                  Text('${e.company}',style: CustomTheme.paragraphStyle,),
-                                ],
+                              // address section
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics: ScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return fields[index];
+                                },
+                                itemCount: fields.length,
                               ),
-                              Row(
-                                children: [
-                                  Text('Country:',style: CustomTheme.headerStyle,),
-                                  Text('${e.country.name}',style: CustomTheme.paragraphStyle,),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text('phone:',style: CustomTheme.headerStyle,),
-                                  Text('${e.phoneNumber}',style: CustomTheme.paragraphStyle,),
-                                ],
-                              ),
+
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (myAccountFormKey.currentState!
+                                        .validate()) {
+                                      final Map<String, String> customerData =
+                                          {};
+                                      customerData.addAll({
+                                        'fname': fnameCtr.text,
+                                        'lname': lnameCtr.text,
+                                        'phone': phoneCtr.text,
+                                      });
+
+                                      final List<Map<String, String>>
+                                          addressList = [];
+
+                                      userController.currentAuthenticatedUser
+                                          .value!.addresses
+                                          ?.asMap()
+                                          .forEach((index, element) {
+                                        addressList.add({
+                                          'id': element.id,
+                                          'street1':
+                                              street1Controllers[index].text,
+                                          'street2':
+                                              street2Controllers[index].text,
+                                          'city': cityControllers[index].text,
+                                          'fullName':
+                                              '${customerData['fname']} ${customerData['lname']}',
+                                          'postalCode':
+                                              '${postalCodeControllers[index].text}',
+                                          'phoneNumber':
+                                              '${phoneNumberControllers[index].text}',
+                                        });
+                                      });
+                                      userController.updateCustomer(
+                                          customerData['fname'] as String,
+                                          customerData['lname'] as String,
+                                          customerData['phone'] as String);
+                                      // update customer address
+
+                                      Timer(Duration(seconds: 1), () {
+                                        addressList.forEach((element) {
+                                          userController.updateCustomerAddress(
+                                              element['id'] ?? '',
+                                              element['city'] ?? '',
+                                              element['street1'] ?? '',
+                                              element['street2'] ?? '',
+                                              element['fullName'] ?? '',
+                                              element['postalCode'] ?? '',
+                                              element['phoneNumber'] ?? '');
+                                        });
+                                      });
+                                      print('valid');
+                                    } else {
+                                      Get.snackbar(
+                                          '', 'Please fill up the form',
+                                          colorText: Colors.red);
+                                    }
+                                  },
+                                  child: Text(
+                                    'Update',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                ),
+                              )
                             ],
-                          ))
-                              .toList(),
-                        ),
-                      )
-                    ],
-                  )),
+                          ),
+                        )
+                      : ListView(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Full Name:',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '${userController.currentAuthenticatedUser.value!.firstName} ${userController.currentAuthenticatedUser.value!.lastName}',
+                                  style: CustomTheme.paragraphStyle,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Email:',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '${userController.currentAuthenticatedUser.value!.emailAddress}',
+                                  style: CustomTheme.paragraphStyle,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Phone Number:',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '${userController.currentAuthenticatedUser.value!.phoneNumber}',
+                                  style: CustomTheme.paragraphStyle,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'Address List: ',
+                              style: CustomTheme.headerStyle,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Obx(() => userController.isLoading2.isTrue
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        color:
+                                            CustomTheme.progressIndicatorColor,
+                                      ),
+                                    )
+                                  : Row(
+                                      children: userController
+                                          .currentAuthenticatedUser
+                                          .value!
+                                          .addresses!
+                                          .map((e) => Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'Street 1:',
+                                                        style: CustomTheme
+                                                            .headerStyle,
+                                                      ),
+                                                      Text(
+                                                        '${e.streetLine1}',
+                                                        style: CustomTheme
+                                                            .paragraphStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'Street 2:',
+                                                        style: CustomTheme
+                                                            .headerStyle,
+                                                      ),
+                                                      Text(
+                                                        ' ${e.streetLine2}',
+                                                        style: CustomTheme
+                                                            .paragraphStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'city:',
+                                                        style: CustomTheme
+                                                            .headerStyle,
+                                                      ),
+                                                      Text(
+                                                        '${e.city}',
+                                                        style: CustomTheme
+                                                            .paragraphStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        'phone:',
+                                                        style: CustomTheme
+                                                            .headerStyle,
+                                                      ),
+                                                      Text(
+                                                        '${e.phoneNumber}',
+                                                        style: CustomTheme
+                                                            .paragraphStyle,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ))
+                                          .toList(),
+                                    )),
+                            )
+                          ],
+                        )),
                 ),
               ),
             )),

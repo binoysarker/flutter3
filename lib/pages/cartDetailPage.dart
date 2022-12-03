@@ -149,7 +149,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                   style: CustomTheme.headerStyle,
                                 )
                               : Text(''),
-                          trailing: Obx(() => orderController.isLoading.isTrue
+                          trailing: Obx(() => cartController.isLoading.isTrue || orderController.isLoading.isTrue
                               ? SizedBox(
                             width: 30,
                             height: 30,

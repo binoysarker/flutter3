@@ -1,7 +1,8 @@
-import 'package:recipe.app/validators/validatorDefinations.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/validators/validatorDefinations.dart';
+
 import '../allGlobalKeys.dart';
 import '../controllers/orderController.dart';
 
@@ -14,12 +15,11 @@ class ShippingAddressComponent extends StatefulWidget {
   final OrderController orderController;
 
   @override
-  State<ShippingAddressComponent> createState() => ShippingAddressComponentState();
+  State<ShippingAddressComponent> createState() =>
+      ShippingAddressComponentState();
 }
 
 class ShippingAddressComponentState extends State<ShippingAddressComponent> {
-
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -41,8 +41,6 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     RequiredValidator(errorText: 'Full Name is required'),
               ),
             ),
-
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -79,7 +77,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   border: OutlineInputBorder(),
                   labelText: 'Phone',
                 ),
-                autofillHints: [AutofillHints.telephoneNumber,AutofillHints.telephoneNumberCountryCode],
+                autofillHints: [
+                  AutofillHints.telephoneNumber,
+                  AutofillHints.telephoneNumberCountryCode
+                ],
                 keyboardType: TextInputType.phone,
                 validator: ValidatorDefinition.phoneNumberMultiValidator,
               ),
@@ -95,10 +96,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 ),
                 autofillHints: [AutofillHints.postalCode],
                 keyboardType: TextInputType.number,
-                validator: RequiredValidator(errorText: 'Postal Code is Required'),
+                validator:
+                    RequiredValidator(errorText: 'Postal Code is Required'),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -116,31 +117,35 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
             widget.orderController.eligiblePaymentIsLoading.isTrue
                 ? CircularProgressIndicator()
                 : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DropdownButtonFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Shipping Method'),
-                value: widget.orderController.currentlySelectedShippingMethodId.value,
-                validator:
-                RequiredValidator(errorText: 'Shipping method is required'),
-                icon: Icon(Icons.arrow_downward),
-                isExpanded: true,
-                items: widget.orderController.eligibleShippingMethodList
-                    .map<DropdownMenuItem<String>>(
-                        (element) => DropdownMenuItem(
-                      child: Text(element.name),
-                      value: element.id,
-                    ))
-                    .toList(),
-                onChanged: (dynamic data) {
-                  print('shipping method selected $data');
-                    widget.orderController.currentlySelectedShippingMethod.value = widget.orderController.eligibleShippingMethodList.firstWhere((element) => element.id == data);
-                    widget.orderController.currentlySelectedShippingMethodId.value = data;
-
-                },
-              ),
-            ),
-
+                    padding: const EdgeInsets.all(8.0),
+                    child: DropdownButtonFormField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Shipping Method'),
+                      value: widget.orderController
+                          .currentlySelectedShippingMethodId.value,
+                      validator: RequiredValidator(
+                          errorText: 'Shipping method is required'),
+                      icon: Icon(Icons.arrow_downward),
+                      isExpanded: true,
+                      items: widget.orderController.eligibleShippingMethodList
+                          .map<DropdownMenuItem<String>>(
+                              (element) => DropdownMenuItem(
+                                    child: Text(element.name),
+                                    value: element.id,
+                                  ))
+                          .toList(),
+                      onChanged: (dynamic data) {
+                        print('shipping method selected $data');
+                        widget.orderController.currentlySelectedShippingMethod
+                                .value =
+                            widget.orderController.eligibleShippingMethodList
+                                .firstWhere((element) => element.id == data);
+                        widget.orderController.currentlySelectedShippingMethodId
+                            .value = data;
+                      },
+                    ),
+                  ),
           ],
         ));
   }

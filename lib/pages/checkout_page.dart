@@ -73,8 +73,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               state: orderController.currentStep.value > 1
                   ? StepState.complete
                   : StepState.indexed,
-              content: Obx(() => orderController.activeOrderForCheckout.value ==
-                      null
+              content: Obx(() => orderController.isLoading2.isTrue
                   ? Center(
                       child: CircularProgressIndicator(),
                     )

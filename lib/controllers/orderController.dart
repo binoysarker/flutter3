@@ -30,6 +30,7 @@ class OrderController extends GetxController {
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
+  var isLoading2 = false.obs;
   var eligiblePaymentIsLoading = false.obs;
   var availableCountryList =
       <Query$GetAvailableCountries$availableCountries>[].obs;
@@ -146,14 +147,14 @@ class OrderController extends GetxController {
   }
 
   void setShippingMethod() async {
-    isLoading.value = true;
+    isLoading2.value = true;
     final res = await graphqlService.clientToQuery().mutate$SetShippingMethod(
         Options$Mutation$SetShippingMethod(
             variables: Variables$Mutation$SetShippingMethod(
                 id: currentlySelectedShippingMethodId.value)));
     if (res.hasException) {
       print('${res.exception.toString()}');
-      isLoading.value = false;
+      isLoading2.value = false;
     }
     if (res.data != null) {
       var currentData = res.parsedData!.setOrderShippingMethod;
@@ -162,7 +163,7 @@ class OrderController extends GetxController {
               currentData.toJson());
       print('set shipping method ${jsonEncode(orderResponse)}');
 
-      isLoading.value = false;
+      isLoading2.value = false;
     }
   }
 

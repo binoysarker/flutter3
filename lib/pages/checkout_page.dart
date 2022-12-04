@@ -32,8 +32,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
       orderController.getEligiblePaymentMethod();
       // orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
-
       PaymentServices.initializeRazorPay();
+      orderController.resetShippingMethodForm();
+
     });
   }
 
@@ -99,68 +100,68 @@ class _CheckoutPageState extends State<CheckoutPage> {
       ),
       body: Obx(() => orderController.isLoading.isTrue
           ? LoadingSpinnerComponent()
-          : Container(
-              child: Card(
-                child: Stepper(
-                  type: StepperType.horizontal,
-                  currentStep: orderController.currentStep.value,
-                  onStepContinue: () {
-                    print('current step ${orderController.currentStep.value}');
+          : Card(
+            child: Stepper(
+              type: StepperType.horizontal,
+              currentStep: orderController.currentStep.value,
+              onStepContinue: () {
+                print('current step ${orderController.currentStep.value}');
 
-                    if (orderController.currentStep.value == 0) {
-                      print(
-                          '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
-                      final form = shippingAddressFormKey.currentState!;
-                      if (form.validate()) {
-                        print('validated');
-                        orderController.setShippingAddress();
-                        orderController.setShippingMethod();
-                      } else {
-                        print('invalid');
-                        Get.snackbar('', 'Please fill up the form');
-                      }
-                    } else if (orderController.currentStep.value == 2) {
-                      print('last step ${orderController.currentStep.value}');
-                      orderController.removeAllItemFromOrder();
-                      Get.to(() => StorePage());
-                    } else if (orderController.currentStep.value == 1) {
-                      orderController.createRazorPayOrder();
-                    }
-                  },
-                  onStepCancel: () {
-                    if (orderController.currentStep.value == 0 ||
-                        orderController.currentStep.value == 2) {
-                      null;
-                    } else {
-                      orderController.currentStep.value--;
-                    }
-                  },
-                  steps: getSteps(),
-                  controlsBuilder: (context, details) => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton(
-                          onPressed: orderController.isLoading.isTrue
-                              ? null
-                              : details.onStepContinue,
-                          child: orderController.isLoading.isTrue
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: CustomTheme.progressIndicatorColor,
-                                  ),
-                                )
-                              : Text(checkText(
-                                  orderController.currentStep.value))),
-                      orderController.currentStep.value != 2
-                          ? ElevatedButton(
-                              onPressed: details.onStepCancel,
-                              child: Text('Cancel'))
-                          : SizedBox(),
-                    ],
-                  ),
-                ),
+                if (orderController.currentStep.value == 0) {
+                  print(
+                      '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
+                  final form = shippingAddressFormKey.currentState!;
+                  if (form.validate()) {
+                    print('validated');
+                    if(orderController.hasCouponCode.isTrue) orderController.applyCouponCode(orderController.couponCode.text);
+                    orderController.setShippingAddress();
+                    orderController.setShippingMethod();
+
+                  } else {
+                    print('invalid');
+                    Get.snackbar('', 'Please fill up the form',colorText: Colors.red,backgroundColor: Colors.yellow,);
+                  }
+                } else if (orderController.currentStep.value == 2) {
+                  print('last step ${orderController.currentStep.value}');
+                  orderController.removeAllItemFromOrder();
+                  Get.to(() => StorePage());
+                } else if (orderController.currentStep.value == 1) {
+                  orderController.createRazorPayOrder();
+                }
+              },
+              onStepCancel: () {
+                if (orderController.currentStep.value == 0 ||
+                    orderController.currentStep.value == 2) {
+                  null;
+                } else {
+                  orderController.currentStep.value--;
+                }
+              },
+              steps: getSteps(),
+              controlsBuilder: (context, details) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                      onPressed: orderController.isLoading.isTrue
+                          ? null
+                          : details.onStepContinue,
+                      child: orderController.isLoading.isTrue
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: CustomTheme.progressIndicatorColor,
+                              ),
+                            )
+                          : Text(checkText(
+                              orderController.currentStep.value))),
+                  orderController.currentStep.value != 2
+                      ? ElevatedButton(
+                          onPressed: details.onStepCancel,
+                          child: Text('Cancel'))
+                      : SizedBox(),
+                ],
               ),
-            )),
+            ),
+          )),
     );
   }
 }

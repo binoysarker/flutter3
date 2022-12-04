@@ -91,6 +91,12 @@ mutation AddPayment($input: PaymentInput!) {
     }
 }
 
+mutation ApplyCouponCode($input: String!){
+    applyCouponCode(couponCode: $input){
+        __typename
+    }
+}
+
 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!){
     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity){
         __typename

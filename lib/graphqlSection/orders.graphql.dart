@@ -15081,6 +15081,476 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$PaymentFailedErro
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Mutation$ApplyCouponCode {
+  Variables$Mutation$ApplyCouponCode({required this.input});
+
+  @override
+  factory Variables$Mutation$ApplyCouponCode.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$ApplyCouponCodeFromJson(json);
+
+  final String input;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$ApplyCouponCodeToJson(this);
+  int get hashCode {
+    final l$input = input;
+    return Object.hashAll([l$input]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$ApplyCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input != lOther$input) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$ApplyCouponCode<
+          Variables$Mutation$ApplyCouponCode>
+      get copyWith =>
+          CopyWith$Variables$Mutation$ApplyCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$ApplyCouponCode<TRes> {
+  factory CopyWith$Variables$Mutation$ApplyCouponCode(
+          Variables$Mutation$ApplyCouponCode instance,
+          TRes Function(Variables$Mutation$ApplyCouponCode) then) =
+      _CopyWithImpl$Variables$Mutation$ApplyCouponCode;
+
+  factory CopyWith$Variables$Mutation$ApplyCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ApplyCouponCode;
+
+  TRes call({String? input});
+}
+
+class _CopyWithImpl$Variables$Mutation$ApplyCouponCode<TRes>
+    implements CopyWith$Variables$Mutation$ApplyCouponCode<TRes> {
+  _CopyWithImpl$Variables$Mutation$ApplyCouponCode(this._instance, this._then);
+
+  final Variables$Mutation$ApplyCouponCode _instance;
+
+  final TRes Function(Variables$Mutation$ApplyCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? input = _undefined}) =>
+      _then(Variables$Mutation$ApplyCouponCode(
+          input: input == _undefined || input == null
+              ? _instance.input
+              : (input as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ApplyCouponCode<TRes>
+    implements CopyWith$Variables$Mutation$ApplyCouponCode<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ApplyCouponCode(this._res);
+
+  TRes _res;
+
+  call({String? input}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ApplyCouponCode {
+  Mutation$ApplyCouponCode(
+      {required this.applyCouponCode, required this.$__typename});
+
+  @override
+  factory Mutation$ApplyCouponCode.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$ApplyCouponCodeFromJson(json);
+
+  final Mutation$ApplyCouponCode$applyCouponCode applyCouponCode;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$ApplyCouponCodeToJson(this);
+  int get hashCode {
+    final l$applyCouponCode = applyCouponCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$applyCouponCode, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ApplyCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$applyCouponCode = applyCouponCode;
+    final lOther$applyCouponCode = other.applyCouponCode;
+    if (l$applyCouponCode != lOther$applyCouponCode) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ApplyCouponCode
+    on Mutation$ApplyCouponCode {
+  CopyWith$Mutation$ApplyCouponCode<Mutation$ApplyCouponCode> get copyWith =>
+      CopyWith$Mutation$ApplyCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ApplyCouponCode<TRes> {
+  factory CopyWith$Mutation$ApplyCouponCode(Mutation$ApplyCouponCode instance,
+          TRes Function(Mutation$ApplyCouponCode) then) =
+      _CopyWithImpl$Mutation$ApplyCouponCode;
+
+  factory CopyWith$Mutation$ApplyCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ApplyCouponCode;
+
+  TRes call(
+      {Mutation$ApplyCouponCode$applyCouponCode? applyCouponCode,
+      String? $__typename});
+  CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> get applyCouponCode;
+}
+
+class _CopyWithImpl$Mutation$ApplyCouponCode<TRes>
+    implements CopyWith$Mutation$ApplyCouponCode<TRes> {
+  _CopyWithImpl$Mutation$ApplyCouponCode(this._instance, this._then);
+
+  final Mutation$ApplyCouponCode _instance;
+
+  final TRes Function(Mutation$ApplyCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? applyCouponCode = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$ApplyCouponCode(
+          applyCouponCode: applyCouponCode == _undefined ||
+                  applyCouponCode == null
+              ? _instance.applyCouponCode
+              : (applyCouponCode as Mutation$ApplyCouponCode$applyCouponCode),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> get applyCouponCode {
+    final local$applyCouponCode = _instance.applyCouponCode;
+    return CopyWith$Mutation$ApplyCouponCode$applyCouponCode(
+        local$applyCouponCode, (e) => call(applyCouponCode: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ApplyCouponCode<TRes>
+    implements CopyWith$Mutation$ApplyCouponCode<TRes> {
+  _CopyWithStubImpl$Mutation$ApplyCouponCode(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$ApplyCouponCode$applyCouponCode? applyCouponCode,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> get applyCouponCode =>
+      CopyWith$Mutation$ApplyCouponCode$applyCouponCode.stub(_res);
+}
+
+const documentNodeMutationApplyCouponCode = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'ApplyCouponCode'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'input')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'applyCouponCode'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'couponCode'),
+                  value: VariableNode(name: NameNode(value: 'input')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Mutation$ApplyCouponCode _parserFn$Mutation$ApplyCouponCode(
+        Map<String, dynamic> data) =>
+    Mutation$ApplyCouponCode.fromJson(data);
+typedef OnMutationCompleted$Mutation$ApplyCouponCode = FutureOr<void> Function(
+    dynamic, Mutation$ApplyCouponCode?);
+
+class Options$Mutation$ApplyCouponCode
+    extends graphql.MutationOptions<Mutation$ApplyCouponCode> {
+  Options$Mutation$ApplyCouponCode(
+      {String? operationName,
+      required Variables$Mutation$ApplyCouponCode variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$ApplyCouponCode? onCompleted,
+      graphql.OnMutationUpdate<Mutation$ApplyCouponCode>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ApplyCouponCode(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationApplyCouponCode,
+            parserFn: _parserFn$Mutation$ApplyCouponCode);
+
+  final OnMutationCompleted$Mutation$ApplyCouponCode? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$ApplyCouponCode
+    extends graphql.WatchQueryOptions<Mutation$ApplyCouponCode> {
+  WatchOptions$Mutation$ApplyCouponCode(
+      {String? operationName,
+      required Variables$Mutation$ApplyCouponCode variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationApplyCouponCode,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$ApplyCouponCode);
+}
+
+extension ClientExtension$Mutation$ApplyCouponCode on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ApplyCouponCode>> mutate$ApplyCouponCode(
+          Options$Mutation$ApplyCouponCode options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ApplyCouponCode>
+      watchMutation$ApplyCouponCode(
+              WatchOptions$Mutation$ApplyCouponCode options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$ApplyCouponCode$HookResult {
+  Mutation$ApplyCouponCode$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$ApplyCouponCode runMutation;
+
+  final graphql.QueryResult<Mutation$ApplyCouponCode> result;
+}
+
+Mutation$ApplyCouponCode$HookResult useMutation$ApplyCouponCode(
+    [WidgetOptions$Mutation$ApplyCouponCode? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$ApplyCouponCode());
+  return Mutation$ApplyCouponCode$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$ApplyCouponCode>
+    useWatchMutation$ApplyCouponCode(
+            WatchOptions$Mutation$ApplyCouponCode options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$ApplyCouponCode
+    extends graphql.MutationOptions<Mutation$ApplyCouponCode> {
+  WidgetOptions$Mutation$ApplyCouponCode(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$ApplyCouponCode? onCompleted,
+      graphql.OnMutationUpdate<Mutation$ApplyCouponCode>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ApplyCouponCode(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationApplyCouponCode,
+            parserFn: _parserFn$Mutation$ApplyCouponCode);
+
+  final OnMutationCompleted$Mutation$ApplyCouponCode? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$ApplyCouponCode = graphql
+        .MultiSourceResult<Mutation$ApplyCouponCode>
+    Function(Variables$Mutation$ApplyCouponCode, {Object? optimisticResult});
+typedef Builder$Mutation$ApplyCouponCode = widgets.Widget Function(
+    RunMutation$Mutation$ApplyCouponCode,
+    graphql.QueryResult<Mutation$ApplyCouponCode>?);
+
+class Mutation$ApplyCouponCode$Widget
+    extends graphql_flutter.Mutation<Mutation$ApplyCouponCode> {
+  Mutation$ApplyCouponCode$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$ApplyCouponCode? options,
+      required Builder$Mutation$ApplyCouponCode builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$ApplyCouponCode(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$ApplyCouponCode$applyCouponCode {
+  Mutation$ApplyCouponCode$applyCouponCode({required this.$__typename});
+
+  @override
+  factory Mutation$ApplyCouponCode$applyCouponCode.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$ApplyCouponCode$applyCouponCodeFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$ApplyCouponCode$applyCouponCodeToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$ApplyCouponCode$applyCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ApplyCouponCode$applyCouponCode
+    on Mutation$ApplyCouponCode$applyCouponCode {
+  CopyWith$Mutation$ApplyCouponCode$applyCouponCode<
+          Mutation$ApplyCouponCode$applyCouponCode>
+      get copyWith =>
+          CopyWith$Mutation$ApplyCouponCode$applyCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> {
+  factory CopyWith$Mutation$ApplyCouponCode$applyCouponCode(
+          Mutation$ApplyCouponCode$applyCouponCode instance,
+          TRes Function(Mutation$ApplyCouponCode$applyCouponCode) then) =
+      _CopyWithImpl$Mutation$ApplyCouponCode$applyCouponCode;
+
+  factory CopyWith$Mutation$ApplyCouponCode$applyCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ApplyCouponCode$applyCouponCode;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$ApplyCouponCode$applyCouponCode<TRes>
+    implements CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> {
+  _CopyWithImpl$Mutation$ApplyCouponCode$applyCouponCode(
+      this._instance, this._then);
+
+  final Mutation$ApplyCouponCode$applyCouponCode _instance;
+
+  final TRes Function(Mutation$ApplyCouponCode$applyCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$ApplyCouponCode$applyCouponCode(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$ApplyCouponCode$applyCouponCode<TRes>
+    implements CopyWith$Mutation$ApplyCouponCode$applyCouponCode<TRes> {
+  _CopyWithStubImpl$Mutation$ApplyCouponCode$applyCouponCode(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$AdjustOrderLine {
   Variables$Mutation$AdjustOrderLine(
       {required this.orderLineId, required this.quantity});

@@ -2184,6 +2184,46 @@ Map<String,
       'message': instance.message,
     };
 
+Variables$Mutation$ApplyCouponCode _$Variables$Mutation$ApplyCouponCodeFromJson(
+        Map<String, dynamic> json) =>
+    Variables$Mutation$ApplyCouponCode(
+      input: json['input'] as String,
+    );
+
+Map<String, dynamic> _$Variables$Mutation$ApplyCouponCodeToJson(
+        Variables$Mutation$ApplyCouponCode instance) =>
+    <String, dynamic>{
+      'input': instance.input,
+    };
+
+Mutation$ApplyCouponCode _$Mutation$ApplyCouponCodeFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$ApplyCouponCode(
+      applyCouponCode: Mutation$ApplyCouponCode$applyCouponCode.fromJson(
+          json['applyCouponCode'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$ApplyCouponCodeToJson(
+        Mutation$ApplyCouponCode instance) =>
+    <String, dynamic>{
+      'applyCouponCode': instance.applyCouponCode.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$ApplyCouponCode$applyCouponCode
+    _$Mutation$ApplyCouponCode$applyCouponCodeFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$ApplyCouponCode$applyCouponCode(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$ApplyCouponCode$applyCouponCodeToJson(
+        Mutation$ApplyCouponCode$applyCouponCode instance) =>
+    <String, dynamic>{
+      '__typename': instance.$__typename,
+    };
+
 Variables$Mutation$AdjustOrderLine _$Variables$Mutation$AdjustOrderLineFromJson(
         Map<String, dynamic> json) =>
     Variables$Mutation$AdjustOrderLine(

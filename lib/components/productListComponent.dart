@@ -62,7 +62,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
               child: GridView.count(
                 crossAxisCount: 2,
                 childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 2),
+                    (MediaQuery.of(context).size.height / 1.8),
                 children: widget.productList
                     .where((p) =>
                 // showing products that has price

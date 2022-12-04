@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
@@ -26,6 +27,7 @@ class OrderController extends GetxController {
   TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
+  TextEditingController couponCode = TextEditingController();
   var currentStep = 0.obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
@@ -35,25 +37,30 @@ class OrderController extends GetxController {
   var availableCountryList =
       <Query$GetAvailableCountries$availableCountries>[].obs;
   var currentlySelectedCountryCode = 'IN'.obs;
-  var currentlySelectedShippingMethod = (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
+  var currentlySelectedShippingMethod =
+      (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
   var currentlySelectedShippingMethodId = ''.obs;
   var eligibleShippingMethodList =
       <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
   var shippingMethodSelected = '1'.obs;
   var clientToken = ''.obs;
   var currencyCode = ''.obs;
-
+  var hasCouponCode = false.obs;
 
   // ignore: unnecessary_cast
   var shippingAddressOrder =
       (null as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?).obs;
   var currentNonce = ''.obs;
+
   // ignore: unnecessary_cast
-  var activeOrderForCheckout = (null as Query$GetOrderForCheckout$activeOrder?).obs;
+  var activeOrderForCheckout =
+      (null as Query$GetOrderForCheckout$activeOrder?).obs;
   var createOrderResponse = (null as CreateOrderResponseModel?).obs;
   var paymentSuccessResponse = (null as PaymentSuccessResponse?).obs;
-  var eligiblePaymentMethods = <Query$GetEligiblePaymentMethods$eligiblePaymentMethods>[].obs;
-  var addPaymentToOrderResponse = (null as Mutation$AddPayment$addPaymentToOrder$$Order?).obs;
+  var eligiblePaymentMethods =
+      <Query$GetEligiblePaymentMethods$eligiblePaymentMethods>[].obs;
+  var addPaymentToOrderResponse =
+      (null as Mutation$AddPayment$addPaymentToOrder$$Order?).obs;
   var getOrderByCodeResponse = (null as Query$GetOrderByCode$orderByCode?).obs;
 
   void getActiveOrders() async {
@@ -77,39 +84,46 @@ class OrderController extends GetxController {
 
   void transitionToArrangingPayment() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$TransitionToArrangingPayment();
-    if(res.hasException){
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$TransitionToArrangingPayment();
+    if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
     }
-    if(res.data != null){
+    if (res.data != null) {
       var currentState = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToArrangingPayment ${currentState['message']}');
-      if(currentState['message'] != null){
-        Get.snackbar('Error', "${currentState['message']}",colorText: Colors.red);
-      }else {
+      if (currentState['message'] != null) {
+        Get.snackbar('Error', "${currentState['message']}",
+            colorText: Colors.red);
+      } else {
         addPaymentToOrder();
       }
       isLoading.value = false;
     }
   }
+
   void transitionToAddingItems() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$TransitionToAddingItems();
-    if(res.hasException){
+    final res =
+        await graphqlService.clientToQuery().mutate$TransitionToAddingItems();
+    if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
     }
-    if(res.data != null){
-      print('transitionToAddingItems ${res.parsedData!.transitionOrderToState!.toJson()}');
+    if (res.data != null) {
+      print(
+          'transitionToAddingItems ${res.parsedData!.transitionOrderToState!.toJson()}');
       isLoading.value = true;
     }
   }
 
   void addPaymentToOrder() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$AddPayment(
-        Options$Mutation$AddPayment(
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$AddPayment(Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
                     method: eligiblePaymentMethods.first.code,
@@ -118,31 +132,35 @@ class OrderController extends GetxController {
                       'orderId': paymentSuccessResponse.value!.orderId,
                       'signature': paymentSuccessResponse.value!.signature
                     })))));
-    if(res.hasException){
+    if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
       Get.snackbar('Error', res.exception.toString());
     }
-    if(res.data != null){
+    if (res.data != null) {
       print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
-      addPaymentToOrderResponse.value = Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(res.parsedData!.addPaymentToOrder.toJson()) ;
+      addPaymentToOrderResponse.value =
+          Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(
+              res.parsedData!.addPaymentToOrder.toJson());
       getOrderByCode(addPaymentToOrderResponse.value!.code);
       isLoading.value = false;
       currentStep.value++;
     }
   }
-  void getOrderByCode(String code) async{
+
+  void getOrderByCode(String code) async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$GetOrderByCode(Options$Query$GetOrderByCode(variables: Variables$Query$GetOrderByCode(code: code)));
-    if(res.hasException){
+    final res = await graphqlService.clientToQuery().query$GetOrderByCode(
+        Options$Query$GetOrderByCode(
+            variables: Variables$Query$GetOrderByCode(code: code)));
+    if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
     }
-    if(res.data != null){
+    if (res.data != null) {
       print('getOrderByCode ${res.parsedData!.orderByCode!.toJson()}');
       getOrderByCodeResponse.value = res.parsedData!.orderByCode;
       isLoading.value = false;
-
     }
   }
 
@@ -182,11 +200,26 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
   }
-  void createRazorPayOrder() async{
-      isLoading.value = true;
-    try{
-      final url = Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'create-order');
-      final res = await http.post(url,headers: UtilService.customHeader,body: jsonEncode({
+
+  void resetShippingMethodForm() {
+    fullName.clear();
+    streetLine1.clear();
+    streetLine2.clear();
+    phoneNumber.clear();
+    postalCode.clear();
+    city.clear();
+    couponCode.clear();
+    shippingAddressFormKey.currentState!.reset();
+  }
+
+  void createRazorPayOrder() async {
+    isLoading2.value = true;
+    try {
+      final url =
+          Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'create-order');
+      final res = await http.post(url,
+          headers: UtilService.customHeader,
+          body: jsonEncode({
             'amount': shippingAddressOrder.value!.totalWithTax,
             'currency': currencyCode.value,
             'receipt': "receipt#${shippingAddressOrder.value!.code}",
@@ -194,45 +227,79 @@ class OrderController extends GetxController {
       print('createOrderResponse ${res.body}');
       createOrderResponse.value = createOrderResponseModelFromJson(res.body);
       PaymentServices.startRazorPay();
-      isLoading.value = false;
-    }on Exception catch(e){
+      isLoading2.value = false;
+    } on Exception catch (e) {
       print(e.toString());
-      isLoading.value = false;
+      isLoading2.value = false;
     }
   }
+
   void verifyPayment() async {
-    try{
+    try {
       isLoading.value = true;
-      final url = Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'verify-payment');
-      final res = await http.post(url,headers: UtilService.customHeader,body: jsonEncode({
-        'razorpayOrderId': createOrderResponse.value!.id,
-        'razorpayPaymentId': paymentSuccessResponse.value!.paymentId,
-        'signature': paymentSuccessResponse.value!.signature,
-      }));
-      if(res.body == 'true'){
+      final url =
+          Uri.https(dotenv.env['RAZORPAY_URL'].toString(), 'verify-payment');
+      final res = await http.post(url,
+          headers: UtilService.customHeader,
+          body: jsonEncode({
+            'razorpayOrderId': createOrderResponse.value!.id,
+            'razorpayPaymentId': paymentSuccessResponse.value!.paymentId,
+            'signature': paymentSuccessResponse.value!.signature,
+          }));
+      if (res.body == 'true') {
         print('payment is verified');
         isLoading.value = false;
-        if(activeOrderResponse.value!.state == OrderStateEnums.AddingItems.name){
+        if (activeOrderResponse.value!.state ==
+            OrderStateEnums.AddingItems.name) {
           transitionToArrangingPayment();
-        }else {
+        } else {
           addPaymentToOrder();
         }
-      }else {
+      } else {
         print('not verified');
         Get.snackbar('Warning', 'Payment is not verified. Please Try again');
         isLoading.value = false;
       }
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
+      isLoading.value = false;
+    }
+  }
+
+  void applyCouponCode(String couponCode) async {
+    isLoading.value = true;
+    final res = await graphqlService.clientToQuery().mutate$ApplyCouponCode(
+        Options$Mutation$ApplyCouponCode(
+            variables: Variables$Mutation$ApplyCouponCode(input: couponCode)));
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      isLoading.value = false;
+      Get.snackbar('', 'Coupon Code is not valid',
+          colorText: Colors.red,
+          backgroundColor: Colors.yellow,
+          duration: Duration(seconds: 2));
+    }
+    if (res.data != null) {
+      print('coupon code ${res.parsedData!.applyCouponCode.$__typename}');
+      if (res.parsedData!.applyCouponCode.$__typename ==
+          'CouponCodeInvalidError') {
+        Get.snackbar('', 'Coupon Code is not valid',
+            colorText: Colors.red,
+            backgroundColor: Colors.yellow,
+            duration: Duration(seconds: 2));
+      }
+      if (res.parsedData!.applyCouponCode.$__typename == 'order') {
+        print('code is applied');
+      }
+
       isLoading.value = false;
     }
   }
 
   void setShippingAddress() async {
     isLoading.value = true;
-    final res = await graphqlService
-        .clientToQuery()
-        .mutate$SetShippingAddress(Options$Mutation$SetShippingAddress(
+    final res = await graphqlService.clientToQuery().mutate$SetShippingAddress(
+        Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
                     streetLine1: streetLine1.text,
@@ -247,11 +314,12 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      print('setShippingAddress ${jsonEncode(res.parsedData!.setOrderShippingAddress)}');
-      shippingAddressOrder.value = res.parsedData!.setOrderShippingAddress as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
+      print(
+          'setShippingAddress ${jsonEncode(res.parsedData!.setOrderShippingAddress)}');
+      shippingAddressOrder.value = res.parsedData!.setOrderShippingAddress
+          as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
       currentStep.value++;
-
     }
   }
 
@@ -269,13 +337,15 @@ class OrderController extends GetxController {
 
   void getEligiblePaymentMethod() async {
     eligiblePaymentIsLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$GetEligiblePaymentMethods();
-    if(res.hasException){
+    final res =
+        await graphqlService.clientToQuery().query$GetEligiblePaymentMethods();
+    if (res.hasException) {
       print(res.exception.toString());
       eligiblePaymentIsLoading.value = false;
     }
-    if(res.data != null){
-      print('getEligiblePaymentMethod ${jsonEncode(res.parsedData!.eligiblePaymentMethods)}');
+    if (res.data != null) {
+      print(
+          'getEligiblePaymentMethod ${jsonEncode(res.parsedData!.eligiblePaymentMethods)}');
       eligiblePaymentMethods.value = res.parsedData!.eligiblePaymentMethods;
       eligiblePaymentIsLoading.value = false;
     }
@@ -292,7 +362,8 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      print('shipping method ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
+      print(
+          'shipping method ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
       currentlySelectedShippingMethod.value = eligibleShippingMethodList.first;

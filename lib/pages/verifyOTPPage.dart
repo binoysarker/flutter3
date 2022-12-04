@@ -59,7 +59,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                           }
                         } else {
                           print('not validated');
-                          Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow);
+                          Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);
                         }
                       },
                       child: Text('Submit'))

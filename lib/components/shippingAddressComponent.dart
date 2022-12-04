@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
 
 import '../allGlobalKeys.dart';
@@ -25,6 +26,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
     return Form(
         key: shippingAddressFormKey,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -146,6 +148,41 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       },
                     ),
                   ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1),
+                  child: Obx(() => Switch(
+                      value: widget.orderController.hasCouponCode.isTrue,
+                      activeColor: Colors.green,
+                      onChanged: (bool data) {
+                        widget.orderController.hasCouponCode.value = data;
+                        print(
+                            'has coupon code ${widget.orderController.hasCouponCode.value}');
+                      })),
+                ),
+                Text(
+                  'I have coupon Code',
+                  style: CustomTheme.paragraphStyle,
+                ),
+              ],
+            ),
+            Obx(() => widget.orderController.hasCouponCode.isTrue
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: widget.orderController.couponCode,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Coupon Code',
+                      ),
+                      autofillHints: [AutofillHints.oneTimeCode],
+                      keyboardType: TextInputType.name,
+                      validator: RequiredValidator(errorText: 'Coupon Code is required'),
+                    ),
+                  )
+                : SizedBox()),
           ],
         ));
   }

@@ -112,7 +112,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
               height: widget.givenHeight.toDouble(),
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 2/1.5,
+                childAspectRatio: 2/1.8,
                 children: widget.givenList
                     .map((element) => element == null ? SizedBox() : Card(
                   elevation: 5,

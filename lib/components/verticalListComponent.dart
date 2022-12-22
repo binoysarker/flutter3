@@ -66,7 +66,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
         as List<Query$GetAllCollections$collections$items>)[index]
             .name;
       }
-      return name;
+      return "${name.length > 20 ? '${name.characters.take(20)}...' : name}";
     }
     void goToPage(element){
       if(widget.controllerType == ControllerTypeNames.user.name){

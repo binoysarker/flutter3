@@ -1,7 +1,9 @@
+import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 
 import '../validators/validatorDefinations.dart';
 
@@ -23,9 +25,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Forget Password'),
+        title: Text('Forget Password',style: CustomTheme.headerStyle2,),
       ),
-      body: Padding(
+      body: Obx(() => loginPageController.loading.isTrue ? LoadingSpinnerComponent(): Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(5)),
@@ -38,7 +40,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Please give us an email to send reset password link',
-                        style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),
+                        style: CustomTheme.headerStyle,
                       ),
                     ),
                   ),
@@ -66,11 +68,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                           Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);
                         }
                       },
-                      child: Text('Submit'))
+                      child: Text('Submit', style: CustomTheme.headerStyle,))
                 ],
               )),
         ),
-      ),
+      )),
     ));
   }
 }

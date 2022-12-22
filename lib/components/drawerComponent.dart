@@ -2,6 +2,7 @@ import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({Key? key}) : super(key: key);
@@ -40,14 +41,14 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 ),
                 Text(
                   '${currentAuthenticatedUser!.emailAddress}',
-                  style: TextStyle(color: Colors.white),
+                  style: CustomTheme.headerStyle,
                 )
               ],
             ),
           ),
           ListTile(
             leading: Icon(Icons.logout),
-            title: Text('Sign out'),
+            title: Text('Sign out', style: CustomTheme.headerStyle,),
             onTap: () {
               // await FirebaseAuth.instance.signOut();
               loginPageController.resetFormField();

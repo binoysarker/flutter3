@@ -1,6 +1,7 @@
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 class ErrorMessageComponent extends StatelessWidget {
   const ErrorMessageComponent({Key? key}) : super(key: key);
 
@@ -14,7 +15,7 @@ class ErrorMessageComponent extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Obx(() => Text(
               utilityController.errorMessage.value,
-              style: TextStyle(color: Colors.red),
+              style: CustomTheme.headerStyle4,
             )),
           ),
         ),

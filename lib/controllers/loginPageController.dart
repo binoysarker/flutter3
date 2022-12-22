@@ -32,6 +32,7 @@ class LoginPageController extends GetxController {
   UserController userController = Get.find<UserController>();
   final loginPageState = GlobalKey<LoginPageState>();
   var showSignIn = true.obs;
+  var loading = false.obs;
   var currentlyGivenOTP = 0.obs;
   var smsQuery = {
     'userid':'1671',
@@ -100,15 +101,20 @@ class LoginPageController extends GetxController {
       final loginData = signInResponse.parsedData?.login.toJson();
 
       if (loginData?['message'] != null) {
-        utilityController.setAlertMessage(true, loginData?['message']);
-        utilityController.setLoadingState(false);
+        if(loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR'){
+          utilityController.setAlertMessage(true, 'Invalid user name/Password');
+          utilityController.setLoadingState(false);
+        }else {
+          utilityController.setAlertMessage(true, loginData?['message']);
+          utilityController.setLoadingState(false);
+        }
         return;
       }
       if (loginData?['errorCode'] == 'NOT_VERIFIED_ERROR') {
         navigator.pushReplacementNamed('/${PageRouteNames.verify_token.name}');
       } else {
         // login successful
-        UtilService.createSnakeBar(context: context, text: 'Login successful');
+        // UtilService.createSnakeBar(context: context, text: 'Login successful');
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
         userController.currentAuthToken.value = authToken;
@@ -172,26 +178,32 @@ class LoginPageController extends GetxController {
   }
 
   void requestPasswordReset(String email) async {
+    loading.value = true;
     final res = await graphqlService
         .clientToQuery()
         .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
             variables: Variables$Mutation$RequestPasswordReset(email: email)));
     if(res.hasException){
       print('${res.exception.toString()}');
+      loading.value = false;
     }
     if(res.data != null){
+      loading.value = false;
       print('${res.parsedData!.requestPasswordReset!.toJson()}');
       Get.to(() => ResetPasswordPage());
       Get.snackbar('', 'Please check your email to get the token',backgroundColor: Colors.green);
     }
   }
   void resetUserPassword(String password, String token) async {
+    loading.value = true;
     final res = await graphqlService
         .clientToQuery().mutate$ResetPassword(Options$Mutation$ResetPassword(variables: Variables$Mutation$ResetPassword(password: password, token: token)));
     if(res.hasException){
       print('${res.exception.toString()}');
+      loading.value = false;
     }
     if(res.data != null){
+      loading.value = false;
       print('${res.parsedData!.resetPassword.toJson()}');
       resetFormField();
       Get.to(()=> LoginPage());

@@ -1,4 +1,6 @@
-import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/components/errorMessageComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
@@ -6,14 +8,11 @@ import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/pages/forgetPasswordPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
+import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
-import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
-
 
   @override
   State<LoginPage> createState() => LoginPageState();
@@ -27,7 +26,6 @@ class LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -68,7 +66,10 @@ class LoginPageState extends State<LoginPage> {
         ? const LoadingSpinnerComponent()
         : Scaffold(
             appBar: AppBar(
-              title: Text(setText()),
+              title: Text(
+                setText(),
+                style: CustomTheme.headerStyle3,
+              ),
             ),
             body: Padding(
                 padding: const EdgeInsets.all(10),
@@ -84,7 +85,8 @@ class LoginPageState extends State<LoginPage> {
                             child: Center(
                               child: CircleAvatar(
                                 radius: 50,
-                                backgroundImage: AssetImage('assets/images/splash.png'),
+                                backgroundImage:
+                                    AssetImage('assets/images/splash.png'),
                               ),
                             )),
                         AutofillGroup(
@@ -193,7 +195,8 @@ class LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Remember me'),
+                            Text('Remember me',
+                                style: CustomTheme.paragraphStyle),
                             Checkbox(
                                 value: loginController.checkboxStatus.value,
                                 onChanged: (value) {
@@ -204,19 +207,23 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(()=> ForgetPasswordPage());
+                            Get.to(() => ForgetPasswordPage());
                           },
-                          child: const Text(
+                          child: Text(
                             'Forgot Password',
+                            style: CustomTheme.paragraphStyle,
                           ),
                         ),
                         Container(
                             height: 50,
                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: ElevatedButton(
-                              child: Text(loginController.showSignIn.isTrue
-                                  ? 'Login'
-                                  : 'Sign up'),
+                              child: Text(
+                                loginController.showSignIn.isTrue
+                                    ? 'Login'
+                                    : 'Sign up',
+                                style: CustomTheme.headerStyle,
+                              ),
                               onPressed: () {
                                 loginController.setCurrentSignInProcess(
                                     SignInProcessNames.normal.name);
@@ -256,11 +263,14 @@ class LoginPageState extends State<LoginPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            const Text('Does not have account?'),
+                            Obx(() => Text(
+                                  '${loginController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
+                                  style: CustomTheme.paragraphStyle,
+                                )),
                             TextButton(
                               child: Text(
                                 setSignupText(),
-                                style: const TextStyle(fontSize: 20),
+                                style: CustomTheme.headerStyle3,
                               ),
                               onPressed: () {
                                 //signup screen

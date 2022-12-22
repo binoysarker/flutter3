@@ -45,7 +45,9 @@ class SearchComponent extends StatelessWidget {
                       onPressed: () {
                         resetSearch(context);
                       },
-                      icon: Icon(Icons.close)),
+                      icon: Obx(() => productsController.searchInProgress.isTrue
+                          ? Icon(Icons.access_alarms)
+                          : Icon(Icons.close))),
                 ),
               ),
             )),

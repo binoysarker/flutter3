@@ -37,12 +37,14 @@ Input$BooleanOperators _$Input$BooleanOperatorsFromJson(
         Map<String, dynamic> json) =>
     Input$BooleanOperators(
       eq: json['eq'] as bool?,
+      isNull: json['isNull'] as bool?,
     );
 
 Map<String, dynamic> _$Input$BooleanOperatorsToJson(
         Input$BooleanOperators instance) =>
     <String, dynamic>{
       'eq': instance.eq,
+      'isNull': instance.isNull,
     };
 
 Input$CollectionFilterParameter _$Input$CollectionFilterParameterFromJson(
@@ -385,6 +387,7 @@ Input$DateOperators _$Input$DateOperatorsFromJson(Map<String, dynamic> json) =>
           ? null
           : Input$DateRange.fromJson(json['between'] as Map<String, dynamic>),
       eq: json['eq'] as String?,
+      isNull: json['isNull'] as bool?,
     );
 
 Map<String, dynamic> _$Input$DateOperatorsToJson(
@@ -394,6 +397,7 @@ Map<String, dynamic> _$Input$DateOperatorsToJson(
       'before': instance.before,
       'between': instance.between?.toJson(),
       'eq': instance.eq,
+      'isNull': instance.isNull,
     };
 
 Input$DateRange _$Input$DateRangeFromJson(Map<String, dynamic> json) =>
@@ -606,6 +610,7 @@ Input$IDOperators _$Input$IDOperatorsFromJson(Map<String, dynamic> json) =>
     Input$IDOperators(
       eq: json['eq'] as String?,
       $in: (json['in'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      isNull: json['isNull'] as bool?,
       notEq: json['notEq'] as String?,
       notIn:
           (json['notIn'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -615,6 +620,7 @@ Map<String, dynamic> _$Input$IDOperatorsToJson(Input$IDOperators instance) =>
     <String, dynamic>{
       'eq': instance.eq,
       'in': instance.$in,
+      'isNull': instance.isNull,
       'notEq': instance.notEq,
       'notIn': instance.notIn,
     };
@@ -654,6 +660,7 @@ Input$NumberOperators _$Input$NumberOperatorsFromJson(
       eq: (json['eq'] as num?)?.toDouble(),
       gt: (json['gt'] as num?)?.toDouble(),
       gte: (json['gte'] as num?)?.toDouble(),
+      isNull: json['isNull'] as bool?,
       lt: (json['lt'] as num?)?.toDouble(),
       lte: (json['lte'] as num?)?.toDouble(),
     );
@@ -665,6 +672,7 @@ Map<String, dynamic> _$Input$NumberOperatorsToJson(
       'eq': instance.eq,
       'gt': instance.gt,
       'gte': instance.gte,
+      'isNull': instance.isNull,
       'lt': instance.lt,
       'lte': instance.lte,
     };
@@ -1189,6 +1197,7 @@ Input$StringOperators _$Input$StringOperatorsFromJson(
       contains: json['contains'] as String?,
       eq: json['eq'] as String?,
       $in: (json['in'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      isNull: json['isNull'] as bool?,
       notContains: json['notContains'] as String?,
       notEq: json['notEq'] as String?,
       notIn:
@@ -1202,6 +1211,7 @@ Map<String, dynamic> _$Input$StringOperatorsToJson(
       'contains': instance.contains,
       'eq': instance.eq,
       'in': instance.$in,
+      'isNull': instance.isNull,
       'notContains': instance.notContains,
       'notEq': instance.notEq,
       'notIn': instance.notIn,

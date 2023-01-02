@@ -2424,6 +2424,7 @@ input BooleanListOperators {
 "Operators for filtering on a Boolean field"
 input BooleanOperators {
     eq: Boolean
+    isNull: Boolean
 }
 
 input CollectionFilterParameter {
@@ -2541,6 +2542,7 @@ input DateOperators {
     before: DateTime
     between: DateRange
     eq: DateTime
+    isNull: Boolean
 }
 
 input DateRange {
@@ -2627,6 +2629,7 @@ input IDListOperators {
 input IDOperators {
     eq: String
     in: [String!]
+    isNull: Boolean
     notEq: String
     notIn: [String!]
 }
@@ -2647,6 +2650,7 @@ input NumberOperators {
     eq: Float
     gt: Float
     gte: Float
+    isNull: Boolean
     lt: Float
     lte: Float
 }
@@ -2825,6 +2829,7 @@ input StringOperators {
     contains: String
     eq: String
     in: [String!]
+    isNull: Boolean
     notContains: String
     notEq: String
     notIn: [String!]

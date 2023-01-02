@@ -147,7 +147,7 @@ class _CopyWithStubImpl$Input$BooleanListOperators<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Input$BooleanOperators {
-  Input$BooleanOperators({this.eq});
+  Input$BooleanOperators({this.eq, this.isNull});
 
   @override
   factory Input$BooleanOperators.fromJson(Map<String, dynamic> json) =>
@@ -155,10 +155,13 @@ class Input$BooleanOperators {
 
   final bool? eq;
 
+  final bool? isNull;
+
   Map<String, dynamic> toJson() => _$Input$BooleanOperatorsToJson(this);
   int get hashCode {
     final l$eq = eq;
-    return Object.hashAll([l$eq]);
+    final l$isNull = isNull;
+    return Object.hashAll([l$eq, l$isNull]);
   }
 
   @override
@@ -169,6 +172,9 @@ class Input$BooleanOperators {
     final l$eq = eq;
     final lOther$eq = other.eq;
     if (l$eq != lOther$eq) return false;
+    final l$isNull = isNull;
+    final lOther$isNull = other.isNull;
+    if (l$isNull != lOther$isNull) return false;
     return true;
   }
 
@@ -184,7 +190,7 @@ abstract class CopyWith$Input$BooleanOperators<TRes> {
   factory CopyWith$Input$BooleanOperators.stub(TRes res) =
       _CopyWithStubImpl$Input$BooleanOperators;
 
-  TRes call({bool? eq});
+  TRes call({bool? eq, bool? isNull});
 }
 
 class _CopyWithImpl$Input$BooleanOperators<TRes>
@@ -197,8 +203,10 @@ class _CopyWithImpl$Input$BooleanOperators<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? eq = _undefined}) => _then(Input$BooleanOperators(
-      eq: eq == _undefined ? _instance.eq : (eq as bool?)));
+  TRes call({Object? eq = _undefined, Object? isNull = _undefined}) =>
+      _then(Input$BooleanOperators(
+          eq: eq == _undefined ? _instance.eq : (eq as bool?),
+          isNull: isNull == _undefined ? _instance.isNull : (isNull as bool?)));
 }
 
 class _CopyWithStubImpl$Input$BooleanOperators<TRes>
@@ -207,7 +215,7 @@ class _CopyWithStubImpl$Input$BooleanOperators<TRes>
 
   TRes _res;
 
-  call({bool? eq}) => _res;
+  call({bool? eq, bool? isNull}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1959,7 +1967,8 @@ class _CopyWithStubImpl$Input$DateListOperators<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Input$DateOperators {
-  Input$DateOperators({this.after, this.before, this.between, this.eq});
+  Input$DateOperators(
+      {this.after, this.before, this.between, this.eq, this.isNull});
 
   @override
   factory Input$DateOperators.fromJson(Map<String, dynamic> json) =>
@@ -1973,13 +1982,16 @@ class Input$DateOperators {
 
   final String? eq;
 
+  final bool? isNull;
+
   Map<String, dynamic> toJson() => _$Input$DateOperatorsToJson(this);
   int get hashCode {
     final l$after = after;
     final l$before = before;
     final l$between = between;
     final l$eq = eq;
-    return Object.hashAll([l$after, l$before, l$between, l$eq]);
+    final l$isNull = isNull;
+    return Object.hashAll([l$after, l$before, l$between, l$eq, l$isNull]);
   }
 
   @override
@@ -1999,6 +2011,9 @@ class Input$DateOperators {
     final l$eq = eq;
     final lOther$eq = other.eq;
     if (l$eq != lOther$eq) return false;
+    final l$isNull = isNull;
+    final lOther$isNull = other.isNull;
+    if (l$isNull != lOther$isNull) return false;
     return true;
   }
 
@@ -2015,7 +2030,11 @@ abstract class CopyWith$Input$DateOperators<TRes> {
       _CopyWithStubImpl$Input$DateOperators;
 
   TRes call(
-      {String? after, String? before, Input$DateRange? between, String? eq});
+      {String? after,
+      String? before,
+      Input$DateRange? between,
+      String? eq,
+      bool? isNull});
   CopyWith$Input$DateRange<TRes> get between;
 }
 
@@ -2033,14 +2052,16 @@ class _CopyWithImpl$Input$DateOperators<TRes>
           {Object? after = _undefined,
           Object? before = _undefined,
           Object? between = _undefined,
-          Object? eq = _undefined}) =>
+          Object? eq = _undefined,
+          Object? isNull = _undefined}) =>
       _then(Input$DateOperators(
           after: after == _undefined ? _instance.after : (after as String?),
           before: before == _undefined ? _instance.before : (before as String?),
           between: between == _undefined
               ? _instance.between
               : (between as Input$DateRange?),
-          eq: eq == _undefined ? _instance.eq : (eq as String?)));
+          eq: eq == _undefined ? _instance.eq : (eq as String?),
+          isNull: isNull == _undefined ? _instance.isNull : (isNull as bool?)));
   CopyWith$Input$DateRange<TRes> get between {
     final local$between = _instance.between;
     return local$between == null
@@ -2055,7 +2076,12 @@ class _CopyWithStubImpl$Input$DateOperators<TRes>
 
   TRes _res;
 
-  call({String? after, String? before, Input$DateRange? between, String? eq}) =>
+  call(
+          {String? after,
+          String? before,
+          Input$DateRange? between,
+          String? eq,
+          bool? isNull}) =>
       _res;
   CopyWith$Input$DateRange<TRes> get between =>
       CopyWith$Input$DateRange.stub(_res);
@@ -3141,7 +3167,7 @@ class _CopyWithStubImpl$Input$IDListOperators<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Input$IDOperators {
-  Input$IDOperators({this.eq, this.$in, this.notEq, this.notIn});
+  Input$IDOperators({this.eq, this.$in, this.isNull, this.notEq, this.notIn});
 
   @override
   factory Input$IDOperators.fromJson(Map<String, dynamic> json) =>
@@ -3152,6 +3178,8 @@ class Input$IDOperators {
   @JsonKey(name: 'in')
   final List<String>? $in;
 
+  final bool? isNull;
+
   final String? notEq;
 
   final List<String>? notIn;
@@ -3160,11 +3188,13 @@ class Input$IDOperators {
   int get hashCode {
     final l$eq = eq;
     final l$$in = $in;
+    final l$isNull = isNull;
     final l$notEq = notEq;
     final l$notIn = notIn;
     return Object.hashAll([
       l$eq,
       l$$in == null ? null : Object.hashAll(l$$in.map((v) => v)),
+      l$isNull,
       l$notEq,
       l$notIn == null ? null : Object.hashAll(l$notIn.map((v) => v))
     ]);
@@ -3191,6 +3221,9 @@ class Input$IDOperators {
       return false;
     }
 
+    final l$isNull = isNull;
+    final lOther$isNull = other.isNull;
+    if (l$isNull != lOther$isNull) return false;
     final l$notEq = notEq;
     final lOther$notEq = other.notEq;
     if (l$notEq != lOther$notEq) return false;
@@ -3223,7 +3256,11 @@ abstract class CopyWith$Input$IDOperators<TRes> {
       _CopyWithStubImpl$Input$IDOperators;
 
   TRes call(
-      {String? eq, List<String>? $in, String? notEq, List<String>? notIn});
+      {String? eq,
+      List<String>? $in,
+      bool? isNull,
+      String? notEq,
+      List<String>? notIn});
 }
 
 class _CopyWithImpl$Input$IDOperators<TRes>
@@ -3239,11 +3276,13 @@ class _CopyWithImpl$Input$IDOperators<TRes>
   TRes call(
           {Object? eq = _undefined,
           Object? $in = _undefined,
+          Object? isNull = _undefined,
           Object? notEq = _undefined,
           Object? notIn = _undefined}) =>
       _then(Input$IDOperators(
           eq: eq == _undefined ? _instance.eq : (eq as String?),
           $in: $in == _undefined ? _instance.$in : ($in as List<String>?),
+          isNull: isNull == _undefined ? _instance.isNull : (isNull as bool?),
           notEq: notEq == _undefined ? _instance.notEq : (notEq as String?),
           notIn: notIn == _undefined
               ? _instance.notIn
@@ -3256,7 +3295,12 @@ class _CopyWithStubImpl$Input$IDOperators<TRes>
 
   TRes _res;
 
-  call({String? eq, List<String>? $in, String? notEq, List<String>? notIn}) =>
+  call(
+          {String? eq,
+          List<String>? $in,
+          bool? isNull,
+          String? notEq,
+          List<String>? notIn}) =>
       _res;
 }
 
@@ -3407,7 +3451,13 @@ class _CopyWithStubImpl$Input$NumberListOperators<TRes>
 @JsonSerializable(explicitToJson: true)
 class Input$NumberOperators {
   Input$NumberOperators(
-      {this.between, this.eq, this.gt, this.gte, this.lt, this.lte});
+      {this.between,
+      this.eq,
+      this.gt,
+      this.gte,
+      this.isNull,
+      this.lt,
+      this.lte});
 
   @override
   factory Input$NumberOperators.fromJson(Map<String, dynamic> json) =>
@@ -3421,6 +3471,8 @@ class Input$NumberOperators {
 
   final double? gte;
 
+  final bool? isNull;
+
   final double? lt;
 
   final double? lte;
@@ -3431,9 +3483,11 @@ class Input$NumberOperators {
     final l$eq = eq;
     final l$gt = gt;
     final l$gte = gte;
+    final l$isNull = isNull;
     final l$lt = lt;
     final l$lte = lte;
-    return Object.hashAll([l$between, l$eq, l$gt, l$gte, l$lt, l$lte]);
+    return Object.hashAll(
+        [l$between, l$eq, l$gt, l$gte, l$isNull, l$lt, l$lte]);
   }
 
   @override
@@ -3453,6 +3507,9 @@ class Input$NumberOperators {
     final l$gte = gte;
     final lOther$gte = other.gte;
     if (l$gte != lOther$gte) return false;
+    final l$isNull = isNull;
+    final lOther$isNull = other.isNull;
+    if (l$isNull != lOther$isNull) return false;
     final l$lt = lt;
     final lOther$lt = other.lt;
     if (l$lt != lOther$lt) return false;
@@ -3479,6 +3536,7 @@ abstract class CopyWith$Input$NumberOperators<TRes> {
       double? eq,
       double? gt,
       double? gte,
+      bool? isNull,
       double? lt,
       double? lte});
   CopyWith$Input$NumberRange<TRes> get between;
@@ -3499,6 +3557,7 @@ class _CopyWithImpl$Input$NumberOperators<TRes>
           Object? eq = _undefined,
           Object? gt = _undefined,
           Object? gte = _undefined,
+          Object? isNull = _undefined,
           Object? lt = _undefined,
           Object? lte = _undefined}) =>
       _then(Input$NumberOperators(
@@ -3508,6 +3567,7 @@ class _CopyWithImpl$Input$NumberOperators<TRes>
           eq: eq == _undefined ? _instance.eq : (eq as double?),
           gt: gt == _undefined ? _instance.gt : (gt as double?),
           gte: gte == _undefined ? _instance.gte : (gte as double?),
+          isNull: isNull == _undefined ? _instance.isNull : (isNull as bool?),
           lt: lt == _undefined ? _instance.lt : (lt as double?),
           lte: lte == _undefined ? _instance.lte : (lte as double?)));
   CopyWith$Input$NumberRange<TRes> get between {
@@ -3529,6 +3589,7 @@ class _CopyWithStubImpl$Input$NumberOperators<TRes>
           double? eq,
           double? gt,
           double? gte,
+          bool? isNull,
           double? lt,
           double? lte}) =>
       _res;
@@ -6245,6 +6306,7 @@ class Input$StringOperators {
       {this.contains,
       this.eq,
       this.$in,
+      this.isNull,
       this.notContains,
       this.notEq,
       this.notIn,
@@ -6261,6 +6323,8 @@ class Input$StringOperators {
   @JsonKey(name: 'in')
   final List<String>? $in;
 
+  final bool? isNull;
+
   final String? notContains;
 
   final String? notEq;
@@ -6274,6 +6338,7 @@ class Input$StringOperators {
     final l$contains = contains;
     final l$eq = eq;
     final l$$in = $in;
+    final l$isNull = isNull;
     final l$notContains = notContains;
     final l$notEq = notEq;
     final l$notIn = notIn;
@@ -6282,6 +6347,7 @@ class Input$StringOperators {
       l$contains,
       l$eq,
       l$$in == null ? null : Object.hashAll(l$$in.map((v) => v)),
+      l$isNull,
       l$notContains,
       l$notEq,
       l$notIn == null ? null : Object.hashAll(l$notIn.map((v) => v)),
@@ -6313,6 +6379,9 @@ class Input$StringOperators {
       return false;
     }
 
+    final l$isNull = isNull;
+    final lOther$isNull = other.isNull;
+    if (l$isNull != lOther$isNull) return false;
     final l$notContains = notContains;
     final lOther$notContains = other.notContains;
     if (l$notContains != lOther$notContains) return false;
@@ -6354,6 +6423,7 @@ abstract class CopyWith$Input$StringOperators<TRes> {
       {String? contains,
       String? eq,
       List<String>? $in,
+      bool? isNull,
       String? notContains,
       String? notEq,
       List<String>? notIn,
@@ -6374,6 +6444,7 @@ class _CopyWithImpl$Input$StringOperators<TRes>
           {Object? contains = _undefined,
           Object? eq = _undefined,
           Object? $in = _undefined,
+          Object? isNull = _undefined,
           Object? notContains = _undefined,
           Object? notEq = _undefined,
           Object? notIn = _undefined,
@@ -6384,6 +6455,7 @@ class _CopyWithImpl$Input$StringOperators<TRes>
               : (contains as String?),
           eq: eq == _undefined ? _instance.eq : (eq as String?),
           $in: $in == _undefined ? _instance.$in : ($in as List<String>?),
+          isNull: isNull == _undefined ? _instance.isNull : (isNull as bool?),
           notContains: notContains == _undefined
               ? _instance.notContains
               : (notContains as String?),
@@ -6403,6 +6475,7 @@ class _CopyWithStubImpl$Input$StringOperators<TRes>
           {String? contains,
           String? eq,
           List<String>? $in,
+          bool? isNull,
           String? notContains,
           String? notEq,
           List<String>? notIn,

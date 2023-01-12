@@ -49,6 +49,7 @@ class LoginPageController extends GetxController {
 
   var checkboxStatus = false.obs;
 
+
   void setShowSignIn(bool value) {
     showSignIn.value = value;
   }
@@ -86,7 +87,7 @@ class LoginPageController extends GetxController {
     final signInResponse = await graphqlService.clientToQuery().mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
-                emailAddress: emailController.text,
+                emailAddress: '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
                 password: passwordController.text,
                 rememberMe: checkboxStatus.value)));
     if (signInResponse.hasException) {
@@ -102,7 +103,7 @@ class LoginPageController extends GetxController {
 
       if (loginData?['message'] != null) {
         if(loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR'){
-          utilityController.setAlertMessage(true, 'Invalid user name/Password');
+          utilityController.setAlertMessage(true, 'Invalid phone number or password');
           utilityController.setLoadingState(false);
         }else {
           utilityController.setAlertMessage(true, loginData?['message']);
@@ -146,7 +147,7 @@ class LoginPageController extends GetxController {
         .mutate$Register(Options$Mutation$Register(
             variables: Variables$Mutation$Register(
                 input: Input$RegisterCustomerInput(
-          emailAddress: emailController.text,
+          emailAddress: '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
           password: passwordController.text,
           firstName: firstName.text,
           lastName: lastName.text,

@@ -870,6 +870,10 @@ Map<String, dynamic> _$Input$PaymentInputToJson(Input$PaymentInput instance) =>
 Input$ProductFilterParameter _$Input$ProductFilterParameterFromJson(
         Map<String, dynamic> json) =>
     Input$ProductFilterParameter(
+      catImageUrl: json['catImageUrl'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['catImageUrl'] as Map<String, dynamic>),
       createdAt: json['createdAt'] == null
           ? null
           : Input$DateOperators.fromJson(
@@ -902,6 +906,7 @@ Input$ProductFilterParameter _$Input$ProductFilterParameterFromJson(
 Map<String, dynamic> _$Input$ProductFilterParameterToJson(
         Input$ProductFilterParameter instance) =>
     <String, dynamic>{
+      'catImageUrl': instance.catImageUrl?.toJson(),
       'createdAt': instance.createdAt?.toJson(),
       'description': instance.description?.toJson(),
       'id': instance.id?.toJson(),
@@ -942,6 +947,9 @@ Map<String, dynamic> _$Input$ProductListOptionsToJson(
 Input$ProductSortParameter _$Input$ProductSortParameterFromJson(
         Map<String, dynamic> json) =>
     Input$ProductSortParameter(
+      catImageUrl: $enumDecodeNullable(
+          _$Enum$SortOrderEnumMap, json['catImageUrl'],
+          unknownValue: Enum$SortOrder.$unknown),
       createdAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['createdAt'],
           unknownValue: Enum$SortOrder.$unknown),
       description: $enumDecodeNullable(
@@ -960,6 +968,7 @@ Input$ProductSortParameter _$Input$ProductSortParameterFromJson(
 Map<String, dynamic> _$Input$ProductSortParameterToJson(
         Input$ProductSortParameter instance) =>
     <String, dynamic>{
+      'catImageUrl': _$Enum$SortOrderEnumMap[instance.catImageUrl],
       'createdAt': _$Enum$SortOrderEnumMap[instance.createdAt],
       'description': _$Enum$SortOrderEnumMap[instance.description],
       'id': _$Enum$SortOrderEnumMap[instance.id],

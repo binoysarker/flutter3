@@ -4573,7 +4573,8 @@ class _CopyWithStubImpl$Input$PaymentInput<TRes>
 @JsonSerializable(explicitToJson: true)
 class Input$ProductFilterParameter {
   Input$ProductFilterParameter(
-      {this.createdAt,
+      {this.catImageUrl,
+      this.createdAt,
       this.description,
       this.id,
       this.languageCode,
@@ -4584,6 +4585,8 @@ class Input$ProductFilterParameter {
   @override
   factory Input$ProductFilterParameter.fromJson(Map<String, dynamic> json) =>
       _$Input$ProductFilterParameterFromJson(json);
+
+  final Input$StringOperators? catImageUrl;
 
   final Input$DateOperators? createdAt;
 
@@ -4601,6 +4604,7 @@ class Input$ProductFilterParameter {
 
   Map<String, dynamic> toJson() => _$Input$ProductFilterParameterToJson(this);
   int get hashCode {
+    final l$catImageUrl = catImageUrl;
     final l$createdAt = createdAt;
     final l$description = description;
     final l$id = id;
@@ -4609,6 +4613,7 @@ class Input$ProductFilterParameter {
     final l$slug = slug;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      l$catImageUrl,
       l$createdAt,
       l$description,
       l$id,
@@ -4624,6 +4629,9 @@ class Input$ProductFilterParameter {
     if (identical(this, other)) return true;
     if (!(other is Input$ProductFilterParameter) ||
         runtimeType != other.runtimeType) return false;
+    final l$catImageUrl = catImageUrl;
+    final lOther$catImageUrl = other.catImageUrl;
+    if (l$catImageUrl != lOther$catImageUrl) return false;
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (l$createdAt != lOther$createdAt) return false;
@@ -4662,13 +4670,15 @@ abstract class CopyWith$Input$ProductFilterParameter<TRes> {
       _CopyWithStubImpl$Input$ProductFilterParameter;
 
   TRes call(
-      {Input$DateOperators? createdAt,
+      {Input$StringOperators? catImageUrl,
+      Input$DateOperators? createdAt,
       Input$StringOperators? description,
       Input$IDOperators? id,
       Input$StringOperators? languageCode,
       Input$StringOperators? name,
       Input$StringOperators? slug,
       Input$DateOperators? updatedAt});
+  CopyWith$Input$StringOperators<TRes> get catImageUrl;
   CopyWith$Input$DateOperators<TRes> get createdAt;
   CopyWith$Input$StringOperators<TRes> get description;
   CopyWith$Input$IDOperators<TRes> get id;
@@ -4689,7 +4699,8 @@ class _CopyWithImpl$Input$ProductFilterParameter<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? createdAt = _undefined,
+          {Object? catImageUrl = _undefined,
+          Object? createdAt = _undefined,
           Object? description = _undefined,
           Object? id = _undefined,
           Object? languageCode = _undefined,
@@ -4697,6 +4708,9 @@ class _CopyWithImpl$Input$ProductFilterParameter<TRes>
           Object? slug = _undefined,
           Object? updatedAt = _undefined}) =>
       _then(Input$ProductFilterParameter(
+          catImageUrl: catImageUrl == _undefined
+              ? _instance.catImageUrl
+              : (catImageUrl as Input$StringOperators?),
           createdAt: createdAt == _undefined
               ? _instance.createdAt
               : (createdAt as Input$DateOperators?),
@@ -4716,6 +4730,14 @@ class _CopyWithImpl$Input$ProductFilterParameter<TRes>
           updatedAt: updatedAt == _undefined
               ? _instance.updatedAt
               : (updatedAt as Input$DateOperators?)));
+  CopyWith$Input$StringOperators<TRes> get catImageUrl {
+    final local$catImageUrl = _instance.catImageUrl;
+    return local$catImageUrl == null
+        ? CopyWith$Input$StringOperators.stub(_then(_instance))
+        : CopyWith$Input$StringOperators(
+            local$catImageUrl, (e) => call(catImageUrl: e));
+  }
+
   CopyWith$Input$DateOperators<TRes> get createdAt {
     final local$createdAt = _instance.createdAt;
     return local$createdAt == null
@@ -4777,7 +4799,8 @@ class _CopyWithStubImpl$Input$ProductFilterParameter<TRes>
   TRes _res;
 
   call(
-          {Input$DateOperators? createdAt,
+          {Input$StringOperators? catImageUrl,
+          Input$DateOperators? createdAt,
           Input$StringOperators? description,
           Input$IDOperators? id,
           Input$StringOperators? languageCode,
@@ -4785,6 +4808,8 @@ class _CopyWithStubImpl$Input$ProductFilterParameter<TRes>
           Input$StringOperators? slug,
           Input$DateOperators? updatedAt}) =>
       _res;
+  CopyWith$Input$StringOperators<TRes> get catImageUrl =>
+      CopyWith$Input$StringOperators.stub(_res);
   CopyWith$Input$DateOperators<TRes> get createdAt =>
       CopyWith$Input$DateOperators.stub(_res);
   CopyWith$Input$StringOperators<TRes> get description =>
@@ -4942,7 +4967,8 @@ class _CopyWithStubImpl$Input$ProductListOptions<TRes>
 @JsonSerializable(explicitToJson: true)
 class Input$ProductSortParameter {
   Input$ProductSortParameter(
-      {this.createdAt,
+      {this.catImageUrl,
+      this.createdAt,
       this.description,
       this.id,
       this.name,
@@ -4952,6 +4978,9 @@ class Input$ProductSortParameter {
   @override
   factory Input$ProductSortParameter.fromJson(Map<String, dynamic> json) =>
       _$Input$ProductSortParameterFromJson(json);
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? catImageUrl;
 
   @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
   final Enum$SortOrder? createdAt;
@@ -4973,14 +5002,22 @@ class Input$ProductSortParameter {
 
   Map<String, dynamic> toJson() => _$Input$ProductSortParameterToJson(this);
   int get hashCode {
+    final l$catImageUrl = catImageUrl;
     final l$createdAt = createdAt;
     final l$description = description;
     final l$id = id;
     final l$name = name;
     final l$slug = slug;
     final l$updatedAt = updatedAt;
-    return Object.hashAll(
-        [l$createdAt, l$description, l$id, l$name, l$slug, l$updatedAt]);
+    return Object.hashAll([
+      l$catImageUrl,
+      l$createdAt,
+      l$description,
+      l$id,
+      l$name,
+      l$slug,
+      l$updatedAt
+    ]);
   }
 
   @override
@@ -4988,6 +5025,9 @@ class Input$ProductSortParameter {
     if (identical(this, other)) return true;
     if (!(other is Input$ProductSortParameter) ||
         runtimeType != other.runtimeType) return false;
+    final l$catImageUrl = catImageUrl;
+    final lOther$catImageUrl = other.catImageUrl;
+    if (l$catImageUrl != lOther$catImageUrl) return false;
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (l$createdAt != lOther$createdAt) return false;
@@ -5023,7 +5063,8 @@ abstract class CopyWith$Input$ProductSortParameter<TRes> {
       _CopyWithStubImpl$Input$ProductSortParameter;
 
   TRes call(
-      {Enum$SortOrder? createdAt,
+      {Enum$SortOrder? catImageUrl,
+      Enum$SortOrder? createdAt,
       Enum$SortOrder? description,
       Enum$SortOrder? id,
       Enum$SortOrder? name,
@@ -5042,13 +5083,17 @@ class _CopyWithImpl$Input$ProductSortParameter<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? createdAt = _undefined,
+          {Object? catImageUrl = _undefined,
+          Object? createdAt = _undefined,
           Object? description = _undefined,
           Object? id = _undefined,
           Object? name = _undefined,
           Object? slug = _undefined,
           Object? updatedAt = _undefined}) =>
       _then(Input$ProductSortParameter(
+          catImageUrl: catImageUrl == _undefined
+              ? _instance.catImageUrl
+              : (catImageUrl as Enum$SortOrder?),
           createdAt: createdAt == _undefined
               ? _instance.createdAt
               : (createdAt as Enum$SortOrder?),
@@ -5070,7 +5115,8 @@ class _CopyWithStubImpl$Input$ProductSortParameter<TRes>
   TRes _res;
 
   call(
-          {Enum$SortOrder? createdAt,
+          {Enum$SortOrder? catImageUrl,
+          Enum$SortOrder? createdAt,
           Enum$SortOrder? description,
           Enum$SortOrder? id,
           Enum$SortOrder? name,

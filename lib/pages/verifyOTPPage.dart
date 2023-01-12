@@ -54,7 +54,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                           print('controller code is ${loginPageController.otpController.text} and current code is ${loginPageController.currentlyGivenOTP.value}');
                           if(loginPageController.currentlyGivenOTP.value.toString() == loginPageController.otpController.text.toString()){
                             print('verified');
-                            print('${loginPageController.emailController.text},${loginPageController.phoneNumber.text}, ${loginPageController.firstName.text},${loginPageController.lastName.text}');
+                            print('${loginPageController.phoneNumber.text}, ${loginPageController.firstName.text},${loginPageController.lastName.text}');
                             loginPageController.onUserRegister();
                           }
                         } else {

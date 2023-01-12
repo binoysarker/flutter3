@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/errorMessageComponent.dart';
@@ -139,23 +140,8 @@ class LoginPageState extends State<LoginPage> {
                           ],
                         )),
 
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            controller: loginController.emailController,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Email Address',
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            autofillHints: [AutofillHints.email],
-                            validator: ValidatorDefinition.emailMultiValidator,
-                          ),
-                        ),
                         Visibility(
-                          visible: loginController.showSignIn.isFalse &&
+                          visible:
                               loginController.currentSignInProcessName.value !=
                                   SignInProcessNames.firebase.name,
                           child: Container(
@@ -227,8 +213,7 @@ class LoginPageState extends State<LoginPage> {
                               onPressed: () {
                                 loginController.setCurrentSignInProcess(
                                     SignInProcessNames.normal.name);
-                                if (loginController
-                                        .emailController.text.isEmpty ||
+                                if (
                                     loginController
                                         .passwordController.text.isEmpty) {
                                   UtilService.createSnakeBar(

@@ -137,8 +137,6 @@ class LoginPageController extends GetxController {
     }on Exception catch(e){
       print(e.toString());
     }
-
-
   }
 
   void onUserRegister() async {

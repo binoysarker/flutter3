@@ -996,7 +996,7 @@ type Product implements Node {
     assets: [Asset!]!
     collections: [Collection!]!
     createdAt: DateTime!
-    customFields: JSON
+    customFields: ProductCustomFields
     description: String!
     facetValues: [FacetValue!]!
     featuredAsset: Asset
@@ -1011,6 +1011,10 @@ type Product implements Node {
     variantList(options: ProductVariantListOptions): ProductVariantList!
     "Returns all ProductVariants"
     variants: [ProductVariant!]!
+}
+
+type ProductCustomFields {
+    catImageUrl: String
 }
 
 type ProductList implements PaginatedList {
@@ -2424,6 +2428,7 @@ input BooleanListOperators {
 "Operators for filtering on a Boolean field"
 input BooleanOperators {
     eq: Boolean
+    isNull: Boolean
 }
 
 input CollectionFilterParameter {
@@ -2541,6 +2546,7 @@ input DateOperators {
     before: DateTime
     between: DateRange
     eq: DateTime
+    isNull: Boolean
 }
 
 input DateRange {
@@ -2627,6 +2633,7 @@ input IDListOperators {
 input IDOperators {
     eq: String
     in: [String!]
+    isNull: Boolean
     notEq: String
     notIn: [String!]
 }
@@ -2647,6 +2654,7 @@ input NumberOperators {
     eq: Float
     gt: Float
     gte: Float
+    isNull: Boolean
     lt: Float
     lte: Float
 }
@@ -2717,6 +2725,7 @@ input PaymentInput {
 }
 
 input ProductFilterParameter {
+    catImageUrl: StringOperators
     createdAt: DateOperators
     description: StringOperators
     id: IDOperators
@@ -2740,6 +2749,7 @@ input ProductListOptions {
 }
 
 input ProductSortParameter {
+    catImageUrl: SortOrder
     createdAt: SortOrder
     description: SortOrder
     id: SortOrder
@@ -2825,6 +2835,7 @@ input StringOperators {
     contains: String
     eq: String
     in: [String!]
+    isNull: Boolean
     notContains: String
     notEq: String
     notIn: [String!]

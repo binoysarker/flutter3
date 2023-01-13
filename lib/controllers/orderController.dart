@@ -62,6 +62,16 @@ class OrderController extends GetxController {
   var addPaymentToOrderResponse =
       (null as Mutation$AddPayment$addPaymentToOrder$$Order?).obs;
   var getOrderByCodeResponse = (null as Query$GetOrderByCode$orderByCode?).obs;
+  var smsQuery = {
+    'userid':'1671',
+    'password':'trP2V3o5bhZTK9JM',
+    'sender':'SMSKAI',
+    'to':'9894089302',
+    'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
+    'reqid': '1',
+    'format':'\{json|text\}',
+    'route_id':'3'
+  }.obs;
 
   void getActiveOrders() async {
     isLoading.value = true;
@@ -224,10 +234,20 @@ class OrderController extends GetxController {
             'currency': currencyCode.value,
             'receipt': "receipt#${shippingAddressOrder.value!.code}",
           }));
-      print('createOrderResponse ${res.body}');
-      createOrderResponse.value = createOrderResponseModelFromJson(res.body);
-      PaymentServices.startRazorPay();
+      var jsonData = await jsonDecode(res.body);
+      print(jsonData);
+      if(jsonData['error'] != null){
+        if( jsonData['error']['code'].toString().isNotEmpty){
+          print('error ${res.body}');
+          Get.snackbar('Error', '${jsonData['error']['description']}',colorText: Colors.red);
+        }
+      }else {
+        print('createOrderResponse ${res.body}');
+        createOrderResponse.value = createOrderResponseModelFromJson(res.body);
+        PaymentServices.startRazorPay();
+      }
       isLoading2.value = false;
+
     } on Exception catch (e) {
       print(e.toString());
       isLoading2.value = false;
@@ -306,6 +326,7 @@ class OrderController extends GetxController {
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
                     city: city.text,
+                    province: 'Maharashtra',
                     fullName: fullName.text,
                     postalCode: postalCode.text,
                     phoneNumber: phoneNumber.text))));
@@ -320,6 +341,20 @@ class OrderController extends GetxController {
           as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
       currentStep.value++;
+    }
+  }
+
+  void sendDeliverySms() async{
+    try{
+      smsQuery.value['message'] = 'Your order Id is ${getOrderByCodeResponse.value?.code}, your bill value is Rs.${UtilService.getCurrencySymble(currencyCode.value)}${getOrderByCodeResponse.value?.totalWithTax ?? ''}.you will get delivery soon.By KAAIKANI';
+      smsQuery.value['to'] = '${phoneNumber.text}';
+
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final res = await http.get(url);
+      print('sendDeliverySms ${res.body}');
+
+    }on Exception catch(e){
+      print(e.toString());
     }
   }
 

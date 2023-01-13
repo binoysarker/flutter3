@@ -1139,6 +1139,7 @@ type Query {
     activeOrder: Order
     "An array of supported Countries"
     availableCountries: [Country!]!
+    checkUniquePhone(phone: String!): Boolean!
     "Returns a Collection either by its id or slug. If neither 'id' nor 'slug' is specified, an error will result."
     collection(id: ID, slug: String): Collection
     "A list of Collections available to the shop"

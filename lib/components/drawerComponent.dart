@@ -28,23 +28,27 @@ class _DrawerComponentState extends State<DrawerComponent> {
             decoration: const BoxDecoration(
               color: Colors.lightGreen,
             ),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 20.0,
-                  child: Image(
-                    image: AssetImage('assets/images/avater.jpg'),
-                  ),
+                Row(
+                  children: [
+
+                    Text(
+                      '${currentAuthenticatedUser!.firstName.capitalize} ${currentAuthenticatedUser.lastName.capitalize}',
+                      style: CustomTheme.headerStyle,
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 20.0,
-                ),
-                Text(
-                  '${currentAuthenticatedUser!.emailAddress}',
-                  style: CustomTheme.headerStyle,
+                Row(
+                  children: [
+                    Text('Phone: ',style: CustomTheme.headerStyle,),
+                    Text('${currentAuthenticatedUser.phoneNumber}',style: CustomTheme.paragraphStyle,)
+                  ],
                 )
               ],
             ),
+            
           ),
           ListTile(
             leading: Icon(Icons.logout),

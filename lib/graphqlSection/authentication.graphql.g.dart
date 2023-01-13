@@ -408,6 +408,32 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
+Variables$Query$CheckUniquePhone _$Variables$Query$CheckUniquePhoneFromJson(
+        Map<String, dynamic> json) =>
+    Variables$Query$CheckUniquePhone(
+      phone: json['phone'] as String,
+    );
+
+Map<String, dynamic> _$Variables$Query$CheckUniquePhoneToJson(
+        Variables$Query$CheckUniquePhone instance) =>
+    <String, dynamic>{
+      'phone': instance.phone,
+    };
+
+Query$CheckUniquePhone _$Query$CheckUniquePhoneFromJson(
+        Map<String, dynamic> json) =>
+    Query$CheckUniquePhone(
+      checkUniquePhone: json['checkUniquePhone'] as bool,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$CheckUniquePhoneToJson(
+        Query$CheckUniquePhone instance) =>
+    <String, dynamic>{
+      'checkUniquePhone': instance.checkUniquePhone,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Mutation$VerifyCustomerAccount
     _$Variables$Mutation$VerifyCustomerAccountFromJson(
             Map<String, dynamic> json) =>

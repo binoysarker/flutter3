@@ -2263,6 +2263,308 @@ class _CopyWithStubImpl$Mutation$Register$registerCustomerAccount$$PasswordValid
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Query$CheckUniquePhone {
+  Variables$Query$CheckUniquePhone({required this.phone});
+
+  @override
+  factory Variables$Query$CheckUniquePhone.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Query$CheckUniquePhoneFromJson(json);
+
+  final String phone;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Query$CheckUniquePhoneToJson(this);
+  int get hashCode {
+    final l$phone = phone;
+    return Object.hashAll([l$phone]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Query$CheckUniquePhone) ||
+        runtimeType != other.runtimeType) return false;
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Query$CheckUniquePhone<Variables$Query$CheckUniquePhone>
+      get copyWith => CopyWith$Variables$Query$CheckUniquePhone(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Query$CheckUniquePhone<TRes> {
+  factory CopyWith$Variables$Query$CheckUniquePhone(
+          Variables$Query$CheckUniquePhone instance,
+          TRes Function(Variables$Query$CheckUniquePhone) then) =
+      _CopyWithImpl$Variables$Query$CheckUniquePhone;
+
+  factory CopyWith$Variables$Query$CheckUniquePhone.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$CheckUniquePhone;
+
+  TRes call({String? phone});
+}
+
+class _CopyWithImpl$Variables$Query$CheckUniquePhone<TRes>
+    implements CopyWith$Variables$Query$CheckUniquePhone<TRes> {
+  _CopyWithImpl$Variables$Query$CheckUniquePhone(this._instance, this._then);
+
+  final Variables$Query$CheckUniquePhone _instance;
+
+  final TRes Function(Variables$Query$CheckUniquePhone) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? phone = _undefined}) => _then(
+      Variables$Query$CheckUniquePhone(
+          phone: phone == _undefined || phone == null
+              ? _instance.phone
+              : (phone as String)));
+}
+
+class _CopyWithStubImpl$Variables$Query$CheckUniquePhone<TRes>
+    implements CopyWith$Variables$Query$CheckUniquePhone<TRes> {
+  _CopyWithStubImpl$Variables$Query$CheckUniquePhone(this._res);
+
+  TRes _res;
+
+  call({String? phone}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$CheckUniquePhone {
+  Query$CheckUniquePhone(
+      {required this.checkUniquePhone, required this.$__typename});
+
+  @override
+  factory Query$CheckUniquePhone.fromJson(Map<String, dynamic> json) =>
+      _$Query$CheckUniquePhoneFromJson(json);
+
+  final bool checkUniquePhone;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$CheckUniquePhoneToJson(this);
+  int get hashCode {
+    final l$checkUniquePhone = checkUniquePhone;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$checkUniquePhone, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$CheckUniquePhone) || runtimeType != other.runtimeType)
+      return false;
+    final l$checkUniquePhone = checkUniquePhone;
+    final lOther$checkUniquePhone = other.checkUniquePhone;
+    if (l$checkUniquePhone != lOther$checkUniquePhone) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$CheckUniquePhone on Query$CheckUniquePhone {
+  CopyWith$Query$CheckUniquePhone<Query$CheckUniquePhone> get copyWith =>
+      CopyWith$Query$CheckUniquePhone(this, (i) => i);
+}
+
+abstract class CopyWith$Query$CheckUniquePhone<TRes> {
+  factory CopyWith$Query$CheckUniquePhone(Query$CheckUniquePhone instance,
+          TRes Function(Query$CheckUniquePhone) then) =
+      _CopyWithImpl$Query$CheckUniquePhone;
+
+  factory CopyWith$Query$CheckUniquePhone.stub(TRes res) =
+      _CopyWithStubImpl$Query$CheckUniquePhone;
+
+  TRes call({bool? checkUniquePhone, String? $__typename});
+}
+
+class _CopyWithImpl$Query$CheckUniquePhone<TRes>
+    implements CopyWith$Query$CheckUniquePhone<TRes> {
+  _CopyWithImpl$Query$CheckUniquePhone(this._instance, this._then);
+
+  final Query$CheckUniquePhone _instance;
+
+  final TRes Function(Query$CheckUniquePhone) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? checkUniquePhone = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$CheckUniquePhone(
+          checkUniquePhone:
+              checkUniquePhone == _undefined || checkUniquePhone == null
+                  ? _instance.checkUniquePhone
+                  : (checkUniquePhone as bool),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$CheckUniquePhone<TRes>
+    implements CopyWith$Query$CheckUniquePhone<TRes> {
+  _CopyWithStubImpl$Query$CheckUniquePhone(this._res);
+
+  TRes _res;
+
+  call({bool? checkUniquePhone, String? $__typename}) => _res;
+}
+
+const documentNodeQueryCheckUniquePhone = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'CheckUniquePhone'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'phone')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'checkUniquePhone'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'phone'),
+                  value: VariableNode(name: NameNode(value: 'phone')))
+            ],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$CheckUniquePhone _parserFn$Query$CheckUniquePhone(
+        Map<String, dynamic> data) =>
+    Query$CheckUniquePhone.fromJson(data);
+
+class Options$Query$CheckUniquePhone
+    extends graphql.QueryOptions<Query$CheckUniquePhone> {
+  Options$Query$CheckUniquePhone(
+      {String? operationName,
+      required Variables$Query$CheckUniquePhone variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryCheckUniquePhone,
+            parserFn: _parserFn$Query$CheckUniquePhone);
+}
+
+class WatchOptions$Query$CheckUniquePhone
+    extends graphql.WatchQueryOptions<Query$CheckUniquePhone> {
+  WatchOptions$Query$CheckUniquePhone(
+      {String? operationName,
+      required Variables$Query$CheckUniquePhone variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryCheckUniquePhone,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$CheckUniquePhone);
+}
+
+class FetchMoreOptions$Query$CheckUniquePhone extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$CheckUniquePhone(
+      {required graphql.UpdateQuery updateQuery,
+      required Variables$Query$CheckUniquePhone variables})
+      : super(
+            updateQuery: updateQuery,
+            variables: variables.toJson(),
+            document: documentNodeQueryCheckUniquePhone);
+}
+
+extension ClientExtension$Query$CheckUniquePhone on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$CheckUniquePhone>> query$CheckUniquePhone(
+          Options$Query$CheckUniquePhone options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$CheckUniquePhone> watchQuery$CheckUniquePhone(
+          WatchOptions$Query$CheckUniquePhone options) =>
+      this.watchQuery(options);
+  void writeQuery$CheckUniquePhone(
+          {required Query$CheckUniquePhone data,
+          required Variables$Query$CheckUniquePhone variables,
+          bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryCheckUniquePhone),
+              variables: variables.toJson()),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$CheckUniquePhone? readQuery$CheckUniquePhone(
+      {required Variables$Query$CheckUniquePhone variables,
+      bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryCheckUniquePhone),
+            variables: variables.toJson()),
+        optimistic: optimistic);
+    return result == null ? null : Query$CheckUniquePhone.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$CheckUniquePhone>
+    useQuery$CheckUniquePhone(Options$Query$CheckUniquePhone options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$CheckUniquePhone> useWatchQuery$CheckUniquePhone(
+        WatchOptions$Query$CheckUniquePhone options) =>
+    graphql_flutter.useWatchQuery(options);
+
+class Query$CheckUniquePhone$Widget
+    extends graphql_flutter.Query<Query$CheckUniquePhone> {
+  Query$CheckUniquePhone$Widget(
+      {widgets.Key? key,
+      required Options$Query$CheckUniquePhone options,
+      required graphql_flutter.QueryBuilder<Query$CheckUniquePhone> builder})
+      : super(key: key, options: options, builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$VerifyCustomerAccount {
   Variables$Mutation$VerifyCustomerAccount(
       {required this.token, this.password});

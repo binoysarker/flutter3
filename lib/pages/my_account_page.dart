@@ -355,18 +355,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Email:',
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                Text(
-                                  '${userController.currentAuthenticatedUser.value!.emailAddress}',
-                                  style: CustomTheme.paragraphStyle,
-                                ),
-                              ],
-                            ),
+
                             Row(
                               children: [
                                 Text(

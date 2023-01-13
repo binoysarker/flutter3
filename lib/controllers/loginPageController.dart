@@ -124,6 +124,26 @@ class LoginPageController extends GetxController {
       utilityController.setLoadingState(false);
     }
   }
+  void checkUniquePhone(String phone) async{
+    try {
+      print('phone $phone');
+      final res = await graphqlService.clientToQuery().query$CheckUniquePhone(Options$Query$CheckUniquePhone(variables: Variables$Query$CheckUniquePhone(phone: phone)));
+      if(res.hasException){
+        print(res.exception.toString());
+      }
+      if(res.data != null){
+        // true means it is unique and false means it is not unique
+        print(res.parsedData?.checkUniquePhone);
+        if(res.parsedData!.checkUniquePhone){
+          sendOtpToUser();
+        }else {
+          Get.snackbar('Error', 'This Phone is already used',colorText: Colors.white,backgroundColor: Colors.red);
+        }
+      }
+    }on Exception catch(e){
+      print(e.toString());
+    }
+  }
   void sendOtpToUser() async{
     try{
       generateRandomDigit();
@@ -135,6 +155,19 @@ class LoginPageController extends GetxController {
       final res = await http.get(url);
       print('${res.body}');
       Get.to(() => VerifyOTPPage());
+    }on Exception catch(e){
+      print(e.toString());
+    }
+  }
+
+  void sendRegistrationSuccessSms() async{
+    try{
+      smsQuery.value['message'] = 'Thank you for registering in KAAIKANI app.you can proceed to order in KAAIKANI app';
+      smsQuery.value['to'] = '${phoneNumber.text}';
+
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final res = await http.get(url);
+      print('${res.body}');
     }on Exception catch(e){
       print(e.toString());
     }
@@ -166,6 +199,7 @@ class LoginPageController extends GetxController {
         utilityController.setAlertMessage(false, '');
         utilityController.setLoadingState(false);
         Get.snackbar('', 'Registered Successfully', backgroundColor: Colors.greenAccent);
+        sendRegistrationSuccessSms();
         showSignIn.value = true;
         Get.to(() => RegisterSuccessPage());
 

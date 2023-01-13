@@ -8,10 +8,16 @@ import 'package:recipe.app/themes.dart';
 import '../services/commonVariables.dart';
 import '../services/util_service.dart';
 
-class InvoiceComponent extends StatelessWidget {
+class InvoiceComponent extends StatefulWidget {
+
   InvoiceComponent({Key? key, required this.orderController}) : super(key: key);
   OrderController orderController;
 
+  @override
+  State<InvoiceComponent> createState() => _InvoiceComponentState();
+}
+
+class _InvoiceComponentState extends State<InvoiceComponent> {
 
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
@@ -23,8 +29,16 @@ class InvoiceComponent extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      widget.orderController.sendDeliverySms();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Obx(() => orderController.getOrderByCodeResponse.value == null
+    return Obx(() => widget.orderController.getOrderByCodeResponse.value == null
         ? Center(
       child: CircularProgressIndicator(),
     )
@@ -44,7 +58,7 @@ class InvoiceComponent extends StatelessWidget {
               children: [
                 Text('Order code: '),
                 Text(
-                  orderController.getOrderByCodeResponse.value?.code ?? '',
+                  widget.orderController.getOrderByCodeResponse.value?.code ?? '',
                   style: CustomTheme.headerStyle,
                 )
               ],
@@ -56,7 +70,7 @@ class InvoiceComponent extends StatelessWidget {
               children: [
                 Text('Placed: '),
                 Text(
-                  getFormatedString(orderController.getOrderByCodeResponse.value?.updatedAt ?? ''),
+                  getFormatedString(widget.orderController.getOrderByCodeResponse.value?.updatedAt ?? ''),
                   style: CustomTheme.headerStyle,
                 )
               ],
@@ -71,7 +85,7 @@ class InvoiceComponent extends StatelessWidget {
           ),
           Container(
             child: Column(
-              children: orderController
+              children: widget.orderController
                   .getOrderByCodeResponse.value!.lines
                   .map((element) => Container(
                 width: double.infinity,
@@ -100,7 +114,7 @@ class InvoiceComponent extends StatelessWidget {
                       ],
                     ),
                     Text(
-                        '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.linePriceWithTax}'),
+                        '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${element.linePriceWithTax}'),
                   ],
                 ),
               ))
@@ -120,12 +134,12 @@ class InvoiceComponent extends StatelessWidget {
           ),
           Container(
             child: Column(
-              children: orderController
+              children: widget.orderController
                   .getOrderByCodeResponse.value!.shippingLines
                   .map((element) => ListTile(
                 title: Text(element.shippingMethod.name),
                 trailing: Text(
-                    '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.priceWithTax}'),
+                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${element.priceWithTax}'),
               ))
                   .toList(),
             ),
@@ -150,7 +164,7 @@ class InvoiceComponent extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
-                  '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.getOrderByCodeResponse.value?.totalWithTax ?? ''}',
+                  '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${widget.orderController.getOrderByCodeResponse.value?.totalWithTax ?? ''}',
                   style: CustomTheme.headerStyle,
                 ),
               ),

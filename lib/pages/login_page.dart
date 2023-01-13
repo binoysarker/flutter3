@@ -223,7 +223,7 @@ class LoginPageState extends State<LoginPage> {
                                   if (loginController.showSignIn.isTrue) {
                                     loginController.onUserSignIn(context);
                                   } else {
-                                    loginController.sendOtpToUser();
+                                    loginController.checkUniquePhone(loginController.phoneNumber.text);
                                   }
                                 }
                               },

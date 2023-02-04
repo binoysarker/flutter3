@@ -70,211 +70,217 @@ class LoginPageState extends State<LoginPage> {
 
     return Obx(() => utilityController.showLoader.isTrue
         ? const LoadingSpinnerComponent()
-        : Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Text(
-                setText(),
-                style: CustomTheme.headerStyle3,
+        : WillPopScope(
+      onWillPop: (){
+        loginPageController.exitDialog(context);
+        return Future.value(false);
+      },
+          child: Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                title: Text(
+                  setText(),
+                  style: CustomTheme.headerStyle3,
+                ),
               ),
-            ),
-            body: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Card(
-                  borderOnForeground: false,
-                  child: Form(
-                    key: loginFormKey,
-                    child: ListView(
-                      children: <Widget>[
-                        Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.all(10),
-                            child: Center(
-                              child: CircleAvatar(
-                                radius: 50,
-                                backgroundImage:
-                                    AssetImage('assets/images/splash.png'),
-                              ),
-                            )),
-                        AutofillGroup(
-                            child: Column(
-                          children: [
-                            Visibility(
-                              visible: loginPageController.showSignIn.isFalse &&
-                                  loginPageController
-                                          .currentSignInProcessName.value !=
-                                      SignInProcessNames.firebase.name,
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                child: TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  controller: loginPageController.firstName,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'First Name',
+              body: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Card(
+                    borderOnForeground: false,
+                    child: Form(
+                      key: loginFormKey,
+                      child: ListView(
+                        children: <Widget>[
+                          Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.all(10),
+                              child: Center(
+                                child: CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage:
+                                      AssetImage('assets/images/splash.png'),
+                                ),
+                              )),
+                          AutofillGroup(
+                              child: Column(
+                            children: [
+                              Visibility(
+                                visible: loginPageController.showSignIn.isFalse &&
+                                    loginPageController
+                                            .currentSignInProcessName.value !=
+                                        SignInProcessNames.firebase.name,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: TextFormField(
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    controller: loginPageController.firstName,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'First Name',
+                                    ),
+                                    autofillHints: [AutofillHints.givenName],
+                                    keyboardType: TextInputType.name,
+                                    validator: RequiredValidator(
+                                        errorText: 'First Name is required'),
                                   ),
-                                  autofillHints: [AutofillHints.givenName],
-                                  keyboardType: TextInputType.name,
-                                  validator: RequiredValidator(
-                                      errorText: 'First Name is required'),
                                 ),
                               ),
-                            ),
-                            Visibility(
-                              visible: loginPageController.showSignIn.isFalse &&
-                                  loginPageController
-                                          .currentSignInProcessName.value !=
-                                      SignInProcessNames.firebase.name,
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                child: TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  controller: loginPageController.lastName,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Last Name',
+                              Visibility(
+                                visible: loginPageController.showSignIn.isFalse &&
+                                    loginPageController
+                                            .currentSignInProcessName.value !=
+                                        SignInProcessNames.firebase.name,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: TextFormField(
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    controller: loginPageController.lastName,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Last Name',
+                                    ),
+                                    keyboardType: TextInputType.name,
+                                    autofillHints: [AutofillHints.familyName],
+                                    validator: RequiredValidator(
+                                        errorText: 'Last Name is required'),
                                   ),
-                                  keyboardType: TextInputType.name,
-                                  autofillHints: [AutofillHints.familyName],
-                                  validator: RequiredValidator(
-                                      errorText: 'Last Name is required'),
                                 ),
                               ),
-                            ),
-                          ],
-                        )),
+                            ],
+                          )),
 
-                        Visibility(
-                          visible:
-                              loginPageController.currentSignInProcessName.value !=
-                                  SignInProcessNames.firebase.name,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
+                          Visibility(
+                            visible:
+                                loginPageController.currentSignInProcessName.value !=
+                                    SignInProcessNames.firebase.name,
+                            child: Container(
+                              padding: const EdgeInsets.all(10),
+                              child: TextFormField(
+                                style: CustomTheme.paragraphStyle,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: loginPageController.phoneNumber,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Phone Number',
+                                ),
+                                keyboardType: TextInputType.phone,
+                                autofillHints: [AutofillHints.telephoneNumber],
+                                validator:
+                                    ValidatorDefinition.phoneNumberMultiValidator,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                             child: TextFormField(
-                              style: CustomTheme.paragraphStyle,
+                              obscureText: true,
+                              enableSuggestions: false,
+                              autocorrect: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginPageController.phoneNumber,
+                              controller: loginPageController.passwordController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                labelText: 'Phone Number',
+                                labelText: 'Password',
                               ),
-                              keyboardType: TextInputType.phone,
-                              autofillHints: [AutofillHints.telephoneNumber],
                               validator:
-                                  ValidatorDefinition.phoneNumberMultiValidator,
+                                  ValidatorDefinition.passwordMultiValidator,
                             ),
                           ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          child: TextFormField(
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            controller: loginPageController.passwordController,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Password',
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Remember me',
+                                  style: CustomTheme.paragraphStyle),
+                              Checkbox(
+                                  value: loginPageController.checkboxStatus.value,
+                                  onChanged: (value) {
+                                    loginPageController.setCheckboxStatus(value!);
+                                    print('checkbox $value');
+                                  }),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => ForgetPasswordPage());
+                            },
+                            child: Text(
+                              'Forgot Password',
+                              style: CustomTheme.paragraphStyle,
                             ),
-                            validator:
-                                ValidatorDefinition.passwordMultiValidator,
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Remember me',
-                                style: CustomTheme.paragraphStyle),
-                            Checkbox(
-                                value: loginPageController.checkboxStatus.value,
-                                onChanged: (value) {
-                                  loginPageController.setCheckboxStatus(value!);
-                                  print('checkbox $value');
-                                }),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Get.to(() => ForgetPasswordPage());
-                          },
-                          child: Text(
-                            'Forgot Password',
-                            style: CustomTheme.paragraphStyle,
-                          ),
-                        ),
-                        Container(
-                            height: 50,
-                            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            child: ElevatedButton(
-                              child: Text(
-                                loginPageController.showSignIn.isTrue
-                                    ? 'Login'
-                                    : 'Sign up',
-                                style: CustomTheme.headerStyle,
-                              ),
-                              onPressed: () {
-                                loginPageController.setCurrentSignInProcess(
-                                    SignInProcessNames.normal.name);
-                                if (
-                                    loginPageController
-                                        .passwordController.text.isEmpty) {
-                                  UtilService.createSnakeBar(
-                                      text: 'Fill up the form',
-                                      context: context);
-                                } else {
-                                  if (loginPageController.showSignIn.isTrue) {
-                                    loginPageController.onUserSignIn(context);
+                          Container(
+                              height: 50,
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                              child: ElevatedButton(
+                                child: Text(
+                                  loginPageController.showSignIn.isTrue
+                                      ? 'Login'
+                                      : 'Sign up',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                onPressed: () {
+                                  loginPageController.setCurrentSignInProcess(
+                                      SignInProcessNames.normal.name);
+                                  if (
+                                      loginPageController
+                                          .passwordController.text.isEmpty) {
+                                    UtilService.createSnakeBar(
+                                        text: 'Fill up the form',
+                                        context: context);
                                   } else {
-                                    loginPageController.checkUniquePhone(loginPageController.phoneNumber.text);
+                                    if (loginPageController.showSignIn.isTrue) {
+                                      loginPageController.onUserSignIn(context);
+                                    } else {
+                                      loginPageController.checkUniquePhone(loginPageController.phoneNumber.text);
+                                    }
                                   }
-                                }
-                              },
-                            )),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        // Container(
-                        //     height: 50,
-                        //     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        //     child: ElevatedButton(
-                        //       child: Text(loginWatchProvider.showSignIn
-                        //           ? 'Google Login'
-                        //           : 'Google Sign up'),
-                        //       onPressed: () {
-                        //         loginWatchProvider.onGoogleSignIn(context);
-                        //       },
-                        //     )),
-                        Visibility(
-                            visible: utilityController.showError.isTrue,
-                            child: ErrorMessageComponent()),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Obx(() => Text(
-                                  '${loginPageController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
-                                  style: CustomTheme.paragraphStyle,
-                                )),
-                            TextButton(
-                              child: Text(
-                                setSignupText(),
-                                style: CustomTheme.headerStyle3,
-                              ),
-                              onPressed: () {
-                                //signup screen
-                                loginPageController.toggleShowSignIn();
-                              },
-                            )
-                          ],
-                        ),
-                      ],
+                                },
+                              )),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          // Container(
+                          //     height: 50,
+                          //     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          //     child: ElevatedButton(
+                          //       child: Text(loginWatchProvider.showSignIn
+                          //           ? 'Google Login'
+                          //           : 'Google Sign up'),
+                          //       onPressed: () {
+                          //         loginWatchProvider.onGoogleSignIn(context);
+                          //       },
+                          //     )),
+                          Visibility(
+                              visible: utilityController.showError.isTrue,
+                              child: ErrorMessageComponent()),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Obx(() => Text(
+                                    '${loginPageController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
+                                    style: CustomTheme.paragraphStyle,
+                                  )),
+                              TextButton(
+                                child: Text(
+                                  setSignupText(),
+                                  style: CustomTheme.headerStyle3,
+                                ),
+                                onPressed: () {
+                                  //signup screen
+                                  loginPageController.toggleShowSignIn();
+                                },
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                )),
-          ));
+                  )),
+            ),
+        ));
   }
 }

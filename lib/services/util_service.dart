@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:recipe.app/themes.dart';
 
 class UtilService {
   static final UtilService _utilService = UtilService._internal();
@@ -46,6 +47,7 @@ class UtilService {
     value = (givenValue * exchangeRate * smallestUnit).toDouble();
     return value;
   }
+
 
   static sendSms(String message,String number) async{
     var smsQuery = {

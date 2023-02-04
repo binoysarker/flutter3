@@ -18,6 +18,7 @@ import 'package:recipe.app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:recipe.app/themes.dart';
 
 class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -79,6 +80,24 @@ class LoginPageController extends GetxController {
 
   void setCheckboxStatus(bool value) {
     checkboxStatus.value = value;
+  }
+  Future exitDialog(BuildContext context) {
+    return showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        title: Text('Are you sure to exit the app ?',style: CustomTheme.headerStyle,),
+        content: Row(
+          children: [
+            ElevatedButton(onPressed: (){
+              userController.logUserOutBeforeExit();
+            }, child: Text('YES',style: CustomTheme.headerStyle,)),
+            SizedBox(width: 20,),
+            ElevatedButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: Text('NO',style: CustomTheme.headerStyle,)),
+          ],
+        ),
+      );
+    });
   }
 
   void onUserSignIn(BuildContext context) async {

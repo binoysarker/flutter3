@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
@@ -32,6 +33,24 @@ class UserController with ChangeNotifier {
     }
   }
 
+
+  void logUserOutBeforeExit() async {
+    isLoading2.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$LogoutUser(Options$Mutation$LogoutUser());
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      isLoading2.value = false;
+    }
+    if (res.data != null) {
+      print('${res.parsedData!.logout.toJson()}');
+      if (res.parsedData!.logout.success) {
+        isLoading2.value = false;
+        SystemNavigator.pop();
+      }
+    }
+  }
   void onUserLogout() async {
     isLoading2.value = true;
     final res = await graphqlService

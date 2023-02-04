@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:recipe.app/components/errorMessageComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
+import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/pages/forgetPasswordPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
@@ -21,25 +22,29 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   final loginFormKey = GlobalKey<FormState>();
-  final loginController = Get.find<LoginPageController>();
+  final loginPageController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      loginPageController.resetFormField();
+    });
+
   }
 
   @override
   Widget build(BuildContext context) {
     String setText() {
       String text = '';
-      if (loginController.showSignIn.value) {
-        text = loginController.currentSignInProcessName ==
+      if (loginPageController.showSignIn.value) {
+        text = loginPageController.currentSignInProcessName ==
                 SignInProcessNames.firebase.name
             ? 'Google Login'
             : 'Login';
       } else {
-        text = loginController.currentSignInProcessName ==
+        text = loginPageController.currentSignInProcessName ==
                 SignInProcessNames.firebase.name
             ? 'Google Sign up'
             : 'Sign up';
@@ -49,13 +54,13 @@ class LoginPageState extends State<LoginPage> {
 
     String setSignupText() {
       String text = '';
-      if (loginController.showSignIn.value) {
-        text = loginController.currentSignInProcessName ==
+      if (loginPageController.showSignIn.value) {
+        text = loginPageController.currentSignInProcessName ==
                 SignInProcessNames.firebase.name
             ? 'Google Sign up'
             : 'Sign up';
       } else {
-        text = loginController.currentSignInProcessName ==
+        text = loginPageController.currentSignInProcessName ==
                 SignInProcessNames.firebase.name
             ? 'Google Login'
             : 'Login';
@@ -67,6 +72,7 @@ class LoginPageState extends State<LoginPage> {
         ? const LoadingSpinnerComponent()
         : Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Text(
                 setText(),
                 style: CustomTheme.headerStyle3,
@@ -94,8 +100,8 @@ class LoginPageState extends State<LoginPage> {
                             child: Column(
                           children: [
                             Visibility(
-                              visible: loginController.showSignIn.isFalse &&
-                                  loginController
+                              visible: loginPageController.showSignIn.isFalse &&
+                                  loginPageController
                                           .currentSignInProcessName.value !=
                                       SignInProcessNames.firebase.name,
                               child: Container(
@@ -103,7 +109,7 @@ class LoginPageState extends State<LoginPage> {
                                 child: TextFormField(
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  controller: loginController.firstName,
+                                  controller: loginPageController.firstName,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'First Name',
@@ -116,8 +122,8 @@ class LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             Visibility(
-                              visible: loginController.showSignIn.isFalse &&
-                                  loginController
+                              visible: loginPageController.showSignIn.isFalse &&
+                                  loginPageController
                                           .currentSignInProcessName.value !=
                                       SignInProcessNames.firebase.name,
                               child: Container(
@@ -125,7 +131,7 @@ class LoginPageState extends State<LoginPage> {
                                 child: TextFormField(
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
-                                  controller: loginController.lastName,
+                                  controller: loginPageController.lastName,
                                   decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     labelText: 'Last Name',
@@ -142,14 +148,15 @@ class LoginPageState extends State<LoginPage> {
 
                         Visibility(
                           visible:
-                              loginController.currentSignInProcessName.value !=
+                              loginPageController.currentSignInProcessName.value !=
                                   SignInProcessNames.firebase.name,
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             child: TextFormField(
+                              style: CustomTheme.paragraphStyle,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginController.phoneNumber,
+                              controller: loginPageController.phoneNumber,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Phone Number',
@@ -169,7 +176,7 @@ class LoginPageState extends State<LoginPage> {
                             autocorrect: false,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            controller: loginController.passwordController,
+                            controller: loginPageController.passwordController,
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Password',
@@ -184,9 +191,9 @@ class LoginPageState extends State<LoginPage> {
                             Text('Remember me',
                                 style: CustomTheme.paragraphStyle),
                             Checkbox(
-                                value: loginController.checkboxStatus.value,
+                                value: loginPageController.checkboxStatus.value,
                                 onChanged: (value) {
-                                  loginController.setCheckboxStatus(value!);
+                                  loginPageController.setCheckboxStatus(value!);
                                   print('checkbox $value');
                                 }),
                           ],
@@ -205,25 +212,25 @@ class LoginPageState extends State<LoginPage> {
                             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                             child: ElevatedButton(
                               child: Text(
-                                loginController.showSignIn.isTrue
+                                loginPageController.showSignIn.isTrue
                                     ? 'Login'
                                     : 'Sign up',
                                 style: CustomTheme.headerStyle,
                               ),
                               onPressed: () {
-                                loginController.setCurrentSignInProcess(
+                                loginPageController.setCurrentSignInProcess(
                                     SignInProcessNames.normal.name);
                                 if (
-                                    loginController
+                                    loginPageController
                                         .passwordController.text.isEmpty) {
                                   UtilService.createSnakeBar(
                                       text: 'Fill up the form',
                                       context: context);
                                 } else {
-                                  if (loginController.showSignIn.isTrue) {
-                                    loginController.onUserSignIn(context);
+                                  if (loginPageController.showSignIn.isTrue) {
+                                    loginPageController.onUserSignIn(context);
                                   } else {
-                                    loginController.checkUniquePhone(loginController.phoneNumber.text);
+                                    loginPageController.checkUniquePhone(loginPageController.phoneNumber.text);
                                   }
                                 }
                               },
@@ -249,7 +256,7 @@ class LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Obx(() => Text(
-                                  '${loginController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
+                                  '${loginPageController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
                                   style: CustomTheme.paragraphStyle,
                                 )),
                             TextButton(
@@ -259,7 +266,7 @@ class LoginPageState extends State<LoginPage> {
                               ),
                               onPressed: () {
                                 //signup screen
-                                loginController.toggleShowSignIn();
+                                loginPageController.toggleShowSignIn();
                               },
                             )
                           ],

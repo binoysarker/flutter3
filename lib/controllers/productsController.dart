@@ -55,7 +55,8 @@ class ProductsController extends GetxController {
     selectedDropdownItemId.value = data;
     selectedProductDetail.value = productDetailVariants
         .firstWhere((element) => element.id == data);
-    basePrice.value = selectedProductDetail.value!.price;
+    print('updated product detail ${selectedProductDetail.value?.toJson()}');
+    basePrice.value = selectedProductDetail.value!.priceWithTax;
     updatedPrice.value = basePrice.value;
   }
 

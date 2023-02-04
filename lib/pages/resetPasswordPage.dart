@@ -42,10 +42,10 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                       controller: loginPageController.tokenController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Token',
+                        labelText: 'Code',
                       ),
                       validator: RequiredValidator(
-                          errorText: 'Token field is required'),
+                          errorText: 'Code field is required'),
                     ),
                   ),
                   Padding(
@@ -68,9 +68,7 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                       onPressed: () {
                         if (resetPasswordForm.currentState!.validate()) {
                           print('validated');
-                          loginPageController.resetUserPassword(
-                              loginPageController.passwordController.text,
-                              loginPageController.tokenController.text);
+                          loginPageController.resetUserPassword();
                         } else {
                           print('not validated');
                           Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);

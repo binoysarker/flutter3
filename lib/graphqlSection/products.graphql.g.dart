@@ -704,6 +704,10 @@ Query$GetProductDetail$product$variants
                   Query$GetProductDetail$product$variants$options.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
           price: json['price'] as int,
           priceWithTax: json['priceWithTax'] as int,
           currencyCode: $enumDecode(
@@ -727,6 +731,7 @@ Map<String, dynamic> _$Query$GetProductDetail$product$variantsToJson(
       'id': instance.id,
       'name': instance.name,
       'options': instance.options.map((e) => e.toJson()).toList(),
+      'featuredAsset': instance.featuredAsset?.toJson(),
       'price': instance.price,
       'priceWithTax': instance.priceWithTax,
       'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,

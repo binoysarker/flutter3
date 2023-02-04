@@ -113,9 +113,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   final form = shippingAddressFormKey.currentState!;
                   if (form.validate()) {
                     print('validated');
-                    if(orderController.hasCouponCode.isTrue) orderController.applyCouponCode(orderController.couponCode.text);
+                    if(orderController.hasCouponCode.isTrue){
+                      var res = orderController.applyCouponCode(orderController.couponCode.text);
+                      res.then((value){
+                        print(value);
+                        if(value) {
+                          orderController.setShippingAddress();
+                          orderController.setShippingMethod();
+                        }
+                      });
+                    }else {
                     orderController.setShippingAddress();
                     orderController.setShippingMethod();
+                    }
 
                   } else {
                     print('invalid');
@@ -156,7 +166,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   orderController.currentStep.value != 2
                       ? ElevatedButton(
                           onPressed: details.onStepCancel,
-                          child: Text('Cancel'))
+                          child: Text('Cancel',style: CustomTheme.headerStyle,))
                       : SizedBox(),
                 ],
               ),

@@ -38,6 +38,7 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
                 product {
                     id
                     name
+                    slug
                 }
             }
         }

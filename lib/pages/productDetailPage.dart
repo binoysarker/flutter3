@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  dynamic routerArguments = Get.arguments;
+  var routerArguments = Get.arguments;
 
   ProductDetailPage({Key? key}) : super(key: key);
 
@@ -28,7 +28,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      productsController.getProductDetail(widget.routerArguments['slug']!);
+      print('arguments ${widget.routerArguments}');
+      productsController.getProductDetail( widget.routerArguments['slug']);
       productsController.quantityController.text =
           productsController.currentQuantity.value.toString();
     });
@@ -36,14 +37,20 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   String getImage() {
     String url = '';
+          print('get image ${productsController.selectedProductDetail.value!.toJson()}');
     if(productsController.selectedProductDetail.value!.assets.isNotEmpty){
-        url = productsController.selectedProductDetail.value?.assets.first.preview ?? '';
+        if(productsController.selectedProductDetail.value?.assets != null){
+          url = productsController.selectedProductDetail.value!.assets.first.preview;
+        }else {
+          var item = productsController.selectedProductDetail.value?.toJson();
+          print('other item $item');
+        }
     }
     return url;
   }
 
   String getPrice() {
-    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${productsController.updatedPrice.value}';
+    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
   }
 
   @override

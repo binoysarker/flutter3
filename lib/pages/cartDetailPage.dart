@@ -81,14 +81,22 @@ class _CartDetailPageState extends State<CartDetailPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Cart Detail'),
+        title: Text(
+          'Cart Detail',
+          style: CustomTheme.headerStyle2,
+        ),
         actions: [
           IconButton(
               onPressed: () {
                 Get.defaultDialog(
                     title: 'Warning',
                     content: Column(
-                      children: [Text('Are you sure to delete all items')],
+                      children: [
+                        Text(
+                          'Are you sure to delete all items',
+                          style: CustomTheme.headerStyle,
+                        )
+                      ],
                     ),
                     actions: [
                       TextButton(
@@ -103,7 +111,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
               icon: Icon(Icons.remove_shopping_cart_outlined))
         ],
       ),
-      body: Obx(() => orderController.activeOrderResponse.value!.lines.isEmpty
+      body: Obx(() => orderController.activeOrderResponse.value == null
           ? Card(
               child: Container(
                 child: Center(
@@ -114,12 +122,18 @@ class _CartDetailPageState extends State<CartDetailPage> {
                         'No Items are in Cart',
                         style: CustomTheme.headerStyle,
                       ),
-                      Text('Please add an Item'),
+                      Text(
+                        'Please add an Item',
+                        style: CustomTheme.paragraphStyle,
+                      ),
                       TextButton(
                           onPressed: () {
                             Get.offNamedUntil('home', (route) => route.isFirst);
                           },
-                          child: Text('Go To Home'))
+                          child: Text(
+                            'Go To Home',
+                            style: CustomTheme.headerStyle,
+                          ))
                     ],
                   ),
                 ),
@@ -141,58 +155,61 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                     '${CommonVariableData.placeholder}'),
                           ),
                           title: Text(
-                              '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}',style: CustomTheme.headerStyle,),
+                            '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}',
+                            style: CustomTheme.headerStyle,
+                          ),
                           subtitle: userController.currentAuthenticatedUser
                                   .value!.orders.items.isNotEmpty
                               ? Text(
-                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${orderController.activeOrderResponse.value!.lines[index].linePriceWithTax}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
                                   style: CustomTheme.headerStyle,
                                 )
                               : Text(''),
-                          trailing: Obx(() => cartController.isLoading.isTrue || orderController.isLoading.isTrue
+                          trailing: Obx(() => cartController.isLoading.isTrue ||
+                                  orderController.isLoading.isTrue
                               ? SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: CircularProgressIndicator(
-                              color: CustomTheme.progressIndicatorColor,
-                            ),
-                          )
+                                  width: 30,
+                                  height: 30,
+                                  child: CircularProgressIndicator(
+                                    color: CustomTheme.progressIndicatorColor,
+                                  ),
+                                )
                               : Wrap(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  var item = orderController
-                                      .activeOrderResponse
-                                      .value!
-                                      .lines[index];
-                                  cartController.addItemToCart(
-                                      item.productVariant.id, 1);
-                                },
-                                icon: Icon(Icons.add_circle_outline),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  var item = orderController
-                                      .activeOrderResponse
-                                      .value!
-                                      .lines[index];
-                                  cartController.adjustCartItem(
-                                      item.id, item.quantity - 1);
-                                },
-                                icon: Icon(Icons.remove_circle_outline),
-                              ),
-                              IconButton(
-                                  onPressed: () {
-                                    var item = orderController
-                                        .activeOrderResponse
-                                        .value!
-                                        .lines[index];
-                                    orderController
-                                        .removeItemFromOrder(item.id);
-                                  },
-                                  icon: Icon(Icons.delete_outline)),
-                            ],
-                          )),
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        var item = orderController
+                                            .activeOrderResponse
+                                            .value!
+                                            .lines[index];
+                                        cartController.addItemToCart(
+                                            item.productVariant.id, 1);
+                                      },
+                                      icon: Icon(Icons.add_circle_outline),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        var item = orderController
+                                            .activeOrderResponse
+                                            .value!
+                                            .lines[index];
+                                        cartController.adjustCartItem(
+                                            item.id, item.quantity - 1);
+                                      },
+                                      icon: Icon(Icons.remove_circle_outline),
+                                    ),
+                                    IconButton(
+                                        onPressed: () {
+                                          var item = orderController
+                                              .activeOrderResponse
+                                              .value!
+                                              .lines[index];
+                                          orderController
+                                              .removeItemFromOrder(item.id);
+                                        },
+                                        icon: Icon(Icons.delete_outline)),
+                                  ],
+                                )),
                         ),
                       ),
                   itemCount:
@@ -203,7 +220,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
         onPressed: () {
           Get.to(() => CheckoutPage());
         },
-        label: Text('Checkout'),
+        label: Text(
+          'Checkout',
+          style: CustomTheme.headerStyle,
+        ),
         icon: Icon(Icons.card_travel),
       ),
     ));

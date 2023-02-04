@@ -6,24 +6,24 @@ CustomTheme currentTheme = CustomTheme();
 class CustomTheme with ChangeNotifier {
   static bool _isDarkTheme = false;
 
-  static TextStyle paragraphStyle = GoogleFonts.raleway(
+  static TextStyle paragraphStyle = GoogleFonts.openSans(
     fontWeight: FontWeight.normal
   );
 
-  static TextStyle headerStyle = GoogleFonts.raleway(
+  static TextStyle headerStyle = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,
       fontSize: 15
   );
-  static TextStyle headerStyle4 = GoogleFonts.raleway(
+  static TextStyle headerStyle4 = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,
       fontSize: 15,
       color: Colors.red
   );
-  static TextStyle headerStyle3 = GoogleFonts.raleway(
+  static TextStyle headerStyle3 = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,
       fontSize: 18
   );
-  static TextStyle headerStyle2 = GoogleFonts.raleway(
+  static TextStyle headerStyle2 = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,
       fontSize: 18,
       color: Colors.white
@@ -42,15 +42,18 @@ class CustomTheme with ChangeNotifier {
   static get lightTheme {
     return ThemeData(
       primaryColor: Colors.green,
-      textTheme: GoogleFonts.ralewayTextTheme(),
+      inputDecorationTheme: InputDecorationTheme(
+        labelStyle: paragraphStyle,
+        counterStyle: paragraphStyle
+      ),
+      textTheme: GoogleFonts.openSansTextTheme(),
       buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
       colorScheme: ColorScheme.light(primary: Colors.lightGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green),
           )
-      ),
-      backgroundColor: Colors.lightGreen,
+      ), backgroundColor: Colors.lightGreen,
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.lightGreen,
         elevation: 0.0,
@@ -81,7 +84,7 @@ class CustomTheme with ChangeNotifier {
   static get darkTheme {
     return ThemeData(
       primaryColor: Colors.black,
-      textTheme: GoogleFonts.ralewayTextTheme(),
+      textTheme: GoogleFonts.openSansTextTheme(),
       buttonTheme: ButtonThemeData(buttonColor: Colors.lightGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(

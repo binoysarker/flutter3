@@ -6191,6 +6191,12 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
                                 FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
                                     name: NameNode(value: 'currencyCode'),
                                     alias: null,
                                     arguments: [],
@@ -6208,6 +6214,12 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                                     arguments: [],
                                     directives: [],
                                     selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(value: 'id'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
                                       FieldNode(
                                           name:
                                               NameNode(value: 'productVariant'),
@@ -7305,7 +7317,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders<TRes>
 @JsonSerializable(explicitToJson: true)
 class Query$GetActiveCustomer$activeCustomer$orders$items {
   Query$GetActiveCustomer$activeCustomer$orders$items(
-      {required this.currencyCode,
+      {required this.id,
+      required this.currencyCode,
       this.orderPlacedAt,
       required this.lines,
       required this.active,
@@ -7325,6 +7338,8 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
   factory Query$GetActiveCustomer$activeCustomer$orders$items.fromJson(
           Map<String, dynamic> json) =>
       _$Query$GetActiveCustomer$activeCustomer$orders$itemsFromJson(json);
+
+  final String id;
 
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
@@ -7365,6 +7380,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
   Map<String, dynamic> toJson() =>
       _$Query$GetActiveCustomer$activeCustomer$orders$itemsToJson(this);
   int get hashCode {
+    final l$id = id;
     final l$currencyCode = currencyCode;
     final l$orderPlacedAt = orderPlacedAt;
     final l$lines = lines;
@@ -7381,6 +7397,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     final l$totalWithTax = totalWithTax;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$currencyCode,
       l$orderPlacedAt,
       Object.hashAll(l$lines.map((v) => v)),
@@ -7404,6 +7421,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     if (identical(this, other)) return true;
     if (!(other is Query$GetActiveCustomer$activeCustomer$orders$items) ||
         runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
     final l$currencyCode = currencyCode;
     final lOther$currencyCode = other.currencyCode;
     if (l$currencyCode != lOther$currencyCode) return false;
@@ -7509,7 +7529,8 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items;
 
   TRes call(
-      {Enum$CurrencyCode? currencyCode,
+      {String? id,
+      Enum$CurrencyCode? currencyCode,
       String? orderPlacedAt,
       List<Query$GetActiveCustomer$activeCustomer$orders$items$lines>? lines,
       bool? active,
@@ -7572,7 +7593,8 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? currencyCode = _undefined,
+          {Object? id = _undefined,
+          Object? currencyCode = _undefined,
           Object? orderPlacedAt = _undefined,
           Object? lines = _undefined,
           Object? active = _undefined,
@@ -7588,6 +7610,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           Object? totalWithTax = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
           currencyCode: currencyCode == _undefined || currencyCode == null
               ? _instance.currencyCode
               : (currencyCode as Enum$CurrencyCode),
@@ -7691,7 +7714,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
   TRes _res;
 
   call(
-          {Enum$CurrencyCode? currencyCode,
+          {String? id,
+          Enum$CurrencyCode? currencyCode,
           String? orderPlacedAt,
           List<Query$GetActiveCustomer$activeCustomer$orders$items$lines>?
               lines,
@@ -7731,7 +7755,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
 @JsonSerializable(explicitToJson: true)
 class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
   Query$GetActiveCustomer$activeCustomer$orders$items$lines(
-      {required this.productVariant,
+      {required this.id,
+      required this.productVariant,
       this.featuredAsset,
       required this.$__typename});
 
@@ -7739,6 +7764,8 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
   factory Query$GetActiveCustomer$activeCustomer$orders$items$lines.fromJson(
           Map<String, dynamic> json) =>
       _$Query$GetActiveCustomer$activeCustomer$orders$items$linesFromJson(json);
+
+  final String id;
 
   final Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
       productVariant;
@@ -7752,10 +7779,12 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
   Map<String, dynamic> toJson() =>
       _$Query$GetActiveCustomer$activeCustomer$orders$items$linesToJson(this);
   int get hashCode {
+    final l$id = id;
     final l$productVariant = productVariant;
     final l$featuredAsset = featuredAsset;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$productVariant, l$featuredAsset, l$$__typename]);
+    return Object.hashAll(
+        [l$id, l$productVariant, l$featuredAsset, l$$__typename]);
   }
 
   @override
@@ -7763,6 +7792,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
     if (identical(this, other)) return true;
     if (!(other is Query$GetActiveCustomer$activeCustomer$orders$items$lines) ||
         runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
     final l$productVariant = productVariant;
     final lOther$productVariant = other.productVariant;
     if (l$productVariant != lOther$productVariant) return false;
@@ -7799,7 +7831,8 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$line
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines;
 
   TRes call(
-      {Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
+      {String? id,
+      Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
           productVariant,
       Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
           featuredAsset,
@@ -7826,10 +7859,12 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
   static const _undefined = {};
 
   TRes call(
-          {Object? productVariant = _undefined,
+          {Object? id = _undefined,
+          Object? productVariant = _undefined,
           Object? featuredAsset = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -7870,7 +7905,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$line
   TRes _res;
 
   call(
-          {Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
+          {String? id,
+          Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
               productVariant,
           Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
               featuredAsset,

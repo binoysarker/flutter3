@@ -15,6 +15,10 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+## Important dependencies for this project
+- flutter 3.0.5
+- dart 2.17.6
+- devtools 2.12.2
 
 ## to build the project from the code:
 - flutter clean

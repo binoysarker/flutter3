@@ -41,17 +41,21 @@ class PaymentMethodComponent extends StatelessWidget {
                       .map((element) => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              FadeInImage.assetNetwork(
-                                width: 50,
-                                height: 50,
-                                placeholder:
-                                    '${CommonVariableData.placeholder}',
-                                image: '${element.featuredAsset?.preview}',
-                                imageErrorBuilder:
-                                    (context, error, stackTrace) => Image.asset(
-                                  '${CommonVariableData.placeholder}',
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.5),
+                                child: FadeInImage.assetNetwork(
                                   width: 50,
                                   height: 50,
+                                  placeholder:
+                                      '${CommonVariableData.placeholder}',
+                                  image: '${element.featuredAsset?.preview}',
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) =>
+                                          Image.asset(
+                                    '${CommonVariableData.placeholder}',
+                                    width: 50,
+                                    height: 50,
+                                  ),
                                 ),
                               ),
                               Expanded(
@@ -73,7 +77,7 @@ class PaymentMethodComponent extends StatelessWidget {
                               Expanded(
                                 flex: 1,
                                 child: Text(
-                                  '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${element.linePriceWithTax}',
+                                  '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',
                                   style: CustomTheme.headerStyle,
                                   textAlign: TextAlign.end,
                                 ),
@@ -100,17 +104,21 @@ class PaymentMethodComponent extends StatelessWidget {
                       )
                     : Column(
                         children: orderController
-                            .activeOrderForCheckout.value!.discounts
+                            .activeOrderResponse.value!.promotions
                             .map((e) => Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Coupon Code',
-                                      style: CustomTheme.paragraphStyle,
+                                      e.name,
+                                      style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '- ${UtilService.getCurrencySymble(orderController.currencyCode.value)}${e.amountWithTax.abs()}',
+                                      e.couponCode ?? '',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.actions.first.args.first.value))}',
                                       style: CustomTheme.headerStyle,
                                     ),
                                   ],
@@ -127,20 +135,26 @@ class PaymentMethodComponent extends StatelessWidget {
                             color: CustomTheme.progressIndicatorColor,
                           ),
                         )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              orderController
-                                  .currentlySelectedShippingMethod.value!.name,
-                              style: CustomTheme.paragraphStyle,
-                            ),
-                            Text(
-                              '+ ${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.currentlySelectedShippingMethod.value!.priceWithTax}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                          ],
-                        )),
+                      : Column(
+                    children: orderController
+                        .activeOrderResponse.value!.shippingLines
+                        .map((e) => Row(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          e.shippingMethod.name,
+                          style: CustomTheme.headerStyle,
+                        ),
+
+                        Text(
+                          '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
+                          style: CustomTheme.headerStyle,
+                        ),
+                      ],
+                    ))
+                        .toList(),
+                  )),
                 ),
                 SizedBox(
                   height: 20,
@@ -167,7 +181,7 @@ class PaymentMethodComponent extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${orderController.shippingAddressOrder.value?.totalWithTax ?? ''}',
+                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(orderController.shippingAddressOrder.value!.totalWithTax)}',
                               style: CustomTheme.headerStyle,
                             ),
                           ),

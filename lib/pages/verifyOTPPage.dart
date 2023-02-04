@@ -3,6 +3,7 @@ import 'package:recipe.app/controllers/userController.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/themes.dart';
 
 class VerifyOTPPage extends StatefulWidget {
   const VerifyOTPPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Verify OTP'),
+        title: Text('Verify OTP',style: CustomTheme.headerStyle,),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -34,6 +35,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
               key: verifyOTPForm,
               child: Column(
                 children: [
+                  Text('Please put the OTP here',style: CustomTheme.headerStyle2,),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -47,6 +49,9 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                           errorText: 'Code is required'),
                     ),
                   ),
+                  TextButton(onPressed: (){
+                    loginPageController.sendOtpToUser();
+                  }, child: Text('Resen OTP', style: CustomTheme.headerStyle,)),
                   ElevatedButton(
                       onPressed: () {
                         if (verifyOTPForm.currentState!.validate()) {
@@ -56,13 +61,15 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                             print('verified');
                             print('${loginPageController.phoneNumber.text}, ${loginPageController.firstName.text},${loginPageController.lastName.text}');
                             loginPageController.onUserRegister();
+                          }else{
+                            Get.snackbar('Error', 'Code Does not match',colorText: Colors.white,backgroundColor: Colors.red);
                           }
                         } else {
                           print('not validated');
                           Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);
                         }
                       },
-                      child: Text('Submit'))
+                      child: Text('Submit',style: CustomTheme.headerStyle,))
                 ],
               )),
         ),

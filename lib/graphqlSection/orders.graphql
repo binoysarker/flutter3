@@ -131,6 +131,21 @@ mutation SetShippingMethod($id: ID!) {
         __typename
     }
 }
+mutation CancelOrderOnClientRequest($userId: ID!){
+    cancelOrderOnClientRequest(orderId: $userId){
+        ...Cart
+    }
+}
+query NextOrderStates{
+    nextOrderStates
+}
+mutation TransitionOrderToState($state: String!){
+    transitionOrderToState(state: $state){
+        ...Cart
+        ...ErrorResult
+        __typename
+    }
+}
 
 mutation TransitionToArrangingPayment {
     transitionOrderToState(state: "ArrangingPayment") {
@@ -173,8 +188,29 @@ fragment Cart on Order {
     code
     state
     active
+    couponCodes
+    promotions {
+        couponCode
+        name
+        enabled
+        actions {
+            args {
+                value
+                name
+            }
+            code
+        }
+        conditions {
+            code
+            args {
+                name
+                value
+            }
+        }
+    }
     lines {
         id
+        customFields
         featuredAsset {
             ...Asset
             __typename
@@ -224,6 +260,9 @@ fragment Cart on Order {
         adjustmentSource
         type
         __typename
+    }
+    customFields {
+        clientRequestToCancel
     }
     __typename
 }

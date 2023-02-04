@@ -128,9 +128,11 @@ query GetActiveCustomer{
             orders{
                 totalItems
                 items {
+                    id
                     currencyCode
                     orderPlacedAt
                     lines {
+                        id
                         productVariant {
                             name
                             priceWithTax

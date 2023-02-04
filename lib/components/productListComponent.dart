@@ -1,6 +1,7 @@
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
 
 import '../graphqlSection/products.graphql.dart';
 import '../services/commonVariables.dart';
@@ -30,7 +31,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
 
   String getPrice(Query$GetAllProducts$products$items element) {
     var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
-    return '${UtilService.getCurrencySymble(item!.currencyCode.toString())}${item.price}';
+    return '${UtilService.getCurrencySymble(item!.currencyCode.name)}${UtilService.formatPriceValue(item.priceWithTax)}';
   }
 
   @override
@@ -74,19 +75,24 @@ class _ProductListComponentState extends State<ProductListComponent> {
                   elevation: 5,
                   child: Column(
                     children: [
-                      FadeInImage.assetNetwork(
-                        width: 100,
-                        height: 100,
-                        placeholder:
-                        '${CommonVariableData.placeholder}',
-                        image: '${element.featuredAsset?.preview}',
-                        imageErrorBuilder:
-                            (context, error, stackTrace) =>
-                            Image.asset(
-                              CommonVariableData.placeholder,
-                              width: 100,
-                              height: 100,
-                            ),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => ProductDetailPage(),arguments: {'slug': element.slug});
+                        },
+                        child: FadeInImage.assetNetwork(
+                          width: 100,
+                          height: 100,
+                          placeholder:
+                          '${CommonVariableData.placeholder}',
+                          image: '${element.featuredAsset?.preview}',
+                          imageErrorBuilder:
+                              (context, error, stackTrace) =>
+                              Image.asset(
+                                CommonVariableData.placeholder,
+                                width: 100,
+                                height: 100,
+                              ),
+                        ),
                       ),
                       Text(
                         element.name,

@@ -567,6 +567,7 @@ type Mutation {
     applyCouponCode(couponCode: String!): ApplyCouponCodeResult!
     "Authenticates the user using a named authentication strategy"
     authenticate(input: AuthenticationInput!, rememberMe: Boolean): AuthenticationResult!
+    cancelOrderOnClientRequest(orderId: ID!): Order!
     "Create a new Customer Address"
     createCustomerAddress(input: CreateAddressInput!): Address!
     "Delete an existing Address"
@@ -689,7 +690,7 @@ type Order implements Node {
     couponCodes: [String!]!
     createdAt: DateTime!
     currencyCode: CurrencyCode!
-    customFields: JSON
+    customFields: OrderCustomFields
     customer: Customer
     discounts: [Discount!]!
     fulfillments: [Fulfillment!]
@@ -750,6 +751,10 @@ type OrderAddress {
     province: String
     streetLine1: String
     streetLine2: String
+}
+
+type OrderCustomFields {
+    clientRequestToCancel: Int
 }
 
 type OrderItem implements Node {
@@ -2663,6 +2668,7 @@ input NumberRange {
 
 input OrderFilterParameter {
     active: BooleanOperators
+    clientRequestToCancel: NumberOperators
     code: StringOperators
     createdAt: DateOperators
     currencyCode: StringOperators
@@ -2693,6 +2699,7 @@ input OrderListOptions {
 }
 
 input OrderSortParameter {
+    clientRequestToCancel: SortOrder
     code: SortOrder
     createdAt: SortOrder
     id: SortOrder
@@ -2861,6 +2868,10 @@ input UpdateCustomerInput {
     title: String
 }
 
+input UpdateOrderCustomFieldsInput {
+    clientRequestToCancel: Int
+}
+
 input UpdateOrderInput {
-    customFields: JSON
+    customFields: UpdateOrderCustomFieldsInput
 }

@@ -1,10 +1,11 @@
-import 'package:recipe.app/controllers/cartController.dart';
-import 'package:recipe.app/controllers/orderController.dart';
-import 'package:recipe.app/graphqlSection/products.graphql.dart';
-import 'package:recipe.app/services/commonVariables.dart';
-import 'package:recipe.app/services/util_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
+import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/util_service.dart';
 
 import '../themes.dart';
 
@@ -54,10 +55,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
         widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       print('current list ${widget.currentList}');
     }
-    if(widget.controllerType == ControllerTypeNames.normalProductList.name){
-      widget.currentList = widget.givenList.cast<List<SingleProductListItemType>>();
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      widget.currentList =
+          widget.givenList.cast<List<SingleProductListItemType>>();
     }
-
   }
 
   String getName(dynamic element) {
@@ -80,11 +81,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
             ControllerTypeNames.productChildrenVariantItems.name ||
         widget.controllerType == ControllerTypeNames.productVariantItems.name) {
       price =
-          '${UtilService.getCurrencySymble(element.currencyCode.toString())}${element.price}';
+          '${UtilService.getCurrencySymble(element.currencyCode.toString())}${UtilService.formatPriceValue(element.priceWithTax)}';
       // var test = (element as SingleProductListItemType).u
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      price = '${element.variants[0].price}';
+      price = '${UtilService.getCurrencySymble(element.variants[0].currencyCode.name)}${UtilService.formatPriceValue(element.variants[0].priceWithTax)}';
     }
     return price;
   }
@@ -93,7 +94,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    checkList();
+      checkList();
     });
   }
 
@@ -110,6 +111,20 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     checkList();
   }
 
+  void goToPage(dynamic element) {
+    print(element);
+    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+      var item = element
+          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+      print(item.toJson());
+      Get.to(() => ProductDetailPage(), arguments: {'slug': item.product.slug});
+    } else {
+      var item = element
+          as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
+      Get.to(() => ProductDetailPage(), arguments: {'slug': item.product.slug});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.loadingState
@@ -120,63 +135,95 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
               ),
             ),
           )
-        : SizedBox(
-            height: 300,
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).size.width /
-                  (MediaQuery.of(context).size.height / 2),
-              children: widget.givenList
-                  .map((element) => Card(
-                        elevation: 5,
-                        child: Column(
-                          children: [
-                            FadeInImage.assetNetwork(
-                              width: 100,
-                              height: 100,
-                              placeholder: '${CommonVariableData.placeholder}',
-                              image: getImage(element),
-                              imageErrorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
-                                '${CommonVariableData.placeholder}',
-                                width: 100,
-                                height: 100,
+        : Card(
+          child: Column(
+              children: [
+
+                Container(
+                  height: 30,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors.lightGreen,
+                      borderRadius: BorderRadius.circular(5)),
+                  width: double.maxFinite,
+                  child: Text(
+                    widget.headerTitle,
+                    style: CustomTheme.headerStyle2,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 300,
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    childAspectRatio: MediaQuery.of(context).size.width /
+                        (MediaQuery.of(context).size.height / 1.8),
+                    children: widget.givenList
+                        .map((element) => Card(
+                              elevation: 5,
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      print(widget.controllerType);
+                                      goToPage(element);
+                                    },
+                                    child: FadeInImage.assetNetwork(
+                                      width: 100,
+                                      height: 100,
+                                      placeholder:
+                                          '${CommonVariableData.placeholder}',
+                                      image: getImage(element),
+                                      imageErrorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
+                                        '${CommonVariableData.placeholder}',
+                                        width: 100,
+                                        height: 100,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    getName(element),
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        '${getPrice(element)}',
+                                        style: CustomTheme.headerStyle,
+                                      ),
+                                      Obx(() => cartController.isLoading.isTrue &&
+                                              selectedId == int.parse(element.id)
+                                          ? Center(
+                                              child: CircularProgressIndicator(
+                                                color: CustomTheme
+                                                    .progressIndicatorColor,
+                                              ),
+                                            )
+                                          : IconButton(
+                                              onPressed: () {
+                                                selectedId =
+                                                    int.parse(element.id);
+                                                addItemToCart(element);
+                                              },
+                                              icon: Icon(Icons.shopping_cart),
+                                              color: Colors.lightGreen,
+                                            ))
+                                    ],
+                                  )
+                                ],
                               ),
-                            ),
-                            Text(
-                              getName(element),
-                              style: CustomTheme.headerStyle,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  getPrice(element),
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                Obx(() => cartController.isLoading.isTrue &&
-                                        selectedId == int.parse(element.id)
-                                    ? Center(
-                                        child: CircularProgressIndicator(
-                                          color: CustomTheme
-                                              .progressIndicatorColor,
-                                        ),
-                                      )
-                                    : IconButton(
-                                        onPressed: () {
-                                          selectedId = int.parse(element.id);
-                                          addItemToCart(element);
-                                        },
-                                        icon: Icon(Icons.shopping_cart),
-                                        color: Colors.lightGreen,
-                                      ))
-                              ],
-                            )
-                          ],
-                        ),
-                      ))
-                  .toList(),
+                            ))
+                        .toList(),
+                  ),
+                )
+              ],
             ),
-          );
+        );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/cartButtonComponent.dart';
 import 'package:recipe.app/components/itemGalleryComponent.dart';
@@ -7,8 +9,6 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CategoryDetailPage extends StatefulWidget {
   CategoryDetailPage({Key? key}) : super(key: key);
@@ -27,119 +27,125 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      print('arguments $routerArguments');
       collectionsController.getSingleCollectionDetail(routerArguments['slug']);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => collectionsController.isLoading.isTrue ? LoadingSpinnerComponent() : SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: Obx(() => collectionsController.isLoading.isTrue
-                ? SizedBox()
-                : Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                    '${collectionsController.singleCollectionDetail.value!.name}'),
-                orderController.activeOrderResponse.value?.totalQuantity != null
-                    ? CartButtonComponent(
-                  isLoading: orderController.isLoading.isTrue,
-                  totalQuantity: orderController
-                      .activeOrderResponse.value!.totalQuantity,
-                )
-                    : SizedBox()
-              ],
-            )),
-          ),
-          body: Obx(() => collectionsController.isLoading.isTrue
-              ? Container(
-            child: Center(
-              child: CircularProgressIndicator(
-                color: CustomTheme.progressIndicatorColor,
-              ),
-            ),
-          )
-              : Card(
-            child: ListView(
-              children: [
-                FadeInImage.assetNetwork(
-                  placeholder: '${CommonVariableData.placeholder}',
-                  image:
-                  '${collectionsController.singleCollectionDetail.value!.featuredAsset!.preview}',
-                  imageErrorBuilder: (context, error, stackTrace) =>
-                      Image.asset('${CommonVariableData.placeholder}'),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                    '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}'),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: collectionsController.singleCollectionDetail.value!.children!.map((element) => Card(
-                    child: Column(
+    return Obx(() => collectionsController.isLoading.isTrue
+        ? LoadingSpinnerComponent()
+        : SafeArea(
+            child: Scaffold(
+            appBar: AppBar(
+              title: Obx(() => collectionsController.isLoading.isTrue
+                  ? SizedBox()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Text(
+                            '${collectionsController.singleCollectionDetail.value!.name}'),
+                        orderController
+                                    .activeOrderResponse.value?.totalQuantity !=
+                                null
+                            ? CartButtonComponent(
+                                isLoading: orderController.isLoading.isTrue,
+                                totalQuantity: orderController
+                                    .activeOrderResponse.value!.totalQuantity,
+                              )
+                            : SizedBox()
+                      ],
+                    )),
+            ),
+            body: Obx(() => collectionsController.isLoading.isTrue
+                ? Container(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: CustomTheme.progressIndicatorColor,
+                      ),
+                    ),
+                  )
+                : Card(
+                    child: ListView(
+                      children: [
+                        FadeInImage.assetNetwork(
+                          placeholder: '${CommonVariableData.placeholder}',
+                          image:
+                              '${collectionsController.singleCollectionDetail.value?.featuredAsset?.preview}',
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              Image.asset('${CommonVariableData.placeholder}'),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
-                        Container(
-                          height: 30,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Colors.lightGreen,
-                              borderRadius: BorderRadius.circular(5)),
-                          width: double.maxFinite,
-                          child: Text(
-                            '${element.name}',
-                            style: CustomTheme.headerStyle2,
-                          ),
-                        ),
+                        Text(
+                            '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}'),
                         SizedBox(
                           height: 20,
                         ),
-                        element.productVariants.items.isEmpty
-                            ? Container(
-                          width: 150,
-                          height: 150,
-                          child: Center(
-                            child: Text(
-                                'No products are present under this category'),
-                          ),
-                        )
-                            : ItemGalleryComponent(
+                        Obx(() => collectionsController
+                                    .singleCollectionDetail.value?.children ==
+                                null
+                            ? Center(
+                                child: CircularProgressIndicator(
+                                  color: CustomTheme.progressIndicatorColor,
+                                ),
+                              )
+                            : Column(
+                                children: collectionsController
+                                    .singleCollectionDetail.value!.children!
+                                    .map((element) => Card(
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              element.productVariants.items
+                                                      .isEmpty
+                                                  ? Container(
+                                                      width: 150,
+                                                      height: 150,
+                                                      child: Center(
+                                                        child: Text(
+                                                            'No products are present under this category'),
+                                                      ),
+                                                    )
+                                                  : ItemGalleryComponent(
+                                                      headerTitle: element.name,
+                                                      loadingState:
+                                                          collectionsController
+                                                              .isLoading.isTrue,
+                                                      givenList: element
+                                                          .productVariants
+                                                          .items,
+                                                      controllerType:
+                                                          ControllerTypeNames
+                                                              .productChildrenVariantItems
+                                                              .name),
+                                            ],
+                                          ),
+                                        ))
+                                    .toList(),
+                              )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ItemGalleryComponent(
                             headerTitle: 'Products',
-                            loadingState: collectionsController
-                                .isLoading.isTrue,
-                            givenList:
-                            element.productVariants.items,
-                            controllerType: ControllerTypeNames
-                                .productChildrenVariantItems
-                                .name),
+                            loadingState:
+                                collectionsController.isLoading.isTrue,
+                            givenList: collectionsController
+                                .singleCollectionDetail
+                                .value!
+                                .productVariants
+                                .items,
+                            controllerType:
+                                ControllerTypeNames.productVariantItems.name)
                       ],
                     ),
-                  ))
-                      .toList(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ItemGalleryComponent(
-                    headerTitle: 'Products',
-                    loadingState: collectionsController
-                        .isLoading.isTrue,
-                    givenList:
-                    collectionsController.singleCollectionDetail.value!.productVariants.items,
-                    controllerType: ControllerTypeNames
-                        .productVariantItems
-                        .name)
-              ],
-            ),
-          )),
-          bottomNavigationBar: BottomNavigationComponent(),
-        )));
+                  )),
+            bottomNavigationBar: BottomNavigationComponent(),
+          )));
   }
 }

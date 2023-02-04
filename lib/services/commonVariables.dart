@@ -48,6 +48,9 @@ typedef SingleProductVariantItemType = Query$GetCollectionsByIdOrSlug$collection
 typedef SingleProductListItemType = Query$GetAllProducts$products$items;
 
 enum OrderStateEnums {
+  AddingItems,
+  ExpressDeliverySelectedNotificationProcess,
   ArrangingPayment,
-  AddingItems
+  DeliveryNotificationProcess,
+  PaymentSettled
 }

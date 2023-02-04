@@ -102,20 +102,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     RequiredValidator(errorText: 'Postal Code is Required'),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: widget.orderController.city,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'City',
-                ),
-                autofillHints: [AutofillHints.name],
-                keyboardType: TextInputType.name,
-                validator: RequiredValidator(errorText: 'City is required'),
-              ),
-            ),
+
             widget.orderController.eligiblePaymentIsLoading.isTrue
                 ? CircularProgressIndicator()
                 : Padding(

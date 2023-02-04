@@ -4015,6 +4015,21 @@ const documentNodeQueryGetProductDetail = DocumentNode(definitions: [
                               selectionSet: null)
                         ])),
                     FieldNode(
+                        name: NameNode(value: 'featuredAsset'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FragmentSpreadNode(
+                              name: NameNode(value: 'Asset'), directives: []),
+                          FieldNode(
+                              name: NameNode(value: '__typename'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
                         name: NameNode(value: 'price'),
                         alias: null,
                         arguments: [],
@@ -4551,6 +4566,7 @@ class Query$GetProductDetail$product$variants {
       {required this.id,
       required this.name,
       required this.options,
+      this.featuredAsset,
       required this.price,
       required this.priceWithTax,
       required this.currencyCode,
@@ -4569,6 +4585,8 @@ class Query$GetProductDetail$product$variants {
   final String name;
 
   final List<Query$GetProductDetail$product$variants$options> options;
+
+  final Fragment$Asset? featuredAsset;
 
   final int price;
 
@@ -4593,6 +4611,7 @@ class Query$GetProductDetail$product$variants {
     final l$id = id;
     final l$name = name;
     final l$options = options;
+    final l$featuredAsset = featuredAsset;
     final l$price = price;
     final l$priceWithTax = priceWithTax;
     final l$currencyCode = currencyCode;
@@ -4604,6 +4623,7 @@ class Query$GetProductDetail$product$variants {
       l$id,
       l$name,
       Object.hashAll(l$options.map((v) => v)),
+      l$featuredAsset,
       l$price,
       l$priceWithTax,
       l$currencyCode,
@@ -4634,6 +4654,9 @@ class Query$GetProductDetail$product$variants {
       if (l$options$entry != lOther$options$entry) return false;
     }
 
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) return false;
@@ -4686,6 +4709,7 @@ abstract class CopyWith$Query$GetProductDetail$product$variants<TRes> {
       {String? id,
       String? name,
       List<Query$GetProductDetail$product$variants$options>? options,
+      Fragment$Asset? featuredAsset,
       int? price,
       int? priceWithTax,
       Enum$CurrencyCode? currencyCode,
@@ -4699,6 +4723,7 @@ abstract class CopyWith$Query$GetProductDetail$product$variants<TRes> {
                   CopyWith$Query$GetProductDetail$product$variants$options<
                       Query$GetProductDetail$product$variants$options>>)
           _fn);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
   TRes assets(
       Iterable<Query$GetProductDetail$product$variants$assets> Function(
               Iterable<
@@ -4722,6 +4747,7 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
           {Object? id = _undefined,
           Object? name = _undefined,
           Object? options = _undefined,
+          Object? featuredAsset = _undefined,
           Object? price = _undefined,
           Object? priceWithTax = _undefined,
           Object? currencyCode = _undefined,
@@ -4738,6 +4764,9 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
               ? _instance.options
               : (options
                   as List<Query$GetProductDetail$product$variants$options>),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset as Fragment$Asset?),
           price: price == _undefined || price == null
               ? _instance.price
               : (price as int),
@@ -4770,6 +4799,14 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
           options: _fn(_instance.options.map((e) =>
               CopyWith$Query$GetProductDetail$product$variants$options(
                   e, (i) => i))).toList());
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
+
   TRes assets(
           Iterable<Query$GetProductDetail$product$variants$assets> Function(
                   Iterable<
@@ -4792,6 +4829,7 @@ class _CopyWithStubImpl$Query$GetProductDetail$product$variants<TRes>
           {String? id,
           String? name,
           List<Query$GetProductDetail$product$variants$options>? options,
+          Fragment$Asset? featuredAsset,
           int? price,
           int? priceWithTax,
           Enum$CurrencyCode? currencyCode,
@@ -4801,6 +4839,8 @@ class _CopyWithStubImpl$Query$GetProductDetail$product$variants<TRes>
           String? $__typename}) =>
       _res;
   options(_fn) => _res;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
   assets(_fn) => _res;
 }
 

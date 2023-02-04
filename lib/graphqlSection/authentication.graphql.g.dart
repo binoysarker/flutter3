@@ -1100,6 +1100,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items
     _$Query$GetActiveCustomer$activeCustomer$orders$itemsFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items(
+          id: json['id'] as String,
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),
@@ -1147,6 +1148,7 @@ Map<String, dynamic>
     _$Query$GetActiveCustomer$activeCustomer$orders$itemsToJson(
             Query$GetActiveCustomer$activeCustomer$orders$items instance) =>
         <String, dynamic>{
+          'id': instance.id,
           'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
           'orderPlacedAt': instance.orderPlacedAt,
           'lines': instance.lines.map((e) => e.toJson()).toList(),
@@ -1329,6 +1331,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items$lines
     _$Query$GetActiveCustomer$activeCustomer$orders$items$linesFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items$lines(
+          id: json['id'] as String,
           productVariant:
               Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -1343,6 +1346,7 @@ Map<String,
     dynamic> _$Query$GetActiveCustomer$activeCustomer$orders$items$linesToJson(
         Query$GetActiveCustomer$activeCustomer$orders$items$lines instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'productVariant': instance.productVariant.toJson(),
       'featuredAsset': instance.featuredAsset?.toJson(),
       '__typename': instance.$__typename,

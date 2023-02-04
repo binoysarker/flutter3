@@ -696,6 +696,10 @@ Input$OrderFilterParameter _$Input$OrderFilterParameterFromJson(
           ? null
           : Input$BooleanOperators.fromJson(
               json['active'] as Map<String, dynamic>),
+      clientRequestToCancel: json['clientRequestToCancel'] == null
+          ? null
+          : Input$NumberOperators.fromJson(
+              json['clientRequestToCancel'] as Map<String, dynamic>),
       code: json['code'] == null
           ? null
           : Input$StringOperators.fromJson(
@@ -757,6 +761,7 @@ Map<String, dynamic> _$Input$OrderFilterParameterToJson(
         Input$OrderFilterParameter instance) =>
     <String, dynamic>{
       'active': instance.active?.toJson(),
+      'clientRequestToCancel': instance.clientRequestToCancel?.toJson(),
       'code': instance.code?.toJson(),
       'createdAt': instance.createdAt?.toJson(),
       'currencyCode': instance.currencyCode?.toJson(),
@@ -804,6 +809,9 @@ Map<String, dynamic> _$Input$OrderListOptionsToJson(
 Input$OrderSortParameter _$Input$OrderSortParameterFromJson(
         Map<String, dynamic> json) =>
     Input$OrderSortParameter(
+      clientRequestToCancel: $enumDecodeNullable(
+          _$Enum$SortOrderEnumMap, json['clientRequestToCancel'],
+          unknownValue: Enum$SortOrder.$unknown),
       code: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['code'],
           unknownValue: Enum$SortOrder.$unknown),
       createdAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['createdAt'],
@@ -840,6 +848,8 @@ Input$OrderSortParameter _$Input$OrderSortParameterFromJson(
 Map<String, dynamic> _$Input$OrderSortParameterToJson(
         Input$OrderSortParameter instance) =>
     <String, dynamic>{
+      'clientRequestToCancel':
+          _$Enum$SortOrderEnumMap[instance.clientRequestToCancel],
       'code': _$Enum$SortOrderEnumMap[instance.code],
       'createdAt': _$Enum$SortOrderEnumMap[instance.createdAt],
       'id': _$Enum$SortOrderEnumMap[instance.id],
@@ -1274,14 +1284,29 @@ Map<String, dynamic> _$Input$UpdateCustomerInputToJson(
       'title': instance.title,
     };
 
+Input$UpdateOrderCustomFieldsInput _$Input$UpdateOrderCustomFieldsInputFromJson(
+        Map<String, dynamic> json) =>
+    Input$UpdateOrderCustomFieldsInput(
+      clientRequestToCancel: json['clientRequestToCancel'] as int?,
+    );
+
+Map<String, dynamic> _$Input$UpdateOrderCustomFieldsInputToJson(
+        Input$UpdateOrderCustomFieldsInput instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+    };
+
 Input$UpdateOrderInput _$Input$UpdateOrderInputFromJson(
         Map<String, dynamic> json) =>
     Input$UpdateOrderInput(
-      customFields: json['customFields'] as String?,
+      customFields: json['customFields'] == null
+          ? null
+          : Input$UpdateOrderCustomFieldsInput.fromJson(
+              json['customFields'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$Input$UpdateOrderInputToJson(
         Input$UpdateOrderInput instance) =>
     <String, dynamic>{
-      'customFields': instance.customFields,
+      'customFields': instance.customFields?.toJson(),
     };

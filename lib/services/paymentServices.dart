@@ -25,7 +25,7 @@ class PaymentServices{
       'key': dotenv.env['RAZORPAY_KEY'],
       'amount': orderController.shippingAddressOrder.value!.totalWithTax,
       'order_id': orderController.createOrderResponse.value!.id,
-      'currency': Enum$CurrencyCode.USD.name,
+      'currency': Enum$CurrencyCode.INR.name,
       'name':'Company Name',
       'description':
       orderController.shippingAddressOrder.value!.lines.isNotEmpty

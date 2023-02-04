@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/graphqlSection/cart_data.graphql.dart';
@@ -37,11 +38,15 @@ class CartController extends GetxController {
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
-      Get.snackbar('Error', res.exception.toString());
+      Get.snackbar('Error', res.exception.toString(),colorText: Colors.white,backgroundColor: Colors.red);
       orderController.removeAllItemFromOrder();
     }
     if (res.data != null) {
-      print('adjust cart item response ${res.parsedData!.adjustOrderLine.toJson()}');
+      var parrsedData = res.parsedData!.adjustOrderLine.toJson();
+      print('adjust cart item response ${parrsedData}');
+      if(parrsedData['message'].toString().length > 0){
+        Get.snackbar('Error', parrsedData['message'],colorText: Colors.white,backgroundColor: Colors.red);
+      }
       orderController.getActiveOrders();
       isLoading.value = false;
     }

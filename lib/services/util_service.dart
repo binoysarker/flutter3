@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:http/http.dart' as http;
 
 class UtilService {
   static final UtilService _utilService = UtilService._internal();
@@ -31,6 +34,11 @@ class UtilService {
     appName = dotenv.env['App_Name'] as String;
   }
 
+
+  static String formatPriceValue(int price){
+    return (price / 100).toStringAsFixed(2);
+  }
+
   static double getConvertedIndianAmount(int givenValue) {
     double value = givenValue.toDouble();
     int exchangeRate = int.parse(dotenv.env['INR_EXCHANGE_RATE'].toString());
@@ -39,8 +47,30 @@ class UtilService {
     return value;
   }
 
+  static sendSms(String message,String number) async{
+    var smsQuery = {
+      'userid':'1671',
+      'password':'trP2V3o5bhZTK9JM',
+      'sender':'SMSKAI',
+      'to': number,
+      'message': message,
+      'reqid': '1',
+      'format':'{json|text}',
+      'route_id':'3'
+    };
+
+    try{
+
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery);
+      final res = await http.get(url);
+      print('${res.body}');
+    }on Exception catch(e){
+      print(e.toString());
+    }
+  }
+
   static String getCurrencySymble(String currencyCode){
-    var symble = r'$';
+    var symble = r'₹';
     if(currencyCode == CurrencyCodeEnum.USD.name){
       symble = r'$';
     }

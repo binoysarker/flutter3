@@ -100,6 +100,13 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String,
       state: json['state'] as String,
       active: json['active'] as bool,
+      couponCodes: (json['couponCodes'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      promotions: (json['promotions'] as List<dynamic>)
+          .map((e) =>
+              Fragment$Cart$promotions.fromJson(e as Map<String, dynamic>))
+          .toList(),
       lines: (json['lines'] as List<dynamic>)
           .map((e) => Fragment$Cart$lines.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -118,6 +125,10 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
           .map((e) =>
               Fragment$Cart$discounts.fromJson(e as Map<String, dynamic>))
           .toList(),
+      customFields: json['customFields'] == null
+          ? null
+          : Fragment$Cart$customFields.fromJson(
+              json['customFields'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
 
@@ -127,6 +138,8 @@ Map<String, dynamic> _$Fragment$CartToJson(Fragment$Cart instance) =>
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -137,12 +150,114 @@ Map<String, dynamic> _$Fragment$CartToJson(Fragment$Cart instance) =>
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions _$Fragment$Cart$promotionsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$promotions(
+      couponCode: json['couponCode'] as String?,
+      name: json['name'] as String,
+      enabled: json['enabled'] as bool,
+      actions: (json['actions'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$actions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      conditions: (json['conditions'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$conditions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$promotionsToJson(
+        Fragment$Cart$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$actions _$Fragment$Cart$promotions$actionsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$promotions$actions(
+      args: (json['args'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$actions$args.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      code: json['code'] as String,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$actionsToJson(
+        Fragment$Cart$promotions$actions instance) =>
+    <String, dynamic>{
+      'args': instance.args.map((e) => e.toJson()).toList(),
+      'code': instance.code,
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$actions$args
+    _$Fragment$Cart$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$actions$argsToJson(
+        Fragment$Cart$promotions$actions$args instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$conditions
+    _$Fragment$Cart$promotions$conditionsFromJson(Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) => Fragment$Cart$promotions$conditions$args.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$conditionsToJson(
+        Fragment$Cart$promotions$conditions instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'args': instance.args.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$conditions$args
+    _$Fragment$Cart$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$conditions$argsToJson(
+        Fragment$Cart$promotions$conditions$args instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
       '__typename': instance.$__typename,
     };
 
 Fragment$Cart$lines _$Fragment$Cart$linesFromJson(Map<String, dynamic> json) =>
     Fragment$Cart$lines(
       id: json['id'] as String,
+      customFields: json['customFields'] as String?,
       featuredAsset: json['featuredAsset'] == null
           ? null
           : Fragment$Asset.fromJson(
@@ -165,6 +280,7 @@ Map<String, dynamic> _$Fragment$Cart$linesToJson(
         Fragment$Cart$lines instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'customFields': instance.customFields,
       'featuredAsset': instance.featuredAsset?.toJson(),
       'unitPrice': instance.unitPrice,
       'unitPriceWithTax': instance.unitPriceWithTax,
@@ -284,6 +400,20 @@ Map<String, dynamic> _$Fragment$Cart$discountsToJson(
       '__typename': instance.$__typename,
     };
 
+Fragment$Cart$customFields _$Fragment$Cart$customFieldsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$customFields(
+      clientRequestToCancel: json['clientRequestToCancel'] as int?,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$customFieldsToJson(
+        Fragment$Cart$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+      '__typename': instance.$__typename,
+    };
+
 Fragment$Asset _$Fragment$AssetFromJson(Map<String, dynamic> json) =>
     Fragment$Asset(
       id: json['id'] as String,
@@ -352,6 +482,13 @@ Query$GetActiveOrder$activeOrder _$Query$GetActiveOrder$activeOrderFromJson(
       code: json['code'] as String,
       state: json['state'] as String,
       active: json['active'] as bool,
+      couponCodes: (json['couponCodes'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      promotions: (json['promotions'] as List<dynamic>)
+          .map((e) => Query$GetActiveOrder$activeOrder$promotions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
       lines: (json['lines'] as List<dynamic>)
           .map((e) => Query$GetActiveOrder$activeOrder$lines.fromJson(
               e as Map<String, dynamic>))
@@ -371,6 +508,10 @@ Query$GetActiveOrder$activeOrder _$Query$GetActiveOrder$activeOrderFromJson(
           .map((e) => Query$GetActiveOrder$activeOrder$discounts.fromJson(
               e as Map<String, dynamic>))
           .toList(),
+      customFields: json['customFields'] == null
+          ? null
+          : Query$GetActiveOrder$activeOrder$customFields.fromJson(
+              json['customFields'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
 
@@ -382,6 +523,8 @@ Map<String, dynamic> _$Query$GetActiveOrder$activeOrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -392,6 +535,7 @@ Map<String, dynamic> _$Query$GetActiveOrder$activeOrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
       '__typename': instance.$__typename,
     };
 
@@ -556,6 +700,117 @@ const _$Enum$CurrencyCodeEnumMap = {
   Enum$CurrencyCode.$unknown: r'$unknown',
 };
 
+Query$GetActiveOrder$activeOrder$promotions
+    _$Query$GetActiveOrder$activeOrder$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetActiveOrder$activeOrder$promotions$actions.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) => Query$GetActiveOrder$activeOrder$promotions$conditions
+                  .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetActiveOrder$activeOrder$promotionsToJson(
+        Query$GetActiveOrder$activeOrder$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetActiveOrder$activeOrder$promotions$actions
+    _$Query$GetActiveOrder$activeOrder$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetActiveOrder$activeOrder$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveOrder$activeOrder$promotions$actionsToJson(
+            Query$GetActiveOrder$activeOrder$promotions$actions instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveOrder$activeOrder$promotions$actions$args
+    _$Query$GetActiveOrder$activeOrder$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetActiveOrder$activeOrder$promotions$actions$argsToJson(
+        Query$GetActiveOrder$activeOrder$promotions$actions$args instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetActiveOrder$activeOrder$promotions$conditions
+    _$Query$GetActiveOrder$activeOrder$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetActiveOrder$activeOrder$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveOrder$activeOrder$promotions$conditionsToJson(
+            Query$GetActiveOrder$activeOrder$promotions$conditions instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveOrder$activeOrder$promotions$conditions$args
+    _$Query$GetActiveOrder$activeOrder$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveOrder$activeOrder$promotions$conditions$argsToJson(
+            Query$GetActiveOrder$activeOrder$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
+
 Query$GetActiveOrder$activeOrder$lines
     _$Query$GetActiveOrder$activeOrder$linesFromJson(
             Map<String, dynamic> json) =>
@@ -578,6 +833,7 @@ Query$GetActiveOrder$activeOrder$lines
                   Query$GetActiveOrder$activeOrder$lines$discounts.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -593,6 +849,7 @@ Map<String, dynamic> _$Query$GetActiveOrder$activeOrder$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -704,6 +961,21 @@ Map<String, dynamic> _$Query$GetActiveOrder$activeOrder$discountsToJson(
       '__typename': instance.$__typename,
     };
 
+Query$GetActiveOrder$activeOrder$customFields
+    _$Query$GetActiveOrder$activeOrder$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveOrder$activeOrder$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetActiveOrder$activeOrder$customFieldsToJson(
+        Query$GetActiveOrder$activeOrder$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+      '__typename': instance.$__typename,
+    };
+
 Query$GetOrderForCheckout _$Query$GetOrderForCheckoutFromJson(
         Map<String, dynamic> json) =>
     Query$GetOrderForCheckout(
@@ -729,6 +1001,14 @@ Query$GetOrderForCheckout$activeOrder
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderForCheckout$activeOrder$promotions.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) => Query$GetOrderForCheckout$activeOrder$lines.fromJson(
                   e as Map<String, dynamic>))
@@ -750,6 +1030,10 @@ Query$GetOrderForCheckout$activeOrder
                   Query$GetOrderForCheckout$activeOrder$discounts.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Query$GetOrderForCheckout$activeOrder$customFields.fromJson(
+                  json['customFields'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
           shippingAddress: json['shippingAddress'] == null
               ? null
@@ -764,6 +1048,8 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -774,9 +1060,124 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
       '__typename': instance.$__typename,
       'shippingAddress': instance.shippingAddress?.toJson(),
     };
+
+Query$GetOrderForCheckout$activeOrder$promotions
+    _$Query$GetOrderForCheckout$activeOrder$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$promotionsToJson(
+        Query$GetOrderForCheckout$activeOrder$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetOrderForCheckout$activeOrder$promotions$actions
+    _$Query$GetOrderForCheckout$activeOrder$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetOrderForCheckout$activeOrder$promotions$actionsToJson(
+        Query$GetOrderForCheckout$activeOrder$promotions$actions instance) =>
+    <String, dynamic>{
+      'args': instance.args.map((e) => e.toJson()).toList(),
+      'code': instance.code,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetOrderForCheckout$activeOrder$promotions$actions$args
+    _$Query$GetOrderForCheckout$activeOrder$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderForCheckout$activeOrder$promotions$actions$argsToJson(
+            Query$GetOrderForCheckout$activeOrder$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetOrderForCheckout$activeOrder$promotions$conditions
+    _$Query$GetOrderForCheckout$activeOrder$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderForCheckout$activeOrder$promotions$conditionsToJson(
+            Query$GetOrderForCheckout$activeOrder$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+    _$Query$GetOrderForCheckout$activeOrder$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderForCheckout$activeOrder$promotions$conditions$argsToJson(
+            Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Query$GetOrderForCheckout$activeOrder$lines
     _$Query$GetOrderForCheckout$activeOrder$linesFromJson(
@@ -799,6 +1200,7 @@ Query$GetOrderForCheckout$activeOrder$lines
               .map((e) => Query$GetOrderForCheckout$activeOrder$lines$discounts
                   .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -814,6 +1216,7 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -927,6 +1330,21 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$discountsToJson(
       '__typename': instance.$__typename,
     };
 
+Query$GetOrderForCheckout$activeOrder$customFields
+    _$Query$GetOrderForCheckout$activeOrder$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderForCheckout$activeOrder$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$customFieldsToJson(
+        Query$GetOrderForCheckout$activeOrder$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Mutation$RemoveOrderLine _$Variables$Mutation$RemoveOrderLineFromJson(
         Map<String, dynamic> json) =>
     Variables$Mutation$RemoveOrderLine(
@@ -976,6 +1394,14 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) => Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
                   .fromJson(e as Map<String, dynamic>))
@@ -997,6 +1423,10 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order
                   Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$Mutation$RemoveOrderLine$removeOrderLine$$OrderToJson(
@@ -1007,6 +1437,8 @@ Map<String, dynamic> _$Mutation$RemoveOrderLine$removeOrderLine$$OrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -1017,7 +1449,124 @@ Map<String, dynamic> _$Mutation$RemoveOrderLine$removeOrderLine$$OrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
     };
+
+Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotionsToJson(
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actionsToJson(
+            Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$argsToJson(
+            Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditionsToJson(
+            Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$argsToJson(
+            Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
     _$Mutation$RemoveOrderLine$removeOrderLine$$Order$linesFromJson(
@@ -1041,6 +1590,7 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
                   Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -1057,6 +1607,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -1174,6 +1725,23 @@ Map<String,
       '__typename': instance.$__typename,
     };
 
+Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFieldsToJson(
+            Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
+
 Mutation$RemoveOrderLine$removeOrderLine$$OrderModificationError
     _$Mutation$RemoveOrderLine$removeOrderLine$$OrderModificationErrorFromJson(
             Map<String, dynamic> json) =>
@@ -1232,6 +1800,14 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
@@ -1254,6 +1830,10 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
                   Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic>
@@ -1265,6 +1845,8 @@ Map<String, dynamic>
           'code': instance.code,
           'state': instance.state,
           'active': instance.active,
+          'couponCodes': instance.couponCodes,
+          'promotions': instance.promotions.map((e) => e.toJson()).toList(),
           'lines': instance.lines.map((e) => e.toJson()).toList(),
           'totalQuantity': instance.totalQuantity,
           'subTotal': instance.subTotal,
@@ -1276,6 +1858,124 @@ Map<String, dynamic>
           'shippingLines':
               instance.shippingLines.map((e) => e.toJson()).toList(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields?.toJson(),
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotionsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actionsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$argsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditionsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$argsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
         };
 
 Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
@@ -1300,6 +2000,7 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
                   Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -1317,6 +2018,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -1432,6 +2134,23 @@ Map<String, dynamic>
           'description': instance.description,
           'adjustmentSource': instance.adjustmentSource,
           'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFieldsToJson(
+            Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
           '__typename': instance.$__typename,
         };
 
@@ -1580,6 +2299,13 @@ Query$GetOrderByCode$orderByCode _$Query$GetOrderByCode$orderByCodeFromJson(
       code: json['code'] as String,
       state: json['state'] as String,
       active: json['active'] as bool,
+      couponCodes: (json['couponCodes'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      promotions: (json['promotions'] as List<dynamic>)
+          .map((e) => Query$GetOrderByCode$orderByCode$promotions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
       lines: (json['lines'] as List<dynamic>)
           .map((e) => Query$GetOrderByCode$orderByCode$lines.fromJson(
               e as Map<String, dynamic>))
@@ -1599,6 +2325,10 @@ Query$GetOrderByCode$orderByCode _$Query$GetOrderByCode$orderByCodeFromJson(
           .map((e) => Query$GetOrderByCode$orderByCode$discounts.fromJson(
               e as Map<String, dynamic>))
           .toList(),
+      customFields: json['customFields'] == null
+          ? null
+          : Query$GetOrderByCode$orderByCode$customFields.fromJson(
+              json['customFields'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
       updatedAt: json['updatedAt'] as String,
       customer: json['customer'] == null
@@ -1614,6 +2344,8 @@ Map<String, dynamic> _$Query$GetOrderByCode$orderByCodeToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -1624,10 +2356,122 @@ Map<String, dynamic> _$Query$GetOrderByCode$orderByCodeToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
       '__typename': instance.$__typename,
       'updatedAt': instance.updatedAt,
       'customer': instance.customer?.toJson(),
     };
+
+Query$GetOrderByCode$orderByCode$promotions
+    _$Query$GetOrderByCode$orderByCode$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderByCode$orderByCode$promotions$actions.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) => Query$GetOrderByCode$orderByCode$promotions$conditions
+                  .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetOrderByCode$orderByCode$promotionsToJson(
+        Query$GetOrderByCode$orderByCode$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetOrderByCode$orderByCode$promotions$actions
+    _$Query$GetOrderByCode$orderByCode$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderByCode$orderByCode$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderByCode$orderByCode$promotions$actionsToJson(
+            Query$GetOrderByCode$orderByCode$promotions$actions instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetOrderByCode$orderByCode$promotions$actions$args
+    _$Query$GetOrderByCode$orderByCode$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetOrderByCode$orderByCode$promotions$actions$argsToJson(
+        Query$GetOrderByCode$orderByCode$promotions$actions$args instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetOrderByCode$orderByCode$promotions$conditions
+    _$Query$GetOrderByCode$orderByCode$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetOrderByCode$orderByCode$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderByCode$orderByCode$promotions$conditionsToJson(
+            Query$GetOrderByCode$orderByCode$promotions$conditions instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Query$GetOrderByCode$orderByCode$promotions$conditions$args
+    _$Query$GetOrderByCode$orderByCode$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetOrderByCode$orderByCode$promotions$conditions$argsToJson(
+            Query$GetOrderByCode$orderByCode$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Query$GetOrderByCode$orderByCode$lines
     _$Query$GetOrderByCode$orderByCode$linesFromJson(
@@ -1651,6 +2495,7 @@ Query$GetOrderByCode$orderByCode$lines
                   Query$GetOrderByCode$orderByCode$lines$discounts.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -1666,6 +2511,7 @@ Map<String, dynamic> _$Query$GetOrderByCode$orderByCode$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -1777,6 +2623,21 @@ Map<String, dynamic> _$Query$GetOrderByCode$orderByCode$discountsToJson(
       '__typename': instance.$__typename,
     };
 
+Query$GetOrderByCode$orderByCode$customFields
+    _$Query$GetOrderByCode$orderByCode$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetOrderByCode$orderByCode$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetOrderByCode$orderByCode$customFieldsToJson(
+        Query$GetOrderByCode$orderByCode$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+      '__typename': instance.$__typename,
+    };
+
 Query$GetOrderByCode$orderByCode$customer
     _$Query$GetOrderByCode$orderByCode$customerFromJson(
             Map<String, dynamic> json) =>
@@ -1870,6 +2731,14 @@ Mutation$AddPayment$addPaymentToOrder$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$AddPayment$addPaymentToOrder$$Order$lines.fromJson(
@@ -1891,6 +2760,10 @@ Mutation$AddPayment$addPaymentToOrder$$Order
               .map((e) => Mutation$AddPayment$addPaymentToOrder$$Order$discounts
                   .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$Mutation$AddPayment$addPaymentToOrder$$OrderToJson(
@@ -1901,6 +2774,8 @@ Map<String, dynamic> _$Mutation$AddPayment$addPaymentToOrder$$OrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -1911,7 +2786,124 @@ Map<String, dynamic> _$Mutation$AddPayment$addPaymentToOrder$$OrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
     };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$promotions
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotionsToJson(
+            Mutation$AddPayment$addPaymentToOrder$$Order$promotions instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actionsToJson(
+            Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$argsToJson(
+            Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditionsToJson(
+            Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$argsToJson(
+            Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$AddPayment$addPaymentToOrder$$Order$lines
     _$Mutation$AddPayment$addPaymentToOrder$$Order$linesFromJson(
@@ -1935,6 +2927,7 @@ Mutation$AddPayment$addPaymentToOrder$$Order$lines
                   Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -1950,6 +2943,7 @@ Map<String, dynamic> _$Mutation$AddPayment$addPaymentToOrder$$Order$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -2065,6 +3059,22 @@ Map<String, dynamic>
           'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
           '__typename': instance.$__typename,
         };
+
+Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+    _$Mutation$AddPayment$addPaymentToOrder$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$AddPayment$addPaymentToOrder$$Order$customFieldsToJson(
+        Mutation$AddPayment$addPaymentToOrder$$Order$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
+      '__typename': instance.$__typename,
+    };
 
 Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodError
     _$Mutation$AddPayment$addPaymentToOrder$$IneligiblePaymentMethodErrorFromJson(
@@ -2275,6 +3285,14 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) => Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
                   .fromJson(e as Map<String, dynamic>))
@@ -2296,6 +3314,10 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order
                   Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderToJson(
@@ -2306,6 +3328,8 @@ Map<String, dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -2316,7 +3340,124 @@ Map<String, dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
     };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotionsToJson(
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actionsToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$argsToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditionsToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$argsToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
     _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$linesFromJson(
@@ -2340,6 +3481,7 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
                   Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -2356,6 +3498,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -2472,6 +3615,23 @@ Map<String,
       'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
       '__typename': instance.$__typename,
     };
+
+Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFieldsToJson(
+            Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockError
     _$Mutation$AdjustOrderLine$adjustOrderLine$$InsufficientStockErrorFromJson(
@@ -2605,6 +3765,14 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
@@ -2627,6 +3795,10 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order
                   Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
           shippingAddress: json['shippingAddress'] == null
               ? null
               : Fragment$OrderAddress.fromJson(
@@ -2642,6 +3814,8 @@ Map<String,
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -2652,8 +3826,126 @@ Map<String,
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
       'shippingAddress': instance.shippingAddress?.toJson(),
     };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotionsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actionsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$argsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditionsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$argsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
     _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$linesFromJson(
@@ -2677,6 +3969,7 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
                   Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -2694,6 +3987,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -2812,6 +4106,23 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFieldsToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
+
 Mutation$SetShippingAddress$setOrderShippingAddress$$NoActiveOrderError
     _$Mutation$SetShippingAddress$setOrderShippingAddress$$NoActiveOrderErrorFromJson(
             Map<String, dynamic> json) =>
@@ -2882,6 +4193,14 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
@@ -2904,6 +4223,10 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order
                   Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String,
@@ -2915,6 +4238,8 @@ Map<String,
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -2925,7 +4250,125 @@ Map<String,
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
     };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotionsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actionsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$argsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditionsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$argsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$linesFromJson(
@@ -2949,6 +4392,7 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
                   Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -2966,6 +4410,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -3084,6 +4529,23 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
+Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFieldsToJson(
+            Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
+
 Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodError
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodErrorFromJson(
             Map<String, dynamic> json) =>
@@ -3144,6 +4606,479 @@ Map<String, dynamic>
           'message': instance.message,
         };
 
+Variables$Mutation$CancelOrderOnClientRequest
+    _$Variables$Mutation$CancelOrderOnClientRequestFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$CancelOrderOnClientRequest(
+          userId: json['userId'] as String,
+        );
+
+Map<String, dynamic> _$Variables$Mutation$CancelOrderOnClientRequestToJson(
+        Variables$Mutation$CancelOrderOnClientRequest instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+    };
+
+Mutation$CancelOrderOnClientRequest
+    _$Mutation$CancelOrderOnClientRequestFromJson(Map<String, dynamic> json) =>
+        Mutation$CancelOrderOnClientRequest(
+          cancelOrderOnClientRequest: Fragment$Cart.fromJson(
+              json['cancelOrderOnClientRequest'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$CancelOrderOnClientRequestToJson(
+        Mutation$CancelOrderOnClientRequest instance) =>
+    <String, dynamic>{
+      'cancelOrderOnClientRequest':
+          instance.cancelOrderOnClientRequest.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$NextOrderStates _$Query$NextOrderStatesFromJson(
+        Map<String, dynamic> json) =>
+    Query$NextOrderStates(
+      nextOrderStates: (json['nextOrderStates'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$NextOrderStatesToJson(
+        Query$NextOrderStates instance) =>
+    <String, dynamic>{
+      'nextOrderStates': instance.nextOrderStates,
+      '__typename': instance.$__typename,
+    };
+
+Variables$Mutation$TransitionOrderToState
+    _$Variables$Mutation$TransitionOrderToStateFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$TransitionOrderToState(
+          state: json['state'] as String,
+        );
+
+Map<String, dynamic> _$Variables$Mutation$TransitionOrderToStateToJson(
+        Variables$Mutation$TransitionOrderToState instance) =>
+    <String, dynamic>{
+      'state': instance.state,
+    };
+
+Mutation$TransitionOrderToState _$Mutation$TransitionOrderToStateFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$TransitionOrderToState(
+      transitionOrderToState: json['transitionOrderToState'] == null
+          ? null
+          : Mutation$TransitionOrderToState$transitionOrderToState.fromJson(
+              json['transitionOrderToState'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$TransitionOrderToStateToJson(
+        Mutation$TransitionOrderToState instance) =>
+    <String, dynamic>{
+      'transitionOrderToState': instance.transitionOrderToState?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$TransitionOrderToState$transitionOrderToState
+    _$Mutation$TransitionOrderToState$transitionOrderToStateFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState(
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToStateToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+          $__typename: json['__typename'] as String,
+          id: json['id'] as String,
+          code: json['code'] as String,
+          state: json['state'] as String,
+          active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          lines: (json['lines'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          totalQuantity: json['totalQuantity'] as int,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
+          shippingLines: (json['shippingLines'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          discounts: (json['discounts'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'id': instance.id,
+          'code': instance.code,
+          'state': instance.state,
+          'active': instance.active,
+          'couponCodes': instance.couponCodes,
+          'promotions': instance.promotions.map((e) => e.toJson()).toList(),
+          'lines': instance.lines.map((e) => e.toJson()).toList(),
+          'totalQuantity': instance.totalQuantity,
+          'subTotal': instance.subTotal,
+          'subTotalWithTax': instance.subTotalWithTax,
+          'total': instance.total,
+          'totalWithTax': instance.totalWithTax,
+          'shipping': instance.shipping,
+          'shippingWithTax': instance.shippingWithTax,
+          'shippingLines':
+              instance.shippingLines.map((e) => e.toJson()).toList(),
+          'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields?.toJson(),
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotionsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actionsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$argsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditionsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$linesFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+          id: json['id'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
+          quantity: json['quantity'] as int,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
+          productVariant:
+              Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+                  .fromJson(json['productVariant'] as Map<String, dynamic>),
+          discounts: (json['discounts'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          customFields: json['customFields'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$linesToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'featuredAsset': instance.featuredAsset?.toJson(),
+          'unitPrice': instance.unitPrice,
+          'unitPriceWithTax': instance.unitPriceWithTax,
+          'quantity': instance.quantity,
+          'linePriceWithTax': instance.linePriceWithTax,
+          'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
+          'productVariant': instance.productVariant.toJson(),
+          'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariantFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariantToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
+          description: json['description'] as String,
+          adjustmentSource: json['adjustmentSource'] as String,
+          type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
+              unknownValue: Enum$AdjustmentType.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+                instance) =>
+        <String, dynamic>{
+          'amount': instance.amount,
+          'amountWithTax': instance.amountWithTax,
+          'description': instance.description,
+          'adjustmentSource': instance.adjustmentSource,
+          'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+          priceWithTax: json['priceWithTax'] as int,
+          shippingMethod:
+              Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+                  .fromJson(json['shippingMethod'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+                instance) =>
+        <String, dynamic>{
+          'priceWithTax': instance.priceWithTax,
+          'shippingMethod': instance.shippingMethod.toJson(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethodFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+          id: json['id'] as String,
+          code: json['code'] as String,
+          name: json['name'] as String,
+          description: json['description'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethodToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+                instance) =>
+        <String, dynamic>{
+          'id': instance.id,
+          'code': instance.code,
+          'name': instance.name,
+          'description': instance.description,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
+          description: json['description'] as String,
+          adjustmentSource: json['adjustmentSource'] as String,
+          type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
+              unknownValue: Enum$AdjustmentType.$unknown),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+                instance) =>
+        <String, dynamic>{
+          'amount': instance.amount,
+          'amountWithTax': instance.amountWithTax,
+          'description': instance.description,
+          'adjustmentSource': instance.adjustmentSource,
+          'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFieldsToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionErrorFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+          $__typename: json['__typename'] as String,
+          errorCode: $enumDecode(_$Enum$ErrorCodeEnumMap, json['errorCode'],
+              unknownValue: Enum$ErrorCode.$unknown),
+          message: json['message'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionErrorToJson(
+            Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+                instance) =>
+        <String, dynamic>{
+          '__typename': instance.$__typename,
+          'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
+          'message': instance.message,
+        };
+
 Mutation$TransitionToArrangingPayment
     _$Mutation$TransitionToArrangingPaymentFromJson(
             Map<String, dynamic> json) =>
@@ -3187,6 +5122,14 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
@@ -3209,6 +5152,10 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
                   Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic>
@@ -3221,6 +5168,8 @@ Map<String, dynamic>
           'code': instance.code,
           'state': instance.state,
           'active': instance.active,
+          'couponCodes': instance.couponCodes,
+          'promotions': instance.promotions.map((e) => e.toJson()).toList(),
           'lines': instance.lines.map((e) => e.toJson()).toList(),
           'totalQuantity': instance.totalQuantity,
           'subTotal': instance.subTotal,
@@ -3232,6 +5181,124 @@ Map<String, dynamic>
           'shippingLines':
               instance.shippingLines.map((e) => e.toJson()).toList(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields?.toJson(),
+        };
+
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotionsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actionsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$argsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditionsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
         };
 
 Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
@@ -3256,6 +5323,7 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
                   Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -3273,6 +5341,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -3391,6 +5460,23 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
+Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFieldsToJson(
+            Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
+
 Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransitionError
     _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransitionErrorFromJson(
             Map<String, dynamic> json) =>
@@ -3451,6 +5537,14 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
@@ -3473,6 +5567,10 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order
                   Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic>
@@ -3485,6 +5583,8 @@ Map<String, dynamic>
           'code': instance.code,
           'state': instance.state,
           'active': instance.active,
+          'couponCodes': instance.couponCodes,
+          'promotions': instance.promotions.map((e) => e.toJson()).toList(),
           'lines': instance.lines.map((e) => e.toJson()).toList(),
           'totalQuantity': instance.totalQuantity,
           'subTotal': instance.subTotal,
@@ -3496,6 +5596,124 @@ Map<String, dynamic>
           'shippingLines':
               instance.shippingLines.map((e) => e.toJson()).toList(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields?.toJson(),
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotionsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+                instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actionsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$argsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditionsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
         };
 
 Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
@@ -3520,6 +5738,7 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
                   Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -3537,6 +5756,7 @@ Map<String, dynamic>
           'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
           'productVariant': instance.productVariant.toJson(),
           'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+          'customFields': instance.customFields,
           '__typename': instance.$__typename,
         };
 
@@ -3652,6 +5872,23 @@ Map<String, dynamic>
           'description': instance.description,
           'adjustmentSource': instance.adjustmentSource,
           'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFieldsToJson(
+            Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+                instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
           '__typename': instance.$__typename,
         };
 

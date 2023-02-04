@@ -97,6 +97,9 @@ query GetProductDetail($slug: String!) {
                 name
                 __typename
             }
+            featuredAsset {
+                ...Asset
+            }
             price
             priceWithTax
             currencyCode

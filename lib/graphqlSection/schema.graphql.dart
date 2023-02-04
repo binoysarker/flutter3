@@ -3678,6 +3678,7 @@ class _CopyWithStubImpl$Input$NumberRange<TRes>
 class Input$OrderFilterParameter {
   Input$OrderFilterParameter(
       {this.active,
+      this.clientRequestToCancel,
       this.code,
       this.createdAt,
       this.currencyCode,
@@ -3698,6 +3699,8 @@ class Input$OrderFilterParameter {
       _$Input$OrderFilterParameterFromJson(json);
 
   final Input$BooleanOperators? active;
+
+  final Input$NumberOperators? clientRequestToCancel;
 
   final Input$StringOperators? code;
 
@@ -3730,6 +3733,7 @@ class Input$OrderFilterParameter {
   Map<String, dynamic> toJson() => _$Input$OrderFilterParameterToJson(this);
   int get hashCode {
     final l$active = active;
+    final l$clientRequestToCancel = clientRequestToCancel;
     final l$code = code;
     final l$createdAt = createdAt;
     final l$currencyCode = currencyCode;
@@ -3746,6 +3750,7 @@ class Input$OrderFilterParameter {
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       l$active,
+      l$clientRequestToCancel,
       l$code,
       l$createdAt,
       l$currencyCode,
@@ -3771,6 +3776,9 @@ class Input$OrderFilterParameter {
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
     final l$code = code;
     final lOther$code = other.code;
     if (l$code != lOther$code) return false;
@@ -3831,6 +3839,7 @@ abstract class CopyWith$Input$OrderFilterParameter<TRes> {
 
   TRes call(
       {Input$BooleanOperators? active,
+      Input$NumberOperators? clientRequestToCancel,
       Input$StringOperators? code,
       Input$DateOperators? createdAt,
       Input$StringOperators? currencyCode,
@@ -3846,6 +3855,7 @@ abstract class CopyWith$Input$OrderFilterParameter<TRes> {
       Input$NumberOperators? totalWithTax,
       Input$DateOperators? updatedAt});
   CopyWith$Input$BooleanOperators<TRes> get active;
+  CopyWith$Input$NumberOperators<TRes> get clientRequestToCancel;
   CopyWith$Input$StringOperators<TRes> get code;
   CopyWith$Input$DateOperators<TRes> get createdAt;
   CopyWith$Input$StringOperators<TRes> get currencyCode;
@@ -3874,6 +3884,7 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
 
   TRes call(
           {Object? active = _undefined,
+          Object? clientRequestToCancel = _undefined,
           Object? code = _undefined,
           Object? createdAt = _undefined,
           Object? currencyCode = _undefined,
@@ -3892,6 +3903,9 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
           active: active == _undefined
               ? _instance.active
               : (active as Input$BooleanOperators?),
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as Input$NumberOperators?),
           code: code == _undefined
               ? _instance.code
               : (code as Input$StringOperators?),
@@ -3937,6 +3951,14 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
     return local$active == null
         ? CopyWith$Input$BooleanOperators.stub(_then(_instance))
         : CopyWith$Input$BooleanOperators(local$active, (e) => call(active: e));
+  }
+
+  CopyWith$Input$NumberOperators<TRes> get clientRequestToCancel {
+    final local$clientRequestToCancel = _instance.clientRequestToCancel;
+    return local$clientRequestToCancel == null
+        ? CopyWith$Input$NumberOperators.stub(_then(_instance))
+        : CopyWith$Input$NumberOperators(
+            local$clientRequestToCancel, (e) => call(clientRequestToCancel: e));
   }
 
   CopyWith$Input$StringOperators<TRes> get code {
@@ -4056,6 +4078,7 @@ class _CopyWithStubImpl$Input$OrderFilterParameter<TRes>
 
   call(
           {Input$BooleanOperators? active,
+          Input$NumberOperators? clientRequestToCancel,
           Input$StringOperators? code,
           Input$DateOperators? createdAt,
           Input$StringOperators? currencyCode,
@@ -4073,6 +4096,8 @@ class _CopyWithStubImpl$Input$OrderFilterParameter<TRes>
       _res;
   CopyWith$Input$BooleanOperators<TRes> get active =>
       CopyWith$Input$BooleanOperators.stub(_res);
+  CopyWith$Input$NumberOperators<TRes> get clientRequestToCancel =>
+      CopyWith$Input$NumberOperators.stub(_res);
   CopyWith$Input$StringOperators<TRes> get code =>
       CopyWith$Input$StringOperators.stub(_res);
   CopyWith$Input$DateOperators<TRes> get createdAt =>
@@ -4244,7 +4269,8 @@ class _CopyWithStubImpl$Input$OrderListOptions<TRes>
 @JsonSerializable(explicitToJson: true)
 class Input$OrderSortParameter {
   Input$OrderSortParameter(
-      {this.code,
+      {this.clientRequestToCancel,
+      this.code,
       this.createdAt,
       this.id,
       this.orderPlacedAt,
@@ -4261,6 +4287,9 @@ class Input$OrderSortParameter {
   @override
   factory Input$OrderSortParameter.fromJson(Map<String, dynamic> json) =>
       _$Input$OrderSortParameterFromJson(json);
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? clientRequestToCancel;
 
   @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
   final Enum$SortOrder? code;
@@ -4303,6 +4332,7 @@ class Input$OrderSortParameter {
 
   Map<String, dynamic> toJson() => _$Input$OrderSortParameterToJson(this);
   int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
     final l$code = code;
     final l$createdAt = createdAt;
     final l$id = id;
@@ -4317,6 +4347,7 @@ class Input$OrderSortParameter {
     final l$totalWithTax = totalWithTax;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
+      l$clientRequestToCancel,
       l$code,
       l$createdAt,
       l$id,
@@ -4338,6 +4369,9 @@ class Input$OrderSortParameter {
     if (identical(this, other)) return true;
     if (!(other is Input$OrderSortParameter) ||
         runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
     final l$code = code;
     final lOther$code = other.code;
     if (l$code != lOther$code) return false;
@@ -4393,7 +4427,8 @@ abstract class CopyWith$Input$OrderSortParameter<TRes> {
       _CopyWithStubImpl$Input$OrderSortParameter;
 
   TRes call(
-      {Enum$SortOrder? code,
+      {Enum$SortOrder? clientRequestToCancel,
+      Enum$SortOrder? code,
       Enum$SortOrder? createdAt,
       Enum$SortOrder? id,
       Enum$SortOrder? orderPlacedAt,
@@ -4419,7 +4454,8 @@ class _CopyWithImpl$Input$OrderSortParameter<TRes>
   static const _undefined = {};
 
   TRes call(
-          {Object? code = _undefined,
+          {Object? clientRequestToCancel = _undefined,
+          Object? code = _undefined,
           Object? createdAt = _undefined,
           Object? id = _undefined,
           Object? orderPlacedAt = _undefined,
@@ -4433,6 +4469,9 @@ class _CopyWithImpl$Input$OrderSortParameter<TRes>
           Object? totalWithTax = _undefined,
           Object? updatedAt = _undefined}) =>
       _then(Input$OrderSortParameter(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as Enum$SortOrder?),
           code: code == _undefined ? _instance.code : (code as Enum$SortOrder?),
           createdAt: createdAt == _undefined
               ? _instance.createdAt
@@ -4477,7 +4516,8 @@ class _CopyWithStubImpl$Input$OrderSortParameter<TRes>
   TRes _res;
 
   call(
-          {Enum$SortOrder? code,
+          {Enum$SortOrder? clientRequestToCancel,
+          Enum$SortOrder? code,
           Enum$SortOrder? createdAt,
           Enum$SortOrder? id,
           Enum$SortOrder? orderPlacedAt,
@@ -6846,6 +6886,79 @@ class _CopyWithStubImpl$Input$UpdateCustomerInput<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Input$UpdateOrderCustomFieldsInput {
+  Input$UpdateOrderCustomFieldsInput({this.clientRequestToCancel});
+
+  @override
+  factory Input$UpdateOrderCustomFieldsInput.fromJson(
+          Map<String, dynamic> json) =>
+      _$Input$UpdateOrderCustomFieldsInputFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  Map<String, dynamic> toJson() =>
+      _$Input$UpdateOrderCustomFieldsInputToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    return Object.hashAll([l$clientRequestToCancel]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Input$UpdateOrderCustomFieldsInput) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    return true;
+  }
+
+  CopyWith$Input$UpdateOrderCustomFieldsInput<
+          Input$UpdateOrderCustomFieldsInput>
+      get copyWith =>
+          CopyWith$Input$UpdateOrderCustomFieldsInput(this, (i) => i);
+}
+
+abstract class CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> {
+  factory CopyWith$Input$UpdateOrderCustomFieldsInput(
+          Input$UpdateOrderCustomFieldsInput instance,
+          TRes Function(Input$UpdateOrderCustomFieldsInput) then) =
+      _CopyWithImpl$Input$UpdateOrderCustomFieldsInput;
+
+  factory CopyWith$Input$UpdateOrderCustomFieldsInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$UpdateOrderCustomFieldsInput;
+
+  TRes call({int? clientRequestToCancel});
+}
+
+class _CopyWithImpl$Input$UpdateOrderCustomFieldsInput<TRes>
+    implements CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> {
+  _CopyWithImpl$Input$UpdateOrderCustomFieldsInput(this._instance, this._then);
+
+  final Input$UpdateOrderCustomFieldsInput _instance;
+
+  final TRes Function(Input$UpdateOrderCustomFieldsInput) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? clientRequestToCancel = _undefined}) =>
+      _then(Input$UpdateOrderCustomFieldsInput(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?)));
+}
+
+class _CopyWithStubImpl$Input$UpdateOrderCustomFieldsInput<TRes>
+    implements CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> {
+  _CopyWithStubImpl$Input$UpdateOrderCustomFieldsInput(this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Input$UpdateOrderInput {
   Input$UpdateOrderInput({this.customFields});
 
@@ -6853,7 +6966,7 @@ class Input$UpdateOrderInput {
   factory Input$UpdateOrderInput.fromJson(Map<String, dynamic> json) =>
       _$Input$UpdateOrderInputFromJson(json);
 
-  final String? customFields;
+  final Input$UpdateOrderCustomFieldsInput? customFields;
 
   Map<String, dynamic> toJson() => _$Input$UpdateOrderInputToJson(this);
   int get hashCode {
@@ -6884,7 +6997,8 @@ abstract class CopyWith$Input$UpdateOrderInput<TRes> {
   factory CopyWith$Input$UpdateOrderInput.stub(TRes res) =
       _CopyWithStubImpl$Input$UpdateOrderInput;
 
-  TRes call({String? customFields});
+  TRes call({Input$UpdateOrderCustomFieldsInput? customFields});
+  CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> get customFields;
 }
 
 class _CopyWithImpl$Input$UpdateOrderInput<TRes>
@@ -6901,7 +7015,14 @@ class _CopyWithImpl$Input$UpdateOrderInput<TRes>
       _then(Input$UpdateOrderInput(
           customFields: customFields == _undefined
               ? _instance.customFields
-              : (customFields as String?)));
+              : (customFields as Input$UpdateOrderCustomFieldsInput?)));
+  CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Input$UpdateOrderCustomFieldsInput.stub(_then(_instance))
+        : CopyWith$Input$UpdateOrderCustomFieldsInput(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Input$UpdateOrderInput<TRes>
@@ -6910,7 +7031,9 @@ class _CopyWithStubImpl$Input$UpdateOrderInput<TRes>
 
   TRes _res;
 
-  call({String? customFields}) => _res;
+  call({Input$UpdateOrderCustomFieldsInput? customFields}) => _res;
+  CopyWith$Input$UpdateOrderCustomFieldsInput<TRes> get customFields =>
+      CopyWith$Input$UpdateOrderCustomFieldsInput.stub(_res);
 }
 
 enum Enum$AdjustmentType {

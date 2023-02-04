@@ -598,6 +598,7 @@ Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
         Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product(
           id: json['id'] as String,
           name: json['name'] as String,
+          slug: json['slug'] as String,
           $__typename: json['__typename'] as String,
         );
 
@@ -608,6 +609,7 @@ Map<String, dynamic>
         <String, dynamic>{
           'id': instance.id,
           'name': instance.name,
+          'slug': instance.slug,
           '__typename': instance.$__typename,
         };
 

@@ -12,6 +12,13 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String,
       state: json['state'] as String,
       active: json['active'] as bool,
+      couponCodes: (json['couponCodes'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      promotions: (json['promotions'] as List<dynamic>)
+          .map((e) =>
+              Fragment$Cart$promotions.fromJson(e as Map<String, dynamic>))
+          .toList(),
       lines: (json['lines'] as List<dynamic>)
           .map((e) => Fragment$Cart$lines.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -30,6 +37,10 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
           .map((e) =>
               Fragment$Cart$discounts.fromJson(e as Map<String, dynamic>))
           .toList(),
+      customFields: json['customFields'] == null
+          ? null
+          : Fragment$Cart$customFields.fromJson(
+              json['customFields'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
 
@@ -39,6 +50,8 @@ Map<String, dynamic> _$Fragment$CartToJson(Fragment$Cart instance) =>
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -49,6 +62,107 @@ Map<String, dynamic> _$Fragment$CartToJson(Fragment$Cart instance) =>
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions _$Fragment$Cart$promotionsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$promotions(
+      couponCode: json['couponCode'] as String?,
+      name: json['name'] as String,
+      enabled: json['enabled'] as bool,
+      actions: (json['actions'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$actions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      conditions: (json['conditions'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$conditions.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$promotionsToJson(
+        Fragment$Cart$promotions instance) =>
+    <String, dynamic>{
+      'couponCode': instance.couponCode,
+      'name': instance.name,
+      'enabled': instance.enabled,
+      'actions': instance.actions.map((e) => e.toJson()).toList(),
+      'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$actions _$Fragment$Cart$promotions$actionsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$promotions$actions(
+      args: (json['args'] as List<dynamic>)
+          .map((e) => Fragment$Cart$promotions$actions$args.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      code: json['code'] as String,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$actionsToJson(
+        Fragment$Cart$promotions$actions instance) =>
+    <String, dynamic>{
+      'args': instance.args.map((e) => e.toJson()).toList(),
+      'code': instance.code,
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$actions$args
+    _$Fragment$Cart$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$actions$argsToJson(
+        Fragment$Cart$promotions$actions$args instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'name': instance.name,
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$conditions
+    _$Fragment$Cart$promotions$conditionsFromJson(Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) => Fragment$Cart$promotions$conditions$args.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$conditionsToJson(
+        Fragment$Cart$promotions$conditions instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'args': instance.args.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$promotions$conditions$args
+    _$Fragment$Cart$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Fragment$Cart$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Fragment$Cart$promotions$conditions$argsToJson(
+        Fragment$Cart$promotions$conditions$args instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
       '__typename': instance.$__typename,
     };
 
@@ -70,6 +184,7 @@ Fragment$Cart$lines _$Fragment$Cart$linesFromJson(Map<String, dynamic> json) =>
           .map((e) =>
               Fragment$Cart$lines$discounts.fromJson(e as Map<String, dynamic>))
           .toList(),
+      customFields: json['customFields'] as String?,
       $__typename: json['__typename'] as String,
     );
 
@@ -85,6 +200,7 @@ Map<String, dynamic> _$Fragment$Cart$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -193,6 +309,20 @@ Map<String, dynamic> _$Fragment$Cart$discountsToJson(
       'description': instance.description,
       'adjustmentSource': instance.adjustmentSource,
       'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
+      '__typename': instance.$__typename,
+    };
+
+Fragment$Cart$customFields _$Fragment$Cart$customFieldsFromJson(
+        Map<String, dynamic> json) =>
+    Fragment$Cart$customFields(
+      clientRequestToCancel: json['clientRequestToCancel'] as int?,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$Cart$customFieldsToJson(
+        Fragment$Cart$customFields instance) =>
+    <String, dynamic>{
+      'clientRequestToCancel': instance.clientRequestToCancel,
       '__typename': instance.$__typename,
     };
 
@@ -379,6 +509,14 @@ Mutation$AddToCart$addItemToOrder$$Order
           code: json['code'] as String,
           state: json['state'] as String,
           active: json['active'] as bool,
+          couponCodes: (json['couponCodes'] as List<dynamic>)
+              .map((e) => e as String)
+              .toList(),
+          promotions: (json['promotions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddToCart$addItemToOrder$$Order$promotions.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
           lines: (json['lines'] as List<dynamic>)
               .map((e) =>
                   Mutation$AddToCart$addItemToOrder$$Order$lines.fromJson(
@@ -400,6 +538,10 @@ Mutation$AddToCart$addItemToOrder$$Order
                   Mutation$AddToCart$addItemToOrder$$Order$discounts.fromJson(
                       e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$AddToCart$addItemToOrder$$Order$customFields.fromJson(
+                  json['customFields'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$OrderToJson(
@@ -410,6 +552,8 @@ Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$OrderToJson(
       'code': instance.code,
       'state': instance.state,
       'active': instance.active,
+      'couponCodes': instance.couponCodes,
+      'promotions': instance.promotions.map((e) => e.toJson()).toList(),
       'lines': instance.lines.map((e) => e.toJson()).toList(),
       'totalQuantity': instance.totalQuantity,
       'subTotal': instance.subTotal,
@@ -420,7 +564,124 @@ Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$OrderToJson(
       'shippingWithTax': instance.shippingWithTax,
       'shippingLines': instance.shippingLines.map((e) => e.toJson()).toList(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields?.toJson(),
     };
+
+Mutation$AddToCart$addItemToOrder$$Order$promotions
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$promotions(
+          couponCode: json['couponCode'] as String?,
+          name: json['name'] as String,
+          enabled: json['enabled'] as bool,
+          actions: (json['actions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddToCart$addItemToOrder$$Order$promotions$actions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          conditions: (json['conditions'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotionsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$promotions instance) =>
+        <String, dynamic>{
+          'couponCode': instance.couponCode,
+          'name': instance.name,
+          'enabled': instance.enabled,
+          'actions': instance.actions.map((e) => e.toJson()).toList(),
+          'conditions': instance.conditions.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddToCart$addItemToOrder$$Order$promotions$actions
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$actionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$promotions$actions(
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          code: json['code'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$actionsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$promotions$actions
+                instance) =>
+        <String, dynamic>{
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          'code': instance.code,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$args
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$args(
+          value: json['value'] as String,
+          name: json['name'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$argsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$promotions$actions$args
+                instance) =>
+        <String, dynamic>{
+          'value': instance.value,
+          'name': instance.name,
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$conditionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions(
+          code: json['code'] as String,
+          args: (json['args'] as List<dynamic>)
+              .map((e) =>
+                  Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$args
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$conditionsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions
+                instance) =>
+        <String, dynamic>{
+          'code': instance.code,
+          'args': instance.args.map((e) => e.toJson()).toList(),
+          '__typename': instance.$__typename,
+        };
+
+Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$args
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$argsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$args(
+          name: json['name'] as String,
+          value: json['value'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$argsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$promotions$conditions$args
+                instance) =>
+        <String, dynamic>{
+          'name': instance.name,
+          'value': instance.value,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$AddToCart$addItemToOrder$$Order$lines
     _$Mutation$AddToCart$addItemToOrder$$Order$linesFromJson(
@@ -444,6 +705,7 @@ Mutation$AddToCart$addItemToOrder$$Order$lines
                   Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
+          customFields: json['customFields'] as String?,
           $__typename: json['__typename'] as String,
         );
 
@@ -459,6 +721,7 @@ Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$Order$linesToJson(
       'discountedLinePriceWithTax': instance.discountedLinePriceWithTax,
       'productVariant': instance.productVariant.toJson(),
       'discounts': instance.discounts.map((e) => e.toJson()).toList(),
+      'customFields': instance.customFields,
       '__typename': instance.$__typename,
     };
 
@@ -572,6 +835,22 @@ Map<String, dynamic> _$Mutation$AddToCart$addItemToOrder$$Order$discountsToJson(
       'type': _$Enum$AdjustmentTypeEnumMap[instance.type]!,
       '__typename': instance.$__typename,
     };
+
+Mutation$AddToCart$addItemToOrder$$Order$customFields
+    _$Mutation$AddToCart$addItemToOrder$$Order$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$AddToCart$addItemToOrder$$Order$customFields(
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$AddToCart$addItemToOrder$$Order$customFieldsToJson(
+            Mutation$AddToCart$addItemToOrder$$Order$customFields instance) =>
+        <String, dynamic>{
+          'clientRequestToCancel': instance.clientRequestToCancel,
+          '__typename': instance.$__typename,
+        };
 
 Mutation$AddToCart$addItemToOrder$$InsufficientStockError
     _$Mutation$AddToCart$addItemToOrder$$InsufficientStockErrorFromJson(

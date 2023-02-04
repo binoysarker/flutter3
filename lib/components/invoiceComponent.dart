@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../services/commonVariables.dart';
 import '../services/util_service.dart';
 
 class InvoiceComponent extends StatefulWidget {
-
   InvoiceComponent({Key? key, required this.orderController}) : super(key: key);
   OrderController orderController;
 
@@ -18,6 +18,7 @@ class InvoiceComponent extends StatefulWidget {
 }
 
 class _InvoiceComponentState extends State<InvoiceComponent> {
+  final UserController userController = Get.find<UserController>();
 
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
@@ -32,7 +33,11 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      widget.orderController.sendDeliverySms();
+      var message =
+          'Your order Id is ${widget.orderController.getOrderByCodeResponse.value!.code}, your bill value is Rs.${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}.you will get delivery on tomorrow 6am to 9am.By KAAIKANI';
+      var number =
+          userController.currentAuthenticatedUser.value!.phoneNumber.toString();
+      UtilService.sendSms(message, number);
     });
   }
 
@@ -40,138 +45,182 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   Widget build(BuildContext context) {
     return Obx(() => widget.orderController.getOrderByCodeResponse.value == null
         ? Center(
-      child: CircularProgressIndicator(),
-    )
-        : Container(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'Thank you for your order!',
-              style: CustomTheme.headerStyle3,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Text('Order code: '),
-                Text(
-                  widget.orderController.getOrderByCodeResponse.value?.code ?? '',
-                  style: CustomTheme.headerStyle,
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Text('Placed: '),
-                Text(
-                  getFormatedString(widget.orderController.getOrderByCodeResponse.value?.updatedAt ?? ''),
-                  style: CustomTheme.headerStyle,
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          DottedLine(
-            direction: Axis.horizontal,
-            dashLength: 4.0,
-          ),
-          Container(
-            child: Column(
-              children: widget.orderController
-                  .getOrderByCodeResponse.value!.lines
-                  .map((element) => Container(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FadeInImage.assetNetwork(
-                      width: 50,
-                      height: 50,
-                      placeholder:
-                      '${CommonVariableData.placeholder}',
-                      image: '${element.featuredAsset?.preview}',
-                      imageErrorBuilder:
-                          (context, error, stackTrace) =>
-                          Image.asset(
-                            '${CommonVariableData.placeholder}',
-                            width: 50,
-                            height: 50,
-                          ),
-                    ),
-                    Column(
-                      children: [
-                        Text(element.productVariant.name),
-                        Text('Quantity: ${element.quantity}'),
-                      ],
-                    ),
-                    Text(
-                        '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${element.linePriceWithTax}'),
-                  ],
-                ),
-              ))
-                  .toList(),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          DottedLine(
-            direction: Axis.horizontal,
-            dashLength: 4.0,
-          ),
-          Text(
-            'Shipping Method',
-            style: CustomTheme.headerStyle,
-          ),
-          Container(
-            child: Column(
-              children: widget.orderController
-                  .getOrderByCodeResponse.value!.shippingLines
-                  .map((element) => ListTile(
-                title: Text(element.shippingMethod.name),
-                trailing: Text(
-                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${element.priceWithTax}'),
-              ))
-                  .toList(),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          DottedLine(
-            direction: Axis.horizontal,
-            dashLength: 4.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  'Total',
-                  style: CustomTheme.headerStyle,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
-                child: Text(
-                  '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${widget.orderController.getOrderByCodeResponse.value?.totalWithTax ?? ''}',
-                  style: CustomTheme.headerStyle,
-                ),
-              ),
-            ],
+            child: CircularProgressIndicator(),
           )
-        ],
-      ),
-    ));
+        : Container(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Thank you for your order!',
+                    style: CustomTheme.headerStyle3,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Order code: ',
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Text(
+                        widget.orderController.getOrderByCodeResponse.value
+                                ?.code ??
+                            '',
+                        style: CustomTheme.headerStyle,
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Placed: ',
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Text(
+                        getFormatedString(widget.orderController
+                                .getOrderByCodeResponse.value?.updatedAt ??
+                            ''),
+                        style: CustomTheme.headerStyle,
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                DottedLine(
+                  direction: Axis.horizontal,
+                  dashLength: 4.0,
+                ),
+                Container(
+                  child: Column(
+                    children: widget
+                        .orderController.getOrderByCodeResponse.value!.lines
+                        .map((element) => Container(
+                              width: double.infinity,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  FadeInImage.assetNetwork(
+                                    width: 50,
+                                    height: 50,
+                                    placeholder:
+                                        '${CommonVariableData.placeholder}',
+                                    image: '${element.featuredAsset?.preview}',
+                                    imageErrorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Image.asset(
+                                      '${CommonVariableData.placeholder}',
+                                      width: 50,
+                                      height: 50,
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        element.productVariant.name,
+                                        style: CustomTheme.paragraphStyle,
+                                      ),
+                                      Text(
+                                        'Quantity: ${element.quantity}',
+                                        style: CustomTheme.paragraphStyle,
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(element.linePriceWithTax / 100).toStringAsFixed(2)}'),
+                                ],
+                              ),
+                            ))
+                        .toList(),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                DottedLine(
+                  direction: Axis.horizontal,
+                  dashLength: 4.0,
+                ),
+                Container(
+                  child: Column(
+                    children: widget
+                        .orderController.activeOrderResponse.value!.promotions
+                        .map((e) => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  e.name,
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  e.couponCode ?? '',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.actions.first.args.first.value))}',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                              ],
+                            ))
+                        .toList(),
+                  ),
+                ),
+                Container(
+                  child: Column(
+                    children: widget.orderController.activeOrderResponse.value!
+                        .shippingLines
+                        .map((e) => Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  e.shippingMethod.name,
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                              ],
+                            ))
+                        .toList(),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                DottedLine(
+                  direction: Axis.horizontal,
+                  dashLength: 4.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Total',
+                        style: CustomTheme.headerStyle,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}',
+                        style: CustomTheme.headerStyle,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ));
   }
 }

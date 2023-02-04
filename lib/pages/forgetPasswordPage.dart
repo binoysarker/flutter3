@@ -39,7 +39,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Please give us an email to send reset password link',
+                        'Please give your phone number to send reset password message',
                         style: CustomTheme.headerStyle,
                       ),
                     ),
@@ -47,22 +47,24 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      controller: loginPageController.emailController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      controller: loginPageController.phoneNumber,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Email Address',
+                        labelText: 'Phone Number',
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      autofillHints: [AutofillHints.email],
-                      validator: ValidatorDefinition.emailMultiValidator,
+                      keyboardType: TextInputType.phone,
+                      autofillHints: [AutofillHints.telephoneNumber],
+                      validator:
+                      ValidatorDefinition.phoneNumberMultiValidator,
                     ),
                   ),
                   ElevatedButton(
                       onPressed: () {
                         if (forgetPasswordForm.currentState!.validate()) {
                           print('validated');
-                          loginPageController.requestPasswordReset(loginPageController.emailController.text);
+                          loginPageController.requestPasswordReset(loginPageController.phoneNumber.text);
                         } else {
                           print('not validated');
                           Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);

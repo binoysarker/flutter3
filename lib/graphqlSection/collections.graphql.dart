@@ -1351,6 +1351,12 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                                     directives: [],
                                     selectionSet: null),
                                 FieldNode(
+                                    name: NameNode(value: 'slug'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
                                     name: NameNode(value: '__typename'),
                                     alias: null,
                                     arguments: [],
@@ -2620,7 +2626,10 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariant
 @JsonSerializable(explicitToJson: true)
 class Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product {
   Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product(
-      {required this.id, required this.name, required this.$__typename});
+      {required this.id,
+      required this.name,
+      required this.slug,
+      required this.$__typename});
 
   @override
   factory Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product.fromJson(
@@ -2632,6 +2641,8 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product {
 
   final String name;
 
+  final String slug;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -2641,8 +2652,9 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product {
   int get hashCode {
     final l$id = id;
     final l$name = name;
+    final l$slug = slug;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$name, l$$__typename]);
+    return Object.hashAll([l$id, l$name, l$slug, l$$__typename]);
   }
 
   @override
@@ -2657,6 +2669,9 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product {
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -2687,7 +2702,7 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariant
           TRes res) =
       _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
 
-  TRes call({String? id, String? name, String? $__typename});
+  TRes call({String? id, String? name, String? slug, String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product<
@@ -2710,6 +2725,7 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
   TRes call(
           {Object? id = _undefined,
           Object? name = _undefined,
+          Object? slug = _undefined,
           Object? $__typename = _undefined}) =>
       _then(
           Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product(
@@ -2719,6 +2735,9 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
               name: name == _undefined || name == null
                   ? _instance.name
                   : (name as String),
+              slug: slug == _undefined || slug == null
+                  ? _instance.slug
+                  : (slug as String),
               $__typename: $__typename == _undefined || $__typename == null
                   ? _instance.$__typename
                   : ($__typename as String)));
@@ -2734,7 +2753,7 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariant
 
   TRes _res;
 
-  call({String? id, String? name, String? $__typename}) => _res;
+  call({String? id, String? name, String? slug, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)

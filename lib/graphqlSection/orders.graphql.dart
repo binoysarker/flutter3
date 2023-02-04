@@ -466,6 +466,8 @@ class Fragment$Cart {
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -476,6 +478,7 @@ class Fragment$Cart {
       required this.shippingWithTax,
       required this.shippingLines,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -489,6 +492,10 @@ class Fragment$Cart {
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Fragment$Cart$promotions> promotions;
 
   final List<Fragment$Cart$lines> lines;
 
@@ -510,6 +517,8 @@ class Fragment$Cart {
 
   final List<Fragment$Cart$discounts> discounts;
 
+  final Fragment$Cart$customFields? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -519,6 +528,8 @@ class Fragment$Cart {
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -529,12 +540,15 @@ class Fragment$Cart {
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -545,6 +559,7 @@ class Fragment$Cart {
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -566,6 +581,24 @@ class Fragment$Cart {
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -614,6 +647,9 @@ class Fragment$Cart {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -639,6 +675,8 @@ abstract class CopyWith$Fragment$Cart<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Fragment$Cart$promotions>? promotions,
       List<Fragment$Cart$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -649,7 +687,13 @@ abstract class CopyWith$Fragment$Cart<TRes> {
       int? shippingWithTax,
       List<Fragment$Cart$shippingLines>? shippingLines,
       List<Fragment$Cart$discounts>? discounts,
+      Fragment$Cart$customFields? customFields,
       String? $__typename});
+  TRes promotions(
+      Iterable<Fragment$Cart$promotions> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$promotions<Fragment$Cart$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Fragment$Cart$lines> Function(
               Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
@@ -665,6 +709,7 @@ abstract class CopyWith$Fragment$Cart<TRes> {
               Iterable<
                   CopyWith$Fragment$Cart$discounts<Fragment$Cart$discounts>>)
           _fn);
+  CopyWith$Fragment$Cart$customFields<TRes> get customFields;
 }
 
 class _CopyWithImpl$Fragment$Cart<TRes>
@@ -682,6 +727,8 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -692,6 +739,7 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Fragment$Cart(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -704,6 +752,12 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<Fragment$Cart$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<Fragment$Cart$lines>),
@@ -725,13 +779,22 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           shipping: shipping == _undefined || shipping == null
               ? _instance.shipping
               : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
-              ? _instance.shippingWithTax
-              : (shippingWithTax as int),
-          shippingLines:
-              shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Fragment$Cart$shippingLines>),
+          shippingWithTax:
+              shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
+          shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Fragment$Cart$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Fragment$Cart$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Fragment$Cart$customFields?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
+  TRes promotions(
+          Iterable<Fragment$Cart$promotions> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$promotions<
+                          Fragment$Cart$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions
+                  .map((e) => CopyWith$Fragment$Cart$promotions(e, (i) => i)))
+              .toList());
   TRes lines(
           Iterable<Fragment$Cart$lines> Function(
                   Iterable<CopyWith$Fragment$Cart$lines<Fragment$Cart$lines>>)
@@ -759,6 +822,13 @@ class _CopyWithImpl$Fragment$Cart<TRes>
           discounts: _fn(_instance.discounts
                   .map((e) => CopyWith$Fragment$Cart$discounts(e, (i) => i)))
               .toList());
+  CopyWith$Fragment$Cart$customFields<TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Fragment$Cart$customFields.stub(_then(_instance))
+        : CopyWith$Fragment$Cart$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Fragment$Cart<TRes>
@@ -772,6 +842,8 @@ class _CopyWithStubImpl$Fragment$Cart<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Fragment$Cart$promotions>? promotions,
           List<Fragment$Cart$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -782,11 +854,15 @@ class _CopyWithStubImpl$Fragment$Cart<TRes>
           int? shippingWithTax,
           List<Fragment$Cart$shippingLines>? shippingLines,
           List<Fragment$Cart$discounts>? discounts,
+          Fragment$Cart$customFields? customFields,
           String? $__typename}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Fragment$Cart$customFields<TRes> get customFields =>
+      CopyWith$Fragment$Cart$customFields.stub(_res);
 }
 
 const fragmentDefinitionCart = FragmentDefinitionNode(
@@ -820,6 +896,131 @@ const fragmentDefinitionCart = FragmentDefinitionNode(
           directives: [],
           selectionSet: null),
       FieldNode(
+          name: NameNode(value: 'couponCodes'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null),
+      FieldNode(
+          name: NameNode(value: 'promotions'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+                name: NameNode(value: 'couponCode'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: 'enabled'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: 'actions'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                      name: NameNode(value: 'args'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: SelectionSetNode(selections: [
+                        FieldNode(
+                            name: NameNode(value: 'value'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null),
+                        FieldNode(
+                            name: NameNode(value: 'name'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null),
+                        FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null)
+                      ])),
+                  FieldNode(
+                      name: NameNode(value: 'code'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null),
+                  FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null)
+                ])),
+            FieldNode(
+                name: NameNode(value: 'conditions'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                      name: NameNode(value: 'code'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null),
+                  FieldNode(
+                      name: NameNode(value: 'args'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: SelectionSetNode(selections: [
+                        FieldNode(
+                            name: NameNode(value: 'name'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null),
+                        FieldNode(
+                            name: NameNode(value: 'value'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null),
+                        FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null)
+                      ])),
+                  FieldNode(
+                      name: NameNode(value: '__typename'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null)
+                ])),
+            FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
+          ])),
+      FieldNode(
           name: NameNode(value: 'lines'),
           alias: null,
           arguments: [],
@@ -827,6 +1028,12 @@ const fragmentDefinitionCart = FragmentDefinitionNode(
           selectionSet: SelectionSetNode(selections: [
             FieldNode(
                 name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: 'customFields'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -1093,6 +1300,25 @@ const fragmentDefinitionCart = FragmentDefinitionNode(
                 selectionSet: null)
           ])),
       FieldNode(
+          name: NameNode(value: 'customFields'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+                name: NameNode(value: 'clientRequestToCancel'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
+          ])),
+      FieldNode(
           name: NameNode(value: '__typename'),
           alias: null,
           arguments: [],
@@ -1129,9 +1355,663 @@ extension ClientExtension$Fragment$Cart on graphql.GraphQLClient {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Fragment$Cart$promotions {
+  Fragment$Cart$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Fragment$Cart$promotions.fromJson(Map<String, dynamic> json) =>
+      _$Fragment$Cart$promotionsFromJson(json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Fragment$Cart$promotions$actions> actions;
+
+  final List<Fragment$Cart$promotions$conditions> conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Fragment$Cart$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$promotions
+    on Fragment$Cart$promotions {
+  CopyWith$Fragment$Cart$promotions<Fragment$Cart$promotions> get copyWith =>
+      CopyWith$Fragment$Cart$promotions(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$promotions<TRes> {
+  factory CopyWith$Fragment$Cart$promotions(Fragment$Cart$promotions instance,
+          TRes Function(Fragment$Cart$promotions) then) =
+      _CopyWithImpl$Fragment$Cart$promotions;
+
+  factory CopyWith$Fragment$Cart$promotions.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Fragment$Cart$promotions$actions>? actions,
+      List<Fragment$Cart$promotions$conditions>? conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Fragment$Cart$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$promotions$actions<
+                      Fragment$Cart$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Fragment$Cart$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$promotions$conditions<
+                      Fragment$Cart$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Cart$promotions<TRes>
+    implements CopyWith$Fragment$Cart$promotions<TRes> {
+  _CopyWithImpl$Fragment$Cart$promotions(this._instance, this._then);
+
+  final Fragment$Cart$promotions _instance;
+
+  final TRes Function(Fragment$Cart$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<Fragment$Cart$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<Fragment$Cart$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Fragment$Cart$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$promotions$actions<
+                          Fragment$Cart$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+                  CopyWith$Fragment$Cart$promotions$actions(e, (i) => i)))
+              .toList());
+  TRes conditions(
+          Iterable<Fragment$Cart$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$promotions$conditions<
+                          Fragment$Cart$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+                  CopyWith$Fragment$Cart$promotions$conditions(e, (i) => i)))
+              .toList());
+}
+
+class _CopyWithStubImpl$Fragment$Cart$promotions<TRes>
+    implements CopyWith$Fragment$Cart$promotions<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$promotions(this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Fragment$Cart$promotions$actions>? actions,
+          List<Fragment$Cart$promotions$conditions>? conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Fragment$Cart$promotions$actions {
+  Fragment$Cart$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Fragment$Cart$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Fragment$Cart$promotions$actionsFromJson(json);
+
+  final List<Fragment$Cart$promotions$actions$args> args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Fragment$Cart$promotions$actionsToJson(this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$promotions$actions
+    on Fragment$Cart$promotions$actions {
+  CopyWith$Fragment$Cart$promotions$actions<Fragment$Cart$promotions$actions>
+      get copyWith => CopyWith$Fragment$Cart$promotions$actions(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$promotions$actions<TRes> {
+  factory CopyWith$Fragment$Cart$promotions$actions(
+          Fragment$Cart$promotions$actions instance,
+          TRes Function(Fragment$Cart$promotions$actions) then) =
+      _CopyWithImpl$Fragment$Cart$promotions$actions;
+
+  factory CopyWith$Fragment$Cart$promotions$actions.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$promotions$actions;
+
+  TRes call(
+      {List<Fragment$Cart$promotions$actions$args>? args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Fragment$Cart$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$promotions$actions$args<
+                      Fragment$Cart$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Cart$promotions$actions<TRes>
+    implements CopyWith$Fragment$Cart$promotions$actions<TRes> {
+  _CopyWithImpl$Fragment$Cart$promotions$actions(this._instance, this._then);
+
+  final Fragment$Cart$promotions$actions _instance;
+
+  final TRes Function(Fragment$Cart$promotions$actions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<Fragment$Cart$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Fragment$Cart$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$promotions$actions$args<
+                          Fragment$Cart$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+                  CopyWith$Fragment$Cart$promotions$actions$args(e, (i) => i)))
+              .toList());
+}
+
+class _CopyWithStubImpl$Fragment$Cart$promotions$actions<TRes>
+    implements CopyWith$Fragment$Cart$promotions$actions<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$promotions$actions(this._res);
+
+  TRes _res;
+
+  call(
+          {List<Fragment$Cart$promotions$actions$args>? args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Fragment$Cart$promotions$actions$args {
+  Fragment$Cart$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Fragment$Cart$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Fragment$Cart$promotions$actions$argsFromJson(json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Fragment$Cart$promotions$actions$argsToJson(this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$promotions$actions$args
+    on Fragment$Cart$promotions$actions$args {
+  CopyWith$Fragment$Cart$promotions$actions$args<
+          Fragment$Cart$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Fragment$Cart$promotions$actions$args(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$promotions$actions$args<TRes> {
+  factory CopyWith$Fragment$Cart$promotions$actions$args(
+          Fragment$Cart$promotions$actions$args instance,
+          TRes Function(Fragment$Cart$promotions$actions$args) then) =
+      _CopyWithImpl$Fragment$Cart$promotions$actions$args;
+
+  factory CopyWith$Fragment$Cart$promotions$actions$args.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$Cart$promotions$actions$args<TRes>
+    implements CopyWith$Fragment$Cart$promotions$actions$args<TRes> {
+  _CopyWithImpl$Fragment$Cart$promotions$actions$args(
+      this._instance, this._then);
+
+  final Fragment$Cart$promotions$actions$args _instance;
+
+  final TRes Function(Fragment$Cart$promotions$actions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$promotions$actions$args(
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$Cart$promotions$actions$args<TRes>
+    implements CopyWith$Fragment$Cart$promotions$actions$args<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$promotions$actions$args(this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Fragment$Cart$promotions$conditions {
+  Fragment$Cart$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Fragment$Cart$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Fragment$Cart$promotions$conditionsFromJson(json);
+
+  final String code;
+
+  final List<Fragment$Cart$promotions$conditions$args> args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Fragment$Cart$promotions$conditionsToJson(this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$promotions$conditions
+    on Fragment$Cart$promotions$conditions {
+  CopyWith$Fragment$Cart$promotions$conditions<
+          Fragment$Cart$promotions$conditions>
+      get copyWith =>
+          CopyWith$Fragment$Cart$promotions$conditions(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$promotions$conditions<TRes> {
+  factory CopyWith$Fragment$Cart$promotions$conditions(
+          Fragment$Cart$promotions$conditions instance,
+          TRes Function(Fragment$Cart$promotions$conditions) then) =
+      _CopyWithImpl$Fragment$Cart$promotions$conditions;
+
+  factory CopyWith$Fragment$Cart$promotions$conditions.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Fragment$Cart$promotions$conditions$args>? args,
+      String? $__typename});
+  TRes args(
+      Iterable<Fragment$Cart$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Fragment$Cart$promotions$conditions$args<
+                      Fragment$Cart$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Fragment$Cart$promotions$conditions<TRes>
+    implements CopyWith$Fragment$Cart$promotions$conditions<TRes> {
+  _CopyWithImpl$Fragment$Cart$promotions$conditions(this._instance, this._then);
+
+  final Fragment$Cart$promotions$conditions _instance;
+
+  final TRes Function(Fragment$Cart$promotions$conditions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<Fragment$Cart$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Fragment$Cart$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Fragment$Cart$promotions$conditions$args<
+                          Fragment$Cart$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Fragment$Cart$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Fragment$Cart$promotions$conditions<TRes>
+    implements CopyWith$Fragment$Cart$promotions$conditions<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$promotions$conditions(this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Fragment$Cart$promotions$conditions$args>? args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Fragment$Cart$promotions$conditions$args {
+  Fragment$Cart$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Fragment$Cart$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Fragment$Cart$promotions$conditions$argsFromJson(json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Fragment$Cart$promotions$conditions$argsToJson(this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$promotions$conditions$args
+    on Fragment$Cart$promotions$conditions$args {
+  CopyWith$Fragment$Cart$promotions$conditions$args<
+          Fragment$Cart$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Fragment$Cart$promotions$conditions$args(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$promotions$conditions$args<TRes> {
+  factory CopyWith$Fragment$Cart$promotions$conditions$args(
+          Fragment$Cart$promotions$conditions$args instance,
+          TRes Function(Fragment$Cart$promotions$conditions$args) then) =
+      _CopyWithImpl$Fragment$Cart$promotions$conditions$args;
+
+  factory CopyWith$Fragment$Cart$promotions$conditions$args.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$Cart$promotions$conditions$args<TRes>
+    implements CopyWith$Fragment$Cart$promotions$conditions$args<TRes> {
+  _CopyWithImpl$Fragment$Cart$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Fragment$Cart$promotions$conditions$args _instance;
+
+  final TRes Function(Fragment$Cart$promotions$conditions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$promotions$conditions$args(
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$Cart$promotions$conditions$args<TRes>
+    implements CopyWith$Fragment$Cart$promotions$conditions$args<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$promotions$conditions$args(this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Fragment$Cart$lines {
   Fragment$Cart$lines(
       {required this.id,
+      this.customFields,
       this.featuredAsset,
       required this.unitPrice,
       required this.unitPriceWithTax,
@@ -1147,6 +2027,8 @@ class Fragment$Cart$lines {
       _$Fragment$Cart$linesFromJson(json);
 
   final String id;
+
+  final String? customFields;
 
   final Fragment$Asset? featuredAsset;
 
@@ -1170,6 +2052,7 @@ class Fragment$Cart$lines {
   Map<String, dynamic> toJson() => _$Fragment$Cart$linesToJson(this);
   int get hashCode {
     final l$id = id;
+    final l$customFields = customFields;
     final l$featuredAsset = featuredAsset;
     final l$unitPrice = unitPrice;
     final l$unitPriceWithTax = unitPriceWithTax;
@@ -1181,6 +2064,7 @@ class Fragment$Cart$lines {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$customFields,
       l$featuredAsset,
       l$unitPrice,
       l$unitPriceWithTax,
@@ -1201,6 +2085,9 @@ class Fragment$Cart$lines {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$featuredAsset = featuredAsset;
     final lOther$featuredAsset = other.featuredAsset;
     if (l$featuredAsset != lOther$featuredAsset) return false;
@@ -1254,6 +2141,7 @@ abstract class CopyWith$Fragment$Cart$lines<TRes> {
 
   TRes call(
       {String? id,
+      String? customFields,
       Fragment$Asset? featuredAsset,
       int? unitPrice,
       int? unitPriceWithTax,
@@ -1285,6 +2173,7 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
 
   TRes call(
           {Object? id = _undefined,
+          Object? customFields = _undefined,
           Object? featuredAsset = _undefined,
           Object? unitPrice = _undefined,
           Object? unitPriceWithTax = _undefined,
@@ -1296,6 +2185,9 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
           Object? $__typename = _undefined}) =>
       _then(Fragment$Cart$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
+          customFields: customFields == _undefined
+              ? _instance.customFields
+              : (customFields as String?),
           featuredAsset: featuredAsset == _undefined
               ? _instance.featuredAsset
               : (featuredAsset as Fragment$Asset?),
@@ -1311,10 +2203,10 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
               : (linePriceWithTax as int),
-          discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
-                  discountedLinePriceWithTax == null
-              ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as int),
+          discountedLinePriceWithTax:
+              discountedLinePriceWithTax == _undefined || discountedLinePriceWithTax == null
+                  ? _instance.discountedLinePriceWithTax
+                  : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant as Fragment$Cart$lines$productVariant),
@@ -1358,6 +2250,7 @@ class _CopyWithStubImpl$Fragment$Cart$lines<TRes>
 
   call(
           {String? id,
+          String? customFields,
           Fragment$Asset? featuredAsset,
           int? unitPrice,
           int? unitPriceWithTax,
@@ -2021,6 +2914,91 @@ class _CopyWithStubImpl$Fragment$Cart$discounts<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Fragment$Cart$customFields {
+  Fragment$Cart$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Fragment$Cart$customFields.fromJson(Map<String, dynamic> json) =>
+      _$Fragment$Cart$customFieldsFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Fragment$Cart$customFieldsToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Fragment$Cart$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Fragment$Cart$customFields
+    on Fragment$Cart$customFields {
+  CopyWith$Fragment$Cart$customFields<Fragment$Cart$customFields>
+      get copyWith => CopyWith$Fragment$Cart$customFields(this, (i) => i);
+}
+
+abstract class CopyWith$Fragment$Cart$customFields<TRes> {
+  factory CopyWith$Fragment$Cart$customFields(
+          Fragment$Cart$customFields instance,
+          TRes Function(Fragment$Cart$customFields) then) =
+      _CopyWithImpl$Fragment$Cart$customFields;
+
+  factory CopyWith$Fragment$Cart$customFields.stub(TRes res) =
+      _CopyWithStubImpl$Fragment$Cart$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Fragment$Cart$customFields<TRes>
+    implements CopyWith$Fragment$Cart$customFields<TRes> {
+  _CopyWithImpl$Fragment$Cart$customFields(this._instance, this._then);
+
+  final Fragment$Cart$customFields _instance;
+
+  final TRes Function(Fragment$Cart$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Fragment$Cart$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Fragment$Cart$customFields<TRes>
+    implements CopyWith$Fragment$Cart$customFields<TRes> {
+  _CopyWithStubImpl$Fragment$Cart$customFields(this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Fragment$Asset {
   Fragment$Asset(
       {required this.id,
@@ -2622,6 +3600,8 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -2632,6 +3612,7 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
       required this.shippingWithTax,
       required this.shippingLines,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -2649,6 +3630,10 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Query$GetActiveOrder$activeOrder$promotions> promotions;
 
   final List<Query$GetActiveOrder$activeOrder$lines> lines;
 
@@ -2670,6 +3655,8 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
 
   final List<Query$GetActiveOrder$activeOrder$discounts> discounts;
 
+  final Query$GetActiveOrder$activeOrder$customFields? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -2681,6 +3668,8 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -2691,6 +3680,7 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$currencyCode,
@@ -2698,6 +3688,8 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -2708,6 +3700,7 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -2732,6 +3725,24 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -2780,6 +3791,9 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -2808,6 +3822,8 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Query$GetActiveOrder$activeOrder$promotions>? promotions,
       List<Query$GetActiveOrder$activeOrder$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -2818,7 +3834,14 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder<TRes> {
       int? shippingWithTax,
       List<Query$GetActiveOrder$activeOrder$shippingLines>? shippingLines,
       List<Query$GetActiveOrder$activeOrder$discounts>? discounts,
+      Query$GetActiveOrder$activeOrder$customFields? customFields,
       String? $__typename});
+  TRes promotions(
+      Iterable<Query$GetActiveOrder$activeOrder$promotions> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveOrder$activeOrder$promotions<
+                      Query$GetActiveOrder$activeOrder$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Query$GetActiveOrder$activeOrder$lines> Function(
               Iterable<
@@ -2837,6 +3860,7 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder<TRes> {
                   CopyWith$Query$GetActiveOrder$activeOrder$discounts<
                       Query$GetActiveOrder$activeOrder$discounts>>)
           _fn);
+  CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes> get customFields;
 }
 
 class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
@@ -2855,6 +3879,8 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -2865,6 +3891,7 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveOrder$activeOrder(
           currencyCode: currencyCode == _undefined || currencyCode == null
@@ -2880,6 +3907,13 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions
+                  as List<Query$GetActiveOrder$activeOrder$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<Query$GetActiveOrder$activeOrder$lines>),
@@ -2889,24 +3923,30 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
+          subTotalWithTax:
+              subTotalWithTax == _undefined || subTotalWithTax == null
+                  ? _instance.subTotalWithTax
+                  : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
               : (total as int),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null
-              ? _instance.totalWithTax
-              : (totalWithTax as int),
-          shipping: shipping == _undefined || shipping == null
-              ? _instance.shipping
-              : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
-              ? _instance.shippingWithTax
-              : (shippingWithTax as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetActiveOrder$activeOrder$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetActiveOrder$activeOrder$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetActiveOrder$activeOrder$customFields?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
+  TRes promotions(
+          Iterable<Query$GetActiveOrder$activeOrder$promotions> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveOrder$activeOrder$promotions<
+                          Query$GetActiveOrder$activeOrder$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Query$GetActiveOrder$activeOrder$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Query$GetActiveOrder$activeOrder$lines> Function(
                   Iterable<
@@ -2937,6 +3977,15 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Query$GetActiveOrder$activeOrder$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Query$GetActiveOrder$activeOrder$customFields.stub(
+            _then(_instance))
+        : CopyWith$Query$GetActiveOrder$activeOrder$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder<TRes>
@@ -2951,6 +4000,8 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Query$GetActiveOrder$activeOrder$promotions>? promotions,
           List<Query$GetActiveOrder$activeOrder$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -2961,11 +4012,736 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder<TRes>
           int? shippingWithTax,
           List<Query$GetActiveOrder$activeOrder$shippingLines>? shippingLines,
           List<Query$GetActiveOrder$activeOrder$discounts>? discounts,
+          Query$GetActiveOrder$activeOrder$customFields? customFields,
           String? $__typename}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes>
+      get customFields =>
+          CopyWith$Query$GetActiveOrder$activeOrder$customFields.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$promotions
+    implements Fragment$Cart$promotions {
+  Query$GetActiveOrder$activeOrder$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$promotionsFromJson(json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Query$GetActiveOrder$activeOrder$promotions$actions> actions;
+
+  final List<Query$GetActiveOrder$activeOrder$promotions$conditions> conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveOrder$activeOrder$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$promotions
+    on Query$GetActiveOrder$activeOrder$promotions {
+  CopyWith$Query$GetActiveOrder$activeOrder$promotions<
+          Query$GetActiveOrder$activeOrder$promotions>
+      get copyWith =>
+          CopyWith$Query$GetActiveOrder$activeOrder$promotions(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$promotions<TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions(
+          Query$GetActiveOrder$activeOrder$promotions instance,
+          TRes Function(Query$GetActiveOrder$activeOrder$promotions) then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Query$GetActiveOrder$activeOrder$promotions$actions>? actions,
+      List<Query$GetActiveOrder$activeOrder$promotions$conditions>? conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Query$GetActiveOrder$activeOrder$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<
+                      Query$GetActiveOrder$activeOrder$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Query$GetActiveOrder$activeOrder$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<
+                      Query$GetActiveOrder$activeOrder$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions<TRes>
+    implements CopyWith$Query$GetActiveOrder$activeOrder$promotions<TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$promotions _instance;
+
+  final TRes Function(Query$GetActiveOrder$activeOrder$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions
+                  as List<Query$GetActiveOrder$activeOrder$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Query$GetActiveOrder$activeOrder$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Query$GetActiveOrder$activeOrder$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<
+                          Query$GetActiveOrder$activeOrder$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Query$GetActiveOrder$activeOrder$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<
+                          Query$GetActiveOrder$activeOrder$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions<TRes>
+    implements CopyWith$Query$GetActiveOrder$activeOrder$promotions<TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions(this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Query$GetActiveOrder$activeOrder$promotions$actions>? actions,
+          List<Query$GetActiveOrder$activeOrder$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Query$GetActiveOrder$activeOrder$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$promotions$actionsFromJson(json);
+
+  final List<Query$GetActiveOrder$activeOrder$promotions$actions$args> args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$promotions$actionsToJson(this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveOrder$activeOrder$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$promotions$actions
+    on Query$GetActiveOrder$activeOrder$promotions$actions {
+  CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<
+          Query$GetActiveOrder$activeOrder$promotions$actions>
+      get copyWith =>
+          CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<
+    TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions(
+          Query$GetActiveOrder$activeOrder$promotions$actions instance,
+          TRes Function(Query$GetActiveOrder$activeOrder$promotions$actions)
+              then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions;
+
+  TRes call(
+      {List<Query$GetActiveOrder$activeOrder$promotions$actions$args>? args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetActiveOrder$activeOrder$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+                      Query$GetActiveOrder$activeOrder$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions<TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$promotions$actions _instance;
+
+  final TRes Function(Query$GetActiveOrder$activeOrder$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetActiveOrder$activeOrder$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetActiveOrder$activeOrder$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+                          Query$GetActiveOrder$activeOrder$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions<TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Query$GetActiveOrder$activeOrder$promotions$actions$args>? args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Query$GetActiveOrder$activeOrder$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$promotions$actions$argsFromJson(json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$promotions$actions$argsToJson(this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveOrder$activeOrder$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$promotions$actions$args
+    on Query$GetActiveOrder$activeOrder$promotions$actions$args {
+  CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+          Query$GetActiveOrder$activeOrder$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args(
+          Query$GetActiveOrder$activeOrder$promotions$actions$args instance,
+          TRes Function(
+                  Query$GetActiveOrder$activeOrder$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$promotions$actions$args _instance;
+
+  final TRes Function(Query$GetActiveOrder$activeOrder$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$promotions$actions$args(
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Query$GetActiveOrder$activeOrder$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$promotions$conditionsFromJson(json);
+
+  final String code;
+
+  final List<Query$GetActiveOrder$activeOrder$promotions$conditions$args> args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$promotions$conditionsToJson(this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveOrder$activeOrder$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$promotions$conditions
+    on Query$GetActiveOrder$activeOrder$promotions$conditions {
+  CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<
+          Query$GetActiveOrder$activeOrder$promotions$conditions>
+      get copyWith =>
+          CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<
+    TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions(
+          Query$GetActiveOrder$activeOrder$promotions$conditions instance,
+          TRes Function(Query$GetActiveOrder$activeOrder$promotions$conditions)
+              then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Query$GetActiveOrder$activeOrder$promotions$conditions$args>? args,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetActiveOrder$activeOrder$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+                      Query$GetActiveOrder$activeOrder$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions<TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$promotions$conditions _instance;
+
+  final TRes Function(Query$GetActiveOrder$activeOrder$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetActiveOrder$activeOrder$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetActiveOrder$activeOrder$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+                          Query$GetActiveOrder$activeOrder$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions<TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Query$GetActiveOrder$activeOrder$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$promotions$conditions$argsToJson(this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveOrder$activeOrder$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$promotions$conditions$args
+    on Query$GetActiveOrder$activeOrder$promotions$conditions$args {
+  CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+          Query$GetActiveOrder$activeOrder$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+          Query$GetActiveOrder$activeOrder$promotions$conditions$args instance,
+          TRes Function(
+                  Query$GetActiveOrder$activeOrder$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$promotions$conditions$args _instance;
+
+  final TRes Function(
+      Query$GetActiveOrder$activeOrder$promotions$conditions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveOrder$activeOrder$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2980,6 +4756,7 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -3005,6 +4782,8 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
 
   final List<Query$GetActiveOrder$activeOrder$lines$discounts> discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -3020,6 +4799,7 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -3031,6 +4811,7 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -3074,6 +4855,9 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -3108,6 +4892,7 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder$lines<TRes> {
       int? discountedLinePriceWithTax,
       Query$GetActiveOrder$activeOrder$lines$productVariant? productVariant,
       List<Query$GetActiveOrder$activeOrder$lines$discounts>? discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Query$GetActiveOrder$activeOrder$lines$productVariant<TRes>
@@ -3141,6 +4926,7 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveOrder$activeOrder$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -3170,6 +4956,7 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Query$GetActiveOrder$activeOrder$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -3214,6 +5001,7 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$lines<TRes>
           int? discountedLinePriceWithTax,
           Query$GetActiveOrder$activeOrder$lines$productVariant? productVariant,
           List<Query$GetActiveOrder$activeOrder$lines$discounts>? discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -3929,6 +5717,98 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$discounts<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Query$GetActiveOrder$activeOrder$customFields
+    implements Fragment$Cart$customFields {
+  Query$GetActiveOrder$activeOrder$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Query$GetActiveOrder$activeOrder$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveOrder$activeOrder$customFieldsFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveOrder$activeOrder$customFieldsToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetActiveOrder$activeOrder$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveOrder$activeOrder$customFields
+    on Query$GetActiveOrder$activeOrder$customFields {
+  CopyWith$Query$GetActiveOrder$activeOrder$customFields<
+          Query$GetActiveOrder$activeOrder$customFields>
+      get copyWith => CopyWith$Query$GetActiveOrder$activeOrder$customFields(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes> {
+  factory CopyWith$Query$GetActiveOrder$activeOrder$customFields(
+          Query$GetActiveOrder$activeOrder$customFields instance,
+          TRes Function(Query$GetActiveOrder$activeOrder$customFields) then) =
+      _CopyWithImpl$Query$GetActiveOrder$activeOrder$customFields;
+
+  factory CopyWith$Query$GetActiveOrder$activeOrder$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveOrder$activeOrder$customFields<TRes>
+    implements CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes> {
+  _CopyWithImpl$Query$GetActiveOrder$activeOrder$customFields(
+      this._instance, this._then);
+
+  final Query$GetActiveOrder$activeOrder$customFields _instance;
+
+  final TRes Function(Query$GetActiveOrder$activeOrder$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveOrder$activeOrder$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$customFields<TRes>
+    implements CopyWith$Query$GetActiveOrder$activeOrder$customFields<TRes> {
+  _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$customFields(this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Query$GetOrderForCheckout {
   Query$GetOrderForCheckout({this.activeOrder, required this.$__typename});
 
@@ -4193,6 +6073,8 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -4203,6 +6085,7 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
       required this.shippingWithTax,
       required this.shippingLines,
       required this.discounts,
+      this.customFields,
       required this.$__typename,
       this.shippingAddress});
 
@@ -4218,6 +6101,10 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Query$GetOrderForCheckout$activeOrder$promotions> promotions;
 
   final List<Query$GetOrderForCheckout$activeOrder$lines> lines;
 
@@ -4239,6 +6126,8 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
 
   final List<Query$GetOrderForCheckout$activeOrder$discounts> discounts;
 
+  final Query$GetOrderForCheckout$activeOrder$customFields? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -4251,6 +6140,8 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -4261,6 +6152,7 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     final l$shippingAddress = shippingAddress;
     return Object.hashAll([
@@ -4268,6 +6160,8 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -4278,6 +6172,7 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename,
       l$shippingAddress
     ]);
@@ -4300,6 +6195,24 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -4348,6 +6261,9 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -4380,6 +6296,8 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Query$GetOrderForCheckout$activeOrder$promotions>? promotions,
       List<Query$GetOrderForCheckout$activeOrder$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -4390,8 +6308,15 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder<TRes> {
       int? shippingWithTax,
       List<Query$GetOrderForCheckout$activeOrder$shippingLines>? shippingLines,
       List<Query$GetOrderForCheckout$activeOrder$discounts>? discounts,
+      Query$GetOrderForCheckout$activeOrder$customFields? customFields,
       String? $__typename,
       Fragment$OrderAddress? shippingAddress});
+  TRes promotions(
+      Iterable<Query$GetOrderForCheckout$activeOrder$promotions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<
+                      Query$GetOrderForCheckout$activeOrder$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Query$GetOrderForCheckout$activeOrder$lines> Function(
               Iterable<
@@ -4410,6 +6335,8 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder<TRes> {
                   CopyWith$Query$GetOrderForCheckout$activeOrder$discounts<
                       Query$GetOrderForCheckout$activeOrder$discounts>>)
           _fn);
+  CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
+      get customFields;
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress;
 }
 
@@ -4429,6 +6356,8 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -4439,6 +6368,7 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined,
           Object? shippingAddress = _undefined}) =>
       _then(Query$GetOrderForCheckout$activeOrder(
@@ -4452,6 +6382,13 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions
+                  as List<Query$GetOrderForCheckout$activeOrder$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<Query$GetOrderForCheckout$activeOrder$lines>),
@@ -4461,26 +6398,33 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
+          subTotalWithTax:
+              subTotalWithTax == _undefined || subTotalWithTax == null
+                  ? _instance.subTotalWithTax
+                  : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
               : (total as int),
           totalWithTax: totalWithTax == _undefined || totalWithTax == null
               ? _instance.totalWithTax
               : (totalWithTax as int),
-          shipping: shipping == _undefined || shipping == null
-              ? _instance.shipping
-              : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
-              ? _instance.shippingWithTax
-              : (shippingWithTax as int),
-          shippingLines:
-              shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetOrderForCheckout$activeOrder$shippingLines>),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
+          shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetOrderForCheckout$activeOrder$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetOrderForCheckout$activeOrder$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetOrderForCheckout$activeOrder$customFields?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
           shippingAddress: shippingAddress == _undefined ? _instance.shippingAddress : (shippingAddress as Fragment$OrderAddress?)));
+  TRes promotions(
+          Iterable<Query$GetOrderForCheckout$activeOrder$promotions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<
+                          Query$GetOrderForCheckout$activeOrder$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Query$GetOrderForCheckout$activeOrder$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Query$GetOrderForCheckout$activeOrder$lines> Function(
                   Iterable<
@@ -4511,6 +6455,16 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Query$GetOrderForCheckout$activeOrder$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Query$GetOrderForCheckout$activeOrder$customFields.stub(
+            _then(_instance))
+        : CopyWith$Query$GetOrderForCheckout$activeOrder$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
+
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress {
     final local$shippingAddress = _instance.shippingAddress;
     return local$shippingAddress == null
@@ -4531,6 +6485,8 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Query$GetOrderForCheckout$activeOrder$promotions>? promotions,
           List<Query$GetOrderForCheckout$activeOrder$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -4542,14 +6498,765 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           List<Query$GetOrderForCheckout$activeOrder$shippingLines>?
               shippingLines,
           List<Query$GetOrderForCheckout$activeOrder$discounts>? discounts,
+          Query$GetOrderForCheckout$activeOrder$customFields? customFields,
           String? $__typename,
           Fragment$OrderAddress? shippingAddress}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
+      get customFields =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$customFields.stub(
+              _res);
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress =>
       CopyWith$Fragment$OrderAddress.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$promotions
+    implements Fragment$Cart$promotions {
+  Query$GetOrderForCheckout$activeOrder$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$promotionsFromJson(json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Query$GetOrderForCheckout$activeOrder$promotions$actions> actions;
+
+  final List<Query$GetOrderForCheckout$activeOrder$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderForCheckout$activeOrder$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$promotions
+    on Query$GetOrderForCheckout$activeOrder$promotions {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<
+          Query$GetOrderForCheckout$activeOrder$promotions>
+      get copyWith => CopyWith$Query$GetOrderForCheckout$activeOrder$promotions(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions(
+          Query$GetOrderForCheckout$activeOrder$promotions instance,
+          TRes Function(Query$GetOrderForCheckout$activeOrder$promotions)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Query$GetOrderForCheckout$activeOrder$promotions$actions>? actions,
+      List<Query$GetOrderForCheckout$activeOrder$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Query$GetOrderForCheckout$activeOrder$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+                      Query$GetOrderForCheckout$activeOrder$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Query$GetOrderForCheckout$activeOrder$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+                      Query$GetOrderForCheckout$activeOrder$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions<TRes>
+    implements CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$promotions _instance;
+
+  final TRes Function(Query$GetOrderForCheckout$activeOrder$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Query$GetOrderForCheckout$activeOrder$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+                          Query$GetOrderForCheckout$activeOrder$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Query$GetOrderForCheckout$activeOrder$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+                          Query$GetOrderForCheckout$activeOrder$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions<TRes>
+    implements CopyWith$Query$GetOrderForCheckout$activeOrder$promotions<TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions(this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Query$GetOrderForCheckout$activeOrder$promotions$actions>?
+              actions,
+          List<Query$GetOrderForCheckout$activeOrder$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Query$GetOrderForCheckout$activeOrder$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$actionsFromJson(json);
+
+  final List<Query$GetOrderForCheckout$activeOrder$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$actionsToJson(this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderForCheckout$activeOrder$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$promotions$actions
+    on Query$GetOrderForCheckout$activeOrder$promotions$actions {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+          Query$GetOrderForCheckout$activeOrder$promotions$actions>
+      get copyWith =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+    TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions(
+          Query$GetOrderForCheckout$activeOrder$promotions$actions instance,
+          TRes Function(
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions;
+
+  TRes call(
+      {List<Query$GetOrderForCheckout$activeOrder$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetOrderForCheckout$activeOrder$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+                      Query$GetOrderForCheckout$activeOrder$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$promotions$actions _instance;
+
+  final TRes Function(Query$GetOrderForCheckout$activeOrder$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetOrderForCheckout$activeOrder$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+                          Query$GetOrderForCheckout$activeOrder$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Query$GetOrderForCheckout$activeOrder$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetOrderForCheckout$activeOrder$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$promotions$actions$args
+    on Query$GetOrderForCheckout$activeOrder$promotions$actions$args {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+          Query$GetOrderForCheckout$activeOrder$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+          Query$GetOrderForCheckout$activeOrder$promotions$actions$args instance,
+          TRes Function(
+                  Query$GetOrderForCheckout$activeOrder$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$promotions$actions$args _instance;
+
+  final TRes Function(
+      Query$GetOrderForCheckout$activeOrder$promotions$actions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$conditionsToJson(this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetOrderForCheckout$activeOrder$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$promotions$conditions
+    on Query$GetOrderForCheckout$activeOrder$promotions$conditions {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+          Query$GetOrderForCheckout$activeOrder$promotions$conditions>
+      get copyWith =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+    TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+          Query$GetOrderForCheckout$activeOrder$promotions$conditions instance,
+          TRes Function(
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetOrderForCheckout$activeOrder$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+                      Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$promotions$conditions _instance;
+
+  final TRes Function(
+      Query$GetOrderForCheckout$activeOrder$promotions$conditions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetOrderForCheckout$activeOrder$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+                          Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetOrderForCheckout$activeOrder$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+    on Query$GetOrderForCheckout$activeOrder$promotions$conditions$args {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+          Query$GetOrderForCheckout$activeOrder$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+          Query$GetOrderForCheckout$activeOrder$promotions$conditions$args instance,
+          TRes Function(
+                  Query$GetOrderForCheckout$activeOrder$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+      Query$GetOrderForCheckout$activeOrder$promotions$conditions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4565,6 +7272,7 @@ class Query$GetOrderForCheckout$activeOrder$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -4591,6 +7299,8 @@ class Query$GetOrderForCheckout$activeOrder$lines
 
   final List<Query$GetOrderForCheckout$activeOrder$lines$discounts> discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -4606,6 +7316,7 @@ class Query$GetOrderForCheckout$activeOrder$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -4617,6 +7328,7 @@ class Query$GetOrderForCheckout$activeOrder$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -4660,6 +7372,9 @@ class Query$GetOrderForCheckout$activeOrder$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -4695,6 +7410,7 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$lines<TRes> {
       Query$GetOrderForCheckout$activeOrder$lines$productVariant?
           productVariant,
       List<Query$GetOrderForCheckout$activeOrder$lines$discounts>? discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Query$GetOrderForCheckout$activeOrder$lines$productVariant<TRes>
@@ -4728,6 +7444,7 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetOrderForCheckout$activeOrder$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -4757,6 +7474,7 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Query$GetOrderForCheckout$activeOrder$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -4803,6 +7521,7 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$lines<TRes>
               productVariant,
           List<Query$GetOrderForCheckout$activeOrder$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -5543,6 +8262,104 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$discounts<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Query$GetOrderForCheckout$activeOrder$customFields
+    implements Fragment$Cart$customFields {
+  Query$GetOrderForCheckout$activeOrder$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Query$GetOrderForCheckout$activeOrder$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderForCheckout$activeOrder$customFieldsFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderForCheckout$activeOrder$customFieldsToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderForCheckout$activeOrder$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderForCheckout$activeOrder$customFields
+    on Query$GetOrderForCheckout$activeOrder$customFields {
+  CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<
+          Query$GetOrderForCheckout$activeOrder$customFields>
+      get copyWith =>
+          CopyWith$Query$GetOrderForCheckout$activeOrder$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<
+    TRes> {
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$customFields(
+          Query$GetOrderForCheckout$activeOrder$customFields instance,
+          TRes Function(Query$GetOrderForCheckout$activeOrder$customFields)
+              then) =
+      _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$customFields;
+
+  factory CopyWith$Query$GetOrderForCheckout$activeOrder$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<TRes> {
+  _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$customFields(
+      this._instance, this._then);
+
+  final Query$GetOrderForCheckout$activeOrder$customFields _instance;
+
+  final TRes Function(Query$GetOrderForCheckout$activeOrder$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderForCheckout$activeOrder$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
+    implements
+        CopyWith$Query$GetOrderForCheckout$activeOrder$customFields<TRes> {
+  _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$RemoveOrderLine {
   Variables$Mutation$RemoveOrderLine({required this.orderLineId});
 
@@ -6058,6 +8875,8 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -6067,7 +8886,8 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$RemoveOrderLine$removeOrderLine$$Order.fromJson(
@@ -6084,6 +8904,11 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>
+      promotions;
 
   final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines> lines;
 
@@ -6107,6 +8932,9 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
   final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>
       discounts;
 
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$RemoveOrderLine$removeOrderLine$$OrderToJson(this);
   int get hashCode {
@@ -6115,6 +8943,8 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -6125,12 +8955,15 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -6140,7 +8973,8 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -6164,6 +8998,24 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -6212,6 +9064,9 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -6240,6 +9095,9 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>?
+          promotions,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -6251,7 +9109,15 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes> {
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>?
           shippingLines,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+                      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines> Function(
               Iterable<
@@ -6270,6 +9136,8 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes> {
                   CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts<
                       Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<TRes>
+      get customFields;
 }
 
 class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
@@ -6289,6 +9157,8 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -6298,7 +9168,8 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$RemoveOrderLine$removeOrderLine$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -6313,6 +9184,13 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -6323,20 +9201,24 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax:
-              subTotalWithTax == _undefined || subTotalWithTax == null
-                  ? _instance.subTotalWithTax
-                  : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null
-              ? _instance.totalWithTax
-              : (totalWithTax as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+                          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines> Function(
                   Iterable<
@@ -6367,6 +9249,15 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
@@ -6381,6 +9272,9 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>?
+              promotions,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -6392,11 +9286,797 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>?
               shippingLines,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<TRes>
+      get customFields =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>?
+          actions,
+      List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+                      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+                      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions _instance;
+
+  final TRes Function(
+      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+                          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+                          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>?
+              actions,
+          List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+                      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+                          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+                      Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+                          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -6412,6 +10092,7 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -6439,6 +10120,8 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
   final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -6454,6 +10137,7 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -6465,6 +10149,7 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -6508,6 +10193,9 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -6548,6 +10236,7 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<
           productVariant,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$productVariant<
@@ -6583,6 +10272,7 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -6612,6 +10302,7 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -6661,6 +10352,7 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<
               productVariant,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -7440,6 +11132,113 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$discount
 }
 
 @JsonSerializable(explicitToJson: true)
+class Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields
+    on Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields {
+  CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+          Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields instance,
+          TRes Function(
+                  Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields;
+
+  factory CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields _instance;
+
+  final TRes Function(
+      Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mutation$RemoveOrderLine$removeOrderLine$$OrderModificationError
     implements Mutation$RemoveOrderLine$removeOrderLine {
   Mutation$RemoveOrderLine$removeOrderLine$$OrderModificationError(
@@ -8003,6 +11802,8 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -8012,7 +11813,8 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order.fromJson(
@@ -8029,6 +11831,11 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>
+      promotions;
 
   final List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines>
       lines;
@@ -8054,6 +11861,9 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
   final List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>
       discounts;
 
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$OrderToJson(this);
   int get hashCode {
@@ -8062,6 +11872,8 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -8072,12 +11884,15 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -8087,7 +11902,8 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -8111,6 +11927,24 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -8159,6 +11993,9 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -8190,6 +12027,9 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>?
+          promotions,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines>?
           lines,
       int? totalQuantity,
@@ -8202,7 +12042,15 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>?
           shippingLines,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+                      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines> Function(
               Iterable<
@@ -8221,6 +12069,8 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
                   CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts<
                       Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+      TRes> get customFields;
 }
 
 class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
@@ -8243,6 +12093,8 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -8252,7 +12104,8 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -8267,6 +12120,13 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -8277,18 +12137,24 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax:
-              totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+                          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines> Function(
                   Iterable<
@@ -8319,6 +12185,15 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
@@ -8336,6 +12211,9 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>?
+              promotions,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines>?
               lines,
           int? totalQuantity,
@@ -8348,11 +12226,803 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>?
               shippingLines,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>?
+          actions,
+      List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+                      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+                      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions
+      _instance;
+
+  final TRes Function(
+      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+                          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+                          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>?
+              actions,
+          List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+                      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+                          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+                      Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+                          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8368,6 +13038,7 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -8397,6 +13068,8 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
           Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -8413,6 +13086,7 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -8424,6 +13098,7 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -8468,6 +13143,9 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -8509,6 +13187,7 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
           productVariant,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$productVariant<
@@ -8546,6 +13225,7 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$line
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -8575,6 +13255,7 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$line
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -8625,6 +13306,7 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
               productVariant,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -9413,6 +14095,117 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
           Enum$AdjustmentType? type,
           String? $__typename}) =>
       _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+    on Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields {
+  CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields;
+
+  factory CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -10893,6 +15686,8 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -10903,6 +15698,7 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
       required this.shippingWithTax,
       required this.shippingLines,
       required this.discounts,
+      this.customFields,
       required this.$__typename,
       required this.updatedAt,
       this.customer});
@@ -10919,6 +15715,10 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Query$GetOrderByCode$orderByCode$promotions> promotions;
 
   final List<Query$GetOrderByCode$orderByCode$lines> lines;
 
@@ -10940,6 +15740,8 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
 
   final List<Query$GetOrderByCode$orderByCode$discounts> discounts;
 
+  final Query$GetOrderByCode$orderByCode$customFields? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -10954,6 +15756,8 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -10964,6 +15768,7 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     final l$updatedAt = updatedAt;
     final l$customer = customer;
@@ -10972,6 +15777,8 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -10982,6 +15789,7 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename,
       l$updatedAt,
       l$customer
@@ -11005,6 +15813,24 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -11053,6 +15879,9 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -11086,6 +15915,8 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Query$GetOrderByCode$orderByCode$promotions>? promotions,
       List<Query$GetOrderByCode$orderByCode$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -11096,9 +15927,16 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode<TRes> {
       int? shippingWithTax,
       List<Query$GetOrderByCode$orderByCode$shippingLines>? shippingLines,
       List<Query$GetOrderByCode$orderByCode$discounts>? discounts,
+      Query$GetOrderByCode$orderByCode$customFields? customFields,
       String? $__typename,
       String? updatedAt,
       Query$GetOrderByCode$orderByCode$customer? customer});
+  TRes promotions(
+      Iterable<Query$GetOrderByCode$orderByCode$promotions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderByCode$orderByCode$promotions<
+                      Query$GetOrderByCode$orderByCode$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Query$GetOrderByCode$orderByCode$lines> Function(
               Iterable<
@@ -11117,6 +15955,7 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode<TRes> {
                   CopyWith$Query$GetOrderByCode$orderByCode$discounts<
                       Query$GetOrderByCode$orderByCode$discounts>>)
           _fn);
+  CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes> get customFields;
   CopyWith$Query$GetOrderByCode$orderByCode$customer<TRes> get customer;
 }
 
@@ -11135,6 +15974,8 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -11145,6 +15986,7 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined,
           Object? updatedAt = _undefined,
           Object? customer = _undefined}) =>
@@ -11159,6 +16001,13 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions
+                  as List<Query$GetOrderByCode$orderByCode$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<Query$GetOrderByCode$orderByCode$lines>),
@@ -11177,19 +16026,25 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
           totalWithTax: totalWithTax == _undefined || totalWithTax == null
               ? _instance.totalWithTax
               : (totalWithTax as int),
-          shipping: shipping == _undefined || shipping == null
-              ? _instance.shipping
-              : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
-              ? _instance.shippingWithTax
-              : (shippingWithTax as int),
-          shippingLines: shippingLines == _undefined || shippingLines == null
-              ? _instance.shippingLines
-              : (shippingLines as List<Query$GetOrderByCode$orderByCode$shippingLines>),
+          shipping:
+              shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
+          shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetOrderByCode$orderByCode$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetOrderByCode$orderByCode$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetOrderByCode$orderByCode$customFields?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
           updatedAt: updatedAt == _undefined || updatedAt == null ? _instance.updatedAt : (updatedAt as String),
           customer: customer == _undefined ? _instance.customer : (customer as Query$GetOrderByCode$orderByCode$customer?)));
+  TRes promotions(
+          Iterable<Query$GetOrderByCode$orderByCode$promotions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderByCode$orderByCode$promotions<
+                          Query$GetOrderByCode$orderByCode$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Query$GetOrderByCode$orderByCode$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Query$GetOrderByCode$orderByCode$lines> Function(
                   Iterable<
@@ -11220,6 +16075,16 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Query$GetOrderByCode$orderByCode$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Query$GetOrderByCode$orderByCode$customFields.stub(
+            _then(_instance))
+        : CopyWith$Query$GetOrderByCode$orderByCode$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
+
   CopyWith$Query$GetOrderByCode$orderByCode$customer<TRes> get customer {
     final local$customer = _instance.customer;
     return local$customer == null
@@ -11241,6 +16106,8 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Query$GetOrderByCode$orderByCode$promotions>? promotions,
           List<Query$GetOrderByCode$orderByCode$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -11251,15 +16118,740 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode<TRes>
           int? shippingWithTax,
           List<Query$GetOrderByCode$orderByCode$shippingLines>? shippingLines,
           List<Query$GetOrderByCode$orderByCode$discounts>? discounts,
+          Query$GetOrderByCode$orderByCode$customFields? customFields,
           String? $__typename,
           String? updatedAt,
           Query$GetOrderByCode$orderByCode$customer? customer}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes>
+      get customFields =>
+          CopyWith$Query$GetOrderByCode$orderByCode$customFields.stub(_res);
   CopyWith$Query$GetOrderByCode$orderByCode$customer<TRes> get customer =>
       CopyWith$Query$GetOrderByCode$orderByCode$customer.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$promotions
+    implements Fragment$Cart$promotions {
+  Query$GetOrderByCode$orderByCode$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$promotionsFromJson(json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Query$GetOrderByCode$orderByCode$promotions$actions> actions;
+
+  final List<Query$GetOrderByCode$orderByCode$promotions$conditions> conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderByCode$orderByCode$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$promotions
+    on Query$GetOrderByCode$orderByCode$promotions {
+  CopyWith$Query$GetOrderByCode$orderByCode$promotions<
+          Query$GetOrderByCode$orderByCode$promotions>
+      get copyWith =>
+          CopyWith$Query$GetOrderByCode$orderByCode$promotions(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$promotions<TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions(
+          Query$GetOrderByCode$orderByCode$promotions instance,
+          TRes Function(Query$GetOrderByCode$orderByCode$promotions) then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Query$GetOrderByCode$orderByCode$promotions$actions>? actions,
+      List<Query$GetOrderByCode$orderByCode$promotions$conditions>? conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Query$GetOrderByCode$orderByCode$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<
+                      Query$GetOrderByCode$orderByCode$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Query$GetOrderByCode$orderByCode$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<
+                      Query$GetOrderByCode$orderByCode$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions<TRes>
+    implements CopyWith$Query$GetOrderByCode$orderByCode$promotions<TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$promotions _instance;
+
+  final TRes Function(Query$GetOrderByCode$orderByCode$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions
+                  as List<Query$GetOrderByCode$orderByCode$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Query$GetOrderByCode$orderByCode$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Query$GetOrderByCode$orderByCode$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<
+                          Query$GetOrderByCode$orderByCode$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Query$GetOrderByCode$orderByCode$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<
+                          Query$GetOrderByCode$orderByCode$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions<TRes>
+    implements CopyWith$Query$GetOrderByCode$orderByCode$promotions<TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions(this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Query$GetOrderByCode$orderByCode$promotions$actions>? actions,
+          List<Query$GetOrderByCode$orderByCode$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Query$GetOrderByCode$orderByCode$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$promotions$actionsFromJson(json);
+
+  final List<Query$GetOrderByCode$orderByCode$promotions$actions$args> args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$promotions$actionsToJson(this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderByCode$orderByCode$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$promotions$actions
+    on Query$GetOrderByCode$orderByCode$promotions$actions {
+  CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<
+          Query$GetOrderByCode$orderByCode$promotions$actions>
+      get copyWith =>
+          CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<
+    TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions(
+          Query$GetOrderByCode$orderByCode$promotions$actions instance,
+          TRes Function(Query$GetOrderByCode$orderByCode$promotions$actions)
+              then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions;
+
+  TRes call(
+      {List<Query$GetOrderByCode$orderByCode$promotions$actions$args>? args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetOrderByCode$orderByCode$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+                      Query$GetOrderByCode$orderByCode$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions<TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$promotions$actions _instance;
+
+  final TRes Function(Query$GetOrderByCode$orderByCode$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetOrderByCode$orderByCode$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetOrderByCode$orderByCode$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+                          Query$GetOrderByCode$orderByCode$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions<TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Query$GetOrderByCode$orderByCode$promotions$actions$args>? args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Query$GetOrderByCode$orderByCode$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$promotions$actions$argsFromJson(json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$promotions$actions$argsToJson(this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderByCode$orderByCode$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$promotions$actions$args
+    on Query$GetOrderByCode$orderByCode$promotions$actions$args {
+  CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+          Query$GetOrderByCode$orderByCode$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args(
+          Query$GetOrderByCode$orderByCode$promotions$actions$args instance,
+          TRes Function(
+                  Query$GetOrderByCode$orderByCode$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$promotions$actions$args _instance;
+
+  final TRes Function(Query$GetOrderByCode$orderByCode$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$promotions$actions$args(
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Query$GetOrderByCode$orderByCode$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$promotions$conditionsFromJson(json);
+
+  final String code;
+
+  final List<Query$GetOrderByCode$orderByCode$promotions$conditions$args> args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$promotions$conditionsToJson(this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderByCode$orderByCode$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$promotions$conditions
+    on Query$GetOrderByCode$orderByCode$promotions$conditions {
+  CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<
+          Query$GetOrderByCode$orderByCode$promotions$conditions>
+      get copyWith =>
+          CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<
+    TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions(
+          Query$GetOrderByCode$orderByCode$promotions$conditions instance,
+          TRes Function(Query$GetOrderByCode$orderByCode$promotions$conditions)
+              then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Query$GetOrderByCode$orderByCode$promotions$conditions$args>? args,
+      String? $__typename});
+  TRes args(
+      Iterable<Query$GetOrderByCode$orderByCode$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+                      Query$GetOrderByCode$orderByCode$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions<TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$promotions$conditions _instance;
+
+  final TRes Function(Query$GetOrderByCode$orderByCode$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Query$GetOrderByCode$orderByCode$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Query$GetOrderByCode$orderByCode$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+                          Query$GetOrderByCode$orderByCode$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions<TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Query$GetOrderByCode$orderByCode$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$promotions$conditions$argsToJson(this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetOrderByCode$orderByCode$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$promotions$conditions$args
+    on Query$GetOrderByCode$orderByCode$promotions$conditions$args {
+  CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+          Query$GetOrderByCode$orderByCode$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+          Query$GetOrderByCode$orderByCode$promotions$conditions$args instance,
+          TRes Function(
+                  Query$GetOrderByCode$orderByCode$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$promotions$conditions$args _instance;
+
+  final TRes Function(
+      Query$GetOrderByCode$orderByCode$promotions$conditions$args) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Query$GetOrderByCode$orderByCode$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -11274,6 +16866,7 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -11299,6 +16892,8 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
 
   final List<Query$GetOrderByCode$orderByCode$lines$discounts> discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -11314,6 +16909,7 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -11325,6 +16921,7 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -11368,6 +16965,9 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -11402,6 +17002,7 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode$lines<TRes> {
       int? discountedLinePriceWithTax,
       Query$GetOrderByCode$orderByCode$lines$productVariant? productVariant,
       List<Query$GetOrderByCode$orderByCode$lines$discounts>? discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Query$GetOrderByCode$orderByCode$lines$productVariant<TRes>
@@ -11435,6 +17036,7 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetOrderByCode$orderByCode$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -11464,6 +17066,7 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Query$GetOrderByCode$orderByCode$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -11508,6 +17111,7 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$lines<TRes>
           int? discountedLinePriceWithTax,
           Query$GetOrderByCode$orderByCode$lines$productVariant? productVariant,
           List<Query$GetOrderByCode$orderByCode$lines$discounts>? discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -12220,6 +17824,98 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$discounts<TRes>
           Enum$AdjustmentType? type,
           String? $__typename}) =>
       _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetOrderByCode$orderByCode$customFields
+    implements Fragment$Cart$customFields {
+  Query$GetOrderByCode$orderByCode$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Query$GetOrderByCode$orderByCode$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetOrderByCode$orderByCode$customFieldsFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetOrderByCode$orderByCode$customFieldsToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetOrderByCode$orderByCode$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetOrderByCode$orderByCode$customFields
+    on Query$GetOrderByCode$orderByCode$customFields {
+  CopyWith$Query$GetOrderByCode$orderByCode$customFields<
+          Query$GetOrderByCode$orderByCode$customFields>
+      get copyWith => CopyWith$Query$GetOrderByCode$orderByCode$customFields(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes> {
+  factory CopyWith$Query$GetOrderByCode$orderByCode$customFields(
+          Query$GetOrderByCode$orderByCode$customFields instance,
+          TRes Function(Query$GetOrderByCode$orderByCode$customFields) then) =
+      _CopyWithImpl$Query$GetOrderByCode$orderByCode$customFields;
+
+  factory CopyWith$Query$GetOrderByCode$orderByCode$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetOrderByCode$orderByCode$customFields<TRes>
+    implements CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes> {
+  _CopyWithImpl$Query$GetOrderByCode$orderByCode$customFields(
+      this._instance, this._then);
+
+  final Query$GetOrderByCode$orderByCode$customFields _instance;
+
+  final TRes Function(Query$GetOrderByCode$orderByCode$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetOrderByCode$orderByCode$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$customFields<TRes>
+    implements CopyWith$Query$GetOrderByCode$orderByCode$customFields<TRes> {
+  _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$customFields(this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -12988,6 +18684,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -12997,7 +18695,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(
@@ -13014,6 +18713,11 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions>
+      promotions;
 
   final List<Mutation$AddPayment$addPaymentToOrder$$Order$lines> lines;
 
@@ -13036,6 +18740,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
 
   final List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts> discounts;
 
+  final Mutation$AddPayment$addPaymentToOrder$$Order$customFields? customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$AddPayment$addPaymentToOrder$$OrderToJson(this);
   int get hashCode {
@@ -13044,6 +18750,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -13054,12 +18762,15 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -13069,7 +18780,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -13093,6 +18805,24 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -13141,6 +18871,9 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -13168,6 +18901,8 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions>? promotions,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -13178,7 +18913,14 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order<TRes> {
       int? shippingWithTax,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>?
           shippingLines,
-      List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>? discounts});
+      List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>? discounts,
+      Mutation$AddPayment$addPaymentToOrder$$Order$customFields? customFields});
+  TRes promotions(
+      Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+                      Mutation$AddPayment$addPaymentToOrder$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$lines> Function(
               Iterable<
@@ -13197,6 +18939,8 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order<TRes> {
                   CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<
                       Mutation$AddPayment$addPaymentToOrder$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<TRes>
+      get customFields;
 }
 
 class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
@@ -13216,6 +18960,8 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -13225,7 +18971,8 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$AddPayment$addPaymentToOrder$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -13240,6 +18987,13 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines
@@ -13250,23 +19004,27 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null
-              ? _instance.totalWithTax
-              : (totalWithTax as int),
-          shipping: shipping == _undefined || shipping == null
-              ? _instance.shipping
-              : (shipping as int),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null
-              ? _instance.shippingWithTax
-              : (shippingWithTax as int),
+          subTotalWithTax:
+              subTotalWithTax == _undefined || subTotalWithTax == null
+                  ? _instance.subTotalWithTax
+                  : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$AddPayment$addPaymentToOrder$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+                          Mutation$AddPayment$addPaymentToOrder$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$lines> Function(
                   Iterable<
@@ -13297,6 +19055,15 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
@@ -13311,6 +19078,9 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions>?
+              promotions,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -13322,11 +19092,789 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
           List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>?
               shippingLines,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$AddPayment$addPaymentToOrder$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<TRes>
+      get customFields =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotionsFromJson(json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>
+      actions;
+
+  final List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$AddPayment$addPaymentToOrder$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$promotions
+    on Mutation$AddPayment$addPaymentToOrder$$Order$promotions {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions instance,
+          TRes Function(Mutation$AddPayment$addPaymentToOrder$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>?
+          actions,
+      List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+                      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+                      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$promotions _instance;
+
+  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+                          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+                          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions<TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>?
+              actions,
+          List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+    on Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+                      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+                          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+    on Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+    on Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+                      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+      Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+                          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+    on Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -13342,6 +19890,7 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -13369,6 +19918,8 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
   final List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -13384,6 +19935,7 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -13395,6 +19947,7 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -13438,6 +19991,9 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -13478,6 +20034,7 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$lines<
           productVariant,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$lines$productVariant<
@@ -13512,6 +20069,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$AddPayment$addPaymentToOrder$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -13541,6 +20099,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -13589,6 +20148,7 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines<TRes>
               productVariant,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -14355,6 +20915,110 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<
           Enum$AdjustmentType? type,
           String? $__typename}) =>
       _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$AddPayment$addPaymentToOrder$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$customFieldsFromJson(json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AddPayment$addPaymentToOrder$$Order$customFieldsToJson(this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$AddPayment$addPaymentToOrder$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AddPayment$addPaymentToOrder$$Order$customFields
+    on Mutation$AddPayment$addPaymentToOrder$$Order$customFields {
+  CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+          Mutation$AddPayment$addPaymentToOrder$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+          Mutation$AddPayment$addPaymentToOrder$$Order$customFields instance,
+          TRes Function(
+                  Mutation$AddPayment$addPaymentToOrder$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields;
+
+  factory CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$AddPayment$addPaymentToOrder$$Order$customFields _instance;
+
+  final TRes Function(Mutation$AddPayment$addPaymentToOrder$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -16094,6 +22758,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -16103,7 +22769,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$AdjustOrderLine$adjustOrderLine$$Order.fromJson(
@@ -16120,6 +22787,11 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>
+      promotions;
 
   final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines> lines;
 
@@ -16143,6 +22815,9 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
   final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>
       discounts;
 
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$AdjustOrderLine$adjustOrderLine$$OrderToJson(this);
   int get hashCode {
@@ -16151,6 +22826,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -16161,12 +22838,15 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -16176,7 +22856,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -16200,6 +22881,24 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -16248,6 +22947,9 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -16276,6 +22978,9 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes> {
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>?
+          promotions,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines>? lines,
       int? totalQuantity,
       int? subTotal,
@@ -16287,7 +22992,15 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes> {
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>?
           shippingLines,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+                      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines> Function(
               Iterable<
@@ -16306,6 +23019,8 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes> {
                   CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts<
                       Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<TRes>
+      get customFields;
 }
 
 class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
@@ -16325,6 +23040,8 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -16334,7 +23051,8 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -16349,6 +23067,13 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -16359,20 +23084,24 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax:
-              subTotalWithTax == _undefined || subTotalWithTax == null
-                  ? _instance.subTotalWithTax
-                  : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null
-              ? _instance.totalWithTax
-              : (totalWithTax as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+                          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines> Function(
                   Iterable<
@@ -16403,6 +23132,15 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
@@ -16417,6 +23155,9 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>?
+              promotions,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines>? lines,
           int? totalQuantity,
           int? subTotal,
@@ -16428,11 +23169,797 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>?
               shippingLines,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<TRes>
+      get customFields =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotionsToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>?
+          actions,
+      List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+                      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+                      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions _instance;
+
+  final TRes Function(
+      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+                          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+                          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>?
+              actions,
+          List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+                      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+                          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+                      Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+                          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -16448,6 +23975,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -16475,6 +24003,8 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
   final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -16490,6 +24020,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -16501,6 +24032,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -16544,6 +24076,9 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -16584,6 +24119,7 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<
           productVariant,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$productVariant<
@@ -16619,6 +24155,7 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<TRes>
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -16648,6 +24185,7 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<TRes>
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -16697,6 +24235,7 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<
               productVariant,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -17473,6 +25012,113 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discount
           Enum$AdjustmentType? type,
           String? $__typename}) =>
       _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields
+    on Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields {
+  CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+          Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields instance,
+          TRes Function(
+                  Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields;
+
+  factory CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields _instance;
+
+  final TRes Function(
+      Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -18509,6 +26155,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -18519,6 +26167,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
       required this.shippingWithTax,
       required this.shippingLines,
       required this.discounts,
+      this.customFields,
       this.shippingAddress});
 
   @override
@@ -18537,6 +26186,12 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>
+      promotions;
 
   final List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines>
       lines;
@@ -18563,6 +26218,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>
       discounts;
 
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
+      customFields;
+
   final Fragment$OrderAddress? shippingAddress;
 
   Map<String, dynamic> toJson() =>
@@ -18573,6 +26231,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -18583,6 +26243,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$shippingAddress = shippingAddress;
     return Object.hashAll([
       l$$__typename,
@@ -18590,6 +26251,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -18600,6 +26263,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$shippingAddress
     ]);
   }
@@ -18625,6 +26289,24 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -18673,6 +26355,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$shippingAddress = shippingAddress;
     final lOther$shippingAddress = other.shippingAddress;
     if (l$shippingAddress != lOther$shippingAddress) return false;
@@ -18708,6 +26393,9 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>?
+          promotions,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines>?
           lines,
       int? totalQuantity,
@@ -18721,7 +26409,15 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           shippingLines,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>?
           discounts,
+      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
+          customFields,
       Fragment$OrderAddress? shippingAddress});
+  TRes promotions(
+      Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+                      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines> Function(
               Iterable<
@@ -18740,6 +26436,8 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
                   CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts<
                       Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+      TRes> get customFields;
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress;
 }
 
@@ -18764,6 +26462,8 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -18774,6 +26474,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? shippingAddress = _undefined}) =>
       _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order(
           $__typename: $__typename == _undefined || $__typename == null
@@ -18789,6 +26490,13 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -18796,22 +26504,26 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null
-              ? _instance.subTotal
-              : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax:
-              totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?),
           shippingAddress: shippingAddress == _undefined ? _instance.shippingAddress : (shippingAddress as Fragment$OrderAddress?)));
+  TRes promotions(
+          Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+                          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines> Function(
                   Iterable<
@@ -18842,6 +26554,16 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
+
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress {
     final local$shippingAddress = _instance.shippingAddress;
     return local$shippingAddress == null
@@ -18867,6 +26589,9 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>?
+              promotions,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines>?
               lines,
           int? totalQuantity,
@@ -18880,13 +26605,806 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
               shippingLines,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>?
               discounts,
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
+              customFields,
           Fragment$OrderAddress? shippingAddress}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+              .stub(_res);
   CopyWith$Fragment$OrderAddress<TRes> get shippingAddress =>
       CopyWith$Fragment$OrderAddress.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>?
+          actions,
+      List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+                      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+                      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+                          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+                          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>?
+              actions,
+          List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+                      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+                          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+                      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+                          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -18902,6 +27420,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -18931,6 +27450,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -18947,6 +27468,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -18958,6 +27480,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -19002,6 +27525,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -19043,6 +27569,7 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           productVariant,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$productVariant<
@@ -19081,6 +27608,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$l
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -19110,6 +27638,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$l
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -19160,6 +27689,7 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
               productVariant,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -19954,6 +28484,117 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
 }
 
 @JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mutation$SetShippingAddress$setOrderShippingAddress$$NoActiveOrderError
     implements
         Fragment$ErrorResult,
@@ -20599,6 +29240,8 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -20608,7 +29251,8 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order.fromJson(
@@ -20625,6 +29269,12 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>
+      promotions;
 
   final List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>
       lines;
@@ -20650,6 +29300,9 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   final List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>
       discounts;
 
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderToJson(this);
   int get hashCode {
@@ -20658,6 +29311,8 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -20668,12 +29323,15 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -20683,7 +29341,8 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -20707,6 +29366,24 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -20755,6 +29432,9 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -20787,6 +29467,9 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>?
+          promotions,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>?
           lines,
       int? totalQuantity,
@@ -20799,7 +29482,15 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>?
           shippingLines,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+                      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines> Function(
               Iterable<
@@ -20818,6 +29509,8 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
                   CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts<
                       Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+      TRes> get customFields;
 }
 
 class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
@@ -20841,6 +29534,8 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -20850,7 +29545,8 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -20865,6 +29561,13 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -20875,18 +29578,24 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
               : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax:
-              totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+                          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines> Function(
                   Iterable<
@@ -20917,6 +29626,15 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
@@ -20935,6 +29653,9 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>?
+              promotions,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>?
               lines,
           int? totalQuantity,
@@ -20947,11 +29668,804 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>?
               shippingLines,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>?
+          actions,
+      List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+                      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+                      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+                          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+                          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>?
+              actions,
+          List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+                      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+                          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+                      Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+                          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -20967,6 +30481,7 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -20996,6 +30511,8 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -21012,6 +30529,7 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -21023,6 +30541,7 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -21067,6 +30586,9 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -21108,6 +30630,7 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
           productVariant,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$productVariant<
@@ -21146,6 +30669,7 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lin
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -21175,6 +30699,7 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lin
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -21225,6 +30750,7 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
               productVariant,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -22016,6 +31542,117 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
 }
 
 @JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+    on Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields {
+  CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields;
+
+  factory CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mutation$SetShippingMethod$setOrderShippingMethod$$IneligibleShippingMethodError
     implements
         Fragment$ErrorResult,
@@ -22388,6 +32025,3708 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
         CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError<
             TRes> {
   _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$OrderModificationError(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename, Enum$ErrorCode? errorCode, String? message}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Mutation$CancelOrderOnClientRequest {
+  Variables$Mutation$CancelOrderOnClientRequest({required this.userId});
+
+  @override
+  factory Variables$Mutation$CancelOrderOnClientRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$CancelOrderOnClientRequestFromJson(json);
+
+  final String userId;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$CancelOrderOnClientRequestToJson(this);
+  int get hashCode {
+    final l$userId = userId;
+    return Object.hashAll([l$userId]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$CancelOrderOnClientRequest) ||
+        runtimeType != other.runtimeType) return false;
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$CancelOrderOnClientRequest<
+          Variables$Mutation$CancelOrderOnClientRequest>
+      get copyWith => CopyWith$Variables$Mutation$CancelOrderOnClientRequest(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$CancelOrderOnClientRequest<TRes> {
+  factory CopyWith$Variables$Mutation$CancelOrderOnClientRequest(
+          Variables$Mutation$CancelOrderOnClientRequest instance,
+          TRes Function(Variables$Mutation$CancelOrderOnClientRequest) then) =
+      _CopyWithImpl$Variables$Mutation$CancelOrderOnClientRequest;
+
+  factory CopyWith$Variables$Mutation$CancelOrderOnClientRequest.stub(
+          TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest;
+
+  TRes call({String? userId});
+}
+
+class _CopyWithImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
+    implements CopyWith$Variables$Mutation$CancelOrderOnClientRequest<TRes> {
+  _CopyWithImpl$Variables$Mutation$CancelOrderOnClientRequest(
+      this._instance, this._then);
+
+  final Variables$Mutation$CancelOrderOnClientRequest _instance;
+
+  final TRes Function(Variables$Mutation$CancelOrderOnClientRequest) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? userId = _undefined}) =>
+      _then(Variables$Mutation$CancelOrderOnClientRequest(
+          userId: userId == _undefined || userId == null
+              ? _instance.userId
+              : (userId as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
+    implements CopyWith$Variables$Mutation$CancelOrderOnClientRequest<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest(this._res);
+
+  TRes _res;
+
+  call({String? userId}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$CancelOrderOnClientRequest {
+  Mutation$CancelOrderOnClientRequest(
+      {required this.cancelOrderOnClientRequest, required this.$__typename});
+
+  @override
+  factory Mutation$CancelOrderOnClientRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$CancelOrderOnClientRequestFromJson(json);
+
+  final Fragment$Cart cancelOrderOnClientRequest;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$CancelOrderOnClientRequestToJson(this);
+  int get hashCode {
+    final l$cancelOrderOnClientRequest = cancelOrderOnClientRequest;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$cancelOrderOnClientRequest, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$CancelOrderOnClientRequest) ||
+        runtimeType != other.runtimeType) return false;
+    final l$cancelOrderOnClientRequest = cancelOrderOnClientRequest;
+    final lOther$cancelOrderOnClientRequest = other.cancelOrderOnClientRequest;
+    if (l$cancelOrderOnClientRequest != lOther$cancelOrderOnClientRequest)
+      return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CancelOrderOnClientRequest
+    on Mutation$CancelOrderOnClientRequest {
+  CopyWith$Mutation$CancelOrderOnClientRequest<
+          Mutation$CancelOrderOnClientRequest>
+      get copyWith =>
+          CopyWith$Mutation$CancelOrderOnClientRequest(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$CancelOrderOnClientRequest<TRes> {
+  factory CopyWith$Mutation$CancelOrderOnClientRequest(
+          Mutation$CancelOrderOnClientRequest instance,
+          TRes Function(Mutation$CancelOrderOnClientRequest) then) =
+      _CopyWithImpl$Mutation$CancelOrderOnClientRequest;
+
+  factory CopyWith$Mutation$CancelOrderOnClientRequest.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CancelOrderOnClientRequest;
+
+  TRes call({Fragment$Cart? cancelOrderOnClientRequest, String? $__typename});
+  CopyWith$Fragment$Cart<TRes> get cancelOrderOnClientRequest;
+}
+
+class _CopyWithImpl$Mutation$CancelOrderOnClientRequest<TRes>
+    implements CopyWith$Mutation$CancelOrderOnClientRequest<TRes> {
+  _CopyWithImpl$Mutation$CancelOrderOnClientRequest(this._instance, this._then);
+
+  final Mutation$CancelOrderOnClientRequest _instance;
+
+  final TRes Function(Mutation$CancelOrderOnClientRequest) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? cancelOrderOnClientRequest = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$CancelOrderOnClientRequest(
+          cancelOrderOnClientRequest:
+              cancelOrderOnClientRequest == _undefined ||
+                      cancelOrderOnClientRequest == null
+                  ? _instance.cancelOrderOnClientRequest
+                  : (cancelOrderOnClientRequest as Fragment$Cart),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Fragment$Cart<TRes> get cancelOrderOnClientRequest {
+    final local$cancelOrderOnClientRequest =
+        _instance.cancelOrderOnClientRequest;
+    return CopyWith$Fragment$Cart(local$cancelOrderOnClientRequest,
+        (e) => call(cancelOrderOnClientRequest: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CancelOrderOnClientRequest<TRes>
+    implements CopyWith$Mutation$CancelOrderOnClientRequest<TRes> {
+  _CopyWithStubImpl$Mutation$CancelOrderOnClientRequest(this._res);
+
+  TRes _res;
+
+  call({Fragment$Cart? cancelOrderOnClientRequest, String? $__typename}) =>
+      _res;
+  CopyWith$Fragment$Cart<TRes> get cancelOrderOnClientRequest =>
+      CopyWith$Fragment$Cart.stub(_res);
+}
+
+const documentNodeMutationCancelOrderOnClientRequest =
+    DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'CancelOrderOnClientRequest'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'userId')),
+            type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'cancelOrderOnClientRequest'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'orderId'),
+                  value: VariableNode(name: NameNode(value: 'userId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FragmentSpreadNode(name: NameNode(value: 'Cart'), directives: []),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  fragmentDefinitionCart,
+  fragmentDefinitionAsset,
+]);
+Mutation$CancelOrderOnClientRequest
+    _parserFn$Mutation$CancelOrderOnClientRequest(Map<String, dynamic> data) =>
+        Mutation$CancelOrderOnClientRequest.fromJson(data);
+typedef OnMutationCompleted$Mutation$CancelOrderOnClientRequest = FutureOr<void>
+    Function(dynamic, Mutation$CancelOrderOnClientRequest?);
+
+class Options$Mutation$CancelOrderOnClientRequest
+    extends graphql.MutationOptions<Mutation$CancelOrderOnClientRequest> {
+  Options$Mutation$CancelOrderOnClientRequest(
+      {String? operationName,
+      required Variables$Mutation$CancelOrderOnClientRequest variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$CancelOrderOnClientRequest? onCompleted,
+      graphql.OnMutationUpdate<Mutation$CancelOrderOnClientRequest>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$CancelOrderOnClientRequest(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationCancelOrderOnClientRequest,
+            parserFn: _parserFn$Mutation$CancelOrderOnClientRequest);
+
+  final OnMutationCompleted$Mutation$CancelOrderOnClientRequest?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$CancelOrderOnClientRequest
+    extends graphql.WatchQueryOptions<Mutation$CancelOrderOnClientRequest> {
+  WatchOptions$Mutation$CancelOrderOnClientRequest(
+      {String? operationName,
+      required Variables$Mutation$CancelOrderOnClientRequest variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationCancelOrderOnClientRequest,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$CancelOrderOnClientRequest);
+}
+
+extension ClientExtension$Mutation$CancelOrderOnClientRequest
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CancelOrderOnClientRequest>>
+      mutate$CancelOrderOnClientRequest(
+              Options$Mutation$CancelOrderOnClientRequest options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CancelOrderOnClientRequest>
+      watchMutation$CancelOrderOnClientRequest(
+              WatchOptions$Mutation$CancelOrderOnClientRequest options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$CancelOrderOnClientRequest$HookResult {
+  Mutation$CancelOrderOnClientRequest$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$CancelOrderOnClientRequest runMutation;
+
+  final graphql.QueryResult<Mutation$CancelOrderOnClientRequest> result;
+}
+
+Mutation$CancelOrderOnClientRequest$HookResult
+    useMutation$CancelOrderOnClientRequest(
+        [WidgetOptions$Mutation$CancelOrderOnClientRequest? options]) {
+  final result = graphql_flutter.useMutation(
+      options ?? WidgetOptions$Mutation$CancelOrderOnClientRequest());
+  return Mutation$CancelOrderOnClientRequest$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$CancelOrderOnClientRequest>
+    useWatchMutation$CancelOrderOnClientRequest(
+            WatchOptions$Mutation$CancelOrderOnClientRequest options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$CancelOrderOnClientRequest
+    extends graphql.MutationOptions<Mutation$CancelOrderOnClientRequest> {
+  WidgetOptions$Mutation$CancelOrderOnClientRequest(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$CancelOrderOnClientRequest? onCompleted,
+      graphql.OnMutationUpdate<Mutation$CancelOrderOnClientRequest>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$CancelOrderOnClientRequest(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationCancelOrderOnClientRequest,
+            parserFn: _parserFn$Mutation$CancelOrderOnClientRequest);
+
+  final OnMutationCompleted$Mutation$CancelOrderOnClientRequest?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$CancelOrderOnClientRequest
+    = graphql.MultiSourceResult<Mutation$CancelOrderOnClientRequest> Function(
+        Variables$Mutation$CancelOrderOnClientRequest,
+        {Object? optimisticResult});
+typedef Builder$Mutation$CancelOrderOnClientRequest = widgets.Widget Function(
+    RunMutation$Mutation$CancelOrderOnClientRequest,
+    graphql.QueryResult<Mutation$CancelOrderOnClientRequest>?);
+
+class Mutation$CancelOrderOnClientRequest$Widget
+    extends graphql_flutter.Mutation<Mutation$CancelOrderOnClientRequest> {
+  Mutation$CancelOrderOnClientRequest$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$CancelOrderOnClientRequest? options,
+      required Builder$Mutation$CancelOrderOnClientRequest builder})
+      : super(
+            key: key,
+            options:
+                options ?? WidgetOptions$Mutation$CancelOrderOnClientRequest(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$NextOrderStates {
+  Query$NextOrderStates(
+      {required this.nextOrderStates, required this.$__typename});
+
+  @override
+  factory Query$NextOrderStates.fromJson(Map<String, dynamic> json) =>
+      _$Query$NextOrderStatesFromJson(json);
+
+  final List<String> nextOrderStates;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$NextOrderStatesToJson(this);
+  int get hashCode {
+    final l$nextOrderStates = nextOrderStates;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$nextOrderStates.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$NextOrderStates) || runtimeType != other.runtimeType)
+      return false;
+    final l$nextOrderStates = nextOrderStates;
+    final lOther$nextOrderStates = other.nextOrderStates;
+    if (l$nextOrderStates.length != lOther$nextOrderStates.length) return false;
+    for (int i = 0; i < l$nextOrderStates.length; i++) {
+      final l$nextOrderStates$entry = l$nextOrderStates[i];
+      final lOther$nextOrderStates$entry = lOther$nextOrderStates[i];
+      if (l$nextOrderStates$entry != lOther$nextOrderStates$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$NextOrderStates on Query$NextOrderStates {
+  CopyWith$Query$NextOrderStates<Query$NextOrderStates> get copyWith =>
+      CopyWith$Query$NextOrderStates(this, (i) => i);
+}
+
+abstract class CopyWith$Query$NextOrderStates<TRes> {
+  factory CopyWith$Query$NextOrderStates(Query$NextOrderStates instance,
+          TRes Function(Query$NextOrderStates) then) =
+      _CopyWithImpl$Query$NextOrderStates;
+
+  factory CopyWith$Query$NextOrderStates.stub(TRes res) =
+      _CopyWithStubImpl$Query$NextOrderStates;
+
+  TRes call({List<String>? nextOrderStates, String? $__typename});
+}
+
+class _CopyWithImpl$Query$NextOrderStates<TRes>
+    implements CopyWith$Query$NextOrderStates<TRes> {
+  _CopyWithImpl$Query$NextOrderStates(this._instance, this._then);
+
+  final Query$NextOrderStates _instance;
+
+  final TRes Function(Query$NextOrderStates) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? nextOrderStates = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$NextOrderStates(
+          nextOrderStates:
+              nextOrderStates == _undefined || nextOrderStates == null
+                  ? _instance.nextOrderStates
+                  : (nextOrderStates as List<String>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$NextOrderStates<TRes>
+    implements CopyWith$Query$NextOrderStates<TRes> {
+  _CopyWithStubImpl$Query$NextOrderStates(this._res);
+
+  TRes _res;
+
+  call({List<String>? nextOrderStates, String? $__typename}) => _res;
+}
+
+const documentNodeQueryNextOrderStates = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'NextOrderStates'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'nextOrderStates'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$NextOrderStates _parserFn$Query$NextOrderStates(
+        Map<String, dynamic> data) =>
+    Query$NextOrderStates.fromJson(data);
+
+class Options$Query$NextOrderStates
+    extends graphql.QueryOptions<Query$NextOrderStates> {
+  Options$Query$NextOrderStates(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryNextOrderStates,
+            parserFn: _parserFn$Query$NextOrderStates);
+}
+
+class WatchOptions$Query$NextOrderStates
+    extends graphql.WatchQueryOptions<Query$NextOrderStates> {
+  WatchOptions$Query$NextOrderStates(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryNextOrderStates,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$NextOrderStates);
+}
+
+class FetchMoreOptions$Query$NextOrderStates extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$NextOrderStates(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+            updateQuery: updateQuery,
+            document: documentNodeQueryNextOrderStates);
+}
+
+extension ClientExtension$Query$NextOrderStates on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$NextOrderStates>> query$NextOrderStates(
+          [Options$Query$NextOrderStates? options]) async =>
+      await this.query(options ?? Options$Query$NextOrderStates());
+  graphql.ObservableQuery<Query$NextOrderStates> watchQuery$NextOrderStates(
+          [WatchOptions$Query$NextOrderStates? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$NextOrderStates());
+  void writeQuery$NextOrderStates(
+          {required Query$NextOrderStates data, bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryNextOrderStates)),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$NextOrderStates? readQuery$NextOrderStates({bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryNextOrderStates)),
+        optimistic: optimistic);
+    return result == null ? null : Query$NextOrderStates.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$NextOrderStates> useQuery$NextOrderStates(
+        [Options$Query$NextOrderStates? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$NextOrderStates());
+graphql.ObservableQuery<Query$NextOrderStates> useWatchQuery$NextOrderStates(
+        [WatchOptions$Query$NextOrderStates? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$NextOrderStates());
+
+class Query$NextOrderStates$Widget
+    extends graphql_flutter.Query<Query$NextOrderStates> {
+  Query$NextOrderStates$Widget(
+      {widgets.Key? key,
+      Options$Query$NextOrderStates? options,
+      required graphql_flutter.QueryBuilder<Query$NextOrderStates> builder})
+      : super(
+            key: key,
+            options: options ?? Options$Query$NextOrderStates(),
+            builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Variables$Mutation$TransitionOrderToState {
+  Variables$Mutation$TransitionOrderToState({required this.state});
+
+  @override
+  factory Variables$Mutation$TransitionOrderToState.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$TransitionOrderToStateFromJson(json);
+
+  final String state;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$TransitionOrderToStateToJson(this);
+  int get hashCode {
+    final l$state = state;
+    return Object.hashAll([l$state]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$TransitionOrderToState) ||
+        runtimeType != other.runtimeType) return false;
+    final l$state = state;
+    final lOther$state = other.state;
+    if (l$state != lOther$state) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$TransitionOrderToState<
+          Variables$Mutation$TransitionOrderToState>
+      get copyWith =>
+          CopyWith$Variables$Mutation$TransitionOrderToState(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$TransitionOrderToState<TRes> {
+  factory CopyWith$Variables$Mutation$TransitionOrderToState(
+          Variables$Mutation$TransitionOrderToState instance,
+          TRes Function(Variables$Mutation$TransitionOrderToState) then) =
+      _CopyWithImpl$Variables$Mutation$TransitionOrderToState;
+
+  factory CopyWith$Variables$Mutation$TransitionOrderToState.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$TransitionOrderToState;
+
+  TRes call({String? state});
+}
+
+class _CopyWithImpl$Variables$Mutation$TransitionOrderToState<TRes>
+    implements CopyWith$Variables$Mutation$TransitionOrderToState<TRes> {
+  _CopyWithImpl$Variables$Mutation$TransitionOrderToState(
+      this._instance, this._then);
+
+  final Variables$Mutation$TransitionOrderToState _instance;
+
+  final TRes Function(Variables$Mutation$TransitionOrderToState) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? state = _undefined}) =>
+      _then(Variables$Mutation$TransitionOrderToState(
+          state: state == _undefined || state == null
+              ? _instance.state
+              : (state as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$TransitionOrderToState<TRes>
+    implements CopyWith$Variables$Mutation$TransitionOrderToState<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$TransitionOrderToState(this._res);
+
+  TRes _res;
+
+  call({String? state}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState {
+  Mutation$TransitionOrderToState(
+      {this.transitionOrderToState, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToStateFromJson(json);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState?
+      transitionOrderToState;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToStateToJson(this);
+  int get hashCode {
+    final l$transitionOrderToState = transitionOrderToState;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$transitionOrderToState, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$TransitionOrderToState) ||
+        runtimeType != other.runtimeType) return false;
+    final l$transitionOrderToState = transitionOrderToState;
+    final lOther$transitionOrderToState = other.transitionOrderToState;
+    if (l$transitionOrderToState != lOther$transitionOrderToState) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState
+    on Mutation$TransitionOrderToState {
+  CopyWith$Mutation$TransitionOrderToState<Mutation$TransitionOrderToState>
+      get copyWith => CopyWith$Mutation$TransitionOrderToState(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState<TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState(
+          Mutation$TransitionOrderToState instance,
+          TRes Function(Mutation$TransitionOrderToState) then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState;
+
+  factory CopyWith$Mutation$TransitionOrderToState.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState;
+
+  TRes call(
+      {Mutation$TransitionOrderToState$transitionOrderToState?
+          transitionOrderToState,
+      String? $__typename});
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<TRes>
+      get transitionOrderToState;
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState<TRes>
+    implements CopyWith$Mutation$TransitionOrderToState<TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState(this._instance, this._then);
+
+  final Mutation$TransitionOrderToState _instance;
+
+  final TRes Function(Mutation$TransitionOrderToState) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? transitionOrderToState = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState(
+          transitionOrderToState: transitionOrderToState == _undefined
+              ? _instance.transitionOrderToState
+              : (transitionOrderToState
+                  as Mutation$TransitionOrderToState$transitionOrderToState?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<TRes>
+      get transitionOrderToState {
+    final local$transitionOrderToState = _instance.transitionOrderToState;
+    return local$transitionOrderToState == null
+        ? CopyWith$Mutation$TransitionOrderToState$transitionOrderToState.stub(
+            _then(_instance))
+        : CopyWith$Mutation$TransitionOrderToState$transitionOrderToState(
+            local$transitionOrderToState,
+            (e) => call(transitionOrderToState: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState<TRes>
+    implements CopyWith$Mutation$TransitionOrderToState<TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$TransitionOrderToState$transitionOrderToState?
+              transitionOrderToState,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<TRes>
+      get transitionOrderToState =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState.stub(
+              _res);
+}
+
+const documentNodeMutationTransitionOrderToState = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'TransitionOrderToState'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'state')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'transitionOrderToState'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'state'),
+                  value: VariableNode(name: NameNode(value: 'state')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FragmentSpreadNode(name: NameNode(value: 'Cart'), directives: []),
+              FragmentSpreadNode(
+                  name: NameNode(value: 'ErrorResult'), directives: []),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+  fragmentDefinitionCart,
+  fragmentDefinitionAsset,
+  fragmentDefinitionErrorResult,
+]);
+Mutation$TransitionOrderToState _parserFn$Mutation$TransitionOrderToState(
+        Map<String, dynamic> data) =>
+    Mutation$TransitionOrderToState.fromJson(data);
+typedef OnMutationCompleted$Mutation$TransitionOrderToState = FutureOr<void>
+    Function(dynamic, Mutation$TransitionOrderToState?);
+
+class Options$Mutation$TransitionOrderToState
+    extends graphql.MutationOptions<Mutation$TransitionOrderToState> {
+  Options$Mutation$TransitionOrderToState(
+      {String? operationName,
+      required Variables$Mutation$TransitionOrderToState variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$TransitionOrderToState? onCompleted,
+      graphql.OnMutationUpdate<Mutation$TransitionOrderToState>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$TransitionOrderToState(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationTransitionOrderToState,
+            parserFn: _parserFn$Mutation$TransitionOrderToState);
+
+  final OnMutationCompleted$Mutation$TransitionOrderToState?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$TransitionOrderToState
+    extends graphql.WatchQueryOptions<Mutation$TransitionOrderToState> {
+  WatchOptions$Mutation$TransitionOrderToState(
+      {String? operationName,
+      required Variables$Mutation$TransitionOrderToState variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationTransitionOrderToState,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$TransitionOrderToState);
+}
+
+extension ClientExtension$Mutation$TransitionOrderToState
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$TransitionOrderToState>>
+      mutate$TransitionOrderToState(
+              Options$Mutation$TransitionOrderToState options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$TransitionOrderToState>
+      watchMutation$TransitionOrderToState(
+              WatchOptions$Mutation$TransitionOrderToState options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$TransitionOrderToState$HookResult {
+  Mutation$TransitionOrderToState$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$TransitionOrderToState runMutation;
+
+  final graphql.QueryResult<Mutation$TransitionOrderToState> result;
+}
+
+Mutation$TransitionOrderToState$HookResult useMutation$TransitionOrderToState(
+    [WidgetOptions$Mutation$TransitionOrderToState? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$TransitionOrderToState());
+  return Mutation$TransitionOrderToState$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$TransitionOrderToState>
+    useWatchMutation$TransitionOrderToState(
+            WatchOptions$Mutation$TransitionOrderToState options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$TransitionOrderToState
+    extends graphql.MutationOptions<Mutation$TransitionOrderToState> {
+  WidgetOptions$Mutation$TransitionOrderToState(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$TransitionOrderToState? onCompleted,
+      graphql.OnMutationUpdate<Mutation$TransitionOrderToState>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$TransitionOrderToState(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationTransitionOrderToState,
+            parserFn: _parserFn$Mutation$TransitionOrderToState);
+
+  final OnMutationCompleted$Mutation$TransitionOrderToState?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$TransitionOrderToState
+    = graphql.MultiSourceResult<Mutation$TransitionOrderToState> Function(
+        Variables$Mutation$TransitionOrderToState,
+        {Object? optimisticResult});
+typedef Builder$Mutation$TransitionOrderToState = widgets.Widget Function(
+    RunMutation$Mutation$TransitionOrderToState,
+    graphql.QueryResult<Mutation$TransitionOrderToState>?);
+
+class Mutation$TransitionOrderToState$Widget
+    extends graphql_flutter.Mutation<Mutation$TransitionOrderToState> {
+  Mutation$TransitionOrderToState$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$TransitionOrderToState? options,
+      required Builder$Mutation$TransitionOrderToState builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$TransitionOrderToState(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState {
+  Mutation$TransitionOrderToState$transitionOrderToState(
+      {required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState.fromJson(
+      Map<String, dynamic> json) {
+    switch (json["__typename"] as String) {
+      case "Order":
+        return Mutation$TransitionOrderToState$transitionOrderToState$$Order
+            .fromJson(json);
+      case "OrderStateTransitionError":
+        return Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+            .fromJson(json);
+      default:
+        return _$Mutation$TransitionOrderToState$transitionOrderToStateFromJson(
+            json);
+    }
+  }
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToStateToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$TransitionOrderToState$transitionOrderToState) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState
+    on Mutation$TransitionOrderToState$transitionOrderToState {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<
+          Mutation$TransitionOrderToState$transitionOrderToState>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState(
+          Mutation$TransitionOrderToState$transitionOrderToState instance,
+          TRes Function(Mutation$TransitionOrderToState$transitionOrderToState)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState<TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState _instance;
+
+  final TRes Function(Mutation$TransitionOrderToState$transitionOrderToState)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState<TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState(
+      this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order
+    implements
+        Fragment$Cart,
+        Mutation$TransitionOrderToState$transitionOrderToState {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+      {required this.$__typename,
+      required this.id,
+      required this.code,
+      required this.state,
+      required this.active,
+      required this.couponCodes,
+      required this.promotions,
+      required this.lines,
+      required this.totalQuantity,
+      required this.subTotal,
+      required this.subTotalWithTax,
+      required this.total,
+      required this.totalWithTax,
+      required this.shipping,
+      required this.shippingWithTax,
+      required this.shippingLines,
+      required this.discounts,
+      this.customFields});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  final String id;
+
+  final String code;
+
+  final String state;
+
+  final bool active;
+
+  final List<String> couponCodes;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>
+      promotions;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>
+      lines;
+
+  final int totalQuantity;
+
+  final int subTotal;
+
+  final int subTotalWithTax;
+
+  final int total;
+
+  final int totalWithTax;
+
+  final int shipping;
+
+  final int shippingWithTax;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>
+      shippingLines;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>
+      discounts;
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields?
+      customFields;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$id = id;
+    final l$code = code;
+    final l$state = state;
+    final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
+    final l$lines = lines;
+    final l$totalQuantity = totalQuantity;
+    final l$subTotal = subTotal;
+    final l$subTotalWithTax = subTotalWithTax;
+    final l$total = total;
+    final l$totalWithTax = totalWithTax;
+    final l$shipping = shipping;
+    final l$shippingWithTax = shippingWithTax;
+    final l$shippingLines = shippingLines;
+    final l$discounts = discounts;
+    final l$customFields = customFields;
+    return Object.hashAll([
+      l$$__typename,
+      l$id,
+      l$code,
+      l$state,
+      l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
+      Object.hashAll(l$lines.map((v) => v)),
+      l$totalQuantity,
+      l$subTotal,
+      l$subTotalWithTax,
+      l$total,
+      l$totalWithTax,
+      l$shipping,
+      l$shippingWithTax,
+      Object.hashAll(l$shippingLines.map((v) => v)),
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$state = state;
+    final lOther$state = other.state;
+    if (l$state != lOther$state) return false;
+    final l$active = active;
+    final lOther$active = other.active;
+    if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
+    final l$lines = lines;
+    final lOther$lines = other.lines;
+    if (l$lines.length != lOther$lines.length) return false;
+    for (int i = 0; i < l$lines.length; i++) {
+      final l$lines$entry = l$lines[i];
+      final lOther$lines$entry = lOther$lines[i];
+      if (l$lines$entry != lOther$lines$entry) return false;
+    }
+
+    final l$totalQuantity = totalQuantity;
+    final lOther$totalQuantity = other.totalQuantity;
+    if (l$totalQuantity != lOther$totalQuantity) return false;
+    final l$subTotal = subTotal;
+    final lOther$subTotal = other.subTotal;
+    if (l$subTotal != lOther$subTotal) return false;
+    final l$subTotalWithTax = subTotalWithTax;
+    final lOther$subTotalWithTax = other.subTotalWithTax;
+    if (l$subTotalWithTax != lOther$subTotalWithTax) return false;
+    final l$total = total;
+    final lOther$total = other.total;
+    if (l$total != lOther$total) return false;
+    final l$totalWithTax = totalWithTax;
+    final lOther$totalWithTax = other.totalWithTax;
+    if (l$totalWithTax != lOther$totalWithTax) return false;
+    final l$shipping = shipping;
+    final lOther$shipping = other.shipping;
+    if (l$shipping != lOther$shipping) return false;
+    final l$shippingWithTax = shippingWithTax;
+    final lOther$shippingWithTax = other.shippingWithTax;
+    if (l$shippingWithTax != lOther$shippingWithTax) return false;
+    final l$shippingLines = shippingLines;
+    final lOther$shippingLines = other.shippingLines;
+    if (l$shippingLines.length != lOther$shippingLines.length) return false;
+    for (int i = 0; i < l$shippingLines.length; i++) {
+      final l$shippingLines$entry = l$shippingLines[i];
+      final lOther$shippingLines$entry = lOther$shippingLines[i];
+      if (l$shippingLines$entry != lOther$shippingLines$entry) return false;
+    }
+
+    final l$discounts = discounts;
+    final lOther$discounts = other.discounts;
+    if (l$discounts.length != lOther$discounts.length) return false;
+    for (int i = 0; i < l$discounts.length; i++) {
+      final l$discounts$entry = l$discounts[i];
+      final lOther$discounts$entry = lOther$discounts[i];
+      if (l$discounts$entry != lOther$discounts$entry) return false;
+    }
+
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order;
+
+  TRes call(
+      {String? $__typename,
+      String? id,
+      String? code,
+      String? state,
+      bool? active,
+      List<String>? couponCodes,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>?
+          promotions,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>?
+          lines,
+      int? totalQuantity,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>?
+          shippingLines,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>?
+          discounts,
+      Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>>)
+          _fn);
+  TRes lines(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>>)
+          _fn);
+  TRes shippingLines(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>>)
+          _fn);
+  TRes discounts(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>>)
+          _fn);
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+      TRes> get customFields;
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order _instance;
+
+  final TRes Function(
+      Mutation$TransitionOrderToState$transitionOrderToState$$Order) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? id = _undefined,
+          Object? code = _undefined,
+          Object? state = _undefined,
+          Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
+          Object? lines = _undefined,
+          Object? totalQuantity = _undefined,
+          Object? subTotal = _undefined,
+          Object? subTotalWithTax = _undefined,
+          Object? total = _undefined,
+          Object? totalWithTax = _undefined,
+          Object? shipping = _undefined,
+          Object? shippingWithTax = _undefined,
+          Object? shippingLines = _undefined,
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String),
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          state: state == _undefined || state == null
+              ? _instance.state
+              : (state as String),
+          active: active == _undefined || active == null
+              ? _instance.active
+              : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>),
+          lines: lines == _undefined || lines == null
+              ? _instance.lines
+              : (lines as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>),
+          totalQuantity: totalQuantity == _undefined || totalQuantity == null
+              ? _instance.totalQuantity
+              : (totalQuantity as int),
+          subTotal:
+              subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
+          shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>),
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+                  e, (i) => i))).toList());
+  TRes lines(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>>)
+              _fn) =>
+      call(
+          lines: _fn(_instance.lines.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+                  e, (i) => i))).toList());
+  TRes shippingLines(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>>)
+              _fn) =>
+      call(
+          shippingLines: _fn(_instance.shippingLines.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+                  e, (i) => i))).toList());
+  TRes discounts(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>>)
+              _fn) =>
+      call(
+          discounts: _fn(_instance.discounts.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+                  e, (i) => i))).toList());
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? $__typename,
+          String? id,
+          String? code,
+          String? state,
+          bool? active,
+          List<String>? couponCodes,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>?
+              promotions,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>?
+              lines,
+          int? totalQuantity,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>?
+              shippingLines,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>?
+              discounts,
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields?
+              customFields}) =>
+      _res;
+  promotions(_fn) => _res;
+  lines(_fn) => _res;
+  shippingLines(_fn) => _res;
+  discounts(_fn) => _res;
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>?
+          actions,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>?
+              actions,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+    implements Fragment$Cart$lines {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+      {required this.id,
+      this.featuredAsset,
+      required this.unitPrice,
+      required this.unitPriceWithTax,
+      required this.quantity,
+      required this.linePriceWithTax,
+      required this.discountedLinePriceWithTax,
+      required this.productVariant,
+      required this.discounts,
+      this.customFields,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$linesFromJson(
+          json);
+
+  final String id;
+
+  final Fragment$Asset? featuredAsset;
+
+  final int unitPrice;
+
+  final int unitPriceWithTax;
+
+  final int quantity;
+
+  final int linePriceWithTax;
+
+  final int discountedLinePriceWithTax;
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+      productVariant;
+
+  final List<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>
+      discounts;
+
+  final String? customFields;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$linesToJson(
+          this);
+  int get hashCode {
+    final l$id = id;
+    final l$featuredAsset = featuredAsset;
+    final l$unitPrice = unitPrice;
+    final l$unitPriceWithTax = unitPriceWithTax;
+    final l$quantity = quantity;
+    final l$linePriceWithTax = linePriceWithTax;
+    final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
+    final l$productVariant = productVariant;
+    final l$discounts = discounts;
+    final l$customFields = customFields;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$featuredAsset,
+      l$unitPrice,
+      l$unitPriceWithTax,
+      l$quantity,
+      l$linePriceWithTax,
+      l$discountedLinePriceWithTax,
+      l$productVariant,
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$unitPrice = unitPrice;
+    final lOther$unitPrice = other.unitPrice;
+    if (l$unitPrice != lOther$unitPrice) return false;
+    final l$unitPriceWithTax = unitPriceWithTax;
+    final lOther$unitPriceWithTax = other.unitPriceWithTax;
+    if (l$unitPriceWithTax != lOther$unitPriceWithTax) return false;
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) return false;
+    final l$linePriceWithTax = linePriceWithTax;
+    final lOther$linePriceWithTax = other.linePriceWithTax;
+    if (l$linePriceWithTax != lOther$linePriceWithTax) return false;
+    final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
+    final lOther$discountedLinePriceWithTax = other.discountedLinePriceWithTax;
+    if (l$discountedLinePriceWithTax != lOther$discountedLinePriceWithTax)
+      return false;
+    final l$productVariant = productVariant;
+    final lOther$productVariant = other.productVariant;
+    if (l$productVariant != lOther$productVariant) return false;
+    final l$discounts = discounts;
+    final lOther$discounts = other.discounts;
+    if (l$discounts.length != lOther$discounts.length) return false;
+    for (int i = 0; i < l$discounts.length; i++) {
+      final l$discounts$entry = l$discounts[i];
+      final lOther$discounts$entry = lOther$discounts[i];
+      if (l$discounts$entry != lOther$discounts$entry) return false;
+    }
+
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines;
+
+  TRes call(
+      {String? id,
+      Fragment$Asset? featuredAsset,
+      int? unitPrice,
+      int? unitPriceWithTax,
+      int? quantity,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
+      Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant?
+          productVariant,
+      List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>?
+          discounts,
+      String? customFields,
+      String? $__typename});
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+      TRes> get productVariant;
+  TRes discounts(
+      Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+                      Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? featuredAsset = _undefined,
+          Object? unitPrice = _undefined,
+          Object? unitPriceWithTax = _undefined,
+          Object? quantity = _undefined,
+          Object? linePriceWithTax = _undefined,
+          Object? discountedLinePriceWithTax = _undefined,
+          Object? productVariant = _undefined,
+          Object? discounts = _undefined,
+          Object? customFields = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+          id: id == _undefined || id == null ? _instance.id : (id as String),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset as Fragment$Asset?),
+          unitPrice: unitPrice == _undefined || unitPrice == null
+              ? _instance.unitPrice
+              : (unitPrice as int),
+          unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
+              ? _instance.unitPriceWithTax
+              : (unitPriceWithTax as int),
+          quantity: quantity == _undefined || quantity == null
+              ? _instance.quantity
+              : (quantity as int),
+          linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
+              ? _instance.linePriceWithTax
+              : (linePriceWithTax as int),
+          discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
+                  discountedLinePriceWithTax == null
+              ? _instance.discountedLinePriceWithTax
+              : (discountedLinePriceWithTax as int),
+          productVariant: productVariant == _undefined || productVariant == null
+              ? _instance.productVariant
+              : (productVariant
+                  as Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant),
+          discounts: discounts == _undefined || discounts == null
+              ? _instance.discounts
+              : (discounts as List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
+          $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
+
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+      TRes> get productVariant {
+    final local$productVariant = _instance.productVariant;
+    return CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+        local$productVariant, (e) => call(productVariant: e));
+  }
+
+  TRes discounts(
+          Iterable<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+                          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>>)
+              _fn) =>
+      call(
+          discounts: _fn(_instance.discounts.map((e) =>
+              CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          Fragment$Asset? featuredAsset,
+          int? unitPrice,
+          int? unitPriceWithTax,
+          int? quantity,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant?
+              productVariant,
+          List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>?
+              discounts,
+          String? customFields,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+          TRes>
+      get productVariant =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+              .stub(_res);
+  discounts(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+    implements Fragment$Cart$lines$productVariant {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+      {required this.id, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariantFromJson(
+          json);
+
+  final String id;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariantToJson(
+          this);
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant;
+
+  TRes call({String? id, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+              id: id == _undefined || id == null
+                  ? _instance.id
+                  : (id as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant(
+      this._res);
+
+  TRes _res;
+
+  call({String? id, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+    implements Fragment$Cart$lines$discounts {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+      {required this.amount,
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsFromJson(
+          json);
+
+  final int amount;
+
+  final int amountWithTax;
+
+  final String description;
+
+  final String adjustmentSource;
+
+  @JsonKey(unknownEnumValue: Enum$AdjustmentType.$unknown)
+  final Enum$AdjustmentType type;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsToJson(
+          this);
+  int get hashCode {
+    final l$amount = amount;
+    final l$amountWithTax = amountWithTax;
+    final l$description = description;
+    final l$adjustmentSource = adjustmentSource;
+    final l$type = type;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$amount,
+      l$amountWithTax,
+      l$description,
+      l$adjustmentSource,
+      l$type,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts) ||
+        runtimeType != other.runtimeType) return false;
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (l$amount != lOther$amount) return false;
+    final l$amountWithTax = amountWithTax;
+    final lOther$amountWithTax = other.amountWithTax;
+    if (l$amountWithTax != lOther$amountWithTax) return false;
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) return false;
+    final l$adjustmentSource = adjustmentSource;
+    final lOther$adjustmentSource = other.adjustmentSource;
+    if (l$adjustmentSource != lOther$adjustmentSource) return false;
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts;
+
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+              amount: amount == _undefined || amount == null
+                  ? _instance.amount
+                  : (amount as int),
+              amountWithTax:
+                  amountWithTax == _undefined || amountWithTax == null
+                      ? _instance.amountWithTax
+                      : (amountWithTax as int),
+              description: description == _undefined || description == null
+                  ? _instance.description
+                  : (description as String),
+              adjustmentSource: adjustmentSource == _undefined ||
+                      adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
+              type: type == _undefined || type == null
+                  ? _instance.type
+                  : (type as Enum$AdjustmentType),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+    implements Fragment$Cart$shippingLines {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+      {required this.priceWithTax,
+      required this.shippingMethod,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesFromJson(
+          json);
+
+  final int priceWithTax;
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+      shippingMethod;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesToJson(
+          this);
+  int get hashCode {
+    final l$priceWithTax = priceWithTax;
+    final l$shippingMethod = shippingMethod;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$priceWithTax, l$shippingMethod, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines) ||
+        runtimeType != other.runtimeType) return false;
+    final l$priceWithTax = priceWithTax;
+    final lOther$priceWithTax = other.priceWithTax;
+    if (l$priceWithTax != lOther$priceWithTax) return false;
+    final l$shippingMethod = shippingMethod;
+    final lOther$shippingMethod = other.shippingMethod;
+    if (l$shippingMethod != lOther$shippingMethod) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines;
+
+  TRes call(
+      {int? priceWithTax,
+      Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod?
+          shippingMethod,
+      String? $__typename});
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+      TRes> get shippingMethod;
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? priceWithTax = _undefined,
+          Object? shippingMethod = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+          priceWithTax: priceWithTax == _undefined || priceWithTax == null
+              ? _instance.priceWithTax
+              : (priceWithTax as int),
+          shippingMethod: shippingMethod == _undefined || shippingMethod == null
+              ? _instance.shippingMethod
+              : (shippingMethod
+                  as Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+      TRes> get shippingMethod {
+    final local$shippingMethod = _instance.shippingMethod;
+    return CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+        local$shippingMethod, (e) => call(shippingMethod: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {int? priceWithTax,
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod?
+              shippingMethod,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+          TRes>
+      get shippingMethod =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+    implements Fragment$Cart$shippingLines$shippingMethod {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+      {required this.id,
+      required this.code,
+      required this.name,
+      required this.description,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethodFromJson(
+          json);
+
+  final String id;
+
+  final String code;
+
+  final String name;
+
+  final String description;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethodToJson(
+          this);
+  int get hashCode {
+    final l$id = id;
+    final l$code = code;
+    final l$name = name;
+    final l$description = description;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$id, l$code, l$name, l$description, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod;
+
+  TRes call(
+      {String? id,
+      String? code,
+      String? name,
+      String? description,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? id = _undefined,
+          Object? code = _undefined,
+          Object? name = _undefined,
+          Object? description = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+              id: id == _undefined || id == null
+                  ? _instance.id
+                  : (id as String),
+              code: code == _undefined || code == null
+                  ? _instance.code
+                  : (code as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              description: description == _undefined || description == null
+                  ? _instance.description
+                  : (description as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? id,
+          String? code,
+          String? name,
+          String? description,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+    implements Fragment$Cart$discounts {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+      {required this.amount,
+      required this.amountWithTax,
+      required this.description,
+      required this.adjustmentSource,
+      required this.type,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsFromJson(
+          json);
+
+  final int amount;
+
+  final int amountWithTax;
+
+  final String description;
+
+  final String adjustmentSource;
+
+  @JsonKey(unknownEnumValue: Enum$AdjustmentType.$unknown)
+  final Enum$AdjustmentType type;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsToJson(
+          this);
+  int get hashCode {
+    final l$amount = amount;
+    final l$amountWithTax = amountWithTax;
+    final l$description = description;
+    final l$adjustmentSource = adjustmentSource;
+    final l$type = type;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$amount,
+      l$amountWithTax,
+      l$description,
+      l$adjustmentSource,
+      l$type,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts) ||
+        runtimeType != other.runtimeType) return false;
+    final l$amount = amount;
+    final lOther$amount = other.amount;
+    if (l$amount != lOther$amount) return false;
+    final l$amountWithTax = amountWithTax;
+    final lOther$amountWithTax = other.amountWithTax;
+    if (l$amountWithTax != lOther$amountWithTax) return false;
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) return false;
+    final l$adjustmentSource = adjustmentSource;
+    final lOther$adjustmentSource = other.adjustmentSource;
+    if (l$adjustmentSource != lOther$adjustmentSource) return false;
+    final l$type = type;
+    final lOther$type = other.type;
+    if (l$type != lOther$type) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts;
+
+  TRes call(
+      {int? amount,
+      int? amountWithTax,
+      String? description,
+      String? adjustmentSource,
+      Enum$AdjustmentType? type,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? amount = _undefined,
+          Object? amountWithTax = _undefined,
+          Object? description = _undefined,
+          Object? adjustmentSource = _undefined,
+          Object? type = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+              amount: amount == _undefined || amount == null
+                  ? _instance.amount
+                  : (amount as int),
+              amountWithTax:
+                  amountWithTax == _undefined || amountWithTax == null
+                      ? _instance.amountWithTax
+                      : (amountWithTax as int),
+              description: description == _undefined || description == null
+                  ? _instance.description
+                  : (description as String),
+              adjustmentSource: adjustmentSource == _undefined ||
+                      adjustmentSource == null
+                  ? _instance.adjustmentSource
+                  : (adjustmentSource as String),
+              type: type == _undefined || type == null
+                  ? _instance.type
+                  : (type as Enum$AdjustmentType),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {int? amount,
+          int? amountWithTax,
+          String? description,
+          String? adjustmentSource,
+          Enum$AdjustmentType? type,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+    on Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+    implements
+        Fragment$ErrorResult,
+        Mutation$TransitionOrderToState$transitionOrderToState {
+  Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+      {required this.$__typename,
+      required this.errorCode,
+      required this.message});
+
+  @override
+  factory Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionErrorFromJson(
+          json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  @JsonKey(unknownEnumValue: Enum$ErrorCode.$unknown)
+  final Enum$ErrorCode errorCode;
+
+  final String message;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionErrorToJson(
+          this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    final l$errorCode = errorCode;
+    final l$message = message;
+    return Object.hashAll([l$$__typename, l$errorCode, l$message]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$errorCode = errorCode;
+    final lOther$errorCode = other.errorCode;
+    if (l$errorCode != lOther$errorCode) return false;
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+    on Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError {
+  CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+          Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError>
+      get copyWith =>
+          CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+    TRes> {
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+          Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+              instance,
+          TRes Function(
+                  Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError)
+              then) =
+      _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError;
+
+  factory CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError;
+
+  TRes call({String? $__typename, Enum$ErrorCode? errorCode, String? message});
+}
+
+class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+      this._instance, this._then);
+
+  final Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? $__typename = _undefined,
+          Object? errorCode = _undefined,
+          Object? message = _undefined}) =>
+      _then(
+          Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              errorCode: errorCode == _undefined || errorCode == null
+                  ? _instance.errorCode
+                  : (errorCode as Enum$ErrorCode),
+              message: message == _undefined || message == null
+                  ? _instance.message
+                  : (message as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$OrderStateTransitionError(
       this._res);
 
   TRes _res;
@@ -22858,6 +36197,8 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -22867,7 +36208,8 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order.fromJson(
@@ -22885,6 +36227,12 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>
+      promotions;
 
   final List<
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines>
@@ -22912,6 +36260,9 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>
       discounts;
 
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderToJson(
           this);
@@ -22921,6 +36272,8 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -22931,12 +36284,15 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -22946,7 +36302,8 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -22971,6 +36328,24 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -23019,6 +36394,9 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -23052,6 +36430,9 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>?
+          promotions,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines>?
           lines,
       int? totalQuantity,
@@ -23064,7 +36445,15 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>?
           shippingLines,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+                      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines> Function(
               Iterable<
@@ -23083,6 +36472,8 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
                   CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts<
                       Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+      TRes> get customFields;
 }
 
 class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order<
@@ -23108,6 +36499,8 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -23117,7 +36510,8 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -23132,6 +36526,13 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -23139,21 +36540,25 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null
-              ? _instance.subTotal
-              : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax:
-              totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+                          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines> Function(
                   Iterable<
@@ -23184,6 +36589,15 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order<
@@ -23202,6 +36616,9 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>?
+              promotions,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines>?
               lines,
           int? totalQuantity,
@@ -23214,11 +36631,804 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>?
               shippingLines,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>?
+          actions,
+      List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+                      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+                      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+                          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+                          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>?
+              actions,
+          List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+                      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+                          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+                      Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+                          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -23234,6 +37444,7 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -23263,6 +37474,8 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -23279,6 +37492,7 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -23290,6 +37504,7 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -23334,6 +37549,9 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -23376,6 +37594,7 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
           productVariant,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$productVariant<
@@ -23415,6 +37634,7 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -23444,6 +37664,7 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -23494,6 +37715,7 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
               productVariant,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -24288,6 +38510,117 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
 }
 
 @JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+    on Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields {
+  CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields;
+
+  factory CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mutation$TransitionToArrangingPayment$transitionOrderToState$$OrderStateTransitionError
     implements
         Fragment$ErrorResult,
@@ -24861,6 +39194,8 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
       required this.code,
       required this.state,
       required this.active,
+      required this.couponCodes,
+      required this.promotions,
       required this.lines,
       required this.totalQuantity,
       required this.subTotal,
@@ -24870,7 +39205,8 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
       required this.shipping,
       required this.shippingWithTax,
       required this.shippingLines,
-      required this.discounts});
+      required this.discounts,
+      this.customFields});
 
   @override
   factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order.fromJson(
@@ -24888,6 +39224,12 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
   final String state;
 
   final bool active;
+
+  final List<String> couponCodes;
+
+  final List<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>
+      promotions;
 
   final List<
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines>
@@ -24915,6 +39257,9 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>
       discounts;
 
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields?
+      customFields;
+
   Map<String, dynamic> toJson() =>
       _$Mutation$TransitionToAddingItems$transitionOrderToState$$OrderToJson(
           this);
@@ -24924,6 +39269,8 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
     final l$code = code;
     final l$state = state;
     final l$active = active;
+    final l$couponCodes = couponCodes;
+    final l$promotions = promotions;
     final l$lines = lines;
     final l$totalQuantity = totalQuantity;
     final l$subTotal = subTotal;
@@ -24934,12 +39281,15 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
     final l$shippingWithTax = shippingWithTax;
     final l$shippingLines = shippingLines;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     return Object.hashAll([
       l$$__typename,
       l$id,
       l$code,
       l$state,
       l$active,
+      Object.hashAll(l$couponCodes.map((v) => v)),
+      Object.hashAll(l$promotions.map((v) => v)),
       Object.hashAll(l$lines.map((v) => v)),
       l$totalQuantity,
       l$subTotal,
@@ -24949,7 +39299,8 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
       l$shipping,
       l$shippingWithTax,
       Object.hashAll(l$shippingLines.map((v) => v)),
-      Object.hashAll(l$discounts.map((v) => v))
+      Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields
     ]);
   }
 
@@ -24974,6 +39325,24 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
     final l$active = active;
     final lOther$active = other.active;
     if (l$active != lOther$active) return false;
+    final l$couponCodes = couponCodes;
+    final lOther$couponCodes = other.couponCodes;
+    if (l$couponCodes.length != lOther$couponCodes.length) return false;
+    for (int i = 0; i < l$couponCodes.length; i++) {
+      final l$couponCodes$entry = l$couponCodes[i];
+      final lOther$couponCodes$entry = lOther$couponCodes[i];
+      if (l$couponCodes$entry != lOther$couponCodes$entry) return false;
+    }
+
+    final l$promotions = promotions;
+    final lOther$promotions = other.promotions;
+    if (l$promotions.length != lOther$promotions.length) return false;
+    for (int i = 0; i < l$promotions.length; i++) {
+      final l$promotions$entry = l$promotions[i];
+      final lOther$promotions$entry = lOther$promotions[i];
+      if (l$promotions$entry != lOther$promotions$entry) return false;
+    }
+
     final l$lines = lines;
     final lOther$lines = other.lines;
     if (l$lines.length != lOther$lines.length) return false;
@@ -25022,6 +39391,9 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     return true;
   }
 }
@@ -25054,6 +39426,9 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       String? code,
       String? state,
       bool? active,
+      List<String>? couponCodes,
+      List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>?
+          promotions,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines>?
           lines,
       int? totalQuantity,
@@ -25066,7 +39441,15 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>?
           shippingLines,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>?
-          discounts});
+          discounts,
+      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields?
+          customFields});
+  TRes promotions(
+      Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+                      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>>)
+          _fn);
   TRes lines(
       Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines> Function(
               Iterable<
@@ -25085,6 +39468,8 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
                   CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts<
                       Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>>)
           _fn);
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+      TRes> get customFields;
 }
 
 class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order<
@@ -25109,6 +39494,8 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           Object? code = _undefined,
           Object? state = _undefined,
           Object? active = _undefined,
+          Object? couponCodes = _undefined,
+          Object? promotions = _undefined,
           Object? lines = _undefined,
           Object? totalQuantity = _undefined,
           Object? subTotal = _undefined,
@@ -25118,7 +39505,8 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           Object? shipping = _undefined,
           Object? shippingWithTax = _undefined,
           Object? shippingLines = _undefined,
-          Object? discounts = _undefined}) =>
+          Object? discounts = _undefined,
+          Object? customFields = _undefined}) =>
       _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order(
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
@@ -25133,6 +39521,13 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           active: active == _undefined || active == null
               ? _instance.active
               : (active as bool),
+          couponCodes: couponCodes == _undefined || couponCodes == null
+              ? _instance.couponCodes
+              : (couponCodes as List<String>),
+          promotions: promotions == _undefined || promotions == null
+              ? _instance.promotions
+              : (promotions as List<
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>),
           lines: lines == _undefined || lines == null
               ? _instance.lines
               : (lines as List<
@@ -25140,21 +39535,25 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null
-              ? _instance.subTotal
-              : (subTotal as int),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
-              ? _instance.subTotalWithTax
-              : (subTotalWithTax as int),
-          total: total == _undefined || total == null
-              ? _instance.total
-              : (total as int),
-          totalWithTax:
-              totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
           shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>),
-          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>)));
+          discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields?)));
+  TRes promotions(
+          Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+                          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>>)
+              _fn) =>
+      call(
+          promotions: _fn(_instance.promotions.map((e) =>
+              CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+                  e, (i) => i))).toList());
   TRes lines(
           Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines> Function(
                   Iterable<
@@ -25185,6 +39584,15 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           discounts: _fn(_instance.discounts.map((e) =>
               CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts(
                   e, (i) => i))).toList());
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order<
@@ -25203,6 +39611,9 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
           String? code,
           String? state,
           bool? active,
+          List<String>? couponCodes,
+          List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>?
+              promotions,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines>?
               lines,
           int? totalQuantity,
@@ -25215,11 +39626,804 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>?
               shippingLines,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>?
-              discounts}) =>
+              discounts,
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields?
+              customFields}) =>
       _res;
+  promotions(_fn) => _res;
   lines(_fn) => _res;
   shippingLines(_fn) => _res;
   discounts(_fn) => _res;
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+    implements Fragment$Cart$promotions {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+      {this.couponCode,
+      required this.name,
+      required this.enabled,
+      required this.actions,
+      required this.conditions,
+      required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotionsFromJson(
+          json);
+
+  final String? couponCode;
+
+  final String name;
+
+  final bool enabled;
+
+  final List<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>
+      actions;
+
+  final List<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>
+      conditions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotionsToJson(
+          this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    final l$name = name;
+    final l$enabled = enabled;
+    final l$actions = actions;
+    final l$conditions = conditions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$couponCode,
+      l$name,
+      l$enabled,
+      Object.hashAll(l$actions.map((v) => v)),
+      Object.hashAll(l$conditions.map((v) => v)),
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$actions = actions;
+    final lOther$actions = other.actions;
+    if (l$actions.length != lOther$actions.length) return false;
+    for (int i = 0; i < l$actions.length; i++) {
+      final l$actions$entry = l$actions[i];
+      final lOther$actions$entry = lOther$actions[i];
+      if (l$actions$entry != lOther$actions$entry) return false;
+    }
+
+    final l$conditions = conditions;
+    final lOther$conditions = other.conditions;
+    if (l$conditions.length != lOther$conditions.length) return false;
+    for (int i = 0; i < l$conditions.length; i++) {
+      final l$conditions$entry = l$conditions[i];
+      final lOther$conditions$entry = lOther$conditions[i];
+      if (l$conditions$entry != lOther$conditions$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions;
+
+  TRes call(
+      {String? couponCode,
+      String? name,
+      bool? enabled,
+      List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>?
+          actions,
+      List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>?
+          conditions,
+      String? $__typename});
+  TRes actions(
+      Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+                      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>>)
+          _fn);
+  TRes conditions(
+      Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+                      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? couponCode = _undefined,
+          Object? name = _undefined,
+          Object? enabled = _undefined,
+          Object? actions = _undefined,
+          Object? conditions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+          couponCode: couponCode == _undefined
+              ? _instance.couponCode
+              : (couponCode as String?),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          enabled: enabled == _undefined || enabled == null
+              ? _instance.enabled
+              : (enabled as bool),
+          actions: actions == _undefined || actions == null
+              ? _instance.actions
+              : (actions as List<
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>),
+          conditions: conditions == _undefined || conditions == null
+              ? _instance.conditions
+              : (conditions as List<
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes actions(
+          Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+                          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>>)
+              _fn) =>
+      call(
+          actions: _fn(_instance.actions.map((e) =>
+              CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+                  e, (i) => i))).toList());
+  TRes conditions(
+          Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+                          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>>)
+              _fn) =>
+      call(
+          conditions: _fn(_instance.conditions.map((e) =>
+              CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? couponCode,
+          String? name,
+          bool? enabled,
+          List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>?
+              actions,
+          List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>?
+              conditions,
+          String? $__typename}) =>
+      _res;
+  actions(_fn) => _res;
+  conditions(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+    implements Fragment$Cart$promotions$actions {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+      {required this.args, required this.code, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actionsFromJson(
+          json);
+
+  final List<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>
+      args;
+
+  final String code;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actionsToJson(
+          this);
+  int get hashCode {
+    final l$args = args;
+    final l$code = code;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$args.map((v) => v)), l$code, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions;
+
+  TRes call(
+      {List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>?
+          args,
+      String? code,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+                      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? args = _undefined,
+          Object? code = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>),
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+                          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>?
+              args,
+          String? code,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+    implements Fragment$Cart$promotions$actions$args {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+      {required this.value, required this.name, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$argsFromJson(
+          json);
+
+  final String value;
+
+  final String name;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$argsToJson(
+          this);
+  int get hashCode {
+    final l$value = value;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$value, l$name, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args;
+
+  TRes call({String? value, String? name, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? value = _undefined,
+          Object? name = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$actions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? value, String? name, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+    implements Fragment$Cart$promotions$conditions {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+      {required this.code, required this.args, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditionsFromJson(
+          json);
+
+  final String code;
+
+  final List<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>
+      args;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditionsToJson(
+          this);
+  int get hashCode {
+    final l$code = code;
+    final l$args = args;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$code, Object.hashAll(l$args.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$code = code;
+    final lOther$code = other.code;
+    if (l$code != lOther$code) return false;
+    final l$args = args;
+    final lOther$args = other.args;
+    if (l$args.length != lOther$args.length) return false;
+    for (int i = 0; i < l$args.length; i++) {
+      final l$args$entry = l$args[i];
+      final lOther$args$entry = lOther$args[i];
+      if (l$args$entry != lOther$args$entry) return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions;
+
+  TRes call(
+      {String? code,
+      List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>?
+          args,
+      String? $__typename});
+  TRes args(
+      Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args> Function(
+              Iterable<
+                  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+                      Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>>)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? code = _undefined,
+          Object? args = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+          code: code == _undefined || code == null
+              ? _instance.code
+              : (code as String),
+          args: args == _undefined || args == null
+              ? _instance.args
+              : (args as List<
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes args(
+          Iterable<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args> Function(
+                  Iterable<
+                      CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+                          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>>)
+              _fn) =>
+      call(
+          args: _fn(_instance.args.map((e) =>
+              CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? code,
+          List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>?
+              args,
+          String? $__typename}) =>
+      _res;
+  args(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+    implements Fragment$Cart$promotions$conditions$args {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+      {required this.name, required this.value, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$argsFromJson(
+          json);
+
+  final String name;
+
+  final String value;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$argsToJson(
+          this);
+  int get hashCode {
+    final l$name = name;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$name, l$value, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args) ||
+        runtimeType != other.runtimeType) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args;
+
+  TRes call({String? name, String? value, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? name = _undefined,
+          Object? value = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              value: value == _undefined || value == null
+                  ? _instance.value
+                  : (value as String),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$promotions$conditions$args(
+      this._res);
+
+  TRes _res;
+
+  call({String? name, String? value, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -25235,6 +40439,7 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
       required this.discountedLinePriceWithTax,
       required this.productVariant,
       required this.discounts,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -25264,6 +40469,8 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>
       discounts;
 
+  final String? customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -25280,6 +40487,7 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
     final l$discountedLinePriceWithTax = discountedLinePriceWithTax;
     final l$productVariant = productVariant;
     final l$discounts = discounts;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -25291,6 +40499,7 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
       l$discountedLinePriceWithTax,
       l$productVariant,
       Object.hashAll(l$discounts.map((v) => v)),
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -25335,6 +40544,9 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
       if (l$discounts$entry != lOther$discounts$entry) return false;
     }
 
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -25377,6 +40589,7 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
           productVariant,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>?
           discounts,
+      String? customFields,
       String? $__typename});
   CopyWith$Fragment$Asset<TRes> get featuredAsset;
   CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant<
@@ -25416,6 +40629,7 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           Object? discountedLinePriceWithTax = _undefined,
           Object? productVariant = _undefined,
           Object? discounts = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -25445,6 +40659,7 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           discounts: discounts == _undefined || discounts == null
               ? _instance.discounts
               : (discounts as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as String?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
@@ -25495,6 +40710,7 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
               productVariant,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>?
               discounts,
+          String? customFields,
           String? $__typename}) =>
       _res;
   CopyWith$Fragment$Asset<TRes> get featuredAsset =>
@@ -26286,6 +41502,117 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
           Enum$AdjustmentType? type,
           String? $__typename}) =>
       _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+    implements Fragment$Cart$customFields {
+  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+      {this.clientRequestToCancel, required this.$__typename});
+
+  @override
+  factory Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFieldsFromJson(
+          json);
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+    on Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields {
+  CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields>
+      get copyWith =>
+          CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+    TRes> {
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+              instance,
+          TRes Function(
+                  Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields)
+              then) =
+      _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields;
+
+  factory CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields;
+
+  TRes call({int? clientRequestToCancel, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+      this._instance, this._then);
+
+  final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields
+      _instance;
+
+  final TRes Function(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(
+          Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+              clientRequestToCancel: clientRequestToCancel == _undefined
+                  ? _instance.clientRequestToCancel
+                  : (clientRequestToCancel as int?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({int? clientRequestToCancel, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)

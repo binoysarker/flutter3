@@ -28,6 +28,26 @@ fragment Cart on Order {
     code
     state
     active
+    couponCodes
+    promotions {
+        couponCode
+        name
+        enabled
+        actions {
+            args {
+                value
+                name
+            }
+            code
+        }
+        conditions {
+            code
+            args {
+                name
+                value
+            }
+        }
+    }
     lines {
         id
         featuredAsset {
@@ -52,6 +72,7 @@ fragment Cart on Order {
             type
             __typename
         }
+        customFields
         __typename
     }
     totalQuantity
@@ -79,6 +100,9 @@ fragment Cart on Order {
         adjustmentSource
         type
         __typename
+    }
+    customFields {
+        clientRequestToCancel
     }
     __typename
 }

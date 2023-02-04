@@ -38,10 +38,10 @@ class LoginPageController extends GetxController {
     'userid':'1671',
     'password':'trP2V3o5bhZTK9JM',
     'sender':'SMSKAI',
-    'to':'9894089302',
+    'to':'9840032880',
     'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
     'reqid': '1',
-    'format':'\{json|text\}',
+    'format':'{json|text}',
     'route_id':'3'
   }.obs;
 
@@ -93,8 +93,8 @@ class LoginPageController extends GetxController {
     if (signInResponse.hasException) {
       debugPrint('${signInResponse.exception.toString()}');
       utilityController.setLoadingState(false);
-      Get.snackbar('Sorry', 'Please Login again');
-      Get.to(() =>  LoginPage());
+      Get.snackbar('Error', 'Please Login again',colorText: Colors.white,backgroundColor: Colors.red);
+      Get.offAll(() =>  LoginPage());
     }
     if (signInResponse.data != null) {
       debugPrint('${signInResponse.data}');
@@ -103,7 +103,7 @@ class LoginPageController extends GetxController {
 
       if (loginData?['message'] != null) {
         if(loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR'){
-          utilityController.setAlertMessage(true, 'Invalid phone number or password');
+          utilityController.setAlertMessage(true, 'user does not exist create user');
           utilityController.setLoadingState(false);
         }else {
           utilityController.setAlertMessage(true, loginData?['message']);
@@ -119,6 +119,7 @@ class LoginPageController extends GetxController {
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
         userController.currentAuthToken.value = authToken;
+        resetFormField();
         Get.to(() => StorePage());
       }
       utilityController.setLoadingState(false);
@@ -211,37 +212,22 @@ class LoginPageController extends GetxController {
   }
 
   void requestPasswordReset(String email) async {
-    loading.value = true;
-    final res = await graphqlService
-        .clientToQuery()
-        .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
-            variables: Variables$Mutation$RequestPasswordReset(email: email)));
-    if(res.hasException){
-      print('${res.exception.toString()}');
-      loading.value = false;
-    }
-    if(res.data != null){
-      loading.value = false;
-      print('${res.parsedData!.requestPasswordReset!.toJson()}');
+    try{
+      generateRandomDigit();
+      print('current otp is ${currentlyGivenOTP.value}');
+      smsQuery.value['to'] = '${phoneNumber.text}';
+
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final res = await http.get(url);
+      print('${res.body}');
       Get.to(() => ResetPasswordPage());
-      Get.snackbar('', 'Please check your email to get the token',backgroundColor: Colors.green);
+    }on Exception catch(e){
+      print(e.toString());
     }
+
   }
-  void resetUserPassword(String password, String token) async {
-    loading.value = true;
-    final res = await graphqlService
-        .clientToQuery().mutate$ResetPassword(Options$Mutation$ResetPassword(variables: Variables$Mutation$ResetPassword(password: password, token: token)));
-    if(res.hasException){
-      print('${res.exception.toString()}');
-      loading.value = false;
-    }
-    if(res.data != null){
-      loading.value = false;
-      print('${res.parsedData!.resetPassword.toJson()}');
-      resetFormField();
-      Get.to(()=> LoginPage());
-      Get.snackbar('Success', 'Password reset is successful',backgroundColor: Colors.green);
-    }
+  void resetUserPassword() async {
+
   }
 
   /*void onGoogleSignIn(BuildContext context) async {

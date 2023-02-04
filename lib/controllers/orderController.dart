@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_cast
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/models/createOrderResponseModel.dart';
-import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
@@ -59,19 +59,10 @@ class OrderController extends GetxController {
   var paymentSuccessResponse = (null as PaymentSuccessResponse?).obs;
   var eligiblePaymentMethods =
       <Query$GetEligiblePaymentMethods$eligiblePaymentMethods>[].obs;
-  var addPaymentToOrderResponse =
-      (null as Mutation$AddPayment$addPaymentToOrder$$Order?).obs;
+  var addPaymentToOrderResponse = {}.obs;
   var getOrderByCodeResponse = (null as Query$GetOrderByCode$orderByCode?).obs;
-  var smsQuery = {
-    'userid':'1671',
-    'password':'trP2V3o5bhZTK9JM',
-    'sender':'SMSKAI',
-    'to':'9894089302',
-    'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
-    'reqid': '1',
-    'format':'\{json|text\}',
-    'route_id':'3'
-  }.obs;
+
+  var transitionToOrderStateResponse = {}.obs;
 
   void getActiveOrders() async {
     isLoading.value = true;
@@ -83,6 +74,7 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
+      print('active orders ${res.parsedData!.activeOrder}');
       if (res.parsedData!.activeOrder != null) {
         print('active orders ${res.parsedData!.activeOrder!.toJson()}');
         currencyCode.value = res.parsedData!.activeOrder!.currencyCode.name;
@@ -90,6 +82,55 @@ class OrderController extends GetxController {
       }
       isLoading.value = false;
     }
+  }
+
+  Future<List<String>> getNextOrderStates() async {
+    isLoading.value = true;
+    final res = await graphqlService.clientToQuery().query$NextOrderStates();
+    if (res.hasException) {
+      print(res.exception.toString());
+      isLoading.value = false;
+    }
+    if (res.data != null) {
+      print('getNextOrderStates ${res.parsedData!.nextOrderStates.toList()}');
+    }
+    return res.parsedData!.nextOrderStates.toList();
+  }
+
+  void requestToCancelOrder(String userId) async {
+    isLoading.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$CancelOrderOnClientRequest(
+            Options$Mutation$CancelOrderOnClientRequest(
+                variables: Variables$Mutation$CancelOrderOnClientRequest(
+                    userId: userId)));
+    if (res.hasException) {
+      print(res.exception.toString());
+    }
+    if (res.data != null) {
+      print(
+          'requestToCancelOrder ${res.parsedData!.cancelOrderOnClientRequest.toJson()}');
+    }
+  }
+
+  void transitionToOrderState(String state) async {
+    isLoading.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$TransitionOrderToState(Options$Mutation$TransitionOrderToState(
+            variables:
+                Variables$Mutation$TransitionOrderToState(state: state)));
+    if (res.hasException) {
+      print(res.exception.toString());
+      isLoading.value = false;
+    }
+    if (res.data != null) {
+      print(
+          'transitionToOrderState ${res.parsedData!.transitionOrderToState!.toJson()}');
+    }
+    transitionToOrderStateResponse.value =
+        res.parsedData!.transitionOrderToState!.toJson();
   }
 
   void transitionToArrangingPayment() async {
@@ -103,7 +144,7 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       var currentState = res.parsedData!.transitionOrderToState!.toJson();
-      print('transitionToArrangingPayment ${currentState['message']}');
+      print('transitionToArrangingPayment ${currentState}');
       if (currentState['message'] != null) {
         Get.snackbar('Error', "${currentState['message']}",
             colorText: Colors.red);
@@ -113,6 +154,8 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
   }
+
+
 
   void transitionToAddingItems() async {
     isLoading.value = true;
@@ -149,10 +192,8 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
-      addPaymentToOrderResponse.value =
-          Mutation$AddPayment$addPaymentToOrder$$Order.fromJson(
-              res.parsedData!.addPaymentToOrder.toJson());
-      getOrderByCode(addPaymentToOrderResponse.value!.code);
+      addPaymentToOrderResponse.value = res.parsedData!.addPaymentToOrder.toJson();
+      getOrderByCode(addPaymentToOrderResponse.value['code']);
       isLoading.value = false;
       currentStep.value++;
     }
@@ -190,7 +231,7 @@ class OrderController extends GetxController {
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order.fromJson(
               currentData.toJson());
       print('set shipping method ${jsonEncode(orderResponse)}');
-
+      getActiveOrders();
       isLoading2.value = false;
     }
   }
@@ -236,18 +277,18 @@ class OrderController extends GetxController {
           }));
       var jsonData = await jsonDecode(res.body);
       print(jsonData);
-      if(jsonData['error'] != null){
-        if( jsonData['error']['code'].toString().isNotEmpty){
+      if (jsonData['error'] != null) {
+        if (jsonData['error']['code'].toString().isNotEmpty) {
           print('error ${res.body}');
-          Get.snackbar('Error', '${jsonData['error']['description']}',colorText: Colors.red);
+          Get.snackbar('Error', '${jsonData['error']['description']}',
+              colorText: Colors.red);
         }
-      }else {
+      } else {
         print('createOrderResponse ${res.body}');
         createOrderResponse.value = createOrderResponseModelFromJson(res.body);
         PaymentServices.startRazorPay();
       }
       isLoading2.value = false;
-
     } on Exception catch (e) {
       print(e.toString());
       isLoading2.value = false;
@@ -269,12 +310,13 @@ class OrderController extends GetxController {
       if (res.body == 'true') {
         print('payment is verified');
         isLoading.value = false;
-        if (activeOrderResponse.value!.state ==
-            OrderStateEnums.AddingItems.name) {
-          transitionToArrangingPayment();
-        } else {
+        var states = await getNextOrderStates();
+        transitionToOrderState(states[0]);
+
+        Timer(Duration(seconds: 3), () {
           addPaymentToOrder();
-        }
+
+        });
       } else {
         print('not verified');
         Get.snackbar('Warning', 'Payment is not verified. Please Try again');
@@ -286,8 +328,9 @@ class OrderController extends GetxController {
     }
   }
 
-  void applyCouponCode(String couponCode) async {
+  Future<bool> applyCouponCode(String couponCode) async {
     isLoading.value = true;
+    var status = true;
     final res = await graphqlService.clientToQuery().mutate$ApplyCouponCode(
         Options$Mutation$ApplyCouponCode(
             variables: Variables$Mutation$ApplyCouponCode(input: couponCode)));
@@ -298,22 +341,33 @@ class OrderController extends GetxController {
           colorText: Colors.red,
           backgroundColor: Colors.yellow,
           duration: Duration(seconds: 2));
+      status = false;
     }
     if (res.data != null) {
-      print('coupon code ${res.parsedData!.applyCouponCode.$__typename}');
+      print('coupon code ${res.parsedData!.applyCouponCode.toJson()}');
       if (res.parsedData!.applyCouponCode.$__typename ==
           'CouponCodeInvalidError') {
         Get.snackbar('', 'Coupon Code is not valid',
             colorText: Colors.red,
             backgroundColor: Colors.yellow,
             duration: Duration(seconds: 2));
+        status = false;
       }
-      if (res.parsedData!.applyCouponCode.$__typename == 'order') {
+      else if (res.parsedData!.applyCouponCode.$__typename ==
+          'CouponCodeExpiredError') {
+        Get.snackbar('', 'Coupon Code is expired',
+            colorText: Colors.red,
+            backgroundColor: Colors.yellow,
+            duration: Duration(seconds: 2));
+        status = false;
+      }
+      else if (res.parsedData!.applyCouponCode.$__typename == 'order') {
         print('code is applied');
+        status = true;
       }
-
       isLoading.value = false;
     }
+    return status;
   }
 
   void setShippingAddress() async {
@@ -325,7 +379,7 @@ class OrderController extends GetxController {
                     streetLine1: streetLine1.text,
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
-                    city: city.text,
+                    city: 'Mumbai',
                     province: 'Maharashtra',
                     fullName: fullName.text,
                     postalCode: postalCode.text,
@@ -341,20 +395,6 @@ class OrderController extends GetxController {
           as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
       currentStep.value++;
-    }
-  }
-
-  void sendDeliverySms() async{
-    try{
-      smsQuery.value['message'] = 'Your order Id is ${getOrderByCodeResponse.value?.code}, your bill value is Rs.${UtilService.getCurrencySymble(currencyCode.value)}${getOrderByCodeResponse.value?.totalWithTax ?? ''}.you will get delivery soon.By KAAIKANI';
-      smsQuery.value['to'] = '${phoneNumber.text}';
-
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
-      final res = await http.get(url);
-      print('sendDeliverySms ${res.body}');
-
-    }on Exception catch(e){
-      print(e.toString());
     }
   }
 
@@ -452,8 +492,15 @@ class OrderController extends GetxController {
       removeAllItemFromOrder();
     }
     if (res.data != null) {
-      print('${res.parsedData!.removeOrderLine.toJson()}');
-      getActiveOrders();
+      var parsedData = res.parsedData!.removeOrderLine;
+      print('removeItemFromOrder ${parsedData.toJson()}');
+      if (parsedData.toJson()['errorCode'] == 'ORDER_MODIFICATION_ERROR') {
+        Get.snackbar('Error', '${parsedData.toJson()['message']}',
+            colorText: Colors.white, backgroundColor: Colors.red);
+        transitionToOrderState('AddingItems');
+      } else {
+        getActiveOrders();
+      }
       isLoading.value = false;
     }
   }

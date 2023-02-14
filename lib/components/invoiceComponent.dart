@@ -106,7 +106,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                               width: double.infinity,
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   FadeInImage.assetNetwork(
                                     width: 50,
@@ -125,17 +125,18 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   Column(
                                     children: [
                                       Text(
-                                        element.productVariant.name,
-                                        style: CustomTheme.paragraphStyle,
+                                        UtilService.formateText(
+                                            element.productVariant.name),
+                                        style: CustomTheme.headerStyle,
                                       ),
                                       Text(
                                         'Quantity: ${element.quantity}',
-                                        style: CustomTheme.paragraphStyle,
+                                        style: CustomTheme.headerStyle,
                                       ),
                                     ],
                                   ),
                                   Text(
-                                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(element.linePriceWithTax / 100).toStringAsFixed(2)}'),
+                                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',style: CustomTheme.headerStyle,),
                                 ],
                               ),
                             ))
@@ -152,20 +153,21 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                 Container(
                   child: Column(
                     children: widget
-                        .orderController.activeOrderResponse.value!.promotions
+                        .orderController.activeOrderResponse.value!.discounts
                         .map((e) => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  e.name,
+                                  e.description,
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  e.couponCode ?? '',
+                                  widget.orderController
+                                      .activeOrderResponse.value!.couponCodes.first,
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.actions.first.args.first.value))}',
+                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
                                   style: CustomTheme.headerStyle,
                                 ),
                               ],
@@ -203,19 +205,13 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        'Total',
-                        style: CustomTheme.headerStyle,
-                      ),
+                    Text(
+                      'Total',
+                      style: CustomTheme.headerStyle,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text(
-                        '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}',
-                        style: CustomTheme.headerStyle,
-                      ),
+                    Text(
+                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}',
+                      style: CustomTheme.headerStyle,
                     ),
                   ],
                 )

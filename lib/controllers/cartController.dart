@@ -25,9 +25,14 @@ class CartController extends GetxController {
       orderController.removeAllItemFromOrder();
     }
     if (res.data != null) {
-      print('${res.parsedData!.addItemToOrder.toJson()}');
-      orderController.getActiveOrders();
-      isLoading.value = false;
+      var jsonData = res.parsedData!.addItemToOrder.toJson();
+      if(jsonData.containsKey('message')){
+        Get.snackbar('', jsonData['message'],backgroundColor: Colors.red,colorText: Colors.white);
+      }else {
+        print('${res.parsedData!.addItemToOrder.toJson()}');
+        orderController.getActiveOrders();
+      }
+        isLoading.value = false;
     }
   }
 
@@ -44,7 +49,7 @@ class CartController extends GetxController {
     if (res.data != null) {
       var parrsedData = res.parsedData!.adjustOrderLine.toJson();
       print('adjust cart item response ${parrsedData}');
-      if(parrsedData['message'].toString().length > 0){
+      if(parrsedData['message'] != null){
         Get.snackbar('Error', parrsedData['message'],colorText: Colors.white,backgroundColor: Colors.red);
       }
       orderController.getActiveOrders();

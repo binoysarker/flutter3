@@ -111,7 +111,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
               icon: Icon(Icons.remove_shopping_cart_outlined))
         ],
       ),
-      body: Obx(() => orderController.activeOrderResponse.value == null
+      body: Obx(() => orderController.activeOrderResponse.value!.lines.isEmpty
           ? Card(
               child: Container(
                 child: Center(
@@ -155,7 +155,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                                     '${CommonVariableData.placeholder}'),
                           ),
                           title: Text(
-                            '${orderController.activeOrderResponse.value!.lines[index].productVariant.name}',
+                            '${UtilService.formateText(orderController.activeOrderResponse.value!.lines[index].productVariant.name)}',
                             style: CustomTheme.headerStyle,
                           ),
                           subtitle: userController.currentAuthenticatedUser

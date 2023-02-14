@@ -13,6 +13,8 @@ import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
 
+import '../allGlobalKeys.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -21,7 +23,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  final loginFormKey = GlobalKey<FormState>();
+
   final loginPageController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
 
@@ -72,6 +74,7 @@ class LoginPageState extends State<LoginPage> {
         ? const LoadingSpinnerComponent()
         : WillPopScope(
       onWillPop: (){
+        loginPageController.resetFormField();
         loginPageController.exitDialog(context);
         return Future.value(false);
       },
@@ -223,6 +226,7 @@ class LoginPageState extends State<LoginPage> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 onPressed: () {
+
                                   loginPageController.setCurrentSignInProcess(
                                       SignInProcessNames.normal.name);
                                   if (
@@ -271,6 +275,8 @@ class LoginPageState extends State<LoginPage> {
                                 ),
                                 onPressed: () {
                                   //signup screen
+                                  // loginPageController.phoneNumber.text = '';
+                                  loginPageController.resetFormField();
                                   loginPageController.toggleShowSignIn();
                                 },
                               )

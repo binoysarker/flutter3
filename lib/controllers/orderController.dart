@@ -74,7 +74,6 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      print('active orders ${res.parsedData!.activeOrder}');
       if (res.parsedData!.activeOrder != null) {
         print('active orders ${res.parsedData!.activeOrder!.toJson()}');
         currencyCode.value = res.parsedData!.activeOrder!.currencyCode.name;
@@ -191,11 +190,17 @@ class OrderController extends GetxController {
       Get.snackbar('Error', res.exception.toString());
     }
     if (res.data != null) {
-      print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
-      addPaymentToOrderResponse.value = res.parsedData!.addPaymentToOrder.toJson();
-      getOrderByCode(addPaymentToOrderResponse.value['code']);
-      isLoading.value = false;
-      currentStep.value++;
+      var jsonData = res.parsedData!.addPaymentToOrder.toJson();
+      if(jsonData.containsKey('message')){
+        Get.snackbar('', jsonData['message'],backgroundColor: Colors.red,colorText: Colors.white);
+      }else {
+
+        print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
+        addPaymentToOrderResponse.value = res.parsedData!.addPaymentToOrder.toJson();
+        getOrderByCode(addPaymentToOrderResponse.value['code']);
+        currentStep.value++;
+      }
+        isLoading.value = false;
     }
   }
 
@@ -438,7 +443,7 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       print(
-          'shipping method ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
+          'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
       currentlySelectedShippingMethod.value = eligibleShippingMethodList.first;

@@ -1,6 +1,11 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
@@ -9,16 +14,12 @@ import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/pages/register_success_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/store_page.dart';
-import 'package:recipe.app/pages/tokenVarifyPage.dart';
-import 'package:http/http.dart' as http;
 import 'package:recipe.app/pages/verifyOTPPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
-import 'package:recipe.app/services/util_service.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:recipe.app/themes.dart';
+
+import '../allGlobalKeys.dart';
 
 class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -36,24 +37,25 @@ class LoginPageController extends GetxController {
   var loading = false.obs;
   var currentlyGivenOTP = 0.obs;
   var smsQuery = {
-    'userid':'1671',
-    'password':'trP2V3o5bhZTK9JM',
-    'sender':'SMSKAI',
-    'to':'9840032880',
-    'message':'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
+    'userid': '1671',
+    'password': 'trP2V3o5bhZTK9JM',
+    'sender': 'SMSKAI',
+    'to': '9840032880',
+    'message':
+        'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
     'reqid': '1',
-    'format':'{json|text}',
-    'route_id':'3'
+    'format': '{json|text}',
+    'route_id': '3'
   }.obs;
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
 
   var checkboxStatus = false.obs;
 
-
   void setShowSignIn(bool value) {
     showSignIn.value = value;
   }
+
   void generateRandomDigit() {
     var rng = new Random();
     var code = rng.nextInt(9000) + 1000;
@@ -67,7 +69,7 @@ class LoginPageController extends GetxController {
     lastName.clear();
     phoneNumber.clear();
     checkboxStatus.value = false;
-    loginPageState.currentState?.loginFormKey.currentState?.reset();
+    loginFormKey.currentState?.reset();
   }
 
   void setCurrentSignInProcess(String value) {
@@ -81,23 +83,41 @@ class LoginPageController extends GetxController {
   void setCheckboxStatus(bool value) {
     checkboxStatus.value = value;
   }
+
   Future exitDialog(BuildContext context) {
-    return showDialog(context: context, builder: (context) {
-      return AlertDialog(
-        title: Text('Are you sure to exit the app ?',style: CustomTheme.headerStyle,),
-        content: Row(
-          children: [
-            ElevatedButton(onPressed: (){
-              userController.logUserOutBeforeExit();
-            }, child: Text('YES',style: CustomTheme.headerStyle,)),
-            SizedBox(width: 20,),
-            ElevatedButton(onPressed: (){
-              Navigator.pop(context);
-            }, child: Text('NO',style: CustomTheme.headerStyle,)),
-          ],
-        ),
-      );
-    });
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Are you sure to exit the app ?',
+              style: CustomTheme.headerStyle,
+            ),
+            content: Row(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      SystemNavigator.pop();
+                    },
+                    child: Text(
+                      'YES',
+                      style: CustomTheme.headerStyle,
+                    )),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'NO',
+                      style: CustomTheme.headerStyle,
+                    )),
+              ],
+            ),
+          );
+        });
   }
 
   void onUserSignIn(BuildContext context) async {
@@ -106,14 +126,16 @@ class LoginPageController extends GetxController {
     final signInResponse = await graphqlService.clientToQuery().mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
-                emailAddress: '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
+                emailAddress:
+                    '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
                 password: passwordController.text,
                 rememberMe: checkboxStatus.value)));
     if (signInResponse.hasException) {
       debugPrint('${signInResponse.exception.toString()}');
       utilityController.setLoadingState(false);
-      Get.snackbar('Error', 'Please Login again',colorText: Colors.white,backgroundColor: Colors.red);
-      Get.offAll(() =>  LoginPage());
+      Get.snackbar('Error', 'Please Login again',
+          colorText: Colors.white, backgroundColor: Colors.red);
+      Get.offAll(() => LoginPage());
     }
     if (signInResponse.data != null) {
       debugPrint('${signInResponse.data}');
@@ -121,10 +143,11 @@ class LoginPageController extends GetxController {
       final loginData = signInResponse.parsedData?.login.toJson();
 
       if (loginData?['message'] != null) {
-        if(loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR'){
-          utilityController.setAlertMessage(true, 'user does not exist create user');
+        if (loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR') {
+          utilityController.setAlertMessage(
+              true, 'user does not exist create user');
           utilityController.setLoadingState(false);
-        }else {
+        } else {
           utilityController.setAlertMessage(true, loginData?['message']);
           utilityController.setLoadingState(false);
         }
@@ -144,51 +167,60 @@ class LoginPageController extends GetxController {
       utilityController.setLoadingState(false);
     }
   }
-  void checkUniquePhone(String phone) async{
+
+  void checkUniquePhone(String phone) async {
     try {
       print('phone $phone');
-      final res = await graphqlService.clientToQuery().query$CheckUniquePhone(Options$Query$CheckUniquePhone(variables: Variables$Query$CheckUniquePhone(phone: phone)));
-      if(res.hasException){
+      final res = await graphqlService.clientToQuery().query$CheckUniquePhone(
+          Options$Query$CheckUniquePhone(
+              variables: Variables$Query$CheckUniquePhone(phone: phone)));
+      if (res.hasException) {
         print(res.exception.toString());
       }
-      if(res.data != null){
+      if (res.data != null) {
         // true means it is unique and false means it is not unique
         print(res.parsedData?.checkUniquePhone);
-        if(res.parsedData!.checkUniquePhone){
+        if (res.parsedData!.checkUniquePhone) {
           sendOtpToUser();
-        }else {
-          Get.snackbar('Error', 'This Phone is already used',colorText: Colors.white,backgroundColor: Colors.red);
+        } else {
+          Get.snackbar('Error', 'This Phone is already used',
+              colorText: Colors.white, backgroundColor: Colors.red);
         }
       }
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
   }
-  void sendOtpToUser() async{
-    try{
+
+  void sendOtpToUser() async {
+    try {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
-      smsQuery.value['message'] = 'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
+      smsQuery.value['message'] =
+          'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
       smsQuery.value['to'] = '${phoneNumber.text}';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
+          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
       final res = await http.get(url);
       print('${res.body}');
       Get.to(() => VerifyOTPPage());
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
   }
 
-  void sendRegistrationSuccessSms() async{
-    try{
-      smsQuery.value['message'] = 'Thank you for registering in KAAIKANI app.you can proceed to order in KAAIKANI app';
+  void sendRegistrationSuccessSms() async {
+    try {
+      smsQuery.value['message'] =
+          'Thank you for registering in KAAIKANI app.you can proceed to order in KAAIKANI app';
       smsQuery.value['to'] = '${phoneNumber.text}';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
+          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
       final res = await http.get(url);
       print('${res.body}');
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
   }
@@ -200,7 +232,8 @@ class LoginPageController extends GetxController {
         .mutate$Register(Options$Mutation$Register(
             variables: Variables$Mutation$Register(
                 input: Input$RegisterCustomerInput(
-          emailAddress: '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
+          emailAddress:
+              '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
           password: passwordController.text,
           firstName: firstName.text,
           lastName: lastName.text,
@@ -218,11 +251,11 @@ class LoginPageController extends GetxController {
         //  user is registered
         utilityController.setAlertMessage(false, '');
         utilityController.setLoadingState(false);
-        Get.snackbar('', 'Registered Successfully', backgroundColor: Colors.greenAccent);
+        Get.snackbar('', 'Registered Successfully',
+            backgroundColor: Colors.greenAccent);
         sendRegistrationSuccessSms();
         showSignIn.value = true;
         Get.to(() => RegisterSuccessPage());
-
       } else {
         utilityController.setAlertMessage(true, 'some error');
       }
@@ -231,25 +264,24 @@ class LoginPageController extends GetxController {
   }
 
   void requestPasswordReset(String email) async {
-    try{
+    try {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
       smsQuery.value['to'] = '${phoneNumber.text}';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery.value);
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
+          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
       final res = await http.get(url);
       print('${res.body}');
       Get.to(() => ResetPasswordPage());
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
-
-  }
-  void resetUserPassword() async {
-
   }
 
-  /*void onGoogleSignIn(BuildContext context) async {
+  void resetUserPassword() async {}
+
+/*void onGoogleSignIn(BuildContext context) async {
     Get.find<UtilityController>().setLoadingState(true);
     try {
       setCurrentSignInProcess(SignInProcessNames.firebase.name);

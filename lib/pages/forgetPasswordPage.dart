@@ -60,6 +60,9 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       ValidatorDefinition.phoneNumberMultiValidator,
                     ),
                   ),
+                  TextButton(onPressed: (){
+                    loginPageController.requestPasswordReset(loginPageController.phoneNumber.text);
+                  }, child: Text('Resend OTP', style: CustomTheme.headerStyle,)),
                   ElevatedButton(
                       onPressed: () {
                         if (forgetPasswordForm.currentState!.validate()) {

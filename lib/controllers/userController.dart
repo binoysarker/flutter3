@@ -44,11 +44,16 @@ class UserController with ChangeNotifier {
       isLoading2.value = false;
     }
     if (res.data != null) {
-      print('${res.parsedData!.logout.toJson()}');
-      if (res.parsedData!.logout.success) {
+      print('logout ${res.parsedData!.logout.toJson()}');
         isLoading2.value = false;
+        if(res.parsedData!.logout.success){
+
         SystemNavigator.pop();
-      }
+        }else {
+        SystemNavigator.pop();
+
+        }
+
     }
   }
   void onUserLogout() async {

@@ -7,6 +7,8 @@ import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:recipe.app/themes.dart';
 
+import '../graphqlSection/orders.graphql.dart';
+
 class UtilService {
   static final UtilService _utilService = UtilService._internal();
 
@@ -37,7 +39,23 @@ class UtilService {
 
 
   static String formatPriceValue(int price){
-    return (price / 100).toStringAsFixed(2);
+
+    return (price.abs() / 100).toStringAsFixed(2);
+  }
+  static String formatPriceValueForCouponCode(List<Query$GetOrderForCheckout$activeOrder$lines> lines,String currencyCode,String code,int price){
+    var priceString = '';
+    print(code);
+    if(code == 'order_percentage_discount'){
+      var sumOfLines = 0;
+      for(var i in lines){
+        sumOfLines += i.linePriceWithTax;
+      }
+
+      priceString = formatPriceValue((sumOfLines / 100 * price).toInt());
+    }else {
+      priceString = '${formatPriceValue(price)}${(price / 100).toStringAsFixed(2)}';
+    }
+    return priceString;
   }
 
   static double getConvertedIndianAmount(int givenValue) {
@@ -88,10 +106,9 @@ class UtilService {
     var document = parse(text);
     return parse(document.body!.text).documentElement!.text;
   }
-
-
-
-
+  static formateText(String text){
+    return text.length > 20 ? '${text.substring(0, 20)}...' : text;
+  }
   static createSnakeBar(
       {text = 'some message', required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));

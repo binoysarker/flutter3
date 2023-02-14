@@ -42,10 +42,10 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                       controller: loginPageController.tokenController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Code',
+                        labelText: 'OTP',
                       ),
                       validator: RequiredValidator(
-                          errorText: 'Code field is required'),
+                          errorText: 'OTP field is required'),
                     ),
                   ),
                   Padding(

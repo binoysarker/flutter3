@@ -64,7 +64,8 @@ class PaymentMethodComponent extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      element.productVariant.name,
+                                      UtilService.formateText(
+                                          element.productVariant.name),
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
@@ -104,21 +105,22 @@ class PaymentMethodComponent extends StatelessWidget {
                       )
                     : Column(
                         children: orderController
-                            .activeOrderResponse.value!.promotions
+                            .activeOrderResponse.value!.discounts
                             .map((e) => Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      e.name,
+                                      e.description,
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      e.couponCode ?? '',
+                                      orderController
+                                          .activeOrderResponse.value!.couponCodes.first,
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.actions.first.args.first.value))}',
+                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
                                       style: CustomTheme.headerStyle,
                                     ),
                                   ],
@@ -129,13 +131,7 @@ class PaymentMethodComponent extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  child: Obx(() => orderController.isLoading2.isTrue
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: CustomTheme.progressIndicatorColor,
-                          ),
-                        )
-                      : Column(
+                  child: Column(
                     children: orderController
                         .activeOrderResponse.value!.shippingLines
                         .map((e) => Row(
@@ -146,7 +142,6 @@ class PaymentMethodComponent extends StatelessWidget {
                           e.shippingMethod.name,
                           style: CustomTheme.headerStyle,
                         ),
-
                         Text(
                           '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
                           style: CustomTheme.headerStyle,
@@ -154,7 +149,7 @@ class PaymentMethodComponent extends StatelessWidget {
                       ],
                     ))
                         .toList(),
-                  )),
+                  ),
                 ),
                 SizedBox(
                   height: 20,
@@ -181,7 +176,7 @@ class PaymentMethodComponent extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(orderController.shippingAddressOrder.value!.totalWithTax)}',
+                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
                               style: CustomTheme.headerStyle,
                             ),
                           ),

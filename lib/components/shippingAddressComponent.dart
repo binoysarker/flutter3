@@ -22,6 +22,13 @@ class ShippingAddressComponent extends StatefulWidget {
 
 class ShippingAddressComponentState extends State<ShippingAddressComponent> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      shippingAddressFormKey.currentState!.reset();
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     return Form(
         key: shippingAddressFormKey,
@@ -103,44 +110,12 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
               ),
             ),
 
-            widget.orderController.eligiblePaymentIsLoading.isTrue
-                ? CircularProgressIndicator()
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DropdownButtonFormField(
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Shipping Method'),
-                      value: widget.orderController
-                          .currentlySelectedShippingMethodId.value,
-                      validator: RequiredValidator(
-                          errorText: 'Shipping method is required'),
-                      icon: Icon(Icons.arrow_downward),
-                      isExpanded: true,
-                      items: widget.orderController.eligibleShippingMethodList
-                          .map<DropdownMenuItem<String>>(
-                              (element) => DropdownMenuItem(
-                                    child: Text(element.name),
-                                    value: element.id,
-                                  ))
-                          .toList(),
-                      onChanged: (dynamic data) {
-                        print('shipping method selected $data');
-                        widget.orderController.currentlySelectedShippingMethod
-                                .value =
-                            widget.orderController.eligibleShippingMethodList
-                                .firstWhere((element) => element.id == data);
-                        widget.orderController.currentlySelectedShippingMethodId
-                            .value = data;
-                      },
-                    ),
-                  ),
             Row(
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 1),
                   child: Obx(() => Switch(
-                      value: widget.orderController.hasCouponCode.isTrue,
+                      value: widget.orderController.hasCouponCode.value,
                       activeColor: Colors.green,
                       onChanged: (bool data) {
                         widget.orderController.hasCouponCode.value = data;

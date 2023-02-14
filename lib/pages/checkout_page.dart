@@ -113,6 +113,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   final form = shippingAddressFormKey.currentState!;
                   if (form.validate()) {
                     print('validated');
+                    print('has coupon code ${orderController.hasCouponCode}');
                     if(orderController.hasCouponCode.isTrue){
                       var res = orderController.applyCouponCode(orderController.couponCode.text);
                       res.then((value){

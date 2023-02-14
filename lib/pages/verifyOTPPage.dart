@@ -51,7 +51,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                   ),
                   TextButton(onPressed: (){
                     loginPageController.sendOtpToUser();
-                  }, child: Text('Resen OTP', style: CustomTheme.headerStyle,)),
+                  }, child: Text('Resend OTP', style: CustomTheme.headerStyle,)),
                   ElevatedButton(
                       onPressed: () {
                         if (verifyOTPForm.currentState!.validate()) {

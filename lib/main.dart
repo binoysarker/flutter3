@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/controllers/bottomNavigationController.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
@@ -8,7 +9,10 @@ import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/routes/allRoutes.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -68,6 +72,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final LocalStorage storage = new LocalStorage(LocalStorageStrings.auth_token.name);
     GraphqlService graphqlService = GraphqlService();
     return GraphQLProvider(
       client: graphqlService.client,
@@ -78,8 +83,24 @@ class _MyAppState extends State<MyApp> {
         theme: CustomTheme.lightTheme,
         darkTheme: CustomTheme.darkTheme,
         themeMode: currentTheme.currentThemeMode,
-        initialRoute: '/login',
         getPages: RoutesClass.routes,
+        home: FutureBuilder(
+            future: storage.ready,
+            builder: (BuildContext context,snapshot){
+              if(snapshot.hasData){
+                  final authToken = storage.getItem(LocalStorageStrings.auth_token.name);
+                  print('auth token $authToken');
+                  if(authToken == null){
+                  return LoginPage();
+                  }else {
+                    GraphqlService.setToken(authToken);
+                    return StorePage();
+                  }
+
+              }else {
+                return LoginPage();
+              }
+        }),
       ),
     );
   }

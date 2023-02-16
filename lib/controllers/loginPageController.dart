@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:localstorage/localstorage.dart';
+import 'package:move_to_background/move_to_background.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
@@ -63,11 +66,11 @@ class LoginPageController extends GetxController {
   }
 
   void resetFormField() {
-    emailController.clear();
-    passwordController.clear();
-    firstName.clear();
-    lastName.clear();
-    phoneNumber.clear();
+    emailController.text = '';
+    passwordController.text = '';
+    firstName.text = '';
+    lastName.text = '';
+    phoneNumber.text = '';
     checkboxStatus.value = false;
     loginFormKey.currentState?.reset();
   }
@@ -84,6 +87,27 @@ class LoginPageController extends GetxController {
     checkboxStatus.value = value;
   }
 
+  void onUserLogout() async {
+    loading.value = true;
+    final res = await graphqlService
+        .clientToQuery()
+        .mutate$LogoutUser(Options$Mutation$LogoutUser());
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      loading.value = false;
+    }
+    if (res.data != null) {
+      print('${res.parsedData!.logout.toJson()}');
+        loading.value = false;
+        final LocalStorage localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
+        localStorage.clear();
+        Get.to(() => LoginPage());
+        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
+        resetFormField();
+
+    }
+  }
+
   Future exitDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -97,7 +121,8 @@ class LoginPageController extends GetxController {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      SystemNavigator.pop();
+                      Navigator.pop(context);
+                      MoveToBackground.moveTaskToBack();
                     },
                     child: Text(
                       'YES',
@@ -138,7 +163,7 @@ class LoginPageController extends GetxController {
       Get.offAll(() => LoginPage());
     }
     if (signInResponse.data != null) {
-      debugPrint('${signInResponse.data}');
+      debugPrint('onUserSignIn ${signInResponse.data}');
 
       final loginData = signInResponse.parsedData?.login.toJson();
 
@@ -161,7 +186,11 @@ class LoginPageController extends GetxController {
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
         userController.currentAuthToken.value = authToken;
-        resetFormField();
+        final LocalStorage localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
+        localStorage.ready.then((value) => {
+          localStorage.setItem(LocalStorageStrings.auth_token.name, authToken)
+        });
+        GraphqlService.setToken(authToken);
         Get.to(() => StorePage());
       }
       utilityController.setLoadingState(false);

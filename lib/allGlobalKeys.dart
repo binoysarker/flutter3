@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
-final shippingAddressFormKey = GlobalKey<FormState>();
-final myAccountFormKey = GlobalKey<FormState>();
-final loginFormKey = GlobalKey<FormState>();
+final GlobalKey<FormState> shippingAddressFormKey = GlobalKey<FormState>();
+final GlobalKey<FormState> myAccountFormKey = GlobalKey<FormState>();
+final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+final GlobalKey<ScaffoldState> drawerComponentKey = GlobalKey<ScaffoldState>();

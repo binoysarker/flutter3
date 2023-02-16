@@ -33,7 +33,6 @@ class LoginPageState extends State<LoginPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       loginPageController.resetFormField();
     });
-
   }
 
   @override

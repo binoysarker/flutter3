@@ -4,11 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 
 import '../services/util_service.dart';
@@ -24,6 +27,7 @@ class UserController with ChangeNotifier {
   var isLoading = false.obs;
   var isLoading2 = false.obs;
   final loginPageState = GlobalKey<LoginPageState>();
+  final LocalStorage storage = new LocalStorage(LocalStorageStrings.auth_token.name);
 
   void checkAndSetToken() {
     if (currentAuthToken.isNotEmpty) {
@@ -56,28 +60,11 @@ class UserController with ChangeNotifier {
 
     }
   }
-  void onUserLogout() async {
-    isLoading2.value = true;
-    final res = await graphqlService
-        .clientToQuery()
-        .mutate$LogoutUser(Options$Mutation$LogoutUser());
-    if (res.hasException) {
-      print('${res.exception.toString()}');
-      isLoading2.value = false;
-    }
-    if (res.data != null) {
-      print('${res.parsedData!.logout.toJson()}');
-      if (res.parsedData!.logout.success) {
-        isLoading2.value = false;
-        Get.to(() => LoginPage());
-        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
-      }
-    }
-  }
+
 
   void getActiveCustomer() async {
+
     isLoading2.value = true;
-    checkAndSetToken();
     final res = await graphqlService
         .clientToQuery()
         .query$GetActiveCustomer(Options$Query$GetActiveCustomer());
@@ -87,6 +74,7 @@ class UserController with ChangeNotifier {
     }
     if (res.data != null) {
       print('active customer ${res.parsedData?.activeCustomer?.toJson()}');
+
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
         Get.to(() => LoginPage());
@@ -98,6 +86,7 @@ class UserController with ChangeNotifier {
       isLoading2.value = false;
     }
   }
+
 
   void getTopSellers() async {
     checkAndSetToken();

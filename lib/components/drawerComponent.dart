@@ -1,3 +1,4 @@
+import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
     var currentAuthenticatedUser =
         userController.currentAuthenticatedUser.value;
     return Drawer(
+      key: drawerComponentKey,
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -55,8 +57,9 @@ class _DrawerComponentState extends State<DrawerComponent> {
             title: Text('Sign out', style: CustomTheme.headerStyle,),
             onTap: () {
               // await FirebaseAuth.instance.signOut();
-              loginPageController.resetFormField();
-              userController.onUserLogout();
+              drawerComponentKey.currentState?.closeDrawer();
+
+              loginPageController.onUserLogout();
             },
           ),
         ],

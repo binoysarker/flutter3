@@ -7,8 +7,8 @@ class GraphqlService {
   static HttpLink httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
 
   static void setToken(String token) {
-    AuthLink alink = AuthLink(getToken: () async => 'Bearer $token');
-    GraphqlService.link = alink.concat(GraphqlService.httpLink);
+    AuthLink authLink = AuthLink(getToken: () async => 'Bearer $token');
+    GraphqlService.link = authLink.concat(GraphqlService.httpLink);
   }
 
   static void removeToken() {

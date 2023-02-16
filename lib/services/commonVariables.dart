@@ -54,3 +54,7 @@ enum OrderStateEnums {
   DeliveryNotificationProcess,
   PaymentSettled
 }
+enum LocalStorageStrings{
+  user_data,
+  auth_token
+}

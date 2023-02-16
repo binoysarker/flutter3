@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
@@ -14,6 +15,7 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/productsController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -39,10 +41,13 @@ class _StorePageState extends State<StorePage> {
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
 
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+
       userController.getActiveCustomer();
       userController.getTopSellers();
       productsController.getProductsList();
@@ -82,7 +87,7 @@ class _StorePageState extends State<StorePage> {
                         ],
                       )),
               ),
-              drawer: Obx(() => userController.isLoading2.isTrue
+              drawer: Obx(() => loginPageController.loading.isTrue
                   ? Center(
                       child: CircularProgressIndicator(
                         color: CustomTheme.progressIndicatorColor,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/services/util_service.dart';
 
 import '../graphqlSection/collections.graphql.dart';
 import '../graphqlSection/sellers.graphql.dart';
@@ -11,6 +12,7 @@ import '../themes.dart';
 
 class VerticalListComponent extends StatefulWidget {
   bool isLoading = false;
+  bool showSecondLine = false;
   List givenList;
   String givenTitle = '';
   String controllerType;
@@ -19,6 +21,7 @@ class VerticalListComponent extends StatefulWidget {
   VerticalListComponent({
     Key? key,
     required this.isLoading,
+    required this.showSecondLine,
     required this.givenList,
     required this.givenTitle,
     required this.controllerType,
@@ -140,16 +143,35 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                           getName(element),
                           style: CustomTheme.headerStyle,
                         ),
-                        Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '',
-                              style: CustomTheme.headerStyle,
-                            ),
-                          ],
-                        )
+                        Visibility(
+                          visible: widget.showSecondLine,
+                          child: Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'price',
+                                style: CustomTheme.headerStyle,
+                              ),
+                              Obx(() => cartController.isLoading.isTrue &&
+                                  selectedId == int.parse(element.id)
+                                  ? Center(
+                                child: CircularProgressIndicator(
+                                  color: CustomTheme
+                                      .progressIndicatorColor,
+                                ),
+                              )
+                                  : IconButton(
+                                onPressed: () {
+                                  selectedId = int.parse(element.id);
+                                  UtilService.addItemToCart(element);
+                                },
+                                icon: Icon(Icons.shopping_cart),
+                                color: Colors.lightGreen,
+                              ))
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

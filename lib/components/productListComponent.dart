@@ -24,10 +24,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
   CartController cartController = Get.find<CartController>();
   int selectedId = 0;
 
-  void addItemToCart(Query$GetAllProducts$products$items element) {
-    var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
-    cartController.addItemToCart(item!.id, 1);
-  }
+
 
   String getPrice(Query$GetAllProducts$products$items element) {
     var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
@@ -95,7 +92,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                         ),
                       ),
                       Text(
-                        element.name,
+                        UtilService.formateText(element.name),
                         style: CustomTheme.headerStyle,
                       ),
                       Row(
@@ -117,7 +114,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                               : IconButton(
                             onPressed: () {
                               selectedId = int.parse(element.id);
-                              addItemToCart(element);
+                              UtilService.addItemToCart(element);
                             },
                             icon: Icon(Icons.shopping_cart),
                             color: Colors.lightGreen,

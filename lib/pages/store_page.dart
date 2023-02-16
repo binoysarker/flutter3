@@ -122,6 +122,7 @@ class _StorePageState extends State<StorePage> {
                           ),
                           Obx(() => VerticalListComponent(
                                 isLoading: collectionsController.isLoading.isTrue,
+                                showSecondLine: false,
                                 givenList: collectionsController.collectionItems,
                                 givenTitle: 'Shop By Category',
                                 controllerType: 'collection',
@@ -145,6 +146,7 @@ class _StorePageState extends State<StorePage> {
                                 )
                               : VerticalListComponent(
                                   isLoading: userController.isLoading.isTrue,
+                                  showSecondLine: true,
                                   givenList: userController.topSellers,
                                   givenTitle: 'Featured Items',
                                   controllerType: 'user',

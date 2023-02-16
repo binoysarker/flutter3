@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:get/get.dart';
+import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,8 +10,10 @@ import 'package:http/http.dart' as http;
 import 'package:recipe.app/themes.dart';
 
 import '../graphqlSection/orders.graphql.dart';
+import '../graphqlSection/products.graphql.dart';
 
 class UtilService {
+  static final CartController cartController = Get.find<CartController>();
   static final UtilService _utilService = UtilService._internal();
 
   factory UtilService() => _utilService;
@@ -41,6 +45,11 @@ class UtilService {
   static String formatPriceValue(int price){
 
     return (price.abs() / 100).toStringAsFixed(2);
+  }
+
+  static void addItemToCart(Query$GetAllProducts$products$items element) {
+    var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
+    cartController.addItemToCart(item!.id, 1);
   }
   static String formatPriceValueForCouponCode(List<Query$GetOrderForCheckout$activeOrder$lines> lines,String currencyCode,String code,int price){
     var priceString = '';

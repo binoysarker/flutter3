@@ -114,7 +114,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                               : IconButton(
                             onPressed: () {
                               selectedId = int.parse(element.id);
-                              UtilService.addItemToCart(element);
+                              UtilService.addItemToCart(element,'');
                             },
                             icon: Icon(Icons.shopping_cart),
                             color: Colors.lightGreen,

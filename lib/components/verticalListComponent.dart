@@ -115,7 +115,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
               height: widget.givenHeight.toDouble(),
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 2/1.8,
+                childAspectRatio: 2/2.5,
                 children: widget.givenList
                     .map((element) => element == null ? SizedBox() : Card(
                   elevation: 5,
@@ -154,7 +154,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                                 style: CustomTheme.headerStyle,
                               ),
                               Obx(() => cartController.isLoading.isTrue &&
-                                  selectedId == int.parse(element.id)
+                                  selectedId == int.parse(element.productId)
                                   ? Center(
                                 child: CircularProgressIndicator(
                                   color: CustomTheme
@@ -163,8 +163,10 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                               )
                                   : IconButton(
                                 onPressed: () {
-                                  selectedId = int.parse(element.id);
-                                  UtilService.addItemToCart(element);
+                                  var item = element as Query$GetTopSellers$search$items;
+                                  selectedId = int.parse(item.productId);
+                                  UtilService.addItemToCart(item,ControllerTypeNames.featuredItemList.name);
+                                  // print('item ${item.toJson()}');
                                 },
                                 icon: Icon(Icons.shopping_cart),
                                 color: Colors.lightGreen,

@@ -11,6 +11,7 @@ import 'package:recipe.app/themes.dart';
 
 import '../graphqlSection/orders.graphql.dart';
 import '../graphqlSection/products.graphql.dart';
+import '../graphqlSection/sellers.graphql.dart';
 
 class UtilService {
   static final CartController cartController = Get.find<CartController>();
@@ -47,9 +48,14 @@ class UtilService {
     return (price.abs() / 100).toStringAsFixed(2);
   }
 
-  static void addItemToCart(Query$GetAllProducts$products$items element) {
+  static void addItemToCart(dynamic element, String controllerType) {
+    if(controllerType == ControllerTypeNames.featuredItemList.name){
+      var item = element as Query$GetTopSellers$search$items;
+      cartController.addItemToCart(item.productId, 1);
+    }else {
     var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
     cartController.addItemToCart(item!.id, 1);
+    }
   }
   static String formatPriceValueForCouponCode(List<Query$GetOrderForCheckout$activeOrder$lines> lines,String currencyCode,String code,int price){
     var priceString = '';

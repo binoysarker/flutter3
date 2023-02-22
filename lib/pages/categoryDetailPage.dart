@@ -45,7 +45,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            '${collectionsController.singleCollectionDetail.value!.name}'),
+                            '${collectionsController.singleCollectionDetail.value!.name}',style: CustomTheme.headerStyle2,),
                         orderController
                                     .activeOrderResponse.value?.totalQuantity !=
                                 null
@@ -79,8 +79,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text(
-                            '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}'),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                              '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}',style: CustomTheme.paragraphStyle,),
+                        ),
                         SizedBox(
                           height: 20,
                         ),
@@ -108,7 +111,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                                       height: 150,
                                                       child: Center(
                                                         child: Text(
-                                                            'No products are present under this category'),
+                                                            'No products are present under this category',style: CustomTheme.headerStyle,),
                                                       ),
                                                     )
                                                   : ItemGalleryComponent(

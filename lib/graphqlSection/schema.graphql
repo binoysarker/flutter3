@@ -1157,6 +1157,7 @@ type Query {
     facet(id: ID!): Facet
     "A list of Facets available to the shop"
     facets(options: FacetListOptions): FacetList!
+    getPasswordResetToken: String!
     "Returns information about the current authenticated User"
     me: CurrentUser
     "Returns the possible next states that the activeOrder can transition to"

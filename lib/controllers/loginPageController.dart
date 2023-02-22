@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -70,9 +68,10 @@ class LoginPageController extends GetxController {
     passwordController.text = '';
     firstName.text = '';
     lastName.text = '';
+    otpController.text = '';
     phoneNumber.text = '';
     checkboxStatus.value = false;
-    loginFormKey.currentState?.reset();
+    loginFormKey.currentState!.reset();
   }
 
   void setCurrentSignInProcess(String value) {
@@ -98,13 +97,13 @@ class LoginPageController extends GetxController {
     }
     if (res.data != null) {
       print('${res.parsedData!.logout.toJson()}');
-        loading.value = false;
-        final LocalStorage localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
-        localStorage.clear();
-        Get.to(() => LoginPage());
-        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
-        resetFormField();
-
+      loading.value = false;
+      final LocalStorage localStorage =
+          new LocalStorage(LocalStorageStrings.auth_token.name);
+      localStorage.clear();
+      Get.to(() => LoginPage());
+      Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
+      resetFormField();
     }
   }
 
@@ -186,10 +185,12 @@ class LoginPageController extends GetxController {
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
         userController.currentAuthToken.value = authToken;
-        final LocalStorage localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
+        final LocalStorage localStorage =
+            new LocalStorage(LocalStorageStrings.auth_token.name);
         localStorage.ready.then((value) => {
-          localStorage.setItem(LocalStorageStrings.auth_token.name, authToken)
-        });
+              localStorage.setItem(
+                  LocalStorageStrings.auth_token.name, authToken)
+            });
         GraphqlService.setToken(authToken);
         Get.to(() => StorePage());
       }
@@ -234,6 +235,8 @@ class LoginPageController extends GetxController {
       final res = await http.get(url);
       print('${res.body}');
       Get.to(() => VerifyOTPPage());
+      resetFormField();
+      verifyOTPForm.currentState!.reset();
     } on Exception catch (e) {
       print(e.toString());
     }
@@ -285,6 +288,7 @@ class LoginPageController extends GetxController {
         sendRegistrationSuccessSms();
         showSignIn.value = true;
         Get.to(() => RegisterSuccessPage());
+        resetFormField();
       } else {
         utilityController.setAlertMessage(true, 'some error');
       }
@@ -294,8 +298,24 @@ class LoginPageController extends GetxController {
 
   void requestPasswordReset(String email) async {
     try {
+      final response = await this
+          .graphqlService
+          .clientToQuery()
+          .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
+              variables: Variables$Mutation$RequestPasswordReset(
+                  email:
+                      '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}')));
+      if (response.hasException) {
+        print(response.exception.toString());
+      }
+      if (response.data != null) {
+        print(
+            'requestPasswordReset ${response.parsedData!.requestPasswordReset!.toJson()}');
+      }
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
+      smsQuery.value['message'] =
+          'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
       smsQuery.value['to'] = '${phoneNumber.text}';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
@@ -308,7 +328,39 @@ class LoginPageController extends GetxController {
     }
   }
 
-  void resetUserPassword() async {}
+  void resetUserPassword() async {
+    loading.value = true;
+    final res =
+        await this.graphqlService.clientToQuery().query$GetPasswordResetToken();
+    if (res.hasException) {
+      print(res.exception.toString());
+      loading.value = false;
+    }
+    if (res.data != null) {
+      var token = res.parsedData!.getPasswordResetToken.toString();
+      print('password token $token');
+      final response = await this
+          .graphqlService
+          .clientToQuery()
+          .mutate$ResetPassword(Options$Mutation$ResetPassword(
+              variables: Variables$Mutation$ResetPassword(
+                  token: token, password: passwordController.text)));
+      if (response.hasException) {
+        print(response.exception.toString());
+        loading.value = false;
+      }
+      if (response.data != null) {
+        print(
+            'resetUserPassword ${response.parsedData!.resetPassword.toJson()}');
+        loading.value = false;
+        Get.snackbar('', 'Password is successfully reset.Please login now',
+            colorText: Colors.white, backgroundColor: Colors.lightGreen);
+        Get.offAll(() => LoginPage());
+        resetFormField();
+      }
+      loading.value = false;
+    }
+  }
 
 /*void onGoogleSignIn(BuildContext context) async {
     Get.find<UtilityController>().setLoadingState(true);

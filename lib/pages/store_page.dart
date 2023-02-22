@@ -49,7 +49,6 @@ class _StorePageState extends State<StorePage> {
 
 
       userController.getActiveCustomer();
-      userController.getTopSellers();
       productsController.getProductsList();
       collectionsController.getAllCollections();
       orderController.getActiveOrders();
@@ -133,24 +132,6 @@ class _StorePageState extends State<StorePage> {
                                 isLoading: productsController.isLoading.isTrue,
                                 productList: productsController.productList,
                               )),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          // all top sellers
-                          Obx(() => userController.isLoading.isTrue &&
-                                  userController.topSellers.isEmpty
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                    color: CustomTheme.progressIndicatorColor,
-                                  ),
-                                )
-                              : VerticalListComponent(
-                                  isLoading: userController.isLoading.isTrue,
-                                  showSecondLine: true,
-                                  givenList: userController.topSellers,
-                                  givenTitle: 'Featured Items',
-                                  controllerType: 'user',
-                                  givenHeight: 300)),
                         ],
                       ),
                     ),

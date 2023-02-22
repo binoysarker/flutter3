@@ -5,11 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:graphql/client.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
-import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
@@ -23,11 +21,11 @@ class UserController with ChangeNotifier {
   var currentAuthToken = ''.obs;
   final GraphqlService graphqlService = GraphqlService();
   final UtilityController utilityController = Get.find<UtilityController>();
-  var topSellers = <Query$GetTopSellers$search$items>[].obs;
   var isLoading = false.obs;
   var isLoading2 = false.obs;
   final loginPageState = GlobalKey<LoginPageState>();
-  final LocalStorage storage = new LocalStorage(LocalStorageStrings.auth_token.name);
+  final LocalStorage storage =
+      new LocalStorage(LocalStorageStrings.auth_token.name);
 
   void checkAndSetToken() {
     if (currentAuthToken.isNotEmpty) {
@@ -36,7 +34,6 @@ class UserController with ChangeNotifier {
       GraphqlService.removeToken();
     }
   }
-
 
   void logUserOutBeforeExit() async {
     isLoading2.value = true;
@@ -49,21 +46,16 @@ class UserController with ChangeNotifier {
     }
     if (res.data != null) {
       print('logout ${res.parsedData!.logout.toJson()}');
-        isLoading2.value = false;
-        if(res.parsedData!.logout.success){
-
+      isLoading2.value = false;
+      if (res.parsedData!.logout.success) {
         SystemNavigator.pop();
-        }else {
+      } else {
         SystemNavigator.pop();
-
-        }
-
+      }
     }
   }
 
-
   void getActiveCustomer() async {
-
     isLoading2.value = true;
     final res = await graphqlService
         .clientToQuery()
@@ -84,23 +76,6 @@ class UserController with ChangeNotifier {
         currentAuthenticatedUser.value = activeCustomer;
       }
       isLoading2.value = false;
-    }
-  }
-
-
-  void getTopSellers() async {
-    checkAndSetToken();
-    isLoading.value = true;
-    final res = await graphqlService
-        .clientToQuery()
-        .query$GetTopSellers(Options$Query$GetTopSellers());
-    if (res.hasException) {
-      print('${res.exception.toString()}');
-      isLoading.value = false;
-    }
-    if (res.data != null) {
-      topSellers.value = res.parsedData!.search.items.toList();
-      isLoading.value = false;
     }
   }
 
@@ -126,7 +101,7 @@ class UserController with ChangeNotifier {
   }
 
   void updateCustomerAddress(String id, String city, String streetLine1,
-      String streetLine2,String fullName, postalCode, phoneNumber) async {
+      String streetLine2, String fullName, postalCode, phoneNumber) async {
     isLoading2.value = true;
     final res = await graphqlService
         .clientToQuery()
@@ -137,20 +112,20 @@ class UserController with ChangeNotifier {
                     city: city,
                     streetLine1: streetLine1,
                     streetLine2: streetLine2,
-                  fullName: fullName,
-                  company: 'Test Company',
-                  province: 'Test Province',
-                  postalCode: postalCode,
-                  phoneNumber: phoneNumber,
-                  defaultShippingAddress: true,
-                  defaultBillingAddress: false
-                    ))));
-    if(res.hasException){
+                    fullName: fullName,
+                    company: 'Test Company',
+                    province: 'Test Province',
+                    postalCode: postalCode,
+                    phoneNumber: phoneNumber,
+                    defaultShippingAddress: true,
+                    defaultBillingAddress: false))));
+    if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading2.value = false;
     }
-    if(res.data != null){
-      print('update customer address ${res.parsedData!.updateCustomerAddress.toJson()}');
+    if (res.data != null) {
+      print(
+          'update customer address ${res.parsedData!.updateCustomerAddress.toJson()}');
       // currentAuthenticatedUser.value!.addresses?.forEach((element) {
       //   if(element.id == res.parsedData!.updateCustomerAddress.id){
       //     element.phoneNumber = res.parsedData!.updateCustomerAddress.phoneNumber;

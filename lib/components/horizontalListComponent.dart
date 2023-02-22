@@ -1,6 +1,5 @@
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/products.graphql.dart';
-import 'package:recipe.app/graphqlSection/sellers.graphql.dart';
 import 'package:recipe.app/pages/categoryDetailPage.dart';
 import 'package:recipe.app/pages/productDetailPage.dart';
 import 'package:recipe.app/pages/subCategoryDetailPage.dart';
@@ -87,13 +86,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
       Get.to(() => SubCategoryDetailPage(),
           arguments: {'slug': '${collectionSelected.slug}'});
     }
-    if (widget.controllerType ==
-        ControllerTypeNames.user.name) {
-      var selectedItem = (widget.givenList[index] as Query$GetTopSellers$search$items);
-      Get.to(()=> ProductDetailPage(), arguments: {
-        'slug': '${selectedItem.slug}'
-      });
-    }
+
   }
 
   @override

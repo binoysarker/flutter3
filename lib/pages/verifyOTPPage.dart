@@ -5,6 +5,8 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/themes.dart';
 
+import '../allGlobalKeys.dart';
+
 class VerifyOTPPage extends StatefulWidget {
   const VerifyOTPPage({Key? key}) : super(key: key);
 
@@ -13,7 +15,6 @@ class VerifyOTPPage extends StatefulWidget {
 }
 
 class VerifyOTPPageState extends State<VerifyOTPPage> {
-  final verifyOTPForm = GlobalKey<FormState>();
   final UserController userController = Get.find<UserController>();
   final LoginPageController loginPageController =
       Get.find<LoginPageController>();

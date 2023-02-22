@@ -2565,6 +2565,228 @@ class Query$CheckUniquePhone$Widget
 }
 
 @JsonSerializable(explicitToJson: true)
+class Query$GetPasswordResetToken {
+  Query$GetPasswordResetToken(
+      {required this.getPasswordResetToken, required this.$__typename});
+
+  @override
+  factory Query$GetPasswordResetToken.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetPasswordResetTokenFromJson(json);
+
+  final String getPasswordResetToken;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetPasswordResetTokenToJson(this);
+  int get hashCode {
+    final l$getPasswordResetToken = getPasswordResetToken;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$getPasswordResetToken, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetPasswordResetToken) ||
+        runtimeType != other.runtimeType) return false;
+    final l$getPasswordResetToken = getPasswordResetToken;
+    final lOther$getPasswordResetToken = other.getPasswordResetToken;
+    if (l$getPasswordResetToken != lOther$getPasswordResetToken) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetPasswordResetToken
+    on Query$GetPasswordResetToken {
+  CopyWith$Query$GetPasswordResetToken<Query$GetPasswordResetToken>
+      get copyWith => CopyWith$Query$GetPasswordResetToken(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetPasswordResetToken<TRes> {
+  factory CopyWith$Query$GetPasswordResetToken(
+          Query$GetPasswordResetToken instance,
+          TRes Function(Query$GetPasswordResetToken) then) =
+      _CopyWithImpl$Query$GetPasswordResetToken;
+
+  factory CopyWith$Query$GetPasswordResetToken.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetPasswordResetToken;
+
+  TRes call({String? getPasswordResetToken, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetPasswordResetToken<TRes>
+    implements CopyWith$Query$GetPasswordResetToken<TRes> {
+  _CopyWithImpl$Query$GetPasswordResetToken(this._instance, this._then);
+
+  final Query$GetPasswordResetToken _instance;
+
+  final TRes Function(Query$GetPasswordResetToken) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? getPasswordResetToken = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetPasswordResetToken(
+          getPasswordResetToken: getPasswordResetToken == _undefined ||
+                  getPasswordResetToken == null
+              ? _instance.getPasswordResetToken
+              : (getPasswordResetToken as String),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetPasswordResetToken<TRes>
+    implements CopyWith$Query$GetPasswordResetToken<TRes> {
+  _CopyWithStubImpl$Query$GetPasswordResetToken(this._res);
+
+  TRes _res;
+
+  call({String? getPasswordResetToken, String? $__typename}) => _res;
+}
+
+const documentNodeQueryGetPasswordResetToken = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetPasswordResetToken'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'getPasswordResetToken'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$GetPasswordResetToken _parserFn$Query$GetPasswordResetToken(
+        Map<String, dynamic> data) =>
+    Query$GetPasswordResetToken.fromJson(data);
+
+class Options$Query$GetPasswordResetToken
+    extends graphql.QueryOptions<Query$GetPasswordResetToken> {
+  Options$Query$GetPasswordResetToken(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryGetPasswordResetToken,
+            parserFn: _parserFn$Query$GetPasswordResetToken);
+}
+
+class WatchOptions$Query$GetPasswordResetToken
+    extends graphql.WatchQueryOptions<Query$GetPasswordResetToken> {
+  WatchOptions$Query$GetPasswordResetToken(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryGetPasswordResetToken,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$GetPasswordResetToken);
+}
+
+class FetchMoreOptions$Query$GetPasswordResetToken
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetPasswordResetToken(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+            updateQuery: updateQuery,
+            document: documentNodeQueryGetPasswordResetToken);
+}
+
+extension ClientExtension$Query$GetPasswordResetToken on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetPasswordResetToken>>
+      query$GetPasswordResetToken(
+              [Options$Query$GetPasswordResetToken? options]) async =>
+          await this.query(options ?? Options$Query$GetPasswordResetToken());
+  graphql.ObservableQuery<
+      Query$GetPasswordResetToken> watchQuery$GetPasswordResetToken(
+          [WatchOptions$Query$GetPasswordResetToken? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetPasswordResetToken());
+  void writeQuery$GetPasswordResetToken(
+          {required Query$GetPasswordResetToken data, bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryGetPasswordResetToken)),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$GetPasswordResetToken? readQuery$GetPasswordResetToken(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryGetPasswordResetToken)),
+        optimistic: optimistic);
+    return result == null ? null : Query$GetPasswordResetToken.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetPasswordResetToken>
+    useQuery$GetPasswordResetToken(
+            [Options$Query$GetPasswordResetToken? options]) =>
+        graphql_flutter
+            .useQuery(options ?? Options$Query$GetPasswordResetToken());
+graphql.ObservableQuery<Query$GetPasswordResetToken>
+    useWatchQuery$GetPasswordResetToken(
+            [WatchOptions$Query$GetPasswordResetToken? options]) =>
+        graphql_flutter.useWatchQuery(
+            options ?? WatchOptions$Query$GetPasswordResetToken());
+
+class Query$GetPasswordResetToken$Widget
+    extends graphql_flutter.Query<Query$GetPasswordResetToken> {
+  Query$GetPasswordResetToken$Widget(
+      {widgets.Key? key,
+      Options$Query$GetPasswordResetToken? options,
+      required graphql_flutter.QueryBuilder<Query$GetPasswordResetToken>
+          builder})
+      : super(
+            key: key,
+            options: options ?? Options$Query$GetPasswordResetToken(),
+            builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$VerifyCustomerAccount {
   Variables$Mutation$VerifyCustomerAccount(
       {required this.token, this.password});

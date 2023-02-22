@@ -27,7 +27,7 @@ enum ControllerTypeNames {
   singleCollectionDetail,
   productChildrenVariantItems,
   productVariantItems,
-  normalProductList
+  normalProductList,
 }
 
 enum CurrencyCodeEnum{

@@ -434,6 +434,20 @@ Map<String, dynamic> _$Query$CheckUniquePhoneToJson(
       '__typename': instance.$__typename,
     };
 
+Query$GetPasswordResetToken _$Query$GetPasswordResetTokenFromJson(
+        Map<String, dynamic> json) =>
+    Query$GetPasswordResetToken(
+      getPasswordResetToken: json['getPasswordResetToken'] as String,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$GetPasswordResetTokenToJson(
+        Query$GetPasswordResetToken instance) =>
+    <String, dynamic>{
+      'getPasswordResetToken': instance.getPasswordResetToken,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Mutation$VerifyCustomerAccount
     _$Variables$Mutation$VerifyCustomerAccountFromJson(
             Map<String, dynamic> json) =>

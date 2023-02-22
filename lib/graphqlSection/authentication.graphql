@@ -37,6 +37,9 @@ mutation Register($input: RegisterCustomerInput!) {
 query CheckUniquePhone($phone: String!){
     checkUniquePhone(phone: $phone)
 }
+query GetPasswordResetToken{
+    getPasswordResetToken
+}
 
 mutation VerifyCustomerAccount($token: String!, $password: String){
     verifyCustomerAccount(

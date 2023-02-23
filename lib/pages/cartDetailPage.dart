@@ -4,11 +4,11 @@ import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
+import 'package:recipe.app/components/floatingActionButtonComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
-import 'package:recipe.app/pages/checkout_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
@@ -216,16 +216,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       orderController.activeOrderResponse.value!.lines.length),
             )),
       bottomNavigationBar: BottomNavigationComponent(),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Get.to(() => CheckoutPage());
-        },
-        label: Text(
-          'Checkout',
-          style: CustomTheme.headerStyle,
-        ),
-        icon: Icon(Icons.card_travel),
-      ),
+      floatingActionButton: FloatingActionButtonComponent(),
     ));
   }
 }

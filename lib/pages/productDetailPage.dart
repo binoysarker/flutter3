@@ -10,6 +10,8 @@ import 'package:recipe.app/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../components/floatingActionButtonComponent.dart';
+
 class ProductDetailPage extends StatefulWidget {
   var routerArguments = Get.arguments;
 
@@ -204,6 +206,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             )),
           ),
           bottomNavigationBar: BottomNavigationComponent(),
+          floatingActionButton: FloatingActionButtonComponent(),
         )));
   }
 }

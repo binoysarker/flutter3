@@ -80,20 +80,6 @@ class MyAccountPageState extends State<MyAccountPage> {
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            controller: cityCtr,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'City',
-            ),
-            keyboardType: TextInputType.name,
-            autofillHints: [AutofillHints.familyName],
-            validator: RequiredValidator(errorText: 'City is required'),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-          child: TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: postalCodeCtr,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -152,7 +138,7 @@ class MyAccountPageState extends State<MyAccountPage> {
         final phoneNumberCtr = TextEditingController();
         street1Ctr.text = element.streetLine1.toString();
         street2Ctr.text = element.streetLine2.toString();
-        cityCtr.text = element.city.toString();
+        cityCtr.text = 'Mumbai';
         postalCodeCtr.text = element.postalCode.toString();
         phoneNumberCtr.text = element.phoneNumber.toString();
         street1Controllers.add(street1Ctr);
@@ -295,7 +281,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                               street1Controllers[index].text,
                                           'street2':
                                               street2Controllers[index].text,
-                                          'city': cityControllers[index].text,
+                                          'city': 'Mumbai',
                                           'fullName':
                                               '${customerData['fname']} ${customerData['lname']}',
                                           'postalCode':

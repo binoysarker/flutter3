@@ -1,17 +1,14 @@
-import 'dart:math';
-
-import 'package:get/get.dart';
-import 'package:recipe.app/controllers/cartController.dart';
-import 'package:recipe.app/services/commonVariables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
-import 'package:recipe.app/themes.dart';
+import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 
+import '../graphqlSection/collections.graphql.dart';
 import '../graphqlSection/orders.graphql.dart';
 import '../graphqlSection/products.graphql.dart';
-import '../graphqlSection/sellers.graphql.dart';
 
 class UtilService {
   static final CartController cartController = Get.find<CartController>();
@@ -28,13 +25,16 @@ class UtilService {
   }
 
   late String _shopApiUrl;
-  static Map<String, String> customHeader = {"Content-Type": "application/json"};
+  static Map<String, String> customHeader = {
+    "Content-Type": "application/json"
+  };
 
   String get shopApiUrl => _shopApiUrl;
 
   set shopApiUrl(String value) {
     _shopApiUrl = value;
   }
+
   UtilService._internal() {
     print('${dotenv.env['API_BASE_URL']}');
     _apiBaseUrl = dotenv.env['API_BASE_URL'] as String;
@@ -42,33 +42,41 @@ class UtilService {
     appName = dotenv.env['App_Name'] as String;
   }
 
-
-  static String formatPriceValue(int price){
-
+  static String formatPriceValue(int price) {
     return (price.abs() / 100).toStringAsFixed(2);
   }
 
   static void addItemToCart(dynamic element, String controllerType) {
-    if(controllerType == ControllerTypeNames.featuredItemList.name){
-      var item = element as Query$GetTopSellers$search$items;
-      cartController.addItemToCart(item.productId, 1);
-    }else {
-    var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
-    cartController.addItemToCart(item!.id, 1);
+    print('select item $element controller type $controllerType');
+    if(controllerType == ControllerTypeNames.productVariantItems.name){
+      var item = element as Query$GetAllProducts$products$items;
+      item.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
+      cartController.addItemToCart(item.id, 1);
+    }
+    if(controllerType == ControllerTypeNames.productChildrenVariantItems.name){
+      var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+      // item.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
+      cartController.addItemToCart(item.id, 1);
     }
   }
-  static String formatPriceValueForCouponCode(List<Query$GetOrderForCheckout$activeOrder$lines> lines,String currencyCode,String code,int price){
+
+  static String formatPriceValueForCouponCode(
+      List<Query$GetOrderForCheckout$activeOrder$lines> lines,
+      String currencyCode,
+      String code,
+      int price) {
     var priceString = '';
     print(code);
-    if(code == 'order_percentage_discount'){
+    if (code == 'order_percentage_discount') {
       var sumOfLines = 0;
-      for(var i in lines){
+      for (var i in lines) {
         sumOfLines += i.linePriceWithTax;
       }
 
       priceString = formatPriceValue((sumOfLines / 100 * price).toInt());
-    }else {
-      priceString = '${formatPriceValue(price)}${(price / 100).toStringAsFixed(2)}';
+    } else {
+      priceString =
+          '${formatPriceValue(price)}${(price / 100).toStringAsFixed(2)}';
     }
     return priceString;
   }
@@ -81,49 +89,51 @@ class UtilService {
     return value;
   }
 
-
-  static sendSms(String message,String number) async{
+  static sendSms(String message, String number) async {
     var smsQuery = {
-      'userid':'1671',
-      'password':'trP2V3o5bhZTK9JM',
-      'sender':'SMSKAI',
+      'userid': '1671',
+      'password': 'trP2V3o5bhZTK9JM',
+      'sender': 'SMSKAI',
       'to': number,
       'message': message,
       'reqid': '1',
-      'format':'{json|text}',
-      'route_id':'3'
+      'format': '{json|text}',
+      'route_id': '3'
     };
 
-    try{
-
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(), 'API/WebSMS/Http/v1.0a/index.php',smsQuery);
+    try {
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
+          'API/WebSMS/Http/v1.0a/index.php', smsQuery);
       final res = await http.get(url);
       print('${res.body}');
-    }on Exception catch(e){
+    } on Exception catch (e) {
       print(e.toString());
     }
   }
 
-  static String getCurrencySymble(String currencyCode){
+  static String getCurrencySymble(String currencyCode) {
     var symble = r'₹';
-    if(currencyCode == CurrencyCodeEnum.USD.name){
+    if (currencyCode == CurrencyCodeEnum.USD.name) {
       symble = r'$';
     }
-    if(currencyCode == CurrencyCodeEnum.INR.name){
+    if (currencyCode == CurrencyCodeEnum.INR.name) {
       symble = r'₹';
     }
-    if(currencyCode == CurrencyCodeEnum.BDT.name){
+    if (currencyCode == CurrencyCodeEnum.BDT.name) {
       symble = r'৳';
     }
     return symble;
   }
-  static String parseHtmlData(String text){
+
+  static String parseHtmlData(String text) {
     var document = parse(text);
     return parse(document.body!.text).documentElement!.text;
   }
-  static formateText(String text){
+
+  static formateText(String text) {
     return text.length > 20 ? '${text.substring(0, 20)}...' : text;
   }
+
   static createSnakeBar(
       {text = 'some message', required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));

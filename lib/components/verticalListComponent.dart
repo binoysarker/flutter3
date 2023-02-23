@@ -159,7 +159,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                                                             element.id);
                                                         UtilService
                                                             .addItemToCart(
-                                                                element);
+                                                                element,'user');
                                                       },
                                                       icon: Icon(
                                                           Icons.shopping_cart),

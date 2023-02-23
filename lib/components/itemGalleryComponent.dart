@@ -66,10 +66,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     if (widget.controllerType ==
             ControllerTypeNames.productChildrenVariantItems.name ||
         widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      name = '${element.product.name}';
+      name = '${UtilService.formateText(element.product.name)}';
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      name = '${element.name}';
+      name = '${UtilService.formateText(element.name)}';
     }
 
     return name;
@@ -85,7 +85,8 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
       // var test = (element as SingleProductListItemType).u
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      price = '${UtilService.getCurrencySymble(element.variants[0].currencyCode.name)}${UtilService.formatPriceValue(element.variants[0].priceWithTax)}';
+      price =
+          '${UtilService.getCurrencySymble(element.variants[0].currencyCode.name)}${UtilService.formatPriceValue(element.variants[0].priceWithTax)}';
     }
     return price;
   }
@@ -136,96 +137,114 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
             ),
           )
         : Card(
-          child:  widget.givenList.isEmpty ? Center(
-            child: Text('No Items to display', style: CustomTheme.headerStyle,),
-          ) : Column(
-            children: [
-
-              Container(
-                height: 30,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors.lightGreen,
-                    borderRadius: BorderRadius.circular(5)),
-                width: double.maxFinite,
-                child: Text(
-                  widget.headerTitle,
-                  style: CustomTheme.headerStyle2,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 300,
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.8),
-                  children: widget.givenList
-                      .map((element) => Card(
-                    elevation: 5,
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            print(widget.controllerType);
-                            goToPage(element);
-                          },
-                          child: FadeInImage.assetNetwork(
-                            width: 100,
-                            height: 100,
-                            placeholder:
-                            '${CommonVariableData.placeholder}',
-                            image: getImage(element),
-                            imageErrorBuilder:
-                                (context, error, stackTrace) =>
-                                Image.asset(
-                                  '${CommonVariableData.placeholder}',
-                                  width: 100,
-                                  height: 100,
-                                ),
-                          ),
-                        ),
-                        Text(
-                          getName(element),
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '${getPrice(element)}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                            Obx(() => cartController.isLoading.isTrue &&
-                                selectedId == int.parse(element.id)
-                                ? Center(
-                              child: CircularProgressIndicator(
-                                color: CustomTheme
-                                    .progressIndicatorColor,
-                              ),
-                            )
-                                : IconButton(
-                              onPressed: () {
-                                selectedId =
-                                    int.parse(element.id);
-                                addItemToCart(element);
-                              },
-                              icon: Icon(Icons.shopping_cart),
-                              color: Colors.lightGreen,
-                            ))
-                          ],
-                        )
-                      ],
+            child: widget.givenList.isEmpty
+                ? Center(
+                    child: Text(
+                      'No Items to display',
+                      style: CustomTheme.headerStyle,
                     ),
-                  ))
-                      .toList(),
-                ),
-              )
-            ],
-          ),
-        );
+                  )
+                : Column(
+                    children: [
+                      Container(
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.lightGreen,
+                            borderRadius: BorderRadius.circular(5)),
+                        width: double.maxFinite,
+                        child: Text(
+                          widget.headerTitle,
+                          style: CustomTheme.headerStyle2,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: 300,
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width /
+                              (MediaQuery.of(context).size.height / 1.8),
+                          children: widget.givenList
+                              .map((element) => Card(
+                                    elevation: 5,
+                                    child: Column(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            print(widget.controllerType);
+                                            goToPage(element);
+                                          },
+                                          child: FadeInImage.assetNetwork(
+                                            width: 100,
+                                            height: 100,
+                                            placeholder:
+                                                '${CommonVariableData.placeholder}',
+                                            image: getImage(element),
+                                            imageErrorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              '${CommonVariableData.placeholder}',
+                                              width: 100,
+                                              height: 100,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                          child: Text(
+                                            getName(element),
+                                            style: CustomTheme.headerStyle,
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                              '${getPrice(element)}',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            Obx(() => cartController
+                                                        .isLoading.isTrue &&
+                                                    selectedId ==
+                                                        int.parse(element.id)
+                                                ? Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      color: CustomTheme
+                                                          .progressIndicatorColor,
+                                                    ),
+                                                  )
+                                                : IconButton(
+                                                    onPressed: () {
+                                                      selectedId =
+                                                          int.parse(element.id);
+                                                      print(
+                                                          'select item $element');
+                                                      // addItemToCart(element);
+                                                      UtilService.addItemToCart(
+                                                          element,
+                                                          ControllerTypeNames
+                                                              .productChildrenVariantItems
+                                                              .name);
+                                                    },
+                                                    icon: Icon(
+                                                        Icons.shopping_cart),
+                                                    color: Colors.lightGreen,
+                                                  ))
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ))
+                              .toList(),
+                        ),
+                      )
+                    ],
+                  ),
+          );
   }
 }

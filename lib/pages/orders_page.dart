@@ -110,7 +110,7 @@ class _OrdersPageState extends State<OrdersPage> {
                             ),
                             Card(
                               child: Column(
-                                children: activeOrder!.lines
+                                children: activeOrder.lines
                                     .map((subItem) => ListTile(
                                           title: Text(
                                             '${subItem.productVariant.name}',
@@ -129,7 +129,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                     '${CommonVariableData.placeholder}'),
                                           ),
                                           subtitle: Text(
-                                            'Price: ${UtilService.getCurrencySymble(activeOrder!.currencyCode.toString())}${UtilService.formatPriceValue(subItem.linePriceWithTax)}',
+                                            'Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(subItem.linePriceWithTax)}',
                                             style: CustomTheme.paragraphStyle,
                                           ),
                                         ))

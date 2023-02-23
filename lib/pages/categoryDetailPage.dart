@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/cartButtonComponent.dart';
+import 'package:recipe.app/components/floatingActionButtonComponent.dart';
 import 'package:recipe.app/components/itemGalleryComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
@@ -45,7 +46,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                            '${collectionsController.singleCollectionDetail.value!.name}',style: CustomTheme.headerStyle2,),
+                          '${collectionsController.singleCollectionDetail.value!.name}',
+                          style: CustomTheme.headerStyle2,
+                        ),
                         orderController
                                     .activeOrderResponse.value?.totalQuantity !=
                                 null
@@ -82,7 +85,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                              '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}',style: CustomTheme.paragraphStyle,),
+                            '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}',
+                            style: CustomTheme.paragraphStyle,
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -111,7 +116,10 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                                       height: 150,
                                                       child: Center(
                                                         child: Text(
-                                                            'No products are present under this category',style: CustomTheme.headerStyle,),
+                                                          'No products are present under this category',
+                                                          style: CustomTheme
+                                                              .headerStyle,
+                                                        ),
                                                       ),
                                                     )
                                                   : ItemGalleryComponent(
@@ -149,6 +157,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                     ),
                   )),
             bottomNavigationBar: BottomNavigationComponent(),
+            floatingActionButton: FloatingActionButtonComponent(),
           )));
   }
 }

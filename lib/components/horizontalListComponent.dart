@@ -68,14 +68,14 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
       var productList =
           (widget.givenList[index] as Query$GetAllProducts$products$items);
       print('${productList.id}');
-      Get.to(() => ProductDetailPage(),
+      Get.offAll(() => ProductDetailPage(),
           arguments: {'slug': '${productList.slug}'});
     }
     if (widget.controllerType == ControllerTypeNames.collection.name) {
       var collectionSelected = (widget.givenList[index]
           as Query$GetAllCollections$collections$items);
       print('${collectionSelected.id}');
-      Get.to(() => CategoryDetailPage(),
+      Get.offAll(() => CategoryDetailPage(),
           arguments: {'slug': '${collectionSelected.slug}'});
     }
     if (widget.controllerType ==
@@ -83,7 +83,7 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
       var collectionSelected = (widget.givenList[index]
           as Query$GetCollectionsByIdOrSlug$collection$children);
       print('${collectionSelected.slug}');
-      Get.to(() => SubCategoryDetailPage(),
+      Get.offAll(() => SubCategoryDetailPage(),
           arguments: {'slug': '${collectionSelected.slug}'});
     }
 

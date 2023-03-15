@@ -69,7 +69,7 @@ class UserController with ChangeNotifier {
 
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
-        Get.to(() => LoginPage());
+        Get.offAll(() => LoginPage());
         Get.snackbar('Alert', 'Need to login', backgroundColor: Colors.red);
       } else {
         //  get the auth user

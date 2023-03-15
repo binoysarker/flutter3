@@ -49,15 +49,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                           '${collectionsController.singleCollectionDetail.value!.name}',
                           style: CustomTheme.headerStyle2,
                         ),
-                        orderController
-                                    .activeOrderResponse.value?.totalQuantity !=
-                                null
-                            ? CartButtonComponent(
-                                isLoading: orderController.isLoading.isTrue,
-                                totalQuantity: orderController
-                                    .activeOrderResponse.value!.totalQuantity,
-                              )
-                            : SizedBox()
+                        CartButtonComponent(
+                          isLoading: orderController.isLoading.isTrue,
+                          totalQuantity: orderController
+                              .activeOrderResponse.value!.totalQuantity,
+                        )
                       ],
                     )),
             ),

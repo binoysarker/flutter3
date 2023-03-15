@@ -68,15 +68,15 @@ class _ProductListComponentState extends State<ProductListComponent> {
                     .firstWhereOrNull((item) => item.id.isNotEmpty)
                     ?.price !=
                     null)
-                    .map((element) => element == null ? SizedBox() : Card(
+                    .map((element) => element == null ? SizedBox() : GestureDetector(
+                  onTap: () {
+                    Get.to(() => ProductDetailPage(),arguments: {'slug': element.slug});
+                  },
+                      child: Card(
                   elevation: 5,
                   child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => ProductDetailPage(),arguments: {'slug': element.slug});
-                        },
-                        child: FadeInImage.assetNetwork(
+                      children: [
+                        FadeInImage.assetNetwork(
                           width: 100,
                           height: 100,
                           placeholder:
@@ -90,41 +90,41 @@ class _ProductListComponentState extends State<ProductListComponent> {
                                 height: 100,
                               ),
                         ),
-                      ),
-                      Text(
-                        UtilService.formateText(element.name),
-                        style: CustomTheme.headerStyle,
-                      ),
-                      Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            getPrice(element),
-                            style: CustomTheme.headerStyle,
-                          ),
-                          Obx(() => cartController.isLoading.isTrue &&
-                              selectedId == int.parse(element.id)
-                              ? Center(
-                            child: CircularProgressIndicator(
-                              color: CustomTheme
-                                  .progressIndicatorColor,
+                        Text(
+                          UtilService.formateText(element.name),
+                          style: CustomTheme.headerStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              getPrice(element),
+                              style: CustomTheme.headerStyle,
                             ),
-                          )
-                              : IconButton(
-                            onPressed: () {
-                              selectedId = int.parse(element.id);
-                              print('selected item ${element.toJson()}');
-                              UtilService.addItemToCart(element,ControllerTypeNames.productVariantItems.name);
-                            },
-                            icon: Icon(Icons.shopping_cart),
-                            color: Colors.lightGreen,
-                          ))
-                        ],
-                      )
-                    ],
+                            Obx(() => cartController.isLoading.isTrue &&
+                                selectedId == int.parse(element.id)
+                                ? Center(
+                              child: CircularProgressIndicator(
+                                color: CustomTheme
+                                    .progressIndicatorColor,
+                              ),
+                            )
+                                : IconButton(
+                              onPressed: () {
+                                selectedId = int.parse(element.id);
+                                print('selected item ${element.toJson()}');
+                                UtilService.addItemToCart(element,ControllerTypeNames.productVariantItems.name);
+                              },
+                              icon: Icon(Icons.shopping_cart),
+                              color: Colors.lightGreen,
+                            ))
+                          ],
+                        )
+                      ],
                   ),
-                ))
+                ),
+                    ))
                     .toList(),
               ),
             )

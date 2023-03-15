@@ -12,6 +12,7 @@ class GraphqlService {
     var localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
     var localToken = localStorage.getItem(LocalStorageStrings.auth_token.name);
     AuthLink authLink = AuthLink(getToken: () async => 'Bearer ${localToken ?? token}');
+    print('current totken $token');
     GraphqlService.link = authLink.concat(GraphqlService.httpLink);
   }
 

@@ -27,7 +27,7 @@ class _RegisterSuccessPageState extends State<RegisterSuccessPage> {
               Text('Registered Successfully', style: CustomTheme.headerStyle4,),
               SizedBox(height: 20,),
               ElevatedButton(onPressed: () {
-                Get.to(() => LoginPage());
+                Get.offAll(() => LoginPage());
               }, child: Text('Please Login'))
             ],
           ),

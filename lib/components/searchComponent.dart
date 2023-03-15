@@ -72,7 +72,7 @@ class SearchComponent extends StatelessWidget {
                                 onTap: () {
                                   print(
                                       '${productsController.searchResultList[index].slug}');
-                                  Get.to(() => ProductDetailPage(), arguments: {
+                                  Get.offAll(() => ProductDetailPage(), arguments: {
                                     'slug':
                                         '${productsController.searchResultList[index].slug}'
                                   });

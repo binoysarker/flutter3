@@ -207,7 +207,7 @@ class LoginPageState extends State<LoginPage> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Get.to(() => ForgetPasswordPage());
+                              Get.offAll(() => ForgetPasswordPage());
                             },
                             child: Text(
                               'Forgot Password',

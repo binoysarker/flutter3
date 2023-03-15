@@ -27,18 +27,19 @@ class _FloatingActionButtonComponentState
 
   @override
   Widget build(BuildContext context) {
-    var activeOrder = orderController.activeOrderResponse.value;
-    return activeOrder?.lines.length == 0
+    // var activeOrder = orderController.activeOrderResponse.value;
+    return orderController.activeOrderResponse.value == null ||
+            orderController.activeOrderResponse.value!.lines.isEmpty
         ? SizedBox()
         : FloatingActionButton.extended(
-      onPressed: () {
-        Get.to(() => CheckoutPage());
-      },
-      label: Text(
-        'Checkout',
-        style: CustomTheme.headerStyle,
-      ),
-      icon: Icon(Icons.card_travel),
-    );
+            onPressed: () {
+              Get.offAll(() => CheckoutPage());
+            },
+            label: Text(
+              'Checkout',
+              style: CustomTheme.headerStyle,
+            ),
+            icon: Icon(Icons.card_travel),
+          );
   }
 }

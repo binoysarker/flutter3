@@ -38,7 +38,7 @@ class _CartButtonComponentState extends State<CartButtonComponent> {
         children: [
           IconButton(
               onPressed: () {
-                Get.to(() => CartDetailPage());
+                Get.offAll(() => CartDetailPage());
               },
               icon: Icon(Icons.shopping_cart)),
           CircleAvatar(

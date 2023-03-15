@@ -168,16 +168,16 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                           childAspectRatio: MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 1.8),
                           children: widget.givenList
-                              .map((element) => Card(
-                                    elevation: 5,
-                                    child: Column(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            print(widget.controllerType);
-                                            goToPage(element);
-                                          },
-                                          child: FadeInImage.assetNetwork(
+                              .map((element) => GestureDetector(
+                            onTap: () {
+                              print(widget.controllerType);
+                              goToPage(element);
+                            },
+                                child: Card(
+                                      elevation: 5,
+                                      child: Column(
+                                        children: [
+                                          FadeInImage.assetNetwork(
                                             width: 100,
                                             height: 100,
                                             placeholder:
@@ -191,55 +191,55 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                               height: 100,
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                          child: Text(
-                                            getName(element),
-                                            style: CustomTheme.headerStyle,
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              '${getPrice(element)}',
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                            child: Text(
+                                              getName(element),
                                               style: CustomTheme.headerStyle,
                                             ),
-                                            Obx(() => cartController
-                                                        .isLoading.isTrue &&
-                                                    selectedId ==
-                                                        int.parse(element.id)
-                                                ? Center(
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: CustomTheme
-                                                          .progressIndicatorColor,
-                                                    ),
-                                                  )
-                                                : IconButton(
-                                                    onPressed: () {
-                                                      selectedId =
-                                                          int.parse(element.id);
-                                                      print(
-                                                          'select item $element');
-                                                      // addItemToCart(element);
-                                                      UtilService.addItemToCart(
-                                                          element,
-                                                          ControllerTypeNames
-                                                              .productChildrenVariantItems
-                                                              .name);
-                                                    },
-                                                    icon: Icon(
-                                                        Icons.shopping_cart),
-                                                    color: Colors.lightGreen,
-                                                  ))
-                                          ],
-                                        )
-                                      ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                '${getPrice(element)}',
+                                                style: CustomTheme.headerStyle,
+                                              ),
+                                              Obx(() => cartController
+                                                          .isLoading.isTrue &&
+                                                      selectedId ==
+                                                          int.parse(element.id)
+                                                  ? Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color: CustomTheme
+                                                            .progressIndicatorColor,
+                                                      ),
+                                                    )
+                                                  : IconButton(
+                                                      onPressed: () {
+                                                        selectedId =
+                                                            int.parse(element.id);
+                                                        print(
+                                                            'select item $element');
+                                                        // addItemToCart(element);
+                                                        UtilService.addItemToCart(
+                                                            element,
+                                                            ControllerTypeNames
+                                                                .productChildrenVariantItems
+                                                                .name);
+                                                      },
+                                                      icon: Icon(
+                                                          Icons.shopping_cart),
+                                                      color: Colors.lightGreen,
+                                                    ))
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ))
+                              ))
                               .toList(),
                         ),
                       )

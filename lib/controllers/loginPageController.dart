@@ -101,7 +101,7 @@ class LoginPageController extends GetxController {
       final LocalStorage localStorage =
           new LocalStorage(LocalStorageStrings.auth_token.name);
       localStorage.clear();
-      Get.to(() => LoginPage());
+      Get.offAll(() => LoginPage());
       Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
       resetFormField();
     }
@@ -192,7 +192,7 @@ class LoginPageController extends GetxController {
                   LocalStorageStrings.auth_token.name, authToken)
             });
         GraphqlService.setToken(authToken);
-        Get.to(() => StorePage());
+        Get.offAll(() => StorePage());
       }
       utilityController.setLoadingState(false);
     }
@@ -234,7 +234,7 @@ class LoginPageController extends GetxController {
           'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
       final res = await http.get(url);
       print('${res.body}');
-      Get.to(() => VerifyOTPPage());
+      Get.offAll(() => VerifyOTPPage());
       resetFormField();
       verifyOTPForm.currentState!.reset();
     } on Exception catch (e) {
@@ -287,7 +287,7 @@ class LoginPageController extends GetxController {
             backgroundColor: Colors.greenAccent);
         sendRegistrationSuccessSms();
         showSignIn.value = true;
-        Get.to(() => RegisterSuccessPage());
+        Get.offAll(() => RegisterSuccessPage());
         resetFormField();
       } else {
         utilityController.setAlertMessage(true, 'some error');
@@ -322,7 +322,8 @@ class LoginPageController extends GetxController {
           'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
       final res = await http.get(url);
       print('${res.body}');
-      Get.to(() => ResetPasswordPage());
+      Get.offAll(() => ResetPasswordPage());
+      resetFormField();
     } on Exception catch (e) {
       print(e.toString());
     }

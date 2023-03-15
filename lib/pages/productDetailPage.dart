@@ -66,7 +66,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                    productsController.selectedProductDetail.value?.name ?? ''),
+                    UtilService.formateText(productsController.selectedProductDetail.value?.name ?? ''),style: CustomTheme.headerStyle2,),
                 cartController.isLoading.isTrue
                     ? Center(
                   child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,),
@@ -163,7 +163,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   int.parse(productsController
                                       .quantityController.text));
                             },
-                            child: Text('Add To Crat')),
+                            child: Text('Add To Crat',style: CustomTheme.headerStyle,)),
                       )
                     ],
                   ),
@@ -172,6 +172,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                   Text(
                     '${UtilService.parseHtmlData(productsController.productDetailResponse['description'])}',
+                    style: CustomTheme.paragraphStyle,
                   ),
                   Form(
                       child: Column(
@@ -190,7 +191,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                     .selectedDropdownItemId.value,
                                 items: productsController.productDetailVariants
                                     .map((e) => DropdownMenuItem(
-                                  child: Text(e.name),
+                                  child: Text(UtilService.formateText(e.name),style: CustomTheme.headerStyle,),
                                   value: e.id,
                                 ))
                                     .toList(),

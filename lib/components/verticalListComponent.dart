@@ -106,13 +106,13 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                       children: widget.givenList
                           .map((element) => element == null
                               ? SizedBox()
-                              : Card(
+                              : GestureDetector(
+                                onTap: () {
+                                    goToPage(element);
+                                  },
+                                child: Card(
                                   elevation: 5,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      goToPage(element);
-                                    },
-                                    child: Column(
+                                  child: Column(
                                       children: [
                                         FadeInImage.assetNetwork(
                                           width: 100,
@@ -170,8 +170,8 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ))
+                                ),
+                              ))
                           .toList(),
                     ),
                   )

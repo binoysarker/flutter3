@@ -4610,13 +4610,15 @@ Variables$Mutation$CancelOrderOnClientRequest
     _$Variables$Mutation$CancelOrderOnClientRequestFromJson(
             Map<String, dynamic> json) =>
         Variables$Mutation$CancelOrderOnClientRequest(
-          userId: json['userId'] as String,
+          orderId: json['orderId'] as String,
+          value: json['value'] as int,
         );
 
 Map<String, dynamic> _$Variables$Mutation$CancelOrderOnClientRequestToJson(
         Variables$Mutation$CancelOrderOnClientRequest instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'orderId': instance.orderId,
+      'value': instance.value,
     };
 
 Mutation$CancelOrderOnClientRequest

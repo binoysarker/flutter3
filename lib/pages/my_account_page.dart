@@ -138,7 +138,7 @@ class MyAccountPageState extends State<MyAccountPage> {
         final phoneNumberCtr = TextEditingController();
         street1Ctr.text = element.streetLine1.toString();
         street2Ctr.text = element.streetLine2.toString();
-        cityCtr.text = 'Mumbai';
+        cityCtr.text = 'madurai';
         postalCodeCtr.text = element.postalCode.toString();
         phoneNumberCtr.text = element.phoneNumber.toString();
         street1Controllers.add(street1Ctr);
@@ -281,7 +281,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                               street1Controllers[index].text,
                                           'street2':
                                               street2Controllers[index].text,
-                                          'city': 'Mumbai',
+                                          'city': 'madurai',
                                           'fullName':
                                               '${customerData['fname']} ${customerData['lname']}',
                                           'postalCode':

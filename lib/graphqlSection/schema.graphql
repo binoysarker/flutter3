@@ -567,7 +567,7 @@ type Mutation {
     applyCouponCode(couponCode: String!): ApplyCouponCodeResult!
     "Authenticates the user using a named authentication strategy"
     authenticate(input: AuthenticationInput!, rememberMe: Boolean): AuthenticationResult!
-    cancelOrderOnClientRequest(orderId: ID!): Order!
+    cancelOrderOnClientRequest(orderId: ID!, value: Int!): Order!
     "Create a new Customer Address"
     createCustomerAddress(input: CreateAddressInput!): Address!
     "Delete an existing Address"

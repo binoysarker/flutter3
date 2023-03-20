@@ -21,7 +21,8 @@ class TokenPageController extends GetxController {
   void onTokenSubmit(BuildContext context) async {
     final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
-    final res = await graphqlService.clientToQuery()
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value
         .mutate$VerifyCustomerAccount(Options$Mutation$VerifyCustomerAccount(
             variables: Variables$Mutation$VerifyCustomerAccount(
       token: tokenController.text,

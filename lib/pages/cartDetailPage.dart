@@ -101,7 +101,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
                     actions: [
                       TextButton(
                           onPressed: () {
+                            var activeOrder = orderController.activeOrderResponse.value!;
+                            orderController.requestToCancelOrder(activeOrder.id, 0);
                             orderController.removeAllItemFromOrder();
+                            orderController.getActiveOrders();
                             sleep(Duration(seconds: 1));
                             Navigator.pop(context);
                           },

@@ -34,7 +34,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       var message =
-          'Your order Id is ${widget.orderController.getOrderByCodeResponse.value!.code}, your bill value is Rs.${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}.you will get delivery on tomorrow 6am to 9am.By KAAIKANI';
+          'Your order Id is ${widget.orderController.getOrderByCodeResponse.value!.code}, your bill value is Rs.${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}.you will get delivery on tomorrow 5.30pm to 9pm.By KAAIKANI';
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(message, number);
@@ -136,7 +136,9 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                     ],
                                   ),
                                   Text(
-                                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',style: CustomTheme.headerStyle,),
+                                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
                                 ],
                               ),
                             ))
@@ -162,8 +164,8 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  widget.orderController
-                                      .activeOrderResponse.value!.couponCodes.first,
+                                  widget.orderController.activeOrderResponse
+                                      .value!.couponCodes.first,
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(

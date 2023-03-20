@@ -88,8 +88,9 @@ class LoginPageController extends GetxController {
 
   void onUserLogout() async {
     loading.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -145,9 +146,10 @@ class LoginPageController extends GetxController {
   }
 
   void onUserSignIn(BuildContext context) async {
+    
     final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
-    final signInResponse = await graphqlService.clientToQuery().mutate$SignIn(
+    final signInResponse = await graphqlService.client.value.mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
                 emailAddress:
@@ -184,14 +186,14 @@ class LoginPageController extends GetxController {
         // UtilService.createSnakeBar(context: context, text: 'Login successful');
         String authToken =
             '${signInResponse.context.entry<HttpLinkResponseContext>()?.headers['vendure-auth-token']}';
-        userController.currentAuthToken.value = authToken;
+        GraphqlService.currentAuthToken = authToken;
         final LocalStorage localStorage =
             new LocalStorage(LocalStorageStrings.auth_token.name);
         localStorage.ready.then((value) => {
               localStorage.setItem(
                   LocalStorageStrings.auth_token.name, authToken)
             });
-        GraphqlService.setToken(authToken);
+        // GraphqlService.setToken(authToken);
         Get.offAll(() => StorePage());
       }
       utilityController.setLoadingState(false);
@@ -201,7 +203,8 @@ class LoginPageController extends GetxController {
   void checkUniquePhone(String phone) async {
     try {
       print('phone $phone');
-      final res = await graphqlService.clientToQuery().query$CheckUniquePhone(
+      graphqlService = GraphqlService();
+      final res = await graphqlService.client.value.query$CheckUniquePhone(
           Options$Query$CheckUniquePhone(
               variables: Variables$Query$CheckUniquePhone(phone: phone)));
       if (res.hasException) {
@@ -260,7 +263,7 @@ class LoginPageController extends GetxController {
   void onUserRegister() async {
     utilityController.setLoadingState(true);
     final registerResponse = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$Register(Options$Mutation$Register(
             variables: Variables$Mutation$Register(
                 input: Input$RegisterCustomerInput(
@@ -300,7 +303,7 @@ class LoginPageController extends GetxController {
     try {
       final response = await this
           .graphqlService
-          .clientToQuery()
+          .client.value
           .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
               variables: Variables$Mutation$RequestPasswordReset(
                   email:
@@ -332,7 +335,7 @@ class LoginPageController extends GetxController {
   void resetUserPassword() async {
     loading.value = true;
     final res =
-        await this.graphqlService.clientToQuery().query$GetPasswordResetToken();
+        await this.graphqlService.client.value.query$GetPasswordResetToken();
     if (res.hasException) {
       print(res.exception.toString());
       loading.value = false;
@@ -342,7 +345,7 @@ class LoginPageController extends GetxController {
       print('password token $token');
       final response = await this
           .graphqlService
-          .clientToQuery()
+          .client.value
           .mutate$ResetPassword(Options$Mutation$ResetPassword(
               variables: Variables$Mutation$ResetPassword(
                   token: token, password: passwordController.text)));

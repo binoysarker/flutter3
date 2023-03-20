@@ -7,11 +7,13 @@ import 'package:recipe.app/services/commonVariables.dart';
 class GraphqlService {
   static dynamic link;
   static HttpLink httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
+  static String currentAuthToken = "";
 
   static void setToken(String token) {
     var localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
     var localToken = localStorage.getItem(LocalStorageStrings.auth_token.name);
-    AuthLink authLink = AuthLink(getToken: () async => 'Bearer ${localToken ?? token}');
+    AuthLink authLink =
+        AuthLink(getToken: () async => 'Bearer ${localToken ?? token}');
     print('current totken $token');
     GraphqlService.link = authLink.concat(GraphqlService.httpLink);
   }
@@ -20,26 +22,20 @@ class GraphqlService {
     GraphqlService.link = null;
   }
 
-  static Link getLink() {
-    return GraphqlService.link ?? GraphqlService.httpLink;
-  }
+
 
   ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(
-      link: getLink(),
+      link: AuthLink(getToken: () async {
+        if (GraphqlService.currentAuthToken != "") {
+          print('current token is ${GraphqlService.currentAuthToken}');
+          return 'Bearer ${GraphqlService.currentAuthToken}';
+        } else {
+          print('no token is there');
+          return "";
+        }
+      }).concat(GraphqlService.httpLink),
       cache: GraphQLCache(),
     ),
   );
-
-  GraphQLClient clientToQuery() {
-    return GraphQLClient(
-      cache: GraphQLCache(),
-      defaultPolicies: DefaultPolicies(
-        watchQuery: Policies(
-          fetch: FetchPolicy.cacheFirst
-        )
-      ),
-      link: getLink(),
-    );
-  }
 }

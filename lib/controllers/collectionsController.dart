@@ -1,25 +1,25 @@
+import 'package:get/get.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
-import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
-import 'package:get/get.dart';
 
 class CollectionsController extends GetxController {
-  final GraphqlService graphqlService = GraphqlService();
+  var graphqlService = GraphqlService();
   final UserController userController = Get.find<UserController>();
   final UtilityController utilityController = Get.find<UtilityController>();
   var collectionItems = <Query$GetAllCollections$collections$items>[].obs;
   var isLoading = false.obs;
   var collectionItemSelected = {}.obs;
-  var singleCollectionDetail = (null as Query$GetCollectionsByIdOrSlug$collection?).obs;
+  var singleCollectionDetail =
+      (null as Query$GetCollectionsByIdOrSlug$collection?).obs;
 
   void getAllCollections() async {
     try {
-      userController.checkAndSetToken();
       isLoading.value = true;
-      final res = await graphqlService.clientToQuery().query$GetAllCollections(
+      graphqlService = GraphqlService();
+      final res = await graphqlService.client.value.query$GetAllCollections(
           Options$Query$GetAllCollections(
               variables: Variables$Query$GetAllCollections(
                   input: Input$CollectionListOptions(take: 10))));
@@ -40,10 +40,9 @@ class CollectionsController extends GetxController {
 
   void getSingleCollectionDetail(String slug) async {
     try {
-      userController.checkAndSetToken();
       isLoading.value = true;
-      final res = await graphqlService
-          .clientToQuery()
+      graphqlService = GraphqlService();
+      final res = await graphqlService.client.value
           .query$GetCollectionsByIdOrSlug(
               Options$Query$GetCollectionsByIdOrSlug(
                   variables:

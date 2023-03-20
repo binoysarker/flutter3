@@ -115,7 +115,6 @@ class _StorePageState extends State<StorePage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-
                           SizedBox(
                             height: 0,
                           ),

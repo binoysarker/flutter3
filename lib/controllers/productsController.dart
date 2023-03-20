@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 class ProductsController extends GetxController {
-  final GraphqlService graphqlService = GraphqlService();
+  var graphqlService = GraphqlService();
   TextEditingController quantityController = TextEditingController();
   var currentQuantity = 1.obs;
   var isLoading = false.obs;
@@ -23,7 +23,8 @@ class ProductsController extends GetxController {
 
   void getProductsList() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$GetAllProducts(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.query$GetAllProducts(
         Options$Query$GetAllProducts(
             variables: Variables$Query$GetAllProducts(take: 10)));
     if (res.hasException) {
@@ -62,7 +63,8 @@ class ProductsController extends GetxController {
 
   void getProductDetail(String slug) async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$GetProductDetail(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.query$GetProductDetail(
         Options$Query$GetProductDetail(
             variables: Variables$Query$GetProductDetail(slug: slug)));
     if (res.hasException) {
@@ -82,7 +84,8 @@ class ProductsController extends GetxController {
 
   void searchForProducts(String searchText) async {
     searchInProgress.value = true;
-    final res = await graphqlService.clientToQuery().query$SearchProducts(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.query$SearchProducts(
         Options$Query$SearchProducts(
             variables: Variables$Query$SearchProducts(
                 input: Input$SearchInput(

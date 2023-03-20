@@ -19,7 +19,7 @@ class UserController with ChangeNotifier {
   var currentAuthenticatedUser =
       (null as Query$GetActiveCustomer$activeCustomer?).obs;
   var currentAuthToken = ''.obs;
-  final GraphqlService graphqlService = GraphqlService();
+  var graphqlService = GraphqlService();
   final UtilityController utilityController = Get.find<UtilityController>();
   var isLoading = false.obs;
   var isLoading2 = false.obs;
@@ -27,18 +27,13 @@ class UserController with ChangeNotifier {
   final LocalStorage storage =
       new LocalStorage(LocalStorageStrings.auth_token.name);
 
-  void checkAndSetToken() {
-    if (currentAuthToken.isNotEmpty) {
-      GraphqlService.setToken(currentAuthToken.value);
-    } else {
-      GraphqlService.removeToken();
-    }
-  }
+
 
   void logUserOutBeforeExit() async {
     isLoading2.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -57,8 +52,9 @@ class UserController with ChangeNotifier {
 
   void getActiveCustomer() async {
     isLoading2.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .query$GetActiveCustomer(Options$Query$GetActiveCustomer());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -82,7 +78,8 @@ class UserController with ChangeNotifier {
   void updateCustomer(
       String firstName, String lastName, String phoneNumber) async {
     isLoading2.value = true;
-    final res = await graphqlService.clientToQuery().mutate$UpdateCustomer(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$UpdateCustomer(
         Options$Mutation$UpdateCustomer(
             variables: Variables$Mutation$UpdateCustomer(
                 input: Input$UpdateCustomerInput(
@@ -103,8 +100,9 @@ class UserController with ChangeNotifier {
   void updateCustomerAddress(String id, String city, String streetLine1,
       String streetLine2, String fullName, postalCode, phoneNumber) async {
     isLoading2.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$UpdateCustomerAddress(Options$Mutation$UpdateCustomerAddress(
             variables: Variables$Mutation$UpdateCustomerAddress(
                 input: Input$UpdateAddressInput(
@@ -137,12 +135,12 @@ class UserController with ChangeNotifier {
 
   void getCurrentUser(BuildContext context) async {
     if (currentAuthToken.isNotEmpty) {
-      GraphqlService.setToken(currentAuthToken.value);
+      // GraphqlService.setToken(currentAuthToken.value);
     }
     final navigator = Navigator.of(context);
-
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .query$GetCurrentUser(Options$Query$GetCurrentUser());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -157,7 +155,6 @@ class UserController with ChangeNotifier {
     }
     if (res.data != null) {
       print('response ${res.data}');
-      final userInfo = res.parsedData?.me?.toJson();
     }
   }
 }

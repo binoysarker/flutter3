@@ -14,6 +14,7 @@ import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/models/createOrderResponseModel.dart';
+import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
@@ -65,9 +66,10 @@ class OrderController extends GetxController {
   var transitionToOrderStateResponse = {}.obs;
 
   void getActiveOrders() async {
+    graphqlService = GraphqlService();
     isLoading.value = true;
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .query$GetActiveOrder(Options$Query$GetActiveOrder());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -78,6 +80,7 @@ class OrderController extends GetxController {
         print('active orders ${res.parsedData!.activeOrder!.toJson()}');
         currencyCode.value = res.parsedData!.activeOrder!.currencyCode.name;
         activeOrderResponse.value = res.parsedData!.activeOrder;
+        print('total active orders ${activeOrderResponse.value!.totalQuantity}');
       }
       isLoading.value = false;
     }
@@ -85,7 +88,8 @@ class OrderController extends GetxController {
 
   Future<List<String>> getNextOrderStates() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$NextOrderStates();
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.query$NextOrderStates();
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -96,27 +100,31 @@ class OrderController extends GetxController {
     return res.parsedData!.nextOrderStates.toList();
   }
 
-  void requestToCancelOrder(String userId) async {
+  void requestToCancelOrder(String userId,int value) async {
+
     isLoading.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$CancelOrderOnClientRequest(
             Options$Mutation$CancelOrderOnClientRequest(
                 variables: Variables$Mutation$CancelOrderOnClientRequest(
-                    userId: userId)));
+                    orderId: userId,value: value)));
     if (res.hasException) {
       print(res.exception.toString());
     }
     if (res.data != null) {
       print(
           'requestToCancelOrder ${res.parsedData!.cancelOrderOnClientRequest.toJson()}');
+      Get.offAll(() => StorePage());
     }
   }
 
   void transitionToOrderState(String state) async {
     isLoading.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$TransitionOrderToState(Options$Mutation$TransitionOrderToState(
             variables:
                 Variables$Mutation$TransitionOrderToState(state: state)));
@@ -134,8 +142,9 @@ class OrderController extends GetxController {
 
   void transitionToArrangingPayment() async {
     isLoading.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$TransitionToArrangingPayment();
     if (res.hasException) {
       print(res.exception.toString());
@@ -159,7 +168,7 @@ class OrderController extends GetxController {
   void transitionToAddingItems() async {
     isLoading.value = true;
     final res =
-        await graphqlService.clientToQuery().mutate$TransitionToAddingItems();
+        await graphqlService.client.value.mutate$TransitionToAddingItems();
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -173,8 +182,9 @@ class OrderController extends GetxController {
 
   void addPaymentToOrder() async {
     isLoading.value = true;
+    graphqlService = GraphqlService();
     final res = await graphqlService
-        .clientToQuery()
+        .client.value
         .mutate$AddPayment(Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
@@ -206,7 +216,8 @@ class OrderController extends GetxController {
 
   void getOrderByCode(String code) async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().query$GetOrderByCode(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.query$GetOrderByCode(
         Options$Query$GetOrderByCode(
             variables: Variables$Query$GetOrderByCode(code: code)));
     if (res.hasException) {
@@ -222,7 +233,8 @@ class OrderController extends GetxController {
 
   void setShippingMethod() async {
     isLoading2.value = true;
-    final res = await graphqlService.clientToQuery().mutate$SetShippingMethod(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$SetShippingMethod(
         Options$Mutation$SetShippingMethod(
             variables: Variables$Mutation$SetShippingMethod(
                 id: currentlySelectedShippingMethodId.value)));
@@ -244,7 +256,7 @@ class OrderController extends GetxController {
   void getAvailableCountries() async {
     isLoading.value = true;
     final res =
-        await this.graphqlService.clientToQuery().query$GetAvailableCountries();
+        await this.graphqlService.client.value.query$GetAvailableCountries();
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
@@ -336,7 +348,8 @@ class OrderController extends GetxController {
   Future<bool> applyCouponCode(String couponCode) async {
     isLoading.value = true;
     var status = true;
-    final res = await graphqlService.clientToQuery().mutate$ApplyCouponCode(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$ApplyCouponCode(
         Options$Mutation$ApplyCouponCode(
             variables: Variables$Mutation$ApplyCouponCode(input: couponCode)));
     if (res.hasException) {
@@ -377,14 +390,15 @@ class OrderController extends GetxController {
 
   void setShippingAddress() async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$SetShippingAddress(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$SetShippingAddress(
         Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
                     streetLine1: streetLine1.text,
                     streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
-                    city: 'Mumbai',
+                    city: 'madurai',
                     province: 'Maharashtra',
                     fullName: fullName.text,
                     postalCode: postalCode.text,
@@ -418,7 +432,7 @@ class OrderController extends GetxController {
   void getEligiblePaymentMethod() async {
     eligiblePaymentIsLoading.value = true;
     final res =
-        await graphqlService.clientToQuery().query$GetEligiblePaymentMethods();
+        await graphqlService.client.value.query$GetEligiblePaymentMethods();
     if (res.hasException) {
       print(res.exception.toString());
       eligiblePaymentIsLoading.value = false;
@@ -435,7 +449,7 @@ class OrderController extends GetxController {
     isLoading.value = true;
     final res = await this
         .graphqlService
-        .clientToQuery()
+        .client.value
         .query$GetEligibleShippingMethods();
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -457,7 +471,7 @@ class OrderController extends GetxController {
     isLoading.value = true;
     final res = await this
         .graphqlService
-        .clientToQuery()
+        .client.value
         .query$GetOrderForCheckout(Options$Query$GetOrderForCheckout());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -471,7 +485,8 @@ class OrderController extends GetxController {
   }
 
   void adjustOrderLine(String orderLineId, int quantity) async {
-    final res = await graphqlService.clientToQuery().mutate$AdjustOrderLine(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$AdjustOrderLine(
         Options$Mutation$AdjustOrderLine(
             variables: Variables$Mutation$AdjustOrderLine(
                 orderLineId: orderLineId, quantity: quantity)));
@@ -486,7 +501,8 @@ class OrderController extends GetxController {
 
   void removeItemFromOrder(String orderLineId) async {
     isLoading.value = true;
-    final res = await graphqlService.clientToQuery().mutate$RemoveOrderLine(
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$RemoveOrderLine(
         Options$Mutation$RemoveOrderLine(
             variables:
                 Variables$Mutation$RemoveOrderLine(orderLineId: orderLineId)));
@@ -513,14 +529,14 @@ class OrderController extends GetxController {
   void removeAllItemFromOrder() async {
     isLoading.value = true;
     final res =
-        await graphqlService.clientToQuery().mutate$RemoveAllOrderLines();
+        await graphqlService.client.value.mutate$RemoveAllOrderLines();
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;
     }
     if (res.data != null) {
       print('${res.parsedData!.removeAllOrderLines.toJson()}');
-      getActiveOrders();
+
       isLoading.value = false;
     }
   }

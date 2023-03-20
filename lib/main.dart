@@ -1,5 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/controllers/bottomNavigationController.dart';
 import 'package:recipe.app/controllers/cartController.dart';
@@ -15,12 +21,6 @@ import 'package:recipe.app/routes/allRoutes.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'controllers/productsController.dart';
 import 'controllers/tokenPageController.dart';
@@ -53,6 +53,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   late StreamSubscription<User?> _subscription;
+  UserController userController = Get.find<UserController>();
   final _navigatorKey = new GlobalKey<NavigatorState>();
 
   @override
@@ -72,12 +73,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final LocalStorage storage = new LocalStorage(LocalStorageStrings.auth_token.name);
+    final LocalStorage storage =
+        new LocalStorage(LocalStorageStrings.auth_token.name);
     GraphqlService graphqlService = GraphqlService();
     return GraphQLProvider(
       client: graphqlService.client,
       child: GetMaterialApp(
-        title: 'Ecommerce App',
+        title: dotenv.env['App_Name'].toString(),
         debugShowCheckedModeBanner: false,
         navigatorKey: _navigatorKey,
         theme: CustomTheme.lightTheme,
@@ -86,21 +88,22 @@ class _MyAppState extends State<MyApp> {
         getPages: RoutesClass.routes,
         home: FutureBuilder(
             future: storage.ready,
-            builder: (BuildContext context,snapshot){
-              if(snapshot.hasData){
-                  final authToken = storage.getItem(LocalStorageStrings.auth_token.name);
-                  print('auth token $authToken');
-                  if(authToken == null){
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasData) {
+                final authToken =
+                    storage.getItem(LocalStorageStrings.auth_token.name);
+                print('auth token $authToken');
+                if (authToken == null) {
                   return LoginPage();
-                  }else {
-                    GraphqlService.setToken(authToken);
-                    return StorePage();
-                  }
-
-              }else {
+                } else {
+                  GraphqlService.currentAuthToken = authToken;
+                  // GraphqlService.setToken(authToken);
+                  return StorePage();
+                }
+              } else {
                 return LoginPage();
               }
-        }),
+            }),
       ),
     );
   }

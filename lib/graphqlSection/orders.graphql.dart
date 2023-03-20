@@ -1,3 +1,4 @@
+import 'authentication.graphql.dart';
 import 'cart_data.graphql.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
@@ -32035,20 +32036,24 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
 
 @JsonSerializable(explicitToJson: true)
 class Variables$Mutation$CancelOrderOnClientRequest {
-  Variables$Mutation$CancelOrderOnClientRequest({required this.userId});
+  Variables$Mutation$CancelOrderOnClientRequest(
+      {required this.orderId, required this.value});
 
   @override
   factory Variables$Mutation$CancelOrderOnClientRequest.fromJson(
           Map<String, dynamic> json) =>
       _$Variables$Mutation$CancelOrderOnClientRequestFromJson(json);
 
-  final String userId;
+  final String orderId;
+
+  final int value;
 
   Map<String, dynamic> toJson() =>
       _$Variables$Mutation$CancelOrderOnClientRequestToJson(this);
   int get hashCode {
-    final l$userId = userId;
-    return Object.hashAll([l$userId]);
+    final l$orderId = orderId;
+    final l$value = value;
+    return Object.hashAll([l$orderId, l$value]);
   }
 
   @override
@@ -32056,9 +32061,12 @@ class Variables$Mutation$CancelOrderOnClientRequest {
     if (identical(this, other)) return true;
     if (!(other is Variables$Mutation$CancelOrderOnClientRequest) ||
         runtimeType != other.runtimeType) return false;
-    final l$userId = userId;
-    final lOther$userId = other.userId;
-    if (l$userId != lOther$userId) return false;
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (l$orderId != lOther$orderId) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
     return true;
   }
 
@@ -32078,7 +32086,7 @@ abstract class CopyWith$Variables$Mutation$CancelOrderOnClientRequest<TRes> {
           TRes res) =
       _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest;
 
-  TRes call({String? userId});
+  TRes call({String? orderId, int? value});
 }
 
 class _CopyWithImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
@@ -32092,11 +32100,14 @@ class _CopyWithImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? userId = _undefined}) =>
+  TRes call({Object? orderId = _undefined, Object? value = _undefined}) =>
       _then(Variables$Mutation$CancelOrderOnClientRequest(
-          userId: userId == _undefined || userId == null
-              ? _instance.userId
-              : (userId as String)));
+          orderId: orderId == _undefined || orderId == null
+              ? _instance.orderId
+              : (orderId as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as int)));
 }
 
 class _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
@@ -32105,7 +32116,7 @@ class _CopyWithStubImpl$Variables$Mutation$CancelOrderOnClientRequest<TRes>
 
   TRes _res;
 
-  call({String? userId}) => _res;
+  call({String? orderId, int? value}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -32217,8 +32228,13 @@ const documentNodeMutationCancelOrderOnClientRequest =
       name: NameNode(value: 'CancelOrderOnClientRequest'),
       variableDefinitions: [
         VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'userId')),
+            variable: VariableNode(name: NameNode(value: 'orderId')),
             type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'value')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: true),
             defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
@@ -32230,7 +32246,10 @@ const documentNodeMutationCancelOrderOnClientRequest =
             arguments: [
               ArgumentNode(
                   name: NameNode(value: 'orderId'),
-                  value: VariableNode(name: NameNode(value: 'userId')))
+                  value: VariableNode(name: NameNode(value: 'orderId'))),
+              ArgumentNode(
+                  name: NameNode(value: 'value'),
+                  value: VariableNode(name: NameNode(value: 'value')))
             ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [

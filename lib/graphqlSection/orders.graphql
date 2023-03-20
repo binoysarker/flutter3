@@ -131,8 +131,8 @@ mutation SetShippingMethod($id: ID!) {
         __typename
     }
 }
-mutation CancelOrderOnClientRequest($userId: ID!){
-    cancelOrderOnClientRequest(orderId: $userId){
+mutation CancelOrderOnClientRequest($orderId: ID!,$value: Int!){
+    cancelOrderOnClientRequest(orderId: $orderId, value: $value){
         ...Cart
     }
 }

@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:recipe.app/pages/categoryDetailPage.dart';
 import 'package:recipe.app/themes.dart';
+
+import '../controllers/collectionsController.dart';
 
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({Key? key}) : super(key: key);
@@ -16,6 +19,8 @@ class _DrawerComponentState extends State<DrawerComponent> {
   final UserController userController = Get.find<UserController>();
   final LoginPageController loginPageController =
       Get.find<LoginPageController>();
+  final CollectionsController collectionsController =
+      Get.find<CollectionsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,6 @@ class _DrawerComponentState extends State<DrawerComponent> {
               children: [
                 Row(
                   children: [
-
                     Text(
                       '${currentAuthenticatedUser!.firstName.capitalize} ${currentAuthenticatedUser.lastName.capitalize}',
                       style: CustomTheme.headerStyle,
@@ -44,17 +48,51 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 ),
                 Row(
                   children: [
-                    Text('Phone: ',style: CustomTheme.headerStyle,),
-                    Text('${currentAuthenticatedUser.phoneNumber}',style: CustomTheme.paragraphStyle,)
+                    Text(
+                      'Phone: ',
+                      style: CustomTheme.headerStyle,
+                    ),
+                    Text(
+                      '${currentAuthenticatedUser.phoneNumber}',
+                      style: CustomTheme.paragraphStyle,
+                    )
                   ],
                 )
               ],
             ),
-            
+          ),
+          Obx(
+            () => collectionsController.collectionItems.isEmpty
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: CustomTheme.progressIndicatorColor,
+                    ),
+                  )
+                : Card(
+                  child: Column(
+                    children: [
+                      Text('Categories',style: CustomTheme.headerStyle,),
+                      SizedBox(
+                        height: 400,
+                        child: ListView(
+                          children: collectionsController.collectionItems.map((element) => ListTile(
+                            title: Text(element.name,style: CustomTheme.headerStyle,),
+                            onTap: () {
+                              Get.to(() => CategoryDetailPage(),arguments: {'slug': element.slug});
+                            },
+                          )).toList(),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
           ),
           ListTile(
             leading: Icon(Icons.logout),
-            title: Text('Sign out', style: CustomTheme.headerStyle,),
+            title: Text(
+              'Sign out',
+              style: CustomTheme.headerStyle,
+            ),
             onTap: () {
               // await FirebaseAuth.instance.signOut();
               drawerComponentKey.currentState?.closeDrawer();

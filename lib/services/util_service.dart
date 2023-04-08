@@ -50,8 +50,8 @@ class UtilService {
     print('select item $element controller type $controllerType');
     if(controllerType == ControllerTypeNames.productVariantItems.name){
       var item = element as Query$GetAllProducts$products$items;
-      item.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
-      cartController.addItemToCart(item.id, 1);
+      var selectedVariant = item.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
+      cartController.addItemToCart(selectedVariant!.id, 1);
     }
     if(controllerType == ControllerTypeNames.productChildrenVariantItems.name){
       var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
@@ -138,6 +138,8 @@ class UtilService {
       {text = 'some message', required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
+
+
 
   static Future<void> showMyDialog(
       {required BuildContext context, required String message}) async {

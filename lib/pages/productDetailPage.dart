@@ -163,7 +163,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   int.parse(productsController
                                       .quantityController.text));
                             },
-                            child: Text('Add To Crat',style: CustomTheme.headerStyle,)),
+                            child: Text('Add To Cart',style: CustomTheme.headerStyle,)),
                       )
                     ],
                   ),

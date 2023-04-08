@@ -20,7 +20,7 @@ class CartController extends GetxController {
     if (res.hasException) {
       print('add item response ${res.exception.toString()}');
       isLoading.value = false;
-      Get.snackbar('Error', res.exception.toString());
+      Get.snackbar('Error', 'can not add item to cart',backgroundColor: Colors.red,colorText: Colors.white);
       orderController.removeAllItemFromOrder();
     }
     if (res.data != null) {

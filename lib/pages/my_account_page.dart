@@ -59,7 +59,7 @@ class MyAccountPageState extends State<MyAccountPage> {
             ),
             keyboardType: TextInputType.name,
             autofillHints: [AutofillHints.familyName],
-            validator: RequiredValidator(errorText: 'Streeet 1 required'),
+            validator: RequiredValidator(errorText: 'Street 1 required'),
           ),
         ),
         Padding(

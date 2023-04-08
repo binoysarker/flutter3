@@ -104,7 +104,7 @@ class _StorePageState extends State<StorePage> {
                     ),
                   ),
                   Center(
-                    child: Text('Absurdly fresh grocery, delivered',
+                    child: Text('Veedu Varai',
                         style: CustomTheme.headerStyle),
                   ),
                   SearchComponent(

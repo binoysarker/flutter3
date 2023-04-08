@@ -141,10 +141,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 }
               },
               onStepCancel: () {
-                if (orderController.currentStep.value == 0 ||
-                    orderController.currentStep.value == 2) {
+                if(orderController.currentStep.value == 0){
+                  Get.offAll(() => StorePage());
+                }else if(orderController.currentStep.value == 2){
                   null;
-                } else {
+                }else {
                   orderController.currentStep.value--;
                 }
               },

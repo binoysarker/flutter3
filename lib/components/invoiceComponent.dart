@@ -19,6 +19,7 @@ class InvoiceComponent extends StatefulWidget {
 
 class _InvoiceComponentState extends State<InvoiceComponent> {
   final UserController userController = Get.find<UserController>();
+  OrderController orderController = Get.find<OrderController>();
 
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
@@ -38,6 +39,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(message, number);
+      orderController.useCurrentUserAddress.value = false;
     });
   }
 

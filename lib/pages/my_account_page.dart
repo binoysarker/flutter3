@@ -309,6 +309,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                         });
                                       });
                                       print('valid');
+                                      showForm.value = false;
                                     } else {
                                       Get.snackbar(
                                           '', 'Please fill up the form',

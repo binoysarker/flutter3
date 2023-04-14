@@ -58,7 +58,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget build(BuildContext context) {
     List<Step> getSteps() => [
           Step(
-              title: Text('Shipping'),
+              title: Text('Shipping',style: CustomTheme.headerStyle,),
               isActive: orderController.currentStep.value >= 0,
               state: orderController.currentStep.value > 0
                   ? StepState.complete
@@ -69,7 +69,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     )
                   : ShippingAddressComponent(orderController: orderController)),
           Step(
-              title: Text('Payment'),
+              title: Text('Payment',style: CustomTheme.headerStyle,),
               isActive: orderController.currentStep.value > 0,
               state: orderController.currentStep.value > 1
                   ? StepState.complete
@@ -80,7 +80,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     )
                   : PaymentMethodComponent(orderController: orderController))),
           Step(
-              title: Text('Complete'),
+              title: Text('Complete',style: CustomTheme.headerStyle,),
               isActive: orderController.currentStep.value > 1,
               state: orderController.currentStep.value == 2
                   ? StepState.complete
@@ -96,7 +96,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Checkout'),
+        title: Text('Checkout',style: CustomTheme.headerStyle,),
       ),
       body: Obx(() => orderController.isLoading.isTrue
           ? LoadingSpinnerComponent()
@@ -110,27 +110,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 if (orderController.currentStep.value == 0) {
                   print(
                       '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
-                  final form = shippingAddressFormKey.currentState!;
-                  if (form.validate()) {
-                    print('validated');
-                    print('has coupon code ${orderController.hasCouponCode}');
-                    if(orderController.hasCouponCode.isTrue){
-                      var res = orderController.applyCouponCode(orderController.couponCode.text);
-                      res.then((value){
-                        print(value);
-                        if(value) {
-                          orderController.setShippingAddress();
-                          orderController.setShippingMethod();
-                        }
-                      });
-                    }else {
+                  if(orderController.useCurrentUserAddress.value) {
                     orderController.setShippingAddress();
                     orderController.setShippingMethod();
+                  }else {
+                  final form = shippingAddressFormKey.currentState!;
+                    if (form.validate()) {
+                      print('validated');
+                      print('has coupon code ${orderController.hasCouponCode}');
+                      if(orderController.hasCouponCode.isTrue){
+                        var res = orderController.applyCouponCode(orderController.couponCode.text);
+                        res.then((value){
+                          print(value);
+                          if(value) {
+                            orderController.setShippingAddress();
+                            orderController.setShippingMethod();
+                          }
+                        });
+                      }else {
+                        orderController.setShippingAddress();
+                        orderController.setShippingMethod();
+                      }
+
+                    } else {
+                      print('invalid');
+                      Get.snackbar('', 'Please fill up the form',colorText: Colors.red,backgroundColor: Colors.yellow,);
                     }
 
-                  } else {
-                    print('invalid');
-                    Get.snackbar('', 'Please fill up the form',colorText: Colors.red,backgroundColor: Colors.yellow,);
                   }
                 } else if (orderController.currentStep.value == 2) {
                   print('last step ${orderController.currentStep.value}');

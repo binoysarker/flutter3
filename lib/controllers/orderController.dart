@@ -10,6 +10,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
+import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
@@ -29,6 +30,7 @@ class OrderController extends GetxController {
   TextEditingController country = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController couponCode = TextEditingController();
+  UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
@@ -64,12 +66,12 @@ class OrderController extends GetxController {
   var getOrderByCodeResponse = (null as Query$GetOrderByCode$orderByCode?).obs;
 
   var transitionToOrderStateResponse = {}.obs;
+  var useCurrentUserAddress = false.obs;
 
   void getActiveOrders() async {
     graphqlService = GraphqlService();
     isLoading.value = true;
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .query$GetActiveOrder(Options$Query$GetActiveOrder());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -80,7 +82,8 @@ class OrderController extends GetxController {
         print('active orders ${res.parsedData!.activeOrder!.toJson()}');
         currencyCode.value = res.parsedData!.activeOrder!.currencyCode.name;
         activeOrderResponse.value = res.parsedData!.activeOrder;
-        print('total active orders ${activeOrderResponse.value!.totalQuantity}');
+        print(
+            'total active orders ${activeOrderResponse.value!.totalQuantity}');
       }
       isLoading.value = false;
     }
@@ -100,16 +103,14 @@ class OrderController extends GetxController {
     return res.parsedData!.nextOrderStates.toList();
   }
 
-  void requestToCancelOrder(String userId,int value) async {
-
+  void requestToCancelOrder(String userId, int value) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .mutate$CancelOrderOnClientRequest(
             Options$Mutation$CancelOrderOnClientRequest(
                 variables: Variables$Mutation$CancelOrderOnClientRequest(
-                    orderId: userId,value: value)));
+                    orderId: userId, value: value)));
     if (res.hasException) {
       print(res.exception.toString());
     }
@@ -123,9 +124,8 @@ class OrderController extends GetxController {
   void transitionToOrderState(String state) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
-        .mutate$TransitionOrderToState(Options$Mutation$TransitionOrderToState(
+    final res = await graphqlService.client.value.mutate$TransitionOrderToState(
+        Options$Mutation$TransitionOrderToState(
             variables:
                 Variables$Mutation$TransitionOrderToState(state: state)));
     if (res.hasException) {
@@ -143,9 +143,8 @@ class OrderController extends GetxController {
   void transitionToArrangingPayment() async {
     isLoading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
-        .mutate$TransitionToArrangingPayment();
+    final res =
+        await graphqlService.client.value.mutate$TransitionToArrangingPayment();
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -162,8 +161,6 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
   }
-
-
 
   void transitionToAddingItems() async {
     isLoading.value = true;
@@ -183,8 +180,7 @@ class OrderController extends GetxController {
   void addPaymentToOrder() async {
     isLoading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .mutate$AddPayment(Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
@@ -201,16 +197,18 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       var jsonData = res.parsedData!.addPaymentToOrder.toJson();
-      if(jsonData.containsKey('message')){
-        Get.snackbar('', jsonData['message'],backgroundColor: Colors.red,colorText: Colors.white);
-      }else {
-
-        print('add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
-        addPaymentToOrderResponse.value = res.parsedData!.addPaymentToOrder.toJson();
+      if (jsonData.containsKey('message')) {
+        Get.snackbar('', jsonData['message'],
+            backgroundColor: Colors.red, colorText: Colors.white);
+      } else {
+        print(
+            'add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
+        addPaymentToOrderResponse.value =
+            res.parsedData!.addPaymentToOrder.toJson();
         getOrderByCode(addPaymentToOrderResponse.value['code']);
         currentStep.value++;
       }
-        isLoading.value = false;
+      isLoading.value = false;
     }
   }
 
@@ -332,7 +330,6 @@ class OrderController extends GetxController {
 
         Timer(Duration(seconds: 3), () {
           addPaymentToOrder();
-
         });
       } else {
         print('not verified');
@@ -370,16 +367,14 @@ class OrderController extends GetxController {
             backgroundColor: Colors.yellow,
             duration: Duration(seconds: 2));
         status = false;
-      }
-      else if (res.parsedData!.applyCouponCode.$__typename ==
+      } else if (res.parsedData!.applyCouponCode.$__typename ==
           'CouponCodeExpiredError') {
         Get.snackbar('', 'Coupon Code is expired',
             colorText: Colors.red,
             backgroundColor: Colors.yellow,
             duration: Duration(seconds: 2));
         status = false;
-      }
-      else if (res.parsedData!.applyCouponCode.$__typename == 'order') {
+      } else if (res.parsedData!.applyCouponCode.$__typename == 'order') {
         print('code is applied');
         status = true;
       }
@@ -395,14 +390,29 @@ class OrderController extends GetxController {
         Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
-                    streetLine1: streetLine1.text,
-                    streetLine2: streetLine2.text,
+                    streetLine1: useCurrentUserAddress.value
+                        ? userController.currentAuthenticatedUser.value!
+                            .addresses!.first.streetLine1
+                        : streetLine1.text,
+                    streetLine2: useCurrentUserAddress.value
+                        ? userController.currentAuthenticatedUser.value!
+                            .addresses!.first.streetLine2
+                        : streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
                     city: 'madurai',
                     province: 'Maharashtra',
-                    fullName: fullName.text,
-                    postalCode: postalCode.text,
-                    phoneNumber: phoneNumber.text))));
+                    fullName: useCurrentUserAddress.value
+                        ? userController.currentAuthenticatedUser.value!
+                            .addresses!.first.fullName
+                        : fullName.text,
+                    postalCode: useCurrentUserAddress.value
+                        ? userController.currentAuthenticatedUser.value!
+                            .addresses!.first.postalCode
+                        : postalCode.text,
+                    phoneNumber: useCurrentUserAddress.value
+                        ? userController.currentAuthenticatedUser.value!
+                            .addresses!.first.phoneNumber
+                        : phoneNumber.text))));
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -449,7 +459,8 @@ class OrderController extends GetxController {
     isLoading.value = true;
     final res = await this
         .graphqlService
-        .client.value
+        .client
+        .value
         .query$GetEligibleShippingMethods();
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -471,7 +482,8 @@ class OrderController extends GetxController {
     isLoading.value = true;
     final res = await this
         .graphqlService
-        .client.value
+        .client
+        .value
         .query$GetOrderForCheckout(Options$Query$GetOrderForCheckout());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -528,8 +540,7 @@ class OrderController extends GetxController {
 
   void removeAllItemFromOrder() async {
     isLoading.value = true;
-    final res =
-        await graphqlService.client.value.mutate$RemoveAllOrderLines();
+    final res = await graphqlService.client.value.mutate$RemoveAllOrderLines();
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading.value = false;

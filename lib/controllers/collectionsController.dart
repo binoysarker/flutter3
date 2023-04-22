@@ -52,7 +52,7 @@ class CollectionsController extends GetxController {
         isLoading.value = false;
       }
       if (res.data != null) {
-        print('collection data ${res.parsedData!.collection!.toJson()}');
+        print('single collection data ${res.parsedData!.collection!.toJson()}');
         singleCollectionDetail.value = res.parsedData!.collection!;
         isLoading.value = false;
       }

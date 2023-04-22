@@ -73,7 +73,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                           image:
                               '${collectionsController.singleCollectionDetail.value?.featuredAsset?.preview}',
                           imageErrorBuilder: (context, error, stackTrace) =>
-                              Image.asset('${CommonVariableData.placeholder}'),
+                              Image.asset(
+                                  '${CommonVariableData.placeholder}'),
                         ),
                         SizedBox(
                           height: 20,

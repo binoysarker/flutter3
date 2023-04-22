@@ -599,6 +599,10 @@ Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
           id: json['id'] as String,
           name: json['name'] as String,
           slug: json['slug'] as String,
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
@@ -610,6 +614,7 @@ Map<String, dynamic>
           'id': instance.id,
           'name': instance.name,
           'slug': instance.slug,
+          'featuredAsset': instance.featuredAsset?.toJson(),
           '__typename': instance.$__typename,
         };
 

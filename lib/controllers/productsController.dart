@@ -17,7 +17,7 @@ class ProductsController extends GetxController {
   var selectedDropdownItemId = ''.obs;
   // ignore: unnecessary_cast
   var selectedProductDetail = (null as Query$GetProductDetail$product$variants?).obs;
-  var productDetailResponse = {}.obs;
+  var productDetailResponse = (null as Query$GetProductDetail$product?).obs;
   var basePrice = 0.obs;
   var updatedPrice = 0.obs;
 
@@ -73,7 +73,7 @@ class ProductsController extends GetxController {
     }
     if (res.data != null) {
       print('products detail ${res.parsedData!.product!.toJson()}');
-      productDetailResponse.value = res.parsedData!.product!.toJson();
+      productDetailResponse.value = res.parsedData!.product;
       productDetailVariants.value = res.parsedData!.product!.variants;
       selectedDropdownItemId.value =
           productDetailVariants.value.map((element) => element.id).toList()[0];

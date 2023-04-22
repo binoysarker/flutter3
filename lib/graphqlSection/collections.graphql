@@ -39,6 +39,9 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
                     id
                     name
                     slug
+                    featuredAsset {
+                        ...Asset
+                    }
                 }
             }
         }

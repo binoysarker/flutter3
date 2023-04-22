@@ -53,6 +53,7 @@ query SearchProducts($input: SearchInput!) {
                 }
                 __typename
             }
+
             productAsset {
                 id
                 preview

@@ -125,9 +125,13 @@ class UtilService {
     return symble;
   }
 
-  static String parseHtmlData(String text) {
-    var document = parse(text);
-    return parse(document.body!.text).documentElement!.text;
+  static String parseHtmlData(String? text) {
+    if(text != null){
+      var document = parse(text);
+      return parse(document.body!.text).documentElement!.text;
+    }else {
+      return '';
+    }
   }
 
   static formateText(String text) {

@@ -47,6 +47,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           var item = productsController.selectedProductDetail.value?.toJson();
           print('other item $item');
         }
+    }else {
+      url = productsController.productDetailResponse.value!.featuredAsset!.preview;
     }
     return url;
   }
@@ -82,7 +84,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             )),
           ),
           body: Card(
-            child: Obx(() => productsController.selectedProductDetail.value == null
+            child: Obx(() => productsController.productDetailResponse.value == null
                 ? Container(
               child: Center(
                 child: CircularProgressIndicator(
@@ -171,7 +173,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     height: 20,
                   ),
                   Text(
-                    '${UtilService.parseHtmlData(productsController.productDetailResponse['description'])}',
+                    '${UtilService.parseHtmlData(productsController.productDetailResponse.value?.description)}',
                     style: CustomTheme.paragraphStyle,
                   ),
                   Form(

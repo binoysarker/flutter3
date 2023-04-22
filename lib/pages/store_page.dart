@@ -123,7 +123,7 @@ class _StorePageState extends State<StorePage> {
                                 showSecondLine: false,
                                 givenList: collectionsController.collectionItems,
                                 givenTitle: 'Shop By Category',
-                                controllerType: 'collection',
+                                controllerType: ControllerTypeNames.collection.name,
                                 givenHeight: 300,
                               )),
                           // all products

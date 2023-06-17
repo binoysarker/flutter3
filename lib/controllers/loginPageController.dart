@@ -229,8 +229,9 @@ class LoginPageController extends GetxController {
     try {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
+      // OTP TEMPLATE
       smsQuery.value['message'] =
-          'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
+          'Your OTP is ${currentlyGivenOTP.value} for login to Kaaikani app registration. Please do not share it with anyone.';
       smsQuery.value['to'] = '${phoneNumber.text}';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
@@ -317,8 +318,9 @@ class LoginPageController extends GetxController {
       }
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
+      // Reset password
       smsQuery.value['message'] =
-          'KAAIKANI App Registration Code is ${currentlyGivenOTP.value}.Use this to verify your mobile. By KAAIKANI';
+          'your OTP to reset password for Kaaikani app is ${currentlyGivenOTP.value}.Please do not share it with anyone.';
       smsQuery.value['to'] = '${phoneNumber.text}';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),

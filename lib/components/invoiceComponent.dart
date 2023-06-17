@@ -34,8 +34,9 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // Morning or Evening Delivery
       var message =
-          'Your order Id is ${widget.orderController.getOrderByCodeResponse.value!.code}, your bill value is Rs.${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}.you will get delivery on tomorrow 5.30pm to 9pm.By KAAIKANI';
+          'your Kaaikani App order ID is ${widget.orderController.getOrderByCodeResponse.value!.code}. you will receive the delivery on ##var2## 6pm to 9pm.';
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(message, number);

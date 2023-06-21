@@ -35,11 +35,20 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       // Morning or Evening Delivery
-      var message =
-          'your Kaaikani App order ID is ${widget.orderController.getOrderByCodeResponse.value!.code}. you will receive the delivery on ##var2## 6pm to 9pm.';
+      var currentTime = DateTime.now();
+      var givenTime = DateTime(
+          currentTime.year, currentTime.month, currentTime.day, 18, 0, 0);
+      var showEveningSms = false;
+      if (currentTime.isAfter(givenTime)) {
+        showEveningSms = true;
+      }
+      var templateId = showEveningSms
+          ? "648567a2d6fc054b7b1992f3"
+          : "6485674cd6fc0561530bb6f2";
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
-      UtilService.sendSms(message, number);
+      UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
+          '${widget.orderController.getOrderByCodeResponse.value!.code}','');
       orderController.useCurrentUserAddress.value = false;
     });
   }

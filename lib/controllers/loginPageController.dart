@@ -37,17 +37,16 @@ class LoginPageController extends GetxController {
   var showSignIn = true.obs;
   var loading = false.obs;
   var currentlyGivenOTP = 0.obs;
-  var smsQuery = {
-    'userid': '1671',
-    'password': 'trP2V3o5bhZTK9JM',
-    'sender': 'SMSKAI',
-    'to': '9840032880',
-    'message':
-        'KAAIKANI App Registration Code is 81154.Use this to verify your mobile. By KAAIKANI',
-    'reqid': '1',
-    'format': '{json|text}',
-    'route_id': '3'
+  var smsData = {
+    "template_id": "64638d10d6fc0577471d20a2",
+    "sender": "KAIMSG",
+    "mobiles": "919XXXXXXXXX",
   }.obs;
+  var headerData = {
+    'accept': 'application/json',
+    'authkey': '395929AcYuel89696451b515P1',
+    'content-type': 'application/json'
+  };
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
 
@@ -161,7 +160,7 @@ class LoginPageController extends GetxController {
       utilityController.setLoadingState(false);
       Get.snackbar('Error', 'Please Login again',
           colorText: Colors.white, backgroundColor: Colors.red);
-      Get.offAll(() => LoginPage());
+      Get.to(() => LoginPage());
     }
     if (signInResponse.data != null) {
       debugPrint('onUserSignIn ${signInResponse.data}');
@@ -230,12 +229,12 @@ class LoginPageController extends GetxController {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
       // OTP TEMPLATE
-      smsQuery.value['message'] =
+      smsData.value['message'] =
           'Your OTP is ${currentlyGivenOTP.value} for login to Kaaikani app registration. Please do not share it with anyone.';
-      smsQuery.value['to'] = '${phoneNumber.text}';
+      smsData.value['to'] = '${phoneNumber.text}';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
+          '/api/v5/flow/', smsData.value);
       final res = await http.get(url);
       print('${res.body}');
       Get.offAll(() => VerifyOTPPage());
@@ -248,13 +247,14 @@ class LoginPageController extends GetxController {
 
   void sendRegistrationSuccessSms() async {
     try {
-      smsQuery.value['message'] =
-          'Thank you for registering in KAAIKANI app.you can proceed to order in KAAIKANI app';
-      smsQuery.value['to'] = '${phoneNumber.text}';
+      // registration sms
+      smsData.value['mobiles'] = '${phoneNumber.text}';
+      smsData.value['OTP'] = '${currentlyGivenOTP.value}';
+      smsData.value['template_id'] = '64638d10d6fc0577471d20a2';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
-      final res = await http.get(url);
+          '/api/v5/flow/');
+      final res = await http.post(url,headers: headerData,body: smsData.value);
       print('${res.body}');
     } on Exception catch (e) {
       print(e.toString());
@@ -319,13 +319,14 @@ class LoginPageController extends GetxController {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
       // Reset password
-      smsQuery.value['message'] =
-          'your OTP to reset password for Kaaikani app is ${currentlyGivenOTP.value}.Please do not share it with anyone.';
-      smsQuery.value['to'] = '${phoneNumber.text}';
+
+      smsData.value['mobiles'] = '${phoneNumber.text}';
+      smsData.value['number'] = '${currentlyGivenOTP.value}';
+      smsData.value['template_id'] = '646b079bd6fc050f4533f312';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          'API/WebSMS/Http/v1.0a/index.php', smsQuery.value);
-      final res = await http.get(url);
+          '/api/v5/flow/');
+      final res = await http.post(url,headers: headerData,body: smsData.value);
       print('${res.body}');
       Get.offAll(() => ResetPasswordPage());
       resetFormField();

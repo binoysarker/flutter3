@@ -908,6 +908,38 @@ type OrderTaxSummary {
     taxTotal: Int!
 }
 
+type Page implements Node {
+    createdAt: DateTime!
+    enabled: Boolean
+    id: ID!
+    position: String
+    sections: [PageSection!]
+    slug: String
+    text: String
+    title: String
+    translations(languageCode: LanguageCode): [PageTranslation!]!
+    updatedAt: DateTime!
+}
+
+type PageList implements PaginatedList {
+    items: [Page!]!
+    totalItems: Int!
+}
+
+type PageSection {
+    value: String!
+}
+
+type PageTranslation {
+    createdAt: DateTime!
+    id: ID!
+    languageCode: LanguageCode!
+    slug: String!
+    text: String!
+    title: String!
+    updatedAt: DateTime!
+}
+
 "Returned when attempting to verify a customer account with a password, when a password has already been set."
 type PasswordAlreadySetError implements ErrorResult {
     errorCode: ErrorCode!
@@ -1176,6 +1208,16 @@ type Query {
     general anonymous access to Order data.
     """
     orderByCode(code: String!): Order
+    page(id: ID!): Page
+    "Return a page by its slug. languageCode is deprecated, the general languageCode setting is used"
+    pageBySlug(languageCode: LanguageCode, slug: String!): Page
+    """
+
+    Returns all pages matching a section ordered by their position.
+    Separate by comma for multiple sections.
+    Won't return disabled pages.
+    """
+    pagesBySection(options: PageListOptions, sections: [String!]): PageList!
     "Get a Product either by id or slug. If neither 'id' nor 'slug' is specified, an error will result."
     product(id: ID, slug: String): Product
     "Get a list of Products"
@@ -2255,6 +2297,8 @@ enum Permission {
     CreateFacet
     "Grants permission to create Order"
     CreateOrder
+    "Grants permission to create Pages"
+    CreatePages
     "Grants permission to create PaymentMethod"
     CreatePaymentMethod
     "Grants permission to create Product"
@@ -2295,6 +2339,8 @@ enum Permission {
     DeleteFacet
     "Grants permission to delete Order"
     DeleteOrder
+    "Grants permission to delete Pages"
+    DeletePages
     "Grants permission to delete PaymentMethod"
     DeletePaymentMethod
     "Grants permission to delete Product"
@@ -2339,6 +2385,8 @@ enum Permission {
     ReadFacet
     "Grants permission to read Order"
     ReadOrder
+    "Grants permission to read Pages"
+    ReadPages
     "Grants permission to read PaymentMethod"
     ReadPaymentMethod
     "Grants permission to read Product"
@@ -2383,6 +2431,8 @@ enum Permission {
     UpdateGlobalSettings
     "Grants permission to update Order"
     UpdateOrder
+    "Grants permission to update Pages"
+    UpdatePages
     "Grants permission to update PaymentMethod"
     UpdatePaymentMethod
     "Grants permission to update Product"
@@ -2713,6 +2763,40 @@ input OrderSortParameter {
     total: SortOrder
     totalQuantity: SortOrder
     totalWithTax: SortOrder
+    updatedAt: SortOrder
+}
+
+input PageFilterParameter {
+    createdAt: DateOperators
+    enabled: BooleanOperators
+    id: IDOperators
+    position: StringOperators
+    slug: StringOperators
+    text: StringOperators
+    title: StringOperators
+    updatedAt: DateOperators
+}
+
+input PageListOptions {
+    "Allows the results to be filtered"
+    filter: PageFilterParameter
+    "Specifies whether multiple \"filter\" arguments should be combines with a logical AND or OR operation. Defaults to AND."
+    filterOperator: LogicalOperator
+    "Skips the first n results, for use in pagination"
+    skip: Int
+    "Specifies which properties to sort the results by"
+    sort: PageSortParameter
+    "Takes n results, for use in pagination"
+    take: Int
+}
+
+input PageSortParameter {
+    createdAt: SortOrder
+    id: SortOrder
+    position: SortOrder
+    slug: SortOrder
+    text: SortOrder
+    title: SortOrder
     updatedAt: SortOrder
 }
 

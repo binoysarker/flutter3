@@ -48,7 +48,7 @@ class PaymentServices{
     try {
       razorpay.open(options);
     } catch (e) {
-      debugPrint('Error: $e');
+      print('Error: $e');
     }
   }
 
@@ -61,7 +61,9 @@ class PaymentServices{
 
   static void handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: ${response.message}');
-    Get.snackbar('', '${response.message}');
+    Get.snackbar('', '${response.message}',backgroundColor: Colors.red);
+    //  Payment Failed
+    // UtilService.sendSms('647b0268d6fc056087309262', number, smsDeliveryType, orderId, paymentValue)
   }
 
   static void handleExternalWallet(ExternalWalletResponse response) {

@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
@@ -89,22 +90,34 @@ class UtilService {
     return value;
   }
 
-  static sendSms(String message, String number) async {
-    var smsQuery = {
-      'userid': '1671',
-      'password': 'trP2V3o5bhZTK9JM',
-      'sender': 'SMSKAI',
-      'to': number,
-      'message': message,
-      'reqid': '1',
-      'format': '{json|text}',
-      'route_id': '3'
+  static sendSms(String templateId, String number,SmsDeliveryType smsDeliveryType, String orderId,String paymentValue) async {
+    var smsData = {
+      "template_id": templateId,
+      "sender": "KAIMSG",
+      "mobiles": number,
     };
+    var currentTime = DateTime.now();
+    var tomorrowTime = DateTime(currentTime.year,currentTime.month,currentTime.day + 1,0,0);
+    String formattedTime = DateFormat('yyyy-MM-dd HH:mm').format(tomorrowTime);
+    var headerData = {
+      'accept': 'application/json',
+      'authkey': '395929AcYuel89696451b515P1',
+      'content-type': 'application/json'
+    };
+    if(smsDeliveryType == SmsDeliveryType.morning_evening.name){
+      smsData['var1'] = orderId;
+      smsData['VAR2'] = '$formattedTime';
+    }
+    if(smsDeliveryType == SmsDeliveryType.payment_failed.name){
+      smsData['var1'] = paymentValue;
+      smsData['var2'] = orderId;
+    }
+
 
     try {
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          'API/WebSMS/Http/v1.0a/index.php', smsQuery);
-      final res = await http.get(url);
+          '/api/v5/flow/');
+      final res = await http.post(url,headers: headerData,body: smsData);
       print('${res.body}');
     } on Exception catch (e) {
       print(e.toString());

@@ -58,3 +58,7 @@ enum LocalStorageStrings{
   user_data,
   auth_token
 }
+enum SmsDeliveryType{
+  morning_evening,
+  payment_failed
+}

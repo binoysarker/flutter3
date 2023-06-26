@@ -30,7 +30,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      shippingAddressFormKey.currentState!.reset();
+      shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
     });
   }
@@ -82,7 +82,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 }).toList(),
               ),
             )),
-            Obx(() => !orderController.useCurrentUserAddress.value ?ElevatedButton(
+            Obx(() => !orderController.useCurrentUserAddress.isTrue ?ElevatedButton(
                 onPressed: () {
                   showForm.value = !showForm.value;
                 },
@@ -92,7 +92,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 )) : SizedBox() ),
           ],
         ),
-        Obx(() => showForm.value ? Form(
+        Obx(() => showForm.isTrue ? Form(
             key: shippingAddressFormKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

@@ -46,14 +46,16 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${collectionsController.singleCollectionDetail.value!.name}',
+                          '${collectionsController.singleCollectionDetail.value?.name}',
                           style: CustomTheme.headerStyle2,
                         ),
-                        CartButtonComponent(
-                          isLoading: orderController.isLoading.isTrue,
-                          totalQuantity: orderController
-                              .activeOrderResponse.value!.totalQuantity,
-                        )
+                        orderController.activeOrderResponse.value != null
+                            ? CartButtonComponent(
+                                isLoading: orderController.isLoading.isTrue,
+                                totalQuantity: orderController
+                                    .activeOrderResponse.value!.totalQuantity,
+                              )
+                            : SizedBox()
                       ],
                     )),
             ),
@@ -71,10 +73,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                         FadeInImage.assetNetwork(
                           placeholder: '${CommonVariableData.placeholder}',
                           image:
-                              '${collectionsController.singleCollectionDetail.value?.featuredAsset?.preview}',
+                              '${collectionsController.singleCollectionDetail != null ? collectionsController.singleCollectionDetail.value?.featuredAsset?.preview : ''}',
                           imageErrorBuilder: (context, error, stackTrace) =>
-                              Image.asset(
-                                  '${CommonVariableData.placeholder}'),
+                              Image.asset('${CommonVariableData.placeholder}'),
                         ),
                         SizedBox(
                           height: 20,
@@ -82,7 +83,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value!.description)}',
+                            '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value?.description)}',
                             style: CustomTheme.paragraphStyle,
                           ),
                         ),

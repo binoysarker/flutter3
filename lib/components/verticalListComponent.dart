@@ -42,8 +42,9 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
         var index = widget.givenList.indexOf(element);
         imageString = (widget.givenList
                 as List<Query$GetAllCollections$collections$items>)[index]
-            .featuredAsset!
-            .preview;
+            .featuredAsset != null ?(widget.givenList
+        as List<Query$GetAllCollections$collections$items>)[index]
+            .featuredAsset!.preview : '';
       }
 
       return imageString;
@@ -55,8 +56,8 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
       if (widget.controllerType == ControllerTypeNames.collection.name) {
         var index = widget.givenList.indexOf(element);
         name = (widget.givenList
-                as List<Query$GetAllCollections$collections$items>)[index]
-            .name;
+                as List<Query$GetAllCollections$collections$items>)[index] != null ? (widget.givenList
+      as List<Query$GetAllCollections$collections$items>)[index].name : '';
       }
       return "${name.length > 20 ? '${name.characters.take(20)}...' : name}";
     }

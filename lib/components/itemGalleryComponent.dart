@@ -35,17 +35,17 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
 
   String getProductImage(dynamic element) {
     String url = '';
-    // if (widget.controllerType ==
-    //     ControllerTypeNames.productChildrenVariantItems.name) {
-    //   print('element detail image ${element.product.featuredAsset.preview}');
-    //   // var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
-    //   url = '${element.product.featuredAsset.preview}';
-    // }
-    // else if (widget.controllerType == ControllerTypeNames.productVariantItems.name ||
-    //     widget.controllerType == ControllerTypeNames.normalProductList.name) {
-    //   url = element.featuredAsset != null ? element.featuredAsset!.preview : '';
-    // }
-    url = '${element.product.featuredAsset.preview}';
+    if (widget.controllerType ==
+        ControllerTypeNames.productChildrenVariantItems.name) {
+      print('element detail image ${element.product.featuredAsset.preview}');
+      var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+      url = '${item.featuredAsset!.preview}';
+    }
+    else if (widget.controllerType == ControllerTypeNames.productVariantItems.name ||
+        widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      url = element.featuredAsset != null ? element.featuredAsset!.preview : '';
+    }
+    // url = '${element.product.featuredAsset.preview}';
 
     return url;
   }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -94,7 +96,7 @@ class UtilService {
     var smsData = {
       "template_id": templateId,
       "sender": "KAIMSG",
-      "mobiles": number,
+      "mobiles": "919$number",
     };
     var currentTime = DateTime.now();
     var tomorrowTime = DateTime(currentTime.year,currentTime.month,currentTime.day + 1,0,0);
@@ -117,7 +119,7 @@ class UtilService {
     try {
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
           '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: smsData);
+      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
       print('${res.body}');
     } on Exception catch (e) {
       print(e.toString());

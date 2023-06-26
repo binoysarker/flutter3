@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:localstorage/localstorage.dart';
 import 'package:move_to_background/move_to_background.dart';
+import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
@@ -33,6 +35,7 @@ class LoginPageController extends GetxController {
   GraphqlService graphqlService = GraphqlService();
   UtilityController utilityController = Get.find<UtilityController>();
   UserController userController = Get.find<UserController>();
+  OrderController orderController = Get.find<OrderController>();
   final loginPageState = GlobalKey<LoginPageState>();
   var showSignIn = true.obs;
   var loading = false.obs;
@@ -41,11 +44,11 @@ class LoginPageController extends GetxController {
     "template_id": "64638d10d6fc0577471d20a2",
     "sender": "KAIMSG",
     "mobiles": "919XXXXXXXXX",
-  }.obs;
+  };
   var headerData = {
-    'accept': 'application/json',
+    'Accept': 'application/json',
     'authkey': '395929AcYuel89696451b515P1',
-    'content-type': 'application/json'
+    'Content-Type': 'application/json'
   };
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
@@ -101,6 +104,7 @@ class LoginPageController extends GetxController {
       final LocalStorage localStorage =
           new LocalStorage(LocalStorageStrings.auth_token.name);
       localStorage.clear();
+      orderController.resetData();
       Get.offAll(() => LoginPage());
       Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
       resetFormField();
@@ -228,14 +232,14 @@ class LoginPageController extends GetxController {
     try {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
-      // OTP TEMPLATE
-      smsData.value['message'] =
-          'Your OTP is ${currentlyGivenOTP.value} for login to Kaaikani app registration. Please do not share it with anyone.';
-      smsData.value['to'] = '${phoneNumber.text}';
+      // registration sms
+      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['OTP'] = '${currentlyGivenOTP.value}';
+      smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          '/api/v5/flow/', smsData.value);
-      final res = await http.get(url);
+          '/api/v5/flow/');
+      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
       print('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
@@ -248,13 +252,13 @@ class LoginPageController extends GetxController {
   void sendRegistrationSuccessSms() async {
     try {
       // registration sms
-      smsData.value['mobiles'] = '${phoneNumber.text}';
-      smsData.value['OTP'] = '${currentlyGivenOTP.value}';
-      smsData.value['template_id'] = '64638d10d6fc0577471d20a2';
+      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['OTP'] = '${currentlyGivenOTP.value}';
+      smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
           '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: smsData.value);
+      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
       print('${res.body}');
     } on Exception catch (e) {
       print(e.toString());
@@ -320,13 +324,13 @@ class LoginPageController extends GetxController {
       print('current otp is ${currentlyGivenOTP.value}');
       // Reset password
 
-      smsData.value['mobiles'] = '${phoneNumber.text}';
-      smsData.value['number'] = '${currentlyGivenOTP.value}';
-      smsData.value['template_id'] = '646b079bd6fc050f4533f312';
+      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['number'] = '${currentlyGivenOTP.value}';
+      smsData['template_id'] = '646b079bd6fc050f4533f312';
 
       final url = Uri.https(dotenv.env['SMS_URL'].toString(),
           '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: smsData.value);
+      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
       print('${res.body}');
       Get.offAll(() => ResetPasswordPage());
       resetFormField();

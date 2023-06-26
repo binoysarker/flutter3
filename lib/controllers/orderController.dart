@@ -88,6 +88,9 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
   }
+  void resetData(){
+    activeOrderResponse.value = null;
+  }
 
   Future<List<String>> getNextOrderStates() async {
     isLoading.value = true;
@@ -275,7 +278,7 @@ class OrderController extends GetxController {
     postalCode.clear();
     city.clear();
     couponCode.clear();
-    shippingAddressFormKey.currentState!.reset();
+    shippingAddressFormKey.currentState?.reset();
   }
 
   void createRazorPayOrder() async {

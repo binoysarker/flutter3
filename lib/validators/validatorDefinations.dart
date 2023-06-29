@@ -13,7 +13,7 @@ class ValidatorDefinition {
   ]);
   static final phoneNumberMultiValidator = MultiValidator([
     RequiredValidator(errorText: 'Phone is Required'),
-    PatternValidator(r'^\d{9,10}$',
+    PatternValidator(r'^\d{10}$',
         errorText: 'phone number should be like 91998765432'),
   ]);
 }

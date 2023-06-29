@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/components/BannerComponent.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -182,6 +183,10 @@ class PaymentMethodComponent extends StatelessWidget {
                           ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                BannerComponent(),
                 SizedBox(
                   height: 20,
                 ),

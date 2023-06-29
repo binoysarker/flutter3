@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../controllers/userController.dart';
@@ -138,7 +139,7 @@ class MyAccountPageState extends State<MyAccountPage> {
         final phoneNumberCtr = TextEditingController();
         street1Ctr.text = element.streetLine1.toString();
         street2Ctr.text = element.streetLine2.toString();
-        cityCtr.text = 'madurai';
+        cityCtr.text = CityToUseType.Madurai.name;
         postalCodeCtr.text = element.postalCode.toString();
         phoneNumberCtr.text = element.phoneNumber.toString();
         street1Controllers.add(street1Ctr);
@@ -281,7 +282,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                               street1Controllers[index].text,
                                           'street2':
                                               street2Controllers[index].text,
-                                          'city': 'madurai',
+                                          'city': CityToUseType.Madurai.name,
                                           'fullName':
                                               '${customerData['fname']} ${customerData['lname']}',
                                           'postalCode':

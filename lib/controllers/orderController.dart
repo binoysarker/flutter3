@@ -16,6 +16,7 @@ import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/models/createOrderResponseModel.dart';
 import 'package:recipe.app/pages/store_page.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
@@ -32,6 +33,11 @@ class OrderController extends GetxController {
   TextEditingController couponCode = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
+  var selectedPaymentOption = 'offline'.obs;
+  var paymentOptionDropdownItems = [
+    PaymentOptionType.offline.name,
+    PaymentOptionType.online.name
+  ].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
@@ -159,7 +165,13 @@ class OrderController extends GetxController {
         Get.snackbar('Error', "${currentState['message']}",
             colorText: Colors.red);
       } else {
-        addPaymentToOrder();
+        addPaymentToOrder(
+            {
+              'paymentId': paymentSuccessResponse.value!.paymentId,
+              'orderId': paymentSuccessResponse.value!.orderId,
+              'signature': paymentSuccessResponse.value!.signature
+            }
+        );
       }
       isLoading.value = false;
     }
@@ -180,7 +192,7 @@ class OrderController extends GetxController {
     }
   }
 
-  void addPaymentToOrder() async {
+  void addPaymentToOrder(dynamic metaData) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value
@@ -188,15 +200,11 @@ class OrderController extends GetxController {
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
                     method: eligiblePaymentMethods.first.code,
-                    metadata: jsonEncode({
-                      'paymentId': paymentSuccessResponse.value!.paymentId,
-                      'orderId': paymentSuccessResponse.value!.orderId,
-                      'signature': paymentSuccessResponse.value!.signature
-                    })))));
+                    metadata: jsonEncode(metaData)))));
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
-      Get.snackbar('Error', res.exception.toString());
+      Get.snackbar('Error', res.exception.toString(),backgroundColor: Colors.red,colorText: Colors.white);
     }
     if (res.data != null) {
       var jsonData = res.parsedData!.addPaymentToOrder.toJson();
@@ -332,7 +340,13 @@ class OrderController extends GetxController {
         transitionToOrderState(states[0]);
 
         Timer(Duration(seconds: 3), () {
-          addPaymentToOrder();
+          addPaymentToOrder(
+              {
+                'paymentId': paymentSuccessResponse.value!.paymentId,
+                'orderId': paymentSuccessResponse.value!.orderId,
+                'signature': paymentSuccessResponse.value!.signature
+              }
+          );
         });
       } else {
         print('not verified');
@@ -402,7 +416,7 @@ class OrderController extends GetxController {
                             .addresses!.first.streetLine2
                         : streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
-                    city: 'madurai',
+                    city: CityToUseType.Madurai.name,
                     province: 'Maharashtra',
                     fullName: useCurrentUserAddress.value
                         ? userController.currentAuthenticatedUser.value!

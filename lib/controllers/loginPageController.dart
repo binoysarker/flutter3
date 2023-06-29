@@ -233,7 +233,7 @@ class LoginPageController extends GetxController {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
       // registration sms
-      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['mobiles'] = '91${phoneNumber.text}';
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
@@ -252,7 +252,7 @@ class LoginPageController extends GetxController {
   void sendRegistrationSuccessSms() async {
     try {
       // registration sms
-      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['mobiles'] = '91${phoneNumber.text}';
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
@@ -324,7 +324,7 @@ class LoginPageController extends GetxController {
       print('current otp is ${currentlyGivenOTP.value}');
       // Reset password
 
-      smsData['mobiles'] = '919${phoneNumber.text}';
+      smsData['mobiles'] = '91${phoneNumber.text}';
       smsData['number'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '646b079bd6fc050f4533f312';
 

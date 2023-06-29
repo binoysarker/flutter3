@@ -62,3 +62,10 @@ enum SmsDeliveryType{
   morning_evening,
   payment_failed
 }
+enum PaymentOptionType{
+  online,
+  offline
+}
+enum CityToUseType{
+  Madurai
+}

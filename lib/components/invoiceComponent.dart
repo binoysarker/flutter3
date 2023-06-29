@@ -2,6 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:recipe.app/components/BannerComponent.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/themes.dart';
@@ -48,7 +49,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
-          '${widget.orderController.getOrderByCodeResponse.value!.code}','');
+          '${widget.orderController.getOrderByCodeResponse.value!.code}', '');
       orderController.useCurrentUserAddress.value = false;
     });
   }
@@ -98,6 +99,25 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                         getFormatedString(widget.orderController
                                 .getOrderByCodeResponse.value?.updatedAt ??
                             ''),
+                        style: CustomTheme.headerStyle,
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Payment Type: ',
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Text(
+                        widget.orderController
+                            .selectedPaymentOption.value ==
+                            PaymentOptionType.online.name
+                            ? 'Online'
+                            : 'Cash On Delivery',
                         style: CustomTheme.headerStyle,
                       )
                     ],
@@ -228,7 +248,8 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                       style: CustomTheme.headerStyle,
                     ),
                   ],
-                )
+                ),
+                BannerComponent()
               ],
             ),
           ));

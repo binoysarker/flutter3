@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
@@ -77,6 +79,9 @@ class _StorePageState extends State<StorePage> {
                             'Welcome To ${_utilService.appName}',
                             style: CustomTheme.headerStyle2,
                           ),
+                          IconButton(onPressed: (){
+                            FlutterPhoneDirectCaller.callNumber(dotenv.env['HELP_CALL'].toString());
+                          }, icon: Icon(Icons.local_phone)),
                           CartButtonComponent(
                             isLoading: orderController.isLoading.isTrue,
                             totalQuantity: orderController

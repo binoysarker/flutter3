@@ -15,5 +15,7 @@ class ValidatorDefinition {
     RequiredValidator(errorText: 'Phone is Required'),
     PatternValidator(r'^\d{10}$',
         errorText: 'phone number should be like 9972808280'),
+    MinLengthValidator(9, errorText: 'phone number should be only of 10 digits.'),
+    MaxLengthValidator(10, errorText: 'phone number should be only of 10 digits.')
   ]);
 }

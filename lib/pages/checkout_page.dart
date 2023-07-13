@@ -62,7 +62,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     List<Step> getSteps() => [
           Step(
               title: Text(
-                'Shipping',
+                'Delivery',
                 style: CustomTheme.headerStyle,
               ),
               isActive: orderController.currentStep.value >= 0,

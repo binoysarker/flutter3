@@ -137,9 +137,15 @@ class LoginPageController extends GetxController {
           new LocalStorage(LocalStorageStrings.auth_token.name);
       localStorage.clear();
       orderController.resetData();
-      Get.offAll(() => LoginPage());
-      Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
-      resetFormField();
+      phoneStorage.ready.then((value) {
+        phoneStorage.deleteItem(LocalStorageStrings.phone.name);
+      });
+      passwordStorage.ready.then((value) {
+        passwordStorage.deleteItem(LocalStorageStrings.password.name);
+        Get.offAll(() => LoginPage());
+        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
+        resetFormField();
+      });
     }
   }
 

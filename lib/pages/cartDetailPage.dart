@@ -111,7 +111,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           child: Text('OK')),
                     ]);
               },
-              icon: Icon(Icons.remove_shopping_cart_outlined))
+              icon: Icon(Icons.delete))
         ],
       ),
       body: Obx(() => orderController.activeOrderResponse.value!.lines.isEmpty

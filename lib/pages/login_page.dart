@@ -38,23 +38,26 @@ class LoginPageState extends State<LoginPage> {
         var rememberMe = rememberStorage
             .getItem(LocalStorageStrings.remember_me_status.name);
         print('remember me status $rememberMe');
-        if (rememberMe == 'true') {
-          passwordStorage.ready.then((value) {
-            password =
-                Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordStorage.getItem(LocalStorageStrings.password.name));
-            print('password data $password');
-          });
-          phoneStorage.ready.then((value) {
-            phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneStorage.getItem(LocalStorageStrings.phone.name));
-            print('phone $phone');
-          //  now let the user login using this phone and password
-            loginPageController.phoneNumber.text = phone;
-            loginPageController.passwordController.text = password;
-            loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
-            loginPageController.onUserSignIn(context);
-          });
+        phoneStorage.ready.then((value) {
+          phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneStorage.getItem(LocalStorageStrings.phone.name));
+          print('phone $phone');
 
-        }
+          if (rememberMe == 'true' && phone != null) {
+            passwordStorage.ready.then((value) {
+              password =
+                  Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordStorage.getItem(LocalStorageStrings.password.name));
+              print('password data $password');
+              //  now let the user login using this phone and password
+              loginPageController.phoneNumber.text = phone;
+              loginPageController.passwordController.text = password;
+              loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
+              loginPageController.onUserSignIn(context);
+            });
+
+
+          }
+        });
+
       });
     });
   }

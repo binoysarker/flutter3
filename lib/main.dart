@@ -28,6 +28,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Get.put(UtilityController());
@@ -54,6 +55,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   late StreamSubscription<User?> _subscription;
   UserController userController = Get.find<UserController>();
+  LoginPageController loginPageController = Get.find<LoginPageController>();
   final _navigatorKey = new GlobalKey<NavigatorState>();
 
   @override
@@ -73,7 +75,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final LocalStorage storage =
+    final LocalStorage authTokenStorage =
         new LocalStorage(LocalStorageStrings.auth_token.name);
     GraphqlService graphqlService = GraphqlService();
     return GraphQLProvider(
@@ -87,17 +89,17 @@ class _MyAppState extends State<MyApp> {
         themeMode: currentTheme.currentThemeMode,
         getPages: RoutesClass.routes,
         home: FutureBuilder(
-            future: storage.ready,
+            future: authTokenStorage.ready,
             builder: (BuildContext context, snapshot) {
+              // print('snapshot $snapshot');
               if (snapshot.hasData) {
-                final authToken =
-                    storage.getItem(LocalStorageStrings.auth_token.name);
-                print('auth token $authToken');
+                var authToken = authTokenStorage
+                    .getItem(LocalStorageStrings.auth_token.name);
+                print('token $authToken');
                 if (authToken == null) {
                   return LoginPage();
                 } else {
                   GraphqlService.currentAuthToken = authToken;
-                  // GraphqlService.setToken(authToken);
                   return StorePage();
                 }
               } else {

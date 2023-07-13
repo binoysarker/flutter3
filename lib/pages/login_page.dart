@@ -1,7 +1,9 @@
+import 'package:encryptor/encryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/components/errorMessageComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
@@ -27,12 +29,14 @@ class LoginPageState extends State<LoginPage> {
   final loginPageController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
 
+
   @override
-  void initState() {
+  initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       loginPageController.resetFormField();
     });
+
   }
 
   @override

@@ -28,79 +28,82 @@ class _DrawerComponentState extends State<DrawerComponent> {
         userController.currentAuthenticatedUser.value;
     return Drawer(
       key: drawerComponentKey,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.lightGreen,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '${currentAuthenticatedUser!.firstName.capitalize} ${currentAuthenticatedUser.lastName.capitalize}',
-                      style: CustomTheme.headerStyle,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Phone: ',
-                      style: CustomTheme.headerStyle,
-                    ),
-                    Text(
-                      '${currentAuthenticatedUser.phoneNumber}',
-                      style: CustomTheme.paragraphStyle,
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-          Obx(
-            () => collectionsController.collectionItems.isEmpty
-                ? Center(
-                    child: CircularProgressIndicator(
-                      color: CustomTheme.progressIndicatorColor,
-                    ),
-                  )
-                : Card(
-                  child: Column(
+      child: Container(
+        height: 100,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Colors.lightGreen,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Text('Categories',style: CustomTheme.headerStyle,),
-                      SizedBox(
-                        height: 400,
-                        child: ListView(
-                          children: collectionsController.collectionItems.map((element) => ListTile(
-                            title: Text(element.name,style: CustomTheme.headerStyle,),
-                            onTap: () {
-                              Get.to(() => CategoryDetailPage(),arguments: {'slug': element.slug});
-                            },
-                          )).toList(),
-                        ),
+                      Text(
+                        '${currentAuthenticatedUser!.firstName.capitalize} ${currentAuthenticatedUser.lastName.capitalize}',
+                        style: CustomTheme.headerStyle,
                       )
                     ],
                   ),
-                ),
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text(
-              'Sign out',
-              style: CustomTheme.headerStyle,
+                  Row(
+                    children: [
+                      Text(
+                        'Phone: ',
+                        style: CustomTheme.headerStyle,
+                      ),
+                      Text(
+                        '${currentAuthenticatedUser.phoneNumber}',
+                        style: CustomTheme.paragraphStyle,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-            onTap: () {
-              // await FirebaseAuth.instance.signOut();
-              drawerComponentKey.currentState?.closeDrawer();
+            Obx(
+              () => collectionsController.collectionItems.isEmpty
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: CustomTheme.progressIndicatorColor,
+                      ),
+                    )
+                  : Card(
+                    child: Column(
+                      children: [
+                        Text('Categories',style: CustomTheme.headerStyle,),
+                        SizedBox(
+                          height: 400,
+                          child: ListView(
+                            children: collectionsController.collectionItems.map((element) => ListTile(
+                              title: Text(element.name,style: CustomTheme.headerStyle,),
+                              onTap: () {
+                                Get.to(() => CategoryDetailPage(),arguments: {'slug': element.slug});
+                              },
+                            )).toList(),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text(
+                'Sign out',
+                style: CustomTheme.headerStyle,
+              ),
+              onTap: () {
+                // await FirebaseAuth.instance.signOut();
+                drawerComponentKey.currentState?.closeDrawer();
 
-              loginPageController.onUserLogout();
-            },
-          ),
-        ],
+                loginPageController.onUserLogout();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

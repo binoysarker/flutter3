@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:encryptor/encryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/verifyOTPPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
+import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../allGlobalKeys.dart';
@@ -86,6 +88,21 @@ class LoginPageController extends GetxController {
 
   void setCheckboxStatus(bool value) {
     checkboxStatus.value = value;
+    UtilService.storeDataInLocalStorage(LocalStorageStrings.remember_me_status.name, value ? 'true' : 'false');
+    //  now check if it is true
+    if(checkboxStatus.isTrue){
+       // this encryption should be static and come from env
+      print('data need to be stored');
+       var encryptedUserEmail = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), emailController.text);
+       var encryptedUserPhone = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneNumber.text);
+       var encryptedUserPassword = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordController.text);
+       UtilService.storeDataInLocalStorage(LocalStorageStrings.email.name, encryptedUserEmail);
+       UtilService.storeDataInLocalStorage(LocalStorageStrings.password.name, encryptedUserPassword);
+       UtilService.storeDataInLocalStorage(LocalStorageStrings.phone.name, encryptedUserPhone);
+    }else {
+      UtilService.removeDataInLocalStorage(LocalStorageStrings.email.name);
+      UtilService.removeDataInLocalStorage(LocalStorageStrings.password.name);
+    }
   }
 
   void onUserLogout() async {
@@ -174,7 +191,7 @@ class LoginPageController extends GetxController {
       if (loginData?['message'] != null) {
         if (loginData?['errorCode'] == 'INVALID_CREDENTIALS_ERROR') {
           utilityController.setAlertMessage(
-              true, 'user does not exist create user');
+              true, 'Incorrect username or password');
           utilityController.setLoadingState(false);
         } else {
           utilityController.setAlertMessage(true, loginData?['message']);

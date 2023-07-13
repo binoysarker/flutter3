@@ -56,7 +56,11 @@ enum OrderStateEnums {
 }
 enum LocalStorageStrings{
   user_data,
-  auth_token
+  auth_token,
+  email,
+  password,
+  phone,
+  remember_me_status
 }
 enum SmsDeliveryType{
   morning_evening,

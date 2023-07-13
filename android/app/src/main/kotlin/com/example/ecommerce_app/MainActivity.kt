@@ -1,4 +1,4 @@
-package com.example.recipe.app
+package com.kaaikani.kaaikani
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine

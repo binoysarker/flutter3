@@ -52,7 +52,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     if (stepValue == 2) {
       finalText = 'Go To Home';
     } else if (stepValue == 1) {
-      finalText = 'Start Payment';
+      finalText = 'Place Order';
     }
     return finalText;
   }

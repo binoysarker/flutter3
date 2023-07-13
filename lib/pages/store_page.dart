@@ -1,8 +1,8 @@
+import 'package:encryptor/encryptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
@@ -11,7 +11,6 @@ import 'package:recipe.app/components/verticalListComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
 import 'package:recipe.app/controllers/homePageController.dart';
-import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/productsController.dart';
@@ -38,23 +37,24 @@ class _StorePageState extends State<StorePage> {
   final UtilityController utilityController = Get.find<UtilityController>();
   final ProductsController productsController = Get.find<ProductsController>();
   final CartController cartController = Get.find<CartController>();
-  final LoginPageController loginPageController = Get.find<LoginPageController>();
+  final LoginPageController loginPageController =
+      Get.find<LoginPageController>();
   final OrderController orderController = Get.find<OrderController>();
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
-
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // i have token now but need to check remember me
 
-
+      // then doing other things
       userController.getActiveCustomer();
       productsController.getProductsList();
       collectionsController.getAllCollections();
       orderController.getActiveOrders();
-      print('testing');
+
     });
   }
 
@@ -64,24 +64,27 @@ class _StorePageState extends State<StorePage> {
         ? LoadingSpinnerComponent()
         : SafeArea(
             child: WillPopScope(
-              onWillPop: (){
-                loginPageController.exitDialog(context);
-                return Future.value(false);
-              },
-              child: Scaffold(
+            onWillPop: () {
+              loginPageController.exitDialog(context);
+              return Future.value(false);
+            },
+            child: Scaffold(
               appBar: AppBar(
                 title: Obx(() => collectionsController.isLoading.isTrue
                     ? SizedBox()
                     : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             'Welcome To ${_utilService.appName}',
                             style: CustomTheme.headerStyle2,
                           ),
-                          IconButton(onPressed: (){
-                            FlutterPhoneDirectCaller.callNumber(dotenv.env['HELP_CALL'].toString());
-                          }, icon: Icon(Icons.local_phone)),
+                          IconButton(
+                              onPressed: () {
+                                FlutterPhoneDirectCaller.callNumber(
+                                    dotenv.env['HELP_CALL'].toString());
+                              },
+                              icon: Icon(Icons.local_phone)),
                           CartButtonComponent(
                             isLoading: orderController.isLoading.isTrue,
                             totalQuantity: orderController
@@ -109,8 +112,7 @@ class _StorePageState extends State<StorePage> {
                     ),
                   ),
                   Center(
-                    child: Text('Veedu Varai',
-                        style: CustomTheme.headerStyle),
+                    child: Text('Veedu Varai', style: CustomTheme.headerStyle),
                   ),
                   SearchComponent(
                       homePageController: homePageController,
@@ -123,12 +125,16 @@ class _StorePageState extends State<StorePage> {
                           SizedBox(
                             height: 0,
                           ),
+
                           Obx(() => VerticalListComponent(
-                                isLoading: collectionsController.isLoading.isTrue,
+                                isLoading:
+                                    collectionsController.isLoading.isTrue,
                                 showSecondLine: false,
-                                givenList: collectionsController.collectionItems,
+                                givenList:
+                                    collectionsController.collectionItems,
                                 givenTitle: 'Shop By Category',
-                                controllerType: ControllerTypeNames.collection.name,
+                                controllerType:
+                                    ControllerTypeNames.collection.name,
                                 givenHeight: 300,
                               )),
                           // all products
@@ -143,7 +149,7 @@ class _StorePageState extends State<StorePage> {
                 ],
               ),
               bottomNavigationBar: BottomNavigationComponent(),
-          ),
-            )));
+            ),
+          )));
   }
 }

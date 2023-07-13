@@ -22,6 +22,7 @@ import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
 
+import 'allGlobalKeys.dart';
 import 'controllers/productsController.dart';
 import 'controllers/tokenPageController.dart';
 import 'firebase_options.dart';
@@ -75,8 +76,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final LocalStorage authTokenStorage =
-        new LocalStorage(LocalStorageStrings.auth_token.name);
+
     GraphqlService graphqlService = GraphqlService();
     return GraphQLProvider(
       client: graphqlService.client,
@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
                   return LoginPage();
                 } else {
                   GraphqlService.currentAuthToken = authToken;
-                  return StorePage();
+                  return LoginPage();
                 }
               } else {
                 return LoginPage();

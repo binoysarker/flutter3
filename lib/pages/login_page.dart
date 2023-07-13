@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/components/errorMessageComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
-import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/pages/forgetPasswordPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
@@ -25,18 +23,40 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-
   final loginPageController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
-
 
   @override
   initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       loginPageController.resetFormField();
-    });
+      // i have token now but need to check remember me
 
+      rememberStorage.ready.then((isReady) {
+        var password, phone;
+        var rememberMe = rememberStorage
+            .getItem(LocalStorageStrings.remember_me_status.name);
+        print('remember me status $rememberMe');
+        if (rememberMe == 'true') {
+          passwordStorage.ready.then((value) {
+            password =
+                Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordStorage.getItem(LocalStorageStrings.password.name));
+            print('password data $password');
+          });
+          phoneStorage.ready.then((value) {
+            phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneStorage.getItem(LocalStorageStrings.phone.name));
+            print('phone $phone');
+          //  now let the user login using this phone and password
+            loginPageController.phoneNumber.text = phone;
+            loginPageController.passwordController.text = password;
+            loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
+            loginPageController.onUserSignIn(context);
+          });
+
+        }
+      });
+    });
   }
 
   @override
@@ -76,12 +96,12 @@ class LoginPageState extends State<LoginPage> {
     return Obx(() => utilityController.showLoader.isTrue
         ? const LoadingSpinnerComponent()
         : WillPopScope(
-      onWillPop: (){
-        loginPageController.resetFormField();
-        loginPageController.exitDialog(context);
-        return Future.value(false);
-      },
-          child: Scaffold(
+            onWillPop: () {
+              loginPageController.resetFormField();
+              loginPageController.exitDialog(context);
+              return Future.value(false);
+            },
+            child: Scaffold(
               appBar: AppBar(
                 automaticallyImplyLeading: false,
                 title: Text(
@@ -111,10 +131,12 @@ class LoginPageState extends State<LoginPage> {
                               child: Column(
                             children: [
                               Visibility(
-                                visible: loginPageController.showSignIn.isFalse &&
-                                    loginPageController
-                                            .currentSignInProcessName.value !=
-                                        SignInProcessNames.firebase.name,
+                                visible:
+                                    loginPageController.showSignIn.isFalse &&
+                                        loginPageController
+                                                .currentSignInProcessName
+                                                .value !=
+                                            SignInProcessNames.firebase.name,
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
                                   child: TextFormField(
@@ -133,10 +155,12 @@ class LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               Visibility(
-                                visible: loginPageController.showSignIn.isFalse &&
-                                    loginPageController
-                                            .currentSignInProcessName.value !=
-                                        SignInProcessNames.firebase.name,
+                                visible:
+                                    loginPageController.showSignIn.isFalse &&
+                                        loginPageController
+                                                .currentSignInProcessName
+                                                .value !=
+                                            SignInProcessNames.firebase.name,
                                 child: Container(
                                   padding: const EdgeInsets.all(10),
                                   child: TextFormField(
@@ -158,9 +182,9 @@ class LoginPageState extends State<LoginPage> {
                           )),
 
                           Visibility(
-                            visible:
-                                loginPageController.currentSignInProcessName.value !=
-                                    SignInProcessNames.firebase.name,
+                            visible: loginPageController
+                                    .currentSignInProcessName.value !=
+                                SignInProcessNames.firebase.name,
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               child: TextFormField(
@@ -174,8 +198,8 @@ class LoginPageState extends State<LoginPage> {
                                 ),
                                 keyboardType: TextInputType.phone,
                                 autofillHints: [AutofillHints.telephoneNumber],
-                                validator:
-                                    ValidatorDefinition.phoneNumberMultiValidator,
+                                validator: ValidatorDefinition
+                                    .phoneNumberMultiValidator,
                               ),
                             ),
                           ),
@@ -187,7 +211,8 @@ class LoginPageState extends State<LoginPage> {
                               autocorrect: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: loginPageController.passwordController,
+                              controller:
+                                  loginPageController.passwordController,
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 labelText: 'Password',
@@ -202,10 +227,12 @@ class LoginPageState extends State<LoginPage> {
                               Text('Remember me',
                                   style: CustomTheme.paragraphStyle),
                               Checkbox(
-                                  value: loginPageController.checkboxStatus.value,
-                                  onChanged: (value) {
-                                    loginPageController.setCheckboxStatus(value!);
+                                  value:
+                                      loginPageController.checkboxStatus.value,
+                                  onChanged: (bool? value) {
                                     print('checkbox $value');
+                                    loginPageController
+                                        .setCheckboxStatus(value!);
                                   }),
                             ],
                           ),
@@ -229,12 +256,10 @@ class LoginPageState extends State<LoginPage> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 onPressed: () {
-
                                   loginPageController.setCurrentSignInProcess(
                                       SignInProcessNames.normal.name);
-                                  if (
-                                      loginPageController
-                                          .passwordController.text.isEmpty) {
+                                  if (loginPageController
+                                      .passwordController.text.isEmpty) {
                                     UtilService.createSnakeBar(
                                         text: 'Fill up the form',
                                         context: context);
@@ -242,7 +267,8 @@ class LoginPageState extends State<LoginPage> {
                                     if (loginPageController.showSignIn.isTrue) {
                                       loginPageController.onUserSignIn(context);
                                     } else {
-                                      loginPageController.checkUniquePhone(loginPageController.phoneNumber.text);
+                                      loginPageController.checkUniquePhone(
+                                          loginPageController.phoneNumber.text);
                                     }
                                   }
                                 },
@@ -290,6 +316,6 @@ class LoginPageState extends State<LoginPage> {
                     ),
                   )),
             ),
-        ));
+          ));
   }
 }

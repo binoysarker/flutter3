@@ -47,9 +47,7 @@ class _StorePageState extends State<StorePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // i have token now but need to check remember me
 
-      // then doing other things
       userController.getActiveCustomer();
       productsController.getProductsList();
       collectionsController.getAllCollections();

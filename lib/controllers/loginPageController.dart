@@ -21,7 +21,6 @@ import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/verifyOTPPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
-import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../allGlobalKeys.dart';
@@ -88,28 +87,44 @@ class LoginPageController extends GetxController {
 
   void setCheckboxStatus(bool value) {
     checkboxStatus.value = value;
-    UtilService.storeDataInLocalStorage(LocalStorageStrings.remember_me_status.name, value ? 'true' : 'false');
+    rememberStorage.ready.then((value) {
+      rememberStorage.setItem(LocalStorageStrings.remember_me_status.name,
+          value ? 'true' : 'false');
+    });
     //  now check if it is true
-    if(checkboxStatus.isTrue){
-       // this encryption should be static and come from env
+    print('check box status ${checkboxStatus.value}');
+    if (value) {
+      // this encryption should be static and come from env
       print('data need to be stored');
-       var encryptedUserEmail = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), emailController.text);
-       var encryptedUserPhone = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneNumber.text);
-       var encryptedUserPassword = Encryptor.encrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordController.text);
-       UtilService.storeDataInLocalStorage(LocalStorageStrings.email.name, encryptedUserEmail);
-       UtilService.storeDataInLocalStorage(LocalStorageStrings.password.name, encryptedUserPassword);
-       UtilService.storeDataInLocalStorage(LocalStorageStrings.phone.name, encryptedUserPhone);
-    }else {
-      UtilService.removeDataInLocalStorage(LocalStorageStrings.email.name);
-      UtilService.removeDataInLocalStorage(LocalStorageStrings.password.name);
+
+      var encryptedUserPhone = Encryptor.encrypt(
+          dotenv.env['ENCRYPT_KEY'].toString(), phoneNumber.text);
+      var encryptedUserPassword = Encryptor.encrypt(
+          dotenv.env['ENCRYPT_KEY'].toString(), passwordController.text);
+      print('encrypted data $encryptedUserPhone, $encryptedUserPassword');
+
+      passwordStorage.ready.then((value) {
+        passwordStorage.setItem(
+            LocalStorageStrings.password.name, encryptedUserPassword);
+      });
+      phoneStorage.ready.then((value) {
+        phoneStorage.setItem(
+            LocalStorageStrings.phone.name, encryptedUserPhone);
+      });
+    } else {
+      passwordStorage.ready.then((value) {
+        passwordStorage.deleteItem(LocalStorageStrings.password.name);
+      });
+      phoneStorage.ready.then((value) {
+        phoneStorage.deleteItem(LocalStorageStrings.phone.name);
+      });
     }
   }
 
   void onUserLogout() async {
     loading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -166,7 +181,6 @@ class LoginPageController extends GetxController {
   }
 
   void onUserSignIn(BuildContext context) async {
-    
     final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
     final signInResponse = await graphqlService.client.value.mutate$SignIn(
@@ -254,9 +268,9 @@ class LoginPageController extends GetxController {
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
+      final res =
+          await http.post(url, headers: headerData, body: jsonEncode(smsData));
       print('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
@@ -273,9 +287,9 @@ class LoginPageController extends GetxController {
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
+      final res =
+          await http.post(url, headers: headerData, body: jsonEncode(smsData));
       print('${res.body}');
     } on Exception catch (e) {
       print(e.toString());
@@ -284,18 +298,17 @@ class LoginPageController extends GetxController {
 
   void onUserRegister() async {
     utilityController.setLoadingState(true);
-    final registerResponse = await graphqlService
-        .client.value
+    final registerResponse = await graphqlService.client.value
         .mutate$Register(Options$Mutation$Register(
             variables: Variables$Mutation$Register(
                 input: Input$RegisterCustomerInput(
-          emailAddress:
-              '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
-          password: passwordController.text,
-          firstName: firstName.text,
-          lastName: lastName.text,
-          phoneNumber: phoneNumber.text,
-        ))));
+      emailAddress:
+          '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
+      password: passwordController.text,
+      firstName: firstName.text,
+      lastName: lastName.text,
+      phoneNumber: phoneNumber.text,
+    ))));
     if (registerResponse.hasException) {
       print('${registerResponse.exception.toString()}');
     }
@@ -325,7 +338,8 @@ class LoginPageController extends GetxController {
     try {
       final response = await this
           .graphqlService
-          .client.value
+          .client
+          .value
           .mutate$RequestPasswordReset(Options$Mutation$RequestPasswordReset(
               variables: Variables$Mutation$RequestPasswordReset(
                   email:
@@ -345,9 +359,9 @@ class LoginPageController extends GetxController {
       smsData['number'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '646b079bd6fc050f4533f312';
 
-      final url = Uri.https(dotenv.env['SMS_URL'].toString(),
-          '/api/v5/flow/');
-      final res = await http.post(url,headers: headerData,body: jsonEncode(smsData));
+      final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
+      final res =
+          await http.post(url, headers: headerData, body: jsonEncode(smsData));
       print('${res.body}');
       Get.offAll(() => ResetPasswordPage());
       resetFormField();
@@ -369,7 +383,8 @@ class LoginPageController extends GetxController {
       print('password token $token');
       final response = await this
           .graphqlService
-          .client.value
+          .client
+          .value
           .mutate$ResetPassword(Options$Mutation$ResetPassword(
               variables: Variables$Mutation$ResetPassword(
                   token: token, password: passwordController.text)));

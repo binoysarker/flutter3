@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
@@ -18,10 +17,10 @@ import '../graphqlSection/products.graphql.dart';
 class UtilService {
   static final CartController cartController = Get.find<CartController>();
   static final UtilService _utilService = UtilService._internal();
+
   factory UtilService() => _utilService;
   late String _apiBaseUrl;
   late String appName;
-
 
   String get apiBaseUrl => _apiBaseUrl;
 
@@ -45,7 +44,6 @@ class UtilService {
     _apiBaseUrl = dotenv.env['API_BASE_URL'] as String;
     _shopApiUrl = dotenv.env['SHOP_API_URL'] as String;
     appName = dotenv.env['App_Name'] as String;
-
   }
 
   static String formatPriceValue(int price) {
@@ -67,34 +65,6 @@ class UtilService {
       // item.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
       cartController.addItemToCart(item.id, 1);
     }
-  }
-
-  static storeDataInLocalStorage(String key, String value){
-    LocalStorage localStorage = new LocalStorage(key);
-    localStorage.ready.then((isReady) {
-      if(isReady){
-        localStorage.setItem(key, value);
-      }
-    });
-  }
-  static removeDataInLocalStorage(String key){
-    LocalStorage localStorage = new LocalStorage(key);
-    localStorage.ready.then((isReady) {
-      if(isReady){
-        localStorage.deleteItem(key);
-      }
-    });
-
-  }
-  static getDataInLocalStorage(String key) {
-    LocalStorage localStorage = new LocalStorage(key);
-    var getData = '';
-    localStorage.ready.then((isReady) {
-      if(isReady){
-        getData = localStorage.getItem(key);
-      }
-    });
-    return getData;
   }
 
   static String formatPriceValueForCouponCode(

@@ -1,9 +1,10 @@
 import 'package:recipe.app/graphqlSection/products.graphql.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+
+import '../graphqlSection/vendureSchema.graphql.dart';
 
 class ProductsController extends GetxController {
   var graphqlService = GraphqlService();
@@ -32,7 +33,7 @@ class ProductsController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      // print('products list ${res.parsedData!.toJson()}');
+      print('products list ${res.parsedData!.toJson()}');
       productList.value = res.parsedData!.products.items;
       isLoading.value = false;
     }
@@ -57,7 +58,7 @@ class ProductsController extends GetxController {
     selectedProductDetail.value = productDetailVariants
         .firstWhere((element) => element.id == data);
     print('updated product detail ${selectedProductDetail.value?.toJson()}');
-    basePrice.value = selectedProductDetail.value!.priceWithTax;
+    basePrice.value = int.parse(selectedProductDetail.value!.priceWithTax);
     updatedPrice.value = basePrice.value;
   }
 

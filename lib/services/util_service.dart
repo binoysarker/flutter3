@@ -77,7 +77,7 @@ class UtilService {
     if (code == 'order_percentage_discount') {
       var sumOfLines = 0;
       for (var i in lines) {
-        sumOfLines += i.linePriceWithTax;
+        sumOfLines += int.parse(i.linePriceWithTax);
       }
 
       priceString = formatPriceValue((sumOfLines / 100 * price).toInt());

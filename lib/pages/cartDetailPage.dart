@@ -164,7 +164,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           subtitle: userController.currentAuthenticatedUser
                                   .value!.orders.items.isNotEmpty
                               ? Text(
-                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(int.parse(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax) / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
                                   style: CustomTheme.headerStyle,
                                 )
                               : Text(''),

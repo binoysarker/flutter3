@@ -13,7 +13,6 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/pages/register_success_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
@@ -24,6 +23,7 @@ import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../allGlobalKeys.dart';
+import '../graphqlSection/vendureSchema.graphql.dart';
 
 class LoginPageController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -124,6 +124,7 @@ class LoginPageController extends GetxController {
   void onUserLogout() async {
     loading.value = true;
     graphqlService = GraphqlService();
+    
     final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {

@@ -168,7 +168,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                     ],
                                   ),
                                   Text(
-                                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',
+                                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(int.parse(element.linePriceWithTax))}',
                                     style: CustomTheme.headerStyle,
                                   ),
                                 ],
@@ -201,7 +201,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
+                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.amountWithTax))}',
                                   style: CustomTheme.headerStyle,
                                 ),
                               ],
@@ -221,7 +221,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
+                                  '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.priceWithTax))}',
                                   style: CustomTheme.headerStyle,
                                 ),
                               ],
@@ -244,7 +244,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                       style: CustomTheme.headerStyle,
                     ),
                     Text(
-                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}',
+                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(int.parse(widget.orderController.getOrderByCodeResponse.value!.totalWithTax) / 100).toStringAsFixed(2)}',
                       style: CustomTheme.headerStyle,
                     ),
                   ],

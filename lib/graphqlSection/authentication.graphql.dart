@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-import 'schema.graphql.dart';
+import 'vendureSchema.graphql.dart';
 part 'authentication.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -7593,7 +7593,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
 
   final int totalQuantity;
 
-  final int totalWithTax;
+  final String totalWithTax;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -7768,7 +7768,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
       List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?
           payments,
       int? totalQuantity,
-      int? totalWithTax,
+      String? totalWithTax,
       String? $__typename});
   TRes lines(
       Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
@@ -7861,7 +7861,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           couponCodes: couponCodes == _undefined || couponCodes == null ? _instance.couponCodes : (couponCodes as List<String>),
           payments: payments == _undefined ? _instance.payments : (payments as List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?),
           totalQuantity: totalQuantity == _undefined || totalQuantity == null ? _instance.totalQuantity : (totalQuantity as int),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   TRes lines(
           Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
@@ -7955,7 +7955,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
           List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?
               payments,
           int? totalQuantity,
-          int? totalWithTax,
+          String? totalWithTax,
           String? $__typename}) =>
       _res;
   lines(_fn) => _res;
@@ -8160,7 +8160,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant {
 
   final String name;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -8217,7 +8217,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$line
           TRes res) =
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant;
 
-  TRes call({String? name, int? priceWithTax, String? $__typename});
+  TRes call({String? name, String? priceWithTax, String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant<
@@ -8248,7 +8248,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines$pr
                   : (name as String),
               priceWithTax: priceWithTax == _undefined || priceWithTax == null
                   ? _instance.priceWithTax
-                  : (priceWithTax as int),
+                  : (priceWithTax as String),
               $__typename: $__typename == _undefined || $__typename == null
                   ? _instance.$__typename
                   : ($__typename as String)));
@@ -8264,7 +8264,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$line
 
   TRes _res;
 
-  call({String? name, int? priceWithTax, String? $__typename}) => _res;
+  call({String? name, String? priceWithTax, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8398,7 +8398,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$discounts {
       _$Query$GetActiveCustomer$activeCustomer$orders$items$discountsFromJson(
           json);
 
-  final int amount;
+  final String amount;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -8450,7 +8450,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$disc
           TRes res) =
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts;
 
-  TRes call({int? amount, String? $__typename});
+  TRes call({String? amount, String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discounts<
@@ -8472,7 +8472,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$discount
       _then(Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as int),
+              : (amount as String),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -8488,7 +8488,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$disc
 
   TRes _res;
 
-  call({int? amount, String? $__typename}) => _res;
+  call({String? amount, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8738,9 +8738,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$surcharges {
       _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesFromJson(
           json);
 
-  final int price;
+  final String price;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -8796,7 +8796,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$surc
           TRes res) =
       _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges;
 
-  TRes call({int? price, int? priceWithTax, String? $__typename});
+  TRes call({String? price, String? priceWithTax, String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharges<
@@ -8822,10 +8822,10 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surcharg
       _then(Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as int),
+              : (price as String),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as int),
+              : (priceWithTax as String),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -8841,7 +8841,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$surc
 
   TRes _res;
 
-  call({int? price, int? priceWithTax, String? $__typename}) => _res;
+  call({String? price, String? priceWithTax, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -8866,7 +8866,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$payments {
 
   final String method;
 
-  final int amount;
+  final String amount;
 
   final String? transactionId;
 
@@ -8947,7 +8947,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$paym
       {String? state,
       String? createdAt,
       String? method,
-      int? amount,
+      String? amount,
       String? transactionId,
       String? $__typename});
 }
@@ -8986,7 +8986,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$payments
               : (method as String),
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as int),
+              : (amount as String),
           transactionId: transactionId == _undefined
               ? _instance.transactionId
               : (transactionId as String?),
@@ -9009,7 +9009,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$paym
           {String? state,
           String? createdAt,
           String? method,
-          int? amount,
+          String? amount,
           String? transactionId,
           String? $__typename}) =>
       _res;

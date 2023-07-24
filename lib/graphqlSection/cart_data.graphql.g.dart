@@ -23,12 +23,12 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
           .map((e) => Fragment$Cart$lines.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalQuantity: json['totalQuantity'] as int,
-      subTotal: json['subTotal'] as int,
-      subTotalWithTax: json['subTotalWithTax'] as int,
-      total: json['total'] as int,
-      totalWithTax: json['totalWithTax'] as int,
-      shipping: json['shipping'] as int,
-      shippingWithTax: json['shippingWithTax'] as int,
+      subTotal: json['subTotal'] as String,
+      subTotalWithTax: json['subTotalWithTax'] as String,
+      total: json['total'] as String,
+      totalWithTax: json['totalWithTax'] as String,
+      shipping: json['shipping'] as String,
+      shippingWithTax: json['shippingWithTax'] as String,
       shippingLines: (json['shippingLines'] as List<dynamic>)
           .map((e) =>
               Fragment$Cart$shippingLines.fromJson(e as Map<String, dynamic>))
@@ -173,11 +173,11 @@ Fragment$Cart$lines _$Fragment$Cart$linesFromJson(Map<String, dynamic> json) =>
           ? null
           : Fragment$Asset.fromJson(
               json['featuredAsset'] as Map<String, dynamic>),
-      unitPrice: json['unitPrice'] as int,
-      unitPriceWithTax: json['unitPriceWithTax'] as int,
+      unitPrice: json['unitPrice'] as String,
+      unitPriceWithTax: json['unitPriceWithTax'] as String,
       quantity: json['quantity'] as int,
-      linePriceWithTax: json['linePriceWithTax'] as int,
-      discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
+      linePriceWithTax: json['linePriceWithTax'] as String,
+      discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as String,
       productVariant: Fragment$Cart$lines$productVariant.fromJson(
           json['productVariant'] as Map<String, dynamic>),
       discounts: (json['discounts'] as List<dynamic>)
@@ -223,8 +223,8 @@ Map<String, dynamic> _$Fragment$Cart$lines$productVariantToJson(
 Fragment$Cart$lines$discounts _$Fragment$Cart$lines$discountsFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$lines$discounts(
-      amount: json['amount'] as int,
-      amountWithTax: json['amountWithTax'] as int,
+      amount: json['amount'] as String,
+      amountWithTax: json['amountWithTax'] as String,
       description: json['description'] as String,
       adjustmentSource: json['adjustmentSource'] as String,
       type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -254,7 +254,7 @@ const _$Enum$AdjustmentTypeEnumMap = {
 Fragment$Cart$shippingLines _$Fragment$Cart$shippingLinesFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$shippingLines(
-      priceWithTax: json['priceWithTax'] as int,
+      priceWithTax: json['priceWithTax'] as String,
       shippingMethod: Fragment$Cart$shippingLines$shippingMethod.fromJson(
           json['shippingMethod'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
@@ -292,8 +292,8 @@ Map<String, dynamic> _$Fragment$Cart$shippingLines$shippingMethodToJson(
 Fragment$Cart$discounts _$Fragment$Cart$discountsFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$discounts(
-      amount: json['amount'] as int,
-      amountWithTax: json['amountWithTax'] as int,
+      amount: json['amount'] as String,
+      amountWithTax: json['amountWithTax'] as String,
       description: json['description'] as String,
       adjustmentSource: json['adjustmentSource'] as String,
       type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -390,6 +390,7 @@ const _$Enum$ErrorCodeEnumMap = {
   Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
   Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
   Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
+  Enum$ErrorCode.GUEST_CHECKOUT_ERROR: 'GUEST_CHECKOUT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
@@ -447,7 +448,7 @@ Query$GetCartTotals$activeOrder _$Query$GetCartTotals$activeOrderFromJson(
       id: json['id'] as String,
       active: json['active'] as bool,
       totalQuantity: json['totalQuantity'] as int,
-      totalWithTax: json['totalWithTax'] as int,
+      totalWithTax: json['totalWithTax'] as String,
       $__typename: json['__typename'] as String,
     );
 
@@ -523,12 +524,12 @@ Mutation$AddToCart$addItemToOrder$$Order
                       e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as int,
-          subTotalWithTax: json['subTotalWithTax'] as int,
-          total: json['total'] as int,
-          totalWithTax: json['totalWithTax'] as int,
-          shipping: json['shipping'] as int,
-          shippingWithTax: json['shippingWithTax'] as int,
+          subTotal: json['subTotal'] as String,
+          subTotalWithTax: json['subTotalWithTax'] as String,
+          total: json['total'] as String,
+          totalWithTax: json['totalWithTax'] as String,
+          shipping: json['shipping'] as String,
+          shippingWithTax: json['shippingWithTax'] as String,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) => Mutation$AddToCart$addItemToOrder$$Order$shippingLines
                   .fromJson(e as Map<String, dynamic>))
@@ -692,11 +693,12 @@ Mutation$AddToCart$addItemToOrder$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as int,
-          unitPriceWithTax: json['unitPriceWithTax'] as int,
+          unitPrice: json['unitPrice'] as String,
+          unitPriceWithTax: json['unitPriceWithTax'] as String,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as int,
-          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
+          linePriceWithTax: json['linePriceWithTax'] as String,
+          discountedLinePriceWithTax:
+              json['discountedLinePriceWithTax'] as String,
           productVariant:
               Mutation$AddToCart$addItemToOrder$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -748,8 +750,8 @@ Mutation$AddToCart$addItemToOrder$$Order$lines$discounts
     _$Mutation$AddToCart$addItemToOrder$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddToCart$addItemToOrder$$Order$lines$discounts(
-          amount: json['amount'] as int,
-          amountWithTax: json['amountWithTax'] as int,
+          amount: json['amount'] as String,
+          amountWithTax: json['amountWithTax'] as String,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -773,7 +775,7 @@ Mutation$AddToCart$addItemToOrder$$Order$shippingLines
     _$Mutation$AddToCart$addItemToOrder$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddToCart$addItemToOrder$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as int,
+          priceWithTax: json['priceWithTax'] as String,
           shippingMethod:
               Mutation$AddToCart$addItemToOrder$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -816,8 +818,8 @@ Mutation$AddToCart$addItemToOrder$$Order$discounts
     _$Mutation$AddToCart$addItemToOrder$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddToCart$addItemToOrder$$Order$discounts(
-          amount: json['amount'] as int,
-          amountWithTax: json['amountWithTax'] as int,
+          amount: json['amount'] as String,
+          amountWithTax: json['amountWithTax'] as String,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],

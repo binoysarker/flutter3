@@ -4,8 +4,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/userController.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/services/util_service.dart';
+
+import '../graphqlSection/vendureSchema.graphql.dart';
 
 class PaymentServices{
   static late Razorpay razorpay;

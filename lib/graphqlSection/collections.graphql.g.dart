@@ -261,10 +261,6 @@ Query$GetAvailableCountries$availableCountries$translations
     _$Query$GetAvailableCountries$availableCountries$translationsFromJson(
             Map<String, dynamic> json) =>
         Query$GetAvailableCountries$availableCountries$translations(
-          languageCode: $enumDecode(
-              _$Enum$LanguageCodeEnumMap, json['languageCode'],
-              unknownValue: Enum$LanguageCode.$unknown),
-          name: json['name'] as String,
           $__typename: json['__typename'] as String,
         );
 
@@ -273,8 +269,6 @@ Map<String, dynamic>
             Query$GetAvailableCountries$availableCountries$translations
                 instance) =>
         <String, dynamic>{
-          'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
-          'name': instance.name,
           '__typename': instance.$__typename,
         };
 
@@ -382,8 +376,8 @@ Query$GetCollectionsByIdOrSlug$collection$productVariants$items
         Query$GetCollectionsByIdOrSlug$collection$productVariants$items(
           id: json['id'] as String,
           name: json['name'] as String,
-          price: json['price'] as int,
-          priceWithTax: json['priceWithTax'] as int,
+          price: json['price'] as String,
+          priceWithTax: json['priceWithTax'] as String,
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),
@@ -727,8 +721,8 @@ Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
               ? null
               : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
                   .fromJson(json['featuredAsset'] as Map<String, dynamic>),
-          price: json['price'] as int,
-          priceWithTax: json['priceWithTax'] as int,
+          price: json['price'] as String,
+          priceWithTax: json['priceWithTax'] as String,
           product:
               Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
                   .fromJson(json['product'] as Map<String, dynamic>),

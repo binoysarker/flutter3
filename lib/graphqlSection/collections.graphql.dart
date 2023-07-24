@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-import 'schema.graphql.dart';
+import 'vendureSchema.graphql.dart';
 part 'collections.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -913,9 +913,7 @@ class _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries<TRes>
 @JsonSerializable(explicitToJson: true)
 class Query$GetAvailableCountries$availableCountries$translations {
   Query$GetAvailableCountries$availableCountries$translations(
-      {required this.languageCode,
-      required this.name,
-      required this.$__typename});
+      {required this.$__typename});
 
   @override
   factory Query$GetAvailableCountries$availableCountries$translations.fromJson(
@@ -923,21 +921,14 @@ class Query$GetAvailableCountries$availableCountries$translations {
       _$Query$GetAvailableCountries$availableCountries$translationsFromJson(
           json);
 
-  @JsonKey(unknownEnumValue: Enum$LanguageCode.$unknown)
-  final Enum$LanguageCode languageCode;
-
-  final String name;
-
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
       _$Query$GetAvailableCountries$availableCountries$translationsToJson(this);
   int get hashCode {
-    final l$languageCode = languageCode;
-    final l$name = name;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$languageCode, l$name, l$$__typename]);
+    return Object.hashAll([l$$__typename]);
   }
 
   @override
@@ -946,12 +937,6 @@ class Query$GetAvailableCountries$availableCountries$translations {
     if (!(other
             is Query$GetAvailableCountries$availableCountries$translations) ||
         runtimeType != other.runtimeType) return false;
-    final l$languageCode = languageCode;
-    final lOther$languageCode = other.languageCode;
-    if (l$languageCode != lOther$languageCode) return false;
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -981,8 +966,7 @@ abstract class CopyWith$Query$GetAvailableCountries$availableCountries$translati
           TRes res) =
       _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries$translations;
 
-  TRes call(
-      {Enum$LanguageCode? languageCode, String? name, String? $__typename});
+  TRes call({String? $__typename});
 }
 
 class _CopyWithImpl$Query$GetAvailableCountries$availableCountries$translations<
@@ -1000,17 +984,8 @@ class _CopyWithImpl$Query$GetAvailableCountries$availableCountries$translations<
 
   static const _undefined = {};
 
-  TRes call(
-          {Object? languageCode = _undefined,
-          Object? name = _undefined,
-          Object? $__typename = _undefined}) =>
+  TRes call({Object? $__typename = _undefined}) =>
       _then(Query$GetAvailableCountries$availableCountries$translations(
-          languageCode: languageCode == _undefined || languageCode == null
-              ? _instance.languageCode
-              : (languageCode as Enum$LanguageCode),
-          name: name == _undefined || name == null
-              ? _instance.name
-              : (name as String),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -1026,8 +1001,7 @@ class _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries$translati
 
   TRes _res;
 
-  call({Enum$LanguageCode? languageCode, String? name, String? $__typename}) =>
-      _res;
+  call({String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2303,9 +2277,9 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
 
   final String name;
 
-  final int price;
+  final String price;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
@@ -2409,8 +2383,8 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariant
   TRes call(
       {String? id,
       String? name,
-      int? price,
-      int? priceWithTax,
+      String? price,
+      String? priceWithTax,
       Enum$CurrencyCode? currencyCode,
       Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?
           featuredAsset,
@@ -2457,10 +2431,10 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
               : (name as String),
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as int),
+              : (price as String),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as int),
+              : (priceWithTax as String),
           currencyCode: currencyCode == _undefined || currencyCode == null
               ? _instance.currencyCode
               : (currencyCode as Enum$CurrencyCode),
@@ -2509,8 +2483,8 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariant
   call(
           {String? id,
           String? name,
-          int? price,
-          int? priceWithTax,
+          String? price,
+          String? priceWithTax,
           Enum$CurrencyCode? currencyCode,
           Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?
               featuredAsset,
@@ -3417,9 +3391,9 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
   final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
       featuredAsset;
 
-  final int price;
+  final String price;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
       product;
@@ -3533,8 +3507,8 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$produ
       Enum$CurrencyCode? currencyCode,
       Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
           featuredAsset,
-      int? price,
-      int? priceWithTax,
+      String? price,
+      String? priceWithTax,
       Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product?
           product,
       String? $__typename});
@@ -3599,10 +3573,10 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
                   as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?),
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as int),
+              : (price as String),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as int),
+              : (priceWithTax as String),
           product: product == _undefined || product == null
               ? _instance.product
               : (product as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product),
@@ -3654,8 +3628,8 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
           Enum$CurrencyCode? currencyCode,
           Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
               featuredAsset,
-          int? price,
-          int? priceWithTax,
+          String? price,
+          String? priceWithTax,
           Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product?
               product,
           String? $__typename}) =>

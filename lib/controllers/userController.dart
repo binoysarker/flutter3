@@ -7,11 +7,11 @@ import 'package:graphql/client.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 
+import '../graphqlSection/vendureSchema.graphql.dart';
 import '../services/util_service.dart';
 
 class UserController with ChangeNotifier {

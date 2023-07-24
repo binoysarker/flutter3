@@ -94,11 +94,11 @@ class _OrdersPageState extends State<OrdersPage> {
                               style: CustomTheme.headerStyle,
                             ),
                             Text(
-                              'Tax ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(activeOrder.shippingWithTax)}',
+                              'Tax ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(int.parse(activeOrder.shippingWithTax))}',
                               style: CustomTheme.headerStyle,
                             ),
                             Text(
-                              'Total Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(activeOrder.totalWithTax)}',
+                              'Total Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(int.parse(activeOrder.totalWithTax))}',
                               style: CustomTheme.headerStyle,
                             ),
                             activeOrder.customFields!.clientRequestToCancel == 1
@@ -147,7 +147,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                         '${CommonVariableData.placeholder}'),
                               ),
                               subtitle: Text(
-                                'Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(subItem.linePriceWithTax)} \n'
+                                'Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(int.parse(subItem.linePriceWithTax))} \n'
                                     'Quantity: ${subItem.quantity}',
                                 style: CustomTheme.paragraphStyle,
                               ),

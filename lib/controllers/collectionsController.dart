@@ -2,8 +2,9 @@ import 'package:get/get.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/services/graphql_service.dart';
+
+import '../graphqlSection/vendureSchema.graphql.dart';
 
 class CollectionsController extends GetxController {
   var graphqlService = GraphqlService();

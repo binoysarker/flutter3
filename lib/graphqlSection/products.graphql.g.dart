@@ -139,8 +139,8 @@ Query$GetAllProducts$products$items$variants
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),
-          price: json['price'] as int,
-          priceWithTax: json['priceWithTax'] as int,
+          price: json['price'] as String,
+          priceWithTax: json['priceWithTax'] as String,
           productId: json['productId'] as String,
           featuredAsset: json['featuredAsset'] == null
               ? null
@@ -516,8 +516,8 @@ Query$SearchProducts$search$items$priceWithTax$$PriceRange
             Map<String, dynamic> json) =>
         Query$SearchProducts$search$items$priceWithTax$$PriceRange(
           $__typename: json['__typename'] as String,
-          min: json['min'] as int,
-          max: json['max'] as int,
+          min: json['min'] as String,
+          max: json['max'] as String,
         );
 
 Map<String,
@@ -708,8 +708,8 @@ Query$GetProductDetail$product$variants
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          price: json['price'] as int,
-          priceWithTax: json['priceWithTax'] as int,
+          price: json['price'] as String,
+          priceWithTax: json['priceWithTax'] as String,
           currencyCode: $enumDecode(
               _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
               unknownValue: Enum$CurrencyCode.$unknown),

@@ -1,9 +1,9 @@
 {
-  "name": "Untitled GraphQL Schema",
-  "schemaPath": "schema.graphql",
+  "name": "Vendure GraphQL Schema",
+  "schemaPath": "vendureSchema.graphql",
   "extensions": {
     "endpoints": {
-      "Default GraphQL Endpoint": {
+      "Vendure GraphQL Endpoint": {
         "url": "http://192.168.0.104:3000/shop-api",
         "headers": {
           "user-agent": "JS GraphQL"

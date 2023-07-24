@@ -4,7 +4,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
-import 'schema.graphql.dart';
+import 'vendureSchema.graphql.dart';
 part 'products.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -1298,9 +1298,9 @@ class Query$GetAllProducts$products$items$variants {
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
 
-  final int price;
+  final String price;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   final String productId;
 
@@ -1387,8 +1387,8 @@ abstract class CopyWith$Query$GetAllProducts$products$items$variants<TRes> {
       {String? id,
       String? name,
       Enum$CurrencyCode? currencyCode,
-      int? price,
-      int? priceWithTax,
+      String? price,
+      String? priceWithTax,
       String? productId,
       Query$GetAllProducts$products$items$variants$featuredAsset? featuredAsset,
       String? $__typename});
@@ -1426,10 +1426,10 @@ class _CopyWithImpl$Query$GetAllProducts$products$items$variants<TRes>
               : (currencyCode as Enum$CurrencyCode),
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as int),
+              : (price as String),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as int),
+              : (priceWithTax as String),
           productId: productId == _undefined || productId == null
               ? _instance.productId
               : (productId as String),
@@ -1461,8 +1461,8 @@ class _CopyWithStubImpl$Query$GetAllProducts$products$items$variants<TRes>
           {String? id,
           String? name,
           Enum$CurrencyCode? currencyCode,
-          int? price,
-          int? priceWithTax,
+          String? price,
+          String? priceWithTax,
           String? productId,
           Query$GetAllProducts$products$items$variants$featuredAsset?
               featuredAsset,
@@ -3051,9 +3051,9 @@ class Query$SearchProducts$search$items$priceWithTax$$PriceRange
   @JsonKey(name: '__typename')
   final String $__typename;
 
-  final int min;
+  final String min;
 
-  final int max;
+  final String max;
 
   Map<String, dynamic> toJson() =>
       _$Query$SearchProducts$search$items$priceWithTax$$PriceRangeToJson(this);
@@ -3105,7 +3105,7 @@ abstract class CopyWith$Query$SearchProducts$search$items$priceWithTax$$PriceRan
           TRes res) =
       _CopyWithStubImpl$Query$SearchProducts$search$items$priceWithTax$$PriceRange;
 
-  TRes call({String? $__typename, int? min, int? max});
+  TRes call({String? $__typename, String? min, String? max});
 }
 
 class _CopyWithImpl$Query$SearchProducts$search$items$priceWithTax$$PriceRange<
@@ -3131,9 +3131,12 @@ class _CopyWithImpl$Query$SearchProducts$search$items$priceWithTax$$PriceRange<
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String),
-          min: min == _undefined || min == null ? _instance.min : (min as int),
-          max:
-              max == _undefined || max == null ? _instance.max : (max as int)));
+          min: min == _undefined || min == null
+              ? _instance.min
+              : (min as String),
+          max: max == _undefined || max == null
+              ? _instance.max
+              : (max as String)));
 }
 
 class _CopyWithStubImpl$Query$SearchProducts$search$items$priceWithTax$$PriceRange<
@@ -3146,7 +3149,7 @@ class _CopyWithStubImpl$Query$SearchProducts$search$items$priceWithTax$$PriceRan
 
   TRes _res;
 
-  call({String? $__typename, int? min, int? max}) => _res;
+  call({String? $__typename, String? min, String? max}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4588,9 +4591,9 @@ class Query$GetProductDetail$product$variants {
 
   final Fragment$Asset? featuredAsset;
 
-  final int price;
+  final String price;
 
-  final int priceWithTax;
+  final String priceWithTax;
 
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
@@ -4710,8 +4713,8 @@ abstract class CopyWith$Query$GetProductDetail$product$variants<TRes> {
       String? name,
       List<Query$GetProductDetail$product$variants$options>? options,
       Fragment$Asset? featuredAsset,
-      int? price,
-      int? priceWithTax,
+      String? price,
+      String? priceWithTax,
       Enum$CurrencyCode? currencyCode,
       Enum$LanguageCode? languageCode,
       List<Query$GetProductDetail$product$variants$assets>? assets,
@@ -4769,10 +4772,10 @@ class _CopyWithImpl$Query$GetProductDetail$product$variants<TRes>
               : (featuredAsset as Fragment$Asset?),
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as int),
+              : (price as String),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as int),
+              : (priceWithTax as String),
           currencyCode: currencyCode == _undefined || currencyCode == null
               ? _instance.currencyCode
               : (currencyCode as Enum$CurrencyCode),
@@ -4830,8 +4833,8 @@ class _CopyWithStubImpl$Query$GetProductDetail$product$variants<TRes>
           String? name,
           List<Query$GetProductDetail$product$variants$options>? options,
           Fragment$Asset? featuredAsset,
-          int? price,
-          int? priceWithTax,
+          String? price,
+          String? priceWithTax,
           Enum$CurrencyCode? currencyCode,
           Enum$LanguageCode? languageCode,
           List<Query$GetProductDetail$product$variants$assets>? assets,

@@ -13,13 +13,14 @@ import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
-import 'package:recipe.app/graphqlSection/schema.graphql.dart';
 import 'package:recipe.app/models/createOrderResponseModel.dart';
 import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
+
+import '../graphqlSection/vendureSchema.graphql.dart';
 
 class OrderController extends GetxController {
   GraphqlService graphqlService = GraphqlService();

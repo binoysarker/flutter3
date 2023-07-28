@@ -502,17 +502,17 @@ class Fragment$Cart {
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Fragment$Cart$shippingLines> shippingLines;
 
@@ -680,12 +680,12 @@ abstract class CopyWith$Fragment$Cart<TRes> {
       List<Fragment$Cart$promotions>? promotions,
       List<Fragment$Cart$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Fragment$Cart$shippingLines>? shippingLines,
       List<Fragment$Cart$discounts>? discounts,
       Fragment$Cart$customFields? customFields,
@@ -767,21 +767,21 @@ class _CopyWithImpl$Fragment$Cart<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
+              : (subTotal as int),
           subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
               ? _instance.subTotalWithTax
-              : (subTotalWithTax as String),
+              : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
-              : (total as String),
+              : (total as int),
           totalWithTax: totalWithTax == _undefined || totalWithTax == null
               ? _instance.totalWithTax
-              : (totalWithTax as String),
+              : (totalWithTax as int),
           shipping: shipping == _undefined || shipping == null
               ? _instance.shipping
-              : (shipping as String),
+              : (shipping as int),
           shippingWithTax:
-              shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Fragment$Cart$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Fragment$Cart$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Fragment$Cart$customFields?),
@@ -847,12 +847,12 @@ class _CopyWithStubImpl$Fragment$Cart<TRes>
           List<Fragment$Cart$promotions>? promotions,
           List<Fragment$Cart$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Fragment$Cart$shippingLines>? shippingLines,
           List<Fragment$Cart$discounts>? discounts,
           Fragment$Cart$customFields? customFields,
@@ -2033,15 +2033,15 @@ class Fragment$Cart$lines {
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Fragment$Cart$lines$productVariant productVariant;
 
@@ -2144,11 +2144,11 @@ abstract class CopyWith$Fragment$Cart$lines<TRes> {
       {String? id,
       String? customFields,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Fragment$Cart$lines$productVariant? productVariant,
       List<Fragment$Cart$lines$discounts>? discounts,
       String? $__typename});
@@ -2194,20 +2194,20 @@ class _CopyWithImpl$Fragment$Cart$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax:
               discountedLinePriceWithTax == _undefined || discountedLinePriceWithTax == null
                   ? _instance.discountedLinePriceWithTax
-                  : (discountedLinePriceWithTax as String),
+                  : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant as Fragment$Cart$lines$productVariant),
@@ -2253,11 +2253,11 @@ class _CopyWithStubImpl$Fragment$Cart$lines<TRes>
           {String? id,
           String? customFields,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Fragment$Cart$lines$productVariant? productVariant,
           List<Fragment$Cart$lines$discounts>? discounts,
           String? $__typename}) =>
@@ -2380,9 +2380,9 @@ class Fragment$Cart$lines$discounts {
   factory Fragment$Cart$lines$discounts.fromJson(Map<String, dynamic> json) =>
       _$Fragment$Cart$lines$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -2455,8 +2455,8 @@ abstract class CopyWith$Fragment$Cart$lines$discounts<TRes> {
       _CopyWithStubImpl$Fragment$Cart$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -2483,10 +2483,10 @@ class _CopyWithImpl$Fragment$Cart$lines$discounts<TRes>
       _then(Fragment$Cart$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -2509,8 +2509,8 @@ class _CopyWithStubImpl$Fragment$Cart$lines$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -2529,7 +2529,7 @@ class Fragment$Cart$shippingLines {
   factory Fragment$Cart$shippingLines.fromJson(Map<String, dynamic> json) =>
       _$Fragment$Cart$shippingLinesFromJson(json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Fragment$Cart$shippingLines$shippingMethod shippingMethod;
 
@@ -2578,7 +2578,7 @@ abstract class CopyWith$Fragment$Cart$shippingLines<TRes> {
       _CopyWithStubImpl$Fragment$Cart$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
       String? $__typename});
   CopyWith$Fragment$Cart$shippingLines$shippingMethod<TRes> get shippingMethod;
@@ -2601,7 +2601,7 @@ class _CopyWithImpl$Fragment$Cart$shippingLines<TRes>
       _then(Fragment$Cart$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod as Fragment$Cart$shippingLines$shippingMethod),
@@ -2622,7 +2622,7 @@ class _CopyWithStubImpl$Fragment$Cart$shippingLines<TRes>
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Fragment$Cart$shippingLines$shippingMethod? shippingMethod,
           String? $__typename}) =>
       _res;
@@ -2778,9 +2778,9 @@ class Fragment$Cart$discounts {
   factory Fragment$Cart$discounts.fromJson(Map<String, dynamic> json) =>
       _$Fragment$Cart$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -2851,8 +2851,8 @@ abstract class CopyWith$Fragment$Cart$discounts<TRes> {
       _CopyWithStubImpl$Fragment$Cart$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -2879,10 +2879,10 @@ class _CopyWithImpl$Fragment$Cart$discounts<TRes>
       _then(Fragment$Cart$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -2905,8 +2905,8 @@ class _CopyWithStubImpl$Fragment$Cart$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -3640,17 +3640,17 @@ class Query$GetActiveOrder$activeOrder implements Fragment$Cart {
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Query$GetActiveOrder$activeOrder$shippingLines> shippingLines;
 
@@ -3827,12 +3827,12 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder<TRes> {
       List<Query$GetActiveOrder$activeOrder$promotions>? promotions,
       List<Query$GetActiveOrder$activeOrder$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Query$GetActiveOrder$activeOrder$shippingLines>? shippingLines,
       List<Query$GetActiveOrder$activeOrder$discounts>? discounts,
       Query$GetActiveOrder$activeOrder$customFields? customFields,
@@ -3923,17 +3923,17 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
+              : (subTotal as int),
           subTotalWithTax:
               subTotalWithTax == _undefined || subTotalWithTax == null
                   ? _instance.subTotalWithTax
-                  : (subTotalWithTax as String),
+                  : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
-              : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetActiveOrder$activeOrder$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetActiveOrder$activeOrder$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetActiveOrder$activeOrder$customFields?),
@@ -4005,12 +4005,12 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder<TRes>
           List<Query$GetActiveOrder$activeOrder$promotions>? promotions,
           List<Query$GetActiveOrder$activeOrder$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Query$GetActiveOrder$activeOrder$shippingLines>? shippingLines,
           List<Query$GetActiveOrder$activeOrder$discounts>? discounts,
           Query$GetActiveOrder$activeOrder$customFields? customFields,
@@ -4769,15 +4769,15 @@ class Query$GetActiveOrder$activeOrder$lines implements Fragment$Cart$lines {
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Query$GetActiveOrder$activeOrder$lines$productVariant productVariant;
 
@@ -4886,11 +4886,11 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder$lines<TRes> {
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Query$GetActiveOrder$activeOrder$lines$productVariant? productVariant,
       List<Query$GetActiveOrder$activeOrder$lines$discounts>? discounts,
       String? customFields,
@@ -4936,20 +4936,20 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -4995,11 +4995,11 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$lines<TRes>
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Query$GetActiveOrder$activeOrder$lines$productVariant? productVariant,
           List<Query$GetActiveOrder$activeOrder$lines$discounts>? discounts,
           String? customFields,
@@ -5138,9 +5138,9 @@ class Query$GetActiveOrder$activeOrder$lines$discounts
           Map<String, dynamic> json) =>
       _$Query$GetActiveOrder$activeOrder$lines$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -5218,8 +5218,8 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder$lines$discounts<TRes> {
       _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -5247,10 +5247,10 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$lines$discounts<TRes>
       _then(Query$GetActiveOrder$activeOrder$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -5273,8 +5273,8 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$lines$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -5295,7 +5295,7 @@ class Query$GetActiveOrder$activeOrder$shippingLines
           Map<String, dynamic> json) =>
       _$Query$GetActiveOrder$activeOrder$shippingLinesFromJson(json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Query$GetActiveOrder$activeOrder$shippingLines$shippingMethod
       shippingMethod;
@@ -5349,7 +5349,7 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder$shippingLines<TRes> {
       _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Query$GetActiveOrder$activeOrder$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -5375,7 +5375,7 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$shippingLines<TRes>
       _then(Query$GetActiveOrder$activeOrder$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -5398,7 +5398,7 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$shippingLines<TRes>
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Query$GetActiveOrder$activeOrder$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -5575,9 +5575,9 @@ class Query$GetActiveOrder$activeOrder$discounts
           Map<String, dynamic> json) =>
       _$Query$GetActiveOrder$activeOrder$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -5653,8 +5653,8 @@ abstract class CopyWith$Query$GetActiveOrder$activeOrder$discounts<TRes> {
       _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -5682,10 +5682,10 @@ class _CopyWithImpl$Query$GetActiveOrder$activeOrder$discounts<TRes>
       _then(Query$GetActiveOrder$activeOrder$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -5708,8 +5708,8 @@ class _CopyWithStubImpl$Query$GetActiveOrder$activeOrder$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -6111,17 +6111,17 @@ class Query$GetOrderForCheckout$activeOrder implements Fragment$Cart {
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Query$GetOrderForCheckout$activeOrder$shippingLines> shippingLines;
 
@@ -6301,12 +6301,12 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder<TRes> {
       List<Query$GetOrderForCheckout$activeOrder$promotions>? promotions,
       List<Query$GetOrderForCheckout$activeOrder$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Query$GetOrderForCheckout$activeOrder$shippingLines>? shippingLines,
       List<Query$GetOrderForCheckout$activeOrder$discounts>? discounts,
       Query$GetOrderForCheckout$activeOrder$customFields? customFields,
@@ -6398,19 +6398,19 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
+              : (subTotal as int),
           subTotalWithTax:
               subTotalWithTax == _undefined || subTotalWithTax == null
                   ? _instance.subTotalWithTax
-                  : (subTotalWithTax as String),
+                  : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
-              : (total as String),
+              : (total as int),
           totalWithTax: totalWithTax == _undefined || totalWithTax == null
               ? _instance.totalWithTax
-              : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetOrderForCheckout$activeOrder$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetOrderForCheckout$activeOrder$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetOrderForCheckout$activeOrder$customFields?),
@@ -6490,12 +6490,12 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder<TRes>
           List<Query$GetOrderForCheckout$activeOrder$promotions>? promotions,
           List<Query$GetOrderForCheckout$activeOrder$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Query$GetOrderForCheckout$activeOrder$shippingLines>?
               shippingLines,
           List<Query$GetOrderForCheckout$activeOrder$discounts>? discounts,
@@ -7285,15 +7285,15 @@ class Query$GetOrderForCheckout$activeOrder$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Query$GetOrderForCheckout$activeOrder$lines$productVariant
       productVariant;
@@ -7403,11 +7403,11 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$lines<TRes> {
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Query$GetOrderForCheckout$activeOrder$lines$productVariant?
           productVariant,
       List<Query$GetOrderForCheckout$activeOrder$lines$discounts>? discounts,
@@ -7454,20 +7454,20 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -7513,11 +7513,11 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$lines<TRes>
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Query$GetOrderForCheckout$activeOrder$lines$productVariant?
               productVariant,
           List<Query$GetOrderForCheckout$activeOrder$lines$discounts>?
@@ -7664,9 +7664,9 @@ class Query$GetOrderForCheckout$activeOrder$lines$discounts
           Map<String, dynamic> json) =>
       _$Query$GetOrderForCheckout$activeOrder$lines$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -7746,8 +7746,8 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$lines$discounts<
       _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -7777,10 +7777,10 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$lines$discounts<TRes>
       _then(Query$GetOrderForCheckout$activeOrder$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -7806,8 +7806,8 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$lines$discounts<
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -7828,7 +7828,7 @@ class Query$GetOrderForCheckout$activeOrder$shippingLines
           Map<String, dynamic> json) =>
       _$Query$GetOrderForCheckout$activeOrder$shippingLinesFromJson(json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Query$GetOrderForCheckout$activeOrder$shippingLines$shippingMethod
       shippingMethod;
@@ -7885,7 +7885,7 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$shippingLines<
       _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Query$GetOrderForCheckout$activeOrder$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -7913,7 +7913,7 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$shippingLines<TRes>
       _then(Query$GetOrderForCheckout$activeOrder$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -7939,7 +7939,7 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$shippingLines<
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Query$GetOrderForCheckout$activeOrder$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -8119,9 +8119,9 @@ class Query$GetOrderForCheckout$activeOrder$discounts
           Map<String, dynamic> json) =>
       _$Query$GetOrderForCheckout$activeOrder$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -8198,8 +8198,8 @@ abstract class CopyWith$Query$GetOrderForCheckout$activeOrder$discounts<TRes> {
       _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -8227,10 +8227,10 @@ class _CopyWithImpl$Query$GetOrderForCheckout$activeOrder$discounts<TRes>
       _then(Query$GetOrderForCheckout$activeOrder$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -8253,8 +8253,8 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -8915,17 +8915,17 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>
       shippingLines;
@@ -9101,12 +9101,12 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes> {
           promotions,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>?
           shippingLines,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>?
@@ -9201,12 +9201,12 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$RemoveOrderLine$removeOrderLine$$Order$customFields?)));
@@ -9278,12 +9278,12 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order<TRes>
               promotions,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines>?
               shippingLines,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts>?
@@ -10105,15 +10105,15 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$productVariant
       productVariant;
@@ -10228,11 +10228,11 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$productVariant?
           productVariant,
       List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>?
@@ -10282,20 +10282,20 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -10344,11 +10344,11 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines<
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$productVariant?
               productVariant,
           List<Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts>?
@@ -10504,9 +10504,9 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts
       _$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -10589,8 +10589,8 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$di
       _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -10623,10 +10623,10 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discou
       _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -10653,8 +10653,8 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$di
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -10676,7 +10676,7 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines
       _$Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -10736,7 +10736,7 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$shipping
       _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -10766,7 +10766,7 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLine
       _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -10793,7 +10793,7 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$shipping
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -10977,9 +10977,9 @@ class Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts
           Map<String, dynamic> json) =>
       _$Mutation$RemoveOrderLine$removeOrderLine$$Order$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -11060,8 +11060,8 @@ abstract class CopyWith$Mutation$RemoveOrderLine$removeOrderLine$$Order$discount
       _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -11093,10 +11093,10 @@ class _CopyWithImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts<
       _then(Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -11123,8 +11123,8 @@ class _CopyWithStubImpl$Mutation$RemoveOrderLine$removeOrderLine$$Order$discount
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -11843,17 +11843,17 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>
@@ -12034,12 +12034,12 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>?
           shippingLines,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>?
@@ -12137,12 +12137,12 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$customFields?)));
@@ -12218,12 +12218,12 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order<
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines>?
               shippingLines,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts>?
@@ -13052,15 +13052,15 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$productVariant
       productVariant;
@@ -13179,11 +13179,11 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$productVariant?
           productVariant,
       List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>?
@@ -13235,20 +13235,20 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$line
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -13298,11 +13298,11 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$productVariant?
               productVariant,
           List<Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts>?
@@ -13458,9 +13458,9 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts
       _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -13544,8 +13544,8 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
       _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -13580,11 +13580,11 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$line
           Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -13611,8 +13611,8 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -13634,7 +13634,7 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines
       _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -13695,7 +13695,7 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
       _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -13727,7 +13727,7 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$ship
       _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -13754,7 +13754,7 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -13939,9 +13939,9 @@ class Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts
       _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -14025,8 +14025,8 @@ abstract class CopyWith$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
       _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -14059,10 +14059,10 @@ class _CopyWithImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$disc
       _then(Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -14089,8 +14089,8 @@ class _CopyWithStubImpl$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -14676,9 +14676,9 @@ class Query$GetEligibleShippingMethods$eligibleShippingMethods {
 
   final String description;
 
-  final String price;
+  final int price;
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final String? metadata;
 
@@ -14768,8 +14768,8 @@ abstract class CopyWith$Query$GetEligibleShippingMethods$eligibleShippingMethods
       String? name,
       String? code,
       String? description,
-      String? price,
-      String? priceWithTax,
+      int? price,
+      int? priceWithTax,
       String? metadata,
       String? $__typename});
 }
@@ -14811,10 +14811,10 @@ class _CopyWithImpl$Query$GetEligibleShippingMethods$eligibleShippingMethods<
               : (description as String),
           price: price == _undefined || price == null
               ? _instance.price
-              : (price as String),
+              : (price as int),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           metadata: metadata == _undefined
               ? _instance.metadata
               : (metadata as String?),
@@ -14838,8 +14838,8 @@ class _CopyWithStubImpl$Query$GetEligibleShippingMethods$eligibleShippingMethods
           String? name,
           String? code,
           String? description,
-          String? price,
-          String? priceWithTax,
+          int? price,
+          int? priceWithTax,
           String? metadata,
           String? $__typename}) =>
       _res;
@@ -15725,17 +15725,17 @@ class Query$GetOrderByCode$orderByCode implements Fragment$Cart {
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Query$GetOrderByCode$orderByCode$shippingLines> shippingLines;
 
@@ -15920,12 +15920,12 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode<TRes> {
       List<Query$GetOrderByCode$orderByCode$promotions>? promotions,
       List<Query$GetOrderByCode$orderByCode$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Query$GetOrderByCode$orderByCode$shippingLines>? shippingLines,
       List<Query$GetOrderByCode$orderByCode$discounts>? discounts,
       Query$GetOrderByCode$orderByCode$customFields? customFields,
@@ -16017,19 +16017,19 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
+              : (subTotal as int),
           subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null
               ? _instance.subTotalWithTax
-              : (subTotalWithTax as String),
+              : (subTotalWithTax as int),
           total: total == _undefined || total == null
               ? _instance.total
-              : (total as String),
+              : (total as int),
           totalWithTax: totalWithTax == _undefined || totalWithTax == null
               ? _instance.totalWithTax
-              : (totalWithTax as String),
+              : (totalWithTax as int),
           shipping:
-              shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Query$GetOrderByCode$orderByCode$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Query$GetOrderByCode$orderByCode$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetOrderByCode$orderByCode$customFields?),
@@ -16111,12 +16111,12 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode<TRes>
           List<Query$GetOrderByCode$orderByCode$promotions>? promotions,
           List<Query$GetOrderByCode$orderByCode$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Query$GetOrderByCode$orderByCode$shippingLines>? shippingLines,
           List<Query$GetOrderByCode$orderByCode$discounts>? discounts,
           Query$GetOrderByCode$orderByCode$customFields? customFields,
@@ -16879,15 +16879,15 @@ class Query$GetOrderByCode$orderByCode$lines implements Fragment$Cart$lines {
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Query$GetOrderByCode$orderByCode$lines$productVariant productVariant;
 
@@ -16996,11 +16996,11 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode$lines<TRes> {
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Query$GetOrderByCode$orderByCode$lines$productVariant? productVariant,
       List<Query$GetOrderByCode$orderByCode$lines$discounts>? discounts,
       String? customFields,
@@ -17046,20 +17046,20 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -17105,11 +17105,11 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$lines<TRes>
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Query$GetOrderByCode$orderByCode$lines$productVariant? productVariant,
           List<Query$GetOrderByCode$orderByCode$lines$discounts>? discounts,
           String? customFields,
@@ -17248,9 +17248,9 @@ class Query$GetOrderByCode$orderByCode$lines$discounts
           Map<String, dynamic> json) =>
       _$Query$GetOrderByCode$orderByCode$lines$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -17328,8 +17328,8 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode$lines$discounts<TRes> {
       _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -17357,10 +17357,10 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$lines$discounts<TRes>
       _then(Query$GetOrderByCode$orderByCode$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -17383,8 +17383,8 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$lines$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -17405,7 +17405,7 @@ class Query$GetOrderByCode$orderByCode$shippingLines
           Map<String, dynamic> json) =>
       _$Query$GetOrderByCode$orderByCode$shippingLinesFromJson(json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Query$GetOrderByCode$orderByCode$shippingLines$shippingMethod
       shippingMethod;
@@ -17459,7 +17459,7 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode$shippingLines<TRes> {
       _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Query$GetOrderByCode$orderByCode$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -17485,7 +17485,7 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$shippingLines<TRes>
       _then(Query$GetOrderByCode$orderByCode$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -17508,7 +17508,7 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$shippingLines<TRes>
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Query$GetOrderByCode$orderByCode$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -17685,9 +17685,9 @@ class Query$GetOrderByCode$orderByCode$discounts
           Map<String, dynamic> json) =>
       _$Query$GetOrderByCode$orderByCode$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -17763,8 +17763,8 @@ abstract class CopyWith$Query$GetOrderByCode$orderByCode$discounts<TRes> {
       _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -17792,10 +17792,10 @@ class _CopyWithImpl$Query$GetOrderByCode$orderByCode$discounts<TRes>
       _then(Query$GetOrderByCode$orderByCode$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -17818,8 +17818,8 @@ class _CopyWithStubImpl$Query$GetOrderByCode$orderByCode$discounts<TRes>
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -18724,17 +18724,17 @@ class Mutation$AddPayment$addPaymentToOrder$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>
       shippingLines;
@@ -18906,12 +18906,12 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order<TRes> {
       List<Mutation$AddPayment$addPaymentToOrder$$Order$promotions>? promotions,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>?
           shippingLines,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>? discounts,
@@ -19004,15 +19004,15 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
+              : (subTotal as int),
           subTotalWithTax:
               subTotalWithTax == _undefined || subTotalWithTax == null
                   ? _instance.subTotalWithTax
-                  : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+                  : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$AddPayment$addPaymentToOrder$$Order$customFields?)));
@@ -19084,12 +19084,12 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order<TRes>
               promotions,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines>?
               shippingLines,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$discounts>?
@@ -19903,15 +19903,15 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$AddPayment$addPaymentToOrder$$Order$lines$productVariant
       productVariant;
@@ -20026,11 +20026,11 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$lines<
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$AddPayment$addPaymentToOrder$$Order$lines$productVariant?
           productVariant,
       List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>?
@@ -20079,20 +20079,20 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -20140,11 +20140,11 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines<TRes>
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$AddPayment$addPaymentToOrder$$Order$lines$productVariant?
               productVariant,
           List<Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts>?
@@ -20296,9 +20296,9 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts
       _$Mutation$AddPayment$addPaymentToOrder$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -20381,8 +20381,8 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$lines$disco
       _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -20414,10 +20414,10 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts
       _then(Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -20444,8 +20444,8 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$lines$disco
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -20467,7 +20467,7 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines
       _$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -20526,7 +20526,7 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLin
       _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -20556,7 +20556,7 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines<
       _then(Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -20583,7 +20583,7 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLin
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -20767,9 +20767,9 @@ class Mutation$AddPayment$addPaymentToOrder$$Order$discounts
           Map<String, dynamic> json) =>
       _$Mutation$AddPayment$addPaymentToOrder$$Order$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -20849,8 +20849,8 @@ abstract class CopyWith$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<
       _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -20880,10 +20880,10 @@ class _CopyWithImpl$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<TRes>
       _then(Mutation$AddPayment$addPaymentToOrder$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -20909,8 +20909,8 @@ class _CopyWithStubImpl$Mutation$AddPayment$addPaymentToOrder$$Order$discounts<
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -22798,17 +22798,17 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>
       shippingLines;
@@ -22984,12 +22984,12 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes> {
           promotions,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines>? lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>?
           shippingLines,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>?
@@ -23084,12 +23084,12 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$AdjustOrderLine$adjustOrderLine$$Order$customFields?)));
@@ -23161,12 +23161,12 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order<TRes>
               promotions,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines>? lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines>?
               shippingLines,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts>?
@@ -23988,15 +23988,15 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$productVariant
       productVariant;
@@ -24111,11 +24111,11 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$productVariant?
           productVariant,
       List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>?
@@ -24165,20 +24165,20 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<TRes>
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -24227,11 +24227,11 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines<
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$productVariant?
               productVariant,
           List<Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts>?
@@ -24387,9 +24387,9 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts
       _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -24472,8 +24472,8 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$di
       _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -24506,10 +24506,10 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discou
       _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -24536,8 +24536,8 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$di
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -24559,7 +24559,7 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines
       _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -24619,7 +24619,7 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shipping
       _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -24649,7 +24649,7 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLine
       _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -24676,7 +24676,7 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shipping
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -24860,9 +24860,9 @@ class Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts
           Map<String, dynamic> json) =>
       _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discountsFromJson(json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -24943,8 +24943,8 @@ abstract class CopyWith$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discount
       _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -24976,10 +24976,10 @@ class _CopyWithImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts<
       _then(Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -25006,8 +25006,8 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discount
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -26199,17 +26199,17 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>
@@ -26400,12 +26400,12 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>?
           shippingLines,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>?
@@ -26505,12 +26505,12 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?),
@@ -26596,12 +26596,12 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>?
               shippingLines,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>?
@@ -27434,15 +27434,15 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$productVariant
       productVariant;
@@ -27561,11 +27561,11 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$productVariant?
           productVariant,
       List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>?
@@ -27618,20 +27618,20 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$l
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -27681,11 +27681,11 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$productVariant?
               productVariant,
           List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts>?
@@ -27841,9 +27841,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts
       _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -27927,8 +27927,8 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -27963,11 +27963,11 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$l
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -27994,8 +27994,8 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -28017,7 +28017,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines
       _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -28078,7 +28078,7 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -28110,7 +28110,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$s
       _then(Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -28137,7 +28137,7 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -28322,9 +28322,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts
       _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -28408,8 +28408,8 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -28444,11 +28444,11 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$d
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -28475,8 +28475,8 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -29282,17 +29282,17 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>
@@ -29474,12 +29474,12 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>?
           shippingLines,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>?
@@ -29578,12 +29578,12 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order<
               : (totalQuantity as int),
           subTotal: subTotal == _undefined || subTotal == null
               ? _instance.subTotal
-              : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$SetShippingMethod$setOrderShippingMethod$$Order$customFields?)));
@@ -29660,12 +29660,12 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines>?
               shippingLines,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts>?
@@ -30495,15 +30495,15 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$productVariant
       productVariant;
@@ -30622,11 +30622,11 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$productVariant?
           productVariant,
       List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>?
@@ -30679,20 +30679,20 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lin
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -30742,11 +30742,11 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$productVariant?
               productVariant,
           List<Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts>?
@@ -30902,9 +30902,9 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts
       _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -30988,8 +30988,8 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -31024,11 +31024,11 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lin
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -31055,8 +31055,8 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -31078,7 +31078,7 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines
       _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -31139,7 +31139,7 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -31171,7 +31171,7 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shi
       _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -31198,7 +31198,7 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -31383,9 +31383,9 @@ class Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts
       _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -31469,8 +31469,8 @@ abstract class CopyWith$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
       _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -31503,10 +31503,10 @@ class _CopyWithImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$dis
       _then(Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts(
           amount: amount == _undefined || amount == null
               ? _instance.amount
-              : (amount as String),
+              : (amount as int),
           amountWithTax: amountWithTax == _undefined || amountWithTax == null
               ? _instance.amountWithTax
-              : (amountWithTax as String),
+              : (amountWithTax as int),
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
@@ -31533,8 +31533,8 @@ class _CopyWithStubImpl$Mutation$SetShippingMethod$setOrderShippingMethod$$Order
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -33249,17 +33249,17 @@ class Mutation$TransitionOrderToState$transitionOrderToState$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>
@@ -33444,12 +33444,12 @@ abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$
       List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>?
           shippingLines,
       List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>?
@@ -33547,12 +33547,12 @@ class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Orde
               ? _instance.totalQuantity
               : (totalQuantity as int),
           subTotal:
-              subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+              subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionOrderToState$transitionOrderToState$$Order$customFields?)));
@@ -33629,12 +33629,12 @@ class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$
           List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines>?
               shippingLines,
           List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts>?
@@ -34464,15 +34464,15 @@ class Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
       productVariant;
@@ -34592,11 +34592,11 @@ abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant?
           productVariant,
       List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>?
@@ -34650,20 +34650,20 @@ class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Orde
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -34713,11 +34713,11 @@ class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant?
               productVariant,
           List<Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts>?
@@ -34873,9 +34873,9 @@ class Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discou
       _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -34959,8 +34959,8 @@ abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$
       _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -34995,11 +34995,11 @@ class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Orde
           Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -35026,8 +35026,8 @@ class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -35049,7 +35049,7 @@ class Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLine
       _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -35110,7 +35110,7 @@ abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$
       _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -35142,7 +35142,7 @@ class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Orde
       _then(Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -35169,7 +35169,7 @@ class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -35354,9 +35354,9 @@ class Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
       _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -35440,8 +35440,8 @@ abstract class CopyWith$Mutation$TransitionOrderToState$transitionOrderToState$$
       _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -35476,11 +35476,11 @@ class _CopyWithImpl$Mutation$TransitionOrderToState$transitionOrderToState$$Orde
           Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -35507,8 +35507,8 @@ class _CopyWithStubImpl$Mutation$TransitionOrderToState$transitionOrderToState$$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -36259,17 +36259,17 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>
@@ -36455,12 +36455,12 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>?
           shippingLines,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>?
@@ -36559,12 +36559,12 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$customFields?)));
@@ -36641,12 +36641,12 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines>?
               shippingLines,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts>?
@@ -37476,15 +37476,15 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$productVariant
       productVariant;
@@ -37604,11 +37604,11 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$productVariant?
           productVariant,
       List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>?
@@ -37662,20 +37662,20 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -37725,11 +37725,11 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$productVariant?
               productVariant,
           List<Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts>?
@@ -37885,9 +37885,9 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$
       _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -37971,8 +37971,8 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -38007,11 +38007,11 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -38038,8 +38038,8 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -38061,7 +38061,7 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippi
       _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -38122,7 +38122,7 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -38154,7 +38154,7 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
       _then(Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -38181,7 +38181,7 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -38366,9 +38366,9 @@ class Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discou
       _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -38452,8 +38452,8 @@ abstract class CopyWith$Mutation$TransitionToArrangingPayment$transitionOrderToS
       _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -38488,11 +38488,11 @@ class _CopyWithImpl$Mutation$TransitionToArrangingPayment$transitionOrderToState
           Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -38519,8 +38519,8 @@ class _CopyWithStubImpl$Mutation$TransitionToArrangingPayment$transitionOrderToS
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -39256,17 +39256,17 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order
 
   final int totalQuantity;
 
-  final String subTotal;
+  final int subTotal;
 
-  final String subTotalWithTax;
+  final int subTotalWithTax;
 
-  final String total;
+  final int total;
 
-  final String totalWithTax;
+  final int totalWithTax;
 
-  final String shipping;
+  final int shipping;
 
-  final String shippingWithTax;
+  final int shippingWithTax;
 
   final List<
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>
@@ -39451,12 +39451,12 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines>?
           lines,
       int? totalQuantity,
-      String? subTotal,
-      String? subTotalWithTax,
-      String? total,
-      String? totalWithTax,
-      String? shipping,
-      String? shippingWithTax,
+      int? subTotal,
+      int? subTotalWithTax,
+      int? total,
+      int? totalWithTax,
+      int? shipping,
+      int? shippingWithTax,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>?
           shippingLines,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>?
@@ -39554,12 +39554,12 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           totalQuantity: totalQuantity == _undefined || totalQuantity == null
               ? _instance.totalQuantity
               : (totalQuantity as int),
-          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as String),
-          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as String),
-          total: total == _undefined || total == null ? _instance.total : (total as String),
-          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as String),
-          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as String),
-          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as String),
+          subTotal: subTotal == _undefined || subTotal == null ? _instance.subTotal : (subTotal as int),
+          subTotalWithTax: subTotalWithTax == _undefined || subTotalWithTax == null ? _instance.subTotalWithTax : (subTotalWithTax as int),
+          total: total == _undefined || total == null ? _instance.total : (total as int),
+          totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          shipping: shipping == _undefined || shipping == null ? _instance.shipping : (shipping as int),
+          shippingWithTax: shippingWithTax == _undefined || shippingWithTax == null ? _instance.shippingWithTax : (shippingWithTax as int),
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$TransitionToAddingItems$transitionOrderToState$$Order$customFields?)));
@@ -39636,12 +39636,12 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines>?
               lines,
           int? totalQuantity,
-          String? subTotal,
-          String? subTotalWithTax,
-          String? total,
-          String? totalWithTax,
-          String? shipping,
-          String? shippingWithTax,
+          int? subTotal,
+          int? subTotalWithTax,
+          int? total,
+          int? totalWithTax,
+          int? shipping,
+          int? shippingWithTax,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines>?
               shippingLines,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts>?
@@ -40471,15 +40471,15 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
 
   final Fragment$Asset? featuredAsset;
 
-  final String unitPrice;
+  final int unitPrice;
 
-  final String unitPriceWithTax;
+  final int unitPriceWithTax;
 
   final int quantity;
 
-  final String linePriceWithTax;
+  final int linePriceWithTax;
 
-  final String discountedLinePriceWithTax;
+  final int discountedLinePriceWithTax;
 
   final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant
       productVariant;
@@ -40599,11 +40599,11 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
   TRes call(
       {String? id,
       Fragment$Asset? featuredAsset,
-      String? unitPrice,
-      String? unitPriceWithTax,
+      int? unitPrice,
+      int? unitPriceWithTax,
       int? quantity,
-      String? linePriceWithTax,
-      String? discountedLinePriceWithTax,
+      int? linePriceWithTax,
+      int? discountedLinePriceWithTax,
       Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant?
           productVariant,
       List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>?
@@ -40657,20 +40657,20 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
               : (featuredAsset as Fragment$Asset?),
           unitPrice: unitPrice == _undefined || unitPrice == null
               ? _instance.unitPrice
-              : (unitPrice as String),
+              : (unitPrice as int),
           unitPriceWithTax: unitPriceWithTax == _undefined || unitPriceWithTax == null
               ? _instance.unitPriceWithTax
-              : (unitPriceWithTax as String),
+              : (unitPriceWithTax as int),
           quantity: quantity == _undefined || quantity == null
               ? _instance.quantity
               : (quantity as int),
           linePriceWithTax: linePriceWithTax == _undefined || linePriceWithTax == null
               ? _instance.linePriceWithTax
-              : (linePriceWithTax as String),
+              : (linePriceWithTax as int),
           discountedLinePriceWithTax: discountedLinePriceWithTax == _undefined ||
                   discountedLinePriceWithTax == null
               ? _instance.discountedLinePriceWithTax
-              : (discountedLinePriceWithTax as String),
+              : (discountedLinePriceWithTax as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -40720,11 +40720,11 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
   call(
           {String? id,
           Fragment$Asset? featuredAsset,
-          String? unitPrice,
-          String? unitPriceWithTax,
+          int? unitPrice,
+          int? unitPriceWithTax,
           int? quantity,
-          String? linePriceWithTax,
-          String? discountedLinePriceWithTax,
+          int? linePriceWithTax,
+          int? discountedLinePriceWithTax,
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant?
               productVariant,
           List<Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts>?
@@ -40880,9 +40880,9 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$disco
       _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -40966,8 +40966,8 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -41002,11 +41002,11 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -41033,8 +41033,8 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,
@@ -41056,7 +41056,7 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLin
       _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLinesFromJson(
           json);
 
-  final String priceWithTax;
+  final int priceWithTax;
 
   final Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod
       shippingMethod;
@@ -41117,7 +41117,7 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines;
 
   TRes call(
-      {String? priceWithTax,
+      {int? priceWithTax,
       Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod?
           shippingMethod,
       String? $__typename});
@@ -41149,7 +41149,7 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
       _then(Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines(
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
-              : (priceWithTax as String),
+              : (priceWithTax as int),
           shippingMethod: shippingMethod == _undefined || shippingMethod == null
               ? _instance.shippingMethod
               : (shippingMethod
@@ -41176,7 +41176,7 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
   TRes _res;
 
   call(
-          {String? priceWithTax,
+          {int? priceWithTax,
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod?
               shippingMethod,
           String? $__typename}) =>
@@ -41361,9 +41361,9 @@ class Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
       _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discountsFromJson(
           json);
 
-  final String amount;
+  final int amount;
 
-  final String amountWithTax;
+  final int amountWithTax;
 
   final String description;
 
@@ -41447,8 +41447,8 @@ abstract class CopyWith$Mutation$TransitionToAddingItems$transitionOrderToState$
       _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts;
 
   TRes call(
-      {String? amount,
-      String? amountWithTax,
+      {int? amount,
+      int? amountWithTax,
       String? description,
       String? adjustmentSource,
       Enum$AdjustmentType? type,
@@ -41483,11 +41483,11 @@ class _CopyWithImpl$Mutation$TransitionToAddingItems$transitionOrderToState$$Ord
           Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts(
               amount: amount == _undefined || amount == null
                   ? _instance.amount
-                  : (amount as String),
+                  : (amount as int),
               amountWithTax:
                   amountWithTax == _undefined || amountWithTax == null
                       ? _instance.amountWithTax
-                      : (amountWithTax as String),
+                      : (amountWithTax as int),
               description: description == _undefined || description == null
                   ? _instance.description
                   : (description as String),
@@ -41514,8 +41514,8 @@ class _CopyWithStubImpl$Mutation$TransitionToAddingItems$transitionOrderToState$
   TRes _res;
 
   call(
-          {String? amount,
-          String? amountWithTax,
+          {int? amount,
+          int? amountWithTax,
           String? description,
           String? adjustmentSource,
           Enum$AdjustmentType? type,

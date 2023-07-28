@@ -4,15 +4,20 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 
+import '../controllers/loginPageController.dart';
 import '../graphqlSection/vendureSchema.graphql.dart';
 
-class PaymentServices{
+class PaymentServices {
   static late Razorpay razorpay;
   static OrderController orderController = Get.find<OrderController>();
   static UserController userController = Get.find<UserController>();
-  static void initializeRazorPay(){
+  static LoginPageController loginPageController =
+      Get.find<LoginPageController>();
+
+  static void initializeRazorPay() {
     //  razorpay
     razorpay = Razorpay();
     razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccess);
@@ -20,26 +25,26 @@ class PaymentServices{
     razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWallet);
   }
 
-
   static void startRazorPay() async {
     var options = {
       'key': dotenv.env['RAZORPAY_KEY'],
       'amount': orderController.shippingAddressOrder.value!.totalWithTax,
       'order_id': orderController.createOrderResponse.value!.id,
       'currency': Enum$CurrencyCode.INR.name,
-      'name':'Company Name',
+      'name': 'Company Name',
       'description':
-      orderController.shippingAddressOrder.value!.lines.isNotEmpty
-          ? 'Multiple Items'
-          : orderController
-          .shippingAddressOrder.value!.lines.first.productVariant.name,
+          orderController.shippingAddressOrder.value!.lines.isNotEmpty
+              ? 'Multiple Items'
+              : orderController
+                  .shippingAddressOrder.value!.lines.first.productVariant.name,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
       'prefill': {
         'contact':
-        '${orderController.shippingAddressOrder.value!.shippingAddress!.phoneNumber}',
+            '${orderController.shippingAddressOrder.value!.shippingAddress!.phoneNumber}',
         'email': userController.currentAuthenticatedUser.value!.emailAddress,
-        'name': orderController.shippingAddressOrder.value!.shippingAddress!.fullName,
+        'name': orderController
+            .shippingAddressOrder.value!.shippingAddress!.fullName,
       },
       'external': {
         'wallets': ['paytm']
@@ -62,9 +67,16 @@ class PaymentServices{
 
   static void handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: ${response.message}');
-    Get.snackbar('', '${response.message}',backgroundColor: Colors.red);
+    Get.snackbar('', '${response.message}', backgroundColor: Colors.red);
     //  Payment Failed
-    // UtilService.sendSms('647b0268d6fc056087309262', number, smsDeliveryType, orderId, paymentValue)
+    UtilService.sendSms(
+        '647b0268d6fc056087309262',
+        loginPageController.phoneNumber.text,
+        SmsDeliveryType.payment_failed,
+        (orderController.getOrderByCodeResponse.value!.totalWithTax /
+                100)
+            .toString(),
+        orderController.getOrderByCodeResponse.value!.code.toString());
   }
 
   static void handleExternalWallet(ExternalWalletResponse response) {

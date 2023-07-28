@@ -7,6 +7,7 @@ import 'package:recipe.app/services/commonVariables.dart';
 class GraphqlService {
   static dynamic link;
   static HttpLink httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
+  static HttpLink hygraphHttpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
   static String currentAuthToken = "";
 
   static void setToken(String token) {

@@ -101,8 +101,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
                     actions: [
                       TextButton(
                           onPressed: () {
-                            var activeOrder = orderController.activeOrderResponse.value!;
-                            orderController.requestToCancelOrder(activeOrder.id, 0);
+                            var activeOrder =
+                                orderController.activeOrderResponse.value!;
+                            orderController.requestToCancelOrder(
+                                activeOrder.id, 0);
                             orderController.removeAllItemFromOrder();
                             orderController.getActiveOrders();
                             sleep(Duration(seconds: 1));
@@ -164,7 +166,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                           subtitle: userController.currentAuthenticatedUser
                                   .value!.orders.items.isNotEmpty
                               ? Text(
-                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(int.parse(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax) / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
                                   style: CustomTheme.headerStyle,
                                 )
                               : Text(''),

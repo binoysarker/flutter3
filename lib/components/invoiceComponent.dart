@@ -44,8 +44,8 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
         showEveningSms = true;
       }
       var templateId = showEveningSms
-          ? "648567a2d6fc054b7b1992f3"
-          : "6485674cd6fc0561530bb6f2";
+          ? "649011f6d6fc053db57148e5"
+          : "64900e1ed6fc056a7b3a9c32";
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
@@ -168,7 +168,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                     ],
                                   ),
                                   Text(
-                                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(int.parse(element.linePriceWithTax))}',
+                                    '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',
                                     style: CustomTheme.headerStyle,
                                   ),
                                 ],
@@ -201,7 +201,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.amountWithTax))}',
+                                  '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
                                   style: CustomTheme.headerStyle,
                                 ),
                               ],
@@ -221,7 +221,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.priceWithTax))}',
+                                  '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
                                   style: CustomTheme.headerStyle,
                                 ),
                               ],
@@ -244,7 +244,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                       style: CustomTheme.headerStyle,
                     ),
                     Text(
-                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(int.parse(widget.orderController.getOrderByCodeResponse.value!.totalWithTax) / 100).toStringAsFixed(2)}',
+                      '${UtilService.getCurrencySymble(widget.orderController.currencyCode.value)}${(widget.orderController.getOrderByCodeResponse.value!.totalWithTax / 100).toStringAsFixed(2)}',
                       style: CustomTheme.headerStyle,
                     ),
                   ],

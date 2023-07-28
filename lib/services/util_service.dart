@@ -77,7 +77,7 @@ class UtilService {
     if (code == 'order_percentage_discount') {
       var sumOfLines = 0;
       for (var i in lines) {
-        sumOfLines += int.parse(i.linePriceWithTax);
+        sumOfLines += i.linePriceWithTax;
       }
 
       priceString = formatPriceValue((sumOfLines / 100 * price).toInt());
@@ -143,11 +143,11 @@ class UtilService {
       'authkey': '395929AcYuel89696451b515P1',
       'content-type': 'application/json'
     };
-    if (smsDeliveryType == SmsDeliveryType.morning_evening.name) {
+    if (smsDeliveryType == SmsDeliveryType.morning_evening) {
       smsData['var1'] = orderId;
       smsData['VAR2'] = '$formattedTime';
     }
-    if (smsDeliveryType == SmsDeliveryType.payment_failed.name) {
+    if (smsDeliveryType == SmsDeliveryType.payment_failed) {
       smsData['var1'] = paymentValue;
       smsData['var2'] = orderId;
     }

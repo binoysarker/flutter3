@@ -79,7 +79,7 @@ class PaymentMethodComponent extends StatelessWidget {
                               Expanded(
                                 flex: 1,
                                 child: Text(
-                                  '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(int.parse(element.linePriceWithTax))}',
+                                  '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(element.linePriceWithTax)}',
                                   style: CustomTheme.headerStyle,
                                   textAlign: TextAlign.end,
                                 ),
@@ -121,7 +121,7 @@ class PaymentMethodComponent extends StatelessWidget {
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.amountWithTax))}',
+                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
                                       style: CustomTheme.headerStyle,
                                     ),
                                   ],
@@ -144,7 +144,7 @@ class PaymentMethodComponent extends StatelessWidget {
                           style: CustomTheme.headerStyle,
                         ),
                         Text(
-                          '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.priceWithTax))}',
+                          '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
                           style: CustomTheme.headerStyle,
                         ),
                       ],
@@ -177,7 +177,7 @@ class PaymentMethodComponent extends StatelessWidget {
                         : Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(int.parse(orderController.activeOrderResponse.value!.totalWithTax))}',
+                              '${UtilService.getCurrencySymble(orderController.currencyCode.value)}${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
                               style: CustomTheme.headerStyle,
                             ),
                           ),

@@ -59,7 +59,6 @@ const _$Enum$ErrorCodeEnumMap = {
   Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
   Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
   Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
-  Enum$ErrorCode.GUEST_CHECKOUT_ERROR: 'GUEST_CHECKOUT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
@@ -112,12 +111,12 @@ Fragment$Cart _$Fragment$CartFromJson(Map<String, dynamic> json) =>
           .map((e) => Fragment$Cart$lines.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalQuantity: json['totalQuantity'] as int,
-      subTotal: json['subTotal'] as String,
-      subTotalWithTax: json['subTotalWithTax'] as String,
-      total: json['total'] as String,
-      totalWithTax: json['totalWithTax'] as String,
-      shipping: json['shipping'] as String,
-      shippingWithTax: json['shippingWithTax'] as String,
+      subTotal: json['subTotal'] as int,
+      subTotalWithTax: json['subTotalWithTax'] as int,
+      total: json['total'] as int,
+      totalWithTax: json['totalWithTax'] as int,
+      shipping: json['shipping'] as int,
+      shippingWithTax: json['shippingWithTax'] as int,
       shippingLines: (json['shippingLines'] as List<dynamic>)
           .map((e) =>
               Fragment$Cart$shippingLines.fromJson(e as Map<String, dynamic>))
@@ -263,11 +262,11 @@ Fragment$Cart$lines _$Fragment$Cart$linesFromJson(Map<String, dynamic> json) =>
           ? null
           : Fragment$Asset.fromJson(
               json['featuredAsset'] as Map<String, dynamic>),
-      unitPrice: json['unitPrice'] as String,
-      unitPriceWithTax: json['unitPriceWithTax'] as String,
+      unitPrice: json['unitPrice'] as int,
+      unitPriceWithTax: json['unitPriceWithTax'] as int,
       quantity: json['quantity'] as int,
-      linePriceWithTax: json['linePriceWithTax'] as String,
-      discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as String,
+      linePriceWithTax: json['linePriceWithTax'] as int,
+      discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
       productVariant: Fragment$Cart$lines$productVariant.fromJson(
           json['productVariant'] as Map<String, dynamic>),
       discounts: (json['discounts'] as List<dynamic>)
@@ -312,8 +311,8 @@ Map<String, dynamic> _$Fragment$Cart$lines$productVariantToJson(
 Fragment$Cart$lines$discounts _$Fragment$Cart$lines$discountsFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$lines$discounts(
-      amount: json['amount'] as String,
-      amountWithTax: json['amountWithTax'] as String,
+      amount: json['amount'] as int,
+      amountWithTax: json['amountWithTax'] as int,
       description: json['description'] as String,
       adjustmentSource: json['adjustmentSource'] as String,
       type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -343,7 +342,7 @@ const _$Enum$AdjustmentTypeEnumMap = {
 Fragment$Cart$shippingLines _$Fragment$Cart$shippingLinesFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$shippingLines(
-      priceWithTax: json['priceWithTax'] as String,
+      priceWithTax: json['priceWithTax'] as int,
       shippingMethod: Fragment$Cart$shippingLines$shippingMethod.fromJson(
           json['shippingMethod'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
@@ -381,8 +380,8 @@ Map<String, dynamic> _$Fragment$Cart$shippingLines$shippingMethodToJson(
 Fragment$Cart$discounts _$Fragment$Cart$discountsFromJson(
         Map<String, dynamic> json) =>
     Fragment$Cart$discounts(
-      amount: json['amount'] as String,
-      amountWithTax: json['amountWithTax'] as String,
+      amount: json['amount'] as int,
+      amountWithTax: json['amountWithTax'] as int,
       description: json['description'] as String,
       adjustmentSource: json['adjustmentSource'] as String,
       type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -495,12 +494,12 @@ Query$GetActiveOrder$activeOrder _$Query$GetActiveOrder$activeOrderFromJson(
               e as Map<String, dynamic>))
           .toList(),
       totalQuantity: json['totalQuantity'] as int,
-      subTotal: json['subTotal'] as String,
-      subTotalWithTax: json['subTotalWithTax'] as String,
-      total: json['total'] as String,
-      totalWithTax: json['totalWithTax'] as String,
-      shipping: json['shipping'] as String,
-      shippingWithTax: json['shippingWithTax'] as String,
+      subTotal: json['subTotal'] as int,
+      subTotalWithTax: json['subTotalWithTax'] as int,
+      total: json['total'] as int,
+      totalWithTax: json['totalWithTax'] as int,
+      shipping: json['shipping'] as int,
+      shippingWithTax: json['shippingWithTax'] as int,
       shippingLines: (json['shippingLines'] as List<dynamic>)
           .map((e) => Query$GetActiveOrder$activeOrder$shippingLines.fromJson(
               e as Map<String, dynamic>))
@@ -821,12 +820,11 @@ Query$GetActiveOrder$activeOrder$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Query$GetActiveOrder$activeOrder$lines$productVariant.fromJson(
                   json['productVariant'] as Map<String, dynamic>),
@@ -877,8 +875,8 @@ Query$GetActiveOrder$activeOrder$lines$discounts
     _$Query$GetActiveOrder$activeOrder$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveOrder$activeOrder$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -901,7 +899,7 @@ Query$GetActiveOrder$activeOrder$shippingLines
     _$Query$GetActiveOrder$activeOrder$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveOrder$activeOrder$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Query$GetActiveOrder$activeOrder$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -943,8 +941,8 @@ Query$GetActiveOrder$activeOrder$discounts
     _$Query$GetActiveOrder$activeOrder$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveOrder$activeOrder$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -1016,12 +1014,12 @@ Query$GetOrderForCheckout$activeOrder
                   e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Query$GetOrderForCheckout$activeOrder$shippingLines.fromJson(
@@ -1190,12 +1188,11 @@ Query$GetOrderForCheckout$activeOrder$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Query$GetOrderForCheckout$activeOrder$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -1245,8 +1242,8 @@ Query$GetOrderForCheckout$activeOrder$lines$discounts
     _$Query$GetOrderForCheckout$activeOrder$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderForCheckout$activeOrder$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -1270,7 +1267,7 @@ Query$GetOrderForCheckout$activeOrder$shippingLines
     _$Query$GetOrderForCheckout$activeOrder$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderForCheckout$activeOrder$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Query$GetOrderForCheckout$activeOrder$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -1313,8 +1310,8 @@ Query$GetOrderForCheckout$activeOrder$discounts
     _$Query$GetOrderForCheckout$activeOrder$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderForCheckout$activeOrder$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -1410,12 +1407,12 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order
                   .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines
@@ -1580,12 +1577,11 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -1638,8 +1634,8 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts
     _$Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveOrderLine$removeOrderLine$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -1664,7 +1660,7 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines
     _$Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$RemoveOrderLine$removeOrderLine$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -1708,8 +1704,8 @@ Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts
     _$Mutation$RemoveOrderLine$removeOrderLine$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveOrderLine$removeOrderLine$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -1818,12 +1814,12 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines
@@ -1991,12 +1987,11 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -2050,8 +2045,8 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts
     _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -2076,7 +2071,7 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines
     _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -2120,8 +2115,8 @@ Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts
     _$Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$RemoveAllOrderLines$removeAllOrderLines$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -2207,8 +2202,8 @@ Query$GetEligibleShippingMethods$eligibleShippingMethods
           name: json['name'] as String,
           code: json['code'] as String,
           description: json['description'] as String,
-          price: json['price'] as String,
-          priceWithTax: json['priceWithTax'] as String,
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
           metadata: json['metadata'] as String?,
           $__typename: json['__typename'] as String,
         );
@@ -2316,12 +2311,12 @@ Query$GetOrderByCode$orderByCode _$Query$GetOrderByCode$orderByCodeFromJson(
               e as Map<String, dynamic>))
           .toList(),
       totalQuantity: json['totalQuantity'] as int,
-      subTotal: json['subTotal'] as String,
-      subTotalWithTax: json['subTotalWithTax'] as String,
-      total: json['total'] as String,
-      totalWithTax: json['totalWithTax'] as String,
-      shipping: json['shipping'] as String,
-      shippingWithTax: json['shippingWithTax'] as String,
+      subTotal: json['subTotal'] as int,
+      subTotalWithTax: json['subTotalWithTax'] as int,
+      total: json['total'] as int,
+      totalWithTax: json['totalWithTax'] as int,
+      shipping: json['shipping'] as int,
+      shippingWithTax: json['shippingWithTax'] as int,
       shippingLines: (json['shippingLines'] as List<dynamic>)
           .map((e) => Query$GetOrderByCode$orderByCode$shippingLines.fromJson(
               e as Map<String, dynamic>))
@@ -2487,12 +2482,11 @@ Query$GetOrderByCode$orderByCode$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Query$GetOrderByCode$orderByCode$lines$productVariant.fromJson(
                   json['productVariant'] as Map<String, dynamic>),
@@ -2543,8 +2537,8 @@ Query$GetOrderByCode$orderByCode$lines$discounts
     _$Query$GetOrderByCode$orderByCode$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderByCode$orderByCode$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -2567,7 +2561,7 @@ Query$GetOrderByCode$orderByCode$shippingLines
     _$Query$GetOrderByCode$orderByCode$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderByCode$orderByCode$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Query$GetOrderByCode$orderByCode$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -2609,8 +2603,8 @@ Query$GetOrderByCode$orderByCode$discounts
     _$Query$GetOrderByCode$orderByCode$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetOrderByCode$orderByCode$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -2751,12 +2745,12 @@ Mutation$AddPayment$addPaymentToOrder$$Order
                       e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines
@@ -2920,12 +2914,11 @@ Mutation$AddPayment$addPaymentToOrder$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$AddPayment$addPaymentToOrder$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -2977,8 +2970,8 @@ Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts
     _$Mutation$AddPayment$addPaymentToOrder$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddPayment$addPaymentToOrder$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -3003,7 +2996,7 @@ Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines
     _$Mutation$AddPayment$addPaymentToOrder$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$AddPayment$addPaymentToOrder$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -3046,8 +3039,8 @@ Mutation$AddPayment$addPaymentToOrder$$Order$discounts
     _$Mutation$AddPayment$addPaymentToOrder$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AddPayment$addPaymentToOrder$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -3305,12 +3298,12 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order
                   .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines
@@ -3475,12 +3468,11 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -3533,8 +3525,8 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts
     _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AdjustOrderLine$adjustOrderLine$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -3559,7 +3551,7 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines
     _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$AdjustOrderLine$adjustOrderLine$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -3603,8 +3595,8 @@ Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts
     _$Mutation$AdjustOrderLine$adjustOrderLine$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$AdjustOrderLine$adjustOrderLine$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -3787,12 +3779,12 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines
@@ -3964,12 +3956,11 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -4023,8 +4014,8 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts
     _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingAddress$setOrderShippingAddress$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -4049,7 +4040,7 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines
     _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -4093,8 +4084,8 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts
     _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -4216,12 +4207,12 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines
@@ -4388,12 +4379,11 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -4447,8 +4437,8 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingMethod$setOrderShippingMethod$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -4473,7 +4463,7 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$SetShippingMethod$setOrderShippingMethod$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -4517,8 +4507,8 @@ Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts
     _$Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$SetShippingMethod$setOrderShippingMethod$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -4730,12 +4720,12 @@ Mutation$TransitionOrderToState$transitionOrderToState$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
@@ -4904,12 +4894,11 @@ Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -4963,8 +4952,8 @@ Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts
     _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionOrderToState$transitionOrderToState$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -4989,7 +4978,7 @@ Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines
     _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$TransitionOrderToState$transitionOrderToState$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -5033,8 +5022,8 @@ Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts
     _$Mutation$TransitionOrderToState$transitionOrderToState$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionOrderToState$transitionOrderToState$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -5149,12 +5138,12 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines
@@ -5323,12 +5312,11 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -5382,8 +5370,8 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discou
     _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -5408,7 +5396,7 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLine
     _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -5452,8 +5440,8 @@ Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts
     _$Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToArrangingPayment$transitionOrderToState$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -5565,12 +5553,12 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          subTotal: json['subTotal'] as String,
-          subTotalWithTax: json['subTotalWithTax'] as String,
-          total: json['total'] as String,
-          totalWithTax: json['totalWithTax'] as String,
-          shipping: json['shipping'] as String,
-          shippingWithTax: json['shippingWithTax'] as String,
+          subTotal: json['subTotal'] as int,
+          subTotalWithTax: json['subTotalWithTax'] as int,
+          total: json['total'] as int,
+          totalWithTax: json['totalWithTax'] as int,
+          shipping: json['shipping'] as int,
+          shippingWithTax: json['shippingWithTax'] as int,
           shippingLines: (json['shippingLines'] as List<dynamic>)
               .map((e) =>
                   Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines
@@ -5739,12 +5727,11 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines
               ? null
               : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
-          unitPrice: json['unitPrice'] as String,
-          unitPriceWithTax: json['unitPriceWithTax'] as String,
+          unitPrice: json['unitPrice'] as int,
+          unitPriceWithTax: json['unitPriceWithTax'] as int,
           quantity: json['quantity'] as int,
-          linePriceWithTax: json['linePriceWithTax'] as String,
-          discountedLinePriceWithTax:
-              json['discountedLinePriceWithTax'] as String,
+          linePriceWithTax: json['linePriceWithTax'] as int,
+          discountedLinePriceWithTax: json['discountedLinePriceWithTax'] as int,
           productVariant:
               Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -5798,8 +5785,8 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts
     _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToAddingItems$transitionOrderToState$$Order$lines$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],
@@ -5824,7 +5811,7 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines
     _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLinesFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines(
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           shippingMethod:
               Mutation$TransitionToAddingItems$transitionOrderToState$$Order$shippingLines$shippingMethod
                   .fromJson(json['shippingMethod'] as Map<String, dynamic>),
@@ -5868,8 +5855,8 @@ Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts
     _$Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discountsFromJson(
             Map<String, dynamic> json) =>
         Mutation$TransitionToAddingItems$transitionOrderToState$$Order$discounts(
-          amount: json['amount'] as String,
-          amountWithTax: json['amountWithTax'] as String,
+          amount: json['amount'] as int,
+          amountWithTax: json['amountWithTax'] as int,
           description: json['description'] as String,
           adjustmentSource: json['adjustmentSource'] as String,
           type: $enumDecode(_$Enum$AdjustmentTypeEnumMap, json['type'],

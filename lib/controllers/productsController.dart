@@ -58,7 +58,7 @@ class ProductsController extends GetxController {
     selectedProductDetail.value = productDetailVariants
         .firstWhere((element) => element.id == data);
     print('updated product detail ${selectedProductDetail.value?.toJson()}');
-    basePrice.value = int.parse(selectedProductDetail.value!.priceWithTax);
+    basePrice.value = selectedProductDetail.value!.priceWithTax;
     updatedPrice.value = basePrice.value;
   }
 

@@ -226,7 +226,6 @@ class Input$CollectionFilterParameter {
       this.id,
       this.languageCode,
       this.name,
-      this.parentId,
       this.position,
       this.slug,
       this.updatedAt});
@@ -245,8 +244,6 @@ class Input$CollectionFilterParameter {
 
   final Input$StringOperators? name;
 
-  final Input$IDOperators? parentId;
-
   final Input$NumberOperators? position;
 
   final Input$StringOperators? slug;
@@ -261,7 +258,6 @@ class Input$CollectionFilterParameter {
     final l$id = id;
     final l$languageCode = languageCode;
     final l$name = name;
-    final l$parentId = parentId;
     final l$position = position;
     final l$slug = slug;
     final l$updatedAt = updatedAt;
@@ -271,7 +267,6 @@ class Input$CollectionFilterParameter {
       l$id,
       l$languageCode,
       l$name,
-      l$parentId,
       l$position,
       l$slug,
       l$updatedAt
@@ -298,9 +293,6 @@ class Input$CollectionFilterParameter {
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) return false;
-    final l$parentId = parentId;
-    final lOther$parentId = other.parentId;
-    if (l$parentId != lOther$parentId) return false;
     final l$position = position;
     final lOther$position = other.position;
     if (l$position != lOther$position) return false;
@@ -332,7 +324,6 @@ abstract class CopyWith$Input$CollectionFilterParameter<TRes> {
       Input$IDOperators? id,
       Input$StringOperators? languageCode,
       Input$StringOperators? name,
-      Input$IDOperators? parentId,
       Input$NumberOperators? position,
       Input$StringOperators? slug,
       Input$DateOperators? updatedAt});
@@ -341,7 +332,6 @@ abstract class CopyWith$Input$CollectionFilterParameter<TRes> {
   CopyWith$Input$IDOperators<TRes> get id;
   CopyWith$Input$StringOperators<TRes> get languageCode;
   CopyWith$Input$StringOperators<TRes> get name;
-  CopyWith$Input$IDOperators<TRes> get parentId;
   CopyWith$Input$NumberOperators<TRes> get position;
   CopyWith$Input$StringOperators<TRes> get slug;
   CopyWith$Input$DateOperators<TRes> get updatedAt;
@@ -363,7 +353,6 @@ class _CopyWithImpl$Input$CollectionFilterParameter<TRes>
           Object? id = _undefined,
           Object? languageCode = _undefined,
           Object? name = _undefined,
-          Object? parentId = _undefined,
           Object? position = _undefined,
           Object? slug = _undefined,
           Object? updatedAt = _undefined}) =>
@@ -381,9 +370,6 @@ class _CopyWithImpl$Input$CollectionFilterParameter<TRes>
           name: name == _undefined
               ? _instance.name
               : (name as Input$StringOperators?),
-          parentId: parentId == _undefined
-              ? _instance.parentId
-              : (parentId as Input$IDOperators?),
           position: position == _undefined
               ? _instance.position
               : (position as Input$NumberOperators?),
@@ -431,13 +417,6 @@ class _CopyWithImpl$Input$CollectionFilterParameter<TRes>
         : CopyWith$Input$StringOperators(local$name, (e) => call(name: e));
   }
 
-  CopyWith$Input$IDOperators<TRes> get parentId {
-    final local$parentId = _instance.parentId;
-    return local$parentId == null
-        ? CopyWith$Input$IDOperators.stub(_then(_instance))
-        : CopyWith$Input$IDOperators(local$parentId, (e) => call(parentId: e));
-  }
-
   CopyWith$Input$NumberOperators<TRes> get position {
     final local$position = _instance.position;
     return local$position == null
@@ -474,7 +453,6 @@ class _CopyWithStubImpl$Input$CollectionFilterParameter<TRes>
           Input$IDOperators? id,
           Input$StringOperators? languageCode,
           Input$StringOperators? name,
-          Input$IDOperators? parentId,
           Input$NumberOperators? position,
           Input$StringOperators? slug,
           Input$DateOperators? updatedAt}) =>
@@ -489,8 +467,6 @@ class _CopyWithStubImpl$Input$CollectionFilterParameter<TRes>
       CopyWith$Input$StringOperators.stub(_res);
   CopyWith$Input$StringOperators<TRes> get name =>
       CopyWith$Input$StringOperators.stub(_res);
-  CopyWith$Input$IDOperators<TRes> get parentId =>
-      CopyWith$Input$IDOperators.stub(_res);
   CopyWith$Input$NumberOperators<TRes> get position =>
       CopyWith$Input$NumberOperators.stub(_res);
   CopyWith$Input$StringOperators<TRes> get slug =>
@@ -502,12 +478,7 @@ class _CopyWithStubImpl$Input$CollectionFilterParameter<TRes>
 @JsonSerializable(explicitToJson: true)
 class Input$CollectionListOptions {
   Input$CollectionListOptions(
-      {this.filter,
-      this.filterOperator,
-      this.skip,
-      this.sort,
-      this.take,
-      this.topLevelOnly});
+      {this.filter, this.filterOperator, this.skip, this.sort, this.take});
 
   @override
   factory Input$CollectionListOptions.fromJson(Map<String, dynamic> json) =>
@@ -524,8 +495,6 @@ class Input$CollectionListOptions {
 
   final int? take;
 
-  final bool? topLevelOnly;
-
   Map<String, dynamic> toJson() => _$Input$CollectionListOptionsToJson(this);
   int get hashCode {
     final l$filter = filter;
@@ -533,9 +502,7 @@ class Input$CollectionListOptions {
     final l$skip = skip;
     final l$sort = sort;
     final l$take = take;
-    final l$topLevelOnly = topLevelOnly;
-    return Object.hashAll(
-        [l$filter, l$filterOperator, l$skip, l$sort, l$take, l$topLevelOnly]);
+    return Object.hashAll([l$filter, l$filterOperator, l$skip, l$sort, l$take]);
   }
 
   @override
@@ -558,9 +525,6 @@ class Input$CollectionListOptions {
     final l$take = take;
     final lOther$take = other.take;
     if (l$take != lOther$take) return false;
-    final l$topLevelOnly = topLevelOnly;
-    final lOther$topLevelOnly = other.topLevelOnly;
-    if (l$topLevelOnly != lOther$topLevelOnly) return false;
     return true;
   }
 
@@ -582,8 +546,7 @@ abstract class CopyWith$Input$CollectionListOptions<TRes> {
       Enum$LogicalOperator? filterOperator,
       int? skip,
       Input$CollectionSortParameter? sort,
-      int? take,
-      bool? topLevelOnly});
+      int? take});
   CopyWith$Input$CollectionFilterParameter<TRes> get filter;
   CopyWith$Input$CollectionSortParameter<TRes> get sort;
 }
@@ -603,8 +566,7 @@ class _CopyWithImpl$Input$CollectionListOptions<TRes>
           Object? filterOperator = _undefined,
           Object? skip = _undefined,
           Object? sort = _undefined,
-          Object? take = _undefined,
-          Object? topLevelOnly = _undefined}) =>
+          Object? take = _undefined}) =>
       _then(Input$CollectionListOptions(
           filter: filter == _undefined
               ? _instance.filter
@@ -616,10 +578,7 @@ class _CopyWithImpl$Input$CollectionListOptions<TRes>
           sort: sort == _undefined
               ? _instance.sort
               : (sort as Input$CollectionSortParameter?),
-          take: take == _undefined ? _instance.take : (take as int?),
-          topLevelOnly: topLevelOnly == _undefined
-              ? _instance.topLevelOnly
-              : (topLevelOnly as bool?)));
+          take: take == _undefined ? _instance.take : (take as int?)));
   CopyWith$Input$CollectionFilterParameter<TRes> get filter {
     final local$filter = _instance.filter;
     return local$filter == null
@@ -648,8 +607,7 @@ class _CopyWithStubImpl$Input$CollectionListOptions<TRes>
           Enum$LogicalOperator? filterOperator,
           int? skip,
           Input$CollectionSortParameter? sort,
-          int? take,
-          bool? topLevelOnly}) =>
+          int? take}) =>
       _res;
   CopyWith$Input$CollectionFilterParameter<TRes> get filter =>
       CopyWith$Input$CollectionFilterParameter.stub(_res);
@@ -664,7 +622,6 @@ class Input$CollectionSortParameter {
       this.description,
       this.id,
       this.name,
-      this.parentId,
       this.position,
       this.slug,
       this.updatedAt});
@@ -686,9 +643,6 @@ class Input$CollectionSortParameter {
   final Enum$SortOrder? name;
 
   @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
-  final Enum$SortOrder? parentId;
-
-  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
   final Enum$SortOrder? position;
 
   @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
@@ -703,7 +657,6 @@ class Input$CollectionSortParameter {
     final l$description = description;
     final l$id = id;
     final l$name = name;
-    final l$parentId = parentId;
     final l$position = position;
     final l$slug = slug;
     final l$updatedAt = updatedAt;
@@ -712,7 +665,6 @@ class Input$CollectionSortParameter {
       l$description,
       l$id,
       l$name,
-      l$parentId,
       l$position,
       l$slug,
       l$updatedAt
@@ -736,9 +688,6 @@ class Input$CollectionSortParameter {
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) return false;
-    final l$parentId = parentId;
-    final lOther$parentId = other.parentId;
-    if (l$parentId != lOther$parentId) return false;
     final l$position = position;
     final lOther$position = other.position;
     if (l$position != lOther$position) return false;
@@ -769,7 +718,6 @@ abstract class CopyWith$Input$CollectionSortParameter<TRes> {
       Enum$SortOrder? description,
       Enum$SortOrder? id,
       Enum$SortOrder? name,
-      Enum$SortOrder? parentId,
       Enum$SortOrder? position,
       Enum$SortOrder? slug,
       Enum$SortOrder? updatedAt});
@@ -790,7 +738,6 @@ class _CopyWithImpl$Input$CollectionSortParameter<TRes>
           Object? description = _undefined,
           Object? id = _undefined,
           Object? name = _undefined,
-          Object? parentId = _undefined,
           Object? position = _undefined,
           Object? slug = _undefined,
           Object? updatedAt = _undefined}) =>
@@ -803,9 +750,6 @@ class _CopyWithImpl$Input$CollectionSortParameter<TRes>
               : (description as Enum$SortOrder?),
           id: id == _undefined ? _instance.id : (id as Enum$SortOrder?),
           name: name == _undefined ? _instance.name : (name as Enum$SortOrder?),
-          parentId: parentId == _undefined
-              ? _instance.parentId
-              : (parentId as Enum$SortOrder?),
           position: position == _undefined
               ? _instance.position
               : (position as Enum$SortOrder?),
@@ -826,7 +770,6 @@ class _CopyWithStubImpl$Input$CollectionSortParameter<TRes>
           Enum$SortOrder? description,
           Enum$SortOrder? id,
           Enum$SortOrder? name,
-          Enum$SortOrder? parentId,
           Enum$SortOrder? position,
           Enum$SortOrder? slug,
           Enum$SortOrder? updatedAt}) =>
@@ -3749,7 +3692,6 @@ class Input$OrderFilterParameter {
       this.total,
       this.totalQuantity,
       this.totalWithTax,
-      this.type,
       this.updatedAt});
 
   @override
@@ -3786,8 +3728,6 @@ class Input$OrderFilterParameter {
 
   final Input$NumberOperators? totalWithTax;
 
-  final Input$StringOperators? type;
-
   final Input$DateOperators? updatedAt;
 
   Map<String, dynamic> toJson() => _$Input$OrderFilterParameterToJson(this);
@@ -3807,7 +3747,6 @@ class Input$OrderFilterParameter {
     final l$total = total;
     final l$totalQuantity = totalQuantity;
     final l$totalWithTax = totalWithTax;
-    final l$type = type;
     final l$updatedAt = updatedAt;
     return Object.hashAll([
       l$active,
@@ -3825,7 +3764,6 @@ class Input$OrderFilterParameter {
       l$total,
       l$totalQuantity,
       l$totalWithTax,
-      l$type,
       l$updatedAt
     ]);
   }
@@ -3880,9 +3818,6 @@ class Input$OrderFilterParameter {
     final l$totalWithTax = totalWithTax;
     final lOther$totalWithTax = other.totalWithTax;
     if (l$totalWithTax != lOther$totalWithTax) return false;
-    final l$type = type;
-    final lOther$type = other.type;
-    if (l$type != lOther$type) return false;
     final l$updatedAt = updatedAt;
     final lOther$updatedAt = other.updatedAt;
     if (l$updatedAt != lOther$updatedAt) return false;
@@ -3918,7 +3853,6 @@ abstract class CopyWith$Input$OrderFilterParameter<TRes> {
       Input$NumberOperators? total,
       Input$NumberOperators? totalQuantity,
       Input$NumberOperators? totalWithTax,
-      Input$StringOperators? type,
       Input$DateOperators? updatedAt});
   CopyWith$Input$BooleanOperators<TRes> get active;
   CopyWith$Input$NumberOperators<TRes> get clientRequestToCancel;
@@ -3935,7 +3869,6 @@ abstract class CopyWith$Input$OrderFilterParameter<TRes> {
   CopyWith$Input$NumberOperators<TRes> get total;
   CopyWith$Input$NumberOperators<TRes> get totalQuantity;
   CopyWith$Input$NumberOperators<TRes> get totalWithTax;
-  CopyWith$Input$StringOperators<TRes> get type;
   CopyWith$Input$DateOperators<TRes> get updatedAt;
 }
 
@@ -3965,7 +3898,6 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
           Object? total = _undefined,
           Object? totalQuantity = _undefined,
           Object? totalWithTax = _undefined,
-          Object? type = _undefined,
           Object? updatedAt = _undefined}) =>
       _then(Input$OrderFilterParameter(
           active: active == _undefined
@@ -4011,9 +3943,6 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
           totalWithTax: totalWithTax == _undefined
               ? _instance.totalWithTax
               : (totalWithTax as Input$NumberOperators?),
-          type: type == _undefined
-              ? _instance.type
-              : (type as Input$StringOperators?),
           updatedAt: updatedAt == _undefined
               ? _instance.updatedAt
               : (updatedAt as Input$DateOperators?)));
@@ -4132,13 +4061,6 @@ class _CopyWithImpl$Input$OrderFilterParameter<TRes>
             local$totalWithTax, (e) => call(totalWithTax: e));
   }
 
-  CopyWith$Input$StringOperators<TRes> get type {
-    final local$type = _instance.type;
-    return local$type == null
-        ? CopyWith$Input$StringOperators.stub(_then(_instance))
-        : CopyWith$Input$StringOperators(local$type, (e) => call(type: e));
-  }
-
   CopyWith$Input$DateOperators<TRes> get updatedAt {
     final local$updatedAt = _instance.updatedAt;
     return local$updatedAt == null
@@ -4170,7 +4092,6 @@ class _CopyWithStubImpl$Input$OrderFilterParameter<TRes>
           Input$NumberOperators? total,
           Input$NumberOperators? totalQuantity,
           Input$NumberOperators? totalWithTax,
-          Input$StringOperators? type,
           Input$DateOperators? updatedAt}) =>
       _res;
   CopyWith$Input$BooleanOperators<TRes> get active =>
@@ -4203,8 +4124,6 @@ class _CopyWithStubImpl$Input$OrderFilterParameter<TRes>
       CopyWith$Input$NumberOperators.stub(_res);
   CopyWith$Input$NumberOperators<TRes> get totalWithTax =>
       CopyWith$Input$NumberOperators.stub(_res);
-  CopyWith$Input$StringOperators<TRes> get type =>
-      CopyWith$Input$StringOperators.stub(_res);
   CopyWith$Input$DateOperators<TRes> get updatedAt =>
       CopyWith$Input$DateOperators.stub(_res);
 }
@@ -4610,6 +4529,551 @@ class _CopyWithStubImpl$Input$OrderSortParameter<TRes>
           Enum$SortOrder? total,
           Enum$SortOrder? totalQuantity,
           Enum$SortOrder? totalWithTax,
+          Enum$SortOrder? updatedAt}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Input$PageFilterParameter {
+  Input$PageFilterParameter(
+      {this.createdAt,
+      this.enabled,
+      this.id,
+      this.position,
+      this.slug,
+      this.text,
+      this.title,
+      this.updatedAt});
+
+  @override
+  factory Input$PageFilterParameter.fromJson(Map<String, dynamic> json) =>
+      _$Input$PageFilterParameterFromJson(json);
+
+  final Input$DateOperators? createdAt;
+
+  final Input$BooleanOperators? enabled;
+
+  final Input$IDOperators? id;
+
+  final Input$StringOperators? position;
+
+  final Input$StringOperators? slug;
+
+  final Input$StringOperators? text;
+
+  final Input$StringOperators? title;
+
+  final Input$DateOperators? updatedAt;
+
+  Map<String, dynamic> toJson() => _$Input$PageFilterParameterToJson(this);
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$enabled = enabled;
+    final l$id = id;
+    final l$position = position;
+    final l$slug = slug;
+    final l$text = text;
+    final l$title = title;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll([
+      l$createdAt,
+      l$enabled,
+      l$id,
+      l$position,
+      l$slug,
+      l$text,
+      l$title,
+      l$updatedAt
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Input$PageFilterParameter) ||
+        runtimeType != other.runtimeType) return false;
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) return false;
+    final l$enabled = enabled;
+    final lOther$enabled = other.enabled;
+    if (l$enabled != lOther$enabled) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$position = position;
+    final lOther$position = other.position;
+    if (l$position != lOther$position) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) return false;
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) return false;
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) return false;
+    return true;
+  }
+
+  CopyWith$Input$PageFilterParameter<Input$PageFilterParameter> get copyWith =>
+      CopyWith$Input$PageFilterParameter(this, (i) => i);
+}
+
+abstract class CopyWith$Input$PageFilterParameter<TRes> {
+  factory CopyWith$Input$PageFilterParameter(Input$PageFilterParameter instance,
+          TRes Function(Input$PageFilterParameter) then) =
+      _CopyWithImpl$Input$PageFilterParameter;
+
+  factory CopyWith$Input$PageFilterParameter.stub(TRes res) =
+      _CopyWithStubImpl$Input$PageFilterParameter;
+
+  TRes call(
+      {Input$DateOperators? createdAt,
+      Input$BooleanOperators? enabled,
+      Input$IDOperators? id,
+      Input$StringOperators? position,
+      Input$StringOperators? slug,
+      Input$StringOperators? text,
+      Input$StringOperators? title,
+      Input$DateOperators? updatedAt});
+  CopyWith$Input$DateOperators<TRes> get createdAt;
+  CopyWith$Input$BooleanOperators<TRes> get enabled;
+  CopyWith$Input$IDOperators<TRes> get id;
+  CopyWith$Input$StringOperators<TRes> get position;
+  CopyWith$Input$StringOperators<TRes> get slug;
+  CopyWith$Input$StringOperators<TRes> get text;
+  CopyWith$Input$StringOperators<TRes> get title;
+  CopyWith$Input$DateOperators<TRes> get updatedAt;
+}
+
+class _CopyWithImpl$Input$PageFilterParameter<TRes>
+    implements CopyWith$Input$PageFilterParameter<TRes> {
+  _CopyWithImpl$Input$PageFilterParameter(this._instance, this._then);
+
+  final Input$PageFilterParameter _instance;
+
+  final TRes Function(Input$PageFilterParameter) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? createdAt = _undefined,
+          Object? enabled = _undefined,
+          Object? id = _undefined,
+          Object? position = _undefined,
+          Object? slug = _undefined,
+          Object? text = _undefined,
+          Object? title = _undefined,
+          Object? updatedAt = _undefined}) =>
+      _then(Input$PageFilterParameter(
+          createdAt: createdAt == _undefined
+              ? _instance.createdAt
+              : (createdAt as Input$DateOperators?),
+          enabled: enabled == _undefined
+              ? _instance.enabled
+              : (enabled as Input$BooleanOperators?),
+          id: id == _undefined ? _instance.id : (id as Input$IDOperators?),
+          position: position == _undefined
+              ? _instance.position
+              : (position as Input$StringOperators?),
+          slug: slug == _undefined
+              ? _instance.slug
+              : (slug as Input$StringOperators?),
+          text: text == _undefined
+              ? _instance.text
+              : (text as Input$StringOperators?),
+          title: title == _undefined
+              ? _instance.title
+              : (title as Input$StringOperators?),
+          updatedAt: updatedAt == _undefined
+              ? _instance.updatedAt
+              : (updatedAt as Input$DateOperators?)));
+  CopyWith$Input$DateOperators<TRes> get createdAt {
+    final local$createdAt = _instance.createdAt;
+    return local$createdAt == null
+        ? CopyWith$Input$DateOperators.stub(_then(_instance))
+        : CopyWith$Input$DateOperators(
+            local$createdAt, (e) => call(createdAt: e));
+  }
+
+  CopyWith$Input$BooleanOperators<TRes> get enabled {
+    final local$enabled = _instance.enabled;
+    return local$enabled == null
+        ? CopyWith$Input$BooleanOperators.stub(_then(_instance))
+        : CopyWith$Input$BooleanOperators(
+            local$enabled, (e) => call(enabled: e));
+  }
+
+  CopyWith$Input$IDOperators<TRes> get id {
+    final local$id = _instance.id;
+    return local$id == null
+        ? CopyWith$Input$IDOperators.stub(_then(_instance))
+        : CopyWith$Input$IDOperators(local$id, (e) => call(id: e));
+  }
+
+  CopyWith$Input$StringOperators<TRes> get position {
+    final local$position = _instance.position;
+    return local$position == null
+        ? CopyWith$Input$StringOperators.stub(_then(_instance))
+        : CopyWith$Input$StringOperators(
+            local$position, (e) => call(position: e));
+  }
+
+  CopyWith$Input$StringOperators<TRes> get slug {
+    final local$slug = _instance.slug;
+    return local$slug == null
+        ? CopyWith$Input$StringOperators.stub(_then(_instance))
+        : CopyWith$Input$StringOperators(local$slug, (e) => call(slug: e));
+  }
+
+  CopyWith$Input$StringOperators<TRes> get text {
+    final local$text = _instance.text;
+    return local$text == null
+        ? CopyWith$Input$StringOperators.stub(_then(_instance))
+        : CopyWith$Input$StringOperators(local$text, (e) => call(text: e));
+  }
+
+  CopyWith$Input$StringOperators<TRes> get title {
+    final local$title = _instance.title;
+    return local$title == null
+        ? CopyWith$Input$StringOperators.stub(_then(_instance))
+        : CopyWith$Input$StringOperators(local$title, (e) => call(title: e));
+  }
+
+  CopyWith$Input$DateOperators<TRes> get updatedAt {
+    final local$updatedAt = _instance.updatedAt;
+    return local$updatedAt == null
+        ? CopyWith$Input$DateOperators.stub(_then(_instance))
+        : CopyWith$Input$DateOperators(
+            local$updatedAt, (e) => call(updatedAt: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$PageFilterParameter<TRes>
+    implements CopyWith$Input$PageFilterParameter<TRes> {
+  _CopyWithStubImpl$Input$PageFilterParameter(this._res);
+
+  TRes _res;
+
+  call(
+          {Input$DateOperators? createdAt,
+          Input$BooleanOperators? enabled,
+          Input$IDOperators? id,
+          Input$StringOperators? position,
+          Input$StringOperators? slug,
+          Input$StringOperators? text,
+          Input$StringOperators? title,
+          Input$DateOperators? updatedAt}) =>
+      _res;
+  CopyWith$Input$DateOperators<TRes> get createdAt =>
+      CopyWith$Input$DateOperators.stub(_res);
+  CopyWith$Input$BooleanOperators<TRes> get enabled =>
+      CopyWith$Input$BooleanOperators.stub(_res);
+  CopyWith$Input$IDOperators<TRes> get id =>
+      CopyWith$Input$IDOperators.stub(_res);
+  CopyWith$Input$StringOperators<TRes> get position =>
+      CopyWith$Input$StringOperators.stub(_res);
+  CopyWith$Input$StringOperators<TRes> get slug =>
+      CopyWith$Input$StringOperators.stub(_res);
+  CopyWith$Input$StringOperators<TRes> get text =>
+      CopyWith$Input$StringOperators.stub(_res);
+  CopyWith$Input$StringOperators<TRes> get title =>
+      CopyWith$Input$StringOperators.stub(_res);
+  CopyWith$Input$DateOperators<TRes> get updatedAt =>
+      CopyWith$Input$DateOperators.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Input$PageListOptions {
+  Input$PageListOptions(
+      {this.filter, this.filterOperator, this.skip, this.sort, this.take});
+
+  @override
+  factory Input$PageListOptions.fromJson(Map<String, dynamic> json) =>
+      _$Input$PageListOptionsFromJson(json);
+
+  final Input$PageFilterParameter? filter;
+
+  @JsonKey(unknownEnumValue: Enum$LogicalOperator.$unknown)
+  final Enum$LogicalOperator? filterOperator;
+
+  final int? skip;
+
+  final Input$PageSortParameter? sort;
+
+  final int? take;
+
+  Map<String, dynamic> toJson() => _$Input$PageListOptionsToJson(this);
+  int get hashCode {
+    final l$filter = filter;
+    final l$filterOperator = filterOperator;
+    final l$skip = skip;
+    final l$sort = sort;
+    final l$take = take;
+    return Object.hashAll([l$filter, l$filterOperator, l$skip, l$sort, l$take]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Input$PageListOptions) || runtimeType != other.runtimeType)
+      return false;
+    final l$filter = filter;
+    final lOther$filter = other.filter;
+    if (l$filter != lOther$filter) return false;
+    final l$filterOperator = filterOperator;
+    final lOther$filterOperator = other.filterOperator;
+    if (l$filterOperator != lOther$filterOperator) return false;
+    final l$skip = skip;
+    final lOther$skip = other.skip;
+    if (l$skip != lOther$skip) return false;
+    final l$sort = sort;
+    final lOther$sort = other.sort;
+    if (l$sort != lOther$sort) return false;
+    final l$take = take;
+    final lOther$take = other.take;
+    if (l$take != lOther$take) return false;
+    return true;
+  }
+
+  CopyWith$Input$PageListOptions<Input$PageListOptions> get copyWith =>
+      CopyWith$Input$PageListOptions(this, (i) => i);
+}
+
+abstract class CopyWith$Input$PageListOptions<TRes> {
+  factory CopyWith$Input$PageListOptions(Input$PageListOptions instance,
+          TRes Function(Input$PageListOptions) then) =
+      _CopyWithImpl$Input$PageListOptions;
+
+  factory CopyWith$Input$PageListOptions.stub(TRes res) =
+      _CopyWithStubImpl$Input$PageListOptions;
+
+  TRes call(
+      {Input$PageFilterParameter? filter,
+      Enum$LogicalOperator? filterOperator,
+      int? skip,
+      Input$PageSortParameter? sort,
+      int? take});
+  CopyWith$Input$PageFilterParameter<TRes> get filter;
+  CopyWith$Input$PageSortParameter<TRes> get sort;
+}
+
+class _CopyWithImpl$Input$PageListOptions<TRes>
+    implements CopyWith$Input$PageListOptions<TRes> {
+  _CopyWithImpl$Input$PageListOptions(this._instance, this._then);
+
+  final Input$PageListOptions _instance;
+
+  final TRes Function(Input$PageListOptions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? filter = _undefined,
+          Object? filterOperator = _undefined,
+          Object? skip = _undefined,
+          Object? sort = _undefined,
+          Object? take = _undefined}) =>
+      _then(Input$PageListOptions(
+          filter: filter == _undefined
+              ? _instance.filter
+              : (filter as Input$PageFilterParameter?),
+          filterOperator: filterOperator == _undefined
+              ? _instance.filterOperator
+              : (filterOperator as Enum$LogicalOperator?),
+          skip: skip == _undefined ? _instance.skip : (skip as int?),
+          sort: sort == _undefined
+              ? _instance.sort
+              : (sort as Input$PageSortParameter?),
+          take: take == _undefined ? _instance.take : (take as int?)));
+  CopyWith$Input$PageFilterParameter<TRes> get filter {
+    final local$filter = _instance.filter;
+    return local$filter == null
+        ? CopyWith$Input$PageFilterParameter.stub(_then(_instance))
+        : CopyWith$Input$PageFilterParameter(
+            local$filter, (e) => call(filter: e));
+  }
+
+  CopyWith$Input$PageSortParameter<TRes> get sort {
+    final local$sort = _instance.sort;
+    return local$sort == null
+        ? CopyWith$Input$PageSortParameter.stub(_then(_instance))
+        : CopyWith$Input$PageSortParameter(local$sort, (e) => call(sort: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$PageListOptions<TRes>
+    implements CopyWith$Input$PageListOptions<TRes> {
+  _CopyWithStubImpl$Input$PageListOptions(this._res);
+
+  TRes _res;
+
+  call(
+          {Input$PageFilterParameter? filter,
+          Enum$LogicalOperator? filterOperator,
+          int? skip,
+          Input$PageSortParameter? sort,
+          int? take}) =>
+      _res;
+  CopyWith$Input$PageFilterParameter<TRes> get filter =>
+      CopyWith$Input$PageFilterParameter.stub(_res);
+  CopyWith$Input$PageSortParameter<TRes> get sort =>
+      CopyWith$Input$PageSortParameter.stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Input$PageSortParameter {
+  Input$PageSortParameter(
+      {this.createdAt,
+      this.id,
+      this.position,
+      this.slug,
+      this.text,
+      this.title,
+      this.updatedAt});
+
+  @override
+  factory Input$PageSortParameter.fromJson(Map<String, dynamic> json) =>
+      _$Input$PageSortParameterFromJson(json);
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? createdAt;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? id;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? position;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? slug;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? text;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? title;
+
+  @JsonKey(unknownEnumValue: Enum$SortOrder.$unknown)
+  final Enum$SortOrder? updatedAt;
+
+  Map<String, dynamic> toJson() => _$Input$PageSortParameterToJson(this);
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$position = position;
+    final l$slug = slug;
+    final l$text = text;
+    final l$title = title;
+    final l$updatedAt = updatedAt;
+    return Object.hashAll(
+        [l$createdAt, l$id, l$position, l$slug, l$text, l$title, l$updatedAt]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Input$PageSortParameter) || runtimeType != other.runtimeType)
+      return false;
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$position = position;
+    final lOther$position = other.position;
+    if (l$position != lOther$position) return false;
+    final l$slug = slug;
+    final lOther$slug = other.slug;
+    if (l$slug != lOther$slug) return false;
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) return false;
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) return false;
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) return false;
+    return true;
+  }
+
+  CopyWith$Input$PageSortParameter<Input$PageSortParameter> get copyWith =>
+      CopyWith$Input$PageSortParameter(this, (i) => i);
+}
+
+abstract class CopyWith$Input$PageSortParameter<TRes> {
+  factory CopyWith$Input$PageSortParameter(Input$PageSortParameter instance,
+          TRes Function(Input$PageSortParameter) then) =
+      _CopyWithImpl$Input$PageSortParameter;
+
+  factory CopyWith$Input$PageSortParameter.stub(TRes res) =
+      _CopyWithStubImpl$Input$PageSortParameter;
+
+  TRes call(
+      {Enum$SortOrder? createdAt,
+      Enum$SortOrder? id,
+      Enum$SortOrder? position,
+      Enum$SortOrder? slug,
+      Enum$SortOrder? text,
+      Enum$SortOrder? title,
+      Enum$SortOrder? updatedAt});
+}
+
+class _CopyWithImpl$Input$PageSortParameter<TRes>
+    implements CopyWith$Input$PageSortParameter<TRes> {
+  _CopyWithImpl$Input$PageSortParameter(this._instance, this._then);
+
+  final Input$PageSortParameter _instance;
+
+  final TRes Function(Input$PageSortParameter) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? createdAt = _undefined,
+          Object? id = _undefined,
+          Object? position = _undefined,
+          Object? slug = _undefined,
+          Object? text = _undefined,
+          Object? title = _undefined,
+          Object? updatedAt = _undefined}) =>
+      _then(Input$PageSortParameter(
+          createdAt: createdAt == _undefined
+              ? _instance.createdAt
+              : (createdAt as Enum$SortOrder?),
+          id: id == _undefined ? _instance.id : (id as Enum$SortOrder?),
+          position: position == _undefined
+              ? _instance.position
+              : (position as Enum$SortOrder?),
+          slug: slug == _undefined ? _instance.slug : (slug as Enum$SortOrder?),
+          text: text == _undefined ? _instance.text : (text as Enum$SortOrder?),
+          title: title == _undefined
+              ? _instance.title
+              : (title as Enum$SortOrder?),
+          updatedAt: updatedAt == _undefined
+              ? _instance.updatedAt
+              : (updatedAt as Enum$SortOrder?)));
+}
+
+class _CopyWithStubImpl$Input$PageSortParameter<TRes>
+    implements CopyWith$Input$PageSortParameter<TRes> {
+  _CopyWithStubImpl$Input$PageSortParameter(this._res);
+
+  TRes _res;
+
+  call(
+          {Enum$SortOrder? createdAt,
+          Enum$SortOrder? id,
+          Enum$SortOrder? position,
+          Enum$SortOrder? slug,
+          Enum$SortOrder? text,
+          Enum$SortOrder? title,
           Enum$SortOrder? updatedAt}) =>
       _res;
 }
@@ -6019,6 +6483,8 @@ class Input$SearchInput {
       {this.collectionId,
       this.collectionSlug,
       this.facetValueFilters,
+      this.facetValueIds,
+      this.facetValueOperator,
       this.groupByProduct,
       this.inStock,
       this.skip,
@@ -6035,6 +6501,11 @@ class Input$SearchInput {
   final String? collectionSlug;
 
   final List<Input$FacetValueFilterInput>? facetValueFilters;
+
+  final List<String>? facetValueIds;
+
+  @JsonKey(unknownEnumValue: Enum$LogicalOperator.$unknown)
+  final Enum$LogicalOperator? facetValueOperator;
 
   final bool? groupByProduct;
 
@@ -6053,6 +6524,8 @@ class Input$SearchInput {
     final l$collectionId = collectionId;
     final l$collectionSlug = collectionSlug;
     final l$facetValueFilters = facetValueFilters;
+    final l$facetValueIds = facetValueIds;
+    final l$facetValueOperator = facetValueOperator;
     final l$groupByProduct = groupByProduct;
     final l$inStock = inStock;
     final l$skip = skip;
@@ -6065,6 +6538,10 @@ class Input$SearchInput {
       l$facetValueFilters == null
           ? null
           : Object.hashAll(l$facetValueFilters.map((v) => v)),
+      l$facetValueIds == null
+          ? null
+          : Object.hashAll(l$facetValueIds.map((v) => v)),
+      l$facetValueOperator,
       l$groupByProduct,
       l$inStock,
       l$skip,
@@ -6100,6 +6577,22 @@ class Input$SearchInput {
       return false;
     }
 
+    final l$facetValueIds = facetValueIds;
+    final lOther$facetValueIds = other.facetValueIds;
+    if (l$facetValueIds != null && lOther$facetValueIds != null) {
+      if (l$facetValueIds.length != lOther$facetValueIds.length) return false;
+      for (int i = 0; i < l$facetValueIds.length; i++) {
+        final l$facetValueIds$entry = l$facetValueIds[i];
+        final lOther$facetValueIds$entry = lOther$facetValueIds[i];
+        if (l$facetValueIds$entry != lOther$facetValueIds$entry) return false;
+      }
+    } else if (l$facetValueIds != lOther$facetValueIds) {
+      return false;
+    }
+
+    final l$facetValueOperator = facetValueOperator;
+    final lOther$facetValueOperator = other.facetValueOperator;
+    if (l$facetValueOperator != lOther$facetValueOperator) return false;
     final l$groupByProduct = groupByProduct;
     final lOther$groupByProduct = other.groupByProduct;
     if (l$groupByProduct != lOther$groupByProduct) return false;
@@ -6137,6 +6630,8 @@ abstract class CopyWith$Input$SearchInput<TRes> {
       {String? collectionId,
       String? collectionSlug,
       List<Input$FacetValueFilterInput>? facetValueFilters,
+      List<String>? facetValueIds,
+      Enum$LogicalOperator? facetValueOperator,
       bool? groupByProduct,
       bool? inStock,
       int? skip,
@@ -6166,6 +6661,8 @@ class _CopyWithImpl$Input$SearchInput<TRes>
           {Object? collectionId = _undefined,
           Object? collectionSlug = _undefined,
           Object? facetValueFilters = _undefined,
+          Object? facetValueIds = _undefined,
+          Object? facetValueOperator = _undefined,
           Object? groupByProduct = _undefined,
           Object? inStock = _undefined,
           Object? skip = _undefined,
@@ -6182,6 +6679,12 @@ class _CopyWithImpl$Input$SearchInput<TRes>
           facetValueFilters: facetValueFilters == _undefined
               ? _instance.facetValueFilters
               : (facetValueFilters as List<Input$FacetValueFilterInput>?),
+          facetValueIds: facetValueIds == _undefined
+              ? _instance.facetValueIds
+              : (facetValueIds as List<String>?),
+          facetValueOperator: facetValueOperator == _undefined
+              ? _instance.facetValueOperator
+              : (facetValueOperator as Enum$LogicalOperator?),
           groupByProduct: groupByProduct == _undefined
               ? _instance.groupByProduct
               : (groupByProduct as bool?),
@@ -6222,6 +6725,8 @@ class _CopyWithStubImpl$Input$SearchInput<TRes>
           {String? collectionId,
           String? collectionSlug,
           List<Input$FacetValueFilterInput>? facetValueFilters,
+          List<String>? facetValueIds,
+          Enum$LogicalOperator? facetValueOperator,
           bool? groupByProduct,
           bool? inStock,
           int? skip,
@@ -7433,8 +7938,6 @@ enum Enum$ErrorCode {
   COUPON_CODE_LIMIT_ERROR,
   @JsonValue('EMAIL_ADDRESS_CONFLICT_ERROR')
   EMAIL_ADDRESS_CONFLICT_ERROR,
-  @JsonValue('GUEST_CHECKOUT_ERROR')
-  GUEST_CHECKOUT_ERROR,
   @JsonValue('IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR')
   IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR,
   @JsonValue('IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR')
@@ -7874,16 +8377,6 @@ enum Enum$LogicalOperator {
   $unknown
 }
 
-enum Enum$OrderType {
-  @JsonValue('Aggregate')
-  Aggregate,
-  @JsonValue('Regular')
-  Regular,
-  @JsonValue('Seller')
-  Seller,
-  $unknown
-}
-
 enum Enum$Permission {
   @JsonValue('Authenticated')
   Authenticated,
@@ -7907,20 +8400,18 @@ enum Enum$Permission {
   CreateFacet,
   @JsonValue('CreateOrder')
   CreateOrder,
+  @JsonValue('CreatePages')
+  CreatePages,
   @JsonValue('CreatePaymentMethod')
   CreatePaymentMethod,
   @JsonValue('CreateProduct')
   CreateProduct,
   @JsonValue('CreatePromotion')
   CreatePromotion,
-  @JsonValue('CreateSeller')
-  CreateSeller,
   @JsonValue('CreateSettings')
   CreateSettings,
   @JsonValue('CreateShippingMethod')
   CreateShippingMethod,
-  @JsonValue('CreateStockLocation')
-  CreateStockLocation,
   @JsonValue('CreateSystem')
   CreateSystem,
   @JsonValue('CreateTag')
@@ -7951,20 +8442,18 @@ enum Enum$Permission {
   DeleteFacet,
   @JsonValue('DeleteOrder')
   DeleteOrder,
+  @JsonValue('DeletePages')
+  DeletePages,
   @JsonValue('DeletePaymentMethod')
   DeletePaymentMethod,
   @JsonValue('DeleteProduct')
   DeleteProduct,
   @JsonValue('DeletePromotion')
   DeletePromotion,
-  @JsonValue('DeleteSeller')
-  DeleteSeller,
   @JsonValue('DeleteSettings')
   DeleteSettings,
   @JsonValue('DeleteShippingMethod')
   DeleteShippingMethod,
-  @JsonValue('DeleteStockLocation')
-  DeleteStockLocation,
   @JsonValue('DeleteSystem')
   DeleteSystem,
   @JsonValue('DeleteTag')
@@ -7999,20 +8488,18 @@ enum Enum$Permission {
   ReadFacet,
   @JsonValue('ReadOrder')
   ReadOrder,
+  @JsonValue('ReadPages')
+  ReadPages,
   @JsonValue('ReadPaymentMethod')
   ReadPaymentMethod,
   @JsonValue('ReadProduct')
   ReadProduct,
   @JsonValue('ReadPromotion')
   ReadPromotion,
-  @JsonValue('ReadSeller')
-  ReadSeller,
   @JsonValue('ReadSettings')
   ReadSettings,
   @JsonValue('ReadShippingMethod')
   ReadShippingMethod,
-  @JsonValue('ReadStockLocation')
-  ReadStockLocation,
   @JsonValue('ReadSystem')
   ReadSystem,
   @JsonValue('ReadTag')
@@ -8047,20 +8534,18 @@ enum Enum$Permission {
   UpdateGlobalSettings,
   @JsonValue('UpdateOrder')
   UpdateOrder,
+  @JsonValue('UpdatePages')
+  UpdatePages,
   @JsonValue('UpdatePaymentMethod')
   UpdatePaymentMethod,
   @JsonValue('UpdateProduct')
   UpdateProduct,
   @JsonValue('UpdatePromotion')
   UpdatePromotion,
-  @JsonValue('UpdateSeller')
-  UpdateSeller,
   @JsonValue('UpdateSettings')
   UpdateSettings,
   @JsonValue('UpdateShippingMethod')
   UpdateShippingMethod,
-  @JsonValue('UpdateStockLocation')
-  UpdateStockLocation,
   @JsonValue('UpdateSystem')
   UpdateSystem,
   @JsonValue('UpdateTag')
@@ -8110,7 +8595,6 @@ const possibleTypesMap = {
     'FloatCustomFieldConfig',
     'IntCustomFieldConfig',
     'LocaleStringCustomFieldConfig',
-    'LocaleTextCustomFieldConfig',
     'RelationCustomFieldConfig',
     'StringCustomFieldConfig',
     'TextCustomFieldConfig'
@@ -8148,7 +8632,6 @@ const possibleTypesMap = {
   'SetCustomerForOrderResult': {
     'AlreadyLoggedInError',
     'EmailAddressConflictError',
-    'GuestCheckoutError',
     'NoActiveOrderError',
     'Order'
   },
@@ -8201,7 +8684,9 @@ const possibleTypesMap = {
     'Fulfillment',
     'HistoryEntry',
     'Order',
+    'OrderItem',
     'OrderLine',
+    'Page',
     'Payment',
     'PaymentMethod',
     'Product',
@@ -8209,10 +8694,8 @@ const possibleTypesMap = {
     'ProductOptionGroup',
     'ProductVariant',
     'Promotion',
-    'Province',
     'Refund',
     'Role',
-    'Seller',
     'ShippingMethod',
     'Surcharge',
     'Tag',
@@ -8227,7 +8710,6 @@ const possibleTypesMap = {
     'CouponCodeInvalidError',
     'CouponCodeLimitError',
     'EmailAddressConflictError',
-    'GuestCheckoutError',
     'IdentifierChangeTokenExpiredError',
     'IdentifierChangeTokenInvalidError',
     'IneligiblePaymentMethodError',
@@ -8260,10 +8742,10 @@ const possibleTypesMap = {
     'FacetList',
     'HistoryEntryList',
     'OrderList',
+    'PageList',
     'ProductList',
     'ProductVariantList',
     'PromotionList',
-    'ProvinceList',
     'RoleList',
     'ShippingMethodList',
     'TagList',
@@ -8275,10 +8757,8 @@ const possibleTypesMap = {
     'FloatCustomFieldConfig',
     'IntCustomFieldConfig',
     'LocaleStringCustomFieldConfig',
-    'LocaleTextCustomFieldConfig',
     'RelationCustomFieldConfig',
     'StringCustomFieldConfig',
     'TextCustomFieldConfig'
-  },
-  'Region': {'Country', 'Province'}
+  }
 };

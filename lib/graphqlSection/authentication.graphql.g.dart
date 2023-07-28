@@ -29,7 +29,6 @@ const _$Enum$ErrorCodeEnumMap = {
   Enum$ErrorCode.COUPON_CODE_INVALID_ERROR: 'COUPON_CODE_INVALID_ERROR',
   Enum$ErrorCode.COUPON_CODE_LIMIT_ERROR: 'COUPON_CODE_LIMIT_ERROR',
   Enum$ErrorCode.EMAIL_ADDRESS_CONFLICT_ERROR: 'EMAIL_ADDRESS_CONFLICT_ERROR',
-  Enum$ErrorCode.GUEST_CHECKOUT_ERROR: 'GUEST_CHECKOUT_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR:
       'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
   Enum$ErrorCode.IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR:
@@ -163,13 +162,12 @@ const _$Enum$PermissionEnumMap = {
   Enum$Permission.CreateCustomerGroup: 'CreateCustomerGroup',
   Enum$Permission.CreateFacet: 'CreateFacet',
   Enum$Permission.CreateOrder: 'CreateOrder',
+  Enum$Permission.CreatePages: 'CreatePages',
   Enum$Permission.CreatePaymentMethod: 'CreatePaymentMethod',
   Enum$Permission.CreateProduct: 'CreateProduct',
   Enum$Permission.CreatePromotion: 'CreatePromotion',
-  Enum$Permission.CreateSeller: 'CreateSeller',
   Enum$Permission.CreateSettings: 'CreateSettings',
   Enum$Permission.CreateShippingMethod: 'CreateShippingMethod',
-  Enum$Permission.CreateStockLocation: 'CreateStockLocation',
   Enum$Permission.CreateSystem: 'CreateSystem',
   Enum$Permission.CreateTag: 'CreateTag',
   Enum$Permission.CreateTaxCategory: 'CreateTaxCategory',
@@ -185,13 +183,12 @@ const _$Enum$PermissionEnumMap = {
   Enum$Permission.DeleteCustomerGroup: 'DeleteCustomerGroup',
   Enum$Permission.DeleteFacet: 'DeleteFacet',
   Enum$Permission.DeleteOrder: 'DeleteOrder',
+  Enum$Permission.DeletePages: 'DeletePages',
   Enum$Permission.DeletePaymentMethod: 'DeletePaymentMethod',
   Enum$Permission.DeleteProduct: 'DeleteProduct',
   Enum$Permission.DeletePromotion: 'DeletePromotion',
-  Enum$Permission.DeleteSeller: 'DeleteSeller',
   Enum$Permission.DeleteSettings: 'DeleteSettings',
   Enum$Permission.DeleteShippingMethod: 'DeleteShippingMethod',
-  Enum$Permission.DeleteStockLocation: 'DeleteStockLocation',
   Enum$Permission.DeleteSystem: 'DeleteSystem',
   Enum$Permission.DeleteTag: 'DeleteTag',
   Enum$Permission.DeleteTaxCategory: 'DeleteTaxCategory',
@@ -209,13 +206,12 @@ const _$Enum$PermissionEnumMap = {
   Enum$Permission.ReadCustomerGroup: 'ReadCustomerGroup',
   Enum$Permission.ReadFacet: 'ReadFacet',
   Enum$Permission.ReadOrder: 'ReadOrder',
+  Enum$Permission.ReadPages: 'ReadPages',
   Enum$Permission.ReadPaymentMethod: 'ReadPaymentMethod',
   Enum$Permission.ReadProduct: 'ReadProduct',
   Enum$Permission.ReadPromotion: 'ReadPromotion',
-  Enum$Permission.ReadSeller: 'ReadSeller',
   Enum$Permission.ReadSettings: 'ReadSettings',
   Enum$Permission.ReadShippingMethod: 'ReadShippingMethod',
-  Enum$Permission.ReadStockLocation: 'ReadStockLocation',
   Enum$Permission.ReadSystem: 'ReadSystem',
   Enum$Permission.ReadTag: 'ReadTag',
   Enum$Permission.ReadTaxCategory: 'ReadTaxCategory',
@@ -233,13 +229,12 @@ const _$Enum$PermissionEnumMap = {
   Enum$Permission.UpdateFacet: 'UpdateFacet',
   Enum$Permission.UpdateGlobalSettings: 'UpdateGlobalSettings',
   Enum$Permission.UpdateOrder: 'UpdateOrder',
+  Enum$Permission.UpdatePages: 'UpdatePages',
   Enum$Permission.UpdatePaymentMethod: 'UpdatePaymentMethod',
   Enum$Permission.UpdateProduct: 'UpdateProduct',
   Enum$Permission.UpdatePromotion: 'UpdatePromotion',
-  Enum$Permission.UpdateSeller: 'UpdateSeller',
   Enum$Permission.UpdateSettings: 'UpdateSettings',
   Enum$Permission.UpdateShippingMethod: 'UpdateShippingMethod',
-  Enum$Permission.UpdateStockLocation: 'UpdateStockLocation',
   Enum$Permission.UpdateSystem: 'UpdateSystem',
   Enum$Permission.UpdateTag: 'UpdateTag',
   Enum$Permission.UpdateTaxCategory: 'UpdateTaxCategory',
@@ -1163,7 +1158,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items
                       .fromJson(e as Map<String, dynamic>))
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
-          totalWithTax: json['totalWithTax'] as String,
+          totalWithTax: json['totalWithTax'] as int,
           $__typename: json['__typename'] as String,
         );
 
@@ -1380,7 +1375,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant(
           name: json['name'] as String,
-          priceWithTax: json['priceWithTax'] as String,
+          priceWithTax: json['priceWithTax'] as int,
           $__typename: json['__typename'] as String,
         );
 
@@ -1417,7 +1412,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items$discounts
     _$Query$GetActiveCustomer$activeCustomer$orders$items$discountsFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items$discounts(
-          amount: json['amount'] as String,
+          amount: json['amount'] as int,
           $__typename: json['__typename'] as String,
         );
 
@@ -1472,8 +1467,8 @@ Query$GetActiveCustomer$activeCustomer$orders$items$surcharges
     _$Query$GetActiveCustomer$activeCustomer$orders$items$surchargesFromJson(
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items$surcharges(
-          price: json['price'] as String,
-          priceWithTax: json['priceWithTax'] as String,
+          price: json['price'] as int,
+          priceWithTax: json['priceWithTax'] as int,
           $__typename: json['__typename'] as String,
         );
 
@@ -1494,7 +1489,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items$payments
           state: json['state'] as String,
           createdAt: json['createdAt'] as String,
           method: json['method'] as String,
-          amount: json['amount'] as String,
+          amount: json['amount'] as int,
           transactionId: json['transactionId'] as String?,
           $__typename: json['__typename'] as String,
         );

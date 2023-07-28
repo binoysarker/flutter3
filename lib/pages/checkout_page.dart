@@ -174,7 +174,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       Timer(Duration(seconds: 3), () {
                         orderController.addPaymentToOrder({
                           'amount':
-                              '${UtilService.formatPriceValue(int.parse(orderController.activeOrderResponse.value!.totalWithTax))}',
+                              '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
                           'paymentType': PaymentOptionType.offline.name,
                         });
                       });

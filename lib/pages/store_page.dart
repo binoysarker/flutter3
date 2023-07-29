@@ -1,8 +1,10 @@
-import 'package:encryptor/encryptor.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
@@ -16,7 +18,10 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/productsController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
+import 'package:recipe.app/hygraphSection/hygraphQueries.dart';
+import 'package:recipe.app/hygraphSection/hygraphQueryDataTypes.dart';
 import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -47,12 +52,10 @@ class _StorePageState extends State<StorePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-
       userController.getActiveCustomer();
       productsController.getProductsList();
       collectionsController.getAllCollections();
       orderController.getActiveOrders();
-
     });
   }
 
@@ -120,6 +123,59 @@ class _StorePageState extends State<StorePage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          SizedBox(
+                            height: 0,
+                          ),
+                          GraphQLProvider(
+                            client: GraphqlService.hygraphClient,
+                            child: Query(
+                                options: QueryOptions(
+                                    document:
+                                        gql(HygraphQueryService.assetQuery)),
+                                builder: (
+                                  QueryResult result, {
+                                  Future<QueryResult> Function(
+                                          FetchMoreOptions)?
+                                      fetchMore,
+                                  Future<QueryResult?> Function()? refetch,
+                                }) {
+                                  if (result.hasException) {
+                                    return Text(result.exception.toString());
+                                  }
+                                  if (result.isLoading) {
+                                    return CircularProgressIndicator(
+                                      color: CustomTheme.progressIndicatorColor,
+                                    );
+                                  }
+                                  if (result.data == null) {
+                                    return Text(
+                                      'No data found',
+                                      style: CustomTheme.headerStyle,
+                                    );
+                                  }
+                                  List<AssetsList> assetList =
+                                      assetsListFromJson(
+                                          jsonEncode(result.data!['assets']));
+
+                                  return Column(
+                                    children: assetList
+                                        .map(
+                                          (e) => Container(
+                                            child: FadeInImage.assetNetwork(
+                                              placeholder:
+                                                  '${CommonVariableData.placeholder}',
+                                              image: e.url,
+                                              imageErrorBuilder: (context,
+                                                      error, stackTrace) =>
+                                                  Image.asset(
+                                                      '${CommonVariableData.placeholder}'),
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                  );
+                                }),
+                          ),
                           SizedBox(
                             height: 0,
                           ),

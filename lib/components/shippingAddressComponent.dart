@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:recipe.app/hygraphSection/hygraphQueries.dart';
+import 'package:recipe.app/hygraphSection/hygraphQueryDataTypes.dart';
 import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
 
@@ -51,9 +57,6 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     children: userController
                         .currentAuthenticatedUser.value!.addresses!
                         .map((e) {
-                      var ind = userController
-                          .currentAuthenticatedUser.value!.addresses!
-                          .indexOf(e);
                       return GestureDetector(
                         onTap: () {
                           orderController.useCurrentUserAddress.value = true;
@@ -63,20 +66,44 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                           child: Column(
                             children: [
                               Text(
-                                'Address ${ind + 1}',
+                                'Address',
                                 style: CustomTheme.headerStyle,
                               ),
-                              Text(
-                                '${e.streetLine1}',
-                                style: CustomTheme.paragraphStyle,
+                              Row(
+                                children: [
+                                  Text(
+                                    'Street',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    '${e.streetLine1},${e.streetLine2}',
+                                    style: CustomTheme.paragraphStyle,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '${e.streetLine2}',
-                                style: CustomTheme.paragraphStyle,
+                              Row(
+                                children: [
+                                  Text(
+                                    'City:',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    '${e.city}',
+                                    style: CustomTheme.paragraphStyle,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '${e.city}',
-                                style: CustomTheme.paragraphStyle,
+                              Row(
+                                children: [
+                                  Text(
+                                    'Phone:',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    '${e.phoneNumber}',
+                                    style: CustomTheme.paragraphStyle,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
@@ -206,19 +233,82 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             ValidatorDefinition.phoneNumberMultiValidator,
                       ),
                     ),
+                    GraphQLProvider(
+                      client: GraphqlService.hygraphClient,
+                      child: Query(
+                          options: QueryOptions(
+                              document:
+                                  gql(HygraphQueryService.postCodesQuery)),
+                          builder: (
+                            QueryResult result, {
+                            Future<QueryResult> Function(FetchMoreOptions)?
+                                fetchMore,
+                            Future<QueryResult?> Function()? refetch,
+                          }) {
+                            if (result.hasException) {
+                              return Text(result.exception.toString());
+                            }
+                            if (result.isLoading) {
+                              return CircularProgressIndicator(
+                                color: CustomTheme.progressIndicatorColor,
+                              );
+                            }
+                            if (result.data == null) {
+                              return Text(
+                                'No data found',
+                                style: CustomTheme.headerStyle,
+                              );
+                            }
+                            List<PostCodeList> postCodeList =
+                                postCodeListFromJson(
+                                    jsonEncode(result.data!['postcodes']));
+                            print(
+                                'postal codes ${postCodeList.map((e) => e.postcode)}');
+                            // set the defualt value
+                            widget.orderController.selectedPostalCode.value =
+                                postCodeList[0].postcode.toString();
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: DropdownButtonFormField(
+                                value: widget
+                                    .orderController.selectedPostalCode.value,
+                                items: postCodeList
+                                    .map((ele) => DropdownMenuItem<String>(
+                                        value: '${ele.postcode}',
+                                        child: Text('${ele.postcode}')))
+                                    .toList(),
+                                decoration: InputDecoration(
+                                  label: Text(
+                                    'Please select a payment option',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                ),
+                                onChanged: (dynamic data) {
+                                  print('selected postcode $data');
+                                },
+                                validator: RequiredValidator(
+                                    errorText: 'Please select a postal code'),
+                              ),
+                            );
+                          }),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: widget.orderController.postalCode,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Postal Code',
-                        ),
-                        autofillHints: [AutofillHints.postalCode],
-                        keyboardType: TextInputType.number,
-                        validator: RequiredValidator(
-                            errorText: 'Postal Code is Required'),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Make Default Shipping Address',
+                              style: CustomTheme.paragraphStyle),
+                          Checkbox(
+                              value: widget.orderController
+                                  .makeDefaultShippingAddress.value,
+                              onChanged: (bool? value) {
+                                print('checkbox $value');
+                                widget.orderController
+                                    .makeDefaultShippingAddress.value = value!;
+                              }),
+                        ],
                       ),
                     ),
                     Row(

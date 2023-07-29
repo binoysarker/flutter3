@@ -28,13 +28,15 @@ class OrderController extends GetxController {
   TextEditingController streetLine1 = TextEditingController();
   TextEditingController streetLine2 = TextEditingController();
   TextEditingController city = TextEditingController();
-  TextEditingController postalCode = TextEditingController();
+  // TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController couponCode = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
   var selectedPaymentOption = 'offline'.obs;
+  var selectedPostalCode = '625018'.obs;
+  var makeDefaultShippingAddress = false.obs;
   var paymentOptionDropdownItems = [
     PaymentOptionType.offline.name,
     PaymentOptionType.online.name
@@ -284,7 +286,7 @@ class OrderController extends GetxController {
     streetLine1.clear();
     streetLine2.clear();
     phoneNumber.clear();
-    postalCode.clear();
+    // postalCode.clear();
     city.clear();
     couponCode.clear();
     shippingAddressFormKey.currentState?.reset();
@@ -426,7 +428,8 @@ class OrderController extends GetxController {
                     postalCode: useCurrentUserAddress.value
                         ? userController.currentAuthenticatedUser.value!
                             .addresses!.first.postalCode
-                        : postalCode.text,
+                        : selectedPostalCode.value,
+                    defaultShippingAddress: makeDefaultShippingAddress.value,
                     phoneNumber: useCurrentUserAddress.value
                         ? userController.currentAuthenticatedUser.value!
                             .addresses!.first.phoneNumber

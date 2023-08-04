@@ -72,7 +72,19 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               Row(
                                 children: [
                                   Text(
-                                    'Street',
+                                    'Name:',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    '${e.fullName}',
+                                    style: CustomTheme.paragraphStyle,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Street:',
                                     style: CustomTheme.headerStyle,
                                   ),
                                   Text(
@@ -164,6 +176,44 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                 }).toList(),
               ),
             ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1),
+                  child: Obx(() => Switch(
+                      value: widget.orderController.hasCouponCode.value,
+                      activeColor: Colors.green,
+                      onChanged: (bool data) {
+                        widget.orderController.hasCouponCode.value =
+                            data;
+                        print(
+                            'has coupon code ${widget.orderController.hasCouponCode.value}');
+                      })),
+                ),
+                Text(
+                  'I have coupon Code',
+                  style: CustomTheme.paragraphStyle,
+                ),
+              ],
+            ),
+            Obx(() => widget.orderController.hasCouponCode.isTrue
+                ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                autovalidateMode:
+                AutovalidateMode.onUserInteraction,
+                controller: widget.orderController.couponCode,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Coupon Code',
+                ),
+                autofillHints: [AutofillHints.oneTimeCode],
+                keyboardType: TextInputType.name,
+                validator: RequiredValidator(
+                    errorText: 'Coupon Code is required'),
+              ),
+            )
+                : SizedBox()),
           ],
         ),
         Obx(() => showForm.isTrue
@@ -311,44 +361,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                         ],
                       ),
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 1),
-                          child: Obx(() => Switch(
-                              value: widget.orderController.hasCouponCode.value,
-                              activeColor: Colors.green,
-                              onChanged: (bool data) {
-                                widget.orderController.hasCouponCode.value =
-                                    data;
-                                print(
-                                    'has coupon code ${widget.orderController.hasCouponCode.value}');
-                              })),
-                        ),
-                        Text(
-                          'I have coupon Code',
-                          style: CustomTheme.paragraphStyle,
-                        ),
-                      ],
-                    ),
-                    Obx(() => widget.orderController.hasCouponCode.isTrue
-                        ? Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              controller: widget.orderController.couponCode,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Coupon Code',
-                              ),
-                              autofillHints: [AutofillHints.oneTimeCode],
-                              keyboardType: TextInputType.name,
-                              validator: RequiredValidator(
-                                  errorText: 'Coupon Code is required'),
-                            ),
-                          )
-                        : SizedBox()),
+
                   ],
                 ))
             : SizedBox()),

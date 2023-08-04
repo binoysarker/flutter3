@@ -394,6 +394,13 @@ class OrderController extends GetxController {
             backgroundColor: Colors.yellow,
             duration: Duration(seconds: 2));
         status = false;
+      }else if (res.parsedData!.applyCouponCode.$__typename ==
+          'CouponCodeLimitError') {
+        Get.snackbar('', 'this coupon code is already applied for you',
+            colorText: Colors.red,
+            backgroundColor: Colors.yellow,
+            duration: Duration(seconds: 2));
+        status = false;
       } else if (res.parsedData!.applyCouponCode.$__typename == 'order') {
         print('code is applied');
         status = true;

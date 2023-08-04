@@ -126,28 +126,27 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     print(
                         '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
                     if (orderController.useCurrentUserAddress.isTrue) {
-                      orderController.setShippingAddress();
-                      orderController.setShippingMethod();
+                      print(
+                          'has coupon code ${orderController.hasCouponCode}');
+                      if (orderController.hasCouponCode.isTrue) {
+                        var res = orderController
+                            .applyCouponCode(orderController.couponCode.text);
+                        res.then((value) {
+                          print(value);
+                          if (value) {
+                            orderController.setShippingAddress();
+                            orderController.setShippingMethod();
+                          }
+                        });
+                      } else {
+                        orderController.setShippingAddress();
+                        orderController.setShippingMethod();
+                      }
                     } else {
                       final form = shippingAddressFormKey.currentState!;
                       if (form.validate()) {
                         print('validated');
-                        print(
-                            'has coupon code ${orderController.hasCouponCode}');
-                        if (orderController.hasCouponCode.isTrue) {
-                          var res = orderController
-                              .applyCouponCode(orderController.couponCode.text);
-                          res.then((value) {
-                            print(value);
-                            if (value) {
-                              orderController.setShippingAddress();
-                              orderController.setShippingMethod();
-                            }
-                          });
-                        } else {
-                          orderController.setShippingAddress();
-                          orderController.setShippingMethod();
-                        }
+
                       } else {
                         print('invalid');
                         Get.snackbar(

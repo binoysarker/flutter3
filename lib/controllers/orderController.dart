@@ -28,19 +28,20 @@ class OrderController extends GetxController {
   TextEditingController streetLine1 = TextEditingController();
   TextEditingController streetLine2 = TextEditingController();
   TextEditingController city = TextEditingController();
+
   // TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   TextEditingController couponCode = TextEditingController();
+  TextEditingController otherInstructions = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
   var selectedPaymentOption = 'offline'.obs;
   var selectedPostalCode = '625018'.obs;
+  var otherInstructionResponse = (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
   var makeDefaultShippingAddress = false.obs;
-  var paymentOptionDropdownItems = [
-    PaymentOptionType.offline.name,
-    PaymentOptionType.online.name
-  ].obs;
+  var paymentOptionDropdownItems =
+      [PaymentOptionType.offline.name, PaymentOptionType.online.name].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
@@ -51,9 +52,7 @@ class OrderController extends GetxController {
   var currentlySelectedCountryCode = 'IN'.obs;
   var currentlySelectedShippingMethod =
       (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
-  var currentlySelectedShippingMethodId = ''.obs;
-  var eligibleShippingMethodList =
-      <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
+  var eligibleShippingMethodList = <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
   var shippingMethodSelected = '1'.obs;
   var clientToken = ''.obs;
   var currencyCode = ''.obs;
@@ -97,7 +96,8 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
   }
-  void resetData(){
+
+  void resetData() {
     activeOrderResponse.value = null;
   }
 
@@ -168,13 +168,11 @@ class OrderController extends GetxController {
         Get.snackbar('Error', "${currentState['message']}",
             colorText: Colors.red);
       } else {
-        addPaymentToOrder(
-            {
-              'paymentId': paymentSuccessResponse.value!.paymentId,
-              'orderId': paymentSuccessResponse.value!.orderId,
-              'signature': paymentSuccessResponse.value!.signature
-            }
-        );
+        addPaymentToOrder({
+          'paymentId': paymentSuccessResponse.value!.paymentId,
+          'orderId': paymentSuccessResponse.value!.orderId,
+          'signature': paymentSuccessResponse.value!.signature
+        });
       }
       isLoading.value = false;
     }
@@ -198,8 +196,8 @@ class OrderController extends GetxController {
   void addPaymentToOrder(dynamic metaData) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService.client.value
-        .mutate$AddPayment(Options$Mutation$AddPayment(
+    final res = await graphqlService.client.value.mutate$AddPayment(
+        Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
                     method: eligiblePaymentMethods.first.code,
@@ -207,7 +205,8 @@ class OrderController extends GetxController {
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
-      Get.snackbar('Error', res.exception.toString(),backgroundColor: Colors.red,colorText: Colors.white);
+      Get.snackbar('Error', res.exception.toString(),
+          backgroundColor: Colors.red, colorText: Colors.white);
     }
     if (res.data != null) {
       var jsonData = res.parsedData!.addPaymentToOrder.toJson();
@@ -249,7 +248,7 @@ class OrderController extends GetxController {
     final res = await graphqlService.client.value.mutate$SetShippingMethod(
         Options$Mutation$SetShippingMethod(
             variables: Variables$Mutation$SetShippingMethod(
-                id: currentlySelectedShippingMethodId.value)));
+                id: currentlySelectedShippingMethod.value!.id)));
     if (res.hasException) {
       print('${res.exception.toString()}');
       isLoading2.value = false;
@@ -343,13 +342,11 @@ class OrderController extends GetxController {
         transitionToOrderState(states[0]);
 
         Timer(Duration(seconds: 3), () {
-          addPaymentToOrder(
-              {
-                'paymentId': paymentSuccessResponse.value!.paymentId,
-                'orderId': paymentSuccessResponse.value!.orderId,
-                'signature': paymentSuccessResponse.value!.signature
-              }
-          );
+          addPaymentToOrder({
+            'paymentId': paymentSuccessResponse.value!.paymentId,
+            'orderId': paymentSuccessResponse.value!.orderId,
+            'signature': paymentSuccessResponse.value!.signature
+          });
         });
       } else {
         print('not verified');
@@ -394,7 +391,7 @@ class OrderController extends GetxController {
             backgroundColor: Colors.yellow,
             duration: Duration(seconds: 2));
         status = false;
-      }else if (res.parsedData!.applyCouponCode.$__typename ==
+      } else if (res.parsedData!.applyCouponCode.$__typename ==
           'CouponCodeLimitError') {
         Get.snackbar('', 'this coupon code is already applied for you',
             colorText: Colors.red,
@@ -408,6 +405,24 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     return status;
+  }
+
+  void setOtherInstruction() async {
+    isLoading.value = true;
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$SetOtherInstruction(
+        Options$Mutation$SetOtherInstruction(
+            variables: Variables$Mutation$SetOtherInstruction(
+                orderId: activeOrderResponse.value!.id, value: otherInstructions.text)));
+    if (res.hasException) {
+      print(res.exception.toString());
+    }
+    if (res.data != null) {
+      print(
+          'setOtherInstruction ${jsonEncode(res.parsedData!.otherInstructions.customFields)}');
+      otherInstructionResponse.value = res.parsedData!.otherInstructions;
+    }
+
   }
 
   void setShippingAddress() async {
@@ -500,8 +515,6 @@ class OrderController extends GetxController {
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
       currentlySelectedShippingMethod.value = eligibleShippingMethodList.first;
-      currentlySelectedShippingMethodId.value =
-          eligibleShippingMethodList.first.id;
       isLoading.value = false;
     }
   }

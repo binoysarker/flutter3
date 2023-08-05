@@ -1,7 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:recipe.app/components/BannerComponent.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -105,28 +104,28 @@ class PaymentMethodComponent extends StatelessWidget {
                         ),
                       )
                     : Column(
-                        children: orderController
-                            .activeOrderResponse.value!.discounts
-                            .map((e) => Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      e.description,
-                                      style: CustomTheme.headerStyle,
-                                    ),
-                                    Text(
-                                      orderController
-                                          .activeOrderResponse.value!.couponCodes.first,
-                                      style: CustomTheme.headerStyle,
-                                    ),
-                                    Text(
-                                      '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
-                                      style: CustomTheme.headerStyle,
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
+                        children:
+                            orderController.activeOrderResponse.value!.discounts
+                                .map((e) => Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          e.description,
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          orderController.activeOrderResponse
+                                              .value!.couponCodes.first,
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                      ],
+                                    ))
+                                .toList(),
                       )),
                 SizedBox(
                   height: 20,
@@ -136,19 +135,18 @@ class PaymentMethodComponent extends StatelessWidget {
                     children: orderController
                         .activeOrderResponse.value!.shippingLines
                         .map((e) => Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          e.shippingMethod.name,
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Text(
-                          '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                      ],
-                    ))
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  e.shippingMethod.name,
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                              ],
+                            ))
                         .toList(),
                   ),
                 ),
@@ -186,7 +184,22 @@ class PaymentMethodComponent extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                BannerComponent(),
+                // BannerComponent(),
+                // SizedBox(
+                //   height: 20,
+                // ),
+                Obx(() => orderController.otherInstructionResponse.value != null
+                    ? Column(
+                        children: [
+                          Text(
+                            'Cutting or other instructions',
+                            style: CustomTheme.headerStyle,
+                          ),
+                          Text(
+                              '${orderController.otherInstructionResponse.value?.customFields?.otherInstructions}')
+                        ],
+                      )
+                    : SizedBox()),
                 SizedBox(
                   height: 20,
                 ),

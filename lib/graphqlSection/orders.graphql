@@ -109,12 +109,21 @@ mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!){
     }
 }
 
+mutation SetOtherInstruction($orderId: ID!,$value: String!){
+    otherInstructions(value: $value,orderId: $orderId){
+        customFields {
+            otherInstructions
+        }
+    }
+}
+
 mutation SetShippingAddress($input: CreateAddressInput!) {
     setOrderShippingAddress(input: $input) {
         ...Cart
         ... on Order {
             shippingAddress {
                 ...OrderAddress
+                customFields
                 __typename
             }
             __typename

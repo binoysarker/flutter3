@@ -3712,6 +3712,72 @@ Map<String, dynamic>
           'errorCode': _$Enum$ErrorCodeEnumMap[instance.errorCode]!,
         };
 
+Variables$Mutation$SetOtherInstruction
+    _$Variables$Mutation$SetOtherInstructionFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Mutation$SetOtherInstruction(
+          orderId: json['orderId'] as String,
+          value: json['value'] as String,
+        );
+
+Map<String, dynamic> _$Variables$Mutation$SetOtherInstructionToJson(
+        Variables$Mutation$SetOtherInstruction instance) =>
+    <String, dynamic>{
+      'orderId': instance.orderId,
+      'value': instance.value,
+    };
+
+Mutation$SetOtherInstruction _$Mutation$SetOtherInstructionFromJson(
+        Map<String, dynamic> json) =>
+    Mutation$SetOtherInstruction(
+      otherInstructions:
+          Mutation$SetOtherInstruction$otherInstructions.fromJson(
+              json['otherInstructions'] as Map<String, dynamic>),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Mutation$SetOtherInstructionToJson(
+        Mutation$SetOtherInstruction instance) =>
+    <String, dynamic>{
+      'otherInstructions': instance.otherInstructions.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$SetOtherInstruction$otherInstructions
+    _$Mutation$SetOtherInstruction$otherInstructionsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetOtherInstruction$otherInstructions(
+          customFields: json['customFields'] == null
+              ? null
+              : Mutation$SetOtherInstruction$otherInstructions$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Mutation$SetOtherInstruction$otherInstructionsToJson(
+        Mutation$SetOtherInstruction$otherInstructions instance) =>
+    <String, dynamic>{
+      'customFields': instance.customFields?.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Mutation$SetOtherInstruction$otherInstructions$customFields
+    _$Mutation$SetOtherInstruction$otherInstructions$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetOtherInstruction$otherInstructions$customFields(
+          otherInstructions: json['otherInstructions'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetOtherInstruction$otherInstructions$customFieldsToJson(
+            Mutation$SetOtherInstruction$otherInstructions$customFields
+                instance) =>
+        <String, dynamic>{
+          'otherInstructions': instance.otherInstructions,
+          '__typename': instance.$__typename,
+        };
+
 Variables$Mutation$SetShippingAddress
     _$Variables$Mutation$SetShippingAddressFromJson(
             Map<String, dynamic> json) =>
@@ -3801,8 +3867,8 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order
                   .fromJson(json['customFields'] as Map<String, dynamic>),
           shippingAddress: json['shippingAddress'] == null
               ? null
-              : Fragment$OrderAddress.fromJson(
-                  json['shippingAddress'] as Map<String, dynamic>),
+              : Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+                  .fromJson(json['shippingAddress'] as Map<String, dynamic>),
         );
 
 Map<String,
@@ -4121,6 +4187,41 @@ Map<String, dynamic>
         <String, dynamic>{
           'clientRequestToCancel': instance.clientRequestToCancel,
           '__typename': instance.$__typename,
+        };
+
+Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddressFromJson(
+            Map<String, dynamic> json) =>
+        Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+          fullName: json['fullName'] as String?,
+          company: json['company'] as String?,
+          streetLine1: json['streetLine1'] as String?,
+          streetLine2: json['streetLine2'] as String?,
+          city: json['city'] as String?,
+          province: json['province'] as String?,
+          postalCode: json['postalCode'] as String?,
+          country: json['country'] as String?,
+          phoneNumber: json['phoneNumber'] as String?,
+          $__typename: json['__typename'] as String,
+          customFields: json['customFields'] as String?,
+        );
+
+Map<String, dynamic>
+    _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddressToJson(
+            Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+                instance) =>
+        <String, dynamic>{
+          'fullName': instance.fullName,
+          'company': instance.company,
+          'streetLine1': instance.streetLine1,
+          'streetLine2': instance.streetLine2,
+          'city': instance.city,
+          'province': instance.province,
+          'postalCode': instance.postalCode,
+          'country': instance.country,
+          'phoneNumber': instance.phoneNumber,
+          '__typename': instance.$__typename,
+          'customFields': instance.customFields,
         };
 
 Mutation$SetShippingAddress$setOrderShippingAddress$$NoActiveOrderError

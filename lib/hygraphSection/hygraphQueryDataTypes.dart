@@ -50,25 +50,17 @@ List<PostCodeList> postCodeListFromJson(String str) => List<PostCodeList>.from(j
 String postCodeListToJson(List<PostCodeList> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class PostCodeList {
-  String id;
-  DateTime createdAt;
   int postcode;
 
   PostCodeList({
-    required this.id,
-    required this.createdAt,
     required this.postcode,
   });
 
   factory PostCodeList.fromJson(Map<String, dynamic> json) => PostCodeList(
-    id: json["id"],
-    createdAt: DateTime.parse(json["createdAt"]),
     postcode: json["postcode"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "createdAt": createdAt.toIso8601String(),
     "postcode": postcode,
   };
 }

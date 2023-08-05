@@ -719,6 +719,10 @@ Input$OrderFilterParameter _$Input$OrderFilterParameterFromJson(
           ? null
           : Input$DateOperators.fromJson(
               json['orderPlacedAt'] as Map<String, dynamic>),
+      otherInstructions: json['otherInstructions'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['otherInstructions'] as Map<String, dynamic>),
       shipping: json['shipping'] == null
           ? null
           : Input$NumberOperators.fromJson(
@@ -767,6 +771,7 @@ Map<String, dynamic> _$Input$OrderFilterParameterToJson(
       'currencyCode': instance.currencyCode?.toJson(),
       'id': instance.id?.toJson(),
       'orderPlacedAt': instance.orderPlacedAt?.toJson(),
+      'otherInstructions': instance.otherInstructions?.toJson(),
       'shipping': instance.shipping?.toJson(),
       'shippingWithTax': instance.shippingWithTax?.toJson(),
       'state': instance.state?.toJson(),
@@ -821,6 +826,9 @@ Input$OrderSortParameter _$Input$OrderSortParameterFromJson(
       orderPlacedAt: $enumDecodeNullable(
           _$Enum$SortOrderEnumMap, json['orderPlacedAt'],
           unknownValue: Enum$SortOrder.$unknown),
+      otherInstructions: $enumDecodeNullable(
+          _$Enum$SortOrderEnumMap, json['otherInstructions'],
+          unknownValue: Enum$SortOrder.$unknown),
       shipping: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['shipping'],
           unknownValue: Enum$SortOrder.$unknown),
       shippingWithTax: $enumDecodeNullable(
@@ -854,6 +862,7 @@ Map<String, dynamic> _$Input$OrderSortParameterToJson(
       'createdAt': _$Enum$SortOrderEnumMap[instance.createdAt],
       'id': _$Enum$SortOrderEnumMap[instance.id],
       'orderPlacedAt': _$Enum$SortOrderEnumMap[instance.orderPlacedAt],
+      'otherInstructions': _$Enum$SortOrderEnumMap[instance.otherInstructions],
       'shipping': _$Enum$SortOrderEnumMap[instance.shipping],
       'shippingWithTax': _$Enum$SortOrderEnumMap[instance.shippingWithTax],
       'state': _$Enum$SortOrderEnumMap[instance.state],
@@ -862,114 +871,6 @@ Map<String, dynamic> _$Input$OrderSortParameterToJson(
       'total': _$Enum$SortOrderEnumMap[instance.total],
       'totalQuantity': _$Enum$SortOrderEnumMap[instance.totalQuantity],
       'totalWithTax': _$Enum$SortOrderEnumMap[instance.totalWithTax],
-      'updatedAt': _$Enum$SortOrderEnumMap[instance.updatedAt],
-    };
-
-Input$PageFilterParameter _$Input$PageFilterParameterFromJson(
-        Map<String, dynamic> json) =>
-    Input$PageFilterParameter(
-      createdAt: json['createdAt'] == null
-          ? null
-          : Input$DateOperators.fromJson(
-              json['createdAt'] as Map<String, dynamic>),
-      enabled: json['enabled'] == null
-          ? null
-          : Input$BooleanOperators.fromJson(
-              json['enabled'] as Map<String, dynamic>),
-      id: json['id'] == null
-          ? null
-          : Input$IDOperators.fromJson(json['id'] as Map<String, dynamic>),
-      position: json['position'] == null
-          ? null
-          : Input$StringOperators.fromJson(
-              json['position'] as Map<String, dynamic>),
-      slug: json['slug'] == null
-          ? null
-          : Input$StringOperators.fromJson(
-              json['slug'] as Map<String, dynamic>),
-      text: json['text'] == null
-          ? null
-          : Input$StringOperators.fromJson(
-              json['text'] as Map<String, dynamic>),
-      title: json['title'] == null
-          ? null
-          : Input$StringOperators.fromJson(
-              json['title'] as Map<String, dynamic>),
-      updatedAt: json['updatedAt'] == null
-          ? null
-          : Input$DateOperators.fromJson(
-              json['updatedAt'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$Input$PageFilterParameterToJson(
-        Input$PageFilterParameter instance) =>
-    <String, dynamic>{
-      'createdAt': instance.createdAt?.toJson(),
-      'enabled': instance.enabled?.toJson(),
-      'id': instance.id?.toJson(),
-      'position': instance.position?.toJson(),
-      'slug': instance.slug?.toJson(),
-      'text': instance.text?.toJson(),
-      'title': instance.title?.toJson(),
-      'updatedAt': instance.updatedAt?.toJson(),
-    };
-
-Input$PageListOptions _$Input$PageListOptionsFromJson(
-        Map<String, dynamic> json) =>
-    Input$PageListOptions(
-      filter: json['filter'] == null
-          ? null
-          : Input$PageFilterParameter.fromJson(
-              json['filter'] as Map<String, dynamic>),
-      filterOperator: $enumDecodeNullable(
-          _$Enum$LogicalOperatorEnumMap, json['filterOperator'],
-          unknownValue: Enum$LogicalOperator.$unknown),
-      skip: json['skip'] as int?,
-      sort: json['sort'] == null
-          ? null
-          : Input$PageSortParameter.fromJson(
-              json['sort'] as Map<String, dynamic>),
-      take: json['take'] as int?,
-    );
-
-Map<String, dynamic> _$Input$PageListOptionsToJson(
-        Input$PageListOptions instance) =>
-    <String, dynamic>{
-      'filter': instance.filter?.toJson(),
-      'filterOperator': _$Enum$LogicalOperatorEnumMap[instance.filterOperator],
-      'skip': instance.skip,
-      'sort': instance.sort?.toJson(),
-      'take': instance.take,
-    };
-
-Input$PageSortParameter _$Input$PageSortParameterFromJson(
-        Map<String, dynamic> json) =>
-    Input$PageSortParameter(
-      createdAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['createdAt'],
-          unknownValue: Enum$SortOrder.$unknown),
-      id: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['id'],
-          unknownValue: Enum$SortOrder.$unknown),
-      position: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['position'],
-          unknownValue: Enum$SortOrder.$unknown),
-      slug: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['slug'],
-          unknownValue: Enum$SortOrder.$unknown),
-      text: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['text'],
-          unknownValue: Enum$SortOrder.$unknown),
-      title: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['title'],
-          unknownValue: Enum$SortOrder.$unknown),
-      updatedAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['updatedAt'],
-          unknownValue: Enum$SortOrder.$unknown),
-    );
-
-Map<String, dynamic> _$Input$PageSortParameterToJson(
-        Input$PageSortParameter instance) =>
-    <String, dynamic>{
-      'createdAt': _$Enum$SortOrderEnumMap[instance.createdAt],
-      'id': _$Enum$SortOrderEnumMap[instance.id],
-      'position': _$Enum$SortOrderEnumMap[instance.position],
-      'slug': _$Enum$SortOrderEnumMap[instance.slug],
-      'text': _$Enum$SortOrderEnumMap[instance.text],
-      'title': _$Enum$SortOrderEnumMap[instance.title],
       'updatedAt': _$Enum$SortOrderEnumMap[instance.updatedAt],
     };
 
@@ -1396,12 +1297,14 @@ Input$UpdateOrderCustomFieldsInput _$Input$UpdateOrderCustomFieldsInputFromJson(
         Map<String, dynamic> json) =>
     Input$UpdateOrderCustomFieldsInput(
       clientRequestToCancel: json['clientRequestToCancel'] as int?,
+      otherInstructions: json['otherInstructions'] as String?,
     );
 
 Map<String, dynamic> _$Input$UpdateOrderCustomFieldsInputToJson(
         Input$UpdateOrderCustomFieldsInput instance) =>
     <String, dynamic>{
       'clientRequestToCancel': instance.clientRequestToCancel,
+      'otherInstructions': instance.otherInstructions,
     };
 
 Input$UpdateOrderInput _$Input$UpdateOrderInputFromJson(

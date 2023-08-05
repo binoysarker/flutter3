@@ -1,5 +1,4 @@
-import 'authentication.graphql.dart';
-import 'cart_data.graphql.dart';
+
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -25607,6 +25606,664 @@ class _CopyWithStubImpl$Mutation$AdjustOrderLine$adjustOrderLine$$OrderModificat
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Mutation$SetOtherInstruction {
+  Variables$Mutation$SetOtherInstruction(
+      {required this.orderId, required this.value});
+
+  @override
+  factory Variables$Mutation$SetOtherInstruction.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$SetOtherInstructionFromJson(json);
+
+  final String orderId;
+
+  final String value;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$SetOtherInstructionToJson(this);
+  int get hashCode {
+    final l$orderId = orderId;
+    final l$value = value;
+    return Object.hashAll([l$orderId, l$value]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$SetOtherInstruction) ||
+        runtimeType != other.runtimeType) return false;
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (l$orderId != lOther$orderId) return false;
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$SetOtherInstruction<
+          Variables$Mutation$SetOtherInstruction>
+      get copyWith =>
+          CopyWith$Variables$Mutation$SetOtherInstruction(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$SetOtherInstruction<TRes> {
+  factory CopyWith$Variables$Mutation$SetOtherInstruction(
+          Variables$Mutation$SetOtherInstruction instance,
+          TRes Function(Variables$Mutation$SetOtherInstruction) then) =
+      _CopyWithImpl$Variables$Mutation$SetOtherInstruction;
+
+  factory CopyWith$Variables$Mutation$SetOtherInstruction.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$SetOtherInstruction;
+
+  TRes call({String? orderId, String? value});
+}
+
+class _CopyWithImpl$Variables$Mutation$SetOtherInstruction<TRes>
+    implements CopyWith$Variables$Mutation$SetOtherInstruction<TRes> {
+  _CopyWithImpl$Variables$Mutation$SetOtherInstruction(
+      this._instance, this._then);
+
+  final Variables$Mutation$SetOtherInstruction _instance;
+
+  final TRes Function(Variables$Mutation$SetOtherInstruction) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? orderId = _undefined, Object? value = _undefined}) =>
+      _then(Variables$Mutation$SetOtherInstruction(
+          orderId: orderId == _undefined || orderId == null
+              ? _instance.orderId
+              : (orderId as String),
+          value: value == _undefined || value == null
+              ? _instance.value
+              : (value as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$SetOtherInstruction<TRes>
+    implements CopyWith$Variables$Mutation$SetOtherInstruction<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$SetOtherInstruction(this._res);
+
+  TRes _res;
+
+  call({String? orderId, String? value}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetOtherInstruction {
+  Mutation$SetOtherInstruction(
+      {required this.otherInstructions, required this.$__typename});
+
+  @override
+  factory Mutation$SetOtherInstruction.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$SetOtherInstructionFromJson(json);
+
+  final Mutation$SetOtherInstruction$otherInstructions otherInstructions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$SetOtherInstructionToJson(this);
+  int get hashCode {
+    final l$otherInstructions = otherInstructions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$otherInstructions, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$SetOtherInstruction) ||
+        runtimeType != other.runtimeType) return false;
+    final l$otherInstructions = otherInstructions;
+    final lOther$otherInstructions = other.otherInstructions;
+    if (l$otherInstructions != lOther$otherInstructions) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetOtherInstruction
+    on Mutation$SetOtherInstruction {
+  CopyWith$Mutation$SetOtherInstruction<Mutation$SetOtherInstruction>
+      get copyWith => CopyWith$Mutation$SetOtherInstruction(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetOtherInstruction<TRes> {
+  factory CopyWith$Mutation$SetOtherInstruction(
+          Mutation$SetOtherInstruction instance,
+          TRes Function(Mutation$SetOtherInstruction) then) =
+      _CopyWithImpl$Mutation$SetOtherInstruction;
+
+  factory CopyWith$Mutation$SetOtherInstruction.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$SetOtherInstruction;
+
+  TRes call(
+      {Mutation$SetOtherInstruction$otherInstructions? otherInstructions,
+      String? $__typename});
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes>
+      get otherInstructions;
+}
+
+class _CopyWithImpl$Mutation$SetOtherInstruction<TRes>
+    implements CopyWith$Mutation$SetOtherInstruction<TRes> {
+  _CopyWithImpl$Mutation$SetOtherInstruction(this._instance, this._then);
+
+  final Mutation$SetOtherInstruction _instance;
+
+  final TRes Function(Mutation$SetOtherInstruction) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? otherInstructions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetOtherInstruction(
+          otherInstructions:
+              otherInstructions == _undefined || otherInstructions == null
+                  ? _instance.otherInstructions
+                  : (otherInstructions
+                      as Mutation$SetOtherInstruction$otherInstructions),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes>
+      get otherInstructions {
+    final local$otherInstructions = _instance.otherInstructions;
+    return CopyWith$Mutation$SetOtherInstruction$otherInstructions(
+        local$otherInstructions, (e) => call(otherInstructions: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$SetOtherInstruction<TRes>
+    implements CopyWith$Mutation$SetOtherInstruction<TRes> {
+  _CopyWithStubImpl$Mutation$SetOtherInstruction(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$SetOtherInstruction$otherInstructions? otherInstructions,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes>
+      get otherInstructions =>
+          CopyWith$Mutation$SetOtherInstruction$otherInstructions.stub(_res);
+}
+
+const documentNodeMutationSetOtherInstruction = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'SetOtherInstruction'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'orderId')),
+            type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'value')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'otherInstructions'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'value'),
+                  value: VariableNode(name: NameNode(value: 'value'))),
+              ArgumentNode(
+                  name: NameNode(value: 'orderId'),
+                  value: VariableNode(name: NameNode(value: 'orderId')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'customFields'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'otherInstructions'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Mutation$SetOtherInstruction _parserFn$Mutation$SetOtherInstruction(
+        Map<String, dynamic> data) =>
+    Mutation$SetOtherInstruction.fromJson(data);
+typedef OnMutationCompleted$Mutation$SetOtherInstruction = FutureOr<void>
+    Function(dynamic, Mutation$SetOtherInstruction?);
+
+class Options$Mutation$SetOtherInstruction
+    extends graphql.MutationOptions<Mutation$SetOtherInstruction> {
+  Options$Mutation$SetOtherInstruction(
+      {String? operationName,
+      required Variables$Mutation$SetOtherInstruction variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$SetOtherInstruction? onCompleted,
+      graphql.OnMutationUpdate<Mutation$SetOtherInstruction>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$SetOtherInstruction(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationSetOtherInstruction,
+            parserFn: _parserFn$Mutation$SetOtherInstruction);
+
+  final OnMutationCompleted$Mutation$SetOtherInstruction? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$SetOtherInstruction
+    extends graphql.WatchQueryOptions<Mutation$SetOtherInstruction> {
+  WatchOptions$Mutation$SetOtherInstruction(
+      {String? operationName,
+      required Variables$Mutation$SetOtherInstruction variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationSetOtherInstruction,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$SetOtherInstruction);
+}
+
+extension ClientExtension$Mutation$SetOtherInstruction
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$SetOtherInstruction>>
+      mutate$SetOtherInstruction(
+              Options$Mutation$SetOtherInstruction options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$SetOtherInstruction>
+      watchMutation$SetOtherInstruction(
+              WatchOptions$Mutation$SetOtherInstruction options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$SetOtherInstruction$HookResult {
+  Mutation$SetOtherInstruction$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$SetOtherInstruction runMutation;
+
+  final graphql.QueryResult<Mutation$SetOtherInstruction> result;
+}
+
+Mutation$SetOtherInstruction$HookResult useMutation$SetOtherInstruction(
+    [WidgetOptions$Mutation$SetOtherInstruction? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$SetOtherInstruction());
+  return Mutation$SetOtherInstruction$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$SetOtherInstruction>
+    useWatchMutation$SetOtherInstruction(
+            WatchOptions$Mutation$SetOtherInstruction options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$SetOtherInstruction
+    extends graphql.MutationOptions<Mutation$SetOtherInstruction> {
+  WidgetOptions$Mutation$SetOtherInstruction(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$SetOtherInstruction? onCompleted,
+      graphql.OnMutationUpdate<Mutation$SetOtherInstruction>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$SetOtherInstruction(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationSetOtherInstruction,
+            parserFn: _parserFn$Mutation$SetOtherInstruction);
+
+  final OnMutationCompleted$Mutation$SetOtherInstruction? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$SetOtherInstruction
+    = graphql.MultiSourceResult<Mutation$SetOtherInstruction> Function(
+        Variables$Mutation$SetOtherInstruction,
+        {Object? optimisticResult});
+typedef Builder$Mutation$SetOtherInstruction = widgets.Widget Function(
+    RunMutation$Mutation$SetOtherInstruction,
+    graphql.QueryResult<Mutation$SetOtherInstruction>?);
+
+class Mutation$SetOtherInstruction$Widget
+    extends graphql_flutter.Mutation<Mutation$SetOtherInstruction> {
+  Mutation$SetOtherInstruction$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$SetOtherInstruction? options,
+      required Builder$Mutation$SetOtherInstruction builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$SetOtherInstruction(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetOtherInstruction$otherInstructions {
+  Mutation$SetOtherInstruction$otherInstructions(
+      {this.customFields, required this.$__typename});
+
+  @override
+  factory Mutation$SetOtherInstruction$otherInstructions.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetOtherInstruction$otherInstructionsFromJson(json);
+
+  final Mutation$SetOtherInstruction$otherInstructions$customFields?
+      customFields;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetOtherInstruction$otherInstructionsToJson(this);
+  int get hashCode {
+    final l$customFields = customFields;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$customFields, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$SetOtherInstruction$otherInstructions) ||
+        runtimeType != other.runtimeType) return false;
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetOtherInstruction$otherInstructions
+    on Mutation$SetOtherInstruction$otherInstructions {
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions<
+          Mutation$SetOtherInstruction$otherInstructions>
+      get copyWith => CopyWith$Mutation$SetOtherInstruction$otherInstructions(
+          this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes> {
+  factory CopyWith$Mutation$SetOtherInstruction$otherInstructions(
+          Mutation$SetOtherInstruction$otherInstructions instance,
+          TRes Function(Mutation$SetOtherInstruction$otherInstructions) then) =
+      _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions;
+
+  factory CopyWith$Mutation$SetOtherInstruction$otherInstructions.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions;
+
+  TRes call(
+      {Mutation$SetOtherInstruction$otherInstructions$customFields?
+          customFields,
+      String? $__typename});
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<TRes>
+      get customFields;
+}
+
+class _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions<TRes>
+    implements CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes> {
+  _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions(
+      this._instance, this._then);
+
+  final Mutation$SetOtherInstruction$otherInstructions _instance;
+
+  final TRes Function(Mutation$SetOtherInstruction$otherInstructions) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? customFields = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetOtherInstruction$otherInstructions(
+          customFields: customFields == _undefined
+              ? _instance.customFields
+              : (customFields
+                  as Mutation$SetOtherInstruction$otherInstructions$customFields?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<TRes>
+      get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields
+            .stub(_then(_instance))
+        : CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions<TRes>
+    implements CopyWith$Mutation$SetOtherInstruction$otherInstructions<TRes> {
+  _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$SetOtherInstruction$otherInstructions$customFields?
+              customFields,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<TRes>
+      get customFields =>
+          CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields
+              .stub(_res);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetOtherInstruction$otherInstructions$customFields {
+  Mutation$SetOtherInstruction$otherInstructions$customFields(
+      {this.otherInstructions, required this.$__typename});
+
+  @override
+  factory Mutation$SetOtherInstruction$otherInstructions$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetOtherInstruction$otherInstructions$customFieldsFromJson(
+          json);
+
+  final String? otherInstructions;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetOtherInstruction$otherInstructions$customFieldsToJson(this);
+  int get hashCode {
+    final l$otherInstructions = otherInstructions;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$otherInstructions, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetOtherInstruction$otherInstructions$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$otherInstructions = otherInstructions;
+    final lOther$otherInstructions = other.otherInstructions;
+    if (l$otherInstructions != lOther$otherInstructions) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetOtherInstruction$otherInstructions$customFields
+    on Mutation$SetOtherInstruction$otherInstructions$customFields {
+  CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<
+          Mutation$SetOtherInstruction$otherInstructions$customFields>
+      get copyWith =>
+          CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<
+    TRes> {
+  factory CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields(
+          Mutation$SetOtherInstruction$otherInstructions$customFields instance,
+          TRes Function(
+                  Mutation$SetOtherInstruction$otherInstructions$customFields)
+              then) =
+      _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions$customFields;
+
+  factory CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions$customFields;
+
+  TRes call({String? otherInstructions, String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<
+            TRes> {
+  _CopyWithImpl$Mutation$SetOtherInstruction$otherInstructions$customFields(
+      this._instance, this._then);
+
+  final Mutation$SetOtherInstruction$otherInstructions$customFields _instance;
+
+  final TRes Function(
+      Mutation$SetOtherInstruction$otherInstructions$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? otherInstructions = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$SetOtherInstruction$otherInstructions$customFields(
+          otherInstructions: otherInstructions == _undefined
+              ? _instance.otherInstructions
+              : (otherInstructions as String?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions$customFields<
+        TRes>
+    implements
+        CopyWith$Mutation$SetOtherInstruction$otherInstructions$customFields<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetOtherInstruction$otherInstructions$customFields(
+      this._res);
+
+  TRes _res;
+
+  call({String? otherInstructions, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$SetShippingAddress {
   Variables$Mutation$SetShippingAddress({required this.input});
 
@@ -25828,6 +26485,12 @@ const documentNodeMutationSetShippingAddress = DocumentNode(definitions: [
                           FragmentSpreadNode(
                               name: NameNode(value: 'OrderAddress'),
                               directives: []),
+                          FieldNode(
+                              name: NameNode(value: 'customFields'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null),
                           FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
@@ -26222,7 +26885,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order
   final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
       customFields;
 
-  final Fragment$OrderAddress? shippingAddress;
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress?
+      shippingAddress;
 
   Map<String, dynamic> toJson() =>
       _$Mutation$SetShippingAddress$setOrderShippingAddress$$OrderToJson(this);
@@ -26412,7 +27076,8 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           discounts,
       Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
           customFields,
-      Fragment$OrderAddress? shippingAddress});
+      Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress?
+          shippingAddress});
   TRes promotions(
       Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions> Function(
               Iterable<
@@ -26439,7 +27104,8 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           _fn);
   CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields<
       TRes> get customFields;
-  CopyWith$Fragment$OrderAddress<TRes> get shippingAddress;
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+      TRes> get shippingAddress;
 }
 
 class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
@@ -26514,7 +27180,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
           shippingLines: shippingLines == _undefined || shippingLines == null ? _instance.shippingLines : (shippingLines as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingLines>),
           discounts: discounts == _undefined || discounts == null ? _instance.discounts : (discounts as List<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$discounts>),
           customFields: customFields == _undefined ? _instance.customFields : (customFields as Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?),
-          shippingAddress: shippingAddress == _undefined ? _instance.shippingAddress : (shippingAddress as Fragment$OrderAddress?)));
+          shippingAddress: shippingAddress == _undefined ? _instance.shippingAddress : (shippingAddress as Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress?)));
   TRes promotions(
           Iterable<Mutation$SetShippingAddress$setOrderShippingAddress$$Order$promotions> Function(
                   Iterable<
@@ -26565,11 +27231,13 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order<
             local$customFields, (e) => call(customFields: e));
   }
 
-  CopyWith$Fragment$OrderAddress<TRes> get shippingAddress {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+      TRes> get shippingAddress {
     final local$shippingAddress = _instance.shippingAddress;
     return local$shippingAddress == null
-        ? CopyWith$Fragment$OrderAddress.stub(_then(_instance))
-        : CopyWith$Fragment$OrderAddress(
+        ? CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+            .stub(_then(_instance))
+        : CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
             local$shippingAddress, (e) => call(shippingAddress: e));
   }
 }
@@ -26608,7 +27276,8 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
               discounts,
           Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields?
               customFields,
-          Fragment$OrderAddress? shippingAddress}) =>
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress?
+              shippingAddress}) =>
       _res;
   promotions(_fn) => _res;
   lines(_fn) => _res;
@@ -26619,8 +27288,11 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       get customFields =>
           CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$customFields
               .stub(_res);
-  CopyWith$Fragment$OrderAddress<TRes> get shippingAddress =>
-      CopyWith$Fragment$OrderAddress.stub(_res);
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+          TRes>
+      get shippingAddress =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+              .stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -28593,6 +29265,250 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
   TRes _res;
 
   call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+    implements Fragment$OrderAddress {
+  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+      {this.fullName,
+      this.company,
+      this.streetLine1,
+      this.streetLine2,
+      this.city,
+      this.province,
+      this.postalCode,
+      this.country,
+      this.phoneNumber,
+      required this.$__typename,
+      this.customFields});
+
+  @override
+  factory Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddressFromJson(
+          json);
+
+  final String? fullName;
+
+  final String? company;
+
+  final String? streetLine1;
+
+  final String? streetLine2;
+
+  final String? city;
+
+  final String? province;
+
+  final String? postalCode;
+
+  final String? country;
+
+  final String? phoneNumber;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  final String? customFields;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddressToJson(
+          this);
+  int get hashCode {
+    final l$fullName = fullName;
+    final l$company = company;
+    final l$streetLine1 = streetLine1;
+    final l$streetLine2 = streetLine2;
+    final l$city = city;
+    final l$province = province;
+    final l$postalCode = postalCode;
+    final l$country = country;
+    final l$phoneNumber = phoneNumber;
+    final l$$__typename = $__typename;
+    final l$customFields = customFields;
+    return Object.hashAll([
+      l$fullName,
+      l$company,
+      l$streetLine1,
+      l$streetLine2,
+      l$city,
+      l$province,
+      l$postalCode,
+      l$country,
+      l$phoneNumber,
+      l$$__typename,
+      l$customFields
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress) ||
+        runtimeType != other.runtimeType) return false;
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) return false;
+    final l$company = company;
+    final lOther$company = other.company;
+    if (l$company != lOther$company) return false;
+    final l$streetLine1 = streetLine1;
+    final lOther$streetLine1 = other.streetLine1;
+    if (l$streetLine1 != lOther$streetLine1) return false;
+    final l$streetLine2 = streetLine2;
+    final lOther$streetLine2 = other.streetLine2;
+    if (l$streetLine2 != lOther$streetLine2) return false;
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) return false;
+    final l$province = province;
+    final lOther$province = other.province;
+    if (l$province != lOther$province) return false;
+    final l$postalCode = postalCode;
+    final lOther$postalCode = other.postalCode;
+    if (l$postalCode != lOther$postalCode) return false;
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) return false;
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (l$phoneNumber != lOther$phoneNumber) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+    on Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress {
+  CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress>
+      get copyWith =>
+          CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+    TRes> {
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+              instance,
+          TRes Function(
+                  Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress)
+              then) =
+      _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress;
+
+  factory CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress;
+
+  TRes call(
+      {String? fullName,
+      String? company,
+      String? streetLine1,
+      String? streetLine2,
+      String? city,
+      String? province,
+      String? postalCode,
+      String? country,
+      String? phoneNumber,
+      String? $__typename,
+      String? customFields});
+}
+
+class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+            TRes> {
+  _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+      this._instance, this._then);
+
+  final Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
+      _instance;
+
+  final TRes Function(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress)
+      _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? fullName = _undefined,
+          Object? company = _undefined,
+          Object? streetLine1 = _undefined,
+          Object? streetLine2 = _undefined,
+          Object? city = _undefined,
+          Object? province = _undefined,
+          Object? postalCode = _undefined,
+          Object? country = _undefined,
+          Object? phoneNumber = _undefined,
+          Object? $__typename = _undefined,
+          Object? customFields = _undefined}) =>
+      _then(
+          Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+              fullName: fullName == _undefined
+                  ? _instance.fullName
+                  : (fullName as String?),
+              company: company == _undefined
+                  ? _instance.company
+                  : (company as String?),
+              streetLine1: streetLine1 == _undefined
+                  ? _instance.streetLine1
+                  : (streetLine1 as String?),
+              streetLine2: streetLine2 == _undefined
+                  ? _instance.streetLine2
+                  : (streetLine2 as String?),
+              city: city == _undefined ? _instance.city : (city as String?),
+              province: province == _undefined
+                  ? _instance.province
+                  : (province as String?),
+              postalCode: postalCode == _undefined
+                  ? _instance.postalCode
+                  : (postalCode as String?),
+              country: country == _undefined
+                  ? _instance.country
+                  : (country as String?),
+              phoneNumber: phoneNumber == _undefined
+                  ? _instance.phoneNumber
+                  : (phoneNumber as String?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String),
+              customFields: customFields == _undefined
+                  ? _instance.customFields
+                  : (customFields as String?)));
+}
+
+class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+        TRes>
+    implements
+        CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress<
+            TRes> {
+  _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? fullName,
+          String? company,
+          String? streetLine1,
+          String? streetLine2,
+          String? city,
+          String? province,
+          String? postalCode,
+          String? country,
+          String? phoneNumber,
+          String? $__typename,
+          String? customFields}) =>
+      _res;
 }
 
 @JsonSerializable(explicitToJson: true)

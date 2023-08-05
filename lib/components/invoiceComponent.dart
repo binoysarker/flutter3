@@ -2,7 +2,6 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:recipe.app/components/BannerComponent.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/themes.dart';
@@ -36,13 +35,15 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       // Morning or Evening Delivery
-      var currentTime = DateTime.now();
-      var givenTime = DateTime(
-          currentTime.year, currentTime.month, currentTime.day, 18, 0, 0);
-      var showEveningSms = false;
-      if (currentTime.isAfter(givenTime)) {
-        showEveningSms = true;
-      }
+      // var currentTime = DateTime.now();
+      // var givenTime = DateTime(
+      //     currentTime.year, currentTime.month, currentTime.day, 18, 0, 0);
+      var showEveningSms =
+          orderController.currentlySelectedShippingMethod.value!.code !=
+              'morning-delivery';
+      // if (currentTime.isAfter(givenTime)) {
+      //   showEveningSms = true;
+      // }
       var templateId = showEveningSms
           ? "649011f6d6fc053db57148e5"
           : "64900e1ed6fc056a7b3a9c32";
@@ -113,9 +114,8 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                         style: CustomTheme.headerStyle,
                       ),
                       Text(
-                        widget.orderController
-                            .selectedPaymentOption.value ==
-                            PaymentOptionType.online.name
+                        widget.orderController.selectedPaymentOption.value ==
+                                PaymentOptionType.online.name
                             ? 'Online'
                             : 'Cash On Delivery',
                         style: CustomTheme.headerStyle,
@@ -249,7 +249,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                     ),
                   ],
                 ),
-                BannerComponent()
+                // BannerComponent()
               ],
             ),
           ));

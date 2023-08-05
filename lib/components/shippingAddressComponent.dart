@@ -14,6 +14,7 @@ import 'package:recipe.app/validators/validatorDefinations.dart';
 import '../allGlobalKeys.dart';
 import '../controllers/orderController.dart';
 import '../controllers/userController.dart';
+import '../graphqlSection/orders.graphql.dart';
 
 class ShippingAddressComponent extends StatefulWidget {
   ShippingAddressComponent({
@@ -39,6 +40,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
+      orderController.useCurrentUserAddress.value = false;
     });
   }
 
@@ -59,161 +61,77 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                         .map((e) {
                       return GestureDetector(
                         onTap: () {
+                          print('onTap');
                           orderController.useCurrentUserAddress.value = true;
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Address',
-                                style: CustomTheme.headerStyle,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Name:',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    '${e.fullName}',
-                                    style: CustomTheme.paragraphStyle,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Street:',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    '${e.streetLine1},${e.streetLine2}',
-                                    style: CustomTheme.paragraphStyle,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'City:',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    '${e.city}',
-                                    style: CustomTheme.paragraphStyle,
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Phone:',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    '${e.phoneNumber}',
-                                    style: CustomTheme.paragraphStyle,
-                                  ),
-                                ],
-                              ),
-                            ],
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Address',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Name:',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      '${e.fullName}',
+                                      style: CustomTheme.paragraphStyle,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Street:',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      '${e.streetLine1},${e.streetLine2}',
+                                      style: CustomTheme.paragraphStyle,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'City:',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      '${e.city}',
+                                      style: CustomTheme.paragraphStyle,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Phone:',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      '${e.phoneNumber}',
+                                      style: CustomTheme.paragraphStyle,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
                     }).toList(),
                   ),
                 )),
-            Obx(() => orderController.useCurrentUserAddress.isFalse
-                ? Column(
-                    children: [
-                      Text(
-                        'Select an address',
-                        style: CustomTheme.headerStyle,
-                      ),
-                      Text(
-                        'or',
-                        style: CustomTheme.headerStyle,
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            showForm.value = !showForm.value;
-                          },
-                          child: Text(
-                            showForm.value ? 'Hide Form' : 'Add New Address',
-                            style: CustomTheme.headerStyle,
-                          ))
-                    ],
-                  )
-                : SizedBox()),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: DropdownButtonFormField<String>(
-                value: orderController.selectedPaymentOption.value,
-                decoration: InputDecoration(
-                  label: Text(
-                    'Please select a payment option',
-                    style: CustomTheme.headerStyle,
-                  ),
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (dynamic newValue) {
-                  orderController.selectedPaymentOption.value = newValue;
-                  print(
-                      'payment option selected is ${orderController.selectedPaymentOption.value}');
-                },
-                items: orderController.paymentOptionDropdownItems.value
-                    .map((String option) {
-                  return DropdownMenuItem<String>(
-                    value: option,
-                    child: Text(
-                      option == PaymentOptionType.online.name
-                          ? 'Online'
-                          : 'Cash On Delivery',
-                      style: CustomTheme.headerStyle,
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1),
-                  child: Obx(() => Switch(
-                      value: widget.orderController.hasCouponCode.value,
-                      activeColor: Colors.green,
-                      onChanged: (bool data) {
-                        widget.orderController.hasCouponCode.value =
-                            data;
-                        print(
-                            'has coupon code ${widget.orderController.hasCouponCode.value}');
-                      })),
-                ),
-                Text(
-                  'I have coupon Code',
-                  style: CustomTheme.paragraphStyle,
-                ),
-              ],
-            ),
-            Obx(() => widget.orderController.hasCouponCode.isTrue
-                ? Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                autovalidateMode:
-                AutovalidateMode.onUserInteraction,
-                controller: widget.orderController.couponCode,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Coupon Code',
-                ),
-                autofillHints: [AutofillHints.oneTimeCode],
-                keyboardType: TextInputType.name,
-                validator: RequiredValidator(
-                    errorText: 'Coupon Code is required'),
-              ),
-            )
-                : SizedBox()),
+
+
           ],
         ),
         Obx(() => showForm.isTrue
@@ -312,8 +230,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             List<PostCodeList> postCodeList =
                                 postCodeListFromJson(
                                     jsonEncode(result.data!['postcodes']));
-                            print(
-                                'postal codes ${postCodeList.map((e) => e.postcode)}');
+                            print('postal codes ${result.data!['postcodes']}');
                             // set the defualt value
                             widget.orderController.selectedPostalCode.value =
                                 postCodeList[0].postcode.toString();
@@ -361,10 +278,149 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                         ],
                       ),
                     ),
-
                   ],
                 ))
-            : SizedBox()),
+            : Column(
+          children: [
+            Obx(() => orderController.useCurrentUserAddress.isFalse
+                ? Column(
+              children: [
+                Text(
+                  'Select an address',
+                  style: CustomTheme.headerStyle,
+                ),
+                Text(
+                  'or',
+                  style: CustomTheme.headerStyle,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      showForm.value = !showForm.value;
+                    },
+                    child: Text(
+                      showForm.value ? 'Hide Form' : 'Add New Address',
+                      style: CustomTheme.headerStyle,
+                    ))
+              ],
+            )
+                : SizedBox()),
+            SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: widget.orderController.otherInstructions,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Cutting or other instructions',
+                ),
+                maxLines: 5,
+                autofillHints: [AutofillHints.oneTimeCode],
+                keyboardType: TextInputType.name,
+              ),
+            ),
+            SizedBox(height: 20,),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: DropdownButtonFormField<String>(
+                value: orderController.selectedPaymentOption.value,
+                decoration: InputDecoration(
+                  label: Text(
+                    'Please select a payment option',
+                    style: CustomTheme.headerStyle,
+                  ),
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (dynamic newValue) {
+                  orderController.selectedPaymentOption.value = newValue;
+                  print(
+                      'payment option selected is ${orderController.selectedPaymentOption.value}');
+                },
+                items: orderController.paymentOptionDropdownItems.value
+                    .map((String option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Text(
+                      option == PaymentOptionType.online.name
+                          ? 'Online'
+                          : 'Cash On Delivery',
+                      style: CustomTheme.headerStyle,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: DropdownButtonFormField<
+                  Query$GetEligibleShippingMethods$eligibleShippingMethods>(
+                value: orderController.currentlySelectedShippingMethod.value,
+                decoration: InputDecoration(
+                  label: Text(
+                    'Please select a delivery time',
+                    style: CustomTheme.headerStyle,
+                  ),
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (dynamic newValue) {
+                  orderController.currentlySelectedShippingMethod.value = newValue
+                  as Query$GetEligibleShippingMethods$eligibleShippingMethods;
+                  print(
+                      'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
+                },
+                items: orderController.eligibleShippingMethodList.value
+                    .map((option) {
+                  return DropdownMenuItem(
+                    value: option,
+                    child: Text(
+                      '${option.name}',
+                      style: CustomTheme.headerStyle,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1),
+                  child: Obx(() => Switch(
+                      value: widget.orderController.hasCouponCode.value,
+                      activeColor: Colors.green,
+                      onChanged: (bool data) {
+                        widget.orderController.hasCouponCode.value = data;
+                        print(
+                            'has coupon code ${widget.orderController.hasCouponCode.value}');
+                      })),
+                ),
+                Text(
+                  'I have coupon Code',
+                  style: CustomTheme.paragraphStyle,
+                ),
+              ],
+            ),
+            Obx(() => widget.orderController.hasCouponCode.isTrue
+                ? Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: widget.orderController.couponCode,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Coupon Code',
+                ),
+                autofillHints: [AutofillHints.oneTimeCode],
+                keyboardType: TextInputType.name,
+                validator: RequiredValidator(
+                    errorText: 'Coupon Code is required'),
+              ),
+            )
+                : SizedBox()),
+          ],
+        )),
       ],
     );
   }

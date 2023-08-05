@@ -14,9 +14,7 @@ class HygraphQueryService {
 
   static String postCodesQuery = """
 query Postcodes {
-  postcodes {
-    id
-    createdAt
+  postcodes(first:100) {
     postcode
   }
 }

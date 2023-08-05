@@ -106,6 +106,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           orderController: orderController,
                         ))),
         ];
+
+    void addShippingDetail(){
+      orderController.setOtherInstruction();
+      orderController.setShippingAddress();
+      orderController.setShippingMethod();
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -124,7 +130,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
                   if (orderController.currentStep.value == 0) {
                     print(
-                        '${orderController.currentlySelectedShippingMethodId.value} ${orderController.currentlySelectedCountryCode.value}');
+                        '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
                     if (orderController.useCurrentUserAddress.isTrue) {
                       print(
                           'has coupon code ${orderController.hasCouponCode}');
@@ -134,24 +140,36 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         res.then((value) {
                           print(value);
                           if (value) {
-                            orderController.setShippingAddress();
-                            orderController.setShippingMethod();
+                            if(orderController.otherInstructions.text.length > 0){
+                            //  save this field data
+
+                            }
+                            addShippingDetail();
                           }
                         });
                       } else {
-                        orderController.setShippingAddress();
-                        orderController.setShippingMethod();
+                        addShippingDetail();
                       }
                     } else {
-                      final form = shippingAddressFormKey.currentState!;
-                      if (form.validate()) {
-                        print('validated');
+                      final form = shippingAddressFormKey.currentState;
+                      if(form != null){
+                        if (form.validate()) {
+                          print('validated');
+                          addShippingDetail();
+                        } else {
+                          print('invalid');
+                          Get.snackbar(
+                            '',
+                            'Please fill up the form',
+                            colorText: Colors.red,
+                            backgroundColor: Colors.yellow,
+                          );
+                        }
 
-                      } else {
-                        print('invalid');
+                      }else {
                         Get.snackbar(
                           '',
-                          'Please fill up the form',
+                          'Please select an address',
                           colorText: Colors.red,
                           backgroundColor: Colors.yellow,
                         );

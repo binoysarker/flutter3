@@ -39,3 +39,5 @@ samples, guidance on mobile development, and a full API reference.
                 android:resource="@drawable/launch_background" />
               />
 ```
+## important notes
+- one shipping method code in admin must be 'morning-delivery' 

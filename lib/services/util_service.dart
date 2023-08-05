@@ -43,7 +43,7 @@ class UtilService {
     print('${dotenv.env['API_BASE_URL']}');
     _apiBaseUrl = dotenv.env['API_BASE_URL'] as String;
     _shopApiUrl = dotenv.env['SHOP_API_URL'] as String;
-    appName = dotenv.env['App_Name'] as String;
+    appName = dotenv.env['APP_NAME'] as String;
   }
 
   static String formatPriceValue(int price) {

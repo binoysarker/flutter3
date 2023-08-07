@@ -9,7 +9,6 @@ import 'package:recipe.app/hygraphSection/hygraphQueryDataTypes.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
-import 'package:recipe.app/validators/validatorDefinations.dart';
 
 import '../allGlobalKeys.dart';
 import '../controllers/orderController.dart';
@@ -183,24 +182,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                         keyboardType: TextInputType.name,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: widget.orderController.phoneNumber,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Phone',
-                        ),
-                        autofillHints: [
-                          AutofillHints.telephoneNumber,
-                          AutofillHints.telephoneNumberCountryCode
-                        ],
-                        keyboardType: TextInputType.phone,
-                        validator:
-                            ValidatorDefinition.phoneNumberMultiValidator,
-                      ),
-                    ),
+
                     GraphQLProvider(
                       client: GraphqlService.hygraphClient,
                       child: Query(

@@ -6681,6 +6681,33 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                                     directives: [],
                                     selectionSet: null),
                                 FieldNode(
+                                    name: NameNode(value: 'customFields'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FieldNode(
+                                          name: NameNode(
+                                              value: 'otherInstructions'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(
+                                              value: 'clientRequestToCancel'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
                                     name: NameNode(value: '__typename'),
                                     alias: null,
                                     arguments: [],
@@ -7553,6 +7580,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
       this.payments,
       required this.totalQuantity,
       required this.totalWithTax,
+      this.customFields,
       required this.$__typename});
 
   @override
@@ -7595,6 +7623,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
 
   final int totalWithTax;
 
+  final Query$GetActiveCustomer$activeCustomer$orders$items$customFields?
+      customFields;
+
   @JsonKey(name: '__typename')
   final String $__typename;
 
@@ -7616,6 +7647,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     final l$payments = payments;
     final l$totalQuantity = totalQuantity;
     final l$totalWithTax = totalWithTax;
+    final l$customFields = customFields;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -7633,6 +7665,7 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
       l$payments == null ? null : Object.hashAll(l$payments.map((v) => v)),
       l$totalQuantity,
       l$totalWithTax,
+      l$customFields,
       l$$__typename
     ]);
   }
@@ -7721,6 +7754,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items {
     final l$totalWithTax = totalWithTax;
     final lOther$totalWithTax = other.totalWithTax;
     if (l$totalWithTax != lOther$totalWithTax) return false;
+    final l$customFields = customFields;
+    final lOther$customFields = other.customFields;
+    if (l$customFields != lOther$customFields) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -7769,6 +7805,8 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
           payments,
       int? totalQuantity,
       int? totalWithTax,
+      Query$GetActiveCustomer$activeCustomer$orders$items$customFields?
+          customFields,
       String? $__typename});
   TRes lines(
       Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
@@ -7798,6 +7836,8 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items<
                   CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments<
                       Query$GetActiveCustomer$activeCustomer$orders$items$payments>>?)
           _fn);
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+      TRes> get customFields;
 }
 
 class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
@@ -7829,6 +7869,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           Object? payments = _undefined,
           Object? totalQuantity = _undefined,
           Object? totalWithTax = _undefined,
+          Object? customFields = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -7862,6 +7903,7 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           payments: payments == _undefined ? _instance.payments : (payments as List<Query$GetActiveCustomer$activeCustomer$orders$items$payments>?),
           totalQuantity: totalQuantity == _undefined || totalQuantity == null ? _instance.totalQuantity : (totalQuantity as int),
           totalWithTax: totalWithTax == _undefined || totalWithTax == null ? _instance.totalWithTax : (totalWithTax as int),
+          customFields: customFields == _undefined ? _instance.customFields : (customFields as Query$GetActiveCustomer$activeCustomer$orders$items$customFields?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   TRes lines(
           Iterable<Query$GetActiveCustomer$activeCustomer$orders$items$lines> Function(
@@ -7923,6 +7965,15 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items<TRes>
           payments: _fn(_instance.payments?.map((e) =>
               CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$payments(
                   e, (i) => i)))?.toList());
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+      TRes> get customFields {
+    final local$customFields = _instance.customFields;
+    return local$customFields == null
+        ? CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+            .stub(_then(_instance))
+        : CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+            local$customFields, (e) => call(customFields: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
@@ -7956,6 +8007,8 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
               payments,
           int? totalQuantity,
           int? totalWithTax,
+          Query$GetActiveCustomer$activeCustomer$orders$items$customFields?
+              customFields,
           String? $__typename}) =>
       _res;
   lines(_fn) => _res;
@@ -7971,6 +8024,11 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
               .stub(_res);
   surcharges(_fn) => _res;
   payments(_fn) => _res;
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+          TRes>
+      get customFields =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+              .stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -9011,6 +9069,133 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$paym
           String? method,
           int? amount,
           String? transactionId,
+          String? $__typename}) =>
+      _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetActiveCustomer$activeCustomer$orders$items$customFields {
+  Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+      {this.otherInstructions,
+      this.clientRequestToCancel,
+      required this.$__typename});
+
+  @override
+  factory Query$GetActiveCustomer$activeCustomer$orders$items$customFields.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$customFieldsFromJson(
+          json);
+
+  final String? otherInstructions;
+
+  final int? clientRequestToCancel;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetActiveCustomer$activeCustomer$orders$items$customFieldsToJson(
+          this);
+  int get hashCode {
+    final l$otherInstructions = otherInstructions;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [l$otherInstructions, l$clientRequestToCancel, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetActiveCustomer$activeCustomer$orders$items$customFields) ||
+        runtimeType != other.runtimeType) return false;
+    final l$otherInstructions = otherInstructions;
+    final lOther$otherInstructions = other.otherInstructions;
+    if (l$otherInstructions != lOther$otherInstructions) return false;
+    final l$clientRequestToCancel = clientRequestToCancel;
+    final lOther$clientRequestToCancel = other.clientRequestToCancel;
+    if (l$clientRequestToCancel != lOther$clientRequestToCancel) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+    on Query$GetActiveCustomer$activeCustomer$orders$items$customFields {
+  CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+          Query$GetActiveCustomer$activeCustomer$orders$items$customFields>
+      get copyWith =>
+          CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+    TRes> {
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+          Query$GetActiveCustomer$activeCustomer$orders$items$customFields instance,
+          TRes Function(
+                  Query$GetActiveCustomer$activeCustomer$orders$items$customFields)
+              then) =
+      _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields;
+
+  factory CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields;
+
+  TRes call(
+      {String? otherInstructions,
+      int? clientRequestToCancel,
+      String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+            TRes> {
+  _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+      this._instance, this._then);
+
+  final Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+      _instance;
+
+  final TRes Function(
+      Query$GetActiveCustomer$activeCustomer$orders$items$customFields) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? otherInstructions = _undefined,
+          Object? clientRequestToCancel = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+          otherInstructions: otherInstructions == _undefined
+              ? _instance.otherInstructions
+              : (otherInstructions as String?),
+          clientRequestToCancel: clientRequestToCancel == _undefined
+              ? _instance.clientRequestToCancel
+              : (clientRequestToCancel as int?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+        TRes>
+    implements
+        CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$customFields<
+            TRes> {
+  _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {String? otherInstructions,
+          int? clientRequestToCancel,
           String? $__typename}) =>
       _res;
 }

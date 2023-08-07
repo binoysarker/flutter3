@@ -72,7 +72,6 @@ class LoginPageController extends GetxController {
     firstName.text = '';
     lastName.text = '';
     otpController.text = '';
-    phoneNumber.text = '';
     checkboxStatus.value = false;
     loginFormKey.currentState!.reset();
   }
@@ -271,7 +270,7 @@ class LoginPageController extends GetxController {
       generateRandomDigit();
       print('current otp is ${currentlyGivenOTP.value}');
       // registration sms
-      smsData['mobiles'] = '91${phoneNumber.text}';
+      smsData['mobiles'] = '+91${phoneNumber.text}';
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
@@ -281,7 +280,7 @@ class LoginPageController extends GetxController {
       print('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
-      verifyOTPForm.currentState!.reset();
+      verifyOTPForm.currentState?.reset();
     } on Exception catch (e) {
       print(e.toString());
     }
@@ -290,7 +289,7 @@ class LoginPageController extends GetxController {
   void sendRegistrationSuccessSms() async {
     try {
       // registration sms
-      smsData['mobiles'] = '91${phoneNumber.text}';
+      smsData['mobiles'] = '+91${phoneNumber.text}';
       smsData['OTP'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '64638d10d6fc0577471d20a2';
 
@@ -341,7 +340,7 @@ class LoginPageController extends GetxController {
     utilityController.setLoadingState(false);
   }
 
-  void requestPasswordReset(String email) async {
+  void requestPasswordReset() async {
     try {
       final response = await this
           .graphqlService
@@ -362,7 +361,7 @@ class LoginPageController extends GetxController {
       print('current otp is ${currentlyGivenOTP.value}');
       // Reset password
 
-      smsData['mobiles'] = '91${phoneNumber.text}';
+      smsData['mobiles'] = '+91${phoneNumber.text}';
       smsData['number'] = '${currentlyGivenOTP.value}';
       smsData['template_id'] = '646b079bd6fc050f4533f312';
 

@@ -71,7 +71,7 @@ class PaymentServices {
     //  Payment Failed
     UtilService.sendSms(
         '647b0268d6fc056087309262',
-        loginPageController.phoneNumber.text,
+        userController.currentAuthenticatedUser.value!.phoneNumber.toString(),
         SmsDeliveryType.payment_failed,
         (orderController.getOrderByCodeResponse.value!.totalWithTax /
                 100)

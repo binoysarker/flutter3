@@ -33,15 +33,19 @@ class _OrdersPageState extends State<OrdersPage> {
 
   @override
   Widget build(BuildContext context) {
-    String checkStatus(String status) {
-      var currentStat = status;
-      if (status == OrderStateEnums.AddingItems.name) {
-        currentStat = 'In Cart';
-      }
-      return currentStat;
-    }
+    // String checkStatus(String status) {
+    //   var currentStat = status;
+    //   if (status == OrderStateEnums.AddingItems.name) {
+    //     currentStat = 'In Cart';
+    //   }
+    //   return currentStat;
+    // }
 
+    var currentUser = userController.currentAuthenticatedUser.value!;
     var activeOrder = orderController.activeOrderResponse.value;
+
+    var currencySymbol =
+        UtilService.getCurrencySymble(currentUser.orders.items.first.code);
 
     return Scaffold(
       appBar: AppBar(
@@ -63,97 +67,89 @@ class _OrdersPageState extends State<OrdersPage> {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          child: activeOrder == null ? Center(
-            child: Column(
-              children: [
-                Text('No Orders is present', style: CustomTheme.headerStyle,),
-                TextButton(onPressed: (){
-                  Get.offAll(() => StorePage());
-                }, child: Text('Go to Home', style: CustomTheme.headerStyle2,))
-              ],
-            ),
-          )
-              : activeOrder.lines.length > 0
+          child: currentUser.orders == null
+              ? Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        'No Orders is present',
+                        style: CustomTheme.headerStyle,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Get.offAll(() => StorePage());
+                          },
+                          child: Text(
+                            'Go to Home',
+                            style: CustomTheme.headerStyle2,
+                          ))
+                    ],
+                  ),
+                )
+              : currentUser.orders.items.length > 0
                   ? Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Status: ${checkStatus(activeOrder.state)}',
+                        child: ListView(
+                          children: currentUser.orders.items
+                              .map((singleOrderItem) => ExpansionTile(
+
+                            title: Text(
+                              'Code: ${singleOrderItem.code}',
                               style: CustomTheme.headerStyle,
                             ),
-                            Text(
-                              'Total Quantity ${activeOrder.totalQuantity}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                            Text(
-                              'Total Item Ordered: ${activeOrder.lines.length}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                            Text(
-                              'Tax ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(activeOrder.shippingWithTax)}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                            Text(
-                              'Total Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(activeOrder.totalWithTax)}',
-                              style: CustomTheme.headerStyle,
-                            ),
-                            activeOrder.customFields!.clientRequestToCancel == 1
-                                ? Card(
-                              color: Colors.red,
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'These orders are being requested by the client to cancel. Admin will process this order now',
-                                    style: CustomTheme.headerStyle2,
-                                  ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
+                                  style: CustomTheme.headerStyle,
                                 ),
-                              ),
-                            ) :
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton(
-                                  onPressed: () {
-                                    orderController
-                                        .requestToCancelOrder(activeOrder.id, 1);
-                                    orderController.getActiveOrders();
-                                  },
-                                  child: Text(
-                                    'Cancel Order',
-                                    style: CustomTheme.headerStyle,
-                                  )),
+                                Text(
+                                  'Total Items: ${singleOrderItem.lines.length}',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Text(
+                                  'State: ${singleOrderItem.state}',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                singleOrderItem.id == activeOrder?.id ? ElevatedButton(onPressed: (){
+                                  orderController.requestToCancelOrder(singleOrderItem.id, 1);
+                                }, child: Text('Cancel Order')) : SizedBox()
+                              ],
                             ),
-                            Expanded(child: ListView(children: activeOrder.lines
-                                .map((subItem) => ListTile(
-                              isThreeLine: true,
-                              title: Text(
-                                '${subItem.productVariant.name}',
-                                style: CustomTheme.headerStyle,
+                            children: singleOrderItem.lines
+                                .map((singleLineItem) => ListTile(
+                              title: Text(singleLineItem
+                                  .productVariant.name,style: CustomTheme.headerStyle,),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
+
+                                ],
                               ),
                               leading: FadeInImage.assetNetwork(
                                 width: 50,
                                 height: 50,
-                                placeholder:
-                                '${CommonVariableData.placeholder}',
+                                placeholder: CommonVariableData
+                                    .placeholder,
                                 image:
-                                '${subItem.featuredAsset!.preview}',
-                                imageErrorBuilder: (context, error,
-                                    stackTrace) =>
+                                '${singleLineItem.featuredAsset?.preview}',
+                                imageErrorBuilder: (context,
+                                    error, stackTrace) =>
                                     Image.asset(
-                                        '${CommonVariableData.placeholder}'),
-                              ),
-                              subtitle: Text(
-                                'Price: ${UtilService.getCurrencySymble(activeOrder.currencyCode.toString())}${UtilService.formatPriceValue(subItem.linePriceWithTax)} \n'
-                                    'Quantity: ${subItem.quantity}',
-                                style: CustomTheme.paragraphStyle,
+                                      CommonVariableData
+                                          .placeholder,
+                                      width: 50,
+                                      height: 50,
+                                    ),
                               ),
                             ))
-                                .toList(),))
-                          ],
+                                .toList(),
+                          ))
+                              .toList(),
                         ),
                       ),
                     )

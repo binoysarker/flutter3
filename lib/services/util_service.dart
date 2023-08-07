@@ -132,7 +132,7 @@ class UtilService {
     var smsData = {
       "template_id": templateId,
       "sender": "KAIMSG",
-      "mobiles": "919$number",
+      "mobiles": "+91$number",
     };
     var currentTime = DateTime.now();
     var tomorrowTime = DateTime(

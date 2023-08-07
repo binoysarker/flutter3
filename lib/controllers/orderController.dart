@@ -31,7 +31,7 @@ class OrderController extends GetxController {
 
   // TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController();
+  // TextEditingController phoneNumber = TextEditingController();
   TextEditingController couponCode = TextEditingController();
   TextEditingController otherInstructions = TextEditingController();
   UserController userController = Get.find<UserController>();
@@ -115,14 +115,14 @@ class OrderController extends GetxController {
     return res.parsedData!.nextOrderStates.toList();
   }
 
-  void requestToCancelOrder(String userId, int value) async {
+  void requestToCancelOrder(String orderId, int value) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value
         .mutate$CancelOrderOnClientRequest(
             Options$Mutation$CancelOrderOnClientRequest(
                 variables: Variables$Mutation$CancelOrderOnClientRequest(
-                    orderId: userId, value: value)));
+                    orderId: orderId, value: value)));
     if (res.hasException) {
       print(res.exception.toString());
     }
@@ -284,7 +284,7 @@ class OrderController extends GetxController {
     fullName.clear();
     streetLine1.clear();
     streetLine2.clear();
-    phoneNumber.clear();
+    // phoneNumber.clear();
     // postalCode.clear();
     city.clear();
     couponCode.clear();
@@ -455,7 +455,7 @@ class OrderController extends GetxController {
                     phoneNumber: useCurrentUserAddress.value
                         ? userController.currentAuthenticatedUser.value!
                             .addresses!.first.phoneNumber
-                        : phoneNumber.text))));
+                        : userController.currentAuthenticatedUser.value!.phoneNumber.toString()))));
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;

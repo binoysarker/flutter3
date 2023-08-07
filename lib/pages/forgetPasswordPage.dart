@@ -61,13 +61,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     ),
                   ),
                   TextButton(onPressed: (){
-                    loginPageController.requestPasswordReset(loginPageController.phoneNumber.text);
+                    loginPageController.requestPasswordReset();
                   }, child: Text('Resend OTP', style: CustomTheme.headerStyle,)),
                   ElevatedButton(
                       onPressed: () {
                         if (forgetPasswordForm.currentState!.validate()) {
                           print('validated');
-                          loginPageController.requestPasswordReset(loginPageController.phoneNumber.text);
+                          loginPageController.requestPasswordReset();
                         } else {
                           print('not validated');
                           Get.snackbar('', 'Please Fill up the form', backgroundColor: Colors.yellow,colorText: Colors.red);

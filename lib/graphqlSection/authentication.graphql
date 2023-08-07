@@ -173,6 +173,10 @@ query GetActiveCustomer{
                     }
                     totalQuantity
                     totalWithTax
+                    customFields {
+                        otherInstructions
+                        clientRequestToCancel
+                    }
                 }
             }
         }

@@ -1155,6 +1155,10 @@ Query$GetActiveCustomer$activeCustomer$orders$items
               .toList(),
           totalQuantity: json['totalQuantity'] as int,
           totalWithTax: json['totalWithTax'] as int,
+          customFields: json['customFields'] == null
+              ? null
+              : Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+                  .fromJson(json['customFields'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
@@ -1177,6 +1181,7 @@ Map<String, dynamic>
           'payments': instance.payments?.map((e) => e.toJson()).toList(),
           'totalQuantity': instance.totalQuantity,
           'totalWithTax': instance.totalWithTax,
+          'customFields': instance.customFields?.toJson(),
           '__typename': instance.$__typename,
         };
 
@@ -1500,6 +1505,25 @@ Map<String, dynamic>
           'method': instance.method,
           'amount': instance.amount,
           'transactionId': instance.transactionId,
+          '__typename': instance.$__typename,
+        };
+
+Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$customFieldsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetActiveCustomer$activeCustomer$orders$items$customFields(
+          otherInstructions: json['otherInstructions'] as String?,
+          clientRequestToCancel: json['clientRequestToCancel'] as int?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic>
+    _$Query$GetActiveCustomer$activeCustomer$orders$items$customFieldsToJson(
+            Query$GetActiveCustomer$activeCustomer$orders$items$customFields
+                instance) =>
+        <String, dynamic>{
+          'otherInstructions': instance.otherInstructions,
+          'clientRequestToCancel': instance.clientRequestToCancel,
           '__typename': instance.$__typename,
         };
 

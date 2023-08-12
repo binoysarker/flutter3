@@ -33,13 +33,13 @@ class _OrdersPageState extends State<OrdersPage> {
 
   @override
   Widget build(BuildContext context) {
-    // String checkStatus(String status) {
-    //   var currentStat = status;
-    //   if (status == OrderStateEnums.AddingItems.name) {
-    //     currentStat = 'In Cart';
-    //   }
-    //   return currentStat;
-    // }
+    String checkStatus(String status) {
+      var currentStat = status;
+      if (status == OrderStateEnums.AddingItems.name) {
+        currentStat = 'In Cart';
+      }
+      return currentStat;
+    }
 
     var currentUser = userController.currentAuthenticatedUser.value!;
     var activeOrder = orderController.activeOrderResponse.value;
@@ -92,63 +92,72 @@ class _OrdersPageState extends State<OrdersPage> {
                         padding: const EdgeInsets.all(8.0),
                         child: ListView(
                           children: currentUser.orders.items
-                              .map((singleOrderItem) => ExpansionTile(
+                              .map((singleOrderItem) => Card(
+                            elevation: 8.0,
+                                child: ExpansionTile(
 
                             title: Text(
-                              'Code: ${singleOrderItem.code}',
-                              style: CustomTheme.headerStyle,
+                                'Code: ${singleOrderItem.code}',
+                                style: CustomTheme.headerStyle,
                             ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                Text(
-                                  'Total Items: ${singleOrderItem.lines.length}',
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                Text(
-                                  'State: ${singleOrderItem.state}',
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                singleOrderItem.id == activeOrder?.id ? ElevatedButton(onPressed: (){
-                                  orderController.requestToCancelOrder(singleOrderItem.id, 1);
-                                }, child: Text('Cancel Order')) : SizedBox()
-                              ],
-                            ),
-                            children: singleOrderItem.lines
-                                .map((singleLineItem) => ListTile(
-                              title: Text(singleLineItem
-                                  .productVariant.name,style: CustomTheme.headerStyle,),
-                              subtitle: Column(
+                            subtitle: singleOrderItem.customFields!.clientRequestToCancel == 1 ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('This Order is being requested to cancel by you',style: CustomTheme.headerStyle,),
+                                  Text('Admin will take care of it',style: CustomTheme.headerStyle,),
+                                ],
+                            ) : Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
-
+                                    'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    'Total Items: ${singleOrderItem.lines.length}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  Text(
+                                    'State: ${checkStatus(singleOrderItem.state)}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  ElevatedButton(onPressed: (){
+                                    orderController.requestToCancelOrder(singleOrderItem.id, 1);
+                                  }, child: Text('Cancel Order'))
                                 ],
-                              ),
-                              leading: FadeInImage.assetNetwork(
-                                width: 50,
-                                height: 50,
-                                placeholder: CommonVariableData
-                                    .placeholder,
-                                image:
-                                '${singleLineItem.featuredAsset?.preview}',
-                                imageErrorBuilder: (context,
-                                    error, stackTrace) =>
-                                    Image.asset(
-                                      CommonVariableData
-                                          .placeholder,
-                                      width: 50,
-                                      height: 50,
-                                    ),
-                              ),
+                            ),
+                            children: singleOrderItem.lines
+                                  .map((singleLineItem) => ListTile(
+                                title: Text(singleLineItem
+                                    .productVariant.name,style: CustomTheme.headerStyle,),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
+
+                                  ],
+                                ),
+                                leading: FadeInImage.assetNetwork(
+                                  width: 50,
+                                  height: 50,
+                                  placeholder: CommonVariableData
+                                      .placeholder,
+                                  image:
+                                  '${singleLineItem.featuredAsset?.preview}',
+                                  imageErrorBuilder: (context,
+                                      error, stackTrace) =>
+                                      Image.asset(
+                                        CommonVariableData
+                                            .placeholder,
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                ),
                             ))
-                                .toList(),
-                          ))
+                                  .toList(),
+                          ),
+                              ))
                               .toList(),
                         ),
                       ),

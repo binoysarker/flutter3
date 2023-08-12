@@ -874,6 +874,114 @@ Map<String, dynamic> _$Input$OrderSortParameterToJson(
       'updatedAt': _$Enum$SortOrderEnumMap[instance.updatedAt],
     };
 
+Input$PageFilterParameter _$Input$PageFilterParameterFromJson(
+        Map<String, dynamic> json) =>
+    Input$PageFilterParameter(
+      createdAt: json['createdAt'] == null
+          ? null
+          : Input$DateOperators.fromJson(
+              json['createdAt'] as Map<String, dynamic>),
+      enabled: json['enabled'] == null
+          ? null
+          : Input$BooleanOperators.fromJson(
+              json['enabled'] as Map<String, dynamic>),
+      id: json['id'] == null
+          ? null
+          : Input$IDOperators.fromJson(json['id'] as Map<String, dynamic>),
+      position: json['position'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['position'] as Map<String, dynamic>),
+      slug: json['slug'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['slug'] as Map<String, dynamic>),
+      text: json['text'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['text'] as Map<String, dynamic>),
+      title: json['title'] == null
+          ? null
+          : Input$StringOperators.fromJson(
+              json['title'] as Map<String, dynamic>),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : Input$DateOperators.fromJson(
+              json['updatedAt'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$Input$PageFilterParameterToJson(
+        Input$PageFilterParameter instance) =>
+    <String, dynamic>{
+      'createdAt': instance.createdAt?.toJson(),
+      'enabled': instance.enabled?.toJson(),
+      'id': instance.id?.toJson(),
+      'position': instance.position?.toJson(),
+      'slug': instance.slug?.toJson(),
+      'text': instance.text?.toJson(),
+      'title': instance.title?.toJson(),
+      'updatedAt': instance.updatedAt?.toJson(),
+    };
+
+Input$PageListOptions _$Input$PageListOptionsFromJson(
+        Map<String, dynamic> json) =>
+    Input$PageListOptions(
+      filter: json['filter'] == null
+          ? null
+          : Input$PageFilterParameter.fromJson(
+              json['filter'] as Map<String, dynamic>),
+      filterOperator: $enumDecodeNullable(
+          _$Enum$LogicalOperatorEnumMap, json['filterOperator'],
+          unknownValue: Enum$LogicalOperator.$unknown),
+      skip: json['skip'] as int?,
+      sort: json['sort'] == null
+          ? null
+          : Input$PageSortParameter.fromJson(
+              json['sort'] as Map<String, dynamic>),
+      take: json['take'] as int?,
+    );
+
+Map<String, dynamic> _$Input$PageListOptionsToJson(
+        Input$PageListOptions instance) =>
+    <String, dynamic>{
+      'filter': instance.filter?.toJson(),
+      'filterOperator': _$Enum$LogicalOperatorEnumMap[instance.filterOperator],
+      'skip': instance.skip,
+      'sort': instance.sort?.toJson(),
+      'take': instance.take,
+    };
+
+Input$PageSortParameter _$Input$PageSortParameterFromJson(
+        Map<String, dynamic> json) =>
+    Input$PageSortParameter(
+      createdAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['createdAt'],
+          unknownValue: Enum$SortOrder.$unknown),
+      id: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['id'],
+          unknownValue: Enum$SortOrder.$unknown),
+      position: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['position'],
+          unknownValue: Enum$SortOrder.$unknown),
+      slug: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['slug'],
+          unknownValue: Enum$SortOrder.$unknown),
+      text: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['text'],
+          unknownValue: Enum$SortOrder.$unknown),
+      title: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['title'],
+          unknownValue: Enum$SortOrder.$unknown),
+      updatedAt: $enumDecodeNullable(_$Enum$SortOrderEnumMap, json['updatedAt'],
+          unknownValue: Enum$SortOrder.$unknown),
+    );
+
+Map<String, dynamic> _$Input$PageSortParameterToJson(
+        Input$PageSortParameter instance) =>
+    <String, dynamic>{
+      'createdAt': _$Enum$SortOrderEnumMap[instance.createdAt],
+      'id': _$Enum$SortOrderEnumMap[instance.id],
+      'position': _$Enum$SortOrderEnumMap[instance.position],
+      'slug': _$Enum$SortOrderEnumMap[instance.slug],
+      'text': _$Enum$SortOrderEnumMap[instance.text],
+      'title': _$Enum$SortOrderEnumMap[instance.title],
+      'updatedAt': _$Enum$SortOrderEnumMap[instance.updatedAt],
+    };
+
 Input$PaymentInput _$Input$PaymentInputFromJson(Map<String, dynamic> json) =>
     Input$PaymentInput(
       metadata: json['metadata'] as String,

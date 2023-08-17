@@ -40,9 +40,12 @@ class _OrdersPageState extends State<OrdersPage> {
       }
       return currentStat;
     }
+    // bool showOrder(Query$GetActiveCustomer$activeCustomer$orders$items singleOrderItem){
+    //   return singleOrderItem.customFields?.clientRequestToCancel != 1;
+    // }
 
     var currentUser = userController.currentAuthenticatedUser.value!;
-    var activeOrder = orderController.activeOrderResponse.value;
+    // var activeOrder = orderController.activeOrderResponse.value;
 
     var currencySymbol =
         UtilService.getCurrencySymble(currentUser.orders.items.first.code);

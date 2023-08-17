@@ -129,51 +129,61 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   print('current step ${orderController.currentStep.value}');
 
                   if (orderController.currentStep.value == 0) {
-                    print(
-                        '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
-                    if (orderController.useCurrentUserAddress.isTrue) {
+                    if(orderController.currentlySelectedShippingMethod.value != null){
                       print(
-                          'has coupon code ${orderController.hasCouponCode}');
-                      if (orderController.hasCouponCode.isTrue) {
-                        var res = orderController
-                            .applyCouponCode(orderController.couponCode.text);
-                        res.then((value) {
-                          print(value);
-                          if (value) {
-                            if(orderController.otherInstructions.text.length > 0){
-                            //  save this field data
+                          '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
+                      if (orderController.useCurrentUserAddress.isTrue) {
+                        print(
+                            'has coupon code ${orderController.hasCouponCode}');
+                        if (orderController.hasCouponCode.isTrue) {
+                          var res = orderController
+                              .applyCouponCode(orderController.couponCode.text);
+                          res.then((value) {
+                            print(value);
+                            if (value) {
+                              if(orderController.otherInstructions.text.length > 0){
+                              //  save this field data
 
+                              }
+                              addShippingDetail();
                             }
-                            addShippingDetail();
-                          }
-                        });
-                      } else {
-                        addShippingDetail();
-                      }
-                    } else {
-                      final form = shippingAddressFormKey.currentState;
-                      if(form != null){
-                        if (form.validate()) {
-                          print('validated');
-                          addShippingDetail();
+                          });
                         } else {
-                          print('invalid');
+                          addShippingDetail();
+                        }
+                      } else {
+                        final form = shippingAddressFormKey.currentState;
+                        if(form != null){
+                          if (form.validate()) {
+                            print('validated');
+                            addShippingDetail();
+                          } else {
+                            print('invalid');
+                            Get.snackbar(
+                              '',
+                              'Please fill up the form',
+                              colorText: Colors.red,
+                              backgroundColor: Colors.yellow,
+                            );
+                          }
+
+                        }else {
                           Get.snackbar(
                             '',
-                            'Please fill up the form',
+                            'Please select an address',
                             colorText: Colors.red,
                             backgroundColor: Colors.yellow,
                           );
                         }
-
-                      }else {
-                        Get.snackbar(
-                          '',
-                          'Please select an address',
-                          colorText: Colors.red,
-                          backgroundColor: Colors.yellow,
-                        );
                       }
+
+                    }else {
+                      Get.snackbar(
+                        '',
+                        'Please select delivery time',
+                        colorText: Colors.red,
+                        backgroundColor: Colors.yellow,
+                      );
                     }
                   } else if (orderController.currentStep.value == 2) {
                     print('last step ${orderController.currentStep.value}');

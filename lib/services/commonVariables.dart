@@ -73,3 +73,14 @@ enum PaymentOptionType{
 enum CityToUseType{
   Madurai
 }
+
+var emptyShippingMethod = {
+  'id': '',
+  'name': '',
+  'code': '',
+  'description': '',
+  'price': 0,
+  'priceWithTax': 0,
+  'metadata': '',
+  '__typename': '',
+};

@@ -1,5 +1,7 @@
 import 'package:form_field_validator/form_field_validator.dart';
 
+import '../graphqlSection/orders.graphql.dart';
+
 class ValidatorDefinition {
   static final emailMultiValidator = MultiValidator([
     RequiredValidator(errorText: 'Email is required'),
@@ -18,4 +20,14 @@ class ValidatorDefinition {
     MinLengthValidator(9, errorText: 'phone number should be only of 10 digits.'),
     MaxLengthValidator(10, errorText: 'phone number should be only of 10 digits.')
   ]);
+}
+
+class CustomValidator extends FieldValidator{
+  CustomValidator(String errorText) : super(errorText);
+
+  @override
+  bool isValid(value) {
+      var data = value as Query$GetEligibleShippingMethods$eligibleShippingMethods;
+    return data.code.isEmpty;
+  }
 }

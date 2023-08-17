@@ -353,16 +353,16 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   print(
                       'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
                 },
-                items: orderController.eligibleShippingMethodList.value
-                    .map((option) {
+                items: orderController.eligibleShippingMethodList.map((option) {
                   return DropdownMenuItem(
                     value: option,
                     child: Text(
-                      '${option.name}',
+                      option.name,
                       style: CustomTheme.headerStyle,
                     ),
                   );
                 }).toList(),
+
               ),
             ),
             Row(

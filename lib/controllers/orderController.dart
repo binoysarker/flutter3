@@ -514,7 +514,7 @@ class OrderController extends GetxController {
           'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
-      currentlySelectedShippingMethod.value = eligibleShippingMethodList.first;
+      currentlySelectedShippingMethod.value = emptyShippingMethod as Query$GetEligibleShippingMethods$eligibleShippingMethods?;
       isLoading.value = false;
     }
   }

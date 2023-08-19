@@ -52,7 +52,7 @@ class LoginPageState extends State<LoginPage> {
                 loginPageController.phoneNumber.text = phone;
                 loginPageController.passwordController.text = password;
                 loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
-                loginPageController.onUserSignIn(context);
+                // loginPageController.onUserSignIn(context);
               });
 
 

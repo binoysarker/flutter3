@@ -137,15 +137,9 @@ class LoginPageController extends GetxController {
           new LocalStorage(LocalStorageStrings.auth_token.name);
       localStorage.clear();
       orderController.resetData();
-      phoneStorage.ready.then((value) {
-        phoneStorage.deleteItem(LocalStorageStrings.phone.name);
-      });
-      passwordStorage.ready.then((value) {
-        passwordStorage.deleteItem(LocalStorageStrings.password.name);
-        Get.offAll(() => LoginPage());
-        Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
-        resetFormField();
-      });
+      Get.offAll(() => LoginPage());
+      Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
+      resetFormField();
     }
   }
 
@@ -187,6 +181,8 @@ class LoginPageController extends GetxController {
   }
 
   void onUserSignIn(BuildContext context) async {
+    // need to check the check box status
+    setCheckboxStatus(checkboxStatus.value);
     final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
     final signInResponse = await graphqlService.client.value.mutate$SignIn(

@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/controllers/userController.dart';
-import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../components/cartButtonComponent.dart';
 import '../controllers/loginPageController.dart';
 import '../controllers/orderController.dart';
+import '../graphqlSection/authentication.graphql.dart';
 import '../services/commonVariables.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -50,6 +51,18 @@ class _OrdersPageState extends State<OrdersPage> {
     var currencySymbol =
         UtilService.getCurrencySymble(currentUser.orders.items.first.code);
 
+    DateTime parseDate(String? dateString) {
+      var data = DateTime.now();
+      if(dateString != null){
+        data = DateFormat('yyyy-MM-dd').parse(dateString);
+      }
+      return data;
+    }
+    List<Query$GetActiveCustomer$activeCustomer$orders$items> getSortedList(List<Query$GetActiveCustomer$activeCustomer$orders$items> list){
+       list.sort((a,b) => parseDate(b.orderPlacedAt).compareTo(parseDate(a.orderPlacedAt)));
+       return list;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -70,109 +83,94 @@ class _OrdersPageState extends State<OrdersPage> {
       body: Container(
           height: double.infinity,
           width: double.infinity,
-          child: currentUser.orders == null
-              ? Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        'No Orders is present',
-                        style: CustomTheme.headerStyle,
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Get.offAll(() => StorePage());
-                          },
-                          child: Text(
-                            'Go to Home',
-                            style: CustomTheme.headerStyle2,
-                          ))
-                    ],
-                  ),
-                )
-              : currentUser.orders.items.length > 0
-                  ? Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView(
-                          children: currentUser.orders.items
-                              .map((singleOrderItem) => Card(
-                            elevation: 8.0,
-                                child: ExpansionTile(
+          child: currentUser.orders.items.isNotEmpty
+              ? Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView(
+                children:  getSortedList(currentUser.orders.items)
+                    .map((singleOrderItem) => Card(
+                  elevation: 8.0,
+                  child: ExpansionTile(
 
-                            title: Text(
-                                'Code: ${singleOrderItem.code}',
-                                style: CustomTheme.headerStyle,
-                            ),
-                            subtitle: singleOrderItem.customFields!.clientRequestToCancel == 1 ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('This Order is being requested to cancel by you',style: CustomTheme.headerStyle,),
-                                  Text('Admin will take care of it',style: CustomTheme.headerStyle,),
-                                ],
-                            ) : Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    'Total Items: ${singleOrderItem.lines.length}',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  Text(
-                                    'State: ${checkStatus(singleOrderItem.state)}',
-                                    style: CustomTheme.headerStyle,
-                                  ),
-                                  ElevatedButton(onPressed: (){
-                                    orderController.requestToCancelOrder(singleOrderItem.id, 1);
-                                  }, child: Text('Cancel Order'))
-                                ],
-                            ),
-                            children: singleOrderItem.lines
-                                  .map((singleLineItem) => ListTile(
-                                title: Text(singleLineItem
-                                    .productVariant.name,style: CustomTheme.headerStyle,),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
-
-                                  ],
-                                ),
-                                leading: FadeInImage.assetNetwork(
-                                  width: 50,
-                                  height: 50,
-                                  placeholder: CommonVariableData
-                                      .placeholder,
-                                  image:
-                                  '${singleLineItem.featuredAsset?.preview}',
-                                  imageErrorBuilder: (context,
-                                      error, stackTrace) =>
-                                      Image.asset(
-                                        CommonVariableData
-                                            .placeholder,
-                                        width: 50,
-                                        height: 50,
-                                      ),
-                                ),
-                            ))
-                                  .toList(),
-                          ),
-                              ))
-                              .toList(),
-                        ),
-                      ),
-                    )
-                  : Card(
-                      child: Center(
-                        child: Text(
-                          'There is no order for you',
+                    title: Text(
+                      'Code: ${singleOrderItem.code}',
+                      style: CustomTheme.headerStyle,
+                    ),
+                    subtitle: singleOrderItem.customFields!.clientRequestToCancel == 1 ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('This Order is being requested to cancel by you',style: CustomTheme.headerStyle,),
+                        Text('Admin will take care of it',style: CustomTheme.headerStyle,),
+                      ],
+                    ) : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
                           style: CustomTheme.headerStyle,
                         ),
+                        Text(
+                          'Total Items: ${singleOrderItem.lines.length}',
+                          style: CustomTheme.headerStyle,
+                        ),
+                        Text(
+                          'State: ${checkStatus(singleOrderItem.state)}',
+                          style: CustomTheme.headerStyle,
+                        ),
+                        Text(
+                          'Order Placed At: ${DateFormat('yyy-MM-dd HH:mm a').format(parseDate(singleOrderItem.orderPlacedAt))}',
+                          style: CustomTheme.headerStyle,
+                        ),
+                        ElevatedButton(onPressed: (){
+                          orderController.requestToCancelOrder(singleOrderItem.id, 1);
+                        }, child: Text('Cancel Order'))
+                      ],
+                    ),
+                    children: singleOrderItem.lines
+                        .map((singleLineItem) => ListTile(
+                      title: Text(singleLineItem
+                          .productVariant.name,style: CustomTheme.headerStyle,),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
+
+                        ],
                       ),
-                    )),
+                      leading: FadeInImage.assetNetwork(
+                        width: 50,
+                        height: 50,
+                        placeholder: CommonVariableData
+                            .placeholder,
+                        image:
+                        '${singleLineItem.featuredAsset?.preview}',
+                        imageErrorBuilder: (context,
+                            error, stackTrace) =>
+                            Image.asset(
+                              CommonVariableData
+                                  .placeholder,
+                              width: 50,
+                              height: 50,
+                            ),
+                      ),
+                    ))
+                        .toList(),
+                  ),
+                ))
+                    .toList(),
+              ),
+            ),
+          )
+              : Card(
+            child: Center(
+              child: Text(
+                'There is no order for you',
+                style: CustomTheme.headerStyle,
+              ),
+            ),
+          )),
       bottomNavigationBar: BottomNavigationComponent(),
     );
   }

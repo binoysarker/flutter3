@@ -143,9 +143,10 @@ class UtilService {
       'authkey': '395929AcYuel89696451b515P1',
       'content-type': 'application/json'
     };
+    var isMorningDelivery = templateId == '64900e1ed6fc056a7b3a9c32';
     if (smsDeliveryType == SmsDeliveryType.morning_evening) {
       smsData['var1'] = orderId;
-      smsData['VAR2'] = '$formattedTime';
+      smsData[isMorningDelivery ? 'var2': 'VAR2'] = '$formattedTime';
     }
     if (smsDeliveryType == SmsDeliveryType.payment_failed) {
       smsData['var1'] = paymentValue;

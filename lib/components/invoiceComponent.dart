@@ -34,6 +34,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      print('invoice page is loaded');
       // Morning or Evening Delivery
       // var currentTime = DateTime.now();
       // var givenTime = DateTime(

@@ -289,6 +289,7 @@ class OrderController extends GetxController {
     city.clear();
     couponCode.clear();
     shippingAddressFormKey.currentState?.reset();
+    currentlySelectedShippingMethod.value = null;
   }
 
   void createRazorPayOrder() async {

@@ -74,7 +74,7 @@ enum CityToUseType{
   Madurai
 }
 
-var emptyShippingMethod = {
+var emptyShippingMethod =  {
   'id': '',
   'name': '',
   'code': '',

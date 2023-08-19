@@ -188,6 +188,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   } else if (orderController.currentStep.value == 2) {
                     print('last step ${orderController.currentStep.value}');
                     orderController.removeAllItemFromOrder();
+                    orderController.resetShippingMethodForm();
+
                     Get.offAll(() => StorePage());
                   } else if (orderController.currentStep.value == 1) {
                     // check for online or offline payment

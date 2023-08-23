@@ -73,7 +73,7 @@ class LoginPageController extends GetxController {
     lastName.text = '';
     otpController.text = '';
     checkboxStatus.value = false;
-    loginFormKey.currentState!.reset();
+    AllGlobalKeys.loginFormKey.currentState!.reset();
   }
 
   void setCurrentSignInProcess(String value) {
@@ -276,7 +276,7 @@ class LoginPageController extends GetxController {
       print('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
-      verifyOTPForm.currentState?.reset();
+      AllGlobalKeys.verifyOTPForm.currentState?.reset();
     } on Exception catch (e) {
       print(e.toString());
     }

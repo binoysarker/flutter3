@@ -52,7 +52,9 @@ enum OrderStateEnums {
   ExpressDeliverySelectedNotificationProcess,
   ArrangingPayment,
   DeliveryNotificationProcess,
-  PaymentSettled
+  PaymentSettled,
+  Cancelled,
+  Delivered
 }
 enum LocalStorageStrings{
   user_data,

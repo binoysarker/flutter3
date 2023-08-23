@@ -27,7 +27,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
     var currentAuthenticatedUser =
         userController.currentAuthenticatedUser.value;
     return Drawer(
-      key: drawerComponentKey,
+      key: AllGlobalKeys.drawerComponentKey,
       child: Container(
         height: 100,
         child: ListView(
@@ -97,7 +97,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               ),
               onTap: () {
                 // await FirebaseAuth.instance.signOut();
-                drawerComponentKey.currentState?.closeDrawer();
+                AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();
 
                 loginPageController.onUserLogout();
               },

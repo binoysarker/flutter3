@@ -120,7 +120,7 @@ class LoginPageState extends State<LoginPage> {
                   child: Card(
                     borderOnForeground: false,
                     child: Form(
-                      key: loginFormKey,
+                      key: AllGlobalKeys.loginFormKey,
                       child: ListView(
                         children: <Widget>[
                           Container(

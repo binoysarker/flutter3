@@ -33,7 +33,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(5)),
           child: Form(
-              key: verifyOTPForm,
+              key: AllGlobalKeys.verifyOTPForm,
               child: Column(
                 children: [
                   Text('Please put the OTP here',style: CustomTheme.headerStyle2,),
@@ -55,7 +55,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                   }, child: Text('Resend OTP', style: CustomTheme.headerStyle,)),
                   ElevatedButton(
                       onPressed: () {
-                        if (verifyOTPForm.currentState!.validate()) {
+                        if (AllGlobalKeys.verifyOTPForm.currentState!.validate()) {
                           print('validated');
                           print('controller code is ${loginPageController.otpController.text} and current code is ${loginPageController.currentlyGivenOTP.value}');
                           if(loginPageController.currentlyGivenOTP.value.toString() == loginPageController.otpController.text.toString()){

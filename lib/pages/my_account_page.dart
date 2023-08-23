@@ -168,7 +168,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                       if (showForm.value) {
                         updateInputField();
                       } else {
-                        myAccountFormKey.currentState!.reset();
+                        AllGlobalKeys.myAccountFormKey.currentState!.reset();
                       }
                     },
                     icon: showForm.isTrue
@@ -188,7 +188,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(() => showForm.isTrue
                       ? Form(
-                          key: myAccountFormKey,
+                          key: AllGlobalKeys.myAccountFormKey,
                           child: ListView(
                             children: [
                               Padding(
@@ -259,7 +259,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if (myAccountFormKey.currentState!
+                                    if (AllGlobalKeys.myAccountFormKey.currentState!
                                         .validate()) {
                                       final Map<String, String> customerData =
                                           {};

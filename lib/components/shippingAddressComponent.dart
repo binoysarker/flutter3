@@ -37,7 +37,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      shippingAddressFormKey.currentState?.reset();
+      AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
       orderController.useCurrentUserAddress.value = false;
     });
@@ -55,10 +55,9 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       ? Colors.green
                       : Colors.lightGreen,
                   child: Column(
-                    children: userController
-                        .currentAuthenticatedUser.value!.addresses!
-                        .map((e) {
-                      return GestureDetector(
+                    children: [
+                      orderController.shippingAddressOrder.value?.shippingAddress != null ?
+                      GestureDetector(
                         onTap: () {
                           print('onTap');
                           orderController.useCurrentUserAddress.value = true;
@@ -80,7 +79,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '${e.fullName}',
+                                      '${orderController.shippingAddressOrder.value?.shippingAddress!.fullName}',
                                       style: CustomTheme.paragraphStyle,
                                     ),
                                   ],
@@ -92,7 +91,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '${e.streetLine1},${e.streetLine2}',
+                                      '${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine1},${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine2}',
                                       style: CustomTheme.paragraphStyle,
                                     ),
                                   ],
@@ -104,7 +103,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '${e.city}',
+                                      '${orderController.shippingAddressOrder.value?.shippingAddress!.city}',
                                       style: CustomTheme.paragraphStyle,
                                     ),
                                   ],
@@ -116,7 +115,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                       style: CustomTheme.headerStyle,
                                     ),
                                     Text(
-                                      '${e.phoneNumber}',
+                                      '${orderController.shippingAddressOrder.value?.shippingAddress!.phoneNumber}',
                                       style: CustomTheme.paragraphStyle,
                                     ),
                                   ],
@@ -125,8 +124,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             ),
                           ),
                         ),
-                      );
-                    }).toList(),
+                      ) : SizedBox()
+                    ],
                   ),
                 )),
 
@@ -135,7 +134,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
         ),
         Obx(() => showForm.isTrue
             ? Form(
-                key: shippingAddressFormKey,
+                key: AllGlobalKeys.shippingAddressFormKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -260,6 +259,15 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                         ],
                       ),
                     ),
+                    ElevatedButton(
+                        onPressed: () {
+                          showForm.value = !showForm.value;
+                          orderController.setShippingAddress(false);
+
+                        },
+                        child: Text('Submit',
+                          style: CustomTheme.headerStyle,
+                        ))
                   ],
                 ))
             : Column(

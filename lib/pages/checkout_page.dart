@@ -107,11 +107,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ))),
         ];
 
-    void addShippingDetail(){
+    void addShippingDetail() {
       orderController.setOtherInstruction();
-      orderController.setShippingAddress();
+      orderController.setShippingAddress(true);
       orderController.setShippingMethod();
     }
+
+    processOfflinePaymentSms() {
+      // Morning or Evening Delivery
+      // var currentTime = DateTime.now();
+      // var givenTime = DateTime(
+      //     currentTime.year, currentTime.month, currentTime.day, 18, 0, 0);
+      var showEveningSms =
+          orderController.currentlySelectedShippingMethod.value!.code !=
+              'morning-delivery';
+      // if (currentTime.isAfter(givenTime)) {
+      //   showEveningSms = true;
+      // }
+      var templateId = showEveningSms
+          ? "649011f6d6fc053db57148e5"
+          : "64900e1ed6fc056a7b3a9c32";
+      var number =
+          userController.currentAuthenticatedUser.value!.phoneNumber.toString();
+      UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
+          '${orderController.activeOrderResponse.value!.code}', '');
+      orderController.useCurrentUserAddress.value = false;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -129,7 +151,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   print('current step ${orderController.currentStep.value}');
 
                   if (orderController.currentStep.value == 0) {
-                    if(orderController.currentlySelectedShippingMethod.value != null){
+                    if (orderController.currentlySelectedShippingMethod.value !=
+                        null) {
                       print(
                           '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
                       if (orderController.useCurrentUserAddress.isTrue) {
@@ -141,8 +164,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           res.then((value) {
                             print(value);
                             if (value) {
-                              if(orderController.otherInstructions.text.length > 0){
-                              //  save this field data
+                              if (orderController
+                                      .otherInstructions.text.length >
+                                  0) {
+                                //  save this field data
 
                               }
                               addShippingDetail();
@@ -152,8 +177,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           addShippingDetail();
                         }
                       } else {
-                        final form = shippingAddressFormKey.currentState;
-                        if(form != null){
+                        final form =
+                            AllGlobalKeys.shippingAddressFormKey.currentState;
+                        if (form != null) {
                           if (form.validate()) {
                             print('validated');
                             addShippingDetail();
@@ -166,8 +192,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               backgroundColor: Colors.yellow,
                             );
                           }
-
-                        }else {
+                        } else {
                           Get.snackbar(
                             '',
                             'Please select an address',
@@ -176,8 +201,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           );
                         }
                       }
-
-                    }else {
+                    } else {
                       Get.snackbar(
                         '',
                         'Please select delivery time',
@@ -206,6 +230,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
                           'paymentType': PaymentOptionType.offline.name,
                         });
+                        processOfflinePaymentSms();
                       });
                     }
                   }

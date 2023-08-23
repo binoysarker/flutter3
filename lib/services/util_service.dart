@@ -154,12 +154,13 @@ class UtilService {
     }
 
     try {
+      print('send sms detail ${smsData}');
       final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
-      print('${res.body}');
+      print('send sms response ${res.body}');
     } on Exception catch (e) {
-      print(e.toString());
+      print('send sms error ${e.toString()}');
     }
   }
 

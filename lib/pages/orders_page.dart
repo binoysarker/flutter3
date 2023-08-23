@@ -49,7 +49,7 @@ class _OrdersPageState extends State<OrdersPage> {
     // var activeOrder = orderController.activeOrderResponse.value;
 
     var currencySymbol =
-        UtilService.getCurrencySymble(currentUser.orders.items.first.code);
+        currentUser.orders.items.length > 0 ? UtilService.getCurrencySymble(currentUser.orders.items.first.code) : r'₹';
 
     DateTime parseDate(String? dateString) {
       var data = DateTime.now();
@@ -61,6 +61,13 @@ class _OrdersPageState extends State<OrdersPage> {
     List<Query$GetActiveCustomer$activeCustomer$orders$items> getSortedList(List<Query$GetActiveCustomer$activeCustomer$orders$items> list){
        list.sort((a,b) => parseDate(b.orderPlacedAt).compareTo(parseDate(a.orderPlacedAt)));
        return list;
+    }
+    bool shouldShowButton(Query$GetActiveCustomer$activeCustomer$orders$items singleItem){
+      var status = true;
+      if(singleItem.state == OrderStateEnums.Cancelled.name || singleItem.state == OrderStateEnums.Delivered.name){
+        status = false;
+      }
+      return status;
     }
 
     return Scaffold(
@@ -122,9 +129,9 @@ class _OrdersPageState extends State<OrdersPage> {
                           'Order Placed At: ${DateFormat('yyy-MM-dd HH:mm a').format(parseDate(singleOrderItem.orderPlacedAt))}',
                           style: CustomTheme.headerStyle,
                         ),
-                        ElevatedButton(onPressed: (){
+                        shouldShowButton(singleOrderItem) ? ElevatedButton(onPressed: (){
                           orderController.requestToCancelOrder(singleOrderItem.id, 1);
-                        }, child: Text('Cancel Order'))
+                        }, child: Text('Cancel Order')) : SizedBox()
                       ],
                     ),
                     children: singleOrderItem.lines

@@ -288,7 +288,7 @@ class OrderController extends GetxController {
     // postalCode.clear();
     city.clear();
     couponCode.clear();
-    shippingAddressFormKey.currentState?.reset();
+    AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
     currentlySelectedShippingMethod.value = null;
   }
 
@@ -426,37 +426,22 @@ class OrderController extends GetxController {
 
   }
 
-  void setShippingAddress() async {
+  void setShippingAddress(bool showIncreaseCurrentStep) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value.mutate$SetShippingAddress(
         Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
-                    streetLine1: useCurrentUserAddress.value
-                        ? userController.currentAuthenticatedUser.value!
-                            .addresses!.first.streetLine1
-                        : streetLine1.text,
-                    streetLine2: useCurrentUserAddress.value
-                        ? userController.currentAuthenticatedUser.value!
-                            .addresses!.first.streetLine2
-                        : streetLine2.text,
+                    streetLine1:streetLine1.text,
+                    streetLine2: streetLine2.text,
                     countryCode: currentlySelectedCountryCode.value,
                     city: CityToUseType.Madurai.name,
                     province: 'Maharashtra',
-                    fullName: useCurrentUserAddress.value
-                        ? userController.currentAuthenticatedUser.value!
-                            .addresses!.first.fullName
-                        : fullName.text,
-                    postalCode: useCurrentUserAddress.value
-                        ? userController.currentAuthenticatedUser.value!
-                            .addresses!.first.postalCode
-                        : selectedPostalCode.value,
+                    fullName: fullName.text,
+                    postalCode: selectedPostalCode.value,
                     defaultShippingAddress: makeDefaultShippingAddress.value,
-                    phoneNumber: useCurrentUserAddress.value
-                        ? userController.currentAuthenticatedUser.value!
-                            .addresses!.first.phoneNumber
-                        : userController.currentAuthenticatedUser.value!.phoneNumber.toString()))));
+                    phoneNumber: userController.currentAuthenticatedUser.value!.phoneNumber.toString()))));
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -467,7 +452,7 @@ class OrderController extends GetxController {
       shippingAddressOrder.value = res.parsedData!.setOrderShippingAddress
           as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
-      currentStep.value++;
+      if(showIncreaseCurrentStep) currentStep.value++;
     }
   }
 
@@ -515,7 +500,7 @@ class OrderController extends GetxController {
           'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
-      currentlySelectedShippingMethod.value = emptyShippingMethod as Query$GetEligibleShippingMethods$eligibleShippingMethods?;
+      currentlySelectedShippingMethod.value = null;
       isLoading.value = false;
     }
   }

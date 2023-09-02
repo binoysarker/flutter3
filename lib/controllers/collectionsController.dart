@@ -39,7 +39,7 @@ class CollectionsController extends GetxController {
     }
   }
 
-  void getSingleCollectionDetail(String slug) async {
+  void getSingleCollectionDetail(String id) async {
     try {
       isLoading.value = true;
       graphqlService = GraphqlService();
@@ -47,7 +47,7 @@ class CollectionsController extends GetxController {
           .query$GetCollectionsByIdOrSlug(
               Options$Query$GetCollectionsByIdOrSlug(
                   variables:
-                      Variables$Query$GetCollectionsByIdOrSlug(slug: slug)));
+                      Variables$Query$GetCollectionsByIdOrSlug(id: id)));
       if (res.hasException) {
         print('${res.exception.toString()}');
         isLoading.value = false;

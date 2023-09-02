@@ -6,6 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
@@ -134,10 +135,11 @@ class UtilService {
       "sender": "KAIMSG",
       "mobiles": "+91$number",
     };
+    initializeDateFormatting('en-IN','');
     var currentTime = DateTime.now();
     var tomorrowTime = DateTime(
         currentTime.year, currentTime.month, currentTime.day + 1, 0, 0);
-    String formattedTime = DateFormat('yyyy-MM-dd HH:mm').format(tomorrowTime);
+    String formattedTime = DateFormat('yyyy-MM-dd HH:mm','en-IN').format(tomorrowTime);
     var headerData = {
       'accept': 'application/json',
       'authkey': '395929AcYuel89696451b515P1',

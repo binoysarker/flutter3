@@ -9,9 +9,9 @@ class ValidatorDefinition {
   ]);
   static final passwordMultiValidator = MultiValidator([
     RequiredValidator(errorText: 'Password is required'),
-    PatternValidator(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',
+    PatternValidator(r'^([a-zA-Z0-9]{8,12})$',
         errorText:
-            'Minimum eight characters, at least \n one letter and one number')
+            'Minimum eight characters, maximum\n12 characters , at least one letter and one number,\nspecial characters like (@,\$,&,#) are not accepted')
   ]);
   static final phoneNumberMultiValidator = MultiValidator([
     RequiredValidator(errorText: 'Phone is Required'),

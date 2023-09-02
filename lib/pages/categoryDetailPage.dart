@@ -29,7 +29,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print('arguments $routerArguments');
-      collectionsController.getSingleCollectionDetail(routerArguments['slug']);
+      collectionsController.getSingleCollectionDetail(routerArguments['id']);
     });
   }
 

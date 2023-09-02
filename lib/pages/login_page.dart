@@ -42,7 +42,6 @@ class LoginPageState extends State<LoginPage> {
           if(isReady && phoneStorage.getItem(LocalStorageStrings.phone.name) != null){
             phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneStorage.getItem(LocalStorageStrings.phone.name));
             print('phone $phone');
-
             if (rememberMe == 'true' && phone != null) {
               passwordStorage.ready.then((value) {
                 password =
@@ -52,7 +51,7 @@ class LoginPageState extends State<LoginPage> {
                 loginPageController.phoneNumber.text = phone;
                 loginPageController.passwordController.text = password;
                 loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
-                // loginPageController.onUserSignIn(context);
+                loginPageController.onUserSignIn(context);
               });
 
 

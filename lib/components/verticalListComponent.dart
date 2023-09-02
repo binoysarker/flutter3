@@ -67,7 +67,7 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
         var index = widget.givenList.indexOf(element);
         var item = (widget.givenList
             as List<Query$GetAllCollections$collections$items>)[index];
-        Get.to(() => CategoryDetailPage(), arguments: {'slug': '${item.slug}'});
+        Get.to(() => CategoryDetailPage(), arguments: {'id': item.id});
       }
     }
 

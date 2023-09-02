@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:encryptor/encryptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -123,7 +124,7 @@ class LoginPageController extends GetxController {
   void onUserLogout() async {
     loading.value = true;
     graphqlService = GraphqlService();
-    
+
     final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
@@ -133,13 +134,16 @@ class LoginPageController extends GetxController {
     if (res.data != null) {
       print('${res.parsedData!.logout.toJson()}');
       loading.value = false;
-      final LocalStorage localStorage =
-          new LocalStorage(LocalStorageStrings.auth_token.name);
-      localStorage.clear();
+      authTokenStorage.ready.then((value) => authTokenStorage.clear());
+
       orderController.resetData();
-      Get.offAll(() => LoginPage());
-      Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
-      resetFormField();
+      // Get.offAll(() => LoginPage());
+      // Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
+      // resetFormField();
+      // Navigator.pop(context);
+      // AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();
+      // MoveToBackground.moveTaskToBack();
+      SystemNavigator.pop();
     }
   }
 

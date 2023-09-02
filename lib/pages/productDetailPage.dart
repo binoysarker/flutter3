@@ -31,13 +31,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print('arguments ${widget.routerArguments}');
-      productsController.getProductDetail(widget.routerArguments['slug']);
+      productsController.getProductDetail(widget.routerArguments['id']);
       var item = orderController.activeOrderResponse.value!.lines
           .firstWhereOrNull((element) =>
               element.id == productsController.selectedProductDetail.value!.id);
       print('quantity is $item');
-      productsController.quantityController.text =
-          item != null ? item.quantity.toString() : '1';
+      productsController.quantityController.text = '1';
+      productsController.currentQuantity.value = 1;
     });
   }
 
@@ -61,7 +61,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   }
 
   String getPrice() {
-    return 'Price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
+    return ' price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
+  }
+  String getOptionQuantity() {
+    return '${productsController.selectedProductDetail.value?.options.first.name}';
   }
 
   @override
@@ -171,6 +174,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
+                              Text(
+                                getOptionQuantity(),
+                                style: CustomTheme.headerStyle,
+                              ),
                               Expanded(
                                 child: Text(
                                   getPrice(),

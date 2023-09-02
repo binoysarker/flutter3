@@ -45,7 +45,7 @@ class MyAccountPageState extends State<MyAccountPage> {
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           child: Text(
-            'Address #${index + 1}',
+            'Address',
             style: CustomTheme.headerStyle,
           ),
         ),
@@ -357,7 +357,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                               ],
                             ),
                             Text(
-                              'Address List: ',
+                              'Address : ',
                               style: CustomTheme.headerStyle,
                             ),
                             Padding(

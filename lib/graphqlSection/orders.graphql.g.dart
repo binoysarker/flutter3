@@ -17,6 +17,7 @@ Fragment$OrderAddress _$Fragment$OrderAddressFromJson(
       province: json['province'] as String?,
       postalCode: json['postalCode'] as String?,
       country: json['country'] as String?,
+      countryCode: json['countryCode'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
       $__typename: json['__typename'] as String,
     );
@@ -32,6 +33,7 @@ Map<String, dynamic> _$Fragment$OrderAddressToJson(
       'province': instance.province,
       'postalCode': instance.postalCode,
       'country': instance.country,
+      'countryCode': instance.countryCode,
       'phoneNumber': instance.phoneNumber,
       '__typename': instance.$__typename,
     };
@@ -4201,6 +4203,7 @@ Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
           province: json['province'] as String?,
           postalCode: json['postalCode'] as String?,
           country: json['country'] as String?,
+          countryCode: json['countryCode'] as String?,
           phoneNumber: json['phoneNumber'] as String?,
           $__typename: json['__typename'] as String,
           customFields: json['customFields'] as String?,
@@ -4219,6 +4222,7 @@ Map<String, dynamic>
           'province': instance.province,
           'postalCode': instance.postalCode,
           'country': instance.country,
+          'countryCode': instance.countryCode,
           'phoneNumber': instance.phoneNumber,
           '__typename': instance.$__typename,
           'customFields': instance.customFields,

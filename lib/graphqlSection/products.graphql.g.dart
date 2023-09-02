@@ -6,6 +6,22 @@ part of 'products.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Fragment$Options _$Fragment$OptionsFromJson(Map<String, dynamic> json) =>
+    Fragment$Options(
+      name: json['name'] as String,
+      code: json['code'] as String,
+      id: json['id'] as String,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Fragment$OptionsToJson(Fragment$Options instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'code': instance.code,
+      'id': instance.id,
+      '__typename': instance.$__typename,
+    };
+
 Fragment$Asset _$Fragment$AssetFromJson(Map<String, dynamic> json) =>
     Fragment$Asset(
       id: json['id'] as String,
@@ -103,7 +119,7 @@ Query$GetAllProducts$products$items
               .toList(),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetAllProducts$products$items$featuredAsset.fromJson(
+              : Fragment$Asset.fromJson(
                   json['featuredAsset'] as Map<String, dynamic>),
           assets: (json['assets'] as List<dynamic>)
               .map((e) => Query$GetAllProducts$products$items$assets.fromJson(
@@ -144,8 +160,11 @@ Query$GetAllProducts$products$items$variants
           productId: json['productId'] as String,
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetAllProducts$products$items$variants$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          options: (json['options'] as List<dynamic>)
+              .map((e) => Fragment$Options.fromJson(e as Map<String, dynamic>))
+              .toList(),
           $__typename: json['__typename'] as String,
         );
 
@@ -159,6 +178,7 @@ Map<String, dynamic> _$Query$GetAllProducts$products$items$variantsToJson(
       'priceWithTax': instance.priceWithTax,
       'productId': instance.productId,
       'featuredAsset': instance.featuredAsset?.toJson(),
+      'options': instance.options.map((e) => e.toJson()).toList(),
       '__typename': instance.$__typename,
     };
 
@@ -323,41 +343,6 @@ const _$Enum$CurrencyCodeEnumMap = {
   Enum$CurrencyCode.$unknown: r'$unknown',
 };
 
-Query$GetAllProducts$products$items$variants$featuredAsset
-    _$Query$GetAllProducts$products$items$variants$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetAllProducts$products$items$variants$featuredAsset(
-          preview: json['preview'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String,
-    dynamic> _$Query$GetAllProducts$products$items$variants$featuredAssetToJson(
-        Query$GetAllProducts$products$items$variants$featuredAsset instance) =>
-    <String, dynamic>{
-      'preview': instance.preview,
-      '__typename': instance.$__typename,
-    };
-
-Query$GetAllProducts$products$items$featuredAsset
-    _$Query$GetAllProducts$products$items$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetAllProducts$products$items$featuredAsset(
-          name: json['name'] as String,
-          id: json['id'] as String,
-          preview: json['preview'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic> _$Query$GetAllProducts$products$items$featuredAssetToJson(
-        Query$GetAllProducts$products$items$featuredAsset instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'id': instance.id,
-      'preview': instance.preview,
-      '__typename': instance.$__typename,
-    };
-
 Query$GetAllProducts$products$items$assets
     _$Query$GetAllProducts$products$items$assetsFromJson(
             Map<String, dynamic> json) =>
@@ -473,6 +458,7 @@ Map<String, dynamic> _$Query$SearchProducts$searchToJson(
 Query$SearchProducts$search$items _$Query$SearchProducts$search$itemsFromJson(
         Map<String, dynamic> json) =>
     Query$SearchProducts$search$items(
+      productVariantId: json['productVariantId'] as String,
       productId: json['productId'] as String,
       slug: json['slug'] as String,
       productName: json['productName'] as String,
@@ -489,6 +475,7 @@ Query$SearchProducts$search$items _$Query$SearchProducts$search$itemsFromJson(
 Map<String, dynamic> _$Query$SearchProducts$search$itemsToJson(
         Query$SearchProducts$search$items instance) =>
     <String, dynamic>{
+      'productVariantId': instance.productVariantId,
       'productId': instance.productId,
       'slug': instance.slug,
       'productName': instance.productName,
@@ -630,13 +617,13 @@ Map<String,
 Variables$Query$GetProductDetail _$Variables$Query$GetProductDetailFromJson(
         Map<String, dynamic> json) =>
     Variables$Query$GetProductDetail(
-      slug: json['slug'] as String,
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$Variables$Query$GetProductDetailToJson(
         Variables$Query$GetProductDetail instance) =>
     <String, dynamic>{
-      'slug': instance.slug,
+      'id': instance.id,
     };
 
 Query$GetProductDetail _$Query$GetProductDetailFromJson(
@@ -700,9 +687,7 @@ Query$GetProductDetail$product$variants
           id: json['id'] as String,
           name: json['name'] as String,
           options: (json['options'] as List<dynamic>)
-              .map((e) =>
-                  Query$GetProductDetail$product$variants$options.fromJson(
-                      e as Map<String, dynamic>))
+              .map((e) => Fragment$Options.fromJson(e as Map<String, dynamic>))
               .toList(),
           featuredAsset: json['featuredAsset'] == null
               ? null
@@ -901,23 +886,6 @@ const _$Enum$LanguageCodeEnumMap = {
   Enum$LanguageCode.zu: 'zu',
   Enum$LanguageCode.$unknown: r'$unknown',
 };
-
-Query$GetProductDetail$product$variants$options
-    _$Query$GetProductDetail$product$variants$optionsFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetProductDetail$product$variants$options(
-          code: json['code'] as String,
-          name: json['name'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic> _$Query$GetProductDetail$product$variants$optionsToJson(
-        Query$GetProductDetail$product$variants$options instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'name': instance.name,
-      '__typename': instance.$__typename,
-    };
 
 Query$GetProductDetail$product$variants$assets
     _$Query$GetProductDetail$product$variants$assetsFromJson(

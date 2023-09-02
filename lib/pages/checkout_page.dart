@@ -113,7 +113,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       orderController.setShippingMethod();
     }
 
-    processOfflinePaymentSms() {
+    void processOfflinePaymentSms() {
       // Morning or Evening Delivery
       // var currentTime = DateTime.now();
       // var givenTime = DateTime(
@@ -155,7 +155,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         null) {
                       print(
                           '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
-                      if (orderController.useCurrentUserAddress.isTrue) {
+                      if (orderController.useCurrentUserAddress.isTrue || orderController.useShippingAddress.isTrue) {
                         print(
                             'has coupon code ${orderController.hasCouponCode}');
                         if (orderController.hasCouponCode.isTrue) {
@@ -164,12 +164,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           res.then((value) {
                             print(value);
                             if (value) {
-                              if (orderController
-                                      .otherInstructions.text.length >
-                                  0) {
-                                //  save this field data
 
-                              }
                               addShippingDetail();
                             }
                           });

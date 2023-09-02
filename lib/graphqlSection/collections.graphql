@@ -18,8 +18,8 @@ query GetAvailableCountries{
         }
     }
 }
-query GetCollectionsByIdOrSlug($id: ID,$slug: String){
-    collection(id: $id,slug: $slug){
+query GetCollectionsByIdOrSlug($id: ID){
+    collection(id: $id){
         id
         name
         description
@@ -32,7 +32,10 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
                 priceWithTax
                 currencyCode
                 featuredAsset {
-                    preview
+                    ...Asset
+                }
+                options {
+                    ...Options
                 }
                 productId
                 product {
@@ -73,17 +76,19 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
                     }
                     currencyCode
                     featuredAsset {
-                        name
-                        preview
+                        ...Asset
+                    }
+                    options {
+                        ...Options
                     }
                     price
                     priceWithTax
                     product {
+                        id
                         name
                         slug
                         featuredAsset {
-                            preview
-                            name
+                            ...Asset
                         }
                     }
                 }
@@ -94,9 +99,7 @@ query GetCollectionsByIdOrSlug($id: ID,$slug: String){
             }
         }
         featuredAsset {
-            id
-            preview
-            __typename
+            ...Asset
         }
         __typename
 
@@ -115,9 +118,21 @@ query GetAllCollections($input: CollectionListOptions) {
                 __typename
             }
             featuredAsset {
-                id
-                preview
-                __typename
+                ...Asset
+            }
+            productVariants{
+                items {
+                    id
+                    name
+                    currencyCode
+                    languageCode
+                    options {
+                        ...Options
+                    }
+                    featuredAsset {
+                        ...Asset
+                    }
+                }
             }
             __typename
         }

@@ -27,6 +27,7 @@ samples, guidance on mobile development, and a full API reference.
 - flutter pub run flutter_launcher_icons:main
 - flutter pub run flutter_native_splash:create
 - flutter pub run build_runner build --delete-conflicting-outputs
+- flutter pub global run rename --appname "kaaikani"
 # jre class path related error:
 - change the jkd7 to jdk8 in build.gradle file
 - change minsdk to 21

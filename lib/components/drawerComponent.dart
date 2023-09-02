@@ -80,7 +80,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                             children: collectionsController.collectionItems.map((element) => ListTile(
                               title: Text(element.name,style: CustomTheme.headerStyle,),
                               onTap: () {
-                                Get.to(() => CategoryDetailPage(),arguments: {'slug': element.slug});
+                                Get.to(() => CategoryDetailPage(),arguments: {'id': element.id});
                               },
                             )).toList(),
                           ),

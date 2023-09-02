@@ -283,14 +283,12 @@ Variables$Query$GetCollectionsByIdOrSlug
             Map<String, dynamic> json) =>
         Variables$Query$GetCollectionsByIdOrSlug(
           id: json['id'] as String?,
-          slug: json['slug'] as String?,
         );
 
 Map<String, dynamic> _$Variables$Query$GetCollectionsByIdOrSlugToJson(
         Variables$Query$GetCollectionsByIdOrSlug instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'slug': instance.slug,
     };
 
 Query$GetCollectionsByIdOrSlug _$Query$GetCollectionsByIdOrSlugFromJson(
@@ -336,8 +334,8 @@ Query$GetCollectionsByIdOrSlug$collection
               .toList(),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetCollectionsByIdOrSlug$collection$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
@@ -389,8 +387,11 @@ Query$GetCollectionsByIdOrSlug$collection$productVariants$items
               unknownValue: Enum$CurrencyCode.$unknown),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          options: (json['options'] as List<dynamic>)
+              .map((e) => Fragment$Options.fromJson(e as Map<String, dynamic>))
+              .toList(),
           productId: json['productId'] as String,
           product:
               Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
@@ -409,6 +410,7 @@ Map<String, dynamic>
           'priceWithTax': instance.priceWithTax,
           'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
           'featuredAsset': instance.featuredAsset?.toJson(),
+          'options': instance.options.map((e) => e.toJson()).toList(),
           'productId': instance.productId,
           'product': instance.product.toJson(),
           '__typename': instance.$__typename,
@@ -575,23 +577,6 @@ const _$Enum$CurrencyCodeEnumMap = {
   Enum$CurrencyCode.$unknown: r'$unknown',
 };
 
-Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-          preview: json['preview'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetToJson(
-            Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-                instance) =>
-        <String, dynamic>{
-          'preview': instance.preview,
-          '__typename': instance.$__typename,
-        };
-
 Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
     _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$productFromJson(
             Map<String, dynamic> json) =>
@@ -725,8 +710,11 @@ Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items
               unknownValue: Enum$CurrencyCode.$unknown),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          options: (json['options'] as List<dynamic>)
+              .map((e) => Fragment$Options.fromJson(e as Map<String, dynamic>))
+              .toList(),
           price: json['price'] as int,
           priceWithTax: json['priceWithTax'] as int,
           product:
@@ -746,6 +734,7 @@ Map<String, dynamic>
           'assets': instance.assets.map((e) => e.toJson()).toList(),
           'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
           'featuredAsset': instance.featuredAsset?.toJson(),
+          'options': instance.options.map((e) => e.toJson()).toList(),
           'price': instance.price,
           'priceWithTax': instance.priceWithTax,
           'product': instance.product.toJson(),
@@ -771,35 +760,17 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
-Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-          name: json['name'] as String,
-          preview: json['preview'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetToJson(
-            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-                instance) =>
-        <String, dynamic>{
-          'name': instance.name,
-          'preview': instance.preview,
-          '__typename': instance.$__typename,
-        };
-
 Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
     _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$productFromJson(
             Map<String, dynamic> json) =>
         Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product(
+          id: json['id'] as String,
           name: json['name'] as String,
           slug: json['slug'] as String,
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
@@ -808,46 +779,10 @@ Map<String, dynamic>
             Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product
                 instance) =>
         <String, dynamic>{
+          'id': instance.id,
           'name': instance.name,
           'slug': instance.slug,
           'featuredAsset': instance.featuredAsset?.toJson(),
-          '__typename': instance.$__typename,
-        };
-
-Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-          preview: json['preview'] as String,
-          name: json['name'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetToJson(
-            Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-                instance) =>
-        <String, dynamic>{
-          'preview': instance.preview,
-          'name': instance.name,
-          '__typename': instance.$__typename,
-        };
-
-Query$GetCollectionsByIdOrSlug$collection$featuredAsset
-    _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetFromJson(
-            Map<String, dynamic> json) =>
-        Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-          id: json['id'] as String,
-          preview: json['preview'] as String,
-          $__typename: json['__typename'] as String,
-        );
-
-Map<String, dynamic>
-    _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetToJson(
-            Query$GetCollectionsByIdOrSlug$collection$featuredAsset instance) =>
-        <String, dynamic>{
-          'id': instance.id,
-          'preview': instance.preview,
           '__typename': instance.$__typename,
         };
 
@@ -911,8 +846,11 @@ Query$GetAllCollections$collections$items
                   json['parent'] as Map<String, dynamic>),
           featuredAsset: json['featuredAsset'] == null
               ? null
-              : Query$GetAllCollections$collections$items$featuredAsset
-                  .fromJson(json['featuredAsset'] as Map<String, dynamic>),
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
+          productVariants:
+              Query$GetAllCollections$collections$items$productVariants
+                  .fromJson(json['productVariants'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
@@ -924,6 +862,7 @@ Map<String, dynamic> _$Query$GetAllCollections$collections$itemsToJson(
       'slug': instance.slug,
       'parent': instance.parent?.toJson(),
       'featuredAsset': instance.featuredAsset?.toJson(),
+      'productVariants': instance.productVariants.toJson(),
       '__typename': instance.$__typename,
     };
 
@@ -946,20 +885,58 @@ Map<String, dynamic> _$Query$GetAllCollections$collections$items$parentToJson(
       '__typename': instance.$__typename,
     };
 
-Query$GetAllCollections$collections$items$featuredAsset
-    _$Query$GetAllCollections$collections$items$featuredAssetFromJson(
+Query$GetAllCollections$collections$items$productVariants
+    _$Query$GetAllCollections$collections$items$productVariantsFromJson(
             Map<String, dynamic> json) =>
-        Query$GetAllCollections$collections$items$featuredAsset(
+        Query$GetAllCollections$collections$items$productVariants(
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetAllCollections$collections$items$productVariants$items
+                      .fromJson(e as Map<String, dynamic>))
+              .toList(),
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String,
+    dynamic> _$Query$GetAllCollections$collections$items$productVariantsToJson(
+        Query$GetAllCollections$collections$items$productVariants instance) =>
+    <String, dynamic>{
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetAllCollections$collections$items$productVariants$items
+    _$Query$GetAllCollections$collections$items$productVariants$itemsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetAllCollections$collections$items$productVariants$items(
           id: json['id'] as String,
-          preview: json['preview'] as String,
+          name: json['name'] as String,
+          currencyCode: $enumDecode(
+              _$Enum$CurrencyCodeEnumMap, json['currencyCode'],
+              unknownValue: Enum$CurrencyCode.$unknown),
+          languageCode: $enumDecode(
+              _$Enum$LanguageCodeEnumMap, json['languageCode'],
+              unknownValue: Enum$LanguageCode.$unknown),
+          options: (json['options'] as List<dynamic>)
+              .map((e) => Fragment$Options.fromJson(e as Map<String, dynamic>))
+              .toList(),
+          featuredAsset: json['featuredAsset'] == null
+              ? null
+              : Fragment$Asset.fromJson(
+                  json['featuredAsset'] as Map<String, dynamic>),
           $__typename: json['__typename'] as String,
         );
 
 Map<String, dynamic>
-    _$Query$GetAllCollections$collections$items$featuredAssetToJson(
-            Query$GetAllCollections$collections$items$featuredAsset instance) =>
+    _$Query$GetAllCollections$collections$items$productVariants$itemsToJson(
+            Query$GetAllCollections$collections$items$productVariants$items
+                instance) =>
         <String, dynamic>{
           'id': instance.id,
-          'preview': instance.preview,
+          'name': instance.name,
+          'currencyCode': _$Enum$CurrencyCodeEnumMap[instance.currencyCode]!,
+          'languageCode': _$Enum$LanguageCodeEnumMap[instance.languageCode]!,
+          'options': instance.options.map((e) => e.toJson()).toList(),
+          'featuredAsset': instance.featuredAsset?.toJson(),
           '__typename': instance.$__typename,
         };

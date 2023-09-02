@@ -12,7 +12,7 @@ class CustomTheme with ChangeNotifier {
 
   static TextStyle headerStyle = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,
-      fontSize: 15
+      fontSize: 15,
   );
   static TextStyle headerStyle4 = GoogleFonts.openSans(
       fontWeight: FontWeight.bold,

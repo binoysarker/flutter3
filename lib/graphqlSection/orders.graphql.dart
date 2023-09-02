@@ -1,3 +1,5 @@
+import 'authentication.graphql.dart';
+import 'cart_data.graphql.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
@@ -18,6 +20,7 @@ class Fragment$OrderAddress {
       this.province,
       this.postalCode,
       this.country,
+      this.countryCode,
       this.phoneNumber,
       required this.$__typename});
 
@@ -41,6 +44,8 @@ class Fragment$OrderAddress {
 
   final String? country;
 
+  final String? countryCode;
+
   final String? phoneNumber;
 
   @JsonKey(name: '__typename')
@@ -56,6 +61,7 @@ class Fragment$OrderAddress {
     final l$province = province;
     final l$postalCode = postalCode;
     final l$country = country;
+    final l$countryCode = countryCode;
     final l$phoneNumber = phoneNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -67,6 +73,7 @@ class Fragment$OrderAddress {
       l$province,
       l$postalCode,
       l$country,
+      l$countryCode,
       l$phoneNumber,
       l$$__typename
     ]);
@@ -101,6 +108,9 @@ class Fragment$OrderAddress {
     final l$country = country;
     final lOther$country = other.country;
     if (l$country != lOther$country) return false;
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) return false;
     final l$phoneNumber = phoneNumber;
     final lOther$phoneNumber = other.phoneNumber;
     if (l$phoneNumber != lOther$phoneNumber) return false;
@@ -133,6 +143,7 @@ abstract class CopyWith$Fragment$OrderAddress<TRes> {
       String? province,
       String? postalCode,
       String? country,
+      String? countryCode,
       String? phoneNumber,
       String? $__typename});
 }
@@ -156,6 +167,7 @@ class _CopyWithImpl$Fragment$OrderAddress<TRes>
           Object? province = _undefined,
           Object? postalCode = _undefined,
           Object? country = _undefined,
+          Object? countryCode = _undefined,
           Object? phoneNumber = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Fragment$OrderAddress(
@@ -179,6 +191,9 @@ class _CopyWithImpl$Fragment$OrderAddress<TRes>
               : (postalCode as String?),
           country:
               country == _undefined ? _instance.country : (country as String?),
+          countryCode: countryCode == _undefined
+              ? _instance.countryCode
+              : (countryCode as String?),
           phoneNumber: phoneNumber == _undefined
               ? _instance.phoneNumber
               : (phoneNumber as String?),
@@ -202,6 +217,7 @@ class _CopyWithStubImpl$Fragment$OrderAddress<TRes>
           String? province,
           String? postalCode,
           String? country,
+          String? countryCode,
           String? phoneNumber,
           String? $__typename}) =>
       _res;
@@ -258,6 +274,12 @@ const fragmentDefinitionOrderAddress = FragmentDefinitionNode(
           selectionSet: null),
       FieldNode(
           name: NameNode(value: 'country'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null),
+      FieldNode(
+          name: NameNode(value: 'countryCode'),
           alias: null,
           arguments: [],
           directives: [],
@@ -29278,6 +29300,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
       this.province,
       this.postalCode,
       this.country,
+      this.countryCode,
       this.phoneNumber,
       required this.$__typename,
       this.customFields});
@@ -29304,6 +29327,8 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
 
   final String? country;
 
+  final String? countryCode;
+
   final String? phoneNumber;
 
   @JsonKey(name: '__typename')
@@ -29323,6 +29348,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
     final l$province = province;
     final l$postalCode = postalCode;
     final l$country = country;
+    final l$countryCode = countryCode;
     final l$phoneNumber = phoneNumber;
     final l$$__typename = $__typename;
     final l$customFields = customFields;
@@ -29335,6 +29361,7 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
       l$province,
       l$postalCode,
       l$country,
+      l$countryCode,
       l$phoneNumber,
       l$$__typename,
       l$customFields
@@ -29371,6 +29398,9 @@ class Mutation$SetShippingAddress$setOrderShippingAddress$$Order$shippingAddress
     final l$country = country;
     final lOther$country = other.country;
     if (l$country != lOther$country) return false;
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) return false;
     final l$phoneNumber = phoneNumber;
     final lOther$phoneNumber = other.phoneNumber;
     if (l$phoneNumber != lOther$phoneNumber) return false;
@@ -29416,6 +29446,7 @@ abstract class CopyWith$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
       String? province,
       String? postalCode,
       String? country,
+      String? countryCode,
       String? phoneNumber,
       String? $__typename,
       String? customFields});
@@ -29447,6 +29478,7 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$s
           Object? province = _undefined,
           Object? postalCode = _undefined,
           Object? country = _undefined,
+          Object? countryCode = _undefined,
           Object? phoneNumber = _undefined,
           Object? $__typename = _undefined,
           Object? customFields = _undefined}) =>
@@ -29474,6 +29506,9 @@ class _CopyWithImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Order$s
               country: country == _undefined
                   ? _instance.country
                   : (country as String?),
+              countryCode: countryCode == _undefined
+                  ? _instance.countryCode
+                  : (countryCode as String?),
               phoneNumber: phoneNumber == _undefined
                   ? _instance.phoneNumber
                   : (phoneNumber as String?),
@@ -29504,6 +29539,7 @@ class _CopyWithStubImpl$Mutation$SetShippingAddress$setOrderShippingAddress$$Ord
           String? province,
           String? postalCode,
           String? country,
+          String? countryCode,
           String? phoneNumber,
           String? $__typename,
           String? customFields}) =>

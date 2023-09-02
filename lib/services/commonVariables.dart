@@ -54,11 +54,13 @@ enum OrderStateEnums {
   DeliveryNotificationProcess,
   PaymentSettled,
   Cancelled,
-  Delivered
+  Delivered,
+  Shipped
 }
 enum LocalStorageStrings{
   user_data,
   auth_token,
+  isLoggedOut,
   email,
   password,
   phone,
@@ -75,6 +77,7 @@ enum PaymentOptionType{
 enum CityToUseType{
   Madurai
 }
+
 
 var emptyShippingMethod =  {
   'id': '',

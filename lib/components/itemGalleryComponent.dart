@@ -92,6 +92,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     return price;
   }
 
+  String getOptionQuantity(dynamic element) {
+    var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+    return item.options.first.name;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -119,11 +124,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
       print(item.toJson());
-      Get.to(() => ProductDetailPage(), arguments: {'slug': item.product.slug});
+      Get.to(() => ProductDetailPage(), arguments: {'id': item.product.id});
     } else {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
-      Get.to(() => ProductDetailPage(), arguments: {'slug': item.product.slug});
+      Get.to(() => ProductDetailPage(), arguments: {'id': item.product.id});
     }
   }
 
@@ -204,7 +209,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               Text(
-                                                '${getPrice(element)}',
+                                                getOptionQuantity(element),
+                                                style: CustomTheme.headerStyle,
+                                              ),Text(
+                                                getPrice(element),
                                                 style: CustomTheme.headerStyle,
                                               ),
                                               Obx(() => cartController

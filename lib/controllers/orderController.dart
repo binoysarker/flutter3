@@ -53,6 +53,7 @@ class OrderController extends GetxController {
   var currentlySelectedShippingMethod =
       (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
   var eligibleShippingMethodList = <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
+  var filteredEligibleShippingMethodList = <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
   var shippingMethodSelected = '1'.obs;
   var clientToken = ''.obs;
   var currencyCode = ''.obs;
@@ -75,6 +76,7 @@ class OrderController extends GetxController {
 
   var transitionToOrderStateResponse = {}.obs;
   var useCurrentUserAddress = false.obs;
+  var useShippingAddress = false.obs;
 
   void getActiveOrders() async {
     graphqlService = GraphqlService();
@@ -427,19 +429,40 @@ class OrderController extends GetxController {
   }
 
   void setShippingAddress(bool showIncreaseCurrentStep) async {
+    dynamic str1 = streetLine1.text;
+    dynamic str2 = streetLine2.text;
+    dynamic cCode = currentlySelectedCountryCode.value;
+    dynamic cityValue = CityToUseType.Madurai.name;
+    dynamic fName = fullName.text;
+    dynamic postCode = selectedPostalCode.value;
+    if(useCurrentUserAddress.isTrue){
+      str1 = userController.currentAuthenticatedUser.value!.addresses!.first.streetLine1;
+      str2 = userController.currentAuthenticatedUser.value!.addresses!.first.streetLine2;
+      cCode = userController.currentAuthenticatedUser.value!.addresses!.first.country.code;
+      cityValue = userController.currentAuthenticatedUser.value!.addresses!.first.city;
+      fName = userController.currentAuthenticatedUser.value!.addresses!.first.fullName;
+      postCode = userController.currentAuthenticatedUser.value!.addresses!.first.postalCode;
+    }else if(shippingAddressOrder.value?.shippingAddress != null) {
+      str1 = shippingAddressOrder.value?.shippingAddress?.streetLine1;
+      str2 = shippingAddressOrder.value?.shippingAddress?.streetLine2;
+      cCode = shippingAddressOrder.value?.shippingAddress?.countryCode;
+      cityValue = shippingAddressOrder.value?.shippingAddress?.city;
+      fName = shippingAddressOrder.value?.shippingAddress?.fullName;
+      postCode = shippingAddressOrder.value?.shippingAddress?.postalCode;
+    }
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value.mutate$SetShippingAddress(
         Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
-                    streetLine1:streetLine1.text,
-                    streetLine2: streetLine2.text,
-                    countryCode: currentlySelectedCountryCode.value,
-                    city: CityToUseType.Madurai.name,
+                    streetLine1:str1,
+                    streetLine2: str2,
+                    countryCode: cCode as String,
+                    city: cityValue,
                     province: 'Maharashtra',
-                    fullName: fullName.text,
-                    postalCode: selectedPostalCode.value,
+                    fullName: fName,
+                    postalCode: postCode,
                     defaultShippingAddress: makeDefaultShippingAddress.value,
                     phoneNumber: userController.currentAuthenticatedUser.value!.phoneNumber.toString()))));
     if (res.hasException) {
@@ -500,6 +523,7 @@ class OrderController extends GetxController {
           'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
+      filteredEligibleShippingMethodList.value = res.parsedData!.eligibleShippingMethods.where((e) => e.code != 'delivery-tax').toList();
       currentlySelectedShippingMethod.value = null;
       isLoading.value = false;
     }

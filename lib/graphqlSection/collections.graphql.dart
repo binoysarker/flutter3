@@ -4,6 +4,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
+import 'products.graphql.dart';
 import 'vendureSchema.graphql.dart';
 part 'collections.graphql.g.dart';
 
@@ -1032,7 +1033,7 @@ class _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries$translati
 
 @JsonSerializable(explicitToJson: true)
 class Variables$Query$GetCollectionsByIdOrSlug {
-  Variables$Query$GetCollectionsByIdOrSlug({this.id, this.slug});
+  Variables$Query$GetCollectionsByIdOrSlug({this.id});
 
   @override
   factory Variables$Query$GetCollectionsByIdOrSlug.fromJson(
@@ -1041,14 +1042,11 @@ class Variables$Query$GetCollectionsByIdOrSlug {
 
   final String? id;
 
-  final String? slug;
-
   Map<String, dynamic> toJson() =>
       _$Variables$Query$GetCollectionsByIdOrSlugToJson(this);
   int get hashCode {
     final l$id = id;
-    final l$slug = slug;
-    return Object.hashAll([l$id, l$slug]);
+    return Object.hashAll([l$id]);
   }
 
   @override
@@ -1059,9 +1057,6 @@ class Variables$Query$GetCollectionsByIdOrSlug {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
-    final l$slug = slug;
-    final lOther$slug = other.slug;
-    if (l$slug != lOther$slug) return false;
     return true;
   }
 
@@ -1080,7 +1075,7 @@ abstract class CopyWith$Variables$Query$GetCollectionsByIdOrSlug<TRes> {
   factory CopyWith$Variables$Query$GetCollectionsByIdOrSlug.stub(TRes res) =
       _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug;
 
-  TRes call({String? id, String? slug});
+  TRes call({String? id});
 }
 
 class _CopyWithImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
@@ -1094,10 +1089,9 @@ class _CopyWithImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined, Object? slug = _undefined}) =>
+  TRes call({Object? id = _undefined}) =>
       _then(Variables$Query$GetCollectionsByIdOrSlug(
-          id: id == _undefined ? _instance.id : (id as String?),
-          slug: slug == _undefined ? _instance.slug : (slug as String?)));
+          id: id == _undefined ? _instance.id : (id as String?)));
 }
 
 class _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
@@ -1106,7 +1100,7 @@ class _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
 
   TRes _res;
 
-  call({String? id, String? slug}) => _res;
+  call({String? id}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1218,12 +1212,6 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             variable: VariableNode(name: NameNode(value: 'id')),
             type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: false),
             defaultValue: DefaultValueNode(value: null),
-            directives: []),
-        VariableDefinitionNode(
-            variable: VariableNode(name: NameNode(value: 'slug')),
-            type: NamedTypeNode(
-                name: NameNode(value: 'String'), isNonNull: false),
-            defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
       directives: [],
@@ -1234,10 +1222,7 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             arguments: [
               ArgumentNode(
                   name: NameNode(value: 'id'),
-                  value: VariableNode(name: NameNode(value: 'id'))),
-              ArgumentNode(
-                  name: NameNode(value: 'slug'),
-                  value: VariableNode(name: NameNode(value: 'slug')))
+                  value: VariableNode(name: NameNode(value: 'id')))
             ],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
@@ -1313,12 +1298,25 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                               arguments: [],
                               directives: [],
                               selectionSet: SelectionSetNode(selections: [
+                                FragmentSpreadNode(
+                                    name: NameNode(value: 'Asset'),
+                                    directives: []),
                                 FieldNode(
-                                    name: NameNode(value: 'preview'),
+                                    name: NameNode(value: '__typename'),
                                     alias: null,
                                     arguments: [],
                                     directives: [],
-                                    selectionSet: null),
+                                    selectionSet: null)
+                              ])),
+                          FieldNode(
+                              name: NameNode(value: 'options'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: SelectionSetNode(selections: [
+                                FragmentSpreadNode(
+                                    name: NameNode(value: 'Options'),
+                                    directives: []),
                                 FieldNode(
                                     name: NameNode(value: '__typename'),
                                     alias: null,
@@ -1552,18 +1550,25 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                                     arguments: [],
                                     directives: [],
                                     selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'Asset'),
+                                          directives: []),
                                       FieldNode(
-                                          name: NameNode(value: 'name'),
+                                          name: NameNode(value: '__typename'),
                                           alias: null,
                                           arguments: [],
                                           directives: [],
-                                          selectionSet: null),
-                                      FieldNode(
-                                          name: NameNode(value: 'preview'),
-                                          alias: null,
-                                          arguments: [],
-                                          directives: [],
-                                          selectionSet: null),
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'options'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'Options'),
+                                          directives: []),
                                       FieldNode(
                                           name: NameNode(value: '__typename'),
                                           alias: null,
@@ -1590,6 +1595,12 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                                     directives: [],
                                     selectionSet: SelectionSetNode(selections: [
                                       FieldNode(
+                                          name: NameNode(value: 'id'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
                                           name: NameNode(value: 'name'),
                                           alias: null,
                                           arguments: [],
@@ -1609,19 +1620,9 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                                           directives: [],
                                           selectionSet:
                                               SelectionSetNode(selections: [
-                                            FieldNode(
-                                                name:
-                                                    NameNode(value: 'preview'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null),
-                                            FieldNode(
-                                                name: NameNode(value: 'name'),
-                                                alias: null,
-                                                arguments: [],
-                                                directives: [],
-                                                selectionSet: null),
+                                            FragmentSpreadNode(
+                                                name: NameNode(value: 'Asset'),
+                                                directives: []),
                                             FieldNode(
                                                 name: NameNode(
                                                     value: '__typename'),
@@ -1679,18 +1680,8 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
                   arguments: [],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'preview'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
+                    FragmentSpreadNode(
+                        name: NameNode(value: 'Asset'), directives: []),
                     FieldNode(
                         name: NameNode(value: '__typename'),
                         alias: null,
@@ -1713,6 +1704,7 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             selectionSet: null)
       ])),
   fragmentDefinitionAsset,
+  fragmentDefinitionOptions,
 ]);
 Query$GetCollectionsByIdOrSlug _parserFn$Query$GetCollectionsByIdOrSlug(
         Map<String, dynamic> data) =>
@@ -1879,7 +1871,7 @@ class Query$GetCollectionsByIdOrSlug$collection {
 
   final List<Query$GetCollectionsByIdOrSlug$collection$children>? children;
 
-  final Query$GetCollectionsByIdOrSlug$collection$featuredAsset? featuredAsset;
+  final Fragment$Asset? featuredAsset;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -1993,7 +1985,7 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> {
       Query$GetCollectionsByIdOrSlug$collection$parent? parent,
       List<Query$GetCollectionsByIdOrSlug$collection$breadcrumbs>? breadcrumbs,
       List<Query$GetCollectionsByIdOrSlug$collection$children>? children,
-      Query$GetCollectionsByIdOrSlug$collection$featuredAsset? featuredAsset,
+      Fragment$Asset? featuredAsset,
       String? $__typename});
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants<TRes>
       get productVariants;
@@ -2010,8 +2002,7 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection<TRes> {
                   CopyWith$Query$GetCollectionsByIdOrSlug$collection$children<
                       Query$GetCollectionsByIdOrSlug$collection$children>>?)
           _fn);
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
-      get featuredAsset;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
 }
 
 class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
@@ -2062,7 +2053,7 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
               ? _instance.children
               : (children
                   as List<Query$GetCollectionsByIdOrSlug$collection$children>?),
-          featuredAsset: featuredAsset == _undefined ? _instance.featuredAsset : (featuredAsset as Query$GetCollectionsByIdOrSlug$collection$featuredAsset?),
+          featuredAsset: featuredAsset == _undefined ? _instance.featuredAsset : (featuredAsset as Fragment$Asset?),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants<TRes>
       get productVariants {
@@ -2100,13 +2091,11 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
           children: _fn(_instance.children?.map((e) =>
               CopyWith$Query$GetCollectionsByIdOrSlug$collection$children(
                   e, (i) => i)))?.toList());
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
-      get featuredAsset {
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
-        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
-            _then(_instance))
-        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
             local$featuredAsset, (e) => call(featuredAsset: e));
   }
 }
@@ -2128,8 +2117,7 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
           List<Query$GetCollectionsByIdOrSlug$collection$breadcrumbs>?
               breadcrumbs,
           List<Query$GetCollectionsByIdOrSlug$collection$children>? children,
-          Query$GetCollectionsByIdOrSlug$collection$featuredAsset?
-              featuredAsset,
+          Fragment$Asset? featuredAsset,
           String? $__typename}) =>
       _res;
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants<TRes>
@@ -2140,10 +2128,8 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection<TRes>
       CopyWith$Query$GetCollectionsByIdOrSlug$collection$parent.stub(_res);
   breadcrumbs(_fn) => _res;
   children(_fn) => _res;
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes>
-      get featuredAsset =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
-              _res);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -2289,6 +2275,7 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
       required this.priceWithTax,
       required this.currencyCode,
       this.featuredAsset,
+      required this.options,
       required this.productId,
       required this.product,
       required this.$__typename});
@@ -2310,8 +2297,9 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
 
-  final Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?
-      featuredAsset;
+  final Fragment$Asset? featuredAsset;
+
+  final List<Fragment$Options> options;
 
   final String productId;
 
@@ -2331,6 +2319,7 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
     final l$priceWithTax = priceWithTax;
     final l$currencyCode = currencyCode;
     final l$featuredAsset = featuredAsset;
+    final l$options = options;
     final l$productId = productId;
     final l$product = product;
     final l$$__typename = $__typename;
@@ -2341,6 +2330,7 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
       l$priceWithTax,
       l$currencyCode,
       l$featuredAsset,
+      Object.hashAll(l$options.map((v) => v)),
       l$productId,
       l$product,
       l$$__typename
@@ -2371,6 +2361,15 @@ class Query$GetCollectionsByIdOrSlug$collection$productVariants$items {
     final l$featuredAsset = featuredAsset;
     final lOther$featuredAsset = other.featuredAsset;
     if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$options = options;
+    final lOther$options = other.options;
+    if (l$options.length != lOther$options.length) return false;
+    for (int i = 0; i < l$options.length; i++) {
+      final l$options$entry = l$options[i];
+      final lOther$options$entry = lOther$options[i];
+      if (l$options$entry != lOther$options$entry) return false;
+    }
+
     final l$productId = productId;
     final lOther$productId = other.productId;
     if (l$productId != lOther$productId) return false;
@@ -2412,14 +2411,17 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariant
       int? price,
       int? priceWithTax,
       Enum$CurrencyCode? currencyCode,
-      Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?
-          featuredAsset,
+      Fragment$Asset? featuredAsset,
+      List<Fragment$Options>? options,
       String? productId,
       Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product?
           product,
       String? $__typename});
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-      TRes> get featuredAsset;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
+  TRes options(
+      Iterable<Fragment$Options> Function(
+              Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+          _fn);
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product<
       TRes> get product;
 }
@@ -2447,6 +2449,7 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
           Object? priceWithTax = _undefined,
           Object? currencyCode = _undefined,
           Object? featuredAsset = _undefined,
+          Object? options = _undefined,
           Object? productId = _undefined,
           Object? product = _undefined,
           Object? $__typename = _undefined}) =>
@@ -2466,8 +2469,10 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
               : (currencyCode as Enum$CurrencyCode),
           featuredAsset: featuredAsset == _undefined
               ? _instance.featuredAsset
-              : (featuredAsset
-                  as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?),
+              : (featuredAsset as Fragment$Asset?),
+          options: options == _undefined || options == null
+              ? _instance.options
+              : (options as List<Fragment$Options>),
           productId: productId == _undefined || productId == null
               ? _instance.productId
               : (productId as String),
@@ -2478,16 +2483,21 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$it
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-      TRes> get featuredAsset {
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
-        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-            .stub(_then(_instance))
-        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
             local$featuredAsset, (e) => call(featuredAsset: e));
   }
 
+  TRes options(
+          Iterable<Fragment$Options> Function(
+                  Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+              _fn) =>
+      call(
+          options: _fn(_instance.options
+              .map((e) => CopyWith$Fragment$Options(e, (i) => i))).toList());
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product<
       TRes> get product {
     final local$product = _instance.product;
@@ -2512,131 +2522,21 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariant
           int? price,
           int? priceWithTax,
           Enum$CurrencyCode? currencyCode,
-          Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset?
-              featuredAsset,
+          Fragment$Asset? featuredAsset,
+          List<Fragment$Options>? options,
           String? productId,
           Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product?
               product,
           String? $__typename}) =>
       _res;
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-          TRes>
-      get featuredAsset =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-              .stub(_res);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
+  options(_fn) => _res;
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product<
           TRes>
       get product =>
           CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product
               .stub(_res);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset {
-  Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-      {required this.preview, required this.$__typename});
-
-  @override
-  factory Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset.fromJson(
-          Map<String, dynamic> json) =>
-      _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetFromJson(
-          json);
-
-  final String preview;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() =>
-      _$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAssetToJson(
-          this);
-  int get hashCode {
-    final l$preview = preview;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$preview, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset) ||
-        runtimeType != other.runtimeType) return false;
-    final l$preview = preview;
-    final lOther$preview = other.preview;
-    if (l$preview != lOther$preview) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-    on Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset {
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-          Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset>
-      get copyWith =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-    TRes> {
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-          Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-              instance,
-          TRes Function(
-                  Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset)
-              then) =
-      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset;
-
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset;
-
-  TRes call({String? preview, String? $__typename});
-}
-
-class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-            TRes> {
-  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-      this._instance, this._then);
-
-  final Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset
-      _instance;
-
-  final TRes Function(
-          Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call({Object? preview = _undefined, Object? $__typename = _undefined}) =>
-      _then(
-          Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-              preview: preview == _undefined || preview == null
-                  ? _instance.preview
-                  : (preview as String),
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset<
-            TRes> {
-  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$productVariants$items$featuredAsset(
-      this._res);
-
-  TRes _res;
-
-  call({String? preview, String? $__typename}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -3390,6 +3290,7 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
       required this.assets,
       required this.currencyCode,
       this.featuredAsset,
+      required this.options,
       required this.price,
       required this.priceWithTax,
       required this.product,
@@ -3414,8 +3315,9 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
   @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
   final Enum$CurrencyCode currencyCode;
 
-  final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
-      featuredAsset;
+  final Fragment$Asset? featuredAsset;
+
+  final List<Fragment$Options> options;
 
   final int price;
 
@@ -3437,6 +3339,7 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
     final l$assets = assets;
     final l$currencyCode = currencyCode;
     final l$featuredAsset = featuredAsset;
+    final l$options = options;
     final l$price = price;
     final l$priceWithTax = priceWithTax;
     final l$product = product;
@@ -3448,6 +3351,7 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
       Object.hashAll(l$assets.map((v) => v)),
       l$currencyCode,
       l$featuredAsset,
+      Object.hashAll(l$options.map((v) => v)),
       l$price,
       l$priceWithTax,
       l$product,
@@ -3485,6 +3389,15 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items {
     final l$featuredAsset = featuredAsset;
     final lOther$featuredAsset = other.featuredAsset;
     if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$options = options;
+    final lOther$options = other.options;
+    if (l$options.length != lOther$options.length) return false;
+    for (int i = 0; i < l$options.length; i++) {
+      final l$options$entry = l$options[i];
+      final lOther$options$entry = lOther$options[i];
+      if (l$options$entry != lOther$options$entry) return false;
+    }
+
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) return false;
@@ -3531,8 +3444,8 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$produ
       List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets>?
           assets,
       Enum$CurrencyCode? currencyCode,
-      Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
-          featuredAsset,
+      Fragment$Asset? featuredAsset,
+      List<Fragment$Options>? options,
       int? price,
       int? priceWithTax,
       Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product?
@@ -3544,8 +3457,11 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$produ
                   CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets<
                       Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets>>)
           _fn);
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-      TRes> get featuredAsset;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
+  TRes options(
+      Iterable<Fragment$Options> Function(
+              Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+          _fn);
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product<
       TRes> get product;
 }
@@ -3574,6 +3490,7 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
           Object? assets = _undefined,
           Object? currencyCode = _undefined,
           Object? featuredAsset = _undefined,
+          Object? options = _undefined,
           Object? price = _undefined,
           Object? priceWithTax = _undefined,
           Object? product = _undefined,
@@ -3595,17 +3512,18 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
               : (currencyCode as Enum$CurrencyCode),
           featuredAsset: featuredAsset == _undefined
               ? _instance.featuredAsset
-              : (featuredAsset
-                  as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?),
+              : (featuredAsset as Fragment$Asset?),
+          options: options == _undefined || options == null
+              ? _instance.options
+              : (options as List<Fragment$Options>),
           price: price == _undefined || price == null
               ? _instance.price
               : (price as int),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
               : (priceWithTax as int),
-          product: product == _undefined || product == null
-              ? _instance.product
-              : (product as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product),
+          product:
+              product == _undefined || product == null ? _instance.product : (product as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product),
           $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String)));
   TRes assets(
           Iterable<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets> Function(
@@ -3617,16 +3535,21 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
           assets: _fn(_instance.assets.map((e) =>
               CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets(
                   e, (i) => i))).toList());
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-      TRes> get featuredAsset {
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
-        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-            .stub(_then(_instance))
-        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
             local$featuredAsset, (e) => call(featuredAsset: e));
   }
 
+  TRes options(
+          Iterable<Fragment$Options> Function(
+                  Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+              _fn) =>
+      call(
+          options: _fn(_instance.options
+              .map((e) => CopyWith$Fragment$Options(e, (i) => i))).toList());
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product<
       TRes> get product {
     final local$product = _instance.product;
@@ -3652,8 +3575,8 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
           List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$assets>?
               assets,
           Enum$CurrencyCode? currencyCode,
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset?
-              featuredAsset,
+          Fragment$Asset? featuredAsset,
+          List<Fragment$Options>? options,
           int? price,
           int? priceWithTax,
           Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product?
@@ -3661,11 +3584,9 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
           String? $__typename}) =>
       _res;
   assets(_fn) => _res;
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-          TRes>
-      get featuredAsset =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-              .stub(_res);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
+  options(_fn) => _res;
   CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product<
           TRes>
       get product =>
@@ -3794,129 +3715,10 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
 }
 
 @JsonSerializable(explicitToJson: true)
-class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset {
-  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-      {required this.name, required this.preview, required this.$__typename});
-
-  @override
-  factory Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset.fromJson(
-          Map<String, dynamic> json) =>
-      _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetFromJson(
-          json);
-
-  final String name;
-
-  final String preview;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() =>
-      _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAssetToJson(
-          this);
-  int get hashCode {
-    final l$name = name;
-    final l$preview = preview;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$name, l$preview, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset) ||
-        runtimeType != other.runtimeType) return false;
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
-    final l$preview = preview;
-    final lOther$preview = other.preview;
-    if (l$preview != lOther$preview) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-    on Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset {
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset>
-      get copyWith =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-    TRes> {
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-              instance,
-          TRes Function(
-                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset)
-              then) =
-      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset;
-
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset;
-
-  TRes call({String? name, String? preview, String? $__typename});
-}
-
-class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-            TRes> {
-  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-      this._instance, this._then);
-
-  final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset
-      _instance;
-
-  final TRes Function(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? name = _undefined,
-          Object? preview = _undefined,
-          Object? $__typename = _undefined}) =>
-      _then(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-              name: name == _undefined || name == null
-                  ? _instance.name
-                  : (name as String),
-              preview: preview == _undefined || preview == null
-                  ? _instance.preview
-                  : (preview as String),
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset<
-            TRes> {
-  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$featuredAsset(
-      this._res);
-
-  TRes _res;
-
-  call({String? name, String? preview, String? $__typename}) => _res;
-}
-
-@JsonSerializable(explicitToJson: true)
 class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product {
   Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.slug,
       this.featuredAsset,
       required this.$__typename});
@@ -3927,12 +3729,13 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$p
       _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$productFromJson(
           json);
 
+  final String id;
+
   final String name;
 
   final String slug;
 
-  final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset?
-      featuredAsset;
+  final Fragment$Asset? featuredAsset;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -3941,11 +3744,13 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$p
       _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$productToJson(
           this);
   int get hashCode {
+    final l$id = id;
     final l$name = name;
     final l$slug = slug;
     final l$featuredAsset = featuredAsset;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$name, l$slug, l$featuredAsset, l$$__typename]);
+    return Object.hashAll(
+        [l$id, l$name, l$slug, l$featuredAsset, l$$__typename]);
   }
 
   @override
@@ -3954,6 +3759,9 @@ class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$p
     if (!(other
             is Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product) ||
         runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
     final l$name = name;
     final lOther$name = other.name;
     if (l$name != lOther$name) return false;
@@ -3994,13 +3802,12 @@ abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$produ
       _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product;
 
   TRes call(
-      {String? name,
+      {String? id,
+      String? name,
       String? slug,
-      Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset?
-          featuredAsset,
+      Fragment$Asset? featuredAsset,
       String? $__typename});
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-      TRes> get featuredAsset;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
 }
 
 class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product<
@@ -4021,31 +3828,33 @@ class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVa
   static const _undefined = {};
 
   TRes call(
-          {Object? name = _undefined,
+          {Object? id = _undefined,
+          Object? name = _undefined,
           Object? slug = _undefined,
           Object? featuredAsset = _undefined,
           Object? $__typename = _undefined}) =>
-      _then(Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product(
-          name: name == _undefined || name == null
-              ? _instance.name
-              : (name as String),
-          slug: slug == _undefined || slug == null
-              ? _instance.slug
-              : (slug as String),
-          featuredAsset: featuredAsset == _undefined
-              ? _instance.featuredAsset
-              : (featuredAsset
-                  as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset?),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-      TRes> get featuredAsset {
+      _then(
+          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product(
+              id: id == _undefined || id == null
+                  ? _instance.id
+                  : (id as String),
+              name: name == _undefined || name == null
+                  ? _instance.name
+                  : (name as String),
+              slug: slug == _undefined || slug == null
+                  ? _instance.slug
+                  : (slug as String),
+              featuredAsset: featuredAsset == _undefined
+                  ? _instance.featuredAsset
+                  : (featuredAsset as Fragment$Asset?),
+              $__typename: $__typename == _undefined || $__typename == null
+                  ? _instance.$__typename
+                  : ($__typename as String)));
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
-        ? CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-            .stub(_then(_instance))
-        : CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
             local$featuredAsset, (e) => call(featuredAsset: e));
   }
 }
@@ -4061,245 +3870,14 @@ class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$produ
   TRes _res;
 
   call(
-          {String? name,
+          {String? id,
+          String? name,
           String? slug,
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset?
-              featuredAsset,
+          Fragment$Asset? featuredAsset,
           String? $__typename}) =>
       _res;
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-          TRes>
-      get featuredAsset =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-              .stub(_res);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset {
-  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-      {required this.preview, required this.name, required this.$__typename});
-
-  @override
-  factory Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset.fromJson(
-          Map<String, dynamic> json) =>
-      _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetFromJson(
-          json);
-
-  final String preview;
-
-  final String name;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() =>
-      _$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAssetToJson(
-          this);
-  int get hashCode {
-    final l$preview = preview;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$preview, l$name, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other
-            is Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset) ||
-        runtimeType != other.runtimeType) return false;
-    final l$preview = preview;
-    final lOther$preview = other.preview;
-    if (l$preview != lOther$preview) return false;
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-    on Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset {
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset>
-      get copyWith =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-    TRes> {
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-              instance,
-          TRes Function(
-                  Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset)
-              then) =
-      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset;
-
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset;
-
-  TRes call({String? preview, String? name, String? $__typename});
-}
-
-class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-            TRes> {
-  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-      this._instance, this._then);
-
-  final Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset
-      _instance;
-
-  final TRes Function(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? preview = _undefined,
-          Object? name = _undefined,
-          Object? $__typename = _undefined}) =>
-      _then(
-          Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-              preview: preview == _undefined || preview == null
-                  ? _instance.preview
-                  : (preview as String),
-              name: name == _undefined || name == null
-                  ? _instance.name
-                  : (name as String),
-              $__typename: $__typename == _undefined || $__typename == null
-                  ? _instance.$__typename
-                  : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset<
-            TRes> {
-  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items$product$featuredAsset(
-      this._res);
-
-  TRes _res;
-
-  call({String? preview, String? name, String? $__typename}) => _res;
-}
-
-@JsonSerializable(explicitToJson: true)
-class Query$GetCollectionsByIdOrSlug$collection$featuredAsset {
-  Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-      {required this.id, required this.preview, required this.$__typename});
-
-  @override
-  factory Query$GetCollectionsByIdOrSlug$collection$featuredAsset.fromJson(
-          Map<String, dynamic> json) =>
-      _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetFromJson(json);
-
-  final String id;
-
-  final String preview;
-
-  @JsonKey(name: '__typename')
-  final String $__typename;
-
-  Map<String, dynamic> toJson() =>
-      _$Query$GetCollectionsByIdOrSlug$collection$featuredAssetToJson(this);
-  int get hashCode {
-    final l$id = id;
-    final l$preview = preview;
-    final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$preview, l$$__typename]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (!(other is Query$GetCollectionsByIdOrSlug$collection$featuredAsset) ||
-        runtimeType != other.runtimeType) return false;
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) return false;
-    final l$preview = preview;
-    final lOther$preview = other.preview;
-    if (l$preview != lOther$preview) return false;
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) return false;
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetCollectionsByIdOrSlug$collection$featuredAsset
-    on Query$GetCollectionsByIdOrSlug$collection$featuredAsset {
-  CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
-          Query$GetCollectionsByIdOrSlug$collection$featuredAsset>
-      get copyWith =>
-          CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-              this, (i) => i);
-}
-
-abstract class CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
-    TRes> {
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-          Query$GetCollectionsByIdOrSlug$collection$featuredAsset instance,
-          TRes Function(Query$GetCollectionsByIdOrSlug$collection$featuredAsset)
-              then) =
-      _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset;
-
-  factory CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset;
-
-  TRes call({String? id, String? preview, String? $__typename});
-}
-
-class _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes> {
-  _CopyWithImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-      this._instance, this._then);
-
-  final Query$GetCollectionsByIdOrSlug$collection$featuredAsset _instance;
-
-  final TRes Function(Query$GetCollectionsByIdOrSlug$collection$featuredAsset)
-      _then;
-
-  static const _undefined = {};
-
-  TRes call(
-          {Object? id = _undefined,
-          Object? preview = _undefined,
-          Object? $__typename = _undefined}) =>
-      _then(Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-          id: id == _undefined || id == null ? _instance.id : (id as String),
-          preview: preview == _undefined || preview == null
-              ? _instance.preview
-              : (preview as String),
-          $__typename: $__typename == _undefined || $__typename == null
-              ? _instance.$__typename
-              : ($__typename as String)));
-}
-
-class _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<
-        TRes>
-    implements
-        CopyWith$Query$GetCollectionsByIdOrSlug$collection$featuredAsset<TRes> {
-  _CopyWithStubImpl$Query$GetCollectionsByIdOrSlug$collection$featuredAsset(
-      this._res);
-
-  TRes _res;
-
-  call({String? id, String? preview, String? $__typename}) => _res;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -4555,18 +4133,90 @@ const documentNodeQueryGetAllCollections = DocumentNode(definitions: [
                         arguments: [],
                         directives: [],
                         selectionSet: SelectionSetNode(selections: [
+                          FragmentSpreadNode(
+                              name: NameNode(value: 'Asset'), directives: []),
                           FieldNode(
-                              name: NameNode(value: 'id'),
+                              name: NameNode(value: '__typename'),
                               alias: null,
                               arguments: [],
                               directives: [],
-                              selectionSet: null),
+                              selectionSet: null)
+                        ])),
+                    FieldNode(
+                        name: NameNode(value: 'productVariants'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
                           FieldNode(
-                              name: NameNode(value: 'preview'),
+                              name: NameNode(value: 'items'),
                               alias: null,
                               arguments: [],
                               directives: [],
-                              selectionSet: null),
+                              selectionSet: SelectionSetNode(selections: [
+                                FieldNode(
+                                    name: NameNode(value: 'id'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'name'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'currencyCode'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'languageCode'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null),
+                                FieldNode(
+                                    name: NameNode(value: 'options'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'Options'),
+                                          directives: []),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: 'featuredAsset'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: SelectionSetNode(selections: [
+                                      FragmentSpreadNode(
+                                          name: NameNode(value: 'Asset'),
+                                          directives: []),
+                                      FieldNode(
+                                          name: NameNode(value: '__typename'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null)
+                                    ])),
+                                FieldNode(
+                                    name: NameNode(value: '__typename'),
+                                    alias: null,
+                                    arguments: [],
+                                    directives: [],
+                                    selectionSet: null)
+                              ])),
                           FieldNode(
                               name: NameNode(value: '__typename'),
                               alias: null,
@@ -4595,6 +4245,8 @@ const documentNodeQueryGetAllCollections = DocumentNode(definitions: [
             directives: [],
             selectionSet: null)
       ])),
+  fragmentDefinitionAsset,
+  fragmentDefinitionOptions,
 ]);
 Query$GetAllCollections _parserFn$Query$GetAllCollections(
         Map<String, dynamic> data) =>
@@ -4840,6 +4492,7 @@ class Query$GetAllCollections$collections$items {
       required this.slug,
       this.parent,
       this.featuredAsset,
+      required this.productVariants,
       required this.$__typename});
 
   @override
@@ -4855,7 +4508,10 @@ class Query$GetAllCollections$collections$items {
 
   final Query$GetAllCollections$collections$items$parent? parent;
 
-  final Query$GetAllCollections$collections$items$featuredAsset? featuredAsset;
+  final Fragment$Asset? featuredAsset;
+
+  final Query$GetAllCollections$collections$items$productVariants
+      productVariants;
 
   @JsonKey(name: '__typename')
   final String $__typename;
@@ -4868,9 +4524,17 @@ class Query$GetAllCollections$collections$items {
     final l$slug = slug;
     final l$parent = parent;
     final l$featuredAsset = featuredAsset;
+    final l$productVariants = productVariants;
     final l$$__typename = $__typename;
-    return Object.hashAll(
-        [l$id, l$name, l$slug, l$parent, l$featuredAsset, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$slug,
+      l$parent,
+      l$featuredAsset,
+      l$productVariants,
+      l$$__typename
+    ]);
   }
 
   @override
@@ -4893,6 +4557,9 @@ class Query$GetAllCollections$collections$items {
     final l$featuredAsset = featuredAsset;
     final lOther$featuredAsset = other.featuredAsset;
     if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$productVariants = productVariants;
+    final lOther$productVariants = other.productVariants;
+    if (l$productVariants != lOther$productVariants) return false;
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -4922,11 +4589,14 @@ abstract class CopyWith$Query$GetAllCollections$collections$items<TRes> {
       String? name,
       String? slug,
       Query$GetAllCollections$collections$items$parent? parent,
-      Query$GetAllCollections$collections$items$featuredAsset? featuredAsset,
+      Fragment$Asset? featuredAsset,
+      Query$GetAllCollections$collections$items$productVariants?
+          productVariants,
       String? $__typename});
   CopyWith$Query$GetAllCollections$collections$items$parent<TRes> get parent;
-  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
-      get featuredAsset;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
+  CopyWith$Query$GetAllCollections$collections$items$productVariants<TRes>
+      get productVariants;
 }
 
 class _CopyWithImpl$Query$GetAllCollections$collections$items<TRes>
@@ -4946,6 +4616,7 @@ class _CopyWithImpl$Query$GetAllCollections$collections$items<TRes>
           Object? slug = _undefined,
           Object? parent = _undefined,
           Object? featuredAsset = _undefined,
+          Object? productVariants = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetAllCollections$collections$items(
           id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -4960,8 +4631,12 @@ class _CopyWithImpl$Query$GetAllCollections$collections$items<TRes>
               : (parent as Query$GetAllCollections$collections$items$parent?),
           featuredAsset: featuredAsset == _undefined
               ? _instance.featuredAsset
-              : (featuredAsset
-                  as Query$GetAllCollections$collections$items$featuredAsset?),
+              : (featuredAsset as Fragment$Asset?),
+          productVariants: productVariants == _undefined ||
+                  productVariants == null
+              ? _instance.productVariants
+              : (productVariants
+                  as Query$GetAllCollections$collections$items$productVariants),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
@@ -4974,14 +4649,19 @@ class _CopyWithImpl$Query$GetAllCollections$collections$items<TRes>
             local$parent, (e) => call(parent: e));
   }
 
-  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
-      get featuredAsset {
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
     final local$featuredAsset = _instance.featuredAsset;
     return local$featuredAsset == null
-        ? CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
-            _then(_instance))
-        : CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
             local$featuredAsset, (e) => call(featuredAsset: e));
+  }
+
+  CopyWith$Query$GetAllCollections$collections$items$productVariants<TRes>
+      get productVariants {
+    final local$productVariants = _instance.productVariants;
+    return CopyWith$Query$GetAllCollections$collections$items$productVariants(
+        local$productVariants, (e) => call(productVariants: e));
   }
 }
 
@@ -4996,16 +4676,19 @@ class _CopyWithStubImpl$Query$GetAllCollections$collections$items<TRes>
           String? name,
           String? slug,
           Query$GetAllCollections$collections$items$parent? parent,
-          Query$GetAllCollections$collections$items$featuredAsset?
-              featuredAsset,
+          Fragment$Asset? featuredAsset,
+          Query$GetAllCollections$collections$items$productVariants?
+              productVariants,
           String? $__typename}) =>
       _res;
   CopyWith$Query$GetAllCollections$collections$items$parent<TRes> get parent =>
       CopyWith$Query$GetAllCollections$collections$items$parent.stub(_res);
-  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes>
-      get featuredAsset =>
-          CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
-              _res);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
+  CopyWith$Query$GetAllCollections$collections$items$productVariants<TRes>
+      get productVariants =>
+          CopyWith$Query$GetAllCollections$collections$items$productVariants
+              .stub(_res);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -5122,42 +4805,44 @@ class _CopyWithStubImpl$Query$GetAllCollections$collections$items$parent<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
-class Query$GetAllCollections$collections$items$featuredAsset {
-  Query$GetAllCollections$collections$items$featuredAsset(
-      {required this.id, required this.preview, required this.$__typename});
+class Query$GetAllCollections$collections$items$productVariants {
+  Query$GetAllCollections$collections$items$productVariants(
+      {required this.items, required this.$__typename});
 
   @override
-  factory Query$GetAllCollections$collections$items$featuredAsset.fromJson(
+  factory Query$GetAllCollections$collections$items$productVariants.fromJson(
           Map<String, dynamic> json) =>
-      _$Query$GetAllCollections$collections$items$featuredAssetFromJson(json);
+      _$Query$GetAllCollections$collections$items$productVariantsFromJson(json);
 
-  final String id;
-
-  final String preview;
+  final List<Query$GetAllCollections$collections$items$productVariants$items>
+      items;
 
   @JsonKey(name: '__typename')
   final String $__typename;
 
   Map<String, dynamic> toJson() =>
-      _$Query$GetAllCollections$collections$items$featuredAssetToJson(this);
+      _$Query$GetAllCollections$collections$items$productVariantsToJson(this);
   int get hashCode {
-    final l$id = id;
-    final l$preview = preview;
+    final l$items = items;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$preview, l$$__typename]);
+    return Object.hashAll(
+        [Object.hashAll(l$items.map((v) => v)), l$$__typename]);
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is Query$GetAllCollections$collections$items$featuredAsset) ||
+    if (!(other is Query$GetAllCollections$collections$items$productVariants) ||
         runtimeType != other.runtimeType) return false;
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) return false;
-    final l$preview = preview;
-    final lOther$preview = other.preview;
-    if (l$preview != lOther$preview) return false;
+    final l$items = items;
+    final lOther$items = other.items;
+    if (l$items.length != lOther$items.length) return false;
+    for (int i = 0; i < l$items.length; i++) {
+      final l$items$entry = l$items[i];
+      final lOther$items$entry = lOther$items[i];
+      if (l$items$entry != lOther$items$entry) return false;
+    }
+
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) return false;
@@ -5165,66 +4850,304 @@ class Query$GetAllCollections$collections$items$featuredAsset {
   }
 }
 
-extension UtilityExtension$Query$GetAllCollections$collections$items$featuredAsset
-    on Query$GetAllCollections$collections$items$featuredAsset {
-  CopyWith$Query$GetAllCollections$collections$items$featuredAsset<
-          Query$GetAllCollections$collections$items$featuredAsset>
+extension UtilityExtension$Query$GetAllCollections$collections$items$productVariants
+    on Query$GetAllCollections$collections$items$productVariants {
+  CopyWith$Query$GetAllCollections$collections$items$productVariants<
+          Query$GetAllCollections$collections$items$productVariants>
       get copyWith =>
-          CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
+          CopyWith$Query$GetAllCollections$collections$items$productVariants(
               this, (i) => i);
 }
 
-abstract class CopyWith$Query$GetAllCollections$collections$items$featuredAsset<
+abstract class CopyWith$Query$GetAllCollections$collections$items$productVariants<
     TRes> {
-  factory CopyWith$Query$GetAllCollections$collections$items$featuredAsset(
-          Query$GetAllCollections$collections$items$featuredAsset instance,
-          TRes Function(Query$GetAllCollections$collections$items$featuredAsset)
+  factory CopyWith$Query$GetAllCollections$collections$items$productVariants(
+          Query$GetAllCollections$collections$items$productVariants instance,
+          TRes Function(
+                  Query$GetAllCollections$collections$items$productVariants)
               then) =
-      _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset;
+      _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants;
 
-  factory CopyWith$Query$GetAllCollections$collections$items$featuredAsset.stub(
+  factory CopyWith$Query$GetAllCollections$collections$items$productVariants.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset;
+      _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants;
 
-  TRes call({String? id, String? preview, String? $__typename});
+  TRes call(
+      {List<Query$GetAllCollections$collections$items$productVariants$items>?
+          items,
+      String? $__typename});
+  TRes items(
+      Iterable<Query$GetAllCollections$collections$items$productVariants$items> Function(
+              Iterable<
+                  CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+                      Query$GetAllCollections$collections$items$productVariants$items>>)
+          _fn);
 }
 
-class _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset<
+class _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants<
         TRes>
     implements
-        CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes> {
-  _CopyWithImpl$Query$GetAllCollections$collections$items$featuredAsset(
+        CopyWith$Query$GetAllCollections$collections$items$productVariants<
+            TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants(
       this._instance, this._then);
 
-  final Query$GetAllCollections$collections$items$featuredAsset _instance;
+  final Query$GetAllCollections$collections$items$productVariants _instance;
 
-  final TRes Function(Query$GetAllCollections$collections$items$featuredAsset)
+  final TRes Function(Query$GetAllCollections$collections$items$productVariants)
       _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? items = _undefined, Object? $__typename = _undefined}) =>
+      _then(Query$GetAllCollections$collections$items$productVariants(
+          items: items == _undefined || items == null
+              ? _instance.items
+              : (items as List<
+                  Query$GetAllCollections$collections$items$productVariants$items>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  TRes items(
+          Iterable<Query$GetAllCollections$collections$items$productVariants$items> Function(
+                  Iterable<
+                      CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+                          Query$GetAllCollections$collections$items$productVariants$items>>)
+              _fn) =>
+      call(
+          items: _fn(_instance.items.map((e) =>
+              CopyWith$Query$GetAllCollections$collections$items$productVariants$items(
+                  e, (i) => i))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants<
+        TRes>
+    implements
+        CopyWith$Query$GetAllCollections$collections$items$productVariants<
+            TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants(
+      this._res);
+
+  TRes _res;
+
+  call(
+          {List<Query$GetAllCollections$collections$items$productVariants$items>?
+              items,
+          String? $__typename}) =>
+      _res;
+  items(_fn) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetAllCollections$collections$items$productVariants$items {
+  Query$GetAllCollections$collections$items$productVariants$items(
+      {required this.id,
+      required this.name,
+      required this.currencyCode,
+      required this.languageCode,
+      required this.options,
+      this.featuredAsset,
+      required this.$__typename});
+
+  @override
+  factory Query$GetAllCollections$collections$items$productVariants$items.fromJson(
+          Map<String, dynamic> json) =>
+      _$Query$GetAllCollections$collections$items$productVariants$itemsFromJson(
+          json);
+
+  final String id;
+
+  final String name;
+
+  @JsonKey(unknownEnumValue: Enum$CurrencyCode.$unknown)
+  final Enum$CurrencyCode currencyCode;
+
+  @JsonKey(unknownEnumValue: Enum$LanguageCode.$unknown)
+  final Enum$LanguageCode languageCode;
+
+  final List<Fragment$Options> options;
+
+  final Fragment$Asset? featuredAsset;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Query$GetAllCollections$collections$items$productVariants$itemsToJson(
+          this);
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$currencyCode = currencyCode;
+    final l$languageCode = languageCode;
+    final l$options = options;
+    final l$featuredAsset = featuredAsset;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$currencyCode,
+      l$languageCode,
+      Object.hashAll(l$options.map((v) => v)),
+      l$featuredAsset,
+      l$$__typename
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other
+            is Query$GetAllCollections$collections$items$productVariants$items) ||
+        runtimeType != other.runtimeType) return false;
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) return false;
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) return false;
+    final l$currencyCode = currencyCode;
+    final lOther$currencyCode = other.currencyCode;
+    if (l$currencyCode != lOther$currencyCode) return false;
+    final l$languageCode = languageCode;
+    final lOther$languageCode = other.languageCode;
+    if (l$languageCode != lOther$languageCode) return false;
+    final l$options = options;
+    final lOther$options = other.options;
+    if (l$options.length != lOther$options.length) return false;
+    for (int i = 0; i < l$options.length; i++) {
+      final l$options$entry = l$options[i];
+      final lOther$options$entry = lOther$options[i];
+      if (l$options$entry != lOther$options$entry) return false;
+    }
+
+    final l$featuredAsset = featuredAsset;
+    final lOther$featuredAsset = other.featuredAsset;
+    if (l$featuredAsset != lOther$featuredAsset) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetAllCollections$collections$items$productVariants$items
+    on Query$GetAllCollections$collections$items$productVariants$items {
+  CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+          Query$GetAllCollections$collections$items$productVariants$items>
+      get copyWith =>
+          CopyWith$Query$GetAllCollections$collections$items$productVariants$items(
+              this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+    TRes> {
+  factory CopyWith$Query$GetAllCollections$collections$items$productVariants$items(
+          Query$GetAllCollections$collections$items$productVariants$items instance,
+          TRes Function(
+                  Query$GetAllCollections$collections$items$productVariants$items)
+              then) =
+      _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants$items;
+
+  factory CopyWith$Query$GetAllCollections$collections$items$productVariants$items.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants$items;
+
+  TRes call(
+      {String? id,
+      String? name,
+      Enum$CurrencyCode? currencyCode,
+      Enum$LanguageCode? languageCode,
+      List<Fragment$Options>? options,
+      Fragment$Asset? featuredAsset,
+      String? $__typename});
+  TRes options(
+      Iterable<Fragment$Options> Function(
+              Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+          _fn);
+  CopyWith$Fragment$Asset<TRes> get featuredAsset;
+}
+
+class _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants$items<
+        TRes>
+    implements
+        CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+            TRes> {
+  _CopyWithImpl$Query$GetAllCollections$collections$items$productVariants$items(
+      this._instance, this._then);
+
+  final Query$GetAllCollections$collections$items$productVariants$items
+      _instance;
+
+  final TRes Function(
+      Query$GetAllCollections$collections$items$productVariants$items) _then;
 
   static const _undefined = {};
 
   TRes call(
           {Object? id = _undefined,
-          Object? preview = _undefined,
+          Object? name = _undefined,
+          Object? currencyCode = _undefined,
+          Object? languageCode = _undefined,
+          Object? options = _undefined,
+          Object? featuredAsset = _undefined,
           Object? $__typename = _undefined}) =>
-      _then(Query$GetAllCollections$collections$items$featuredAsset(
+      _then(Query$GetAllCollections$collections$items$productVariants$items(
           id: id == _undefined || id == null ? _instance.id : (id as String),
-          preview: preview == _undefined || preview == null
-              ? _instance.preview
-              : (preview as String),
+          name: name == _undefined || name == null
+              ? _instance.name
+              : (name as String),
+          currencyCode: currencyCode == _undefined || currencyCode == null
+              ? _instance.currencyCode
+              : (currencyCode as Enum$CurrencyCode),
+          languageCode: languageCode == _undefined || languageCode == null
+              ? _instance.languageCode
+              : (languageCode as Enum$LanguageCode),
+          options: options == _undefined || options == null
+              ? _instance.options
+              : (options as List<Fragment$Options>),
+          featuredAsset: featuredAsset == _undefined
+              ? _instance.featuredAsset
+              : (featuredAsset as Fragment$Asset?),
           $__typename: $__typename == _undefined || $__typename == null
               ? _instance.$__typename
               : ($__typename as String)));
+  TRes options(
+          Iterable<Fragment$Options> Function(
+                  Iterable<CopyWith$Fragment$Options<Fragment$Options>>)
+              _fn) =>
+      call(
+          options: _fn(_instance.options
+              .map((e) => CopyWith$Fragment$Options(e, (i) => i))).toList());
+  CopyWith$Fragment$Asset<TRes> get featuredAsset {
+    final local$featuredAsset = _instance.featuredAsset;
+    return local$featuredAsset == null
+        ? CopyWith$Fragment$Asset.stub(_then(_instance))
+        : CopyWith$Fragment$Asset(
+            local$featuredAsset, (e) => call(featuredAsset: e));
+  }
 }
 
-class _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset<
+class _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants$items<
         TRes>
     implements
-        CopyWith$Query$GetAllCollections$collections$items$featuredAsset<TRes> {
-  _CopyWithStubImpl$Query$GetAllCollections$collections$items$featuredAsset(
+        CopyWith$Query$GetAllCollections$collections$items$productVariants$items<
+            TRes> {
+  _CopyWithStubImpl$Query$GetAllCollections$collections$items$productVariants$items(
       this._res);
 
   TRes _res;
 
-  call({String? id, String? preview, String? $__typename}) => _res;
+  call(
+          {String? id,
+          String? name,
+          Enum$CurrencyCode? currencyCode,
+          Enum$LanguageCode? languageCode,
+          List<Fragment$Options>? options,
+          Fragment$Asset? featuredAsset,
+          String? $__typename}) =>
+      _res;
+  options(_fn) => _res;
+  CopyWith$Fragment$Asset<TRes> get featuredAsset =>
+      CopyWith$Fragment$Asset.stub(_res);
 }

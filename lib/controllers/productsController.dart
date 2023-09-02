@@ -41,6 +41,7 @@ class ProductsController extends GetxController {
 
   void increaseQuantity() {
     currentQuantity.value++;
+    print('current Quantity ${currentQuantity.value}');
     quantityController.text = currentQuantity.value.toString();
     updatedPrice.value = basePrice.value * currentQuantity.value;
   }
@@ -62,12 +63,12 @@ class ProductsController extends GetxController {
     updatedPrice.value = basePrice.value;
   }
 
-  void getProductDetail(String slug) async {
+  void getProductDetail(String id) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value.query$GetProductDetail(
         Options$Query$GetProductDetail(
-            variables: Variables$Query$GetProductDetail(slug: slug)));
+            variables: Variables$Query$GetProductDetail(id: id)));
     if (res.hasException) {
       print('${res.toString()}');
       isLoading.value = false;

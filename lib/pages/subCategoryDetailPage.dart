@@ -23,7 +23,7 @@ class _SubCategoryDetailPageState extends State<SubCategoryDetailPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      collectionsController.getSingleCollectionDetail(routerArguments['slug']);
+      collectionsController.getSingleCollectionDetail(routerArguments['id']);
     });
   }
 

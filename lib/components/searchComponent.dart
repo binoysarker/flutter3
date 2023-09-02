@@ -73,8 +73,8 @@ class SearchComponent extends StatelessWidget {
                                   print(
                                       '${productsController.searchResultList[index].slug}');
                                   Get.to(() => ProductDetailPage(), arguments: {
-                                    'slug':
-                                        '${productsController.searchResultList[index].slug}'
+                                    'id':
+                                        '${productsController.searchResultList[index].productVariantId}'
                                   });
                                   resetSearch(context);
                                 },

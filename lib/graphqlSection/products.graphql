@@ -12,13 +12,14 @@ query GetAllProducts($take: Int){
                 priceWithTax
                 productId
                 featuredAsset {
-                    preview
+                    ...Asset
+                }
+                options {
+                    ...Options
                 }
             }
             featuredAsset {
-                name
-                id
-                preview
+                ...Asset
             }
             assets {
                 id
@@ -41,6 +42,7 @@ query GetAllProducts($take: Int){
 query SearchProducts($input: SearchInput!) {
     search(input: $input) {
         items {
+            productVariantId
             productId
             slug
             productName
@@ -85,8 +87,8 @@ query SearchProducts($input: SearchInput!) {
     }
 }
 
-query GetProductDetail($slug: String!) {
-    product(slug: $slug) {
+query GetProductDetail($id: ID!) {
+    product(id: $id) {
         id
         name
         description
@@ -94,9 +96,7 @@ query GetProductDetail($slug: String!) {
             id
             name
             options {
-                code
-                name
-                __typename
+                ...Options
             }
             featuredAsset {
                 ...Asset
@@ -133,6 +133,13 @@ query GetProductDetail($slug: String!) {
         }
         __typename
     }
+}
+
+fragment Options on ProductOption{
+    name
+    code
+    id
+
 }
 
 fragment Asset on Asset {

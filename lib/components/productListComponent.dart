@@ -27,9 +27,14 @@ class _ProductListComponentState extends State<ProductListComponent> {
 
 
   String getPrice(Query$GetAllProducts$products$items element) {
-    var item = element.variants.firstWhereOrNull((item) => item.id.isNotEmpty);
+    var item = element.variants.firstWhereOrNull((el) => el.id.isNotEmpty);
     return '${UtilService.getCurrencySymble(item!.currencyCode.name)}${UtilService.formatPriceValue(item.priceWithTax)}';
   }
+  String getOptionQuantity(Query$GetAllProducts$products$items element) {
+    var item = element.variants.firstWhereOrNull((el) => el.id.isNotEmpty);
+    return item!.options.first.name;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                     null)
                     .map((element) => element == null ? SizedBox() : GestureDetector(
                   onTap: () {
-                    Get.to(() => ProductDetailPage(),arguments: {'slug': element.slug});
+                    Get.to(() => ProductDetailPage(),arguments: {'id': element.id});
                   },
                       child: Card(
                   elevation: 5,
@@ -80,7 +85,7 @@ class _ProductListComponentState extends State<ProductListComponent> {
                           width: 100,
                           height: 100,
                           placeholder:
-                          '${CommonVariableData.placeholder}',
+                          CommonVariableData.placeholder,
                           image: '${element.featuredAsset?.preview}',
                           imageErrorBuilder:
                               (context, error, stackTrace) =>
@@ -91,13 +96,18 @@ class _ProductListComponentState extends State<ProductListComponent> {
                               ),
                         ),
                         Text(
-                          UtilService.formateText(element.name),
+                          element.name,
                           style: CustomTheme.headerStyle,
+                          softWrap: true,
                         ),
                         Row(
                           mainAxisAlignment:
                           MainAxisAlignment.spaceAround,
                           children: [
+                            Text(
+                              getOptionQuantity(element),
+                              style: CustomTheme.headerStyle,
+                            ),
                             Text(
                               getPrice(element),
                               style: CustomTheme.headerStyle,

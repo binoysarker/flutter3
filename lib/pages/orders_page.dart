@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/services/util_service.dart';
@@ -30,6 +31,7 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('en-IN','');
   }
 
   @override
@@ -48,23 +50,32 @@ class _OrdersPageState extends State<OrdersPage> {
     var currentUser = userController.currentAuthenticatedUser.value!;
     // var activeOrder = orderController.activeOrderResponse.value;
 
-    var currencySymbol =
-        currentUser.orders.items.length > 0 ? UtilService.getCurrencySymble(currentUser.orders.items.first.code) : r'₹';
+    var currencySymbol = currentUser.orders.items.length > 0
+        ? UtilService.getCurrencySymble(currentUser.orders.items.first.code)
+        : r'₹';
 
     DateTime parseDate(String? dateString) {
       var data = DateTime.now();
-      if(dateString != null){
-        data = DateFormat('yyyy-MM-dd').parse(dateString);
+
+      if (dateString != null) {
+        data = DateFormat('yyyy-MM-dd','en-IN').parse(dateString);
       }
       return data;
     }
-    List<Query$GetActiveCustomer$activeCustomer$orders$items> getSortedList(List<Query$GetActiveCustomer$activeCustomer$orders$items> list){
-       list.sort((a,b) => parseDate(b.orderPlacedAt).compareTo(parseDate(a.orderPlacedAt)));
-       return list;
+
+    List<Query$GetActiveCustomer$activeCustomer$orders$items> getSortedList(
+        List<Query$GetActiveCustomer$activeCustomer$orders$items> list) {
+      list.sort((a, b) =>
+          parseDate(b.orderPlacedAt).compareTo(parseDate(a.orderPlacedAt)));
+      return list;
     }
-    bool shouldShowButton(Query$GetActiveCustomer$activeCustomer$orders$items singleItem){
+
+    bool shouldShowButton(
+        Query$GetActiveCustomer$activeCustomer$orders$items singleItem) {
       var status = true;
-      if(singleItem.state == OrderStateEnums.Cancelled.name || singleItem.state == OrderStateEnums.Delivered.name){
+      if (singleItem.state == OrderStateEnums.Cancelled.name ||
+          singleItem.state == OrderStateEnums.Delivered.name ||
+          singleItem.state == OrderStateEnums.Shipped.name) {
         status = false;
       }
       return status;
@@ -92,92 +103,116 @@ class _OrdersPageState extends State<OrdersPage> {
           width: double.infinity,
           child: currentUser.orders.items.isNotEmpty
               ? Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                children:  getSortedList(currentUser.orders.items)
-                    .map((singleOrderItem) => Card(
-                  elevation: 8.0,
-                  child: ExpansionTile(
-
-                    title: Text(
-                      'Code: ${singleOrderItem.code}',
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView(
+                      children: getSortedList(currentUser.orders.items)
+                          .map((singleOrderItem) => Card(
+                                elevation: 8.0,
+                                child: ExpansionTile(
+                                  title: Text(
+                                    'Code: ${singleOrderItem.code}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  subtitle: singleOrderItem.customFields!
+                                              .clientRequestToCancel ==
+                                          1
+                                      ? Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'This Order is being requested to cancel by you',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            Text(
+                                              'Admin will take care of it',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            Text(
+                                              'Total Items: ${singleOrderItem.lines.length}',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            Text(
+                                              'State: ${checkStatus(singleOrderItem.state)}',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            Text(
+                                              'Placed At: ${DateFormat('yyy-MM-dd HH:mm a','en-IN').format(parseDate(singleOrderItem.orderPlacedAt))}',
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            shouldShowButton(singleOrderItem)
+                                                ? ElevatedButton(
+                                                    onPressed: () {
+                                                      orderController
+                                                          .requestToCancelOrder(
+                                                              singleOrderItem
+                                                                  .id,
+                                                              1);
+                                                    },
+                                                    child: Text('Cancel Order'))
+                                                : SizedBox()
+                                          ],
+                                        ),
+                                  children: singleOrderItem.lines
+                                      .map((singleLineItem) => ListTile(
+                                            title: Text(
+                                              singleLineItem
+                                                  .productVariant.name,
+                                              style: CustomTheme.headerStyle,
+                                            ),
+                                            subtitle: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',
+                                                  style: CustomTheme
+                                                      .paragraphStyle,
+                                                ),
+                                              ],
+                                            ),
+                                            leading: FadeInImage.assetNetwork(
+                                              width: 50,
+                                              height: 50,
+                                              placeholder: CommonVariableData
+                                                  .placeholder,
+                                              image:
+                                                  '${singleLineItem.featuredAsset?.preview}',
+                                              imageErrorBuilder: (context,
+                                                      error, stackTrace) =>
+                                                  Image.asset(
+                                                CommonVariableData.placeholder,
+                                                width: 50,
+                                                height: 50,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                ),
+                              ))
+                          .toList(),
+                    ),
+                  ),
+                )
+              : Card(
+                  child: Center(
+                    child: Text(
+                      'There is no order for you',
                       style: CustomTheme.headerStyle,
                     ),
-                    subtitle: singleOrderItem.customFields!.clientRequestToCancel == 1 ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('This Order is being requested to cancel by you',style: CustomTheme.headerStyle,),
-                        Text('Admin will take care of it',style: CustomTheme.headerStyle,),
-                      ],
-                    ) : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Text(
-                          'Total Items: ${singleOrderItem.lines.length}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Text(
-                          'State: ${checkStatus(singleOrderItem.state)}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        Text(
-                          'Order Placed At: ${DateFormat('yyy-MM-dd HH:mm a').format(parseDate(singleOrderItem.orderPlacedAt))}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        shouldShowButton(singleOrderItem) ? ElevatedButton(onPressed: (){
-                          orderController.requestToCancelOrder(singleOrderItem.id, 1);
-                        }, child: Text('Cancel Order')) : SizedBox()
-                      ],
-                    ),
-                    children: singleOrderItem.lines
-                        .map((singleLineItem) => ListTile(
-                      title: Text(singleLineItem
-                          .productVariant.name,style: CustomTheme.headerStyle,),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',style: CustomTheme.paragraphStyle,),
-
-                        ],
-                      ),
-                      leading: FadeInImage.assetNetwork(
-                        width: 50,
-                        height: 50,
-                        placeholder: CommonVariableData
-                            .placeholder,
-                        image:
-                        '${singleLineItem.featuredAsset?.preview}',
-                        imageErrorBuilder: (context,
-                            error, stackTrace) =>
-                            Image.asset(
-                              CommonVariableData
-                                  .placeholder,
-                              width: 50,
-                              height: 50,
-                            ),
-                      ),
-                    ))
-                        .toList(),
                   ),
-                ))
-                    .toList(),
-              ),
-            ),
-          )
-              : Card(
-            child: Center(
-              child: Text(
-                'There is no order for you',
-                style: CustomTheme.headerStyle,
-              ),
-            ),
-          )),
+                )),
       bottomNavigationBar: BottomNavigationComponent(),
     );
   }

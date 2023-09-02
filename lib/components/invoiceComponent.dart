@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
@@ -24,7 +25,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
       var dateTime = DateTime.parse(dateText).toLocal();
-      return DateFormat('yMd').format(dateTime);
+      return DateFormat('yMd','en-IN').format(dateTime);
     } else {
       return '';
     }
@@ -35,7 +36,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print('invoice page is loaded');
-
+      initializeDateFormatting('en-IN','');
     });
   }
 

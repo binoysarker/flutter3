@@ -209,7 +209,7 @@ class UtilService {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('$message'),
+                Text(message),
               ],
             ),
           ),

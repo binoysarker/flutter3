@@ -55,7 +55,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       }
     } else {
       url = productsController
-          .productDetailResponse.value!.featuredAsset!.preview;
+          .productDetailResponse.value!.featuredAsset?.preview ?? CommonVariableData.placeholder;
     }
     return url;
   }
@@ -64,7 +64,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return ' price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
   }
   String getOptionQuantity() {
-    return '${productsController.selectedProductDetail.value?.options.first.name}';
+    return productsController.selectedProductDetail.value?.options.first.name ?? '';
   }
 
   @override

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/services/util_service.dart';
@@ -31,7 +31,7 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   void initState() {
     super.initState();
-    initializeDateFormatting('en-IN','');
+    initializeDateFormatting('en-IN', '');
   }
 
   @override
@@ -58,7 +58,7 @@ class _OrdersPageState extends State<OrdersPage> {
       var data = DateTime.now();
 
       if (dateString != null) {
-        data = DateFormat('yyyy-MM-dd','en-IN').parse(dateString);
+        data = DateFormat('yyyy-MM-dd', 'en-IN').parse(dateString);
       }
       return data;
     }
@@ -148,18 +148,54 @@ class _OrdersPageState extends State<OrdersPage> {
                                               style: CustomTheme.headerStyle,
                                             ),
                                             Text(
-                                              'Placed At: ${DateFormat('yyy-MM-dd HH:mm a','en-IN').format(parseDate(singleOrderItem.orderPlacedAt))}',
+                                              'Placed At: ${DateFormat('yyy-MM-dd HH:mm a', 'en-IN').format(parseDate(singleOrderItem.orderPlacedAt))}',
                                               style: CustomTheme.headerStyle,
                                             ),
                                             shouldShowButton(singleOrderItem)
                                                 ? ElevatedButton(
-                                                    onPressed: () {
-                                                      orderController
-                                                          .requestToCancelOrder(
-                                                              singleOrderItem
-                                                                  .id,
-                                                              1);
-                                                    },
+                                                    onPressed: () =>
+                                                        showDialog<String>(
+                                                          context: context,
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              AlertDialog(
+                                                            title: Text(
+                                                              'Are you sure you want delete this order?',
+                                                              style: CustomTheme
+                                                                  .headerStyle,
+                                                            ),
+                                                            actions: <Widget>[
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        context,
+                                                                        'Cancel'),
+                                                                child: Text(
+                                                                  'Cancel',
+                                                                  style: CustomTheme
+                                                                      .headerStyle,
+                                                                ),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () {
+                                                                  orderController
+                                                                      .requestToCancelOrder(
+                                                                          singleOrderItem
+                                                                              .id,
+                                                                          1);
+                                                                  Navigator.pop(
+                                                                      context,
+                                                                      'OK');
+                                                                },
+                                                                child: Text(
+                                                                  'OK',
+                                                                  style: CustomTheme
+                                                                      .headerStyle,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
                                                     child: Text('Cancel Order'))
                                                 : SizedBox()
                                           ],

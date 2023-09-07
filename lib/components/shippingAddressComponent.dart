@@ -331,7 +331,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                     .toList(),
                                 decoration: InputDecoration(
                                   label: Text(
-                                    'Please select a payment option',
+                                    'Please select a postal code',
                                     style: CustomTheme.headerStyle,
                                   ),
                                   border: OutlineInputBorder(),
@@ -422,6 +422,41 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 10),
+                    child: DropdownButtonFormField<
+                        Query$GetEligibleShippingMethods$eligibleShippingMethods>(
+                      value:
+                      orderController.currentlySelectedShippingMethod.value,
+                      decoration: InputDecoration(
+                        label: Text(
+                          'Please select a delivery time',
+                          style: CustomTheme.headerStyle,
+                        ),
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (dynamic newValue) {
+                        orderController.currentlySelectedShippingMethod.value =
+                        newValue
+                        as Query$GetEligibleShippingMethods$eligibleShippingMethods;
+                        print(
+                            'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
+                      },
+                      items: orderController.filteredEligibleShippingMethodList
+                          .map((option) {
+                        return  DropdownMenuItem(
+                          value: option,
+                          child: Text(
+                            option.name,
+                            style: CustomTheme.headerStyle,
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
                     child: DropdownButtonFormField<String>(
                       value: orderController.selectedPaymentOption.value,
                       decoration: InputDecoration(
@@ -444,41 +479,6 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             option == PaymentOptionType.online.name
                                 ? 'Online'
                                 : 'Cash On Delivery',
-                            style: CustomTheme.headerStyle,
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: DropdownButtonFormField<
-                        Query$GetEligibleShippingMethods$eligibleShippingMethods>(
-                      value:
-                          orderController.currentlySelectedShippingMethod.value,
-                      decoration: InputDecoration(
-                        label: Text(
-                          'Please select a delivery time',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        border: OutlineInputBorder(),
-                      ),
-                      onChanged: (dynamic newValue) {
-                        orderController.currentlySelectedShippingMethod.value =
-                            newValue
-                                as Query$GetEligibleShippingMethods$eligibleShippingMethods;
-                        print(
-                            'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
-                      },
-                      items: orderController.filteredEligibleShippingMethodList
-                          .map((option) {
-                        return  DropdownMenuItem(
-                          value: option,
-                          child: Text(
-                            option.name,
                             style: CustomTheme.headerStyle,
                           ),
                         );
@@ -514,6 +514,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Coupon Code',
+                              helperText: 'coupon code is case sensitive',
+
                             ),
                             autofillHints: [AutofillHints.oneTimeCode],
                             keyboardType: TextInputType.name,

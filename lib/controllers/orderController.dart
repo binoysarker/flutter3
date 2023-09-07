@@ -41,7 +41,7 @@ class OrderController extends GetxController {
   var otherInstructionResponse = (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
   var makeDefaultShippingAddress = false.obs;
   var paymentOptionDropdownItems =
-      [PaymentOptionType.offline.name, PaymentOptionType.online.name].obs;
+      [PaymentOptionType.offline.name].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;

@@ -135,7 +135,8 @@ class LoginPageController extends GetxController {
       print('${res.parsedData!.logout.toJson()}');
       loading.value = false;
       authTokenStorage.ready.then((value) => authTokenStorage.clear());
-
+      phoneStorage.ready.then((value) => phoneStorage.clear());
+      passwordStorage.ready.then((value) => passwordStorage.clear());
       orderController.resetData();
       // Get.offAll(() => LoginPage());
       // Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);

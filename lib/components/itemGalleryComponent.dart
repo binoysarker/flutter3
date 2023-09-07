@@ -92,9 +92,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     return price;
   }
 
-  String getOptionQuantity(dynamic element) {
+  String? getOptionQuantity(dynamic element) {
+    // print('check element $element');
     var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
-    return item.options.first.name;
+    // print('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
+    return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
   }
 
   @override
@@ -209,7 +211,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               Text(
-                                                getOptionQuantity(element),
+                                                getOptionQuantity(element) ?? '',
                                                 style: CustomTheme.headerStyle,
                                               ),Text(
                                                 getPrice(element),

@@ -33,6 +33,8 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   OrderController orderController = Get.find<OrderController>();
   int selectedId = 0;
 
+
+
   String getProductImage(dynamic element) {
     String url = '';
     if (widget.controllerType ==
@@ -170,7 +172,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                         height: 20,
                       ),
                       SizedBox(
-                        height: 300,
+                        height: 700,
                         child: GridView.count(
                           crossAxisCount: 2,
                           childAspectRatio: MediaQuery.of(context).size.width /

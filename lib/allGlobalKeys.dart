@@ -9,6 +9,7 @@ class AllGlobalKeys{
   static final GlobalKey<ScaffoldState> drawerComponentKey = GlobalKey<ScaffoldState>();
   static final GlobalKey<FormState> verifyOTPForm = GlobalKey<FormState>();
   static final GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  static final GlobalKey categoryDetailBannerSectionKey = GlobalKey();
 
 }
 
@@ -18,3 +19,4 @@ LocalStorage rememberStorage = new LocalStorage(LocalStorageStrings.remember_me_
 LocalStorage passwordStorage = new LocalStorage(LocalStorageStrings.password.name);
 LocalStorage phoneStorage = new LocalStorage(LocalStorageStrings.phone.name);
 LocalStorage deviceStorage = new LocalStorage(LocalStorageStrings.deviceToken.name);
+

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,8 @@ class _StorePageState extends State<StorePage> {
   final UtilityController utilityController = Get.find<UtilityController>();
   final ProductsController productsController = Get.find<ProductsController>();
   final CartController cartController = Get.find<CartController>();
+  var showScrollTopButton = false.obs;
+  final ScrollController _scrollController = ScrollController();
   final LoginPageController loginPageController =
       Get.find<LoginPageController>();
   final OrderController orderController = Get.find<OrderController>();
@@ -102,103 +105,132 @@ class _StorePageState extends State<StorePage> {
                       ),
                     )
                   : DrawerComponent()),
-              body: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage('assets/images/splash.png'),
-                    ),
-                  ),
-                  Center(
-                    child: Text('Veedu Varai', style: CustomTheme.headerStyle),
-                  ),
-                  SearchComponent(
-                      homePageController: homePageController,
-                      productsController: productsController),
-                  Container(
-                    child: Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            height: 0,
-                          ),
-                          GraphQLProvider(
-                            client: GraphqlService.hygraphClient,
-                            child: Query(
-                                options: QueryOptions(
-                                    document:
-                                        gql(HygraphQueryService.assetQuery)),
-                                builder: (
-                                  QueryResult result, {
-                                  Future<QueryResult> Function(
-                                          FetchMoreOptions)?
-                                      fetchMore,
-                                  Future<QueryResult?> Function()? refetch,
-                                }) {
-                                  if (result.hasException) {
-                                    return Text(result.exception.toString());
-                                  }
-                                  if (result.isLoading) {
-                                    return CircularProgressIndicator(
-                                      color: CustomTheme.progressIndicatorColor,
-                                    );
-                                  }
-                                  if (result.data == null) {
-                                    return Text(
-                                      'No data found',
-                                      style: CustomTheme.headerStyle,
-                                    );
-                                  }
-                                  List<AssetsList> assetList =
-                                      assetsListFromJson(
-                                          jsonEncode(result.data!['assets']));
-
-                                  return Column(
-                                    children: [
-                                      ...assetList
-                                          .map(
-                                            (e) => Container(
-                                              child: FadeInImage.assetNetwork(
-                                                placeholder:
-                                                    '${CommonVariableData.placeholder}',
-                                                image: e.url,
-                                                imageErrorBuilder: (context,
-                                                        error, stackTrace) =>
-                                                    Image.asset(
-                                                        '${CommonVariableData.placeholder}'),
-                                              ),
-                                            ),
-                                          )
-                                          .toList(),
-                                      SizedBox(
-                                        height: 0,
-                                      ),
-                                      Obx(() => VerticalListComponent(
-                                            isLoading: collectionsController
-                                                .isLoading.isTrue,
-                                            showSecondLine: false,
-                                            givenList: collectionsController
-                                                .collectionItems,
-                                            givenTitle: 'Shop By Category',
-                                            controllerType: ControllerTypeNames
-                                                .collection.name,
-                                            givenHeight: 650,
-                                          )),
-                                    ],
-                                  );
-                                }),
-                          ),
-                        ],
+              body: NotificationListener<ScrollNotification>(
+                onNotification: (scrollNotification) {
+                  final scrollPosition = _scrollController.position.pixels;
+                  if (_scrollController.position.userScrollDirection ==
+                      ScrollDirection.reverse) {
+                    print('user is going down ${scrollPosition}');
+                  } else if (_scrollController.position.userScrollDirection ==
+                      ScrollDirection.forward) {
+                    print('user is going up ${scrollPosition}');
+                  }
+                  if(scrollPosition >= 250){
+                    showScrollTopButton.value = true;
+                  }else {
+                    showScrollTopButton.value = false;
+                  }
+                  return false;
+                },
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  children: [
+                    Center(
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage('assets/images/splash.png'),
                       ),
                     ),
-                  ),
-                ],
+                    Center(
+                      child:
+                          Text('Veedu Varai', style: CustomTheme.headerStyle),
+                    ),
+                    SearchComponent(
+                        homePageController: homePageController,
+                        productsController: productsController),
+                    Container(
+                      child: Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              height: 0,
+                            ),
+                            GraphQLProvider(
+                              client: GraphqlService.hygraphClient,
+                              child: Query(
+                                  options: QueryOptions(
+                                      document:
+                                          gql(HygraphQueryService.assetQuery)),
+                                  builder: (
+                                    QueryResult result, {
+                                    Future<QueryResult> Function(
+                                            FetchMoreOptions)?
+                                        fetchMore,
+                                    Future<QueryResult?> Function()? refetch,
+                                  }) {
+                                    if (result.hasException) {
+                                      return Text(result.exception.toString());
+                                    }
+                                    if (result.isLoading) {
+                                      return CircularProgressIndicator(
+                                        color:
+                                            CustomTheme.progressIndicatorColor,
+                                      );
+                                    }
+                                    if (result.data == null) {
+                                      return Text(
+                                        'No data found',
+                                        style: CustomTheme.headerStyle,
+                                      );
+                                    }
+                                    List<AssetsList> assetList =
+                                        assetsListFromJson(
+                                            jsonEncode(result.data!['assets']));
+
+                                    return Column(
+                                      children: [
+                                        ...assetList
+                                            .map(
+                                              (e) => Container(
+                                                child: FadeInImage.assetNetwork(
+                                                  placeholder:
+                                                      '${CommonVariableData.placeholder}',
+                                                  image: e.url,
+                                                  imageErrorBuilder: (context,
+                                                          error, stackTrace) =>
+                                                      Image.asset(
+                                                          '${CommonVariableData.placeholder}'),
+                                                ),
+                                              ),
+                                            )
+                                            .toList(),
+                                        SizedBox(
+                                          height: 0,
+                                        ),
+                                        Obx(() => VerticalListComponent(
+                                              isLoading: collectionsController
+                                                  .isLoading.isTrue,
+                                              showSecondLine: false,
+                                              givenList: collectionsController
+                                                  .collectionItems,
+                                              givenTitle: 'Shop By Category',
+                                              controllerType:
+                                                  ControllerTypeNames
+                                                      .collection.name,
+                                              givenHeight: 650,
+                                            )),
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               bottomNavigationBar: BottomNavigationComponent(),
+              floatingActionButton: Obx(() => showScrollTopButton.isTrue
+                  ? FloatingActionButton(
+                      onPressed: () {
+                        _scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                      },
+                      child: Icon(Icons.arrow_upward))
+                  : SizedBox()),
             ),
           )));
   }

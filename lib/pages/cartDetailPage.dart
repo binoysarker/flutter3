@@ -52,7 +52,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       color: CustomTheme.progressIndicatorColor,
                     ),
                   )
-                : Text('Increase Quantity')),
+                : Text('Increase Quantity',style: CustomTheme.headerStyle,)),
             onPressed: (_) {
               cartController.addItemToCart(item.productVariant.id, 1);
               Navigator.pop(context);
@@ -64,15 +64,15 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       color: CustomTheme.progressIndicatorColor,
                     ),
                   )
-                : Text('Delete Item')),
+                : Text('Delete Item',style: CustomTheme.headerStyle,)),
             onPressed: (_) {
               orderController.removeItemFromOrder(item.id);
               Navigator.pop(context);
             }),
       ],
       cancelAction: CancelAction(
-          title: const Text(
-              'Cancel')), // onPressed parameter is optional by default will dismiss the ActionSheet
+          title: Text(
+              'Cancel',style: CustomTheme.headerStyle,)), // onPressed parameter is optional by default will dismiss the ActionSheet
     );
   }
 
@@ -88,30 +88,35 @@ class _CartDetailPageState extends State<CartDetailPage> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.defaultDialog(
-                    title: 'Warning',
-                    content: Column(
-                      children: [
-                        Text(
-                          'Are you sure to delete all items',
-                          style: CustomTheme.headerStyle,
-                        )
-                      ],
-                    ),
-                    actions: [
-                      TextButton(
-                          onPressed: () {
-                            var activeOrder =
-                                orderController.activeOrderResponse.value!;
-                            orderController.requestToCancelOrder(
-                                activeOrder.id, 0);
-                            orderController.removeAllItemFromOrder();
-                            orderController.getActiveOrders();
-                            sleep(Duration(seconds: 1));
-                            Navigator.pop(context);
-                          },
-                          child: Text('OK')),
-                    ]);
+                if(!orderController.activeOrderResponse.value!.lines.isEmpty){
+
+                  Get.defaultDialog(
+                      title: 'Warning',
+                      content: Column(
+                        children: [
+                          Text(
+                            'Are you sure to delete all items',
+                            style: CustomTheme.headerStyle,
+                          )
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              var activeOrder =
+                                  orderController.activeOrderResponse.value!;
+                              orderController.requestToCancelOrder(
+                                  activeOrder.id, 0);
+                              orderController.removeAllItemFromOrder();
+                              orderController.getActiveOrders();
+                              sleep(Duration(seconds: 1));
+                              Navigator.pop(context);
+                            },
+                            child: Text('OK')),
+                      ]);
+                }else {
+                  UtilService.createSnakeBar(context: context,text: 'the cart is empty!');
+                }
               },
               icon: Icon(Icons.delete))
         ],

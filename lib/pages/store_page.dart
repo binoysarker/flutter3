@@ -8,7 +8,6 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/drawerComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
-import 'package:recipe.app/components/productListComponent.dart';
 import 'package:recipe.app/components/verticalListComponent.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
@@ -56,6 +55,7 @@ class _StorePageState extends State<StorePage> {
       productsController.getProductsList();
       collectionsController.getAllCollections();
       orderController.getActiveOrders();
+      userController.checkDeviceToken();
     });
   }
 
@@ -158,44 +158,40 @@ class _StorePageState extends State<StorePage> {
                                           jsonEncode(result.data!['assets']));
 
                                   return Column(
-                                    children: assetList
-                                        .map(
-                                          (e) => Container(
-                                            child: FadeInImage.assetNetwork(
-                                              placeholder:
-                                                  '${CommonVariableData.placeholder}',
-                                              image: e.url,
-                                              imageErrorBuilder: (context,
-                                                      error, stackTrace) =>
-                                                  Image.asset(
-                                                      '${CommonVariableData.placeholder}'),
+                                    children: [
+                                      ...assetList
+                                          .map(
+                                            (e) => Container(
+                                              child: FadeInImage.assetNetwork(
+                                                placeholder:
+                                                    '${CommonVariableData.placeholder}',
+                                                image: e.url,
+                                                imageErrorBuilder: (context,
+                                                        error, stackTrace) =>
+                                                    Image.asset(
+                                                        '${CommonVariableData.placeholder}'),
+                                              ),
                                             ),
-                                          ),
-                                        )
-                                        .toList(),
+                                          )
+                                          .toList(),
+                                      SizedBox(
+                                        height: 0,
+                                      ),
+                                      Obx(() => VerticalListComponent(
+                                            isLoading: collectionsController
+                                                .isLoading.isTrue,
+                                            showSecondLine: false,
+                                            givenList: collectionsController
+                                                .collectionItems,
+                                            givenTitle: 'Shop By Category',
+                                            controllerType: ControllerTypeNames
+                                                .collection.name,
+                                            givenHeight: 650,
+                                          )),
+                                    ],
                                   );
                                 }),
                           ),
-                          SizedBox(
-                            height: 0,
-                          ),
-
-                          Obx(() => VerticalListComponent(
-                                isLoading:
-                                    collectionsController.isLoading.isTrue,
-                                showSecondLine: false,
-                                givenList:
-                                    collectionsController.collectionItems,
-                                givenTitle: 'Shop By Category',
-                                controllerType:
-                                    ControllerTypeNames.collection.name,
-                                givenHeight: 300,
-                              )),
-                          // all products
-                          Obx(() => ProductListComponent(
-                                isLoading: productsController.isLoading.isTrue,
-                                productList: productsController.productList,
-                              )),
                         ],
                       ),
                     ),

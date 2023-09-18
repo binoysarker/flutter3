@@ -33,7 +33,7 @@ class _FloatingActionButtonComponentState
         ? SizedBox()
         : FloatingActionButton.extended(
             onPressed: () {
-              Get.offAll(() => CheckoutPage());
+              Get.to(() => CheckoutPage());
             },
             label: Text(
               'Checkout',

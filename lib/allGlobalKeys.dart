@@ -17,3 +17,4 @@ LocalStorage authTokenStorage = new LocalStorage(LocalStorageStrings.auth_token.
 LocalStorage rememberStorage = new LocalStorage(LocalStorageStrings.remember_me_status.name);
 LocalStorage passwordStorage = new LocalStorage(LocalStorageStrings.password.name);
 LocalStorage phoneStorage = new LocalStorage(LocalStorageStrings.phone.name);
+LocalStorage deviceStorage = new LocalStorage(LocalStorageStrings.deviceToken.name);

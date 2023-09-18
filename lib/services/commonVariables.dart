@@ -39,6 +39,7 @@ class CommonVariableData{
   static String placeholder = 'assets/images/placeholder.jpg';
 
 }
+
 typedef TypeOfList = List<Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items>;
 
 typedef SingleProductChildrenVariantItemType = Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
@@ -64,8 +65,10 @@ enum LocalStorageStrings{
   email,
   password,
   phone,
-  remember_me_status
+  remember_me_status,
+  deviceToken
 }
+
 enum SmsDeliveryType{
   morning_evening,
   payment_failed

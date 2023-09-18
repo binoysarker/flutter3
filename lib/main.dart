@@ -1,11 +1,10 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:recipe.app/api/firebase_api.dart';
 import 'package:recipe.app/controllers/bottomNavigationController.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
@@ -25,11 +24,14 @@ import 'controllers/productsController.dart';
 import 'controllers/tokenPageController.dart';
 import 'firebase_options.dart';
 
+bool shouldUseFirestoreEmulator = false;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: ".env");
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  
   Get.put(UtilityController());
   Get.put(UserController());
   Get.put(BottomNavigationController());
@@ -40,6 +42,13 @@ void main() async {
   Get.put(CollectionsController());
   Get.put(ProductsController());
   Get.put(CartController());
+
+  await Firebase.initializeApp(
+      name: 'kaaikani App', options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotification();
+  if (shouldUseFirestoreEmulator) {
+    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  }
   runApp(MyApp());
 }
 
@@ -51,8 +60,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
-  late StreamSubscription<User?> _subscription;
   UserController userController = Get.find<UserController>();
   LoginPageController loginPageController = Get.find<LoginPageController>();
   final _navigatorKey = new GlobalKey<NavigatorState>();
@@ -64,12 +71,6 @@ class _MyAppState extends State<MyApp> {
     currentTheme.addListener(() {
       setState(() {});
     });
-  }
-
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
   }
 
   @override

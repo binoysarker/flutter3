@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,21 +43,38 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDIibhtjeQZuV5BSvZv05vNG6zSjyTWqZw',
+    appId: '1:326346807376:web:e42179ba76747399f51955',
+    messagingSenderId: '326346807376',
+    projectId: 'push-notification-5e7df',
+    authDomain: 'push-notification-5e7df.firebaseapp.com',
+    storageBucket: 'push-notification-5e7df.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBySpnhjB2oT67iSi7WClvDan19EhfYv5Y',
-    appId: '1:346495285420:android:3b26308f4ee602c6564709',
-    messagingSenderId: '346495285420',
-    projectId: 'recipe.app-b90a9',
-    storageBucket: 'recipe.app-b90a9.appspot.com',
+    apiKey: 'AIzaSyANjbJXXfWOvC2qpDygJFUg7mrfSzf6eL8',
+    appId: '1:326346807376:android:775e17fc11b41b66f51955',
+    messagingSenderId: '326346807376',
+    projectId: 'push-notification-5e7df',
+    storageBucket: 'push-notification-5e7df.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAevr5RhAihsl2jMHhumddCmWGb7q3G5Os',
-    appId: '1:346495285420:ios:7b4755606f332e54564709',
-    messagingSenderId: '346495285420',
-    projectId: 'recipe.app-b90a9',
-    storageBucket: 'recipe.app-b90a9.appspot.com',
-    iosClientId: '346495285420-859e29o6jg10l7kjbs4lip4gb1mqj34e.apps.googleusercontent.com',
-    iosBundleId: 'com.example.ecommerceApp',
+    apiKey: 'AIzaSyAlTNzdKop3QxyHbp3vfhqq-XzEQh8jBuI',
+    appId: '1:326346807376:ios:8abcfa8aec57f6b3f51955',
+    messagingSenderId: '326346807376',
+    projectId: 'push-notification-5e7df',
+    storageBucket: 'push-notification-5e7df.appspot.com',
+    iosBundleId: 'com.kaaikani.kaaikani',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAlTNzdKop3QxyHbp3vfhqq-XzEQh8jBuI',
+    appId: '1:326346807376:ios:8abcfa8aec57f6b3f51955',
+    messagingSenderId: '326346807376',
+    projectId: 'push-notification-5e7df',
+    storageBucket: 'push-notification-5e7df.appspot.com',
+    iosBundleId: 'com.kaaikani.kaaikani',
   );
 }

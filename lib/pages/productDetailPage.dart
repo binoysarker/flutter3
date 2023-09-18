@@ -64,7 +64,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return ' price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
   }
   String getOptionQuantity() {
-    return productsController.selectedProductDetail.value?.options.first.name ?? '';
+    var quantity = '';
+    if(productsController.selectedProductDetail.value!.options.length > 0){
+      quantity = productsController.selectedProductDetail.value!.options.first.name;
+    }
+    return quantity;
   }
 
   @override

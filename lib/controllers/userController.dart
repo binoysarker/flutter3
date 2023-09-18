@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,6 +12,7 @@ import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 
+import '../allGlobalKeys.dart';
 import '../graphqlSection/vendureSchema.graphql.dart';
 import '../services/util_service.dart';
 
@@ -27,13 +29,10 @@ class UserController with ChangeNotifier {
   final LocalStorage storage =
       new LocalStorage(LocalStorageStrings.auth_token.name);
 
-
-
   void logUserOutBeforeExit() async {
     isLoading2.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -50,11 +49,35 @@ class UserController with ChangeNotifier {
     }
   }
 
+  void checkDeviceToken() {
+    deviceStorage.ready.then((isReady) {
+      if (isReady) {
+        var fcmToken =
+            deviceStorage.getItem(LocalStorageStrings.deviceToken.name);
+        if (fcmToken != null) {
+          // store this token in firebase store
+          CollectionReference deviceCollection =
+              FirebaseFirestore.instance.collection('devices');
+          deviceCollection.where('token', isEqualTo: fcmToken).get().then(
+              (querySnapshots) {
+            print('all tokens ${querySnapshots.docs}');
+            if (querySnapshots.docs.isEmpty) {
+              deviceCollection.add({
+                'userInfo': currentAuthenticatedUser.value?.toJson(),
+                'token': fcmToken}).then(
+                  (insertedDoc) => {print('data is inserted')},
+                  onError: (error) => print('error $error'));
+            }
+          }, onError: (e) => print('some error $e'));
+        }
+      }
+    });
+  }
+
   void getActiveCustomer() async {
     isLoading2.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .query$GetActiveCustomer(Options$Query$GetActiveCustomer());
     if (res.hasException) {
       print('${res.exception.toString()}');
@@ -101,9 +124,8 @@ class UserController with ChangeNotifier {
       String streetLine2, String fullName, postalCode, phoneNumber) async {
     isLoading2.value = true;
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
-        .mutate$UpdateCustomerAddress(Options$Mutation$UpdateCustomerAddress(
+    final res = await graphqlService.client.value.mutate$UpdateCustomerAddress(
+        Options$Mutation$UpdateCustomerAddress(
             variables: Variables$Mutation$UpdateCustomerAddress(
                 input: Input$UpdateAddressInput(
                     id: id,
@@ -139,8 +161,7 @@ class UserController with ChangeNotifier {
     }
     final navigator = Navigator.of(context);
     graphqlService = GraphqlService();
-    final res = await graphqlService
-        .client.value
+    final res = await graphqlService.client.value
         .query$GetCurrentUser(Options$Query$GetCurrentUser());
     if (res.hasException) {
       print('${res.exception.toString()}');

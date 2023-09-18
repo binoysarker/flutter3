@@ -181,6 +181,18 @@ class PaymentMethodComponent extends StatelessWidget {
                           ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        'Inclusive GST',
+                        style: CustomTheme.paragraphStyle,
+                      ),
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: 20,
                 ),

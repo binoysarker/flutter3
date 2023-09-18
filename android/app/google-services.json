@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "326346807376",
+    "project_id": "push-notification-5e7df",
+    "storage_bucket": "push-notification-5e7df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326346807376:android:775e17fc11b41b66f51955",
+        "android_client_info": {
+          "package_name": "com.kaaikani.kaaikani"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326346807376-7gm73ollba75e4fe0kfa0t6lu7748dr2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANjbJXXfWOvC2qpDygJFUg7mrfSzf6eL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326346807376-7gm73ollba75e4fe0kfa0t6lu7748dr2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

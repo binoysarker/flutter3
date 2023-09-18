@@ -160,7 +160,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                   context) =>
                                                               AlertDialog(
                                                             title: Text(
-                                                              'Are you sure you want delete this order?',
+                                                              'Are you sure you want cancel this order?',
                                                               style: CustomTheme
                                                                   .headerStyle,
                                                             ),

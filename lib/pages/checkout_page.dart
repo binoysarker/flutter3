@@ -227,8 +227,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         // check for online or offline payment
                         if (orderController.selectedPaymentOption.value ==
                             PaymentOptionType.online.name) {
+                          UtilService.toggleScreenshotRestriction(true);
                           orderController.createRazorPayOrder();
                         } else {
+                          UtilService.toggleScreenshotRestriction(false);
                           var states = await orderController.getNextOrderStates();
                           orderController.transitionToOrderState(states[0]);
 

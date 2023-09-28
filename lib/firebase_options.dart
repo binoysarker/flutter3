@@ -44,37 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDIibhtjeQZuV5BSvZv05vNG6zSjyTWqZw',
-    appId: '1:326346807376:web:e42179ba76747399f51955',
-    messagingSenderId: '326346807376',
-    projectId: 'push-notification-5e7df',
-    authDomain: 'push-notification-5e7df.firebaseapp.com',
-    storageBucket: 'push-notification-5e7df.appspot.com',
+    apiKey: 'AIzaSyA_Wc9zKgjxrK4v13i3DScrrGGEEz8mGVg',
+    appId: '1:925683676829:web:90cf3b8d75af67af32c674',
+    messagingSenderId: '925683676829',
+    projectId: 'push-notification-5d56d',
+    authDomain: 'push-notification-5d56d.firebaseapp.com',
+    storageBucket: 'push-notification-5d56d.appspot.com',
+    measurementId: 'G-649D583TH2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyANjbJXXfWOvC2qpDygJFUg7mrfSzf6eL8',
-    appId: '1:326346807376:android:775e17fc11b41b66f51955',
-    messagingSenderId: '326346807376',
-    projectId: 'push-notification-5e7df',
-    storageBucket: 'push-notification-5e7df.appspot.com',
+    apiKey: 'AIzaSyA6D98NJ0zhzq9MzitW2LifnKcFkrxvqcI',
+    appId: '1:925683676829:android:36bd81054b003a3932c674',
+    messagingSenderId: '925683676829',
+    projectId: 'push-notification-5d56d',
+    storageBucket: 'push-notification-5d56d.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAlTNzdKop3QxyHbp3vfhqq-XzEQh8jBuI',
-    appId: '1:326346807376:ios:8abcfa8aec57f6b3f51955',
-    messagingSenderId: '326346807376',
-    projectId: 'push-notification-5e7df',
-    storageBucket: 'push-notification-5e7df.appspot.com',
+    apiKey: 'AIzaSyAoyw-KU61RO33DGU29ejZBdQhHPtN5uDA',
+    appId: '1:925683676829:ios:732d39181aa1510332c674',
+    messagingSenderId: '925683676829',
+    projectId: 'push-notification-5d56d',
+    storageBucket: 'push-notification-5d56d.appspot.com',
     iosBundleId: 'com.kaaikani.kaaikani',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAlTNzdKop3QxyHbp3vfhqq-XzEQh8jBuI',
-    appId: '1:326346807376:ios:8abcfa8aec57f6b3f51955',
-    messagingSenderId: '326346807376',
-    projectId: 'push-notification-5e7df',
-    storageBucket: 'push-notification-5e7df.appspot.com',
+    apiKey: 'AIzaSyAoyw-KU61RO33DGU29ejZBdQhHPtN5uDA',
+    appId: '1:925683676829:ios:732d39181aa1510332c674',
+    messagingSenderId: '925683676829',
+    projectId: 'push-notification-5d56d',
+    storageBucket: 'push-notification-5d56d.appspot.com',
     iosBundleId: 'com.kaaikani.kaaikani',
   );
 }

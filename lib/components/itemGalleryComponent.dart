@@ -109,17 +109,16 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     });
   }
 
-  void addItemToCart(dynamic singleProductVariantItemType) {
+  void addItemToCart(dynamic singleProduct) {
+
     var id;
-    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      id = (singleProductVariantItemType as SingleProductListItemType)
-          .variants[0]
-          .id;
-    } else {
-      id = singleProductVariantItemType.id;
+    if(widget.controllerType == ControllerTypeNames.productVariantItems.name){
+      var item = singleProduct as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+      id = item.id;
     }
+    print('product id $id');
     cartController.addItemToCart(id, 1);
-    checkList();
+    // checkList();
   }
 
   void goToPage(dynamic element) {
@@ -236,12 +235,12 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                                             int.parse(element.id);
                                                         print(
                                                             'select item $element');
-                                                        // addItemToCart(element);
-                                                        UtilService.addItemToCart(
-                                                            element,
-                                                            ControllerTypeNames
-                                                                .productChildrenVariantItems
-                                                                .name);
+                                                        addItemToCart(element);
+                                                        // UtilService.addItemToCart(
+                                                        //     element,
+                                                        //     ControllerTypeNames
+                                                        //         .productChildrenVariantItems
+                                                        //         .name);
                                                       },
                                                       icon: Icon(
                                                           Icons.shopping_cart),

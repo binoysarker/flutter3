@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:html/parser.dart' show parse;
@@ -27,6 +28,16 @@ class UtilService {
 
   set apiBaseUrl(String value) {
     _apiBaseUrl = value;
+  }
+
+  static Future<void> toggleScreenshotRestriction(bool status) async {
+
+    // Toggle the screen shot restriction status.
+    if (status) {
+      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    } else {
+      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    }
   }
 
   late String _shopApiUrl;

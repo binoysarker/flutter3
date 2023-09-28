@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
@@ -15,6 +16,7 @@ class FirebaseApi {
 
   Future<void> initNotification() async {
     await _firebaseMessaging.requestPermission();
+    await _firebaseMessaging.subscribeToTopic(dotenv.env['MESSAGE_TOPIC'].toString());
     final fcmToken = await _firebaseMessaging.getToken();
     print('firebase token $fcmToken');
     // store this token in local storage

@@ -201,9 +201,11 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                         .map((e) => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  e.shippingMethod.name,
-                                  style: CustomTheme.headerStyle,
+                                Flexible(
+                                  child: Text(
+                                    e.shippingMethod.name,
+                                    style: CustomTheme.headerStyle,
+                                  ),
                                 ),
                                 Text(
                                   '+ ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',

@@ -110,10 +110,10 @@ class _StorePageState extends State<StorePage> {
                   final scrollPosition = _scrollController.position.pixels;
                   if (_scrollController.position.userScrollDirection ==
                       ScrollDirection.reverse) {
-                    print('user is going down ${scrollPosition}');
+                    // print('user is going down ${scrollPosition}');
                   } else if (_scrollController.position.userScrollDirection ==
                       ScrollDirection.forward) {
-                    print('user is going up ${scrollPosition}');
+                    // print('user is going up ${scrollPosition}');
                   }
                   if(scrollPosition >= 250){
                     showScrollTopButton.value = true;

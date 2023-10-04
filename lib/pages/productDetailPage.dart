@@ -230,6 +230,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 visible: productsController
                                     .productDetailVariants.isNotEmpty,
                                 child: DropdownButtonFormField(
+                                  isExpanded: true,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Select Variant'),
@@ -239,7 +240,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         .productDetailVariants
                                         .map((e) => DropdownMenuItem(
                                               child: Text(
-                                                UtilService.formateText(e.name),
+                                                e.name,
                                                 style: CustomTheme.headerStyle,
                                               ),
                                               value: e.id,

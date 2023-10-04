@@ -71,10 +71,10 @@ class SearchComponent extends StatelessWidget {
                             itemBuilder: (context, index) => ListTile(
                                 onTap: () {
                                   print(
-                                      '${productsController.searchResultList[index].slug}');
+                                      '${productsController.searchResultList[index].toJson()}');
                                   Get.to(() => ProductDetailPage(), arguments: {
                                     'id':
-                                        '${productsController.searchResultList[index].productVariantId}'
+                                        '${productsController.searchResultList[index].productId}'
                                   });
                                   resetSearch(context);
                                 },

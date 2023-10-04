@@ -135,7 +135,7 @@ class OrderController extends GetxController {
     }
   }
 
-  void transitionToOrderState(String state) async {
+  Future<bool> transitionToOrderState(String state) async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value.mutate$TransitionOrderToState(
@@ -147,11 +147,22 @@ class OrderController extends GetxController {
       isLoading.value = false;
     }
     if (res.data != null) {
-      print(
-          'transitionToOrderState ${res.parsedData!.transitionOrderToState!.toJson()}');
+      var jsonData = res.parsedData!.transitionOrderToState!.toJson();
+      if(jsonData['errorCode'] != null){
+        isLoading.value = false;
+        Get.snackbar('', jsonData['message'] + '.Please remove this item from cart and retry',colorText: Colors.white,backgroundColor: Colors.red);
+        return false;
+      }else {
+        isLoading.value = false;
+        print('transitionToOrderState ${jsonData['errorCode']}');
+        transitionToOrderStateResponse.value = jsonData;
+        return true;
+      }
+    }else {
+      isLoading.value = false;
+      Get.snackbar('','can not complete transitionToOrderState ',colorText: Colors.white,backgroundColor: Colors.red);
+      return false;
     }
-    transitionToOrderStateResponse.value =
-        res.parsedData!.transitionOrderToState!.toJson();
   }
 
   void transitionToArrangingPayment() async {
@@ -342,15 +353,18 @@ class OrderController extends GetxController {
         print('payment is verified');
         isLoading.value = false;
         var states = await getNextOrderStates();
-        transitionToOrderState(states[0]);
+        final bool isSuccess = await transitionToOrderState(states[0]);
 
-        Timer(Duration(seconds: 3), () {
-          addPaymentToOrder({
-            'paymentId': paymentSuccessResponse.value!.paymentId,
-            'orderId': paymentSuccessResponse.value!.orderId,
-            'signature': paymentSuccessResponse.value!.signature
+        if(isSuccess){
+          Timer(Duration(seconds: 3), () {
+            addPaymentToOrder({
+              'paymentId': paymentSuccessResponse.value!.paymentId,
+              'orderId': paymentSuccessResponse.value!.orderId,
+              'signature': paymentSuccessResponse.value!.signature
+            });
           });
-        });
+        }
+        // isLoading.value = false;
       } else {
         print('not verified');
         Get.snackbar('Warning', 'Payment is not verified. Please Try again');
@@ -442,7 +456,7 @@ class OrderController extends GetxController {
       cityValue = userController.currentAuthenticatedUser.value!.addresses!.first.city;
       fName = userController.currentAuthenticatedUser.value!.addresses!.first.fullName;
       postCode = userController.currentAuthenticatedUser.value!.addresses!.first.postalCode;
-    }else if(shippingAddressOrder.value?.shippingAddress != null) {
+    }else if(useShippingAddress.isTrue) {
       str1 = shippingAddressOrder.value?.shippingAddress?.streetLine1;
       str2 = shippingAddressOrder.value?.shippingAddress?.streetLine2;
       cCode = shippingAddressOrder.value?.shippingAddress?.countryCode;
@@ -523,7 +537,7 @@ class OrderController extends GetxController {
           'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
-      filteredEligibleShippingMethodList.value = res.parsedData!.eligibleShippingMethods.where((e) => e.code != 'delivery-tax').toList();
+      filteredEligibleShippingMethodList.value = res.parsedData!.eligibleShippingMethods.toList();
       currentlySelectedShippingMethod.value = null;
       isLoading.value = false;
     }

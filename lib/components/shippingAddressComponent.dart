@@ -53,7 +53,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
             Obx(() => Card(
                   elevation: 2,
                   color: orderController.useShippingAddress.value
-                      ? Colors.green
+                      ? Colors.cyanAccent
                       : Colors.lightGreen,
                   child: Column(
                     children: [
@@ -61,6 +61,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                   ?.shippingAddress !=
                               null
                           ? GestureDetector(
+                        behavior: HitTestBehavior.translucent,
                               // show shipping address
                               onTap: () {
                                 print('onTap');
@@ -70,171 +71,163 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Address',
-                                        style: CustomTheme.headerStyle,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Name:',
-                                            style: CustomTheme.headerStyle,
-                                          ),
-                                          Text(
-                                            '${orderController.shippingAddressOrder.value?.shippingAddress!.fullName}',
-                                            style: CustomTheme.paragraphStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Street:',
-                                            style: CustomTheme.headerStyle,
-                                          ),
-                                          Text(
-                                            '${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine1},${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine2}',
-                                            style: CustomTheme.paragraphStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'City:',
-                                            style: CustomTheme.headerStyle,
-                                          ),
-                                          Text(
-                                            '${orderController.shippingAddressOrder.value?.shippingAddress!.city}',
-                                            style: CustomTheme.paragraphStyle,
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Phone:',
-                                            style: CustomTheme.headerStyle,
-                                          ),
-                                          Text(
-                                            '${orderController.shippingAddressOrder.value?.shippingAddress!.phoneNumber}',
-                                            style: CustomTheme.paragraphStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Address',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Name:',
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          '${orderController.shippingAddressOrder.value?.shippingAddress!.fullName}',
+                                          style: CustomTheme.paragraphStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Street:',
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          '${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine1},${orderController.shippingAddressOrder.value?.shippingAddress!.streetLine2}',
+                                          style: CustomTheme.paragraphStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'City:',
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          '${orderController.shippingAddressOrder.value?.shippingAddress!.city}',
+                                          style: CustomTheme.paragraphStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Phone:',
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        Text(
+                                          '${orderController.shippingAddressOrder.value?.shippingAddress!.phoneNumber}',
+                                          style: CustomTheme.paragraphStyle,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             )
                           : SizedBox(),
-
                     ],
                   ),
                 )),
             // show active user address
             Obx(() => Card(
-              color: orderController.useCurrentUserAddress.value
-                  ? Colors.green
-                  : Colors.lightGreen,
-              child: userController.currentAuthenticatedUser.value!
-                  .addresses!.isNotEmpty
-                  ? Column(
-                children: userController
-                    .currentAuthenticatedUser
-                    .value!
-                    .addresses!
-                    .map((singleAddress) => GestureDetector(
-                  onTap: () {
-                    print('onTap');
-                    orderController
-                        .useCurrentUserAddress
-                        .value = true;
-                    orderController.useShippingAddress.value = false;
-                  },
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Address ',
-                            style: CustomTheme
-                                .headerStyle,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Name:',
-                                style: CustomTheme
-                                    .headerStyle,
-                              ),
-                              Text(
-                                '${singleAddress.fullName}',
-                                style: CustomTheme
-                                    .paragraphStyle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Street:',
-                                style: CustomTheme
-                                    .headerStyle,
-                              ),
-                              Text(
-                                '${singleAddress.streetLine1},${singleAddress.streetLine2}',
-                                style: CustomTheme
-                                    .paragraphStyle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'City:',
-                                style: CustomTheme
-                                    .headerStyle,
-                              ),
-                              Text(
-                                '${singleAddress.city}',
-                                style: CustomTheme
-                                    .paragraphStyle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Phone:',
-                                style: CustomTheme
-                                    .headerStyle,
-                              ),
-                              Text(
-                                '${singleAddress.phoneNumber}',
-                                style: CustomTheme
-                                    .paragraphStyle,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  color: orderController.useCurrentUserAddress.value
+                      ? Colors.cyanAccent
+                      : Colors.lightGreen,
+                  child: userController
+                          .currentAuthenticatedUser.value!.addresses!.isNotEmpty
+                      ? Column(
+                          children: userController
+                              .currentAuthenticatedUser.value!.addresses!
+                              .map((singleAddress) => GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                                    onTap: () {
+                                      print('onTap');
+                                      orderController
+                                          .useCurrentUserAddress.value = true;
+                                      orderController.useShippingAddress.value =
+                                          false;
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Address ',
+                                            style: CustomTheme.headerStyle,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Name:',
+                                                style:
+                                                    CustomTheme.headerStyle,
+                                              ),
+                                              Text(
+                                                '${singleAddress.fullName}',
+                                                style: CustomTheme
+                                                    .paragraphStyle,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Street:',
+                                                style:
+                                                    CustomTheme.headerStyle,
+                                              ),
+                                              Text(
+                                                '${singleAddress.streetLine1},${singleAddress.streetLine2}',
+                                                style: CustomTheme
+                                                    .paragraphStyle,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'City:',
+                                                style:
+                                                    CustomTheme.headerStyle,
+                                              ),
+                                              Text(
+                                                '${singleAddress.city}',
+                                                style: CustomTheme
+                                                    .paragraphStyle,
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Phone:',
+                                                style:
+                                                    CustomTheme.headerStyle,
+                                              ),
+                                              Text(
+                                                '${singleAddress.phoneNumber}',
+                                                style: CustomTheme
+                                                    .paragraphStyle,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                        )
+                      : SizedBox(),
                 ))
-                    .toList(),
-              )
-                  : SizedBox(),
-            ))
           ],
         ),
         Obx(() => showForm.isTrue
@@ -324,6 +317,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               child: DropdownButtonFormField(
                                 value: widget
                                     .orderController.selectedPostalCode.value,
+                                isExpanded: true,
                                 items: postCodeList
                                     .map((ele) => DropdownMenuItem<String>(
                                         value: '${ele.postcode}',
@@ -380,7 +374,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       ? Column(
                           children: [
                             Text(
-                              'Select an address',
+                              'Select Shipping Address',
                               style: CustomTheme.headerStyle,
                             ),
                             Text(
@@ -420,38 +414,47 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: DropdownButtonFormField<
-                        Query$GetEligibleShippingMethods$eligibleShippingMethods>(
-                      value:
-                      orderController.currentlySelectedShippingMethod.value,
-                      decoration: InputDecoration(
-                        label: Text(
-                          'Please select a delivery time',
-                          style: CustomTheme.headerStyle,
-                        ),
-                        border: OutlineInputBorder(),
-                      ),
-                      onChanged: (dynamic newValue) {
-                        orderController.currentlySelectedShippingMethod.value =
-                        newValue
-                        as Query$GetEligibleShippingMethods$eligibleShippingMethods;
-                        print(
-                            'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
-                      },
-                      items: orderController.filteredEligibleShippingMethodList
-                          .map((option) {
-                        return  DropdownMenuItem(
-                          value: option,
-                          child: Text(
-                            option.name,
-                            style: CustomTheme.headerStyle,
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
+                  Obx(() =>
+                      orderController.filteredEligibleShippingMethodList.isEmpty
+                          ? CircularProgressIndicator(
+                              color: CustomTheme.progressIndicatorColor,
+                            )
+                          : Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: DropdownButtonFormField<
+                                  Query$GetEligibleShippingMethods$eligibleShippingMethods>(
+                                value: orderController
+                                    .currentlySelectedShippingMethod.value,
+                                isExpanded: true,
+                                decoration: InputDecoration(
+                                  label: Text(
+                                    'Please select a delivery time',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                ),
+                                onChanged: (dynamic newValue) {
+                                  orderController
+                                          .currentlySelectedShippingMethod
+                                          .value =
+                                      newValue
+                                          as Query$GetEligibleShippingMethods$eligibleShippingMethods;
+                                  print(
+                                      'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
+                                },
+                                items: orderController
+                                    .filteredEligibleShippingMethodList
+                                    .map((option) {
+                                  return DropdownMenuItem(
+                                    value: option,
+                                    child: Text(
+                                      option.name,
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            )),
                   SizedBox(
                     height: 20,
                   ),
@@ -459,6 +462,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     padding: EdgeInsets.only(top: 10),
                     child: DropdownButtonFormField<String>(
                       value: orderController.selectedPaymentOption.value,
+                      isExpanded: true,
                       decoration: InputDecoration(
                         label: Text(
                           'Please select a payment option',
@@ -473,7 +477,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       },
                       items: orderController.paymentOptionDropdownItems.value
                           .map((String option) {
-                        return  DropdownMenuItem<String>(
+                        return DropdownMenuItem<String>(
                           value: option,
                           child: Text(
                             option == PaymentOptionType.online.name
@@ -515,7 +519,6 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               border: OutlineInputBorder(),
                               labelText: 'Coupon Code',
                               helperText: 'coupon code is case sensitive',
-
                             ),
                             autofillHints: [AutofillHints.oneTimeCode],
                             keyboardType: TextInputType.name,

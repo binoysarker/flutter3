@@ -161,6 +161,9 @@ class LoginPageController extends GetxController {
               children: [
                 ElevatedButton(
                     onPressed: () {
+                      orderController.removeAllItemFromOrder();
+                      orderController.resetShippingMethodForm();
+                      orderController.getActiveOrders();
                       Navigator.pop(context);
                       MoveToBackground.moveTaskToBack();
                     },

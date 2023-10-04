@@ -2,8 +2,6 @@ import 'package:recipe.app/graphqlSection/products.graphql.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-
 import '../graphqlSection/vendureSchema.graphql.dart';
 
 class ProductsController extends GetxController {
@@ -73,7 +71,7 @@ class ProductsController extends GetxController {
       print('${res.toString()}');
       isLoading.value = false;
     }
-    if (res.data != null) {
+    if (res.parsedData!.product != null) {
       print('products detail ${res.parsedData!.product!.toJson()}');
       productDetailResponse.value = res.parsedData!.product;
       productDetailVariants.value = res.parsedData!.product!.variants;
@@ -81,7 +79,12 @@ class ProductsController extends GetxController {
           productDetailVariants.value.map((element) => element.id).toList()[0];
       updateProductDetail(selectedDropdownItemId.value);
       isLoading.value = false;
+    }else {
+      print('selected product id $id');
+      Get.snackbar('','Can not find the product',backgroundColor: Colors.red,colorText: Colors.white);
+      isLoading.value = false;
     }
+
   }
 
   void searchForProducts(String searchText) async {

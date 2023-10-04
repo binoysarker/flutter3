@@ -122,15 +122,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     void processOfflinePaymentSms() {
       // Morning or Evening Delivery
-      // var currentTime = DateTime.now();
-      // var givenTime = DateTime(
-      //     currentTime.year, currentTime.month, currentTime.day, 18, 0, 0);
       var showEveningSms =
           orderController.currentlySelectedShippingMethod.value!.code !=
               'morning-delivery';
-      // if (currentTime.isAfter(givenTime)) {
-      //   showEveningSms = true;
-      // }
       var templateId = showEveningSms
           ? "649011f6d6fc053db57148e5"
           : "64900e1ed6fc056a7b3a9c32";
@@ -232,16 +226,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         } else {
                           UtilService.toggleScreenshotRestriction(false);
                           var states = await orderController.getNextOrderStates();
-                          orderController.transitionToOrderState(states[0]);
+                          final isSuccess = await orderController.transitionToOrderState(states[0]);
 
-                          Timer(Duration(seconds: 3), () {
-                            orderController.addPaymentToOrder({
-                              'amount':
-                                  '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
-                              'paymentType': PaymentOptionType.offline.name,
-                            });
-                            processOfflinePaymentSms();
-                          });
+                          if(isSuccess){
+                              orderController.addPaymentToOrder({
+                                'amount':
+                                    '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
+                                'paymentType': PaymentOptionType.offline.name,
+                              });
+                              processOfflinePaymentSms();
+                          }
+                          // orderController.isLoading.value = false;
                         }
                       }
                     },

@@ -40,7 +40,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     if (widget.controllerType ==
         ControllerTypeNames.productChildrenVariantItems.name) {
       print('element detail image ${element.product.featuredAsset.preview}');
-      var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+      var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       url = '${item.featuredAsset!.preview}';
     }
     else if (widget.controllerType == ControllerTypeNames.productVariantItems.name ||
@@ -53,14 +53,14 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   checkList() {
+    print('current list ${widget.currentList}');
     if (widget.controllerType ==
             ControllerTypeNames.productChildrenVariantItems.name ||
         widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-      print('current list ${widget.currentList}');
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       widget.currentList =
-          widget.givenList.cast<List<SingleProductListItemType>>();
+          widget.givenList.cast<List<Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product>>();
     }
   }
 
@@ -87,19 +87,16 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
           '${UtilService.getCurrencySymble(element.currencyCode.toString())}${UtilService.formatPriceValue(element.priceWithTax)}';
       // var test = (element as SingleProductListItemType).u
     }
-    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      price =
-          '${UtilService.getCurrencySymble(element.variants[0].currencyCode.name)}${UtilService.formatPriceValue(element.variants[0].priceWithTax)}';
-    }
+
     return price;
   }
 
-  String? getOptionQuantity(dynamic element) {
+  // String? getOptionQuantity(dynamic element) {
     // print('check element $element');
-    var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+    // var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
     // print('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
-    return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
-  }
+    // return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
+  // }
 
   @override
   void initState() {
@@ -112,8 +109,8 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   void addItemToCart(dynamic singleProduct) {
 
     var id;
-    if(widget.controllerType == ControllerTypeNames.productVariantItems.name){
-      var item = singleProduct as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+    if(widget.controllerType == ControllerTypeNames.normalProductList.name){
+      var item = singleProduct as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       id = item.id;
     }
     print('product id $id');
@@ -123,11 +120,11 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
 
   void goToPage(dynamic element) {
     print(element);
-    if (widget.controllerType == ControllerTypeNames.productVariantItems.name) {
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       var item = element
-          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
+          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       print(item.toJson());
-      Get.to(() => ProductDetailPage(), arguments: {'id': item.product.id});
+      Get.to(() => ProductDetailPage(), arguments: {'id': item.id});
     } else {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
@@ -175,7 +172,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                         child: GridView.count(
                           crossAxisCount: 2,
                           childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 1.8),
+                              (MediaQuery.of(context).size.height / 2.2),
                           children: widget.givenList
                               .map((element) => GestureDetector(
                             onTap: () {
@@ -207,47 +204,37 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                               style: CustomTheme.headerStyle,
                                             ),
                                           ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                getOptionQuantity(element) ?? '',
-                                                style: CustomTheme.headerStyle,
-                                              ),Text(
-                                                getPrice(element),
-                                                style: CustomTheme.headerStyle,
-                                              ),
-                                              Obx(() => cartController
-                                                          .isLoading.isTrue &&
-                                                      selectedId ==
-                                                          int.parse(element.id)
-                                                  ? Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: CustomTheme
-                                                            .progressIndicatorColor,
-                                                      ),
-                                                    )
-                                                  : IconButton(
-                                                      onPressed: () {
-                                                        selectedId =
-                                                            int.parse(element.id);
-                                                        print(
-                                                            'select item $element');
-                                                        addItemToCart(element);
-                                                        // UtilService.addItemToCart(
-                                                        //     element,
-                                                        //     ControllerTypeNames
-                                                        //         .productChildrenVariantItems
-                                                        //         .name);
-                                                      },
-                                                      icon: Icon(
-                                                          Icons.shopping_cart),
-                                                      color: Colors.lightGreen,
-                                                    ))
-                                            ],
-                                          )
+                                          // Row(
+                                          //   mainAxisAlignment:
+                                          //       MainAxisAlignment.spaceAround,
+                                          //   children: [
+                                          //
+                                          //     Obx(() => cartController
+                                          //                 .isLoading.isTrue &&
+                                          //             selectedId ==
+                                          //                 int.parse(element.id)
+                                          //         ? Center(
+                                          //             child:
+                                          //                 CircularProgressIndicator(
+                                          //               color: CustomTheme
+                                          //                   .progressIndicatorColor,
+                                          //             ),
+                                          //           )
+                                          //         : IconButton(
+                                          //             onPressed: () {
+                                          //               selectedId =
+                                          //                   int.parse(element.id);
+                                          //               print(
+                                          //                   'select item $element');
+                                          //               addItemToCart(element);
+                                          //
+                                          //             },
+                                          //             icon: Icon(
+                                          //                 Icons.shopping_cart),
+                                          //             color: Colors.lightGreen,
+                                          //           ))
+                                          //   ],
+                                          // )
                                         ],
                                       ),
                                     ),

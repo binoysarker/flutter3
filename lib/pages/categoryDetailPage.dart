@@ -168,6 +168,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                           SizedBox(
                             height: 20,
                           ),
+
                           ItemGalleryComponent(
                               headerTitle: 'Products',
                               loadingState:
@@ -176,9 +177,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                   .singleCollectionDetail
                                   .value!
                                   .productVariants
-                                  .items,
+                                  .items.map((e) => e.product).toSet().toList(),
                               controllerType:
-                                  ControllerTypeNames.productVariantItems.name)
+                                  ControllerTypeNames.normalProductList.name)
                         ],
                       ),
                     ),

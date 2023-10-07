@@ -24,6 +24,7 @@ query GetCollectionsByIdOrSlug($id: ID){
         name
         description
         slug
+
         productVariants{
             items {
                 id
@@ -45,6 +46,7 @@ query GetCollectionsByIdOrSlug($id: ID){
                     featuredAsset {
                         ...Asset
                     }
+
                 }
             }
         }

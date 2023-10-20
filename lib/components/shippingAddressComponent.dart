@@ -310,8 +310,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                     jsonEncode(result.data!['postcodes']));
                             print('postal codes ${result.data!['postcodes']}');
                             // set the defualt value
-                            widget.orderController.selectedPostalCode.value =
-                                postCodeList[0].postcode.toString();
+                            // widget.orderController.selectedPostalCode.value =
+                            //     postCodeList[0].postcode.toString();
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: DropdownButtonFormField(
@@ -332,6 +332,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                 ),
                                 onChanged: (dynamic data) {
                                   print('selected postcode $data');
+                                  widget.orderController.selectedPostalCode.value = data;
                                 },
                                 validator: RequiredValidator(
                                     errorText: 'Please select a postal code'),
@@ -360,6 +361,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     ElevatedButton(
                         onPressed: () {
                           showForm.value = !showForm.value;
+                          print('current post code ${widget.orderController.selectedPostalCode.value}');
                           orderController.setShippingAddress(false);
                         },
                         child: Text(

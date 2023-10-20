@@ -474,7 +474,7 @@ class OrderController extends GetxController {
                     streetLine2: str2,
                     countryCode: cCode as String,
                     city: cityValue,
-                    province: 'Maharashtra',
+                    province: dotenv.env['PROVINCE'].toString(),
                     fullName: fName,
                     postalCode: postCode,
                     defaultShippingAddress: makeDefaultShippingAddress.value,

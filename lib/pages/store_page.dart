@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_facebook_keyhash/flutter_facebook_keyhash.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -49,6 +51,7 @@ class _StorePageState extends State<StorePage> {
   final OrderController orderController = Get.find<OrderController>();
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
+  static final facebookAppEvents = FacebookAppEvents();
 
   @override
   void initState() {
@@ -59,11 +62,20 @@ class _StorePageState extends State<StorePage> {
       collectionsController.getAllCollections();
       orderController.getActiveOrders();
       userController.checkDeviceToken();
+      printKeyHash();
     });
+  }
+  void printKeyHash() async{
+
+    String? key=await FlutterFacebookKeyhash.getFaceBookKeyHash ??
+        'Unknown platform version';
+    print('facebook key is $key');
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Obx(() => productsController.isLoading.isTrue
         ? LoadingSpinnerComponent()
         : SafeArea(
@@ -197,6 +209,69 @@ class _StorePageState extends State<StorePage> {
                                               ),
                                             )
                                             .toList(),
+                                        SizedBox(
+                                          height: 0,
+                                        ),
+                                        FutureBuilder(
+                                          future: facebookAppEvents.getAnonymousId(),
+                                          builder: (context, snapshot) {
+                                            print('snapshot data ${snapshot}');
+                                            final id = snapshot.data ?? '???';
+                                            return Text('Anonymous ID: $id');
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Click me!"),
+                                          onPressed: () {
+                                            facebookAppEvents.logEvent(
+                                              name: 'sending_message',
+                                              parameters: {
+                                                'text': 'some message'
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Set user data"),
+                                          onPressed: () {
+                                            facebookAppEvents.setUserData(
+                                              email: 'opensource@oddbit.id',
+                                              firstName: 'Oddbit',
+                                              dateOfBirth: '2019-10-19',
+                                              city: 'Denpasar',
+                                              country: 'Indonesia',
+                                            );
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Test logAddToCart"),
+                                          onPressed: () {
+                                            facebookAppEvents.logAddToCart(
+                                              id: '1',
+                                              type: 'product',
+                                              price: 99.0,
+                                              currency: 'TRY',
+                                            );
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Test purchase!"),
+                                          onPressed: () {
+                                            facebookAppEvents.logPurchase(amount: 1, currency: "USD");
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Enable advertise tracking!"),
+                                          onPressed: () {
+                                            facebookAppEvents.setAdvertiserTracking(enabled: true);
+                                          },
+                                        ),
+                                        ElevatedButton(
+                                          child: Text("Disabled advertise tracking!"),
+                                          onPressed: () {
+                                            facebookAppEvents.setAdvertiserTracking(enabled: false);
+                                          },
+                                        ),
                                         SizedBox(
                                           height: 0,
                                         ),

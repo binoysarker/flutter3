@@ -299,7 +299,7 @@ class LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Obx(() => Text(
-                                    '${loginPageController.showSignIn.isFalse ? "Already have account?" : "Does not have account?"}',
+                                    loginPageController.showSignIn.isFalse ? "Already have account?" : "New User Please Register",
                                     style: CustomTheme.paragraphStyle,
                                   )),
                               TextButton(

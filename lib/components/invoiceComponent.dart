@@ -34,9 +34,9 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('en-IN','');
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print('invoice page is loaded');
-      initializeDateFormatting('en-IN','');
     });
   }
 

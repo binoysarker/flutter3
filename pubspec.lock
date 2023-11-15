@@ -295,6 +295,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  facebook_app_events:
+    dependency: "direct main"
+    description:
+      name: facebook_app_events
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.19.0"
   fake_async:
     dependency: transitive
     description:
@@ -377,6 +384,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.2"
+  flutter_facebook_keyhash:
+    dependency: "direct main"
+    description:
+      name: flutter_facebook_keyhash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   flutter_hooks:
     dependency: "direct main"
     description:

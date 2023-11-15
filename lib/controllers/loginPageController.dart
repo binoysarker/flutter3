@@ -55,7 +55,7 @@ class LoginPageController extends GetxController {
 
   var currentSignInProcessName = '${SignInProcessNames.normal.name}'.obs;
 
-  var checkboxStatus = false.obs;
+  var checkboxStatus = true.obs;
 
   void setShowSignIn(bool value) {
     showSignIn.value = value;
@@ -73,7 +73,7 @@ class LoginPageController extends GetxController {
     firstName.text = '';
     lastName.text = '';
     otpController.text = '';
-    checkboxStatus.value = false;
+    checkboxStatus.value = true;
     AllGlobalKeys.loginFormKey.currentState!.reset();
   }
 

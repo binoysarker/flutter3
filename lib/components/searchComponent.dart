@@ -86,7 +86,7 @@ class SearchComponent extends StatelessWidget {
                                               '${productsController.searchResultList[index].productAsset!.preview}'),
                                         ),
                                         title: Text(
-                                            '${productsController.searchResultList[index].productName}'))
+                                            '${productsController.searchResultList[index].productName}, isPrivate ${productsController.searchResultList[index].isPrivate}'))
                                     : SizedBox()),
                             itemCount:
                                 productsController.searchResultList.length,

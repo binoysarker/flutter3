@@ -2732,6 +2732,8 @@ class _CopyWithStubImpl$Query$SearchProducts$search<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Query$SearchProducts$search$items {
+  bool isPrivate = false;
+
   Query$SearchProducts$search$items(
       {required this.productVariantId,
       required this.productId,

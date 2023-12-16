@@ -1,12 +1,10 @@
-import 'package:recipe.app/graphqlSection/collections.graphql.dart';
-import 'package:recipe.app/graphqlSection/products.graphql.dart';
-import 'package:recipe.app/models/searchResultList.dart';
-import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
+import 'package:recipe.app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/services/graphql_service.dart';
+
 import '../graphqlSection/vendureSchema.graphql.dart';
-
-
 
 class ProductsController extends GetxController {
   var graphqlService = GraphqlService();
@@ -15,11 +13,13 @@ class ProductsController extends GetxController {
   var isLoading = false.obs;
   var searchInProgress = false.obs;
   var productList = <Query$GetAllProducts$products$items>[].obs;
-  var searchResultList = [].obs;
+  var searchResultList = <Query$SearchProducts$search$items>[].obs;
   var productDetailVariants = <Query$GetProductDetail$product$variants>[].obs;
   var selectedDropdownItemId = ''.obs;
+
   // ignore: unnecessary_cast
-  var selectedProductDetail = (null as Query$GetProductDetail$product$variants?).obs;
+  var selectedProductDetail =
+      (null as Query$GetProductDetail$product$variants?).obs;
   var productDetailResponse = (null as Query$GetProductDetail$product?).obs;
   var basePrice = 0.obs;
   var updatedPrice = 0.obs;
@@ -58,8 +58,8 @@ class ProductsController extends GetxController {
 
   void updateProductDetail(dynamic data) {
     selectedDropdownItemId.value = data;
-    selectedProductDetail.value = productDetailVariants
-        .firstWhere((element) => element.id == data);
+    selectedProductDetail.value =
+        productDetailVariants.firstWhere((element) => element.id == data);
     print('updated product detail ${selectedProductDetail.value?.toJson()}');
     basePrice.value = selectedProductDetail.value!.priceWithTax;
     updatedPrice.value = basePrice.value;
@@ -80,33 +80,38 @@ class ProductsController extends GetxController {
       productDetailResponse.value = res.parsedData!.product;
       productDetailVariants.value = res.parsedData!.product!.variants;
       selectedDropdownItemId.value =
-          productDetailVariants.value.map((element) => element.id).toList()[0];
+      productDetailVariants.value.map((element) => element.id).toList()[0];
       updateProductDetail(selectedDropdownItemId.value);
       isLoading.value = false;
-    }else {
+    } else {
       print('selected product id $id');
-      Get.snackbar('','Can not find the product',backgroundColor: Colors.red,colorText: Colors.white);
+      Get.snackbar('', 'Can not find the product',
+          backgroundColor: Colors.red, colorText: Colors.white);
       isLoading.value = false;
     }
-
   }
-  void checkCollectionIsPrivate(){
+
+  void checkCollectionIsPrivate() {
     searchResultList.value.forEach((element) {
       var collectionIds = element.collectionIds;
       var isPrivate = false;
-      collectionIds.forEach((singleId) async {
-        final res = await graphqlService.client.value.query$CheckCollectionIsPrivate(Options$Query$CheckCollectionIsPrivate(variables: Variables$Query$CheckCollectionIsPrivate(collectionId: singleId)));
-        if (res.hasException) {
-          print('${res.toString()}');
-        }
-        if(res.parsedData!.checkCollectionIsPrivate == true){
-          isPrivate = true;
-        }
+      for (var singleId in collectionIds) {
+       graphqlService.client.value
+            .query$CheckCollectionIsPrivate(
+            Options$Query$CheckCollectionIsPrivate(
+                variables: Variables$Query$CheckCollectionIsPrivate(
+                    collectionId: singleId))).then((value) => {
+         if(value.parsedData!.checkCollectionIsPrivate == true){
+           isPrivate = true
+         }
+       }).catchError((onError) => {
+         print('error ${onError.toString()}')
+       });
 
-      });
+      }
       print("checkCollectionIsPrivate $isPrivate");
       element.isPrivate = isPrivate;
-    });
+      });
   }
 
   void searchForProducts(String searchText) async {
@@ -127,7 +132,9 @@ class ProductsController extends GetxController {
     if (res.data != null) {
       // print('search result ${res.parsedData!.toJson()}');
       searchResultList.value = res.parsedData!.search.items.toList();
-      print("collection id ${searchResultList.value.first.collectionIds.join(',')}");
+      print(
+          "collection id ${searchResultList.value.first.collectionIds.join(
+              ',')}");
       checkCollectionIsPrivate();
       searchInProgress.value = false;
     }

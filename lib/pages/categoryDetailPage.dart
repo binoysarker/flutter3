@@ -12,6 +12,8 @@ import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
+import '../graphqlSection/collections.graphql.dart';
+
 class CategoryDetailPage extends StatefulWidget {
   CategoryDetailPage({Key? key}) : super(key: key);
 
@@ -38,6 +40,19 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Query$GetCollectionsByIdOrSlug$collection$productVariants$items>
+        getItemList() {
+      var itemsList = collectionsController
+          .singleCollectionDetail.value!.productVariants.items;
+      var uniqueList = itemsList
+          .where((element) =>
+              itemsList.indexWhere(
+                  (other) => other.product.name == element.product.name) ==
+              itemsList.indexOf(element))
+          .toList();
+      return uniqueList;
+    }
+
     return Obx(() => collectionsController.isLoading.isTrue
         ? LoadingSpinnerComponent()
         : SafeArea(
@@ -168,16 +183,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                           SizedBox(
                             height: 20,
                           ),
-
                           ItemGalleryComponent(
                               headerTitle: 'Products',
                               loadingState:
                                   collectionsController.isLoading.isTrue,
-                              givenList: collectionsController
-                                  .singleCollectionDetail
-                                  .value!
-                                  .productVariants
-                                  .items.map((e) => e.product).toSet().toList(),
+                              givenList: getItemList(),
                               controllerType:
                                   ControllerTypeNames.normalProductList.name)
                         ],

@@ -92,90 +92,97 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    '${widget.givenTitle}',
-                    style: CustomTheme.headerStyle,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${widget.givenTitle}',
+                        style: CustomTheme.headerStyle,
+                      ),
+                    ],
                   ),
+
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    height: widget.givenHeight.toDouble(),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      childAspectRatio: 2 / 2.2,
-                      children: widget.givenList
+                  Wrap(
+                    children: [
+                      ...widget.givenList
                           .map((element) => element == null
-                              ? SizedBox()
-                              : GestureDetector(
-                                onTap: () {
-                                    goToPage(element);
-                                  },
-                                child: Card(
-                                  elevation: 5,
-                                  child: Column(
-                                      children: [
-                                        FadeInImage.assetNetwork(
-                                          width: 100,
-                                          height: 100,
-                                          placeholder:
-                                              '${CommonVariableData.placeholder}',
-                                          image: '${getImage(element)}',
-                                          imageErrorBuilder:
-                                              (context, error, stackTrace) =>
-                                                  Image.asset(
-                                            CommonVariableData.placeholder,
-                                            width: 100,
-                                            height: 100,
-                                          ),
-                                        ),
-                                        Text(
-                                          getName(element),
-                                          style: CustomTheme.headerStyle,
-                                        ),
-                                        Visibility(
-                                          visible: widget.showSecondLine,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                getPrice(element),
-                                                style: CustomTheme.headerStyle,
-                                              ),
-                                              Obx(() => cartController
-                                                          .isLoading.isTrue &&
-                                                      selectedId ==
-                                                          int.parse(element.id)
-                                                  ? Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: CustomTheme
-                                                            .progressIndicatorColor,
-                                                      ),
-                                                    )
-                                                  : IconButton(
-                                                      onPressed: () {
-                                                        selectedId = int.parse(
-                                                            element.id);
-                                                        UtilService
-                                                            .addItemToCart(
-                                                                element,'user');
-                                                      },
-                                                      icon: Icon(
-                                                          Icons.shopping_cart),
-                                                      color: Colors.lightGreen,
-                                                    ))
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                          ? SizedBox()
+                          : GestureDetector(
+                        onTap: () {
+                          goToPage(element);
+                        },
+                        child: SizedBox(
+                          width: 180,
+                          height: 180,
+                          child: Card(
+                            elevation: 5,
+                            child: Column(
+                              children: [
+                                FadeInImage.assetNetwork(
+                                  width: 100,
+                                  height: 100,
+                                  placeholder:
+                                  '${CommonVariableData.placeholder}',
+                                  image: '${getImage(element)}',
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) =>
+                                      Image.asset(
+                                        CommonVariableData.placeholder,
+                                        width: 100,
+                                        height: 100,
+                                      ),
                                 ),
-                              ))
-                          .toList(),
-                    ),
+                                Text(
+                                  getName(element),
+                                  style: CustomTheme.headerStyle,
+                                ),
+                                Visibility(
+                                  visible: widget.showSecondLine,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        getPrice(element),
+                                        style: CustomTheme.headerStyle,
+                                      ),
+                                      Obx(() => cartController
+                                          .isLoading.isTrue &&
+                                          selectedId ==
+                                              int.parse(element.id)
+                                          ? Center(
+                                        child:
+                                        CircularProgressIndicator(
+                                          color: CustomTheme
+                                              .progressIndicatorColor,
+                                        ),
+                                      )
+                                          : IconButton(
+                                        onPressed: () {
+                                          selectedId = int.parse(
+                                              element.id);
+                                          UtilService
+                                              .addItemToCart(
+                                              element,'user');
+                                        },
+                                        icon: Icon(
+                                            Icons.shopping_cart),
+                                        color: Colors.lightGreen,
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ))
+                    ],
                   )
+
                 ],
               ),
             ),

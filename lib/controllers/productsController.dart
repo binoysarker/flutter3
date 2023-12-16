@@ -1,8 +1,12 @@
+import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/graphqlSection/products.graphql.dart';
+import 'package:recipe.app/models/searchResultList.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../graphqlSection/vendureSchema.graphql.dart';
+
+
 
 class ProductsController extends GetxController {
   var graphqlService = GraphqlService();
@@ -11,7 +15,7 @@ class ProductsController extends GetxController {
   var isLoading = false.obs;
   var searchInProgress = false.obs;
   var productList = <Query$GetAllProducts$products$items>[].obs;
-  var searchResultList = <Query$SearchProducts$search$items>[].obs;
+  var searchResultList = [].obs;
   var productDetailVariants = <Query$GetProductDetail$product$variants>[].obs;
   var selectedDropdownItemId = ''.obs;
   // ignore: unnecessary_cast
@@ -86,6 +90,24 @@ class ProductsController extends GetxController {
     }
 
   }
+  void checkCollectionIsPrivate(){
+    searchResultList.value.forEach((element) {
+      var collectionIds = element.collectionIds;
+      var isPrivate = false;
+      collectionIds.forEach((singleId) async {
+        final res = await graphqlService.client.value.query$CheckCollectionIsPrivate(Options$Query$CheckCollectionIsPrivate(variables: Variables$Query$CheckCollectionIsPrivate(collectionId: singleId)));
+        if (res.hasException) {
+          print('${res.toString()}');
+        }
+        if(res.parsedData!.checkCollectionIsPrivate == true){
+          isPrivate = true;
+        }
+
+      });
+      print("checkCollectionIsPrivate $isPrivate");
+      element.isPrivate = isPrivate;
+    });
+  }
 
   void searchForProducts(String searchText) async {
     searchInProgress.value = true;
@@ -105,6 +127,8 @@ class ProductsController extends GetxController {
     if (res.data != null) {
       // print('search result ${res.parsedData!.toJson()}');
       searchResultList.value = res.parsedData!.search.items.toList();
+      print("collection id ${searchResultList.value.first.collectionIds.join(',')}");
+      checkCollectionIsPrivate();
       searchInProgress.value = false;
     }
   }

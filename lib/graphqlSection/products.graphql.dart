@@ -2256,6 +2256,12 @@ const documentNodeQuerySearchProducts = DocumentNode(definitions: [
                         directives: [],
                         selectionSet: null),
                     FieldNode(
+                        name: NameNode(value: 'collectionIds'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
                         name: NameNode(value: 'priceWithTax'),
                         alias: null,
                         arguments: [],
@@ -2732,6 +2738,7 @@ class Query$SearchProducts$search$items {
       required this.slug,
       required this.productName,
       required this.description,
+      required this.collectionIds,
       required this.priceWithTax,
       this.productAsset,
       required this.$__typename});
@@ -2751,6 +2758,8 @@ class Query$SearchProducts$search$items {
 
   final String description;
 
+  final List<String> collectionIds;
+
   final Query$SearchProducts$search$items$priceWithTax priceWithTax;
 
   final Query$SearchProducts$search$items$productAsset? productAsset;
@@ -2766,6 +2775,7 @@ class Query$SearchProducts$search$items {
     final l$slug = slug;
     final l$productName = productName;
     final l$description = description;
+    final l$collectionIds = collectionIds;
     final l$priceWithTax = priceWithTax;
     final l$productAsset = productAsset;
     final l$$__typename = $__typename;
@@ -2775,6 +2785,7 @@ class Query$SearchProducts$search$items {
       l$slug,
       l$productName,
       l$description,
+      Object.hashAll(l$collectionIds.map((v) => v)),
       l$priceWithTax,
       l$productAsset,
       l$$__typename
@@ -2801,6 +2812,15 @@ class Query$SearchProducts$search$items {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) return false;
+    final l$collectionIds = collectionIds;
+    final lOther$collectionIds = other.collectionIds;
+    if (l$collectionIds.length != lOther$collectionIds.length) return false;
+    for (int i = 0; i < l$collectionIds.length; i++) {
+      final l$collectionIds$entry = l$collectionIds[i];
+      final lOther$collectionIds$entry = lOther$collectionIds[i];
+      if (l$collectionIds$entry != lOther$collectionIds$entry) return false;
+    }
+
     final l$priceWithTax = priceWithTax;
     final lOther$priceWithTax = other.priceWithTax;
     if (l$priceWithTax != lOther$priceWithTax) return false;
@@ -2836,6 +2856,7 @@ abstract class CopyWith$Query$SearchProducts$search$items<TRes> {
       String? slug,
       String? productName,
       String? description,
+      List<String>? collectionIds,
       Query$SearchProducts$search$items$priceWithTax? priceWithTax,
       Query$SearchProducts$search$items$productAsset? productAsset,
       String? $__typename});
@@ -2861,14 +2882,14 @@ class _CopyWithImpl$Query$SearchProducts$search$items<TRes>
           Object? slug = _undefined,
           Object? productName = _undefined,
           Object? description = _undefined,
+          Object? collectionIds = _undefined,
           Object? priceWithTax = _undefined,
           Object? productAsset = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$SearchProducts$search$items(
-          productVariantId:
-              productVariantId == _undefined || productVariantId == null
-                  ? _instance.productVariantId
-                  : (productVariantId as String),
+          productVariantId: productVariantId == _undefined || productVariantId == null
+              ? _instance.productVariantId
+              : (productVariantId as String),
           productId: productId == _undefined || productId == null
               ? _instance.productId
               : (productId as String),
@@ -2881,6 +2902,9 @@ class _CopyWithImpl$Query$SearchProducts$search$items<TRes>
           description: description == _undefined || description == null
               ? _instance.description
               : (description as String),
+          collectionIds: collectionIds == _undefined || collectionIds == null
+              ? _instance.collectionIds
+              : (collectionIds as List<String>),
           priceWithTax: priceWithTax == _undefined || priceWithTax == null
               ? _instance.priceWithTax
               : (priceWithTax
@@ -2922,6 +2946,7 @@ class _CopyWithStubImpl$Query$SearchProducts$search$items<TRes>
           String? slug,
           String? productName,
           String? description,
+          List<String>? collectionIds,
           Query$SearchProducts$search$items$priceWithTax? priceWithTax,
           Query$SearchProducts$search$items$productAsset? productAsset,
           String? $__typename}) =>

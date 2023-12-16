@@ -60,7 +60,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       widget.currentList =
-          widget.givenList.cast<List<Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product>>();
+          widget.givenList.cast<List<Query$GetCollectionsByIdOrSlug$collection$productVariants$items>>();
     }
   }
 
@@ -72,7 +72,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
       name = '${UtilService.formateText(element.product.name)}';
     }
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      name = '${UtilService.formateText(element.name)}';
+      name = '${UtilService.formateText(element.product.name)}';
     }
 
     return name;
@@ -122,9 +122,9 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     print(element);
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       var item = element
-          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
+          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
       print(item.toJson());
-      Get.to(() => ProductDetailPage(), arguments: {'id': item.id});
+      Get.to(() => ProductDetailPage(), arguments: {'id': item.product.id});
     } else {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$children$productVariants$items;
@@ -167,80 +167,79 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                       SizedBox(
                         height: 20,
                       ),
-                      SizedBox(
-                        height: 700,
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 2.2),
-                          children: widget.givenList
+                      Wrap(
+                        children: [
+                          ...widget.givenList
                               .map((element) => GestureDetector(
                             onTap: () {
                               print(widget.controllerType);
                               goToPage(element);
                             },
-                                child: Card(
-                                      elevation: 5,
-                                      child: Column(
-                                        children: [
-                                          FadeInImage.assetNetwork(
+                            child: SizedBox(
+                              width: 180,
+                              height: 180,
+                              child: Card(
+                                elevation: 5,
+                                child: Column(
+                                  children: [
+                                    FadeInImage.assetNetwork(
+                                      width: 100,
+                                      height: 100,
+                                      placeholder:
+                                      '${CommonVariableData.placeholder}',
+                                      image: getProductImage(element),
+                                      imageErrorBuilder:
+                                          (context, error, stackTrace) =>
+                                          Image.asset(
+                                            '${CommonVariableData.placeholder}',
                                             width: 100,
                                             height: 100,
-                                            placeholder:
-                                                '${CommonVariableData.placeholder}',
-                                            image: getProductImage(element),
-                                            imageErrorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    Image.asset(
-                                              '${CommonVariableData.placeholder}',
-                                              width: 100,
-                                              height: 100,
-                                            ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                            child: Text(
-                                              getName(element),
-                                              style: CustomTheme.headerStyle,
-                                            ),
-                                          ),
-                                          // Row(
-                                          //   mainAxisAlignment:
-                                          //       MainAxisAlignment.spaceAround,
-                                          //   children: [
-                                          //
-                                          //     Obx(() => cartController
-                                          //                 .isLoading.isTrue &&
-                                          //             selectedId ==
-                                          //                 int.parse(element.id)
-                                          //         ? Center(
-                                          //             child:
-                                          //                 CircularProgressIndicator(
-                                          //               color: CustomTheme
-                                          //                   .progressIndicatorColor,
-                                          //             ),
-                                          //           )
-                                          //         : IconButton(
-                                          //             onPressed: () {
-                                          //               selectedId =
-                                          //                   int.parse(element.id);
-                                          //               print(
-                                          //                   'select item $element');
-                                          //               addItemToCart(element);
-                                          //
-                                          //             },
-                                          //             icon: Icon(
-                                          //                 Icons.shopping_cart),
-                                          //             color: Colors.lightGreen,
-                                          //           ))
-                                          //   ],
-                                          // )
-                                        ],
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Text(
+                                        getName(element),
+                                        style: CustomTheme.headerStyle,
                                       ),
                                     ),
-                              ))
-                              .toList(),
-                        ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceAround,
+                                    //   children: [
+                                    //
+                                    //     Obx(() => cartController
+                                    //                 .isLoading.isTrue &&
+                                    //             selectedId ==
+                                    //                 int.parse(element.id)
+                                    //         ? Center(
+                                    //             child:
+                                    //                 CircularProgressIndicator(
+                                    //               color: CustomTheme
+                                    //                   .progressIndicatorColor,
+                                    //             ),
+                                    //           )
+                                    //         : IconButton(
+                                    //             onPressed: () {
+                                    //               selectedId =
+                                    //                   int.parse(element.id);
+                                    //               print(
+                                    //                   'select item $element');
+                                    //               addItemToCart(element);
+                                    //
+                                    //             },
+                                    //             icon: Icon(
+                                    //                 Icons.shopping_cart),
+                                    //             color: Colors.lightGreen,
+                                    //           ))
+                                    //   ],
+                                    // )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ))
+                        ],
                       )
                     ],
                   ),

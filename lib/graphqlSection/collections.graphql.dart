@@ -1032,6 +1032,322 @@ class _CopyWithStubImpl$Query$GetAvailableCountries$availableCountries$translati
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Query$CheckCollectionIsPrivate {
+  Variables$Query$CheckCollectionIsPrivate({required this.collectionId});
+
+  @override
+  factory Variables$Query$CheckCollectionIsPrivate.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Query$CheckCollectionIsPrivateFromJson(json);
+
+  final String collectionId;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Query$CheckCollectionIsPrivateToJson(this);
+  int get hashCode {
+    final l$collectionId = collectionId;
+    return Object.hashAll([l$collectionId]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Query$CheckCollectionIsPrivate) ||
+        runtimeType != other.runtimeType) return false;
+    final l$collectionId = collectionId;
+    final lOther$collectionId = other.collectionId;
+    if (l$collectionId != lOther$collectionId) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Query$CheckCollectionIsPrivate<
+          Variables$Query$CheckCollectionIsPrivate>
+      get copyWith =>
+          CopyWith$Variables$Query$CheckCollectionIsPrivate(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Query$CheckCollectionIsPrivate<TRes> {
+  factory CopyWith$Variables$Query$CheckCollectionIsPrivate(
+          Variables$Query$CheckCollectionIsPrivate instance,
+          TRes Function(Variables$Query$CheckCollectionIsPrivate) then) =
+      _CopyWithImpl$Variables$Query$CheckCollectionIsPrivate;
+
+  factory CopyWith$Variables$Query$CheckCollectionIsPrivate.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$CheckCollectionIsPrivate;
+
+  TRes call({String? collectionId});
+}
+
+class _CopyWithImpl$Variables$Query$CheckCollectionIsPrivate<TRes>
+    implements CopyWith$Variables$Query$CheckCollectionIsPrivate<TRes> {
+  _CopyWithImpl$Variables$Query$CheckCollectionIsPrivate(
+      this._instance, this._then);
+
+  final Variables$Query$CheckCollectionIsPrivate _instance;
+
+  final TRes Function(Variables$Query$CheckCollectionIsPrivate) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? collectionId = _undefined}) =>
+      _then(Variables$Query$CheckCollectionIsPrivate(
+          collectionId: collectionId == _undefined || collectionId == null
+              ? _instance.collectionId
+              : (collectionId as String)));
+}
+
+class _CopyWithStubImpl$Variables$Query$CheckCollectionIsPrivate<TRes>
+    implements CopyWith$Variables$Query$CheckCollectionIsPrivate<TRes> {
+  _CopyWithStubImpl$Variables$Query$CheckCollectionIsPrivate(this._res);
+
+  TRes _res;
+
+  call({String? collectionId}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$CheckCollectionIsPrivate {
+  Query$CheckCollectionIsPrivate(
+      {required this.checkCollectionIsPrivate, required this.$__typename});
+
+  @override
+  factory Query$CheckCollectionIsPrivate.fromJson(Map<String, dynamic> json) =>
+      _$Query$CheckCollectionIsPrivateFromJson(json);
+
+  final bool checkCollectionIsPrivate;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$CheckCollectionIsPrivateToJson(this);
+  int get hashCode {
+    final l$checkCollectionIsPrivate = checkCollectionIsPrivate;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$checkCollectionIsPrivate, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$CheckCollectionIsPrivate) ||
+        runtimeType != other.runtimeType) return false;
+    final l$checkCollectionIsPrivate = checkCollectionIsPrivate;
+    final lOther$checkCollectionIsPrivate = other.checkCollectionIsPrivate;
+    if (l$checkCollectionIsPrivate != lOther$checkCollectionIsPrivate)
+      return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$CheckCollectionIsPrivate
+    on Query$CheckCollectionIsPrivate {
+  CopyWith$Query$CheckCollectionIsPrivate<Query$CheckCollectionIsPrivate>
+      get copyWith => CopyWith$Query$CheckCollectionIsPrivate(this, (i) => i);
+}
+
+abstract class CopyWith$Query$CheckCollectionIsPrivate<TRes> {
+  factory CopyWith$Query$CheckCollectionIsPrivate(
+          Query$CheckCollectionIsPrivate instance,
+          TRes Function(Query$CheckCollectionIsPrivate) then) =
+      _CopyWithImpl$Query$CheckCollectionIsPrivate;
+
+  factory CopyWith$Query$CheckCollectionIsPrivate.stub(TRes res) =
+      _CopyWithStubImpl$Query$CheckCollectionIsPrivate;
+
+  TRes call({bool? checkCollectionIsPrivate, String? $__typename});
+}
+
+class _CopyWithImpl$Query$CheckCollectionIsPrivate<TRes>
+    implements CopyWith$Query$CheckCollectionIsPrivate<TRes> {
+  _CopyWithImpl$Query$CheckCollectionIsPrivate(this._instance, this._then);
+
+  final Query$CheckCollectionIsPrivate _instance;
+
+  final TRes Function(Query$CheckCollectionIsPrivate) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? checkCollectionIsPrivate = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$CheckCollectionIsPrivate(
+          checkCollectionIsPrivate: checkCollectionIsPrivate == _undefined ||
+                  checkCollectionIsPrivate == null
+              ? _instance.checkCollectionIsPrivate
+              : (checkCollectionIsPrivate as bool),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$CheckCollectionIsPrivate<TRes>
+    implements CopyWith$Query$CheckCollectionIsPrivate<TRes> {
+  _CopyWithStubImpl$Query$CheckCollectionIsPrivate(this._res);
+
+  TRes _res;
+
+  call({bool? checkCollectionIsPrivate, String? $__typename}) => _res;
+}
+
+const documentNodeQueryCheckCollectionIsPrivate = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'CheckCollectionIsPrivate'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'collectionId')),
+            type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'checkCollectionIsPrivate'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'collectionId'),
+                  value: VariableNode(name: NameNode(value: 'collectionId')))
+            ],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$CheckCollectionIsPrivate _parserFn$Query$CheckCollectionIsPrivate(
+        Map<String, dynamic> data) =>
+    Query$CheckCollectionIsPrivate.fromJson(data);
+
+class Options$Query$CheckCollectionIsPrivate
+    extends graphql.QueryOptions<Query$CheckCollectionIsPrivate> {
+  Options$Query$CheckCollectionIsPrivate(
+      {String? operationName,
+      required Variables$Query$CheckCollectionIsPrivate variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryCheckCollectionIsPrivate,
+            parserFn: _parserFn$Query$CheckCollectionIsPrivate);
+}
+
+class WatchOptions$Query$CheckCollectionIsPrivate
+    extends graphql.WatchQueryOptions<Query$CheckCollectionIsPrivate> {
+  WatchOptions$Query$CheckCollectionIsPrivate(
+      {String? operationName,
+      required Variables$Query$CheckCollectionIsPrivate variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryCheckCollectionIsPrivate,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$CheckCollectionIsPrivate);
+}
+
+class FetchMoreOptions$Query$CheckCollectionIsPrivate
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$CheckCollectionIsPrivate(
+      {required graphql.UpdateQuery updateQuery,
+      required Variables$Query$CheckCollectionIsPrivate variables})
+      : super(
+            updateQuery: updateQuery,
+            variables: variables.toJson(),
+            document: documentNodeQueryCheckCollectionIsPrivate);
+}
+
+extension ClientExtension$Query$CheckCollectionIsPrivate
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$CheckCollectionIsPrivate>>
+      query$CheckCollectionIsPrivate(
+              Options$Query$CheckCollectionIsPrivate options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$CheckCollectionIsPrivate>
+      watchQuery$CheckCollectionIsPrivate(
+              WatchOptions$Query$CheckCollectionIsPrivate options) =>
+          this.watchQuery(options);
+  void writeQuery$CheckCollectionIsPrivate(
+          {required Query$CheckCollectionIsPrivate data,
+          required Variables$Query$CheckCollectionIsPrivate variables,
+          bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryCheckCollectionIsPrivate),
+              variables: variables.toJson()),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$CheckCollectionIsPrivate? readQuery$CheckCollectionIsPrivate(
+      {required Variables$Query$CheckCollectionIsPrivate variables,
+      bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryCheckCollectionIsPrivate),
+            variables: variables.toJson()),
+        optimistic: optimistic);
+    return result == null
+        ? null
+        : Query$CheckCollectionIsPrivate.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$CheckCollectionIsPrivate>
+    useQuery$CheckCollectionIsPrivate(
+            Options$Query$CheckCollectionIsPrivate options) =>
+        graphql_flutter.useQuery(options);
+graphql.ObservableQuery<Query$CheckCollectionIsPrivate>
+    useWatchQuery$CheckCollectionIsPrivate(
+            WatchOptions$Query$CheckCollectionIsPrivate options) =>
+        graphql_flutter.useWatchQuery(options);
+
+class Query$CheckCollectionIsPrivate$Widget
+    extends graphql_flutter.Query<Query$CheckCollectionIsPrivate> {
+  Query$CheckCollectionIsPrivate$Widget(
+      {widgets.Key? key,
+      required Options$Query$CheckCollectionIsPrivate options,
+      required graphql_flutter.QueryBuilder<Query$CheckCollectionIsPrivate>
+          builder})
+      : super(key: key, options: options, builder: builder);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Query$GetCollectionsByIdOrSlug {
   Variables$Query$GetCollectionsByIdOrSlug({this.id});
 

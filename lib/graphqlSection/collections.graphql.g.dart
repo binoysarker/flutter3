@@ -278,6 +278,33 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
+Variables$Query$CheckCollectionIsPrivate
+    _$Variables$Query$CheckCollectionIsPrivateFromJson(
+            Map<String, dynamic> json) =>
+        Variables$Query$CheckCollectionIsPrivate(
+          collectionId: json['collectionId'] as String,
+        );
+
+Map<String, dynamic> _$Variables$Query$CheckCollectionIsPrivateToJson(
+        Variables$Query$CheckCollectionIsPrivate instance) =>
+    <String, dynamic>{
+      'collectionId': instance.collectionId,
+    };
+
+Query$CheckCollectionIsPrivate _$Query$CheckCollectionIsPrivateFromJson(
+        Map<String, dynamic> json) =>
+    Query$CheckCollectionIsPrivate(
+      checkCollectionIsPrivate: json['checkCollectionIsPrivate'] as bool,
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$CheckCollectionIsPrivateToJson(
+        Query$CheckCollectionIsPrivate instance) =>
+    <String, dynamic>{
+      'checkCollectionIsPrivate': instance.checkCollectionIsPrivate,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Query$GetCollectionsByIdOrSlug
     _$Variables$Query$GetCollectionsByIdOrSlugFromJson(
             Map<String, dynamic> json) =>

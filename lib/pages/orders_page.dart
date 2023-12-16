@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:recipe.app/components/LogoComponent.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/userController.dart';
@@ -113,149 +114,154 @@ class _OrdersPageState extends State<OrdersPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListView(
-                          children: getSortedList(currentUser.orders.items)
-                              .map((singleOrderItem) => singleOrderItem.totalQuantity <= 0 ? SizedBox(): Card(
-                            elevation: 8.0,
-                            child: ExpansionTile(
-                              title: Text(
-                                'Code: ${singleOrderItem.code}',
-                                style: CustomTheme.headerStyle,
-                              ),
-                              subtitle:
-                              singleOrderItem.customFields!
-                                  .clientRequestToCancel ==
-                                  1
-                                  ? Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'This Order is being requested to cancel by you',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                  Text(
-                                    'Admin will take care of it',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                ],
-                              )
-                                  : Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                  Text(
-                                    'Total Items: ${singleOrderItem.lines.length}',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                  Text(
-                                    'State: ${checkStatus(singleOrderItem.state)}',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                  Text(
-                                    'Placed At: ${DateFormat('yyy-MM-dd HH:mm a', 'en-IN').format(parseDate(singleOrderItem.orderPlacedAt).toLocal())}',
-                                    style: CustomTheme
-                                        .headerStyle,
-                                  ),
-                                  shouldShowButton(
-                                      singleOrderItem)
-                                      ? ElevatedButton(
-                                      onPressed:
-                                          () =>
-                                          showDialog<
-                                              String>(
-                                            context:
-                                            context,
-                                            builder: (BuildContext
-                                            context) =>
-                                                AlertDialog(
-                                                  title:
-                                                  Text(
-                                                    'Are you sure you want cancel this order?',
-                                                    style:
-                                                    CustomTheme.headerStyle,
-                                                  ),
-                                                  actions: <
-                                                      Widget>[
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(context, 'Cancel'),
-                                                      child:
-                                                      Text(
-                                                        'Cancel',
-                                                        style: CustomTheme.headerStyle,
-                                                      ),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed:
-                                                          () {
-                                                        orderController.requestToCancelOrder(singleOrderItem.id, 1);
-                                                        Navigator.pop(context, 'OK');
-                                                      },
-                                                      child:
-                                                      Text(
-                                                        'OK',
-                                                        style: CustomTheme.headerStyle,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                          ),
-                                      child: Text(
-                                          'Cancel Order'))
-                                      : SizedBox()
-                                ],
-                              ),
-                              children: singleOrderItem.lines
-                                  .map((singleLineItem) => ListTile(
+                          children: [
+                            LogoComponent(),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ...getSortedList(currentUser.orders.items)
+                                .map((singleOrderItem) => singleOrderItem.totalQuantity <= 0 ? SizedBox(): Card(
+                              elevation: 8.0,
+                              child: ExpansionTile(
                                 title: Text(
-                                  singleLineItem
-                                      .productVariant.name,
-                                  style:
-                                  CustomTheme.headerStyle,
+                                  'Code: ${singleOrderItem.code}',
+                                  style: CustomTheme.headerStyle,
                                 ),
-                                subtitle: Column(
+                                subtitle:
+                                singleOrderItem.customFields!
+                                    .clientRequestToCancel ==
+                                    1
+                                    ? Column(
                                   crossAxisAlignment:
                                   CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',
+                                      'This Order is being requested to cancel by you',
                                       style: CustomTheme
-                                          .paragraphStyle,
+                                          .headerStyle,
+                                    ),
+                                    Text(
+                                      'Admin will take care of it',
+                                      style: CustomTheme
+                                          .headerStyle,
                                     ),
                                   ],
+                                )
+                                    : Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Total Price: $currencySymbol ${UtilService.formatPriceValue(singleOrderItem.totalWithTax)}',
+                                      style: CustomTheme
+                                          .headerStyle,
+                                    ),
+                                    Text(
+                                      'Total Items: ${singleOrderItem.lines.length}',
+                                      style: CustomTheme
+                                          .headerStyle,
+                                    ),
+                                    Text(
+                                      'State: ${checkStatus(singleOrderItem.state)}',
+                                      style: CustomTheme
+                                          .headerStyle,
+                                    ),
+                                    Text(
+                                      'Placed At: ${DateFormat('yyy-MM-dd HH:mm a', 'en-IN').format(parseDate(singleOrderItem.orderPlacedAt).toLocal())}',
+                                      style: CustomTheme
+                                          .headerStyle,
+                                    ),
+                                    shouldShowButton(
+                                        singleOrderItem)
+                                        ? ElevatedButton(
+                                        onPressed:
+                                            () =>
+                                            showDialog<
+                                                String>(
+                                              context:
+                                              context,
+                                              builder: (BuildContext
+                                              context) =>
+                                                  AlertDialog(
+                                                    title:
+                                                    Text(
+                                                      'Are you sure you want cancel this order?',
+                                                      style:
+                                                      CustomTheme.headerStyle,
+                                                    ),
+                                                    actions: <
+                                                        Widget>[
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(context, 'Cancel'),
+                                                        child:
+                                                        Text(
+                                                          'Cancel',
+                                                          style: CustomTheme.headerStyle,
+                                                        ),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed:
+                                                            () {
+                                                          orderController.requestToCancelOrder(singleOrderItem.id, 1);
+                                                          Navigator.pop(context, 'OK');
+                                                        },
+                                                        child:
+                                                        Text(
+                                                          'OK',
+                                                          style: CustomTheme.headerStyle,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                            ),
+                                        child: Text(
+                                            'Cancel Order'))
+                                        : SizedBox()
+                                  ],
                                 ),
-                                leading:
-                                FadeInImage.assetNetwork(
-                                  width: 50,
-                                  height: 50,
-                                  placeholder:
-                                  CommonVariableData
-                                      .placeholder,
-                                  image:
-                                  '${singleLineItem.featuredAsset?.preview}',
-                                  imageErrorBuilder: (context,
-                                      error, stackTrace) =>
-                                      Image.asset(
-                                        CommonVariableData
-                                            .placeholder,
-                                        width: 50,
-                                        height: 50,
+                                children: singleOrderItem.lines
+                                    .map((singleLineItem) => ListTile(
+                                  title: Text(
+                                    singleLineItem
+                                        .productVariant.name,
+                                    style:
+                                    CustomTheme.headerStyle,
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',
+                                        style: CustomTheme
+                                            .paragraphStyle,
                                       ),
-                                ),
-                              ))
-                                  .toList(),
-                            ),
-                          ))
-                              .toList(),
+                                    ],
+                                  ),
+                                  leading:
+                                  FadeInImage.assetNetwork(
+                                    width: 50,
+                                    height: 50,
+                                    placeholder:
+                                    CommonVariableData
+                                        .placeholder,
+                                    image:
+                                    '${singleLineItem.featuredAsset?.preview}',
+                                    imageErrorBuilder: (context,
+                                        error, stackTrace) =>
+                                        Image.asset(
+                                          CommonVariableData
+                                              .placeholder,
+                                          width: 50,
+                                          height: 50,
+                                        ),
+                                  ),
+                                ))
+                                    .toList(),
+                              ),
+                            ))
+                          ],
                         ),
                       ),
                     )

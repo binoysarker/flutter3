@@ -18,6 +18,11 @@ query GetAvailableCountries{
         }
     }
 }
+
+query CheckCollectionIsPrivate($collectionId: ID!){
+    checkCollectionIsPrivate(collectionId: $collectionId)
+}
+
 query GetCollectionsByIdOrSlug($id: ID){
     collection(id: $id){
         id

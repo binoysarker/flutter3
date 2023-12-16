@@ -23,7 +23,7 @@ class CollectionsController extends GetxController {
       final res = await graphqlService.client.value.query$GetAllCollections(
           Options$Query$GetAllCollections(
               variables: Variables$Query$GetAllCollections(
-                  input: Input$CollectionListOptions(take: 10))));
+                  input: Input$CollectionListOptions(take: 100))));
       if (res.hasException) {
         print('${res.exception.toString()}');
         isLoading.value = false;

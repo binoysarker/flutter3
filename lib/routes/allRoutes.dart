@@ -11,7 +11,6 @@ import 'package:recipe.app/pages/register_success_page.dart';
 import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/rewards_page.dart';
 import 'package:recipe.app/pages/store_page.dart';
-import 'package:recipe.app/pages/subCategoryDetailPage.dart';
 import 'package:recipe.app/pages/tokenVarifyPage.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/pages/verifyOTPPage.dart';
@@ -30,7 +29,6 @@ class RoutesClass {
     GetPage(name: '/verify_otp', page: () => VerifyOTPPage(),transition: Transition.fade),
     GetPage(name: '/product_detail', page: () => ProductDetailPage(),transition: Transition.fade),
     GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
-    GetPage(name: '/sub_category_detail', page: () => SubCategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/cart_detail', page: () => CartDetailPage(),transition: Transition.fade),
     GetPage(name: '/checkout', page: () => CheckoutPage(),transition: Transition.fade),
     GetPage(name: '/page_not_found', page: () => PageNotFound(),transition: Transition.fade),

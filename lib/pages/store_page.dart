@@ -139,16 +139,6 @@ class _StorePageState extends State<StorePage> {
                   controller: _scrollController,
                   shrinkWrap: true,
                   children: [
-                    Center(
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage('assets/images/splash.png'),
-                      ),
-                    ),
-                    Center(
-                      child:
-                          Text('Veedu Varai', style: CustomTheme.headerStyle),
-                    ),
                     SearchComponent(
                         homePageController: homePageController,
                         productsController: productsController),
@@ -157,9 +147,6 @@ class _StorePageState extends State<StorePage> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(
-                              height: 0,
-                            ),
                             GraphQLProvider(
                               client: GraphqlService.hygraphClient,
                               child: Query(
@@ -212,69 +199,69 @@ class _StorePageState extends State<StorePage> {
                                         SizedBox(
                                           height: 0,
                                         ),
-                                        FutureBuilder(
-                                          future: facebookAppEvents.getAnonymousId(),
-                                          builder: (context, snapshot) {
-                                            print('snapshot data ${snapshot}');
-                                            final id = snapshot.data ?? '???';
-                                            return Text('Anonymous ID: $id');
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Click me!"),
-                                          onPressed: () {
-                                            facebookAppEvents.logEvent(
-                                              name: 'sending_message',
-                                              parameters: {
-                                                'text': 'some message'
-                                              },
-                                            );
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Set user data"),
-                                          onPressed: () {
-                                            facebookAppEvents.setUserData(
-                                              email: 'opensource@oddbit.id',
-                                              firstName: 'Oddbit',
-                                              dateOfBirth: '2019-10-19',
-                                              city: 'Denpasar',
-                                              country: 'Indonesia',
-                                            );
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Test logAddToCart"),
-                                          onPressed: () {
-                                            facebookAppEvents.logAddToCart(
-                                              id: '1',
-                                              type: 'product',
-                                              price: 99.0,
-                                              currency: 'TRY',
-                                            );
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Test purchase!"),
-                                          onPressed: () {
-                                            facebookAppEvents.logPurchase(amount: 1, currency: "USD");
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Enable advertise tracking!"),
-                                          onPressed: () {
-                                            facebookAppEvents.setAdvertiserTracking(enabled: true);
-                                          },
-                                        ),
-                                        ElevatedButton(
-                                          child: Text("Disabled advertise tracking!"),
-                                          onPressed: () {
-                                            facebookAppEvents.setAdvertiserTracking(enabled: false);
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 0,
-                                        ),
+                                        // FutureBuilder(
+                                        //   future: facebookAppEvents.getAnonymousId(),
+                                        //   builder: (context, snapshot) {
+                                        //     print('snapshot data ${snapshot}');
+                                        //     final id = snapshot.data ?? '???';
+                                        //     return Text('Anonymous ID: $id');
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Click me!"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.logEvent(
+                                        //       name: 'sending_message',
+                                        //       parameters: {
+                                        //         'text': 'some message'
+                                        //       },
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Set user data"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.setUserData(
+                                        //       email: 'opensource@oddbit.id',
+                                        //       firstName: 'Oddbit',
+                                        //       dateOfBirth: '2019-10-19',
+                                        //       city: 'Denpasar',
+                                        //       country: 'Indonesia',
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Test logAddToCart"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.logAddToCart(
+                                        //       id: '1',
+                                        //       type: 'product',
+                                        //       price: 99.0,
+                                        //       currency: 'TRY',
+                                        //     );
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Test purchase!"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.logPurchase(amount: 1, currency: "USD");
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Enable advertise tracking!"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.setAdvertiserTracking(enabled: true);
+                                        //   },
+                                        // ),
+                                        // ElevatedButton(
+                                        //   child: Text("Disabled advertise tracking!"),
+                                        //   onPressed: () {
+                                        //     facebookAppEvents.setAdvertiserTracking(enabled: false);
+                                        //   },
+                                        // ),
+                                        // SizedBox(
+                                        //   height: 0,
+                                        // ),
                                         Obx(() => VerticalListComponent(
                                               isLoading: collectionsController
                                                   .isLoading.isTrue,

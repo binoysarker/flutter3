@@ -127,7 +127,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               'morning-delivery';
       var templateId = showEveningSms
           ? "649011f6d6fc053db57148e5"
-          : "64900e1ed6fc056a7b3a9c32";
+          : "65793925d6fc05548168c723";
       var number =
           userController.currentAuthenticatedUser.value!.phoneNumber.toString();
       UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,

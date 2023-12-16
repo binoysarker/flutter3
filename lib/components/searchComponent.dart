@@ -1,6 +1,6 @@
-import 'package:recipe.app/pages/productDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:recipe.app/pages/productDetailPage.dart';
 
 import '../controllers/homePageController.dart';
 import '../controllers/productsController.dart';
@@ -26,32 +26,29 @@ class SearchComponent extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Form(
-                child: Container(
-              color: Colors.white,
-              child: TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: homePageController.productSearchController,
-                onChanged: (String value) {
-                  print('$value');
-                  productsController.searchForProducts(value);
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Search for products',
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        resetSearch(context);
-                      },
-                      icon: Obx(() => productsController.searchInProgress.isTrue
-                          ? Icon(Icons.access_alarms)
-                          : Icon(Icons.close))),
-                ),
+          Form(
+              child: Container(
+            color: Colors.white,
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: homePageController.productSearchController,
+              onChanged: (String value) {
+                print('$value');
+                productsController.searchForProducts(value);
+              },
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Search for products',
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      resetSearch(context);
+                    },
+                    icon: Obx(() => productsController.searchInProgress.isTrue
+                        ? Icon(Icons.access_alarms)
+                        : Icon(Icons.close))),
               ),
-            )),
-          ),
+            ),
+          )),
           Obx(() => Visibility(
                 visible: productsController.searchResultList.length > 0,
                 child: productsController.searchInProgress.isTrue
@@ -68,24 +65,29 @@ class SearchComponent extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5.00)),
                           child: ListView.builder(
-                            itemBuilder: (context, index) => ListTile(
-                                onTap: () {
-                                  print(
-                                      '${productsController.searchResultList[index].toJson()}');
-                                  Get.to(() => ProductDetailPage(), arguments: {
-                                    'id':
-                                        '${productsController.searchResultList[index].productId}'
-                                  });
-                                  resetSearch(context);
-                                },
-                                leading: Image(
-                                  height: 50,
-                                  width: 50,
-                                  image: NetworkImage(
-                                      '${productsController.searchResultList[index].productAsset!.preview}'),
-                                ),
-                                title: Text(
-                                    '${productsController.searchResultList[index].productName}')),
+                            itemBuilder: (context, index) => Obx(() =>
+                                productsController.searchResultList[index].isPrivate ==
+                                        false
+                                    ? ListTile(
+                                        onTap: () {
+                                          print(
+                                              '${productsController.searchResultList[index].toJson()}');
+                                          Get.to(() => ProductDetailPage(),
+                                              arguments: {
+                                                'id':
+                                                    '${productsController.searchResultList[index].productId}'
+                                              });
+                                          resetSearch(context);
+                                        },
+                                        leading: Image(
+                                          height: 50,
+                                          width: 50,
+                                          image: NetworkImage(
+                                              '${productsController.searchResultList[index].productAsset!.preview}'),
+                                        ),
+                                        title: Text(
+                                            '${productsController.searchResultList[index].productName}'))
+                                    : SizedBox()),
                             itemCount:
                                 productsController.searchResultList.length,
                           ),

@@ -52,7 +52,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       color: CustomTheme.progressIndicatorColor,
                     ),
                   )
-                : Text('Increase Quantity',style: CustomTheme.headerStyle,)),
+                : Text(
+                    'Increase Quantity',
+                    style: CustomTheme.headerStyle,
+                  )),
             onPressed: (_) {
               cartController.addItemToCart(item.productVariant.id, 1);
               Navigator.pop(context);
@@ -64,7 +67,10 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       color: CustomTheme.progressIndicatorColor,
                     ),
                   )
-                : Text('Delete Item',style: CustomTheme.headerStyle,)),
+                : Text(
+                    'Delete Item',
+                    style: CustomTheme.headerStyle,
+                  )),
             onPressed: (_) {
               orderController.removeItemFromOrder(item.id);
               Navigator.pop(context);
@@ -72,7 +78,9 @@ class _CartDetailPageState extends State<CartDetailPage> {
       ],
       cancelAction: CancelAction(
           title: Text(
-              'Cancel',style: CustomTheme.headerStyle,)), // onPressed parameter is optional by default will dismiss the ActionSheet
+        'Cancel',
+        style: CustomTheme.headerStyle,
+      )), // onPressed parameter is optional by default will dismiss the ActionSheet
     );
   }
 
@@ -88,8 +96,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
         actions: [
           IconButton(
               onPressed: () {
-                if(!orderController.activeOrderResponse.value!.lines.isEmpty){
-
+                if (!orderController.activeOrderResponse.value!.lines.isEmpty) {
                   Get.defaultDialog(
                       title: 'Warning',
                       content: Column(
@@ -114,8 +121,9 @@ class _CartDetailPageState extends State<CartDetailPage> {
                             },
                             child: Text('OK')),
                       ]);
-                }else {
-                  UtilService.createSnakeBar(context: context,text: 'the cart is empty!');
+                } else {
+                  UtilService.createSnakeBar(
+                      context: context, text: 'the cart is empty!');
                 }
               },
               icon: Icon(Icons.delete))
@@ -150,80 +158,118 @@ class _CartDetailPageState extends State<CartDetailPage> {
               ),
             )
           : Card(
-              child: ListView.builder(
-                  itemBuilder: (context, index) => Card(
-                        child: ListTile(
-                          isThreeLine: true,
-                          leading: FadeInImage.assetNetwork(
-                            width: 50,
-                            height: 50,
-                            placeholder: '${CommonVariableData.placeholder}',
-                            image:
-                                '${orderController.activeOrderResponse.value!.lines[index].featuredAsset!.preview}',
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset(
-                                    '${CommonVariableData.placeholder}'),
-                          ),
-                          title: Text(
-                            '${UtilService.formateText(orderController.activeOrderResponse.value!.lines[index].productVariant.name)}',
-                            style: CustomTheme.headerStyle,
-                          ),
-                          subtitle: userController.currentAuthenticatedUser
-                                  .value!.orders.items.isNotEmpty
-                              ? Text(
-                                  'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
-                                  style: CustomTheme.headerStyle,
-                                )
-                              : Text(''),
-                          trailing: Obx(() => cartController.isLoading.isTrue ||
-                                  orderController.isLoading.isTrue
-                              ? SizedBox(
-                                  width: 30,
-                                  height: 30,
-                                  child: CircularProgressIndicator(
-                                    color: CustomTheme.progressIndicatorColor,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                      height: (MediaQuery.of(context).size.height / 2),
+                      child: ListView.builder(
+                          itemBuilder: (context, index) => Card(
+                                child: ListTile(
+                                  isThreeLine: true,
+                                  leading: FadeInImage.assetNetwork(
+                                    width: 50,
+                                    height: 50,
+                                    placeholder:
+                                        '${CommonVariableData.placeholder}',
+                                    image:
+                                        '${orderController.activeOrderResponse.value!.lines[index].featuredAsset!.preview}',
+                                    imageErrorBuilder: (context, error,
+                                            stackTrace) =>
+                                        Image.asset(
+                                            '${CommonVariableData.placeholder}'),
                                   ),
-                                )
-                              : Wrap(
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        var item = orderController
-                                            .activeOrderResponse
-                                            .value!
-                                            .lines[index];
-                                        cartController.addItemToCart(
-                                            item.productVariant.id, 1);
-                                      },
-                                      icon: Icon(Icons.add_circle_outline),
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        var item = orderController
-                                            .activeOrderResponse
-                                            .value!
-                                            .lines[index];
-                                        cartController.adjustCartItem(
-                                            item.id, item.quantity - 1);
-                                      },
-                                      icon: Icon(Icons.remove_circle_outline),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          var item = orderController
-                                              .activeOrderResponse
-                                              .value!
-                                              .lines[index];
-                                          orderController
-                                              .removeItemFromOrder(item.id);
-                                        },
-                                        icon: Icon(Icons.delete_outline)),
-                                  ],
-                                )),
+                                  title: Text(
+                                    '${UtilService.formateText(orderController.activeOrderResponse.value!.lines[index].productVariant.name)}',
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                  subtitle: userController
+                                          .currentAuthenticatedUser
+                                          .value!
+                                          .orders
+                                          .items
+                                          .isNotEmpty
+                                      ? Text(
+                                          'Price with Tax: ${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.lines[index].linePriceWithTax / 100).toStringAsFixed(2)}\nQuantity: ${orderController.activeOrderResponse.value!.lines[index].quantity}',
+                                          style: CustomTheme.headerStyle,
+                                        )
+                                      : Text(''),
+                                  trailing: Obx(() => cartController
+                                              .isLoading.isTrue ||
+                                          orderController.isLoading.isTrue
+                                      ? SizedBox(
+                                          width: 30,
+                                          height: 30,
+                                          child: CircularProgressIndicator(
+                                            color: CustomTheme
+                                                .progressIndicatorColor,
+                                          ),
+                                        )
+                                      : Wrap(
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                var item = orderController
+                                                    .activeOrderResponse
+                                                    .value!
+                                                    .lines[index];
+                                                cartController.addItemToCart(
+                                                    item.productVariant.id, 1);
+                                              },
+                                              icon: Icon(
+                                                  Icons.add_circle_outline),
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                var item = orderController
+                                                    .activeOrderResponse
+                                                    .value!
+                                                    .lines[index];
+                                                cartController.adjustCartItem(
+                                                    item.id, item.quantity - 1);
+                                              },
+                                              icon: Icon(
+                                                  Icons.remove_circle_outline),
+                                            ),
+                                            IconButton(
+                                                onPressed: () {
+                                                  var item = orderController
+                                                      .activeOrderResponse
+                                                      .value!
+                                                      .lines[index];
+                                                  orderController
+                                                      .removeItemFromOrder(
+                                                          item.id);
+                                                },
+                                                icon:
+                                                    Icon(Icons.delete_outline)),
+                                          ],
+                                        )),
+                                ),
+                              ),
+                          itemCount: orderController
+                              .activeOrderResponse.value!.lines.length)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          "Total Amount",
+                          style: CustomTheme.headerStyle,
                         ),
                       ),
-                  itemCount:
-                      orderController.activeOrderResponse.value!.lines.length),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          "${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.totalWithTax / 100).toStringAsFixed(2)}",
+                          style: CustomTheme.headerStyle,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             )),
       bottomNavigationBar: BottomNavigationComponent(),
       floatingActionButton: FloatingActionButtonComponent(),

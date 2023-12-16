@@ -47,6 +47,7 @@ query SearchProducts($input: SearchInput!) {
             slug
             productName
             description
+            collectionIds
             priceWithTax {
                 ... on PriceRange {
                     min

@@ -463,6 +463,9 @@ Query$SearchProducts$search$items _$Query$SearchProducts$search$itemsFromJson(
       slug: json['slug'] as String,
       productName: json['productName'] as String,
       description: json['description'] as String,
+      collectionIds: (json['collectionIds'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       priceWithTax: Query$SearchProducts$search$items$priceWithTax.fromJson(
           json['priceWithTax'] as Map<String, dynamic>),
       productAsset: json['productAsset'] == null
@@ -480,6 +483,7 @@ Map<String, dynamic> _$Query$SearchProducts$search$itemsToJson(
       'slug': instance.slug,
       'productName': instance.productName,
       'description': instance.description,
+      'collectionIds': instance.collectionIds,
       'priceWithTax': instance.priceWithTax.toJson(),
       'productAsset': instance.productAsset?.toJson(),
       '__typename': instance.$__typename,

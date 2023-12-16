@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
+import 'package:recipe.app/components/LogoComponent.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/services/commonVariables.dart';
@@ -153,6 +154,7 @@ class MyAccountPageState extends State<MyAccountPage> {
       });
     }
 
+
     return Obx(() => userController.isLoading2.isTrue
         ? LoadingSpinnerComponent()
         : Scaffold(
@@ -191,6 +193,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                           key: AllGlobalKeys.myAccountFormKey,
                           child: ListView(
                             children: [
+                              LogoComponent(),
                               Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -328,6 +331,7 @@ class MyAccountPageState extends State<MyAccountPage> {
                         )
                       : ListView(
                           children: [
+                            LogoComponent(),
                             SizedBox(
                               height: 20,
                             ),

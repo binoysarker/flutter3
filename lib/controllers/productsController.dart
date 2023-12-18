@@ -80,7 +80,7 @@ class ProductsController extends GetxController {
       productDetailResponse.value = res.parsedData!.product;
       productDetailVariants.value = res.parsedData!.product!.variants;
       selectedDropdownItemId.value =
-      productDetailVariants.value.map((element) => element.id).toList()[0];
+          productDetailVariants.value.map((element) => element.id).toList()[0];
       updateProductDetail(selectedDropdownItemId.value);
       isLoading.value = false;
     } else {
@@ -90,28 +90,34 @@ class ProductsController extends GetxController {
       isLoading.value = false;
     }
   }
+  Future<bool> makeRequestToCheckPrivate(String singleId) async{
+    final res = await graphqlService.client.value
+        .query$CheckCollectionIsPrivate(
+        Options$Query$CheckCollectionIsPrivate(
+            variables: Variables$Query$CheckCollectionIsPrivate(
+                collectionId: singleId)));
+    if(res.hasException){
+      print('${res.exception.toString()}');
+    }
+    return res.parsedData!.checkCollectionIsPrivate == null ? false : res.parsedData!.checkCollectionIsPrivate;
+  }
 
-  void checkCollectionIsPrivate() {
-    searchResultList.value.forEach((element) {
+  void checkCollectionIsPrivate() async{
+    for (var element in searchResultList) {
       var collectionIds = element.collectionIds;
       var isPrivate = false;
       for (var singleId in collectionIds) {
-       graphqlService.client.value
-            .query$CheckCollectionIsPrivate(
-            Options$Query$CheckCollectionIsPrivate(
-                variables: Variables$Query$CheckCollectionIsPrivate(
-                    collectionId: singleId))).then((value) => {
-         if(value.parsedData!.checkCollectionIsPrivate == true){
-           isPrivate = true
-         }
-       }).catchError((onError) => {
-         print('error ${onError.toString()}')
-       });
-
+        isPrivate = await makeRequestToCheckPrivate(singleId);
+        print("checkCollectionIsPrivate $isPrivate");
+        if(isPrivate == true){
+          break;
+        }
       }
-      print("checkCollectionIsPrivate $isPrivate");
-      element.isPrivate = isPrivate;
-      });
+        if (isPrivate == true) {
+          print('removing item $element');
+          searchResultList.remove(element);
+        }
+    }
   }
 
   void searchForProducts(String searchText) async {
@@ -133,8 +139,7 @@ class ProductsController extends GetxController {
       // print('search result ${res.parsedData!.toJson()}');
       searchResultList.value = res.parsedData!.search.items.toList();
       print(
-          "collection id ${searchResultList.value.first.collectionIds.join(
-              ',')}");
+          "collection id ${searchResultList.value.first.collectionIds.join(',')}");
       checkCollectionIsPrivate();
       searchInProgress.value = false;
     }

@@ -65,29 +65,25 @@ class SearchComponent extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5.00)),
                           child: ListView.builder(
-                            itemBuilder: (context, index) => Obx(() =>
-                                productsController.searchResultList[index].isPrivate ==
-                                        false
-                                    ? ListTile(
-                                        onTap: () {
-                                          print(
-                                              '${productsController.searchResultList[index].toJson()}');
-                                          Get.to(() => ProductDetailPage(),
-                                              arguments: {
-                                                'id':
-                                                    '${productsController.searchResultList[index].productId}'
-                                              });
-                                          resetSearch(context);
-                                        },
-                                        leading: Image(
-                                          height: 50,
-                                          width: 50,
-                                          image: NetworkImage(
-                                              '${productsController.searchResultList[index].productAsset!.preview}'),
-                                        ),
-                                        title: Text(
-                                            '${productsController.searchResultList[index].productName}, isPrivate ${productsController.searchResultList[index].isPrivate}'))
-                                    : SizedBox()),
+                            itemBuilder: (context, index) => ListTile(
+                                onTap: () {
+                                  print(
+                                      '${productsController.searchResultList[index].toJson()}');
+                                  Get.to(() => ProductDetailPage(),
+                                      arguments: {
+                                        'id':
+                                        productsController.searchResultList[index].productId
+                                      });
+                                  resetSearch(context);
+                                },
+                                leading: Image(
+                                  height: 50,
+                                  width: 50,
+                                  image: NetworkImage(
+                                      productsController.searchResultList[index].productAsset!.preview),
+                                ),
+                                title: Text(
+                                    productsController.searchResultList[index].productName)),
                             itemCount:
                                 productsController.searchResultList.length,
                           ),

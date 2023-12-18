@@ -1,4 +1,3 @@
-import 'cart_data.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -2732,8 +2731,6 @@ class _CopyWithStubImpl$Query$SearchProducts$search<TRes>
 
 @JsonSerializable(explicitToJson: true)
 class Query$SearchProducts$search$items {
-  bool isPrivate = false;
-
   Query$SearchProducts$search$items(
       {required this.productVariantId,
       required this.productId,

@@ -100,7 +100,7 @@ class LoginPageController extends GetxController {
       var encryptedUserPhone = Encryptor.encrypt(
           dotenv.env['ENCRYPT_KEY'].toString(), phoneNumber.text);
       var encryptedUserPassword = Encryptor.encrypt(
-          dotenv.env['ENCRYPT_KEY'].toString(), passwordController.text);
+          dotenv.env['ENCRYPT_KEY'].toString(), currentlyGivenOTP.value.toString());
       print('encrypted data $encryptedUserPhone, $encryptedUserPassword');
 
       passwordStorage.ready.then((value) {
@@ -188,17 +188,17 @@ class LoginPageController extends GetxController {
         });
   }
 
-  void onUserSignIn(BuildContext context) async {
+  void onUserSignIn() async {
     // need to check the check box status
     setCheckboxStatus(checkboxStatus.value);
-    final navigator = Navigator.of(context);
+    // final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
     final signInResponse = await graphqlService.client.value.mutate$SignIn(
         Options$Mutation$SignIn(
             variables: Variables$Mutation$SignIn(
                 emailAddress:
                     '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}',
-                password: passwordController.text,
+                password: currentlyGivenOTP.value.toString(),
                 rememberMe: checkboxStatus.value)));
     if (signInResponse.hasException) {
       debugPrint('${signInResponse.exception.toString()}');
@@ -224,7 +224,9 @@ class LoginPageController extends GetxController {
         return;
       }
       if (loginData?['errorCode'] == 'NOT_VERIFIED_ERROR') {
-        navigator.pushReplacementNamed('/${PageRouteNames.verify_token.name}');
+        Get.snackbar('Error', 'This Phone is not verified',
+            colorText: Colors.white, backgroundColor: Colors.red);
+        // navigator.pushReplacementNamed('/${PageRouteNames.verify_token.name}');
       } else {
         // login successful
         // UtilService.createSnakeBar(context: context, text: 'Login successful');
@@ -241,6 +243,32 @@ class LoginPageController extends GetxController {
         Get.offAll(() => StorePage());
       }
       utilityController.setLoadingState(false);
+    }
+  }
+
+  void beforeSignInProcess(String phone) async{
+    try {
+      print('phone $phone');
+      graphqlService = GraphqlService();
+      final res = await graphqlService.client.value.query$CheckUniquePhone(
+          Options$Query$CheckUniquePhone(
+              variables: Variables$Query$CheckUniquePhone(phone: phone)));
+      if (res.hasException) {
+        print(res.exception.toString());
+      }
+      if (res.data != null) {
+        // true means it is unique and false means it is not unique
+        print(res.parsedData?.checkUniquePhone);
+        if (res.parsedData!.checkUniquePhone) {
+
+          Get.snackbar('Error', 'This Phone is not present, Please register',
+              colorText: Colors.white, backgroundColor: Colors.red);
+        } else {
+          requestPasswordReset();
+        }
+      }
+    } on Exception catch (e) {
+      print(e.toString());
     }
   }
 
@@ -373,7 +401,7 @@ class LoginPageController extends GetxController {
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
       print('${res.body}');
-      Get.offAll(() => ResetPasswordPage());
+      Get.offAll(() => VerifyOTPPage());
       resetFormField();
     } on Exception catch (e) {
       print(e.toString());
@@ -406,9 +434,7 @@ class LoginPageController extends GetxController {
         print(
             'resetUserPassword ${response.parsedData!.resetPassword.toJson()}');
         loading.value = false;
-        Get.snackbar('', 'Password is successfully reset.Please login now',
-            colorText: Colors.white, backgroundColor: Colors.lightGreen);
-        Get.offAll(() => LoginPage());
+        onUserSignIn();
         resetFormField();
       }
       loading.value = false;

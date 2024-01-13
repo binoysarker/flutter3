@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -181,87 +182,28 @@ class _StorePageState extends State<StorePage> {
 
                                     return Column(
                                       children: [
-                                        ...assetList
-                                            .map(
-                                              (e) => Container(
-                                                child: FadeInImage.assetNetwork(
-                                                  placeholder:
-                                                      '${CommonVariableData.placeholder}',
-                                                  image: e.url,
-                                                  imageErrorBuilder: (context,
-                                                          error, stackTrace) =>
-                                                      Image.asset(
-                                                          '${CommonVariableData.placeholder}'),
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
+                                        CarouselSlider(items: assetList
+                                        .map(
+                                        (e) => Container(
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder:
+                                        '${CommonVariableData.placeholder}',
+                                        image: e.url,
+                                        imageErrorBuilder: (context,
+                                            error, stackTrace) =>
+                                            Image.asset(
+                                                '${CommonVariableData.placeholder}'),
+                                      ),
+                                    ),
+                                    )
+                                        .toList(), options: CarouselOptions(
+                                          height: 250,
+                                          autoPlay: true
+                                        )),
+
                                         SizedBox(
                                           height: 0,
                                         ),
-                                        // FutureBuilder(
-                                        //   future: facebookAppEvents.getAnonymousId(),
-                                        //   builder: (context, snapshot) {
-                                        //     print('snapshot data ${snapshot}');
-                                        //     final id = snapshot.data ?? '???';
-                                        //     return Text('Anonymous ID: $id');
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Click me!"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.logEvent(
-                                        //       name: 'sending_message',
-                                        //       parameters: {
-                                        //         'text': 'some message'
-                                        //       },
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Set user data"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.setUserData(
-                                        //       email: 'opensource@oddbit.id',
-                                        //       firstName: 'Oddbit',
-                                        //       dateOfBirth: '2019-10-19',
-                                        //       city: 'Denpasar',
-                                        //       country: 'Indonesia',
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Test logAddToCart"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.logAddToCart(
-                                        //       id: '1',
-                                        //       type: 'product',
-                                        //       price: 99.0,
-                                        //       currency: 'TRY',
-                                        //     );
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Test purchase!"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.logPurchase(amount: 1, currency: "USD");
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Enable advertise tracking!"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.setAdvertiserTracking(enabled: true);
-                                        //   },
-                                        // ),
-                                        // ElevatedButton(
-                                        //   child: Text("Disabled advertise tracking!"),
-                                        //   onPressed: () {
-                                        //     facebookAppEvents.setAdvertiserTracking(enabled: false);
-                                        //   },
-                                        // ),
-                                        // SizedBox(
-                                        //   height: 0,
-                                        // ),
                                         Obx(() => VerticalListComponent(
                                               isLoading: collectionsController
                                                   .isLoading.isTrue,

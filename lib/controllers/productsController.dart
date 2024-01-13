@@ -14,6 +14,7 @@ class ProductsController extends GetxController {
   var searchInProgress = false.obs;
   var productList = <Query$GetAllProducts$products$items>[].obs;
   var searchResultList = <Query$SearchProducts$search$items>[].obs;
+  var tempSearchResultList = <Query$SearchProducts$search$items>[].obs;
   var productDetailVariants = <Query$GetProductDetail$product$variants>[].obs;
   var selectedDropdownItemId = ''.obs;
 
@@ -103,10 +104,16 @@ class ProductsController extends GetxController {
   }
 
   void checkCollectionIsPrivate() async{
-    for (var element in searchResultList) {
+    for (var element in tempSearchResultList) {
       var collectionIds = element.collectionIds;
+      var uniqueCollectionIds = [];
+      for(String id in collectionIds){
+        if(!uniqueCollectionIds.contains(id)){
+          uniqueCollectionIds.add(id);
+        }
+      }
       var isPrivate = false;
-      for (var singleId in collectionIds) {
+      for (var singleId in uniqueCollectionIds) {
         isPrivate = await makeRequestToCheckPrivate(singleId);
         print("checkCollectionIsPrivate $isPrivate");
         if(isPrivate == true){
@@ -118,6 +125,7 @@ class ProductsController extends GetxController {
           searchResultList.remove(element);
         }
     }
+    searchInProgress.value = false;
   }
 
   void searchForProducts(String searchText) async {
@@ -137,11 +145,12 @@ class ProductsController extends GetxController {
     }
     if (res.data != null) {
       // print('search result ${res.parsedData!.toJson()}');
+      tempSearchResultList.value = res.parsedData!.search.items.toList();
       searchResultList.value = res.parsedData!.search.items.toList();
       print(
-          "collection id ${searchResultList.value.first.collectionIds.join(',')}");
+          "collection id ${tempSearchResultList.value.first.collectionIds.join(',')}");
       checkCollectionIsPrivate();
-      searchInProgress.value = false;
+
     }
   }
 }

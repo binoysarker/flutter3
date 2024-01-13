@@ -36,12 +36,12 @@ class OrderController extends GetxController {
   TextEditingController otherInstructions = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
-  var selectedPaymentOption = 'offline'.obs;
+  var selectedPaymentOption = 'online'.obs;
   var selectedPostalCode = '625018'.obs;
   var otherInstructionResponse = (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
   var makeDefaultShippingAddress = false.obs;
   var paymentOptionDropdownItems =
-      [PaymentOptionType.offline.name,PaymentOptionType.online.name].obs;
+      [PaymentOptionType.online.name,PaymentOptionType.offline.name].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
@@ -337,6 +337,21 @@ class OrderController extends GetxController {
     }
   }
 
+  void processMorningOrEveningPaymentSms() {
+    // Morning or Evening Delivery
+    var showEveningSms =
+        currentlySelectedShippingMethod.value!.code !=
+            'morning-delivery';
+    var templateId = showEveningSms
+        ? "649011f6d6fc053db57148e5"
+        : "65793925d6fc05548168c723";
+    var number =
+    userController.currentAuthenticatedUser.value!.phoneNumber.toString();
+    UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
+        '${activeOrderResponse.value!.code}', '');
+    useCurrentUserAddress.value = false;
+  }
+
   void verifyPayment() async {
     try {
       isLoading.value = true;
@@ -362,6 +377,7 @@ class OrderController extends GetxController {
               'orderId': paymentSuccessResponse.value!.orderId,
               'signature': paymentSuccessResponse.value!.signature
             });
+            processMorningOrEveningPaymentSms();
           });
         }
         // isLoading.value = false;

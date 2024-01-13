@@ -115,8 +115,8 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                           goToPage(element);
                         },
                         child: SizedBox(
-                          width: 180,
-                          height: 180,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: MediaQuery.of(context).size.height * 0.2,
                           child: Card(
                             elevation: 5,
                             child: Column(

@@ -41,13 +41,14 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
+                      keyboardType: TextInputType.number,
                       controller: loginPageController.otpController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Code',
+                        labelText: 'OTP',
                       ),
                       validator: RequiredValidator(
-                          errorText: 'Code is required'),
+                          errorText: 'OTP is required'),
                     ),
                   ),
                   TextButton(onPressed: (){
@@ -61,9 +62,17 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                           if(loginPageController.currentlyGivenOTP.value.toString() == loginPageController.otpController.text.toString()){
                             print('verified');
                             print('${loginPageController.phoneNumber.text}, ${loginPageController.firstName.text},${loginPageController.lastName.text}');
-                            loginPageController.onUserRegister();
+                            loginPageController.passwordController.text = loginPageController.currentlyGivenOTP.value.toString();
+                            if(loginPageController.showSignIn.isTrue){
+                              // do the sign in process
+                              loginPageController.resetUserPassword();
+                            }else {
+                            //   do the registration process
+
+                              loginPageController.onUserRegister();
+                            }
                           }else{
-                            Get.snackbar('Error', 'Code Does not match',colorText: Colors.white,backgroundColor: Colors.red);
+                            Get.snackbar('Error', 'OTP Does not match',colorText: Colors.white,backgroundColor: Colors.red);
                           }
                         } else {
                           print('not validated');

@@ -51,7 +51,7 @@ class LoginPageState extends State<LoginPage> {
                 loginPageController.phoneNumber.text = phone;
                 loginPageController.passwordController.text = password;
                 loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
-                loginPageController.onUserSignIn(context);
+                loginPageController.onUserSignIn();
               });
 
 
@@ -208,24 +208,7 @@ class LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            child: TextFormField(
-                              obscureText: true,
-                              enableSuggestions: false,
-                              autocorrect: false,
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              controller:
-                                  loginPageController.passwordController,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Password',
-                              ),
-                              validator:
-                                  ValidatorDefinition.passwordMultiValidator,
-                            ),
-                          ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -241,15 +224,7 @@ class LoginPageState extends State<LoginPage> {
                                   }),
                             ],
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Get.offAll(() => ForgetPasswordPage());
-                            },
-                            child: Text(
-                              'Forgot Password',
-                              style: CustomTheme.paragraphStyle,
-                            ),
-                          ),
+
                           Container(
                               height: 50,
                               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -263,18 +238,11 @@ class LoginPageState extends State<LoginPage> {
                                 onPressed: () {
                                   loginPageController.setCurrentSignInProcess(
                                       SignInProcessNames.normal.name);
-                                  if (loginPageController
-                                      .passwordController.text.isEmpty) {
-                                    UtilService.createSnakeBar(
-                                        text: 'Fill up the form',
-                                        context: context);
+                                  if (loginPageController.showSignIn.isTrue) {
+                                    loginPageController.beforeSignInProcess(loginPageController.phoneNumber.text);
                                   } else {
-                                    if (loginPageController.showSignIn.isTrue) {
-                                      loginPageController.onUserSignIn(context);
-                                    } else {
-                                      loginPageController.checkUniquePhone(
-                                          loginPageController.phoneNumber.text);
-                                    }
+                                    loginPageController.checkUniquePhone(
+                                        loginPageController.phoneNumber.text);
                                   }
                                 },
                               )),

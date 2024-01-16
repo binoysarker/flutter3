@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -52,7 +51,7 @@ class _StorePageState extends State<StorePage> {
   final OrderController orderController = Get.find<OrderController>();
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
-  static final facebookAppEvents = FacebookAppEvents();
+  // static final facebookAppEvents = FacebookAppEvents();
 
   @override
   void initState() {
@@ -60,7 +59,8 @@ class _StorePageState extends State<StorePage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       userController.getActiveCustomer();
       productsController.getProductsList();
-      collectionsController.getAllCollections();
+      collectionsController.currentSkipCount.value = 0;
+      collectionsController.getAllCollections(collectionsController.currentSkipCount.value);
       orderController.getActiveOrders();
       userController.checkDeviceToken();
       printKeyHash();

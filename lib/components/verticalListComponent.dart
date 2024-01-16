@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
 import 'package:recipe.app/services/util_service.dart';
 
 import '../graphqlSection/collections.graphql.dart';
@@ -32,6 +33,7 @@ class VerticalListComponent extends StatefulWidget {
 
 class _VerticalListComponentState extends State<VerticalListComponent> {
   CartController cartController = Get.find<CartController>();
+  CollectionsController collectionsController = Get.find<CollectionsController>();
   int selectedId = 0;
 
   @override
@@ -181,7 +183,13 @@ class _VerticalListComponentState extends State<VerticalListComponent> {
                         ),
                       ))
                     ],
-                  )
+                  ),
+                  widget.givenList.length > 50 ? Center(
+                    child: ElevatedButton(onPressed: (){
+                      collectionsController.currentSkipCount.value += 100;
+                      collectionsController.getAllCollections(collectionsController.currentSkipCount.value);
+                    }, child: Text('Show More',style: CustomTheme.headerStyle,)),
+                  ) : SizedBox()
 
                 ],
               ),

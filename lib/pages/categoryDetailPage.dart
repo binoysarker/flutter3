@@ -34,6 +34,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       print('arguments $routerArguments');
+      collectionsController.currentSkipCount.value = 0;
       collectionsController.getSingleCollectionDetail(routerArguments['id']);
     });
   }
@@ -171,6 +172,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                                         givenList: element
                                                             .productVariants
                                                             .items,
+                                                        collectionId: routerArguments['id'],
+                                                        scrollController: _scrollController,
                                                         controllerType:
                                                             ControllerTypeNames
                                                                 .productChildrenVariantItems
@@ -187,7 +190,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                               headerTitle: 'Products',
                               loadingState:
                                   collectionsController.isLoading.isTrue,
+                              collectionId: routerArguments['id'],
                               givenList: getItemList(),
+                              scrollController: _scrollController,
                               controllerType:
                                   ControllerTypeNames.normalProductList.name)
                         ],

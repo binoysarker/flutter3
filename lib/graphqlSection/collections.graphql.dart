@@ -1,4 +1,3 @@
-import 'cart_data.graphql.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
@@ -1349,7 +1348,7 @@ class Query$CheckCollectionIsPrivate$Widget
 
 @JsonSerializable(explicitToJson: true)
 class Variables$Query$GetCollectionsByIdOrSlug {
-  Variables$Query$GetCollectionsByIdOrSlug({this.id});
+  Variables$Query$GetCollectionsByIdOrSlug({this.id, this.take, this.skip});
 
   @override
   factory Variables$Query$GetCollectionsByIdOrSlug.fromJson(
@@ -1358,11 +1357,17 @@ class Variables$Query$GetCollectionsByIdOrSlug {
 
   final String? id;
 
+  final int? take;
+
+  final int? skip;
+
   Map<String, dynamic> toJson() =>
       _$Variables$Query$GetCollectionsByIdOrSlugToJson(this);
   int get hashCode {
     final l$id = id;
-    return Object.hashAll([l$id]);
+    final l$take = take;
+    final l$skip = skip;
+    return Object.hashAll([l$id, l$take, l$skip]);
   }
 
   @override
@@ -1373,6 +1378,12 @@ class Variables$Query$GetCollectionsByIdOrSlug {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
+    final l$take = take;
+    final lOther$take = other.take;
+    if (l$take != lOther$take) return false;
+    final l$skip = skip;
+    final lOther$skip = other.skip;
+    if (l$skip != lOther$skip) return false;
     return true;
   }
 
@@ -1391,7 +1402,7 @@ abstract class CopyWith$Variables$Query$GetCollectionsByIdOrSlug<TRes> {
   factory CopyWith$Variables$Query$GetCollectionsByIdOrSlug.stub(TRes res) =
       _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug;
 
-  TRes call({String? id});
+  TRes call({String? id, int? take, int? skip});
 }
 
 class _CopyWithImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
@@ -1405,9 +1416,14 @@ class _CopyWithImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
 
   static const _undefined = {};
 
-  TRes call({Object? id = _undefined}) =>
+  TRes call(
+          {Object? id = _undefined,
+          Object? take = _undefined,
+          Object? skip = _undefined}) =>
       _then(Variables$Query$GetCollectionsByIdOrSlug(
-          id: id == _undefined ? _instance.id : (id as String?)));
+          id: id == _undefined ? _instance.id : (id as String?),
+          take: take == _undefined ? _instance.take : (take as int?),
+          skip: skip == _undefined ? _instance.skip : (skip as int?)));
 }
 
 class _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
@@ -1416,7 +1432,7 @@ class _CopyWithStubImpl$Variables$Query$GetCollectionsByIdOrSlug<TRes>
 
   TRes _res;
 
-  call({String? id}) => _res;
+  call({String? id, int? take, int? skip}) => _res;
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1528,6 +1544,16 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
             variable: VariableNode(name: NameNode(value: 'id')),
             type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: false),
             defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'take')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+            defaultValue: DefaultValueNode(value: null),
+            directives: []),
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'skip')),
+            type: NamedTypeNode(name: NameNode(value: 'Int'), isNonNull: false),
+            defaultValue: DefaultValueNode(value: null),
             directives: [])
       ],
       directives: [],
@@ -1569,7 +1595,20 @@ const documentNodeQueryGetCollectionsByIdOrSlug = DocumentNode(definitions: [
               FieldNode(
                   name: NameNode(value: 'productVariants'),
                   alias: null,
-                  arguments: [],
+                  arguments: [
+                    ArgumentNode(
+                        name: NameNode(value: 'options'),
+                        value: ObjectValueNode(fields: [
+                          ObjectFieldNode(
+                              name: NameNode(value: 'take'),
+                              value:
+                                  VariableNode(name: NameNode(value: 'take'))),
+                          ObjectFieldNode(
+                              name: NameNode(value: 'skip'),
+                              value:
+                                  VariableNode(name: NameNode(value: 'skip')))
+                        ]))
+                  ],
                   directives: [],
                   selectionSet: SelectionSetNode(selections: [
                     FieldNode(

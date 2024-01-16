@@ -12,18 +12,20 @@ class CollectionsController extends GetxController {
   final UtilityController utilityController = Get.find<UtilityController>();
   var collectionItems = <Query$GetAllCollections$collections$items>[].obs;
   var isLoading = false.obs;
+  var currentTakeItemsCount = 100.obs;
+  var currentSkipCount = 0.obs;
   var collectionItemSelected = {}.obs;
   var singleCollectionDetail =
       (null as Query$GetCollectionsByIdOrSlug$collection?).obs;
 
-  void getAllCollections() async {
+  void getAllCollections(int skip) async {
     try {
       isLoading.value = true;
       graphqlService = GraphqlService();
       final res = await graphqlService.client.value.query$GetAllCollections(
           Options$Query$GetAllCollections(
               variables: Variables$Query$GetAllCollections(
-                  input: Input$CollectionListOptions(take: 100))));
+                  input: Input$CollectionListOptions(take: 100,skip: skip))));
       if (res.hasException) {
         print('${res.exception.toString()}');
         isLoading.value = false;
@@ -38,6 +40,11 @@ class CollectionsController extends GetxController {
       isLoading.value = false;
     }
   }
+  void showMoreProductsUnderCollection(String id){
+
+    getSingleCollectionDetail(id);
+  }
+
 
   void getSingleCollectionDetail(String id) async {
     try {
@@ -47,7 +54,7 @@ class CollectionsController extends GetxController {
           .query$GetCollectionsByIdOrSlug(
               Options$Query$GetCollectionsByIdOrSlug(
                   variables:
-                      Variables$Query$GetCollectionsByIdOrSlug(id: id)));
+                      Variables$Query$GetCollectionsByIdOrSlug(id: id,take: currentTakeItemsCount.value,skip: currentSkipCount.value)));
       if (res.hasException) {
         print('${res.exception.toString()}');
         isLoading.value = false;
@@ -55,6 +62,7 @@ class CollectionsController extends GetxController {
       if (res.data != null) {
         print('single collection data ${res.parsedData!.collection!.toJson()}');
         singleCollectionDetail.value = res.parsedData!.collection!;
+
         isLoading.value = false;
       }
     } catch (e) {

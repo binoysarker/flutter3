@@ -310,12 +310,16 @@ Variables$Query$GetCollectionsByIdOrSlug
             Map<String, dynamic> json) =>
         Variables$Query$GetCollectionsByIdOrSlug(
           id: json['id'] as String?,
+          take: json['take'] as int?,
+          skip: json['skip'] as int?,
         );
 
 Map<String, dynamic> _$Variables$Query$GetCollectionsByIdOrSlugToJson(
         Variables$Query$GetCollectionsByIdOrSlug instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'take': instance.take,
+      'skip': instance.skip,
     };
 
 Query$GetCollectionsByIdOrSlug _$Query$GetCollectionsByIdOrSlugFromJson(

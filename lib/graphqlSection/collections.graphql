@@ -23,14 +23,14 @@ query CheckCollectionIsPrivate($collectionId: ID!){
     checkCollectionIsPrivate(collectionId: $collectionId)
 }
 
-query GetCollectionsByIdOrSlug($id: ID){
+query GetCollectionsByIdOrSlug($id: ID,$take: Int,$skip: Int){
     collection(id: $id){
         id
         name
         description
         slug
 
-        productVariants{
+        productVariants(options: {take: $take,skip: $skip}){
             items {
                 id
                 name

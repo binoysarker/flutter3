@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/collectionsController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/pages/productDetailPage.dart';
@@ -11,6 +12,8 @@ import '../themes.dart';
 
 class ItemGalleryComponent extends StatefulWidget {
   final String headerTitle;
+  final String collectionId;
+  final ScrollController scrollController;
   final bool loadingState;
   List<dynamic> givenList ;
   final String controllerType;
@@ -18,6 +21,8 @@ class ItemGalleryComponent extends StatefulWidget {
 
   ItemGalleryComponent(
       {Key? key,
+        required this.collectionId,
+        required this.scrollController,
       required this.headerTitle,
       required this.loadingState,
       required this.givenList,
@@ -30,6 +35,7 @@ class ItemGalleryComponent extends StatefulWidget {
 
 class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   CartController cartController = Get.find<CartController>();
+  CollectionsController collectionsController = Get.find<CollectionsController>();
   OrderController orderController = Get.find<OrderController>();
   int selectedId = 0;
 
@@ -144,12 +150,20 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
           )
         : Card(
             child: widget.givenList.isEmpty
-                ? Center(
-                    child: Text(
-                      'No Items to display',
-                      style: CustomTheme.headerStyle,
-                    ),
-                  )
+                ? Column(
+                  children: [
+                    Center(
+                        child: Text(
+                          'No Items to display',
+                          style: CustomTheme.headerStyle,
+                        ),
+                      ),
+                    ElevatedButton(onPressed: (){
+                      collectionsController.currentSkipCount.value -=100;
+                      collectionsController.getSingleCollectionDetail(widget.collectionId);
+                    }, child: Text('Back',style: CustomTheme.headerStyle,))
+                  ],
+                )
                 : Column(
                     children: [
                       Container(
@@ -239,6 +253,26 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                               ),
                             ),
                           ))
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          widget.givenList.length > 0 ? ElevatedButton(onPressed: (){
+                            print('go back');
+                            collectionsController.currentSkipCount.value -= 100;
+                            collectionsController.showMoreProductsUnderCollection(widget.collectionId);
+                            widget.scrollController.animateTo(100, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                          }, child: Text('Back',style: CustomTheme.headerStyle,)) : SizedBox(),
+                          ElevatedButton(onPressed: (){
+                            print('show more');
+                            collectionsController.currentSkipCount.value += 100;
+                            collectionsController.showMoreProductsUnderCollection(widget.collectionId);
+                            widget.scrollController.animateTo(100, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                          }, child: Text('Show More',style: CustomTheme.headerStyle,)),
                         ],
                       )
                     ],

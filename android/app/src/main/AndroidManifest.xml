@@ -5,6 +5,7 @@
         android:targetSdkVersion="33" />
     </uses-sdk>
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
    <application
         android:name="${applicationName}"
         android:label="kaaikani"

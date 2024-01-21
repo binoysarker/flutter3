@@ -520,7 +520,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               labelText: 'Coupon Code',
-                              helperText: 'coupon code is case sensitive',
+                              helperText: 'Type Coupon code in CAPITAL LETTERS',
                             ),
                             autofillHints: [AutofillHints.oneTimeCode],
                             keyboardType: TextInputType.name,

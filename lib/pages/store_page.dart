@@ -23,6 +23,7 @@ import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/hygraphSection/hygraphQueries.dart';
 import 'package:recipe.app/hygraphSection/hygraphQueryDataTypes.dart';
 import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/dialog_service.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
@@ -76,6 +77,7 @@ class _StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(DialogService(context));
 
     return Obx(() => productsController.isLoading.isTrue
         ? LoadingSpinnerComponent()
@@ -185,6 +187,7 @@ class _StorePageState extends State<StorePage> {
                                         CarouselSlider(items: assetList
                                         .map(
                                         (e) => Container(
+                                          width: double.infinity,
                                       child: FadeInImage.assetNetwork(
                                         placeholder:
                                         '${CommonVariableData.placeholder}',
@@ -197,7 +200,7 @@ class _StorePageState extends State<StorePage> {
                                     ),
                                     )
                                         .toList(), options: CarouselOptions(
-                                          height: 250,
+                                          viewportFraction: 1.0,
                                           autoPlay: true
                                         )),
 

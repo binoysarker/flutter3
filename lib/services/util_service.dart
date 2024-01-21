@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/cartController.dart';
+import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
 import '../graphqlSection/collections.graphql.dart';
@@ -18,6 +20,7 @@ import '../graphqlSection/products.graphql.dart';
 
 class UtilService {
   static final CartController cartController = Get.find<CartController>();
+  static final OrderController orderController = Get.find<OrderController>();
   static final UtilService _utilService = UtilService._internal();
 
   factory UtilService() => _utilService;
@@ -29,6 +32,9 @@ class UtilService {
   set apiBaseUrl(String value) {
     _apiBaseUrl = value;
   }
+
+
+
 
   static Future<void> toggleScreenshotRestriction(bool status) async {
 
@@ -209,31 +215,5 @@ class UtilService {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
 
-  static Future<void> showMyDialog(
-      {required BuildContext context, required String message}) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Alert'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(message),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+
 }

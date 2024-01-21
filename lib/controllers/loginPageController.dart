@@ -41,7 +41,7 @@ class LoginPageController extends GetxController {
   final loginPageState = GlobalKey<LoginPageState>();
   var showSignIn = true.obs;
   var loading = false.obs;
-  var currentlyGivenOTP = 0.obs;
+  var currentlyGivenOTP = '0'.obs;
   var smsData = {
     "template_id": "64638d10d6fc0577471d20a2",
     "sender": "KAIMSG",
@@ -64,7 +64,7 @@ class LoginPageController extends GetxController {
   void generateRandomDigit() {
     var rng = new Random();
     var code = rng.nextInt(9000) + 1000;
-    currentlyGivenOTP.value = code;
+    currentlyGivenOTP.value = code.toString();
   }
 
   void resetFormField() {
@@ -121,7 +121,7 @@ class LoginPageController extends GetxController {
     }
   }
 
-  void onUserLogout() async {
+  void onUserLogout(BuildContext context) async {
     loading.value = true;
     graphqlService = GraphqlService();
 
@@ -138,10 +138,11 @@ class LoginPageController extends GetxController {
       phoneStorage.ready.then((value) => phoneStorage.clear());
       passwordStorage.ready.then((value) => passwordStorage.clear());
       orderController.resetData();
-      // Get.offAll(() => LoginPage());
-      // Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
       // resetFormField();
+      AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();
       // Navigator.pop(context);
+      Get.offAll(() => LoginPage());
+      // Get.snackbar('', 'You are logged out', backgroundColor: Colors.green);
       // AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();
       // MoveToBackground.moveTaskToBack();
       SystemNavigator.pop();
@@ -434,6 +435,16 @@ class LoginPageController extends GetxController {
         print(
             'resetUserPassword ${response.parsedData!.resetPassword.toJson()}');
         loading.value = false;
+
+        // need to save user password
+        var encryptedUserPassword = Encryptor.encrypt(
+            dotenv.env['ENCRYPT_KEY'].toString(), currentlyGivenOTP.value.toString());
+        print('encryptedUserPassword $encryptedUserPassword');
+        passwordStorage.ready.then((isReady) {
+          if(isReady){
+            passwordStorage.setItem(LocalStorageStrings.password.name, encryptedUserPassword);
+          }
+        });
         onUserSignIn();
         resetFormField();
       }

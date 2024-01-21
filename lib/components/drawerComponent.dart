@@ -99,7 +99,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 // await FirebaseAuth.instance.signOut();
                 AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();
 
-                loginPageController.onUserLogout();
+                loginPageController.onUserLogout(context);
               },
             ),
           ],

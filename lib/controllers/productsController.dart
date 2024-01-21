@@ -147,9 +147,10 @@ class ProductsController extends GetxController {
       // print('search result ${res.parsedData!.toJson()}');
       tempSearchResultList.value = res.parsedData!.search.items.toList();
       searchResultList.value = res.parsedData!.search.items.toList();
+      searchInProgress.value = false;
       print(
           "collection id ${tempSearchResultList.value.first.collectionIds.join(',')}");
-      checkCollectionIsPrivate();
+      // checkCollectionIsPrivate();
 
     }
   }

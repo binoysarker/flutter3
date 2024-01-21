@@ -50,6 +50,7 @@ class LoginPageState extends State<LoginPage> {
                 //  now let the user login using this phone and password
                 loginPageController.phoneNumber.text = phone;
                 loginPageController.passwordController.text = password;
+                loginPageController.currentlyGivenOTP.value = password;
                 loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
                 loginPageController.onUserSignIn();
               });

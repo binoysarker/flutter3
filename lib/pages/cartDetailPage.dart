@@ -10,6 +10,7 @@ import 'package:recipe.app/controllers/orderController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/graphqlSection/orders.graphql.dart';
 import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/dialog_service.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -21,6 +22,7 @@ class CartDetailPage extends StatefulWidget {
 }
 
 class _CartDetailPageState extends State<CartDetailPage> {
+  final DialogService dialogService = Get.find<DialogService>();
   OrderController orderController = Get.find<OrderController>();
   UserController userController = Get.find<UserController>();
   CartController cartController = Get.find<CartController>();
@@ -35,6 +37,12 @@ class _CartDetailPageState extends State<CartDetailPage> {
       if (orderController.activeOrderResponse.value!.state ==
           OrderStateEnums.ArrangingPayment.name) {
         orderController.transitionToAddingItems();
+      }
+      // check total amount and show alert message
+      var totalAmount = orderController.activeOrderResponse.value!.totalWithTax / 100;
+      var message = 'Make order for 500 and Avail Free Delivery by using FREEDEL couponcode';
+      if(totalAmount >= 400 && totalAmount <= 500 ){
+        dialogService.showMyDialog( message: message, methodType: 2);
       }
     });
   }

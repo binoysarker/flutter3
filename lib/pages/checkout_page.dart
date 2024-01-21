@@ -14,10 +14,12 @@ import 'package:recipe.app/themes.dart';
 
 import '../allGlobalKeys.dart';
 import '../services/commonVariables.dart';
+import '../services/dialog_service.dart';
 import '../services/util_service.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({Key? key}) : super(key: key);
+  final DialogService? dialogService;
+  const CheckoutPage({Key? key,this.dialogService}) : super(key: key);
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -26,6 +28,8 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
   UserController userController = Get.find<UserController>();
+
+
 
   @override
   void initState() {
@@ -235,6 +239,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 'paymentType': PaymentOptionType.offline.name,
                               });
                               processOfflinePaymentSms();
+                          }else {
+                            widget.dialogService!.showMyDialog(message: 'Please clear your cart and try again', methodType: 1);
                           }
                           // orderController.isLoading.value = false;
                         }

@@ -21,6 +21,7 @@ import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
 
 import '../graphqlSection/vendureSchema.graphql.dart';
+import '../services/dialog_service.dart';
 
 class OrderController extends GetxController {
   GraphqlService graphqlService = GraphqlService();
@@ -28,6 +29,9 @@ class OrderController extends GetxController {
   TextEditingController streetLine1 = TextEditingController();
   TextEditingController streetLine2 = TextEditingController();
   TextEditingController city = TextEditingController();
+  late DialogService? dialogService;
+
+  OrderController({this.dialogService});
 
   // TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
@@ -148,6 +152,12 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       var jsonData = res.parsedData!.transitionOrderToState!.toJson();
+      print('transitionToOrderState $jsonData');
+      if(jsonData['errorCode'] == 'ORDER_STATE_TRANSITION_ERROR'){
+        isLoading.value = false;
+        dialogService!.showMyDialog(message: 'Please clear your cart and try again', methodType: 1);
+        return false;
+      }
       if(jsonData['errorCode'] != null){
         isLoading.value = false;
         Get.snackbar('', jsonData['message'] + '.Please remove this item from cart and retry',colorText: Colors.white,backgroundColor: Colors.red);
@@ -213,7 +223,7 @@ class OrderController extends GetxController {
         Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
-                    method: eligiblePaymentMethods.first.code,
+                    method:  selectedPaymentOption.value == 'online' ? eligiblePaymentMethods.first.code : eligiblePaymentMethods[1].code,
                     metadata: jsonEncode(metaData)))));
     if (res.hasException) {
       print(res.exception.toString());
@@ -226,6 +236,7 @@ class OrderController extends GetxController {
       if (jsonData.containsKey('message')) {
         Get.snackbar('', jsonData['message'],
             backgroundColor: Colors.red, colorText: Colors.white);
+        dialogService!.showMyDialog(message: 'Kindly Replace the Order',methodType: 1);
       } else {
         print(
             'add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');

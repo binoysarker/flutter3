@@ -54,6 +54,7 @@ enum OrderStateEnums {
   ArrangingPayment,
   DeliveryNotificationProcess,
   PaymentSettled,
+  PaymentAuthorized,
   Cancelled,
   Delivered,
   Shipped

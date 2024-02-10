@@ -81,6 +81,7 @@ class _OrdersPageState extends State<OrdersPage> {
       var status = true;
       if (singleItem.state == OrderStateEnums.Cancelled.name ||
           singleItem.state == OrderStateEnums.Delivered.name ||
+          singleItem.state == OrderStateEnums.AddingItems.name ||
           singleItem.state == OrderStateEnums.Shipped.name) {
         status = false;
       }

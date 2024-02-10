@@ -188,8 +188,11 @@ class OrderController extends GetxController {
       var currentState = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToArrangingPayment ${currentState}');
       if (currentState['message'] != null) {
-        Get.snackbar('Error', "${currentState['message']}",
-            colorText: Colors.red);
+
+        Get.snackbar('Error', "Please place the order again",
+            colorText: Colors.red,duration: Duration(seconds: 15));
+        removeAllItemFromOrder();
+        Get.offAll(()=> StorePage());
       } else {
         addPaymentToOrder({
           'paymentId': paymentSuccessResponse.value!.paymentId,

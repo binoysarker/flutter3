@@ -41,7 +41,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
       // check total amount and show alert message
       var totalAmount = orderController.activeOrderResponse.value!.totalWithTax / 100;
       var message = 'Make order for 500 and Avail Free Delivery by using FREEDEL couponcode';
-      if(totalAmount >= 400 && totalAmount <= 500 ){
+      if(totalAmount >= 400 && totalAmount <= 499 ){
         dialogService.showMyDialog( message: message, methodType: 2);
       }
     });

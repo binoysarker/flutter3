@@ -31,7 +31,7 @@ class PaymentServices {
       'amount': orderController.shippingAddressOrder.value!.totalWithTax,
       'order_id': orderController.createOrderResponse.value!.id,
       'currency': Enum$CurrencyCode.INR.name,
-      'name': 'Company Name',
+      'name': 'Kaaikani',
       'description':
           orderController.shippingAddressOrder.value!.lines.isNotEmpty
               ? 'Multiple Items'

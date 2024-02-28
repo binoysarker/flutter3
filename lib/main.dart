@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:recipe.app/api/firebase_api.dart';
 import 'package:recipe.app/controllers/bottomNavigationController.dart';
 import 'package:recipe.app/controllers/cartController.dart';
@@ -62,7 +63,39 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   UserController userController = Get.find<UserController>();
   LoginPageController loginPageController = Get.find<LoginPageController>();
-  final _navigatorKey = new GlobalKey<NavigatorState>();
+  final _navigatorKey = GlobalKey<NavigatorState>();
+  AppUpdateInfo? _updateInfo;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
+  // bool _flexibleUpdateAvailable = false;
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      setState(() {
+        _updateInfo = info;
+      });
+      if(_updateInfo?.updateAvailability == UpdateAvailability.updateAvailable){
+        InAppUpdate.startFlexibleUpdate().then((_) {
+          setState(() {
+            // _flexibleUpdateAvailable = true;
+          });
+        }).catchError((e) {
+          showSnack(e.toString());
+        });
+      }
+
+    }).catchError((e) {
+      showSnack(e.toString());
+    });
+  }
+
+  void showSnack(String text) {
+    if (_scaffoldKey.currentContext != null) {
+      ScaffoldMessenger.of(_scaffoldKey.currentContext!)
+          .showSnackBar(SnackBar(content: Text(text)));
+    }
+  }
 
   @override
   void initState() {
@@ -71,6 +104,7 @@ class _MyAppState extends State<MyApp> {
     currentTheme.addListener(() {
       setState(() {});
     });
+    checkForUpdate();
   }
 
   @override

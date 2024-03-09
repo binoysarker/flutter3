@@ -136,9 +136,11 @@ query GetActiveCustomer{
                     orderPlacedAt
                     lines {
                         id
+                        quantity
                         productVariant {
                             name
                             priceWithTax
+
                         }
                         featuredAsset {
                             name

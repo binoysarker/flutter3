@@ -158,7 +158,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                           .headerStyle,
                                     ),
                                     Text(
-                                      'Total Items: ${singleOrderItem.lines.length}',
+                                      'Total Items: ${singleOrderItem.totalQuantity}',
                                       style: CustomTheme
                                           .headerStyle,
                                     ),
@@ -235,6 +235,11 @@ class _OrdersPageState extends State<OrdersPage> {
                                     children: [
                                       Text(
                                         'Price: $currencySymbol ${UtilService.formatPriceValue(singleLineItem.productVariant.priceWithTax)}',
+                                        style: CustomTheme
+                                            .paragraphStyle,
+                                      ),
+                                      Text(
+                                        'Quantity: ${singleLineItem.quantity}',
                                         style: CustomTheme
                                             .paragraphStyle,
                                       ),

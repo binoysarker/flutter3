@@ -1351,6 +1351,7 @@ Query$GetActiveCustomer$activeCustomer$orders$items$lines
             Map<String, dynamic> json) =>
         Query$GetActiveCustomer$activeCustomer$orders$items$lines(
           id: json['id'] as String,
+          quantity: json['quantity'] as int,
           productVariant:
               Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
                   .fromJson(json['productVariant'] as Map<String, dynamic>),
@@ -1366,6 +1367,7 @@ Map<String,
         Query$GetActiveCustomer$activeCustomer$orders$items$lines instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'quantity': instance.quantity,
       'productVariant': instance.productVariant.toJson(),
       'featuredAsset': instance.featuredAsset?.toJson(),
       '__typename': instance.$__typename,

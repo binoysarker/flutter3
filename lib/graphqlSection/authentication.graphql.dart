@@ -6442,6 +6442,12 @@ const documentNodeQueryGetActiveCustomer = DocumentNode(definitions: [
                                           directives: [],
                                           selectionSet: null),
                                       FieldNode(
+                                          name: NameNode(value: 'quantity'),
+                                          alias: null,
+                                          arguments: [],
+                                          directives: [],
+                                          selectionSet: null),
+                                      FieldNode(
                                           name:
                                               NameNode(value: 'productVariant'),
                                           alias: null,
@@ -8035,6 +8041,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items<
 class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
   Query$GetActiveCustomer$activeCustomer$orders$items$lines(
       {required this.id,
+      required this.quantity,
       required this.productVariant,
       this.featuredAsset,
       required this.$__typename});
@@ -8045,6 +8052,8 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
       _$Query$GetActiveCustomer$activeCustomer$orders$items$linesFromJson(json);
 
   final String id;
+
+  final int quantity;
 
   final Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant
       productVariant;
@@ -8059,11 +8068,12 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
       _$Query$GetActiveCustomer$activeCustomer$orders$items$linesToJson(this);
   int get hashCode {
     final l$id = id;
+    final l$quantity = quantity;
     final l$productVariant = productVariant;
     final l$featuredAsset = featuredAsset;
     final l$$__typename = $__typename;
     return Object.hashAll(
-        [l$id, l$productVariant, l$featuredAsset, l$$__typename]);
+        [l$id, l$quantity, l$productVariant, l$featuredAsset, l$$__typename]);
   }
 
   @override
@@ -8074,6 +8084,9 @@ class Query$GetActiveCustomer$activeCustomer$orders$items$lines {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) return false;
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) return false;
     final l$productVariant = productVariant;
     final lOther$productVariant = other.productVariant;
     if (l$productVariant != lOther$productVariant) return false;
@@ -8111,6 +8124,7 @@ abstract class CopyWith$Query$GetActiveCustomer$activeCustomer$orders$items$line
 
   TRes call(
       {String? id,
+      int? quantity,
       Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
           productVariant,
       Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?
@@ -8139,11 +8153,15 @@ class _CopyWithImpl$Query$GetActiveCustomer$activeCustomer$orders$items$lines<
 
   TRes call(
           {Object? id = _undefined,
+          Object? quantity = _undefined,
           Object? productVariant = _undefined,
           Object? featuredAsset = _undefined,
           Object? $__typename = _undefined}) =>
       _then(Query$GetActiveCustomer$activeCustomer$orders$items$lines(
           id: id == _undefined || id == null ? _instance.id : (id as String),
+          quantity: quantity == _undefined || quantity == null
+              ? _instance.quantity
+              : (quantity as int),
           productVariant: productVariant == _undefined || productVariant == null
               ? _instance.productVariant
               : (productVariant
@@ -8185,6 +8203,7 @@ class _CopyWithStubImpl$Query$GetActiveCustomer$activeCustomer$orders$items$line
 
   call(
           {String? id,
+          int? quantity,
           Query$GetActiveCustomer$activeCustomer$orders$items$lines$productVariant?
               productVariant,
           Query$GetActiveCustomer$activeCustomer$orders$items$lines$featuredAsset?

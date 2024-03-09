@@ -22236,6 +22236,482 @@ class _CopyWithStubImpl$Mutation$ApplyCouponCode$applyCouponCode<TRes>
 }
 
 @JsonSerializable(explicitToJson: true)
+class Variables$Mutation$RemoveCouponCode {
+  Variables$Mutation$RemoveCouponCode({required this.couponCode});
+
+  @override
+  factory Variables$Mutation$RemoveCouponCode.fromJson(
+          Map<String, dynamic> json) =>
+      _$Variables$Mutation$RemoveCouponCodeFromJson(json);
+
+  final String couponCode;
+
+  Map<String, dynamic> toJson() =>
+      _$Variables$Mutation$RemoveCouponCodeToJson(this);
+  int get hashCode {
+    final l$couponCode = couponCode;
+    return Object.hashAll([l$couponCode]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Variables$Mutation$RemoveCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$couponCode = couponCode;
+    final lOther$couponCode = other.couponCode;
+    if (l$couponCode != lOther$couponCode) return false;
+    return true;
+  }
+
+  CopyWith$Variables$Mutation$RemoveCouponCode<
+          Variables$Mutation$RemoveCouponCode>
+      get copyWith =>
+          CopyWith$Variables$Mutation$RemoveCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Variables$Mutation$RemoveCouponCode<TRes> {
+  factory CopyWith$Variables$Mutation$RemoveCouponCode(
+          Variables$Mutation$RemoveCouponCode instance,
+          TRes Function(Variables$Mutation$RemoveCouponCode) then) =
+      _CopyWithImpl$Variables$Mutation$RemoveCouponCode;
+
+  factory CopyWith$Variables$Mutation$RemoveCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RemoveCouponCode;
+
+  TRes call({String? couponCode});
+}
+
+class _CopyWithImpl$Variables$Mutation$RemoveCouponCode<TRes>
+    implements CopyWith$Variables$Mutation$RemoveCouponCode<TRes> {
+  _CopyWithImpl$Variables$Mutation$RemoveCouponCode(this._instance, this._then);
+
+  final Variables$Mutation$RemoveCouponCode _instance;
+
+  final TRes Function(Variables$Mutation$RemoveCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? couponCode = _undefined}) =>
+      _then(Variables$Mutation$RemoveCouponCode(
+          couponCode: couponCode == _undefined || couponCode == null
+              ? _instance.couponCode
+              : (couponCode as String)));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$RemoveCouponCode<TRes>
+    implements CopyWith$Variables$Mutation$RemoveCouponCode<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RemoveCouponCode(this._res);
+
+  TRes _res;
+
+  call({String? couponCode}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveCouponCode {
+  Mutation$RemoveCouponCode({this.removeCouponCode, required this.$__typename});
+
+  @override
+  factory Mutation$RemoveCouponCode.fromJson(Map<String, dynamic> json) =>
+      _$Mutation$RemoveCouponCodeFromJson(json);
+
+  final Mutation$RemoveCouponCode$removeCouponCode? removeCouponCode;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Mutation$RemoveCouponCodeToJson(this);
+  int get hashCode {
+    final l$removeCouponCode = removeCouponCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$removeCouponCode, l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$RemoveCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$removeCouponCode = removeCouponCode;
+    final lOther$removeCouponCode = other.removeCouponCode;
+    if (l$removeCouponCode != lOther$removeCouponCode) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveCouponCode
+    on Mutation$RemoveCouponCode {
+  CopyWith$Mutation$RemoveCouponCode<Mutation$RemoveCouponCode> get copyWith =>
+      CopyWith$Mutation$RemoveCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveCouponCode<TRes> {
+  factory CopyWith$Mutation$RemoveCouponCode(Mutation$RemoveCouponCode instance,
+          TRes Function(Mutation$RemoveCouponCode) then) =
+      _CopyWithImpl$Mutation$RemoveCouponCode;
+
+  factory CopyWith$Mutation$RemoveCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveCouponCode;
+
+  TRes call(
+      {Mutation$RemoveCouponCode$removeCouponCode? removeCouponCode,
+      String? $__typename});
+  CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes>
+      get removeCouponCode;
+}
+
+class _CopyWithImpl$Mutation$RemoveCouponCode<TRes>
+    implements CopyWith$Mutation$RemoveCouponCode<TRes> {
+  _CopyWithImpl$Mutation$RemoveCouponCode(this._instance, this._then);
+
+  final Mutation$RemoveCouponCode _instance;
+
+  final TRes Function(Mutation$RemoveCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? removeCouponCode = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveCouponCode(
+          removeCouponCode: removeCouponCode == _undefined
+              ? _instance.removeCouponCode
+              : (removeCouponCode
+                  as Mutation$RemoveCouponCode$removeCouponCode?),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+  CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes>
+      get removeCouponCode {
+    final local$removeCouponCode = _instance.removeCouponCode;
+    return local$removeCouponCode == null
+        ? CopyWith$Mutation$RemoveCouponCode$removeCouponCode.stub(
+            _then(_instance))
+        : CopyWith$Mutation$RemoveCouponCode$removeCouponCode(
+            local$removeCouponCode, (e) => call(removeCouponCode: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$RemoveCouponCode<TRes>
+    implements CopyWith$Mutation$RemoveCouponCode<TRes> {
+  _CopyWithStubImpl$Mutation$RemoveCouponCode(this._res);
+
+  TRes _res;
+
+  call(
+          {Mutation$RemoveCouponCode$removeCouponCode? removeCouponCode,
+          String? $__typename}) =>
+      _res;
+  CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes>
+      get removeCouponCode =>
+          CopyWith$Mutation$RemoveCouponCode$removeCouponCode.stub(_res);
+}
+
+const documentNodeMutationRemoveCouponCode = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.mutation,
+      name: NameNode(value: 'RemoveCouponCode'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'couponCode')),
+            type:
+                NamedTypeNode(name: NameNode(value: 'String'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'removeCouponCode'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'couponCode'),
+                  value: VariableNode(name: NameNode(value: 'couponCode')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: '__typename'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ])),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Mutation$RemoveCouponCode _parserFn$Mutation$RemoveCouponCode(
+        Map<String, dynamic> data) =>
+    Mutation$RemoveCouponCode.fromJson(data);
+typedef OnMutationCompleted$Mutation$RemoveCouponCode = FutureOr<void> Function(
+    dynamic, Mutation$RemoveCouponCode?);
+
+class Options$Mutation$RemoveCouponCode
+    extends graphql.MutationOptions<Mutation$RemoveCouponCode> {
+  Options$Mutation$RemoveCouponCode(
+      {String? operationName,
+      required Variables$Mutation$RemoveCouponCode variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$RemoveCouponCode? onCompleted,
+      graphql.OnMutationUpdate<Mutation$RemoveCouponCode>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RemoveCouponCode(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationRemoveCouponCode,
+            parserFn: _parserFn$Mutation$RemoveCouponCode);
+
+  final OnMutationCompleted$Mutation$RemoveCouponCode? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+class WatchOptions$Mutation$RemoveCouponCode
+    extends graphql.WatchQueryOptions<Mutation$RemoveCouponCode> {
+  WatchOptions$Mutation$RemoveCouponCode(
+      {String? operationName,
+      required Variables$Mutation$RemoveCouponCode variables,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            variables: variables.toJson(),
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeMutationRemoveCouponCode,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Mutation$RemoveCouponCode);
+}
+
+extension ClientExtension$Mutation$RemoveCouponCode on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RemoveCouponCode>>
+      mutate$RemoveCouponCode(
+              Options$Mutation$RemoveCouponCode options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$RemoveCouponCode>
+      watchMutation$RemoveCouponCode(
+              WatchOptions$Mutation$RemoveCouponCode options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$RemoveCouponCode$HookResult {
+  Mutation$RemoveCouponCode$HookResult(this.runMutation, this.result);
+
+  final RunMutation$Mutation$RemoveCouponCode runMutation;
+
+  final graphql.QueryResult<Mutation$RemoveCouponCode> result;
+}
+
+Mutation$RemoveCouponCode$HookResult useMutation$RemoveCouponCode(
+    [WidgetOptions$Mutation$RemoveCouponCode? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$RemoveCouponCode());
+  return Mutation$RemoveCouponCode$HookResult(
+    (variables, {optimisticResult}) => result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult,
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$RemoveCouponCode>
+    useWatchMutation$RemoveCouponCode(
+            WatchOptions$Mutation$RemoveCouponCode options) =>
+        graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$RemoveCouponCode
+    extends graphql.MutationOptions<Mutation$RemoveCouponCode> {
+  WidgetOptions$Mutation$RemoveCouponCode(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      OnMutationCompleted$Mutation$RemoveCouponCode? onCompleted,
+      graphql.OnMutationUpdate<Mutation$RemoveCouponCode>? update,
+      graphql.OnError? onError})
+      : onCompletedWithParsed = onCompleted,
+        super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            onCompleted: onCompleted == null
+                ? null
+                : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RemoveCouponCode(data)),
+            update: update,
+            onError: onError,
+            document: documentNodeMutationRemoveCouponCode,
+            parserFn: _parserFn$Mutation$RemoveCouponCode);
+
+  final OnMutationCompleted$Mutation$RemoveCouponCode? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed
+      ];
+}
+
+typedef RunMutation$Mutation$RemoveCouponCode = graphql
+        .MultiSourceResult<Mutation$RemoveCouponCode>
+    Function(Variables$Mutation$RemoveCouponCode, {Object? optimisticResult});
+typedef Builder$Mutation$RemoveCouponCode = widgets.Widget Function(
+    RunMutation$Mutation$RemoveCouponCode,
+    graphql.QueryResult<Mutation$RemoveCouponCode>?);
+
+class Mutation$RemoveCouponCode$Widget
+    extends graphql_flutter.Mutation<Mutation$RemoveCouponCode> {
+  Mutation$RemoveCouponCode$Widget(
+      {widgets.Key? key,
+      WidgetOptions$Mutation$RemoveCouponCode? options,
+      required Builder$Mutation$RemoveCouponCode builder})
+      : super(
+            key: key,
+            options: options ?? WidgetOptions$Mutation$RemoveCouponCode(),
+            builder: (run, result) => builder(
+                (variables, {optimisticResult}) =>
+                    run(variables.toJson(), optimisticResult: optimisticResult),
+                result));
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mutation$RemoveCouponCode$removeCouponCode {
+  Mutation$RemoveCouponCode$removeCouponCode({required this.$__typename});
+
+  @override
+  factory Mutation$RemoveCouponCode$removeCouponCode.fromJson(
+          Map<String, dynamic> json) =>
+      _$Mutation$RemoveCouponCode$removeCouponCodeFromJson(json);
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() =>
+      _$Mutation$RemoveCouponCode$removeCouponCodeToJson(this);
+  int get hashCode {
+    final l$$__typename = $__typename;
+    return Object.hashAll([l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Mutation$RemoveCouponCode$removeCouponCode) ||
+        runtimeType != other.runtimeType) return false;
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RemoveCouponCode$removeCouponCode
+    on Mutation$RemoveCouponCode$removeCouponCode {
+  CopyWith$Mutation$RemoveCouponCode$removeCouponCode<
+          Mutation$RemoveCouponCode$removeCouponCode>
+      get copyWith =>
+          CopyWith$Mutation$RemoveCouponCode$removeCouponCode(this, (i) => i);
+}
+
+abstract class CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes> {
+  factory CopyWith$Mutation$RemoveCouponCode$removeCouponCode(
+          Mutation$RemoveCouponCode$removeCouponCode instance,
+          TRes Function(Mutation$RemoveCouponCode$removeCouponCode) then) =
+      _CopyWithImpl$Mutation$RemoveCouponCode$removeCouponCode;
+
+  factory CopyWith$Mutation$RemoveCouponCode$removeCouponCode.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RemoveCouponCode$removeCouponCode;
+
+  TRes call({String? $__typename});
+}
+
+class _CopyWithImpl$Mutation$RemoveCouponCode$removeCouponCode<TRes>
+    implements CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes> {
+  _CopyWithImpl$Mutation$RemoveCouponCode$removeCouponCode(
+      this._instance, this._then);
+
+  final Mutation$RemoveCouponCode$removeCouponCode _instance;
+
+  final TRes Function(Mutation$RemoveCouponCode$removeCouponCode) _then;
+
+  static const _undefined = {};
+
+  TRes call({Object? $__typename = _undefined}) =>
+      _then(Mutation$RemoveCouponCode$removeCouponCode(
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Mutation$RemoveCouponCode$removeCouponCode<TRes>
+    implements CopyWith$Mutation$RemoveCouponCode$removeCouponCode<TRes> {
+  _CopyWithStubImpl$Mutation$RemoveCouponCode$removeCouponCode(this._res);
+
+  TRes _res;
+
+  call({String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
 class Variables$Mutation$AdjustOrderLine {
   Variables$Mutation$AdjustOrderLine(
       {required this.orderLineId, required this.quantity});

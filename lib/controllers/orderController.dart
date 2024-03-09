@@ -35,6 +35,7 @@ class OrderController extends GetxController {
 
   // TextEditingController postalCode = TextEditingController();
   TextEditingController country = TextEditingController();
+
   // TextEditingController phoneNumber = TextEditingController();
   TextEditingController couponCode = TextEditingController();
   TextEditingController otherInstructions = TextEditingController();
@@ -42,10 +43,11 @@ class OrderController extends GetxController {
   var currentStep = 0.obs;
   var selectedPaymentOption = 'online'.obs;
   var selectedPostalCode = '625018'.obs;
-  var otherInstructionResponse = (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
+  var otherInstructionResponse =
+      (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
   var makeDefaultShippingAddress = false.obs;
   var paymentOptionDropdownItems =
-      [PaymentOptionType.online.name,PaymentOptionType.offline.name].obs;
+      [PaymentOptionType.online.name, PaymentOptionType.offline.name].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
@@ -56,8 +58,10 @@ class OrderController extends GetxController {
   var currentlySelectedCountryCode = 'IN'.obs;
   var currentlySelectedShippingMethod =
       (null as Query$GetEligibleShippingMethods$eligibleShippingMethods?).obs;
-  var eligibleShippingMethodList = <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
-  var filteredEligibleShippingMethodList = <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
+  var eligibleShippingMethodList =
+      <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
+  var filteredEligibleShippingMethodList =
+      <Query$GetEligibleShippingMethods$eligibleShippingMethods>[].obs;
   var shippingMethodSelected = '1'.obs;
   var clientToken = ''.obs;
   var currencyCode = ''.obs;
@@ -153,24 +157,31 @@ class OrderController extends GetxController {
     if (res.data != null) {
       var jsonData = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToOrderState $jsonData');
-      if(jsonData['errorCode'] == 'ORDER_STATE_TRANSITION_ERROR'){
+      if (jsonData['errorCode'] == 'ORDER_STATE_TRANSITION_ERROR') {
         isLoading.value = false;
-        dialogService!.showMyDialog(message: 'Please clear your cart and try again', methodType: 1);
+        dialogService!.showMyDialog(
+            message: 'Please clear your cart and try again', methodType: 1);
         return false;
       }
-      if(jsonData['errorCode'] != null){
+      if (jsonData['errorCode'] != null) {
         isLoading.value = false;
-        Get.snackbar('', jsonData['message'] + '.Please remove this item from cart and retry',colorText: Colors.white,backgroundColor: Colors.red);
+        Get.snackbar(
+            '',
+            jsonData['message'] +
+                '.Please remove this item from cart and retry',
+            colorText: Colors.white,
+            backgroundColor: Colors.red);
         return false;
-      }else {
+      } else {
         isLoading.value = false;
         print('transitionToOrderState ${jsonData['errorCode']}');
         transitionToOrderStateResponse.value = jsonData;
         return true;
       }
-    }else {
+    } else {
       isLoading.value = false;
-      Get.snackbar('','can not complete transitionToOrderState ',colorText: Colors.white,backgroundColor: Colors.red);
+      Get.snackbar('', 'can not complete transitionToOrderState ',
+          colorText: Colors.white, backgroundColor: Colors.red);
       return false;
     }
   }
@@ -188,11 +199,10 @@ class OrderController extends GetxController {
       var currentState = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToArrangingPayment ${currentState}');
       if (currentState['message'] != null) {
-
         Get.snackbar('Error', "Please place the order again",
-            colorText: Colors.red,duration: Duration(seconds: 15));
+            colorText: Colors.red, duration: Duration(seconds: 15));
         removeAllItemFromOrder();
-        Get.offAll(()=> StorePage());
+        Get.offAll(() => StorePage());
       } else {
         addPaymentToOrder({
           'paymentId': paymentSuccessResponse.value!.paymentId,
@@ -226,7 +236,9 @@ class OrderController extends GetxController {
         Options$Mutation$AddPayment(
             variables: Variables$Mutation$AddPayment(
                 input: Input$PaymentInput(
-                    method:  selectedPaymentOption.value == 'online' ? eligiblePaymentMethods.first.code : eligiblePaymentMethods[1].code,
+                    method: selectedPaymentOption.value == 'online'
+                        ? eligiblePaymentMethods.first.code
+                        : eligiblePaymentMethods[1].code,
                     metadata: jsonEncode(metaData)))));
     if (res.hasException) {
       print(res.exception.toString());
@@ -239,7 +251,8 @@ class OrderController extends GetxController {
       if (jsonData.containsKey('message')) {
         Get.snackbar('', jsonData['message'],
             backgroundColor: Colors.red, colorText: Colors.white);
-        dialogService!.showMyDialog(message: 'Kindly Replace the Order',methodType: 1);
+        dialogService!
+            .showMyDialog(message: 'Kindly Replace the Order', methodType: 1);
       } else {
         print(
             'add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
@@ -354,13 +367,12 @@ class OrderController extends GetxController {
   void processMorningOrEveningPaymentSms() {
     // Morning or Evening Delivery
     var showEveningSms =
-        currentlySelectedShippingMethod.value!.code !=
-            'morning-delivery';
+        currentlySelectedShippingMethod.value!.code != 'morning-delivery';
     var templateId = showEveningSms
         ? "649011f6d6fc053db57148e5"
         : "65793925d6fc05548168c723";
     var number =
-    userController.currentAuthenticatedUser.value!.phoneNumber.toString();
+        userController.currentAuthenticatedUser.value!.phoneNumber.toString();
     UtilService.sendSms(templateId, number, SmsDeliveryType.morning_evening,
         '${activeOrderResponse.value!.code}', '');
     useCurrentUserAddress.value = false;
@@ -384,7 +396,7 @@ class OrderController extends GetxController {
         var states = await getNextOrderStates();
         final bool isSuccess = await transitionToOrderState(states[0]);
 
-        if(isSuccess){
+        if (isSuccess) {
           Timer(Duration(seconds: 3), () {
             addPaymentToOrder({
               'paymentId': paymentSuccessResponse.value!.paymentId,
@@ -454,13 +466,36 @@ class OrderController extends GetxController {
     return status;
   }
 
+  Future<bool> removeCouponCode(String couponCode) async {
+    isLoading.value = true;
+    var status = true;
+    graphqlService = GraphqlService();
+    final res = await graphqlService.client.value.mutate$RemoveCouponCode(
+        Options$Mutation$RemoveCouponCode(
+            variables:
+                Variables$Mutation$RemoveCouponCode(couponCode: couponCode)));
+    if (res.hasException) {
+      print('${res.exception.toString()}');
+      isLoading.value = false;
+
+      status = false;
+    }
+    if (res.data != null) {
+      print('coupon code ${res.parsedData!.removeCouponCode}');
+
+      isLoading.value = false;
+    }
+    return status;
+  }
+
   void setOtherInstruction() async {
     isLoading.value = true;
     graphqlService = GraphqlService();
     final res = await graphqlService.client.value.mutate$SetOtherInstruction(
         Options$Mutation$SetOtherInstruction(
             variables: Variables$Mutation$SetOtherInstruction(
-                orderId: activeOrderResponse.value!.id, value: otherInstructions.text)));
+                orderId: activeOrderResponse.value!.id,
+                value: otherInstructions.text)));
     if (res.hasException) {
       print(res.exception.toString());
     }
@@ -469,7 +504,6 @@ class OrderController extends GetxController {
           'setOtherInstruction ${jsonEncode(res.parsedData!.otherInstructions.customFields)}');
       otherInstructionResponse.value = res.parsedData!.otherInstructions;
     }
-
   }
 
   void setShippingAddress(bool showIncreaseCurrentStep) async {
@@ -479,14 +513,20 @@ class OrderController extends GetxController {
     dynamic cityValue = CityToUseType.Madurai.name;
     dynamic fName = fullName.text;
     dynamic postCode = selectedPostalCode.value;
-    if(useCurrentUserAddress.isTrue){
-      str1 = userController.currentAuthenticatedUser.value!.addresses!.first.streetLine1;
-      str2 = userController.currentAuthenticatedUser.value!.addresses!.first.streetLine2;
-      cCode = userController.currentAuthenticatedUser.value!.addresses!.first.country.code;
-      cityValue = userController.currentAuthenticatedUser.value!.addresses!.first.city;
-      fName = userController.currentAuthenticatedUser.value!.addresses!.first.fullName;
-      postCode = userController.currentAuthenticatedUser.value!.addresses!.first.postalCode;
-    }else if(useShippingAddress.isTrue) {
+    if (useCurrentUserAddress.isTrue) {
+      str1 = userController
+          .currentAuthenticatedUser.value!.addresses!.first.streetLine1;
+      str2 = userController
+          .currentAuthenticatedUser.value!.addresses!.first.streetLine2;
+      cCode = userController
+          .currentAuthenticatedUser.value!.addresses!.first.country.code;
+      cityValue =
+          userController.currentAuthenticatedUser.value!.addresses!.first.city;
+      fName = userController
+          .currentAuthenticatedUser.value!.addresses!.first.fullName;
+      postCode = userController
+          .currentAuthenticatedUser.value!.addresses!.first.postalCode;
+    } else if (useShippingAddress.isTrue) {
       str1 = shippingAddressOrder.value?.shippingAddress?.streetLine1;
       str2 = shippingAddressOrder.value?.shippingAddress?.streetLine2;
       cCode = shippingAddressOrder.value?.shippingAddress?.countryCode;
@@ -500,7 +540,7 @@ class OrderController extends GetxController {
         Options$Mutation$SetShippingAddress(
             variables: Variables$Mutation$SetShippingAddress(
                 input: Input$CreateAddressInput(
-                    streetLine1:str1,
+                    streetLine1: str1,
                     streetLine2: str2,
                     countryCode: cCode as String,
                     city: cityValue,
@@ -508,7 +548,9 @@ class OrderController extends GetxController {
                     fullName: fName,
                     postalCode: postCode,
                     defaultShippingAddress: makeDefaultShippingAddress.value,
-                    phoneNumber: userController.currentAuthenticatedUser.value!.phoneNumber.toString()))));
+                    phoneNumber: userController
+                        .currentAuthenticatedUser.value!.phoneNumber
+                        .toString()))));
     if (res.hasException) {
       print(res.exception.toString());
       isLoading.value = false;
@@ -519,7 +561,7 @@ class OrderController extends GetxController {
       shippingAddressOrder.value = res.parsedData!.setOrderShippingAddress
           as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?;
       isLoading.value = false;
-      if(showIncreaseCurrentStep) currentStep.value++;
+      if (showIncreaseCurrentStep) currentStep.value++;
     }
   }
 
@@ -567,7 +609,8 @@ class OrderController extends GetxController {
           'getEligibleShippingMethod ${jsonEncode(res.parsedData!.eligibleShippingMethods)}');
       eligibleShippingMethodList.value =
           res.parsedData!.eligibleShippingMethods;
-      filteredEligibleShippingMethodList.value = res.parsedData!.eligibleShippingMethods.toList();
+      filteredEligibleShippingMethodList.value =
+          res.parsedData!.eligibleShippingMethods.toList();
       currentlySelectedShippingMethod.value = null;
       isLoading.value = false;
     }

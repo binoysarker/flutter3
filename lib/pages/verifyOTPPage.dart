@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/themes.dart';
-import 'package:readsms/readsms.dart';
 
 import '../allGlobalKeys.dart';
 
@@ -23,25 +21,12 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
       Get.find<LoginPageController>();
 
 
-  Future<void> checkSmsPermissionStatus() async{
-    //   check user permission
-    await Permission.sms.onDeniedCallback(() {
-      Get.snackbar('', 'now you have to manually put the OTP now ',
-          backgroundColor: Colors.yellow,
-          colorText: Colors.red);
-    }).onGrantedCallback(() {
-      final plugin = Readsms();
-      plugin.read();
-      plugin.smsStream.listen((sms) {
-        print('sms body ${sms.body}');
-      });
-    }).request();
-  }
+
 
   @override
   void initState(){
     super.initState();
-    checkSmsPermissionStatus();
+
   }
 
   @override

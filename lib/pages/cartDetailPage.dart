@@ -120,6 +120,9 @@ class _CartDetailPageState extends State<CartDetailPage> {
                             onPressed: () {
                               var activeOrder =
                                   orderController.activeOrderResponse.value!;
+                              if(orderController.couponCode.text.length > 0){
+                                orderController.removeCouponCode(orderController.couponCode.text);
+                              }
                               orderController.requestToCancelOrder(
                                   activeOrder.id, 0);
                               orderController.removeAllItemFromOrder();

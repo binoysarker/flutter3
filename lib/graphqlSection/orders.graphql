@@ -97,6 +97,12 @@ mutation ApplyCouponCode($input: String!){
     }
 }
 
+mutation RemoveCouponCode($couponCode: String!){
+    removeCouponCode(couponCode: $couponCode){
+        __typename
+    }
+}
+
 mutation AdjustOrderLine($orderLineId: ID!, $quantity: Int!){
     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity){
         __typename

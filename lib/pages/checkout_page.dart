@@ -184,6 +184,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 }
                               });
                             } else {
+                              if(orderController.couponCode.text.length > 0){
+                                orderController.removeCouponCode(orderController.couponCode.text);
+                              }
                               addShippingDetail();
                             }
                           } else {

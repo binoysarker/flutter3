@@ -174,19 +174,27 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             print(
                                 'has coupon code ${orderController.hasCouponCode}');
                             if (orderController.hasCouponCode.isTrue) {
-                              var res = orderController
-                                  .applyCouponCode(orderController.couponCode.text);
-                              res.then((value) {
-                                print(value);
-                                if (value) {
-
-                                  addShippingDetail();
-                                }
-                              });
-                            } else {
                               if(orderController.couponCode.text.length > 0){
-                                orderController.removeCouponCode(orderController.couponCode.text);
+                                var res = orderController
+                                    .applyCouponCode(orderController.couponCode.text);
+                                res.then((value) {
+                                  print('testing $value');
+                                  if (value) {
+
+                                    addShippingDetail();
+                                  }
+                                });
+
+                              }else {
+                                Get.snackbar(
+                                  '',
+                                  'Please enter a coupon code',
+                                  colorText: Colors.red,
+                                  backgroundColor: Colors.yellow,
+                                );
                               }
+                            } else {
+
                               addShippingDetail();
                             }
                           } else {

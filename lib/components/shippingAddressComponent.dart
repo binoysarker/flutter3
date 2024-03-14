@@ -40,7 +40,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
       AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
       orderController.useCurrentUserAddress.value = false;
-      print('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
+      // print('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
     });
   }
 

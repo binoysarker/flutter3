@@ -19,6 +19,7 @@ import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/services/paymentServices.dart';
 import 'package:recipe.app/services/util_service.dart';
+import 'package:recipe.app/themes.dart';
 
 import '../graphqlSection/vendureSchema.graphql.dart';
 import '../services/dialog_service.dart';
@@ -157,24 +158,21 @@ class OrderController extends GetxController {
     if (res.data != null) {
       var jsonData = res.parsedData!.transitionOrderToState!.toJson();
       print('transitionToOrderState $jsonData');
+
       if (jsonData['errorCode'] == 'ORDER_STATE_TRANSITION_ERROR') {
-        isLoading.value = false;
-        dialogService!.showMyDialog(
-            message: 'Please clear your cart and try again', methodType: 1);
+
+        Timer(Duration(seconds: 2), () {
+          isLoading.value = false;
+          Get.defaultDialog(
+            content: Text('Please clear your cart and try again',style: CustomTheme.headerStyle),
+          );
+
+        });
         return false;
       }
-      if (jsonData['errorCode'] != null) {
+       else {
         isLoading.value = false;
-        Get.snackbar(
-            '',
-            jsonData['message'] +
-                '.Please remove this item from cart and retry',
-            colorText: Colors.white,
-            backgroundColor: Colors.red);
-        return false;
-      } else {
-        isLoading.value = false;
-        print('transitionToOrderState ${jsonData['errorCode']}');
+        print('transitionToOrderState ${jsonData}');
         transitionToOrderStateResponse.value = jsonData;
         return true;
       }
@@ -248,6 +246,8 @@ class OrderController extends GetxController {
     }
     if (res.data != null) {
       var jsonData = res.parsedData!.addPaymentToOrder.toJson();
+      print(
+          'addPaymentToOrder 1 ${res.parsedData!.addPaymentToOrder.toJson()}');
       if (jsonData.containsKey('message')) {
         Get.snackbar('', jsonData['message'],
             backgroundColor: Colors.red, colorText: Colors.white);
@@ -255,7 +255,7 @@ class OrderController extends GetxController {
             .showMyDialog(message: 'Kindly Replace the Order', methodType: 1);
       } else {
         print(
-            'add payment order ${res.parsedData!.addPaymentToOrder.toJson()}');
+            'addPaymentToOrder 2 ${res.parsedData!.addPaymentToOrder.toJson()}');
         addPaymentToOrderResponse.value =
             res.parsedData!.addPaymentToOrder.toJson();
         getOrderByCode(addPaymentToOrderResponse.value['code']);
@@ -357,7 +357,7 @@ class OrderController extends GetxController {
         createOrderResponse.value = createOrderResponseModelFromJson(res.body);
         PaymentServices.startRazorPay();
       }
-      isLoading2.value = false;
+      // isLoading2.value = false;
     } on Exception catch (e) {
       print(e.toString());
       isLoading2.value = false;
@@ -393,19 +393,20 @@ class OrderController extends GetxController {
       if (res.body == 'true') {
         print('payment is verified');
         isLoading.value = false;
-        var states = await getNextOrderStates();
-        final bool isSuccess = await transitionToOrderState(states[0]);
 
-        if (isSuccess) {
-          Timer(Duration(seconds: 3), () {
+        Timer(Duration(seconds: 1), () async{
+          var states = await getNextOrderStates();
+          bool isSuccess = await transitionToOrderState(states[0]);
+          if (isSuccess) {
             addPaymentToOrder({
               'paymentId': paymentSuccessResponse.value!.paymentId,
               'orderId': paymentSuccessResponse.value!.orderId,
               'signature': paymentSuccessResponse.value!.signature
             });
             processMorningOrEveningPaymentSms();
-          });
-        }
+          }
+        });
+
         // isLoading.value = false;
       } else {
         print('not verified');

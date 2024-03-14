@@ -46,9 +46,7 @@ class PaymentServices {
         'name': orderController
             .shippingAddressOrder.value!.shippingAddress!.fullName,
       },
-      'external': {
-        'wallets': ['paytm']
-      }
+
     };
 
     try {

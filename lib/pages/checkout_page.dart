@@ -35,9 +35,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      orderController.getEligiblePaymentMethod();
       orderController.getOrderForCheckout();
       orderController.getEligibleShippingMethod();
-      orderController.getEligiblePaymentMethod();
       // orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
       PaymentServices.initializeRazorPay();
@@ -168,6 +168,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       if (orderController.currentStep.value == 0) {
                         if (orderController.currentlySelectedShippingMethod.value !=
                             null) {
+                          if(orderController.selectedPaymentOption.value != PaymentOptionType.noITem.name){
                           print(
                               '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
                           if (orderController.useCurrentUserAddress.isTrue || orderController.useShippingAddress.isTrue) {
@@ -222,6 +223,15 @@ class _CheckoutPageState extends State<CheckoutPage> {
                               );
                             }
                           }
+
+                          } else {
+                            Get.snackbar(
+                              '',
+                              'Please select a payment option',
+                              colorText: Colors.red,
+                              backgroundColor: Colors.yellow,
+                            );
+                          }
                         } else {
                           Get.snackbar(
                             '',
@@ -263,6 +273,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       } else if (orderController.currentStep.value == 2) {
                         null;
                       } else {
+                        if(orderController.hasCouponCode.isTrue && orderController.couponCode.text.length > 0){
+                          orderController.removeCouponCode(orderController.couponCode.text);
+                          orderController.couponCode.text = '';
+                        }
                         orderController.currentStep.value--;
                       }
                     },

@@ -75,6 +75,7 @@ enum SmsDeliveryType{
   payment_failed
 }
 enum PaymentOptionType{
+  noITem,
   online,
   offline
 }

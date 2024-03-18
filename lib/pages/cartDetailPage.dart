@@ -273,7 +273,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          "${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.totalWithTax / 100).toStringAsFixed(2)}",
+                          "${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.subTotal / 100).toStringAsFixed(2)}",
                           style: CustomTheme.headerStyle,
                         ),
                       ),

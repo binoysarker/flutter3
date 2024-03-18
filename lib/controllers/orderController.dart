@@ -42,13 +42,13 @@ class OrderController extends GetxController {
   TextEditingController otherInstructions = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
-  var selectedPaymentOption = 'online'.obs;
+  var selectedPaymentOption = 'noITem'.obs;
   var selectedPostalCode = '625018'.obs;
   var otherInstructionResponse =
       (null as Mutation$SetOtherInstruction$otherInstructions?).obs;
   var makeDefaultShippingAddress = false.obs;
   var paymentOptionDropdownItems =
-      [PaymentOptionType.online.name, PaymentOptionType.offline.name].obs;
+      [PaymentOptionType.noITem.name,PaymentOptionType.online.name, PaymentOptionType.offline.name].obs;
 
   var activeOrderResponse = (null as Query$GetActiveOrder$activeOrder?).obs;
   var isLoading = false.obs;
@@ -330,6 +330,7 @@ class OrderController extends GetxController {
     couponCode.clear();
     AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
     currentlySelectedShippingMethod.value = null;
+    selectedPaymentOption.value = PaymentOptionType.noITem.name;
   }
 
   void createRazorPayOrder() async {

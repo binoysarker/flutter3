@@ -46,6 +46,17 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
 
   @override
   Widget build(BuildContext context) {
+    String getText(String text){
+      String current = '';
+      if(text == PaymentOptionType.noITem.name){
+        current = 'Please select a payment option';
+      }else if(text == PaymentOptionType.offline.name){
+        current = 'Cash On Delivery';
+      }else if(text == PaymentOptionType.online.name){
+        current = 'Online';
+      }
+      return current;
+    }
     return Column(
       children: [
         Column(
@@ -480,12 +491,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       },
                       items: orderController.paymentOptionDropdownItems.value
                           .map((String option) {
-                        return DropdownMenuItem<String>(
+                        return DropdownMenuItem(
                           value: option,
                           child: Text(
-                            option == PaymentOptionType.online.name
-                                ? 'Online'
-                                : 'Cash On Delivery',
+                            getText(option),
                             style: CustomTheme.headerStyle,
                           ),
                         );
@@ -503,6 +512,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               widget.orderController.hasCouponCode.value = data;
                               print(
                                   'has coupon code ${widget.orderController.hasCouponCode.value}');
+                              if(widget.orderController.hasCouponCode.isFalse && widget.orderController.couponCode.text.length > 0){
+                                widget.orderController.removeCouponCode(widget.orderController.couponCode.text);
+                                widget.orderController.couponCode.text = '';
+                              }
                             })),
                       ),
                       Text(

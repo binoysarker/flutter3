@@ -1160,6 +1160,7 @@ type Query {
     facet(id: ID!): Facet
     "A list of Facets available to the shop"
     facets(options: FacetListOptions): FacetList!
+    getCouponCodeList: [String!]!
     getPasswordResetToken: String!
     "Returns information about the current authenticated User"
     me: CurrentUser

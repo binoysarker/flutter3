@@ -29,7 +29,7 @@ bool shouldUseFirestoreEmulator = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  debugPrint('Waiting for debugger....');
   await dotenv.load(fileName: ".env");
 
   

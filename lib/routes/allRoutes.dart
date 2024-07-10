@@ -1,3 +1,4 @@
+import 'package:recipe.app/pages/PolicyPage.dart';
 import 'package:recipe.app/pages/cartDetailPage.dart';
 import 'package:recipe.app/pages/categoryDetailPage.dart';
 import 'package:recipe.app/pages/checkout_page.dart';
@@ -31,6 +32,7 @@ class RoutesClass {
     GetPage(name: '/category_detail', page: () => CategoryDetailPage(),transition: Transition.fade),
     GetPage(name: '/cart_detail', page: () => CartDetailPage(),transition: Transition.fade),
     GetPage(name: '/checkout', page: () => CheckoutPage(),transition: Transition.fade),
+    GetPage(name: '/policy', page: () => PolicyPage(),transition: Transition.fade),
     GetPage(name: '/page_not_found', page: () => PageNotFound(),transition: Transition.fade),
   ];
 }

@@ -15,14 +15,14 @@ class ItemGalleryComponent extends StatefulWidget {
   final String collectionId;
   final ScrollController scrollController;
   final bool loadingState;
-  List<dynamic> givenList ;
+  List<dynamic> givenList;
   final String controllerType;
   List<dynamic> currentList = [];
 
   ItemGalleryComponent(
       {Key? key,
-        required this.collectionId,
-        required this.scrollController,
+      required this.collectionId,
+      required this.scrollController,
       required this.headerTitle,
       required this.loadingState,
       required this.givenList,
@@ -35,21 +35,21 @@ class ItemGalleryComponent extends StatefulWidget {
 
 class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   CartController cartController = Get.find<CartController>();
-  CollectionsController collectionsController = Get.find<CollectionsController>();
+  CollectionsController collectionsController =
+      Get.find<CollectionsController>();
   OrderController orderController = Get.find<OrderController>();
   int selectedId = 0;
-
-
 
   String getProductImage(dynamic element) {
     String url = '';
     if (widget.controllerType ==
         ControllerTypeNames.productChildrenVariantItems.name) {
       print('element detail image ${element.product.featuredAsset.preview}');
-      var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
+      var item = element
+          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       url = '${item.featuredAsset!.preview}';
-    }
-    else if (widget.controllerType == ControllerTypeNames.productVariantItems.name ||
+    } else if (widget.controllerType ==
+            ControllerTypeNames.productVariantItems.name ||
         widget.controllerType == ControllerTypeNames.normalProductList.name) {
       url = element.featuredAsset != null ? element.featuredAsset!.preview : '';
     }
@@ -62,11 +62,12 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     print('current list ${widget.currentList}');
     if (widget.controllerType ==
             ControllerTypeNames.productChildrenVariantItems.name ||
-        widget.controllerType == ControllerTypeNames.productVariantItems.name) {
-    }
+        widget.controllerType ==
+            ControllerTypeNames.productVariantItems.name) {}
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
-      widget.currentList =
-          widget.givenList.cast<List<Query$GetCollectionsByIdOrSlug$collection$productVariants$items>>();
+      widget.currentList = widget.givenList.cast<
+          List<
+              Query$GetCollectionsByIdOrSlug$collection$productVariants$items>>();
     }
   }
 
@@ -98,10 +99,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   // String? getOptionQuantity(dynamic element) {
-    // print('check element $element');
-    // var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
-    // print('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
-    // return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
+  // print('check element $element');
+  // var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
+  // print('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
+  // return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
   // }
 
   @override
@@ -113,10 +114,10 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   void addItemToCart(dynamic singleProduct) {
-
     var id;
-    if(widget.controllerType == ControllerTypeNames.normalProductList.name){
-      var item = singleProduct as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
+    if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
+      var item = singleProduct
+          as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       id = item.id;
     }
     print('product id $id');
@@ -151,19 +152,25 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
         : Card(
             child: widget.givenList.isEmpty
                 ? Column(
-                  children: [
-                    Center(
+                    children: [
+                      Center(
                         child: Text(
                           'No Items to display',
                           style: CustomTheme.headerStyle,
                         ),
                       ),
-                    ElevatedButton(onPressed: (){
-                      collectionsController.currentSkipCount.value -=100;
-                      collectionsController.getSingleCollectionDetail(widget.collectionId);
-                    }, child: Text('Back',style: CustomTheme.headerStyle,))
-                  ],
-                )
+                      ElevatedButton(
+                          onPressed: () {
+                            collectionsController.currentSkipCount.value -= 100;
+                            collectionsController
+                                .getSingleCollectionDetail(widget.collectionId);
+                          },
+                          child: Text(
+                            'Back',
+                            style: CustomTheme.headerStyle,
+                          ))
+                    ],
+                  )
                 : Column(
                     children: [
                       Container(
@@ -183,76 +190,78 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                       ),
                       Wrap(
                         children: [
-                          ...widget.givenList
-                              .map((element) => GestureDetector(
-                            onTap: () {
-                              print(widget.controllerType);
-                              goToPage(element);
-                            },
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              height: MediaQuery.of(context).size.height * 0.2,
-                              child: Card(
-                                elevation: 5,
-                                child: Column(
-                                  children: [
-                                    FadeInImage.assetNetwork(
-                                      width: 100,
-                                      height: 100,
-                                      placeholder:
-                                      '${CommonVariableData.placeholder}',
-                                      image: getProductImage(element),
-                                      imageErrorBuilder:
-                                          (context, error, stackTrace) =>
-                                          Image.asset(
+                          ...widget.givenList.map((element) => GestureDetector(
+                                onTap: () {
+                                  print(widget.controllerType);
+                                  goToPage(element);
+                                },
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.2,
+                                  child: Card(
+                                    elevation: 5,
+                                    child: Column(
+                                      children: [
+                                        FadeInImage.assetNetwork(
+                                          width: 100,
+                                          height: 100,
+                                          placeholder:
+                                              '${CommonVariableData.placeholder}',
+                                          image: getProductImage(element),
+                                          imageErrorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
                                             '${CommonVariableData.placeholder}',
                                             width: 100,
                                             height: 100,
                                           ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Text(
+                                            getName(element),
+                                            style: CustomTheme.headerStyle5,
+                                          ),
+                                        ),
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.spaceAround,
+                                        //   children: [
+                                        //
+                                        //     Obx(() => cartController
+                                        //                 .isLoading.isTrue &&
+                                        //             selectedId ==
+                                        //                 int.parse(element.id)
+                                        //         ? Center(
+                                        //             child:
+                                        //                 CircularProgressIndicator(
+                                        //               color: CustomTheme
+                                        //                   .progressIndicatorColor,
+                                        //             ),
+                                        //           )
+                                        //         : IconButton(
+                                        //             onPressed: () {
+                                        //               selectedId =
+                                        //                   int.parse(element.id);
+                                        //               print(
+                                        //                   'select item $element');
+                                        //               addItemToCart(element);
+                                        //
+                                        //             },
+                                        //             icon: Icon(
+                                        //                 Icons.shopping_cart),
+                                        //             color: Colors.lightGreen,
+                                        //           ))
+                                        //   ],
+                                        // )
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                      child: Text(
-                                        getName(element),
-                                        style: CustomTheme.headerStyle,
-                                      ),
-                                    ),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceAround,
-                                    //   children: [
-                                    //
-                                    //     Obx(() => cartController
-                                    //                 .isLoading.isTrue &&
-                                    //             selectedId ==
-                                    //                 int.parse(element.id)
-                                    //         ? Center(
-                                    //             child:
-                                    //                 CircularProgressIndicator(
-                                    //               color: CustomTheme
-                                    //                   .progressIndicatorColor,
-                                    //             ),
-                                    //           )
-                                    //         : IconButton(
-                                    //             onPressed: () {
-                                    //               selectedId =
-                                    //                   int.parse(element.id);
-                                    //               print(
-                                    //                   'select item $element');
-                                    //               addItemToCart(element);
-                                    //
-                                    //             },
-                                    //             icon: Icon(
-                                    //                 Icons.shopping_cart),
-                                    //             color: Colors.lightGreen,
-                                    //           ))
-                                    //   ],
-                                    // )
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ))
+                              ))
                         ],
                       ),
                       SizedBox(
@@ -261,18 +270,40 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          widget.givenList.length > 0 ? ElevatedButton(onPressed: (){
-                            print('go back');
-                            collectionsController.currentSkipCount.value -= 100;
-                            collectionsController.showMoreProductsUnderCollection(widget.collectionId);
-                            widget.scrollController.animateTo(100, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
-                          }, child: Text('Back',style: CustomTheme.headerStyle,)) : SizedBox(),
-                          ElevatedButton(onPressed: (){
-                            print('show more');
-                            collectionsController.currentSkipCount.value += 100;
-                            collectionsController.showMoreProductsUnderCollection(widget.collectionId);
-                            widget.scrollController.animateTo(100, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
-                          }, child: Text('Show More',style: CustomTheme.headerStyle,)),
+                          widget.givenList.length > 0
+                              ? ElevatedButton(
+                                  onPressed: () {
+                                    print('go back');
+                                    collectionsController
+                                        .currentSkipCount.value -= 100;
+                                    collectionsController
+                                        .showMoreProductsUnderCollection(
+                                            widget.collectionId);
+                                    widget.scrollController.animateTo(100,
+                                        duration: Duration(milliseconds: 500),
+                                        curve: Curves.easeInOut);
+                                  },
+                                  child: Text(
+                                    'Back',
+                                    style: CustomTheme.headerStyle,
+                                  ))
+                              : SizedBox(),
+                          ElevatedButton(
+                              onPressed: () {
+                                print('show more');
+                                collectionsController.currentSkipCount.value +=
+                                    100;
+                                collectionsController
+                                    .showMoreProductsUnderCollection(
+                                        widget.collectionId);
+                                widget.scrollController.animateTo(100,
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                              },
+                              child: Text(
+                                'Show More',
+                                style: CustomTheme.headerStyle,
+                              )),
                         ],
                       )
                     ],

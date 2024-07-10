@@ -32,6 +32,8 @@ samples, guidance on mobile development, and a full API reference.
 - change the jkd7 to jdk8 in build.gradle file
 - change minsdk to 21
 - change target sdk to 30
+- java version 11 is needed
+- gradle version 7.4 is needed
 
 # if splash screen does not show on start then chnage this in androidmanifest file
 ```

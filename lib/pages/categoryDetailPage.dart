@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
 import 'package:recipe.app/components/cartButtonComponent.dart';
 import 'package:recipe.app/components/itemGalleryComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
+import 'package:recipe.app/components/searchComponent.dart';
 import 'package:recipe.app/controllers/collectionsController.dart';
+import 'package:recipe.app/controllers/homePageController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
+import 'package:recipe.app/controllers/productsController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
@@ -26,6 +28,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   final CollectionsController collectionsController =
       Get.find<CollectionsController>();
   final OrderController orderController = Get.find<OrderController>();
+  final HomePageController homePageController = Get.find<HomePageController>();
+  final ProductsController productsController = Get.find<ProductsController>();
   var showScrollTopButton = false.obs;
   final ScrollController _scrollController = ScrollController();
 
@@ -109,18 +113,19 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                       child: ListView(
                         controller: _scrollController,
                         children: [
-                          FadeInImage.assetNetwork(
-                            key: AllGlobalKeys.categoryDetailBannerSectionKey,
-                            placeholder: '${CommonVariableData.placeholder}',
-                            image:
-                                '${collectionsController.singleCollectionDetail != null ? collectionsController.singleCollectionDetail.value?.featuredAsset?.preview : ''}',
-                            imageErrorBuilder: (context, error, stackTrace) =>
-                                Image.asset(
-                                    '${CommonVariableData.placeholder}'),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          // FadeInImage.assetNetwork(
+                          //   key: AllGlobalKeys.categoryDetailBannerSectionKey,
+                          //   placeholder: '${CommonVariableData.placeholder}',
+                          //   image:
+                          //       '${collectionsController.singleCollectionDetail != null ? collectionsController.singleCollectionDetail.value?.featuredAsset?.preview : ''}',
+                          //   imageErrorBuilder: (context, error, stackTrace) =>
+                          //       Image.asset(
+                          //           '${CommonVariableData.placeholder}'),
+                          // ),
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                          SearchComponent(homePageController: homePageController, productsController: productsController),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
@@ -128,9 +133,6 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                               '${UtilService.parseHtmlData(collectionsController.singleCollectionDetail.value?.description)}',
                               style: CustomTheme.paragraphStyle,
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
                           ),
                           Obx(() => collectionsController
                                       .singleCollectionDetail.value?.children ==
@@ -172,8 +174,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                                         givenList: element
                                                             .productVariants
                                                             .items,
-                                                        collectionId: routerArguments['id'],
-                                                        scrollController: _scrollController,
+                                                        collectionId:
+                                                            routerArguments[
+                                                                'id'],
+                                                        scrollController:
+                                                            _scrollController,
                                                         controllerType:
                                                             ControllerTypeNames
                                                                 .productChildrenVariantItems
@@ -183,9 +188,6 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                                           ))
                                       .toList(),
                                 )),
-                          SizedBox(
-                            height: 20,
-                          ),
                           ItemGalleryComponent(
                               headerTitle: 'Products',
                               loadingState:

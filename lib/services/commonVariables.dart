@@ -30,6 +30,10 @@ enum ControllerTypeNames {
   normalProductList,
 }
 
+enum CouponCodeEnum{
+  noCode
+}
+
 enum CurrencyCodeEnum{
   USD,
   INR,

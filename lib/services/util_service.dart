@@ -11,7 +11,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:recipe.app/controllers/cartController.dart';
 import 'package:recipe.app/controllers/orderController.dart';
-import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
 import '../graphqlSection/collections.graphql.dart';
@@ -33,11 +32,7 @@ class UtilService {
     _apiBaseUrl = value;
   }
 
-
-
-
   static Future<void> toggleScreenshotRestriction(bool status) async {
-
     // Toggle the screen shot restriction status.
     if (status) {
       await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -152,11 +147,12 @@ class UtilService {
       "sender": "KAIMSG",
       "mobiles": "+91$number",
     };
-    initializeDateFormatting('en-IN','');
+    initializeDateFormatting('en-IN', '');
     var currentTime = DateTime.now();
     var tomorrowTime = DateTime(
         currentTime.year, currentTime.month, currentTime.day + 1, 0, 0);
-    String formattedTime = DateFormat('yyyy-MM-dd HH:mm','en-IN').format(tomorrowTime);
+    String formattedTime =
+        DateFormat('yyyy-MM-dd HH:mm', 'en-IN').format(tomorrowTime);
     var headerData = {
       'accept': 'application/json',
       'authkey': '395929AcYuel89696451b515P1',
@@ -165,7 +161,7 @@ class UtilService {
     var isMorningDelivery = templateId == '64900e1ed6fc056a7b3a9c32';
     if (smsDeliveryType == SmsDeliveryType.morning_evening) {
       smsData['var1'] = orderId;
-      smsData[isMorningDelivery ? 'var2': 'VAR2'] = '$formattedTime';
+      smsData[isMorningDelivery ? 'var2' : 'VAR2'] = '$formattedTime';
     }
     if (smsDeliveryType == SmsDeliveryType.payment_failed) {
       smsData['var1'] = paymentValue;
@@ -214,6 +210,4 @@ class UtilService {
       {text = 'some message', required BuildContext context}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
-
-
 }

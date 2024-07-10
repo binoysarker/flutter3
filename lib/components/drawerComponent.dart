@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/userController.dart';
+import 'package:recipe.app/pages/PolicyPage.dart';
 import 'package:recipe.app/pages/categoryDetailPage.dart';
 import 'package:recipe.app/themes.dart';
 
@@ -88,6 +89,16 @@ class _DrawerComponentState extends State<DrawerComponent> {
                       ],
                     ),
                   ),
+            ),
+            ListTile(
+              leading: Icon(Icons.policy),
+              title: Text(
+                'Policy',
+                style: CustomTheme.headerStyle,
+              ),
+              onTap: () {
+                Get.to(() => PolicyPage());
+              },
             ),
             ListTile(
               leading: Icon(Icons.logout),

@@ -132,26 +132,29 @@ class PaymentMethodComponent extends StatelessWidget {
                 ),
                 Container(
                   child: Obx(() => orderController
-                      .activeOrderResponse.value!.shippingLines.isNotEmpty ? Column(
-                    children: orderController
-                        .activeOrderResponse.value!.shippingLines
-                        .map((e) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            e.shippingMethod.name,
-                            style: CustomTheme.headerStyle,
-                          ),
-                        ),
-                        Text(
-                          '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
-                          style: CustomTheme.headerStyle,
-                        ),
-                      ],
-                    ))
-                        .toList(),
-                  ) : SizedBox()),
+                          .activeOrderResponse.value!.shippingLines.isNotEmpty
+                      ? Column(
+                          children: orderController
+                              .activeOrderResponse.value!.shippingLines
+                              .map((e) => Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          e.shippingMethod.name,
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                      ),
+                                      Text(
+                                        '+ ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.priceWithTax)}',
+                                        style: CustomTheme.headerStyle,
+                                      ),
+                                    ],
+                                  ))
+                              .toList(),
+                        )
+                      : SizedBox()),
                 ),
                 SizedBox(
                   height: 20,

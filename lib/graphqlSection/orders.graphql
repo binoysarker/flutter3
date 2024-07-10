@@ -17,6 +17,10 @@ query GetOrderForCheckout {
     }
 }
 
+query GetCouponCodeList{
+    getCouponCodeList
+}
+
 
 mutation RemoveOrderLine($orderLineId: ID!){
     removeOrderLine(orderLineId: $orderLineId){

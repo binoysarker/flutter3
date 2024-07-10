@@ -39,6 +39,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
+      orderController.getCouponCodeList();
       orderController.useCurrentUserAddress.value = false;
       // print('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
     });
@@ -46,17 +47,18 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
 
   @override
   Widget build(BuildContext context) {
-    String getText(String text){
+    String getText(String text) {
       String current = '';
-      if(text == PaymentOptionType.noITem.name){
+      if (text == PaymentOptionType.noITem.name) {
         current = 'Please select a payment option';
-      }else if(text == PaymentOptionType.offline.name){
+      } else if (text == PaymentOptionType.offline.name) {
         current = 'Cash On Delivery';
-      }else if(text == PaymentOptionType.online.name){
+      } else if (text == PaymentOptionType.online.name) {
         current = 'Online';
       }
       return current;
     }
+
     return Column(
       children: [
         Column(
@@ -73,7 +75,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                   ?.shippingAddress !=
                               null
                           ? GestureDetector(
-                        behavior: HitTestBehavior.translucent,
+                              behavior: HitTestBehavior.translucent,
                               // show shipping address
                               onTap: () {
                                 print('onTap');
@@ -84,8 +86,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Address',
@@ -158,7 +159,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                           children: userController
                               .currentAuthenticatedUser.value!.addresses!
                               .map((singleAddress) => GestureDetector(
-                            behavior: HitTestBehavior.translucent,
+                                    behavior: HitTestBehavior.translucent,
                                     onTap: () {
                                       print('onTap');
                                       orderController
@@ -180,13 +181,12 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                             children: [
                                               Text(
                                                 'Name:',
-                                                style:
-                                                    CustomTheme.headerStyle,
+                                                style: CustomTheme.headerStyle,
                                               ),
                                               Text(
                                                 '${singleAddress.fullName}',
-                                                style: CustomTheme
-                                                    .paragraphStyle,
+                                                style:
+                                                    CustomTheme.paragraphStyle,
                                               ),
                                             ],
                                           ),
@@ -194,13 +194,12 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                             children: [
                                               Text(
                                                 'Street:',
-                                                style:
-                                                    CustomTheme.headerStyle,
+                                                style: CustomTheme.headerStyle,
                                               ),
                                               Text(
                                                 '${singleAddress.streetLine1},${singleAddress.streetLine2}',
-                                                style: CustomTheme
-                                                    .paragraphStyle,
+                                                style:
+                                                    CustomTheme.paragraphStyle,
                                               ),
                                             ],
                                           ),
@@ -208,13 +207,12 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                             children: [
                                               Text(
                                                 'City:',
-                                                style:
-                                                    CustomTheme.headerStyle,
+                                                style: CustomTheme.headerStyle,
                                               ),
                                               Text(
                                                 '${singleAddress.city}',
-                                                style: CustomTheme
-                                                    .paragraphStyle,
+                                                style:
+                                                    CustomTheme.paragraphStyle,
                                               ),
                                             ],
                                           ),
@@ -222,13 +220,12 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                             children: [
                                               Text(
                                                 'Phone:',
-                                                style:
-                                                    CustomTheme.headerStyle,
+                                                style: CustomTheme.headerStyle,
                                               ),
                                               Text(
                                                 '${singleAddress.phoneNumber}',
-                                                style: CustomTheme
-                                                    .paragraphStyle,
+                                                style:
+                                                    CustomTheme.paragraphStyle,
                                               ),
                                             ],
                                           ),
@@ -344,7 +341,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                 ),
                                 onChanged: (dynamic data) {
                                   print('selected postcode $data');
-                                  widget.orderController.selectedPostalCode.value = data;
+                                  widget.orderController.selectedPostalCode
+                                      .value = data;
                                 },
                                 validator: RequiredValidator(
                                     errorText: 'Please select a postal code'),
@@ -373,7 +371,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     ElevatedButton(
                         onPressed: () {
                           showForm.value = !showForm.value;
-                          print('current post code ${widget.orderController.selectedPostalCode.value}');
+                          print(
+                              'current post code ${widget.orderController.selectedPostalCode.value}');
                           orderController.setShippingAddress(false);
                         },
                         child: Text(
@@ -510,12 +509,17 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             activeColor: Colors.green,
                             onChanged: (bool data) {
                               widget.orderController.hasCouponCode.value = data;
+
                               print(
                                   'has coupon code ${widget.orderController.hasCouponCode.value}');
-                              if(widget.orderController.hasCouponCode.isFalse && widget.orderController.couponCode.text.length > 0){
-                                widget.orderController.removeCouponCode(widget.orderController.couponCode.text);
-                                widget.orderController.couponCode.text = '';
+                              if (widget
+                                      .orderController.hasCouponCode.isFalse &&
+                                  widget.orderController.couponCode.value != CouponCodeEnum.noCode.name) {
+                                widget.orderController.removeCouponCode(
+                                    widget.orderController.couponCode.value);
+                                widget.orderController.couponCode.value = CouponCodeEnum.noCode.name;
                               }
+
                             })),
                       ),
                       Text(
@@ -526,21 +530,43 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   ),
                   Obx(() => widget.orderController.hasCouponCode.isTrue
                       ? Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            controller: widget.orderController.couponCode,
-                            decoration: const InputDecoration(
+                          padding: EdgeInsets.only(top: 10),
+                          child: orderController.couponCodeList.value!.isNotEmpty ? DropdownButtonFormField<String>(
+                            value: orderController.couponCode.value,
+
+                            isExpanded: true,
+                            decoration: InputDecoration(
+                              label: Text(
+                                'Please select a coupon code',
+                                style: CustomTheme.headerStyle,
+                              ),
                               border: OutlineInputBorder(),
-                              labelText: 'Coupon Code',
-                              helperText: 'Type Coupon code in CAPITAL LETTERS',
                             ),
-                            autofillHints: [AutofillHints.oneTimeCode],
-                            keyboardType: TextInputType.name,
-                            validator: RequiredValidator(
-                                errorText: 'Coupon Code is required'),
-                          ),
+                            onChanged: (dynamic newValue) {
+                              orderController.couponCode.value =
+                                  newValue;
+                              print(
+                                  'coupon code selected is ${orderController.couponCode.value}');
+                            },
+                            items: [
+                              DropdownMenuItem(
+                                value: CouponCodeEnum.noCode.name,
+                                child: Text('Please select a coupon code',
+                                  style: CustomTheme.headerStyle,
+                                ),
+                              ),
+                              ...orderController
+                                  .couponCodeList.value
+                              !.map((String option) {
+                                return DropdownMenuItem(
+                                  value: option,
+                                  child: Text(option == CouponCodeEnum.noCode.name ? 'Please select coupon code' : option,
+                                    style: CustomTheme.headerStyle,
+                                  ),
+                                );
+                              }).toList()
+                            ],
+                          ) : SizedBox(),
                         )
                       : SizedBox()),
                 ],

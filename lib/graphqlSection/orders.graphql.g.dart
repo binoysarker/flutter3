@@ -1347,6 +1347,22 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$customFieldsToJson(
       '__typename': instance.$__typename,
     };
 
+Query$GetCouponCodeList _$Query$GetCouponCodeListFromJson(
+        Map<String, dynamic> json) =>
+    Query$GetCouponCodeList(
+      getCouponCodeList: (json['getCouponCodeList'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$GetCouponCodeListToJson(
+        Query$GetCouponCodeList instance) =>
+    <String, dynamic>{
+      'getCouponCodeList': instance.getCouponCodeList,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Mutation$RemoveOrderLine _$Variables$Mutation$RemoveOrderLineFromJson(
         Map<String, dynamic> json) =>
     Variables$Mutation$RemoveOrderLine(

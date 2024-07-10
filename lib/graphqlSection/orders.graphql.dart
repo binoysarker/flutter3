@@ -1,4 +1,3 @@
-import 'authentication.graphql.dart';
 import 'cart_data.graphql.dart';
 import 'dart:async';
 import 'package:flutter/widgets.dart' as widgets;
@@ -6,6 +5,7 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 import 'package:json_annotation/json_annotation.dart';
+import 'products.graphql.dart';
 import 'vendureSchema.graphql.dart';
 part 'orders.graphql.g.dart';
 
@@ -8378,6 +8378,230 @@ class _CopyWithStubImpl$Query$GetOrderForCheckout$activeOrder$customFields<TRes>
   TRes _res;
 
   call({int? clientRequestToCancel, String? $__typename}) => _res;
+}
+
+@JsonSerializable(explicitToJson: true)
+class Query$GetCouponCodeList {
+  Query$GetCouponCodeList(
+      {required this.getCouponCodeList, required this.$__typename});
+
+  @override
+  factory Query$GetCouponCodeList.fromJson(Map<String, dynamic> json) =>
+      _$Query$GetCouponCodeListFromJson(json);
+
+  final List<String> getCouponCodeList;
+
+  @JsonKey(name: '__typename')
+  final String $__typename;
+
+  Map<String, dynamic> toJson() => _$Query$GetCouponCodeListToJson(this);
+  int get hashCode {
+    final l$getCouponCodeList = getCouponCodeList;
+    final l$$__typename = $__typename;
+    return Object.hashAll(
+        [Object.hashAll(l$getCouponCodeList.map((v) => v)), l$$__typename]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (!(other is Query$GetCouponCodeList) || runtimeType != other.runtimeType)
+      return false;
+    final l$getCouponCodeList = getCouponCodeList;
+    final lOther$getCouponCodeList = other.getCouponCodeList;
+    if (l$getCouponCodeList.length != lOther$getCouponCodeList.length)
+      return false;
+    for (int i = 0; i < l$getCouponCodeList.length; i++) {
+      final l$getCouponCodeList$entry = l$getCouponCodeList[i];
+      final lOther$getCouponCodeList$entry = lOther$getCouponCodeList[i];
+      if (l$getCouponCodeList$entry != lOther$getCouponCodeList$entry)
+        return false;
+    }
+
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) return false;
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetCouponCodeList on Query$GetCouponCodeList {
+  CopyWith$Query$GetCouponCodeList<Query$GetCouponCodeList> get copyWith =>
+      CopyWith$Query$GetCouponCodeList(this, (i) => i);
+}
+
+abstract class CopyWith$Query$GetCouponCodeList<TRes> {
+  factory CopyWith$Query$GetCouponCodeList(Query$GetCouponCodeList instance,
+          TRes Function(Query$GetCouponCodeList) then) =
+      _CopyWithImpl$Query$GetCouponCodeList;
+
+  factory CopyWith$Query$GetCouponCodeList.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetCouponCodeList;
+
+  TRes call({List<String>? getCouponCodeList, String? $__typename});
+}
+
+class _CopyWithImpl$Query$GetCouponCodeList<TRes>
+    implements CopyWith$Query$GetCouponCodeList<TRes> {
+  _CopyWithImpl$Query$GetCouponCodeList(this._instance, this._then);
+
+  final Query$GetCouponCodeList _instance;
+
+  final TRes Function(Query$GetCouponCodeList) _then;
+
+  static const _undefined = {};
+
+  TRes call(
+          {Object? getCouponCodeList = _undefined,
+          Object? $__typename = _undefined}) =>
+      _then(Query$GetCouponCodeList(
+          getCouponCodeList:
+              getCouponCodeList == _undefined || getCouponCodeList == null
+                  ? _instance.getCouponCodeList
+                  : (getCouponCodeList as List<String>),
+          $__typename: $__typename == _undefined || $__typename == null
+              ? _instance.$__typename
+              : ($__typename as String)));
+}
+
+class _CopyWithStubImpl$Query$GetCouponCodeList<TRes>
+    implements CopyWith$Query$GetCouponCodeList<TRes> {
+  _CopyWithStubImpl$Query$GetCouponCodeList(this._res);
+
+  TRes _res;
+
+  call({List<String>? getCouponCodeList, String? $__typename}) => _res;
+}
+
+const documentNodeQueryGetCouponCodeList = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'GetCouponCodeList'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'getCouponCodeList'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null),
+        FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null)
+      ])),
+]);
+Query$GetCouponCodeList _parserFn$Query$GetCouponCodeList(
+        Map<String, dynamic> data) =>
+    Query$GetCouponCodeList.fromJson(data);
+
+class Options$Query$GetCouponCodeList
+    extends graphql.QueryOptions<Query$GetCouponCodeList> {
+  Options$Query$GetCouponCodeList(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      Duration? pollInterval,
+      graphql.Context? context})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            pollInterval: pollInterval,
+            context: context,
+            document: documentNodeQueryGetCouponCodeList,
+            parserFn: _parserFn$Query$GetCouponCodeList);
+}
+
+class WatchOptions$Query$GetCouponCodeList
+    extends graphql.WatchQueryOptions<Query$GetCouponCodeList> {
+  WatchOptions$Query$GetCouponCodeList(
+      {String? operationName,
+      graphql.FetchPolicy? fetchPolicy,
+      graphql.ErrorPolicy? errorPolicy,
+      graphql.CacheRereadPolicy? cacheRereadPolicy,
+      Object? optimisticResult,
+      graphql.Context? context,
+      Duration? pollInterval,
+      bool? eagerlyFetchResults,
+      bool carryForwardDataOnException = true,
+      bool fetchResults = false})
+      : super(
+            operationName: operationName,
+            fetchPolicy: fetchPolicy,
+            errorPolicy: errorPolicy,
+            cacheRereadPolicy: cacheRereadPolicy,
+            optimisticResult: optimisticResult,
+            context: context,
+            document: documentNodeQueryGetCouponCodeList,
+            pollInterval: pollInterval,
+            eagerlyFetchResults: eagerlyFetchResults,
+            carryForwardDataOnException: carryForwardDataOnException,
+            fetchResults: fetchResults,
+            parserFn: _parserFn$Query$GetCouponCodeList);
+}
+
+class FetchMoreOptions$Query$GetCouponCodeList
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetCouponCodeList(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+            updateQuery: updateQuery,
+            document: documentNodeQueryGetCouponCodeList);
+}
+
+extension ClientExtension$Query$GetCouponCodeList on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetCouponCodeList>> query$GetCouponCodeList(
+          [Options$Query$GetCouponCodeList? options]) async =>
+      await this.query(options ?? Options$Query$GetCouponCodeList());
+  graphql.ObservableQuery<Query$GetCouponCodeList> watchQuery$GetCouponCodeList(
+          [WatchOptions$Query$GetCouponCodeList? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetCouponCodeList());
+  void writeQuery$GetCouponCodeList(
+          {required Query$GetCouponCodeList data, bool broadcast = true}) =>
+      this.writeQuery(
+          graphql.Request(
+              operation: graphql.Operation(
+                  document: documentNodeQueryGetCouponCodeList)),
+          data: data.toJson(),
+          broadcast: broadcast);
+  Query$GetCouponCodeList? readQuery$GetCouponCodeList(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryGetCouponCodeList)),
+        optimistic: optimistic);
+    return result == null ? null : Query$GetCouponCodeList.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetCouponCodeList>
+    useQuery$GetCouponCodeList([Options$Query$GetCouponCodeList? options]) =>
+        graphql_flutter.useQuery(options ?? Options$Query$GetCouponCodeList());
+graphql.ObservableQuery<Query$GetCouponCodeList>
+    useWatchQuery$GetCouponCodeList(
+            [WatchOptions$Query$GetCouponCodeList? options]) =>
+        graphql_flutter
+            .useWatchQuery(options ?? WatchOptions$Query$GetCouponCodeList());
+
+class Query$GetCouponCodeList$Widget
+    extends graphql_flutter.Query<Query$GetCouponCodeList> {
+  Query$GetCouponCodeList$Widget(
+      {widgets.Key? key,
+      Options$Query$GetCouponCodeList? options,
+      required graphql_flutter.QueryBuilder<Query$GetCouponCodeList> builder})
+      : super(
+            key: key,
+            options: options ?? Options$Query$GetCouponCodeList(),
+            builder: builder);
 }
 
 @JsonSerializable(explicitToJson: true)

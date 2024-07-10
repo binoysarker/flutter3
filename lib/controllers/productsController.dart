@@ -91,24 +91,27 @@ class ProductsController extends GetxController {
       isLoading.value = false;
     }
   }
-  Future<bool> makeRequestToCheckPrivate(String singleId) async{
+
+  Future<bool> makeRequestToCheckPrivate(String singleId) async {
     final res = await graphqlService.client.value
-        .query$CheckCollectionIsPrivate(
-        Options$Query$CheckCollectionIsPrivate(
+        .query$CheckCollectionIsPrivate(Options$Query$CheckCollectionIsPrivate(
             variables: Variables$Query$CheckCollectionIsPrivate(
                 collectionId: singleId)));
-    if(res.hasException){
+    if (res.hasException) {
       print('${res.exception.toString()}');
     }
-    return res.parsedData!.checkCollectionIsPrivate == null ? false : res.parsedData!.checkCollectionIsPrivate;
+    return res.parsedData!.checkCollectionIsPrivate == null
+        ? false
+        : res.parsedData!.checkCollectionIsPrivate;
   }
 
-  void checkCollectionIsPrivate() async{
+  void checkCollectionIsPrivate() async {
+    searchInProgress.value = true;
     for (var element in tempSearchResultList) {
       var collectionIds = element.collectionIds;
       var uniqueCollectionIds = [];
-      for(String id in collectionIds){
-        if(!uniqueCollectionIds.contains(id)){
+      for (String id in collectionIds) {
+        if (!uniqueCollectionIds.contains(id)) {
           uniqueCollectionIds.add(id);
         }
       }
@@ -116,14 +119,14 @@ class ProductsController extends GetxController {
       for (var singleId in uniqueCollectionIds) {
         isPrivate = await makeRequestToCheckPrivate(singleId);
         print("checkCollectionIsPrivate $isPrivate");
-        if(isPrivate == true){
+        if (isPrivate == true) {
           break;
         }
       }
-        if (isPrivate == true) {
-          print('removing item $element');
-          searchResultList.remove(element);
-        }
+      if (isPrivate == true) {
+        print('removing item $element');
+        searchResultList.remove(element);
+      }
     }
     searchInProgress.value = false;
   }
@@ -150,8 +153,7 @@ class ProductsController extends GetxController {
       searchInProgress.value = false;
       print(
           "collection id ${tempSearchResultList.value.first.collectionIds.join(',')}");
-      // checkCollectionIsPrivate();
-
+      checkCollectionIsPrivate();
     }
   }
 }

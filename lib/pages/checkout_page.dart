@@ -36,6 +36,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       orderController.getEligiblePaymentMethod();
+      orderController.getCouponCodeList();
       orderController.getOrderForCheckout();
       orderController.getEligibleShippingMethod();
       // orderController.getAvailableCountries();
@@ -175,9 +176,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             print(
                                 'has coupon code ${orderController.hasCouponCode}');
                             if (orderController.hasCouponCode.isTrue) {
-                              if(orderController.couponCode.text.length > 0){
+                              if(orderController.couponCode.value != CouponCodeEnum.noCode.name){
                                 var res = orderController
-                                    .applyCouponCode(orderController.couponCode.text);
+                                    .applyCouponCode(orderController.couponCode.value);
                                 res.then((value) {
                                   print('testing $value');
                                   if (value) {
@@ -273,9 +274,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       } else if (orderController.currentStep.value == 2) {
                         null;
                       } else {
-                        if(orderController.hasCouponCode.isTrue && orderController.couponCode.text.length > 0){
-                          orderController.removeCouponCode(orderController.couponCode.text);
-                          orderController.couponCode.text = '';
+                        if(orderController.hasCouponCode.isTrue && orderController.couponCode.value != CouponCodeEnum.noCode.name){
+                          orderController.removeCouponCode(orderController.couponCode.value);
+                          orderController.couponCode.value = CouponCodeEnum.noCode.name;
                         }
                         orderController.currentStep.value--;
                       }

@@ -38,7 +38,7 @@ class OrderController extends GetxController {
   TextEditingController country = TextEditingController();
 
   // TextEditingController phoneNumber = TextEditingController();
-  TextEditingController couponCode = TextEditingController();
+  var couponCode = CouponCodeEnum.noCode.name.obs;
   TextEditingController otherInstructions = TextEditingController();
   UserController userController = Get.find<UserController>();
   var currentStep = 0.obs;
@@ -72,7 +72,7 @@ class OrderController extends GetxController {
   var shippingAddressOrder =
       (null as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?).obs;
   var currentNonce = ''.obs;
-
+  var couponCodeList = (null as List<String>?).obs;
   // ignore: unnecessary_cast
   var activeOrderForCheckout =
       (null as Query$GetOrderForCheckout$activeOrder?).obs;
@@ -236,7 +236,7 @@ class OrderController extends GetxController {
                 input: Input$PaymentInput(
                     method: selectedPaymentOption.value == 'online'
                         ? eligiblePaymentMethods.first.code
-                        : eligiblePaymentMethods[1].code,
+                        : eligiblePaymentMethods.first.code,
                     metadata: jsonEncode(metaData)))));
     if (res.hasException) {
       print(res.exception.toString());
@@ -327,7 +327,7 @@ class OrderController extends GetxController {
     // phoneNumber.clear();
     // postalCode.clear();
     city.clear();
-    couponCode.clear();
+    couponCode.value = '';
     AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
     currentlySelectedShippingMethod.value = null;
     selectedPaymentOption.value = PaymentOptionType.noITem.name;
@@ -632,6 +632,24 @@ class OrderController extends GetxController {
     if (res.data != null) {
       print('order for checkout ${res.parsedData!.activeOrder!.toJson()}');
       activeOrderForCheckout.value = res.parsedData!.activeOrder;
+      isLoading.value = false;
+    }
+  }
+
+  void getCouponCodeList() async {
+    isLoading.value = true;
+    final res = await graphqlService
+        .client
+        .value
+        .query$GetCouponCodeList();
+    if (res.hasException) {
+      print(res.exception.toString());
+      isLoading.value = false;
+    }
+    if (res.data != null) {
+      print('coupon code list ${res.parsedData!.getCouponCodeList}');
+      couponCodeList.value = res.parsedData!.getCouponCodeList.toList();
+      couponCode.value = CouponCodeEnum.noCode.name;
       isLoading.value = false;
     }
   }

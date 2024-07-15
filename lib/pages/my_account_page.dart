@@ -154,7 +154,6 @@ class MyAccountPageState extends State<MyAccountPage> {
       });
     }
 
-
     return Obx(() => userController.isLoading2.isTrue
         ? LoadingSpinnerComponent()
         : Scaffold(
@@ -262,7 +261,8 @@ class MyAccountPageState extends State<MyAccountPage> {
                                 padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if (AllGlobalKeys.myAccountFormKey.currentState!
+                                    if (AllGlobalKeys
+                                        .myAccountFormKey.currentState!
                                         .validate()) {
                                       final Map<String, String> customerData =
                                           {};
@@ -312,12 +312,13 @@ class MyAccountPageState extends State<MyAccountPage> {
                                               element['phoneNumber'] ?? '');
                                         });
                                       });
-                                      print('valid');
+                                      debugPrint('valid');
                                       showForm.value = false;
                                     } else {
                                       Get.snackbar(
                                           '', 'Please fill up the form',
-                                          colorText: Colors.red,backgroundColor: Colors.yellow);
+                                          colorText: Colors.red,
+                                          backgroundColor: Colors.yellow);
                                     }
                                   },
                                   child: Text(
@@ -347,7 +348,6 @@ class MyAccountPageState extends State<MyAccountPage> {
                                 ),
                               ],
                             ),
-
                             Row(
                               children: [
                                 Text(

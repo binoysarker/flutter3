@@ -37,30 +37,30 @@ class LoginPageState extends State<LoginPage> {
         var password, phone;
         var rememberMe = rememberStorage
             .getItem(LocalStorageStrings.remember_me_status.name);
-        print('remember me status $rememberMe');
+        debugPrint('remember me status $rememberMe');
         phoneStorage.ready.then((isReady) {
-          if(isReady && phoneStorage.getItem(LocalStorageStrings.phone.name) != null){
-            phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), phoneStorage.getItem(LocalStorageStrings.phone.name));
-            print('phone $phone');
+          if (isReady &&
+              phoneStorage.getItem(LocalStorageStrings.phone.name) != null) {
+            phone = Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(),
+                phoneStorage.getItem(LocalStorageStrings.phone.name));
+            debugPrint('phone $phone');
             if (rememberMe == 'true' && phone != null) {
               passwordStorage.ready.then((value) {
-                password =
-                    Encryptor.decrypt(dotenv.env['ENCRYPT_KEY'].toString(), passwordStorage.getItem(LocalStorageStrings.password.name));
-                print('password data $password');
+                password = Encryptor.decrypt(
+                    dotenv.env['ENCRYPT_KEY'].toString(),
+                    passwordStorage.getItem(LocalStorageStrings.password.name));
+                debugPrint('password data $password');
                 //  now let the user login using this phone and password
                 loginPageController.phoneNumber.text = phone;
                 loginPageController.passwordController.text = password;
                 loginPageController.currentlyGivenOTP.value = password;
-                loginPageController.checkboxStatus.value = rememberMe == 'true' ? true : false;
+                loginPageController.checkboxStatus.value =
+                    rememberMe == 'true' ? true : false;
                 loginPageController.onUserSignIn();
               });
-
-
             }
-
           }
         });
-
       });
     });
   }
@@ -219,7 +219,7 @@ class LoginPageState extends State<LoginPage> {
                                   value:
                                       loginPageController.checkboxStatus.value,
                                   onChanged: (bool? value) {
-                                    print('checkbox $value');
+                                    debugPrint('checkbox $value');
                                     loginPageController
                                         .setCheckboxStatus(value!);
                                   }),
@@ -240,7 +240,8 @@ class LoginPageState extends State<LoginPage> {
                                   loginPageController.setCurrentSignInProcess(
                                       SignInProcessNames.normal.name);
                                   if (loginPageController.showSignIn.isTrue) {
-                                    loginPageController.beforeSignInProcess(loginPageController.phoneNumber.text);
+                                    loginPageController.beforeSignInProcess(
+                                        loginPageController.phoneNumber.text);
                                   } else {
                                     loginPageController.checkUniquePhone(
                                         loginPageController.phoneNumber.text);
@@ -268,7 +269,9 @@ class LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Obx(() => Text(
-                                    loginPageController.showSignIn.isFalse ? "Already have account?" : "New User Please Register",
+                                    loginPageController.showSignIn.isFalse
+                                        ? "Already have account?"
+                                        : "New User Please Register",
                                     style: CustomTheme.paragraphStyle,
                                   )),
                               TextButton(

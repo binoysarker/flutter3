@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter/foundation.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/services/commonVariables.dart';
 
@@ -8,17 +9,18 @@ class FirebaseApi {
 
   Future<void> handleBanckgroudMessage(RemoteMessage remoteMessage) async {
     if (remoteMessage.contentAvailable) {
-      print('Title: ${remoteMessage.notification?.title}');
-      print('Body: ${remoteMessage.notification?.body}');
-      print('Payload: ${remoteMessage.data}');
+      debugPrint('Title: ${remoteMessage.notification?.title}');
+      debugPrint('Body: ${remoteMessage.notification?.body}');
+      debugPrint('Payload: ${remoteMessage.data}');
     }
   }
 
   Future<void> initNotification() async {
     await _firebaseMessaging.requestPermission();
-    await _firebaseMessaging.subscribeToTopic(dotenv.env['MESSAGE_TOPIC'].toString());
+    await _firebaseMessaging
+        .subscribeToTopic(dotenv.env['MESSAGE_TOPIC'].toString());
     final fcmToken = await _firebaseMessaging.getToken();
-    print('firebase token $fcmToken');
+    debugPrint('firebase token $fcmToken');
     // store this token in local storage
     deviceStorage.ready.then((isReady) {
       if (isReady) {

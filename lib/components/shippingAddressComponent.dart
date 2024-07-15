@@ -41,7 +41,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
       userController.getActiveCustomer();
       orderController.getCouponCodeList();
       orderController.useCurrentUserAddress.value = false;
-      // print('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
+      // debugPrint('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
     });
   }
 
@@ -78,7 +78,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               behavior: HitTestBehavior.translucent,
                               // show shipping address
                               onTap: () {
-                                print('onTap');
+                                debugPrint('onTap');
                                 orderController.useCurrentUserAddress.value =
                                     false;
                                 orderController.useShippingAddress.value = true;
@@ -161,7 +161,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               .map((singleAddress) => GestureDetector(
                                     behavior: HitTestBehavior.translucent,
                                     onTap: () {
-                                      print('onTap');
+                                      debugPrint('onTap');
                                       orderController
                                           .useCurrentUserAddress.value = true;
                                       orderController.useShippingAddress.value =
@@ -317,7 +317,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             List<PostCodeList> postCodeList =
                                 postCodeListFromJson(
                                     jsonEncode(result.data!['postcodes']));
-                            print('postal codes ${result.data!['postcodes']}');
+                            debugPrint(
+                                'postal codes ${result.data!['postcodes']}');
                             // set the defualt value
                             // widget.orderController.selectedPostalCode.value =
                             //     postCodeList[0].postcode.toString();
@@ -340,7 +341,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                   border: OutlineInputBorder(),
                                 ),
                                 onChanged: (dynamic data) {
-                                  print('selected postcode $data');
+                                  debugPrint('selected postcode $data');
                                   widget.orderController.selectedPostalCode
                                       .value = data;
                                 },
@@ -361,7 +362,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                               value: widget.orderController
                                   .makeDefaultShippingAddress.value,
                               onChanged: (bool? value) {
-                                print('checkbox $value');
+                                debugPrint('checkbox $value');
                                 widget.orderController
                                     .makeDefaultShippingAddress.value = value!;
                               }),
@@ -371,7 +372,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                     ElevatedButton(
                         onPressed: () {
                           showForm.value = !showForm.value;
-                          print(
+                          debugPrint(
                               'current post code ${widget.orderController.selectedPostalCode.value}');
                           orderController.setShippingAddress(false);
                         },
@@ -452,7 +453,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                           .value =
                                       newValue
                                           as Query$GetEligibleShippingMethods$eligibleShippingMethods;
-                                  print(
+                                  debugPrint(
                                       'delivery time selected is ${orderController.currentlySelectedShippingMethod.value!.code}');
                                 },
                                 items: orderController
@@ -485,7 +486,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       ),
                       onChanged: (dynamic newValue) {
                         orderController.selectedPaymentOption.value = newValue;
-                        print(
+                        debugPrint(
                             'payment option selected is ${orderController.selectedPaymentOption.value}');
                       },
                       items: orderController.paymentOptionDropdownItems.value
@@ -510,16 +511,17 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                             onChanged: (bool data) {
                               widget.orderController.hasCouponCode.value = data;
 
-                              print(
+                              debugPrint(
                                   'has coupon code ${widget.orderController.hasCouponCode.value}');
                               if (widget
                                       .orderController.hasCouponCode.isFalse &&
-                                  widget.orderController.couponCode.value != CouponCodeEnum.noCode.name) {
+                                  widget.orderController.couponCode.value !=
+                                      CouponCodeEnum.noCode.name) {
                                 widget.orderController.removeCouponCode(
                                     widget.orderController.couponCode.value);
-                                widget.orderController.couponCode.value = CouponCodeEnum.noCode.name;
+                                widget.orderController.couponCode.value =
+                                    CouponCodeEnum.noCode.name;
                               }
-
                             })),
                       ),
                       Text(
@@ -531,42 +533,46 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                   Obx(() => widget.orderController.hasCouponCode.isTrue
                       ? Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: orderController.couponCodeList.value!.isNotEmpty ? DropdownButtonFormField<String>(
-                            value: orderController.couponCode.value,
-
-                            isExpanded: true,
-                            decoration: InputDecoration(
-                              label: Text(
-                                'Please select a coupon code',
-                                style: CustomTheme.headerStyle,
-                              ),
-                              border: OutlineInputBorder(),
-                            ),
-                            onChanged: (dynamic newValue) {
-                              orderController.couponCode.value =
-                                  newValue;
-                              print(
-                                  'coupon code selected is ${orderController.couponCode.value}');
-                            },
-                            items: [
-                              DropdownMenuItem(
-                                value: CouponCodeEnum.noCode.name,
-                                child: Text('Please select a coupon code',
-                                  style: CustomTheme.headerStyle,
-                                ),
-                              ),
-                              ...orderController
-                                  .couponCodeList.value
-                              !.map((String option) {
-                                return DropdownMenuItem(
-                                  value: option,
-                                  child: Text(option == CouponCodeEnum.noCode.name ? 'Please select coupon code' : option,
-                                    style: CustomTheme.headerStyle,
+                          child: orderController
+                                  .couponCodeList.value!.isNotEmpty
+                              ? DropdownButtonFormField<String>(
+                                  value: orderController.couponCode.value,
+                                  isExpanded: true,
+                                  decoration: InputDecoration(
+                                    label: Text(
+                                      'Please select a coupon code',
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    border: OutlineInputBorder(),
                                   ),
-                                );
-                              }).toList()
-                            ],
-                          ) : SizedBox(),
+                                  onChanged: (dynamic newValue) {
+                                    orderController.couponCode.value = newValue;
+                                    debugPrint(
+                                        'coupon code selected is ${orderController.couponCode.value}');
+                                  },
+                                  items: [
+                                    DropdownMenuItem(
+                                      value: CouponCodeEnum.noCode.name,
+                                      child: Text(
+                                        'Please select a coupon code',
+                                        style: CustomTheme.headerStyle,
+                                      ),
+                                    ),
+                                    ...orderController.couponCodeList.value!
+                                        .map((String option) {
+                                      return DropdownMenuItem(
+                                        value: option,
+                                        child: Text(
+                                          option == CouponCodeEnum.noCode.name
+                                              ? 'Please select coupon code'
+                                              : option,
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                      );
+                                    }).toList()
+                                  ],
+                                )
+                              : SizedBox(),
                         )
                       : SizedBox()),
                 ],

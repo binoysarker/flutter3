@@ -37,7 +37,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print('arguments $routerArguments');
+      debugPrint('arguments $routerArguments');
       collectionsController.currentSkipCount.value = 0;
       collectionsController.getSingleCollectionDetail(routerArguments['id']);
     });
@@ -97,11 +97,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                             _scrollController.position.pixels;
                         if (_scrollController.position.userScrollDirection ==
                             ScrollDirection.reverse) {
-                          // print('user is going down ${scrollPosition}');
+                          // debugPrint('user is going down ${scrollPosition}');
                         } else if (_scrollController
                                 .position.userScrollDirection ==
                             ScrollDirection.forward) {
-                          // print('user is going up ${scrollPosition}');
+                          // debugPrint('user is going up ${scrollPosition}');
                         }
                         if (scrollPosition >= 200) {
                           showScrollTopButton.value = true;
@@ -125,7 +125,9 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                           // SizedBox(
                           //   height: 20,
                           // ),
-                          SearchComponent(homePageController: homePageController, productsController: productsController),
+                          SearchComponent(
+                              homePageController: homePageController,
+                              productsController: productsController),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),

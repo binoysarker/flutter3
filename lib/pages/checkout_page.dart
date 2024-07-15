@@ -19,7 +19,7 @@ import '../services/util_service.dart';
 
 class CheckoutPage extends StatefulWidget {
   final DialogService? dialogService;
-  const CheckoutPage({Key? key,this.dialogService}) : super(key: key);
+  const CheckoutPage({Key? key, this.dialogService}) : super(key: key);
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -28,8 +28,6 @@ class CheckoutPage extends StatefulWidget {
 class _CheckoutPageState extends State<CheckoutPage> {
   OrderController orderController = Get.find<OrderController>();
   UserController userController = Get.find<UserController>();
-
-
 
   @override
   void initState() {
@@ -117,8 +115,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
       orderController.setShippingAddress(true);
       orderController.setShippingMethod();
     }
-    void finalCleanupProcess(){
-      print('last step ${orderController.currentStep.value}');
+
+    void finalCleanupProcess() {
+      debugPrint('last step ${orderController.currentStep.value}');
       orderController.removeAllItemFromOrder();
       orderController.resetShippingMethodForm();
 
@@ -142,9 +141,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     return SafeArea(
       child: WillPopScope(
-        onWillPop: (){
-          print('current step ${orderController.currentStep.value}');
-          if(orderController.currentStep.value == 2) {
+        onWillPop: () {
+          debugPrint('current step ${orderController.currentStep.value}');
+          if (orderController.currentStep.value == 2) {
             finalCleanupProcess();
             return Future.value(false);
           }
@@ -164,67 +163,68 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     type: StepperType.horizontal,
                     currentStep: orderController.currentStep.value,
                     onStepContinue: () async {
-                      print('current step ${orderController.currentStep.value}');
+                      debugPrint(
+                          'current step ${orderController.currentStep.value}');
 
                       if (orderController.currentStep.value == 0) {
-                        if (orderController.currentlySelectedShippingMethod.value !=
+                        if (orderController
+                                .currentlySelectedShippingMethod.value !=
                             null) {
-                          if(orderController.selectedPaymentOption.value != PaymentOptionType.noITem.name){
-                          print(
-                              '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
-                          if (orderController.useCurrentUserAddress.isTrue || orderController.useShippingAddress.isTrue) {
-                            print(
-                                'has coupon code ${orderController.hasCouponCode}');
-                            if (orderController.hasCouponCode.isTrue) {
-                              if(orderController.couponCode.value != CouponCodeEnum.noCode.name){
-                                var res = orderController
-                                    .applyCouponCode(orderController.couponCode.value);
-                                res.then((value) {
-                                  print('testing $value');
-                                  if (value) {
-
-                                    addShippingDetail();
-                                  }
-                                });
-
-                              }else {
-                                Get.snackbar(
-                                  '',
-                                  'Please enter a coupon code',
-                                  colorText: Colors.red,
-                                  backgroundColor: Colors.yellow,
-                                );
-                              }
-                            } else {
-
-                              addShippingDetail();
-                            }
-                          } else {
-                            final form =
-                                AllGlobalKeys.shippingAddressFormKey.currentState;
-                            if (form != null) {
-                              if (form.validate()) {
-                                print('validated');
-                                addShippingDetail();
+                          if (orderController.selectedPaymentOption.value !=
+                              PaymentOptionType.noITem.name) {
+                            debugPrint(
+                                '${orderController.currentlySelectedShippingMethod.value} ${orderController.currentlySelectedCountryCode.value}');
+                            if (orderController.useCurrentUserAddress.isTrue ||
+                                orderController.useShippingAddress.isTrue) {
+                              debugPrint(
+                                  'has coupon code ${orderController.hasCouponCode}');
+                              if (orderController.hasCouponCode.isTrue) {
+                                if (orderController.couponCode.value !=
+                                    CouponCodeEnum.noCode.name) {
+                                  var res = orderController.applyCouponCode(
+                                      orderController.couponCode.value);
+                                  res.then((value) {
+                                    debugPrint('testing $value');
+                                    if (value) {
+                                      addShippingDetail();
+                                    }
+                                  });
+                                } else {
+                                  Get.snackbar(
+                                    '',
+                                    'Please enter a coupon code',
+                                    colorText: Colors.red,
+                                    backgroundColor: Colors.yellow,
+                                  );
+                                }
                               } else {
-                                print('invalid');
+                                addShippingDetail();
+                              }
+                            } else {
+                              final form = AllGlobalKeys
+                                  .shippingAddressFormKey.currentState;
+                              if (form != null) {
+                                if (form.validate()) {
+                                  debugPrint('validated');
+                                  addShippingDetail();
+                                } else {
+                                  debugPrint('invalid');
+                                  Get.snackbar(
+                                    '',
+                                    'Please fill up the form',
+                                    colorText: Colors.red,
+                                    backgroundColor: Colors.yellow,
+                                  );
+                                }
+                              } else {
                                 Get.snackbar(
                                   '',
-                                  'Please fill up the form',
+                                  'Please select an address',
                                   colorText: Colors.red,
                                   backgroundColor: Colors.yellow,
                                 );
                               }
-                            } else {
-                              Get.snackbar(
-                                '',
-                                'Please select an address',
-                                colorText: Colors.red,
-                                backgroundColor: Colors.yellow,
-                              );
                             }
-                          }
-
                           } else {
                             Get.snackbar(
                               '',
@@ -251,18 +251,22 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           orderController.createRazorPayOrder();
                         } else {
                           UtilService.toggleScreenshotRestriction(false);
-                          var states = await orderController.getNextOrderStates();
-                          final isSuccess = await orderController.transitionToOrderState(states[0]);
+                          var states =
+                              await orderController.getNextOrderStates();
+                          final isSuccess = await orderController
+                              .transitionToOrderState(states[0]);
 
-                          if(isSuccess){
-                              orderController.addPaymentToOrder({
-                                'amount':
-                                    '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
-                                'paymentType': PaymentOptionType.offline.name,
-                              });
-                              processOfflinePaymentSms();
-                          }else {
-                            widget.dialogService!.showMyDialog(message: 'Please clear your cart and try again', methodType: 1);
+                          if (isSuccess) {
+                            orderController.addPaymentToOrder({
+                              'amount':
+                                  '${UtilService.formatPriceValue(orderController.activeOrderResponse.value!.totalWithTax)}',
+                              'paymentType': PaymentOptionType.offline.name,
+                            });
+                            processOfflinePaymentSms();
+                          } else {
+                            widget.dialogService!.showMyDialog(
+                                message: 'Please clear your cart and try again',
+                                methodType: 1);
                           }
                           // orderController.isLoading.value = false;
                         }
@@ -274,9 +278,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       } else if (orderController.currentStep.value == 2) {
                         null;
                       } else {
-                        if(orderController.hasCouponCode.isTrue && orderController.couponCode.value != CouponCodeEnum.noCode.name){
-                          orderController.removeCouponCode(orderController.couponCode.value);
-                          orderController.couponCode.value = CouponCodeEnum.noCode.name;
+                        if (orderController.hasCouponCode.isTrue &&
+                            orderController.couponCode.value !=
+                                CouponCodeEnum.noCode.name) {
+                          orderController.removeCouponCode(
+                              orderController.couponCode.value);
+                          orderController.couponCode.value =
+                              CouponCodeEnum.noCode.name;
                         }
                         orderController.currentStep.value--;
                       }
@@ -295,8 +303,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                       color: CustomTheme.progressIndicatorColor,
                                     ),
                                   )
-                                : Text(
-                                    checkText(orderController.currentStep.value))),
+                                : Text(checkText(
+                                    orderController.currentStep.value))),
                         orderController.currentStep.value != 2
                             ? ElevatedButton(
                                 onPressed: details.onStepCancel,

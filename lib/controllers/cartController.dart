@@ -18,9 +18,10 @@ class CartController extends GetxController {
             variables:
                 Variables$Mutation$AddToCart(variantId: variantId, qty: qty)));
     if (res.hasException) {
-      print('add item response ${res.exception.toString()}');
+      debugPrint('add item response ${res.exception.toString()}');
       isLoading.value = false;
-      Get.snackbar('Error', 'can not add item to cart',backgroundColor: Colors.red,colorText: Colors.white);
+      Get.snackbar('Error', 'can not add item to cart',
+          backgroundColor: Colors.red, colorText: Colors.white);
       orderController.removeAllItemFromOrder();
     }
     if (res.data != null) {
@@ -29,7 +30,8 @@ class CartController extends GetxController {
         Get.snackbar('', jsonData['message'],
             backgroundColor: Colors.red, colorText: Colors.white);
       } else {
-        print('add item response ${res.parsedData!.addItemToOrder.toJson()}');
+        debugPrint(
+            'add item response ${res.parsedData!.addItemToOrder.toJson()}');
         // orderController.activeOrderResponse.value = Query$GetActiveOrder$activeOrder.fromJson(res.parsedData!.addItemToOrder.toJson());
 
         orderController.getActiveOrders();
@@ -46,7 +48,7 @@ class CartController extends GetxController {
             variables: Variables$Mutation$AdjustOrderLine(
                 orderLineId: orderLineId, quantity: quantity)));
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       isLoading.value = false;
       Get.snackbar('Error', res.exception.toString(),
           colorText: Colors.white, backgroundColor: Colors.red);
@@ -54,7 +56,7 @@ class CartController extends GetxController {
     }
     if (res.data != null) {
       var parrsedData = res.parsedData!.adjustOrderLine.toJson();
-      print('adjust cart item response ${parrsedData}');
+      debugPrint('adjust cart item response ${parrsedData}');
       if (parrsedData['message'] != null) {
         Get.snackbar('Error', parrsedData['message'],
             colorText: Colors.white, backgroundColor: Colors.red);

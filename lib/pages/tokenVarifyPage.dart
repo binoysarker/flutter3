@@ -48,7 +48,7 @@ class TokenVerifyPage extends StatelessWidget {
               Container(
                 child: ElevatedButton(
                     onPressed: () {
-                      // print('${tokenPageController.tokenController.text.length}');
+                      // debugPrint('${tokenPageController.tokenController.text.length}');
                       tokenPageController.onTokenSubmit(context);
                     },
                     child: Text('Verify Token')),

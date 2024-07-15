@@ -46,38 +46,36 @@ class PaymentServices {
         'name': orderController
             .shippingAddressOrder.value!.shippingAddress!.fullName,
       },
-
     };
 
     try {
       razorpay.open(options);
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
     }
   }
 
   static void handlePaymentSuccess(PaymentSuccessResponse response) {
-    print(
+    debugPrint(
         'Success Response: ${response.orderId},${response.paymentId},${response.signature}');
     PaymentServices.orderController.paymentSuccessResponse.value = response;
     orderController.verifyPayment();
   }
 
   static void handlePaymentError(PaymentFailureResponse response) {
-    print('Error Response: ${response.message}');
+    debugPrint('Error Response: ${response.message}');
     Get.snackbar('', '${response.message}', backgroundColor: Colors.red);
     //  Payment Failed
     UtilService.sendSms(
         '647b0268d6fc056087309262',
         userController.currentAuthenticatedUser.value!.phoneNumber.toString(),
         SmsDeliveryType.payment_failed,
-        (orderController.getOrderByCodeResponse.value!.totalWithTax /
-                100)
+        (orderController.getOrderByCodeResponse.value!.totalWithTax / 100)
             .toString(),
         orderController.getOrderByCodeResponse.value!.code.toString());
   }
 
   static void handleExternalWallet(ExternalWalletResponse response) {
-    print('External SDK Response: ${response.walletName}');
+    debugPrint('External SDK Response: ${response.walletName}');
   }
 }

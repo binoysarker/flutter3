@@ -7,7 +7,8 @@ import 'package:recipe.app/services/commonVariables.dart';
 class GraphqlService {
   static dynamic link;
   static HttpLink httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}');
-  static HttpLink hygraphHttpLink = HttpLink('${dotenv.env['HYGRAPH_API_URL']}');
+  static HttpLink hygraphHttpLink =
+      HttpLink('${dotenv.env['HYGRAPH_API_URL']}');
   static String currentAuthToken = "";
 
   static void setToken(String token) {
@@ -15,7 +16,7 @@ class GraphqlService {
     var localToken = localStorage.getItem(LocalStorageStrings.auth_token.name);
     AuthLink authLink =
         AuthLink(getToken: () async => 'Bearer ${localToken ?? token}');
-    print('current totken $token');
+    debugPrint('current totken $token');
     GraphqlService.link = authLink.concat(GraphqlService.httpLink);
   }
 
@@ -23,16 +24,14 @@ class GraphqlService {
     GraphqlService.link = null;
   }
 
-
-
   ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(
       link: AuthLink(getToken: () async {
         if (GraphqlService.currentAuthToken != "") {
-          print('current token is ${GraphqlService.currentAuthToken}');
+          debugPrint('current token is ${GraphqlService.currentAuthToken}');
           return 'Bearer ${GraphqlService.currentAuthToken}';
         } else {
-          print('no token is there');
+          debugPrint('no token is there');
           return "";
         }
       }).concat(GraphqlService.httpLink),

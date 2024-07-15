@@ -30,12 +30,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print('arguments ${widget.routerArguments}');
+      debugPrint('arguments ${widget.routerArguments}');
       productsController.getProductDetail(widget.routerArguments['id']);
       var item = orderController.activeOrderResponse.value!.lines
           .firstWhereOrNull((element) =>
               element.id == productsController.selectedProductDetail.value!.id);
-      print('quantity is $item');
+      debugPrint('quantity is $item');
       productsController.quantityController.text = '1';
       productsController.currentQuantity.value = 1;
     });
@@ -43,7 +43,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   String getImage() {
     String url = '';
-    print(
+    debugPrint(
         'get image ${productsController.selectedProductDetail.value!.toJson()}');
     if (productsController.selectedProductDetail.value!.assets.isNotEmpty) {
       if (productsController.selectedProductDetail.value?.assets != null) {
@@ -51,11 +51,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             .selectedProductDetail.value!.assets.first.preview;
       } else {
         var item = productsController.selectedProductDetail.value?.toJson();
-        print('other item $item');
+        debugPrint('other item $item');
       }
     } else {
       url = productsController
-          .productDetailResponse.value!.featuredAsset?.preview ?? CommonVariableData.placeholder;
+              .productDetailResponse.value!.featuredAsset?.preview ??
+          CommonVariableData.placeholder;
     }
     return url;
   }
@@ -63,10 +64,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   String getPrice() {
     return ' price: ${UtilService.getCurrencySymble(productsController.selectedProductDetail.value?.currencyCode.name ?? 'USD')}${UtilService.formatPriceValue(productsController.updatedPrice.value)}';
   }
+
   String getOptionQuantity() {
     var quantity = '';
-    if(productsController.selectedProductDetail.value!.options.length > 0){
-      quantity = productsController.selectedProductDetail.value!.options.first.name;
+    if (productsController.selectedProductDetail.value!.options.length > 0) {
+      quantity =
+          productsController.selectedProductDetail.value!.options.first.name;
     }
     return quantity;
   }
@@ -230,7 +233,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 visible: productsController
                                     .productDetailVariants.isNotEmpty,
                                 child: DropdownButtonFormField(
-                                  isExpanded: true,
+                                    isExpanded: true,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Select Variant'),
@@ -247,7 +250,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             ))
                                         .toList(),
                                     onChanged: (dynamic data) {
-                                      print(data);
+                                      debugPrint(data);
                                       productsController
                                           .updateProductDetail(data);
                                     }),

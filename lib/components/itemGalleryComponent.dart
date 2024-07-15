@@ -44,7 +44,8 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
     String url = '';
     if (widget.controllerType ==
         ControllerTypeNames.productChildrenVariantItems.name) {
-      print('element detail image ${element.product.featuredAsset.preview}');
+      debugPrint(
+          'element detail image ${element.product.featuredAsset.preview}');
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       url = '${item.featuredAsset!.preview}';
@@ -59,7 +60,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   checkList() {
-    print('current list ${widget.currentList}');
+    debugPrint('current list ${widget.currentList}');
     if (widget.controllerType ==
             ControllerTypeNames.productChildrenVariantItems.name ||
         widget.controllerType ==
@@ -99,9 +100,9 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   // String? getOptionQuantity(dynamic element) {
-  // print('check element $element');
+  // debugPrint('check element $element');
   // var item = element as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
-  // print('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
+  // debugPrint('item detail ${item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name}');
   // return item.options.firstWhereOrNull((el) => el.name.isNotEmpty)?.name;
   // }
 
@@ -120,17 +121,17 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
           as Query$GetCollectionsByIdOrSlug$collection$productVariants$items$product;
       id = item.id;
     }
-    print('product id $id');
+    debugPrint('product id $id');
     cartController.addItemToCart(id, 1);
     // checkList();
   }
 
   void goToPage(dynamic element) {
-    print(element);
+    debugPrint(element);
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;
-      print(item.toJson());
+      debugPrint("${item.toJson()}");
       Get.to(() => ProductDetailPage(), arguments: {'id': item.product.id});
     } else {
       var item = element
@@ -192,7 +193,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                         children: [
                           ...widget.givenList.map((element) => GestureDetector(
                                 onTap: () {
-                                  print(widget.controllerType);
+                                  debugPrint(widget.controllerType);
                                   goToPage(element);
                                 },
                                 child: SizedBox(
@@ -246,7 +247,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                                         //             onPressed: () {
                                         //               selectedId =
                                         //                   int.parse(element.id);
-                                        //               print(
+                                        //               debugPrint(
                                         //                   'select item $element');
                                         //               addItemToCart(element);
                                         //
@@ -273,7 +274,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                           widget.givenList.length > 0
                               ? ElevatedButton(
                                   onPressed: () {
-                                    print('go back');
+                                    debugPrint('go back');
                                     collectionsController
                                         .currentSkipCount.value -= 100;
                                     collectionsController
@@ -290,7 +291,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
                               : SizedBox(),
                           ElevatedButton(
                               onPressed: () {
-                                print('show more');
+                                debugPrint('show more');
                                 collectionsController.currentSkipCount.value +=
                                     100;
                                 collectionsController

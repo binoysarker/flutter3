@@ -35,11 +35,11 @@ class UserController with ChangeNotifier {
     final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       isLoading2.value = false;
     }
     if (res.data != null) {
-      print('logout ${res.parsedData!.logout.toJson()}');
+      debugPrint('logout ${res.parsedData!.logout.toJson()}');
       isLoading2.value = false;
       if (res.parsedData!.logout.success) {
         SystemNavigator.pop();
@@ -60,15 +60,15 @@ class UserController with ChangeNotifier {
               FirebaseFirestore.instance.collection('devices');
           deviceCollection.where('token', isEqualTo: fcmToken).get().then(
               (querySnapshots) {
-            print('all tokens ${querySnapshots.docs}');
+            debugPrint('all tokens ${querySnapshots.docs}');
             if (querySnapshots.docs.isEmpty) {
               deviceCollection.add({
                 'userInfo': currentAuthenticatedUser.value?.toJson(),
-                'token': fcmToken}).then(
-                  (insertedDoc) => {print('data is inserted')},
-                  onError: (error) => print('error $error'));
+                'token': fcmToken
+              }).then((insertedDoc) => {debugPrint('data is inserted')},
+                  onError: (error) => debugPrint('error $error'));
             }
-          }, onError: (e) => print('some error $e'));
+          }, onError: (e) => debugPrint('some error $e'));
         }
       }
     });
@@ -80,11 +80,11 @@ class UserController with ChangeNotifier {
     final res = await graphqlService.client.value
         .query$GetActiveCustomer(Options$Query$GetActiveCustomer());
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       isLoading2.value = false;
     }
     if (res.data != null) {
-      print('active customer ${res.parsedData?.activeCustomer?.toJson()}');
+      debugPrint('active customer ${res.parsedData?.activeCustomer?.toJson()}');
 
       var activeCustomer = res.parsedData?.activeCustomer;
       if (activeCustomer == null) {
@@ -110,12 +110,12 @@ class UserController with ChangeNotifier {
                     lastName: lastName,
                     phoneNumber: phoneNumber))));
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       isLoading2.value = false;
     }
     if (res.data != null) {
       isLoading2.value = false;
-      print('updated customer ${res.parsedData!.updateCustomer.toJson()}');
+      debugPrint('updated customer ${res.parsedData!.updateCustomer.toJson()}');
       getActiveCustomer();
     }
   }
@@ -140,11 +140,11 @@ class UserController with ChangeNotifier {
                     defaultShippingAddress: true,
                     defaultBillingAddress: false))));
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       isLoading2.value = false;
     }
     if (res.data != null) {
-      print(
+      debugPrint(
           'update customer address ${res.parsedData!.updateCustomerAddress.toJson()}');
       // currentAuthenticatedUser.value!.addresses?.forEach((element) {
       //   if(element.id == res.parsedData!.updateCustomerAddress.id){
@@ -164,7 +164,7 @@ class UserController with ChangeNotifier {
     final res = await graphqlService.client.value
         .query$GetCurrentUser(Options$Query$GetCurrentUser());
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       final List<GraphQLError> graphqlErrors =
           (res.exception as OperationException).graphqlErrors;
 
@@ -175,7 +175,7 @@ class UserController with ChangeNotifier {
       }
     }
     if (res.data != null) {
-      print('response ${res.data}');
+      debugPrint('response ${res.data}');
     }
   }
 }

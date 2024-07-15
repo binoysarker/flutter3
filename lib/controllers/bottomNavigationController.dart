@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/get.dart';
 
-class BottomNavigationController extends GetxController{
+class BottomNavigationController extends GetxController {
   var selectedIndex = 0.obs;
-  void setItemIndex(int index){
+  void setItemIndex(int index) {
     selectedIndex.value = index;
-    print('selected index ${selectedIndex.value}');
+    debugPrint('selected index ${selectedIndex.value}');
   }
 }

@@ -61,18 +61,18 @@ class _StorePageState extends State<StorePage> {
       userController.getActiveCustomer();
       productsController.getProductsList();
       collectionsController.currentSkipCount.value = 0;
-      collectionsController.getAllCollections(collectionsController.currentSkipCount.value);
+      collectionsController
+          .getAllCollections(collectionsController.currentSkipCount.value);
       orderController.getActiveOrders();
       userController.checkDeviceToken();
       printKeyHash();
     });
   }
-  void printKeyHash() async{
 
-    String? key=await FlutterFacebookKeyhash.getFaceBookKeyHash ??
+  void printKeyHash() async {
+    String? key = await FlutterFacebookKeyhash.getFaceBookKeyHash ??
         'Unknown platform version';
-    print('facebook key is $key');
-
+    debugPrint('facebook key is $key');
   }
 
   @override
@@ -125,14 +125,14 @@ class _StorePageState extends State<StorePage> {
                   final scrollPosition = _scrollController.position.pixels;
                   if (_scrollController.position.userScrollDirection ==
                       ScrollDirection.reverse) {
-                    // print('user is going down ${scrollPosition}');
+                    // debugPrint('user is going down ${scrollPosition}');
                   } else if (_scrollController.position.userScrollDirection ==
                       ScrollDirection.forward) {
-                    // print('user is going up ${scrollPosition}');
+                    // debugPrint('user is going up ${scrollPosition}');
                   }
-                  if(scrollPosition >= 250){
+                  if (scrollPosition >= 250) {
                     showScrollTopButton.value = true;
-                  }else {
+                  } else {
                     showScrollTopButton.value = false;
                   }
                   return false;
@@ -184,26 +184,28 @@ class _StorePageState extends State<StorePage> {
 
                                     return Column(
                                       children: [
-                                        CarouselSlider(items: assetList
-                                        .map(
-                                        (e) => Container(
-                                          width: double.infinity,
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                        '${CommonVariableData.placeholder}',
-                                        image: e.url,
-                                        imageErrorBuilder: (context,
-                                            error, stackTrace) =>
-                                            Image.asset(
-                                                '${CommonVariableData.placeholder}'),
-                                      ),
-                                    ),
-                                    )
-                                        .toList(), options: CarouselOptions(
-                                          viewportFraction: 1.0,
-                                          autoPlay: true
-                                        )),
-
+                                        CarouselSlider(
+                                            items: assetList
+                                                .map(
+                                                  (e) => Container(
+                                                    width: double.infinity,
+                                                    child: FadeInImage
+                                                        .assetNetwork(
+                                                      placeholder:
+                                                          '${CommonVariableData.placeholder}',
+                                                      image: e.url,
+                                                      imageErrorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                              '${CommonVariableData.placeholder}'),
+                                                    ),
+                                                  ),
+                                                )
+                                                .toList(),
+                                            options: CarouselOptions(
+                                                viewportFraction: 1.0,
+                                                autoPlay: true)),
                                         SizedBox(
                                           height: 0,
                                         ),
@@ -234,7 +236,9 @@ class _StorePageState extends State<StorePage> {
               floatingActionButton: Obx(() => showScrollTopButton.isTrue
                   ? FloatingActionButton(
                       onPressed: () {
-                        _scrollController.animateTo(0, duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
+                        _scrollController.animateTo(0,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
                       },
                       child: Icon(Icons.arrow_upward))
                   : SizedBox()),

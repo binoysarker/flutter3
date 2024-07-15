@@ -25,7 +25,7 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   String getFormatedString(String dateText) {
     if (dateText.isNotEmpty) {
       var dateTime = DateTime.parse(dateText).toLocal();
-      return DateFormat('yMd','en-IN').format(dateTime);
+      return DateFormat('yMd', 'en-IN').format(dateTime);
     } else {
       return '';
     }
@@ -34,9 +34,9 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
   @override
   void initState() {
     super.initState();
-    initializeDateFormatting('en-IN','');
+    initializeDateFormatting('en-IN', '');
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      print('invoice page is loaded');
+      debugPrint('invoice page is loaded');
     });
   }
 

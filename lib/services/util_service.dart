@@ -53,7 +53,7 @@ class UtilService {
   }
 
   UtilService._internal() {
-    print('${dotenv.env['API_BASE_URL']}');
+    debugPrint('${dotenv.env['API_BASE_URL']}');
     _apiBaseUrl = dotenv.env['API_BASE_URL'] as String;
     _shopApiUrl = dotenv.env['SHOP_API_URL'] as String;
     appName = dotenv.env['APP_NAME'] as String;
@@ -64,7 +64,7 @@ class UtilService {
   }
 
   static void addItemToCart(dynamic element, String controllerType) {
-    print('select item $element controller type $controllerType');
+    debugPrint('select item $element controller type $controllerType');
     if (controllerType == ControllerTypeNames.productVariantItems.name) {
       var item = element as Query$GetAllProducts$products$items;
       var selectedVariant =
@@ -86,7 +86,7 @@ class UtilService {
       String code,
       int price) {
     var priceString = '';
-    print(code);
+    debugPrint(code);
     if (code == 'order_percentage_discount') {
       var sumOfLines = 0;
       for (var i in lines) {
@@ -169,13 +169,13 @@ class UtilService {
     }
 
     try {
-      print('send sms detail ${smsData}');
+      debugPrint('send sms detail ${smsData}');
       final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
-      print('send sms response ${res.body}');
+      debugPrint('send sms response ${res.body}');
     } on Exception catch (e) {
-      print('send sms error ${e.toString()}');
+      debugPrint('send sms error ${e.toString()}');
     }
   }
 

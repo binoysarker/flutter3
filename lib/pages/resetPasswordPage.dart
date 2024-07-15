@@ -71,18 +71,17 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                             ),
                             validator:
                                 ValidatorDefinition.passwordMultiValidator,
-
                           ),
                         ),
                         ElevatedButton(
                             onPressed: () {
                               if (resetPasswordForm.currentState!.validate()) {
-                                print('validated');
-                                print(
+                                debugPrint('validated');
+                                debugPrint(
                                     'otp text is ${loginPageController.otpController.text} currentlyGivenOTP is ${loginPageController.currentlyGivenOTP.value}');
                                 if (loginPageController.otpController.text ==
-                                    loginPageController
-                                        .currentlyGivenOTP.value.toString()) {
+                                    loginPageController.currentlyGivenOTP.value
+                                        .toString()) {
                                   loginPageController.resetUserPassword();
                                 } else {
                                   Get.snackbar('', 'OTP is wrong',
@@ -90,7 +89,7 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                                       colorText: Colors.red);
                                 }
                               } else {
-                                print('not validated');
+                                debugPrint('not validated');
                                 Get.snackbar('', 'Please Fill up the form',
                                     backgroundColor: Colors.yellow,
                                     colorText: Colors.red);

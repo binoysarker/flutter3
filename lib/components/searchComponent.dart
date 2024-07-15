@@ -33,7 +33,7 @@ class SearchComponent extends StatelessWidget {
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: homePageController.productSearchController,
               onChanged: (String value) {
-                print('$value');
+                debugPrint('$value');
                 productsController.searchForProducts(value);
               },
               decoration: InputDecoration(
@@ -67,23 +67,24 @@ class SearchComponent extends StatelessWidget {
                           child: ListView.builder(
                             itemBuilder: (context, index) => ListTile(
                                 onTap: () {
-                                  print(
+                                  debugPrint(
                                       '${productsController.searchResultList[index].toJson()}');
-                                  Get.to(() => ProductDetailPage(),
-                                      arguments: {
-                                        'id':
-                                        productsController.searchResultList[index].productId
-                                      });
+                                  Get.to(() => ProductDetailPage(), arguments: {
+                                    'id': productsController
+                                        .searchResultList[index].productId
+                                  });
                                   resetSearch(context);
                                 },
                                 leading: Image(
                                   height: 50,
                                   width: 50,
-                                  image: NetworkImage(
-                                      productsController.searchResultList[index].productAsset!.preview),
+                                  image: NetworkImage(productsController
+                                      .searchResultList[index]
+                                      .productAsset!
+                                      .preview),
                                 ),
-                                title: Text(
-                                    productsController.searchResultList[index].productName)),
+                                title: Text(productsController
+                                    .searchResultList[index].productName)),
                             itemCount:
                                 productsController.searchResultList.length,
                           ),

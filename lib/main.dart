@@ -32,7 +32,6 @@ void main() async {
   debugPrint('Waiting for debugger....');
   await dotenv.load(fileName: ".env");
 
-  
   Get.put(UtilityController());
   Get.put(UserController());
   Get.put(BottomNavigationController());
@@ -75,7 +74,8 @@ class _MyAppState extends State<MyApp> {
       setState(() {
         _updateInfo = info;
       });
-      if(_updateInfo?.updateAvailability == UpdateAvailability.updateAvailable){
+      if (_updateInfo?.updateAvailability ==
+          UpdateAvailability.updateAvailable) {
         InAppUpdate.startFlexibleUpdate().then((_) {
           setState(() {
             // _flexibleUpdateAvailable = true;
@@ -84,7 +84,6 @@ class _MyAppState extends State<MyApp> {
           showSnack(e.toString());
         });
       }
-
     }).catchError((e) {
       showSnack(e.toString());
     });
@@ -123,11 +122,11 @@ class _MyAppState extends State<MyApp> {
         home: FutureBuilder(
             future: authTokenStorage.ready,
             builder: (BuildContext context, snapshot) {
-              // print('snapshot $snapshot');
+              // debugPrint('snapshot $snapshot');
               if (snapshot.hasData) {
                 var authToken = authTokenStorage
                     .getItem(LocalStorageStrings.auth_token.name);
-                print('token $authToken');
+                debugPrint('token $authToken');
                 if (authToken == null) {
                   return LoginPage();
                 } else {

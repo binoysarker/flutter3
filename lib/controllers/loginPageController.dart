@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:encryptor/encryptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,6 @@ import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/authentication.graphql.dart';
 import 'package:recipe.app/pages/login_page.dart';
 import 'package:recipe.app/pages/register_success_page.dart';
-import 'package:recipe.app/pages/resetPasswordPage.dart';
 import 'package:recipe.app/pages/store_page.dart';
 import 'package:recipe.app/pages/verifyOTPPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
@@ -92,16 +92,17 @@ class LoginPageController extends GetxController {
           value ? 'true' : 'false');
     });
     //  now check if it is true
-    print('check box status ${checkboxStatus.value}');
+    debugPrint('check box status ${checkboxStatus.value}');
     if (value) {
       // this encryption should be static and come from env
-      print('data need to be stored');
+      debugPrint('data need to be stored');
 
       var encryptedUserPhone = Encryptor.encrypt(
           dotenv.env['ENCRYPT_KEY'].toString(), phoneNumber.text);
       var encryptedUserPassword = Encryptor.encrypt(
-          dotenv.env['ENCRYPT_KEY'].toString(), currentlyGivenOTP.value.toString());
-      print('encrypted data $encryptedUserPhone, $encryptedUserPassword');
+          dotenv.env['ENCRYPT_KEY'].toString(),
+          currentlyGivenOTP.value.toString());
+      debugPrint('encrypted data $encryptedUserPhone, $encryptedUserPassword');
 
       passwordStorage.ready.then((value) {
         passwordStorage.setItem(
@@ -128,11 +129,11 @@ class LoginPageController extends GetxController {
     final res = await graphqlService.client.value
         .mutate$LogoutUser(Options$Mutation$LogoutUser());
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
       loading.value = false;
     }
     if (res.data != null) {
-      print('${res.parsedData!.logout.toJson()}');
+      debugPrint('${res.parsedData!.logout.toJson()}');
       loading.value = false;
       authTokenStorage.ready.then((value) => authTokenStorage.clear());
       phoneStorage.ready.then((value) => phoneStorage.clear());
@@ -247,21 +248,20 @@ class LoginPageController extends GetxController {
     }
   }
 
-  void beforeSignInProcess(String phone) async{
+  void beforeSignInProcess(String phone) async {
     try {
-      print('phone $phone');
+      debugPrint('phone $phone');
       graphqlService = GraphqlService();
       final res = await graphqlService.client.value.query$CheckUniquePhone(
           Options$Query$CheckUniquePhone(
               variables: Variables$Query$CheckUniquePhone(phone: phone)));
       if (res.hasException) {
-        print(res.exception.toString());
+        debugPrint(res.exception.toString());
       }
       if (res.data != null) {
         // true means it is unique and false means it is not unique
-        print(res.parsedData?.checkUniquePhone);
+        debugPrint("${res.parsedData?.checkUniquePhone}");
         if (res.parsedData!.checkUniquePhone) {
-
           Get.snackbar('Error', 'This Phone is not present, Please register',
               colorText: Colors.white, backgroundColor: Colors.red);
         } else {
@@ -269,23 +269,23 @@ class LoginPageController extends GetxController {
         }
       }
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
   void checkUniquePhone(String phone) async {
     try {
-      print('phone $phone');
+      debugPrint('phone $phone');
       graphqlService = GraphqlService();
       final res = await graphqlService.client.value.query$CheckUniquePhone(
           Options$Query$CheckUniquePhone(
               variables: Variables$Query$CheckUniquePhone(phone: phone)));
       if (res.hasException) {
-        print(res.exception.toString());
+        debugPrint(res.exception.toString());
       }
       if (res.data != null) {
         // true means it is unique and false means it is not unique
-        print(res.parsedData?.checkUniquePhone);
+        debugPrint("${res.parsedData?.checkUniquePhone}");
         if (res.parsedData!.checkUniquePhone) {
           sendOtpToUser();
         } else {
@@ -294,14 +294,14 @@ class LoginPageController extends GetxController {
         }
       }
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
   void sendOtpToUser() async {
     try {
       generateRandomDigit();
-      print('current otp is ${currentlyGivenOTP.value}');
+      debugPrint('current otp is ${currentlyGivenOTP.value}');
       // registration sms
       smsData['mobiles'] = '+91${phoneNumber.text}';
       smsData['OTP'] = '${currentlyGivenOTP.value}';
@@ -310,12 +310,12 @@ class LoginPageController extends GetxController {
       final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
-      print('${res.body}');
+      debugPrint('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
       AllGlobalKeys.verifyOTPForm.currentState?.reset();
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -329,9 +329,9 @@ class LoginPageController extends GetxController {
       final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
-      print('${res.body}');
+      debugPrint('${res.body}');
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -349,10 +349,10 @@ class LoginPageController extends GetxController {
       phoneNumber: phoneNumber.text,
     ))));
     if (registerResponse.hasException) {
-      print('${registerResponse.exception.toString()}');
+      debugPrint('${registerResponse.exception.toString()}');
     }
     if (registerResponse.data != null) {
-      print('${registerResponse.data}');
+      debugPrint('${registerResponse.data}');
       final registerData =
           registerResponse.parsedData?.registerCustomerAccount.toJson();
 
@@ -384,14 +384,14 @@ class LoginPageController extends GetxController {
                   email:
                       '${phoneNumber.text}@${dotenv.env['USER_EMAIL'].toString()}')));
       if (response.hasException) {
-        print(response.exception.toString());
+        debugPrint(response.exception.toString());
       }
       if (response.data != null) {
-        print(
+        debugPrint(
             'requestPasswordReset ${response.parsedData!.requestPasswordReset!.toJson()}');
       }
       generateRandomDigit();
-      print('current otp is ${currentlyGivenOTP.value}');
+      debugPrint('current otp is ${currentlyGivenOTP.value}');
       // Reset password
 
       smsData['mobiles'] = '+91${phoneNumber.text}';
@@ -401,11 +401,11 @@ class LoginPageController extends GetxController {
       final url = Uri.https(dotenv.env['SMS_URL'].toString(), '/api/v5/flow/');
       final res =
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
-      print('${res.body}');
+      debugPrint('${res.body}');
       Get.offAll(() => VerifyOTPPage());
       resetFormField();
     } on Exception catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -414,12 +414,12 @@ class LoginPageController extends GetxController {
     final res =
         await this.graphqlService.client.value.query$GetPasswordResetToken();
     if (res.hasException) {
-      print(res.exception.toString());
+      debugPrint(res.exception.toString());
       loading.value = false;
     }
     if (res.data != null) {
       var token = res.parsedData!.getPasswordResetToken.toString();
-      print('password token $token');
+      debugPrint('password token $token');
       final response = await this
           .graphqlService
           .client
@@ -428,21 +428,23 @@ class LoginPageController extends GetxController {
               variables: Variables$Mutation$ResetPassword(
                   token: token, password: passwordController.text)));
       if (response.hasException) {
-        print(response.exception.toString());
+        debugPrint(response.exception.toString());
         loading.value = false;
       }
       if (response.data != null) {
-        print(
+        debugPrint(
             'resetUserPassword ${response.parsedData!.resetPassword.toJson()}');
         loading.value = false;
 
         // need to save user password
         var encryptedUserPassword = Encryptor.encrypt(
-            dotenv.env['ENCRYPT_KEY'].toString(), currentlyGivenOTP.value.toString());
-        print('encryptedUserPassword $encryptedUserPassword');
+            dotenv.env['ENCRYPT_KEY'].toString(),
+            currentlyGivenOTP.value.toString());
+        debugPrint('encryptedUserPassword $encryptedUserPassword');
         passwordStorage.ready.then((isReady) {
-          if(isReady){
-            passwordStorage.setItem(LocalStorageStrings.password.name, encryptedUserPassword);
+          if (isReady) {
+            passwordStorage.setItem(
+                LocalStorageStrings.password.name, encryptedUserPassword);
           }
         });
         onUserSignIn();

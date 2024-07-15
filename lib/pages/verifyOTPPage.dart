@@ -20,13 +20,9 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
   final LoginPageController loginPageController =
       Get.find<LoginPageController>();
 
-
-
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
-
   }
 
   @override
@@ -83,15 +79,15 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                             onPressed: () {
                               if (AllGlobalKeys.verifyOTPForm.currentState!
                                   .validate()) {
-                                print('validated');
-                                print(
+                                debugPrint('validated');
+                                debugPrint(
                                     'controller code is ${loginPageController.otpController.text} and current code is ${loginPageController.currentlyGivenOTP.value}');
                                 if (loginPageController.currentlyGivenOTP.value
                                         .toString() ==
                                     loginPageController.otpController.text
                                         .toString()) {
-                                  print('verified');
-                                  print(
+                                  debugPrint('verified');
+                                  debugPrint(
                                       '${loginPageController.phoneNumber.text}, ${loginPageController.firstName.text},${loginPageController.lastName.text}');
                                   loginPageController.passwordController.text =
                                       loginPageController
@@ -111,7 +107,7 @@ class VerifyOTPPageState extends State<VerifyOTPPage> {
                                       backgroundColor: Colors.red);
                                 }
                               } else {
-                                print('not validated');
+                                debugPrint('not validated');
                                 Get.snackbar('', 'Please Fill up the form',
                                     backgroundColor: Colors.yellow,
                                     colorText: Colors.red);

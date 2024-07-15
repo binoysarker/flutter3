@@ -72,28 +72,37 @@ class _DrawerComponentState extends State<DrawerComponent> {
                       ),
                     )
                   : Card(
-                    child: Column(
-                      children: [
-                        Text('Categories',style: CustomTheme.headerStyle,),
-                        SizedBox(
-                          height: 400,
-                          child: ListView(
-                            children: collectionsController.collectionItems.map((element) => ListTile(
-                              title: Text(element.name,style: CustomTheme.headerStyle,),
-                              onTap: () {
-                                Get.to(() => CategoryDetailPage(),arguments: {'id': element.id});
-                              },
-                            )).toList(),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Categories',
+                            style: CustomTheme.headerStyle,
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            height: 400,
+                            child: ListView(
+                              children: collectionsController.collectionItems
+                                  .map((element) => ListTile(
+                                        title: Text(
+                                          element.name,
+                                          style: CustomTheme.headerStyle,
+                                        ),
+                                        onTap: () {
+                                          Get.to(() => CategoryDetailPage(),
+                                              arguments: {'id': element.id});
+                                        },
+                                      ))
+                                  .toList(),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
             ),
             ListTile(
               leading: Icon(Icons.policy),
               title: Text(
-                'Policy',
+                'Return & Policy\'s',
                 style: CustomTheme.headerStyle,
               ),
               onTap: () {

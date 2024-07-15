@@ -67,14 +67,14 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
     if (widget.controllerType == ControllerTypeNames.product.name) {
       var productList =
           (widget.givenList[index] as Query$GetAllProducts$products$items);
-      print('${productList.id}');
+      debugPrint('${productList.id}');
       Get.offAll(() => ProductDetailPage(),
           arguments: {'id': '${productList.id}'});
     }
     if (widget.controllerType == ControllerTypeNames.collection.name) {
       var collectionSelected = (widget.givenList[index]
           as Query$GetAllCollections$collections$items);
-      print('${collectionSelected.id}');
+      debugPrint('${collectionSelected.id}');
       Get.offAll(() => CategoryDetailPage(),
           arguments: {'id': '${collectionSelected.id}'});
     }
@@ -82,11 +82,10 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
         ControllerTypeNames.singleCollectionDetail.name) {
       var collectionSelected = (widget.givenList[index]
           as Query$GetCollectionsByIdOrSlug$collection$children);
-      print('${collectionSelected.slug}');
+      debugPrint('${collectionSelected.slug}');
       Get.offAll(() => SubCategoryDetailPage(),
           arguments: {'id': '${collectionSelected.id}'});
     }
-
   }
 
   @override
@@ -104,7 +103,10 @@ class _HorizontalListComponentState extends State<HorizontalListComponent> {
           height: 30,
         ),
         widget.loadingState
-            ? Center(child: CircularProgressIndicator(color: CustomTheme.progressIndicatorColor,))
+            ? Center(
+                child: CircularProgressIndicator(
+                color: CustomTheme.progressIndicatorColor,
+              ))
             : SizedBox(
                 height: 250,
                 child: ListView.builder(

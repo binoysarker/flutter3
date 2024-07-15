@@ -15,9 +15,6 @@ class TokenPageController extends GetxController {
   UtilityController utilityController = Get.find<UtilityController>();
   LoginPageController loginPageController = Get.find<LoginPageController>();
 
-
-
-
   void onTokenSubmit(BuildContext context) async {
     final navigator = Navigator.of(context);
     utilityController.setLoadingState(true);
@@ -33,18 +30,17 @@ class TokenPageController extends GetxController {
     }
     if (res.data != null) {
       debugPrint('${res.data?['verifyCustomerAccount']}');
-      final verifyCustomerData = Map<dynamic,dynamic>.from(res.data?['verifyCustomerAccount']);
-      if(verifyCustomerData['message'] != null){
-        UtilService.createSnakeBar(context: context,text: '${verifyCustomerData['message']}');
-
-      }else {
-        UtilService.createSnakeBar(context: context,text: 'user is verified');
+      final verifyCustomerData =
+          Map<dynamic, dynamic>.from(res.data?['verifyCustomerAccount']);
+      if (verifyCustomerData['message'] != null) {
+        UtilService.createSnakeBar(
+            context: context, text: '${verifyCustomerData['message']}');
+      } else {
+        UtilService.createSnakeBar(context: context, text: 'user is verified');
         loginPageController.setShowSignIn(true);
         navigator.pushReplacementNamed('/${PageRouteNames.login.name}');
       }
       utilityController.setLoadingState(false);
-
     }
-
   }
 }

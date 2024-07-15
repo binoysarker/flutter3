@@ -3,7 +3,7 @@ import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
 import 'package:recipe.app/services/graphql_service.dart';
-
+import 'package:flutter/foundation.dart';
 import '../graphqlSection/vendureSchema.graphql.dart';
 
 class CollectionsController extends GetxController {
@@ -25,26 +25,25 @@ class CollectionsController extends GetxController {
       final res = await graphqlService.client.value.query$GetAllCollections(
           Options$Query$GetAllCollections(
               variables: Variables$Query$GetAllCollections(
-                  input: Input$CollectionListOptions(take: 100,skip: skip))));
+                  input: Input$CollectionListOptions(take: 100, skip: skip))));
       if (res.hasException) {
-        print('${res.exception.toString()}');
+        debugPrint('${res.exception.toString()}');
         isLoading.value = false;
       }
       if (res.data != null) {
-        print('collection data ${res.parsedData!.collections.toJson()}');
+        debugPrint('collection data ${res.parsedData!.collections.toJson()}');
         collectionItems.value = res.parsedData!.collections.items.toList();
         isLoading.value = false;
       }
     } catch (e) {
-      print('$e');
+      debugPrint('$e');
       isLoading.value = false;
     }
   }
-  void showMoreProductsUnderCollection(String id){
 
+  void showMoreProductsUnderCollection(String id) {
     getSingleCollectionDetail(id);
   }
-
 
   void getSingleCollectionDetail(String id) async {
     try {
@@ -53,20 +52,23 @@ class CollectionsController extends GetxController {
       final res = await graphqlService.client.value
           .query$GetCollectionsByIdOrSlug(
               Options$Query$GetCollectionsByIdOrSlug(
-                  variables:
-                      Variables$Query$GetCollectionsByIdOrSlug(id: id,take: currentTakeItemsCount.value,skip: currentSkipCount.value)));
+                  variables: Variables$Query$GetCollectionsByIdOrSlug(
+                      id: id,
+                      take: currentTakeItemsCount.value,
+                      skip: currentSkipCount.value)));
       if (res.hasException) {
-        print('${res.exception.toString()}');
+        debugPrint('${res.exception.toString()}');
         isLoading.value = false;
       }
       if (res.data != null) {
-        print('single collection data ${res.parsedData!.collection!.toJson()}');
+        debugPrint(
+            'single collection data ${res.parsedData!.collection!.toJson()}');
         singleCollectionDetail.value = res.parsedData!.collection!;
 
         isLoading.value = false;
       }
     } catch (e) {
-      print('$e');
+      debugPrint('$e');
     }
   }
 }

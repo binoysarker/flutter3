@@ -32,11 +32,11 @@ class ProductsController extends GetxController {
         Options$Query$GetAllProducts(
             variables: Variables$Query$GetAllProducts(take: 10)));
     if (res.hasException) {
-      print('${res.toString()}');
+      debugPrint('${res.toString()}');
       isLoading.value = false;
     }
     if (res.data != null) {
-      print('products list ${res.parsedData!.toJson()}');
+      debugPrint('products list ${res.parsedData!.toJson()}');
       productList.value = res.parsedData!.products.items;
       isLoading.value = false;
     }
@@ -44,7 +44,7 @@ class ProductsController extends GetxController {
 
   void increaseQuantity() {
     currentQuantity.value++;
-    print('current Quantity ${currentQuantity.value}');
+    debugPrint('current Quantity ${currentQuantity.value}');
     quantityController.text = currentQuantity.value.toString();
     updatedPrice.value = basePrice.value * currentQuantity.value;
   }
@@ -61,7 +61,8 @@ class ProductsController extends GetxController {
     selectedDropdownItemId.value = data;
     selectedProductDetail.value =
         productDetailVariants.firstWhere((element) => element.id == data);
-    print('updated product detail ${selectedProductDetail.value?.toJson()}');
+    debugPrint(
+        'updated product detail ${selectedProductDetail.value?.toJson()}');
     basePrice.value = selectedProductDetail.value!.priceWithTax;
     updatedPrice.value = basePrice.value;
   }
@@ -73,11 +74,11 @@ class ProductsController extends GetxController {
         Options$Query$GetProductDetail(
             variables: Variables$Query$GetProductDetail(id: id)));
     if (res.hasException) {
-      print('${res.toString()}');
+      debugPrint('${res.toString()}');
       isLoading.value = false;
     }
     if (res.parsedData!.product != null) {
-      print('products detail ${res.parsedData!.product!.toJson()}');
+      debugPrint('products detail ${res.parsedData!.product!.toJson()}');
       productDetailResponse.value = res.parsedData!.product;
       productDetailVariants.value = res.parsedData!.product!.variants;
       selectedDropdownItemId.value =
@@ -85,7 +86,7 @@ class ProductsController extends GetxController {
       updateProductDetail(selectedDropdownItemId.value);
       isLoading.value = false;
     } else {
-      print('selected product id $id');
+      debugPrint('selected product id $id');
       Get.snackbar('', 'Can not find the product',
           backgroundColor: Colors.red, colorText: Colors.white);
       isLoading.value = false;
@@ -98,7 +99,7 @@ class ProductsController extends GetxController {
             variables: Variables$Query$CheckCollectionIsPrivate(
                 collectionId: singleId)));
     if (res.hasException) {
-      print('${res.exception.toString()}');
+      debugPrint('${res.exception.toString()}');
     }
     return res.parsedData!.checkCollectionIsPrivate == null
         ? false
@@ -118,13 +119,13 @@ class ProductsController extends GetxController {
       var isPrivate = false;
       for (var singleId in uniqueCollectionIds) {
         isPrivate = await makeRequestToCheckPrivate(singleId);
-        print("checkCollectionIsPrivate $isPrivate");
+        debugPrint("checkCollectionIsPrivate $isPrivate");
         if (isPrivate == true) {
           break;
         }
       }
       if (isPrivate == true) {
-        print('removing item $element');
+        debugPrint('removing item $element');
         searchResultList.remove(element);
       }
     }
@@ -143,15 +144,15 @@ class ProductsController extends GetxController {
                     groupByProduct: true,
                     inStock: true))));
     if (res.hasException) {
-      print('${res.toString()}');
+      debugPrint('${res.toString()}');
       searchInProgress.value = false;
     }
     if (res.data != null) {
-      // print('search result ${res.parsedData!.toJson()}');
+      // debugPrint('search result ${res.parsedData!.toJson()}');
       tempSearchResultList.value = res.parsedData!.search.items.toList();
       searchResultList.value = res.parsedData!.search.items.toList();
       searchInProgress.value = false;
-      print(
+      debugPrint(
           "collection id ${tempSearchResultList.value.first.collectionIds.join(',')}");
       checkCollectionIsPrivate();
     }

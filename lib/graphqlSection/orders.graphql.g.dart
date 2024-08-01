@@ -1350,16 +1350,61 @@ Map<String, dynamic> _$Query$GetOrderForCheckout$activeOrder$customFieldsToJson(
 Query$GetCouponCodeList _$Query$GetCouponCodeListFromJson(
         Map<String, dynamic> json) =>
     Query$GetCouponCodeList(
-      getCouponCodeList: (json['getCouponCodeList'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      getCouponCodeList: Query$GetCouponCodeList$getCouponCodeList.fromJson(
+          json['getCouponCodeList'] as Map<String, dynamic>),
       $__typename: json['__typename'] as String,
     );
 
 Map<String, dynamic> _$Query$GetCouponCodeListToJson(
         Query$GetCouponCodeList instance) =>
     <String, dynamic>{
-      'getCouponCodeList': instance.getCouponCodeList,
+      'getCouponCodeList': instance.getCouponCodeList.toJson(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCouponCodeList$getCouponCodeList
+    _$Query$GetCouponCodeList$getCouponCodeListFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCouponCodeList$getCouponCodeList(
+          items: (json['items'] as List<dynamic>)
+              .map((e) =>
+                  Query$GetCouponCodeList$getCouponCodeList$items.fromJson(
+                      e as Map<String, dynamic>))
+              .toList(),
+          totalItems: json['totalItems'] as int,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCouponCodeList$getCouponCodeListToJson(
+        Query$GetCouponCodeList$getCouponCodeList instance) =>
+    <String, dynamic>{
+      'items': instance.items.map((e) => e.toJson()).toList(),
+      'totalItems': instance.totalItems,
+      '__typename': instance.$__typename,
+    };
+
+Query$GetCouponCodeList$getCouponCodeList$items
+    _$Query$GetCouponCodeList$getCouponCodeList$itemsFromJson(
+            Map<String, dynamic> json) =>
+        Query$GetCouponCodeList$getCouponCodeList$items(
+          id: json['id'] as String,
+          name: json['name'] as String,
+          couponCode: json['couponCode'] as String?,
+          enabled: json['enabled'] as bool,
+          endsAt: json['endsAt'] as String?,
+          startsAt: json['startsAt'] as String?,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetCouponCodeList$getCouponCodeList$itemsToJson(
+        Query$GetCouponCodeList$getCouponCodeList$items instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'couponCode': instance.couponCode,
+      'enabled': instance.enabled,
+      'endsAt': instance.endsAt,
+      'startsAt': instance.startsAt,
       '__typename': instance.$__typename,
     };
 

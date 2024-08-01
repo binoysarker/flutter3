@@ -36,6 +36,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
       orderController.getEligiblePaymentMethod();
       orderController.getCouponCodeList();
       orderController.getOrderForCheckout();
+      orderController.getActiveOrders();
       orderController.getEligibleShippingMethod();
       // orderController.getAvailableCountries();
       orderController.currentStep.value = 0;
@@ -290,29 +291,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       }
                     },
                     steps: getSteps(),
-                    controlsBuilder: (context, details) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    controlsBuilder: (context, details) => Column(
                       children: [
-                        ElevatedButton(
-                            onPressed: orderController.isLoading.isTrue
-                                ? null
-                                : details.onStepContinue,
-                            child: orderController.isLoading.isTrue
-                                ? Center(
-                                    child: CircularProgressIndicator(
-                                      color: CustomTheme.progressIndicatorColor,
-                                    ),
-                                  )
-                                : Text(checkText(
-                                    orderController.currentStep.value))),
-                        orderController.currentStep.value != 2
-                            ? ElevatedButton(
-                                onPressed: details.onStepCancel,
-                                child: Text(
-                                  'Cancel',
-                                  style: CustomTheme.headerStyle,
-                                ))
-                            : SizedBox(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(
+                                onPressed: orderController.isLoading.isTrue
+                                    ? null
+                                    : details.onStepContinue,
+                                child: orderController.isLoading.isTrue
+                                    ? Center(
+                                        child: CircularProgressIndicator(
+                                          color: CustomTheme.progressIndicatorColor,
+                                        ),
+                                      )
+                                    : Text(checkText(
+                                        orderController.currentStep.value))),
+                            orderController.currentStep.value != 2
+                                ? ElevatedButton(
+                                    onPressed: details.onStepCancel,
+                                    child: Text(
+                                      'Cancel',
+                                      style: CustomTheme.headerStyle,
+                                    ))
+                                : SizedBox(),
+                          ],
+                        ),
+                        Obx(() => orderController.currentStep.value == 1 ? Wrap(
+                          children: [
+                            Text('PLEASE WAIT until your order is confirmed DON\'T PRESS BACK while it is processing',style: CustomTheme.headerStyle4,)
+                          ],
+                        ) :  SizedBox())
                       ],
                     ),
                   ),

@@ -8236,6 +8236,7 @@ const possibleTypesMap = {
     'AssetList',
     'CollectionList',
     'CountryList',
+    'CoupcodesList',
     'CustomerList',
     'FacetList',
     'HistoryEntryList',

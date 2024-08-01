@@ -181,11 +181,6 @@ class _InvoiceComponentState extends State<InvoiceComponent> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 Text(
-                                  widget.orderController.activeOrderResponse
-                                      .value!.couponCodes.first,
-                                  style: CustomTheme.headerStyle,
-                                ),
-                                Text(
                                   '- ${UtilService.getCurrencySymble(widget.orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
                                   style: CustomTheme.headerStyle,
                                 ),

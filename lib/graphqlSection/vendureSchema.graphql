@@ -265,6 +265,11 @@ type CountryTranslation {
     updatedAt: DateTime!
 }
 
+type CoupcodesList implements PaginatedList {
+    items: [Promotion!]!
+    totalItems: Int!
+}
+
 "Returned if the provided coupon code is invalid"
 type CouponCodeExpiredError implements ErrorResult {
     couponCode: String!
@@ -1160,7 +1165,7 @@ type Query {
     facet(id: ID!): Facet
     "A list of Facets available to the shop"
     facets(options: FacetListOptions): FacetList!
-    getCouponCodeList: [String!]!
+    getCouponCodeList: CoupcodesList!
     getPasswordResetToken: String!
     "Returns information about the current authenticated User"
     me: CurrentUser

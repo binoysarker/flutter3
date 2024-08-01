@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:graphql/client.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:recipe.app/allGlobalKeys.dart';
@@ -75,7 +76,7 @@ class OrderController extends GetxController {
   var shippingAddressOrder =
       (null as Mutation$SetShippingAddress$setOrderShippingAddress$$Order?).obs;
   var currentNonce = ''.obs;
-  var couponCodeList = (null as List<String>?).obs;
+  var couponCodeList = <Query$GetCouponCodeList$getCouponCodeList$items>[].obs;
   // ignore: unnecessary_cast
   var activeOrderForCheckout =
       (null as Query$GetOrderForCheckout$activeOrder?).obs;
@@ -640,14 +641,14 @@ class OrderController extends GetxController {
 
   void getCouponCodeList() async {
     isLoading.value = true;
-    final res = await graphqlService.client.value.query$GetCouponCodeList();
+    final res = await graphqlService.client.value.query$GetCouponCodeList(Options$Query$GetCouponCodeList(fetchPolicy: FetchPolicy.networkOnly));
     if (res.hasException) {
       debugPrint(res.exception.toString());
       isLoading.value = false;
     }
     if (res.data != null) {
-      debugPrint('coupon code list ${res.parsedData!.getCouponCodeList}');
-      couponCodeList.value = res.parsedData!.getCouponCodeList.toList();
+      debugPrint('coupon code list length ${res.parsedData!.getCouponCodeList.items.length}');
+      couponCodeList.value = res.parsedData!.getCouponCodeList.items.where((element) => element.enabled).toList();
       couponCode.value = CouponCodeEnum.noCode.name;
       isLoading.value = false;
     }

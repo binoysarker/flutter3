@@ -39,7 +39,8 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       AllGlobalKeys.shippingAddressFormKey.currentState?.reset();
       userController.getActiveCustomer();
-      orderController.getCouponCodeList();
+
+      // orderController.getCouponCodeList();
       orderController.useCurrentUserAddress.value = false;
       // debugPrint('coupon code ${orderController.activeOrderResponse.value!.discounts.first.toJson()}');
     });
@@ -534,7 +535,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                       ? Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: orderController
-                                  .couponCodeList.value!.isNotEmpty
+                                  .couponCodeList.isNotEmpty
                               ? DropdownButtonFormField<String>(
                                   value: orderController.couponCode.value,
                                   isExpanded: true,
@@ -558,14 +559,14 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                         style: CustomTheme.headerStyle,
                                       ),
                                     ),
-                                    ...orderController.couponCodeList.value!
-                                        .map((String option) {
+                                    ...orderController.couponCodeList.value
+                                        .map((option) {
                                       return DropdownMenuItem(
-                                        value: option,
+                                        value: option.couponCode.toString(),
                                         child: Text(
-                                          option == CouponCodeEnum.noCode.name
+                                          option.couponCode == CouponCodeEnum.noCode.name
                                               ? 'Please select coupon code'
-                                              : option,
+                                              : option.couponCode as String,
                                           style: CustomTheme.headerStyle,
                                         ),
                                       );

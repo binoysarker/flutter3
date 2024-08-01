@@ -127,7 +127,7 @@ class _ItemGalleryComponentState extends State<ItemGalleryComponent> {
   }
 
   void goToPage(dynamic element) {
-    debugPrint(element);
+    // debugPrint(element);
     if (widget.controllerType == ControllerTypeNames.normalProductList.name) {
       var item = element
           as Query$GetCollectionsByIdOrSlug$collection$productVariants$items;

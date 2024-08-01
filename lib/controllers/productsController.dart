@@ -118,14 +118,16 @@ class ProductsController extends GetxController {
       }
       var isPrivate = false;
       for (var singleId in uniqueCollectionIds) {
-        isPrivate = await makeRequestToCheckPrivate(singleId);
+        if(tempSearchResultList.length > 1){
+          isPrivate = await makeRequestToCheckPrivate(singleId);
+        }
         debugPrint("checkCollectionIsPrivate $isPrivate");
         if (isPrivate == true) {
           break;
         }
       }
       if (isPrivate == true) {
-        debugPrint('removing item $element');
+        debugPrint('removing item ${element.productName}');
         searchResultList.remove(element);
       }
     }
@@ -148,7 +150,7 @@ class ProductsController extends GetxController {
       searchInProgress.value = false;
     }
     if (res.data != null) {
-      // debugPrint('search result ${res.parsedData!.toJson()}');
+      debugPrint('search result ${res.parsedData!.toJson()}');
       tempSearchResultList.value = res.parsedData!.search.items.toList();
       searchResultList.value = res.parsedData!.search.items.toList();
       searchInProgress.value = false;

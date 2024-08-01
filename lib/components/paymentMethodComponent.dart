@@ -5,6 +5,7 @@ import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 
 import '../controllers/orderController.dart';
+import '../graphqlSection/orders.graphql.dart';
 import '../services/commonVariables.dart';
 
 class PaymentMethodComponent extends StatelessWidget {
@@ -14,6 +15,20 @@ class PaymentMethodComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // String getPriceValue(Query$GetActiveOrder$activeOrder$promotions option) {
+    //   String text = '';
+    //   option.actions.forEach((element) {
+    //     if (element.code == 'order_percentage_discount') {
+    //       text +=
+    //           "${element.code.split('_').sublist(1).join(' ')}: ${element.args.first.value}%,";
+    //     } else if (element.code == 'order_fixed_discount') {
+    //       text +=
+    //           "${element.code.split('_').sublist(1).join(' ')}: ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)} ${UtilService.formatPriceValue(int.parse(element.args.first.value))},";
+    //     }
+    //   });
+    //   return text;
+    // }
+
     return orderController.activeOrderForCheckout.value!.lines.isEmpty &&
             orderController.activeOrderForCheckout.value!.shippingLines.isEmpty
         ? Center(
@@ -104,28 +119,22 @@ class PaymentMethodComponent extends StatelessWidget {
                         ),
                       )
                     : Column(
-                        children:
-                            orderController.activeOrderResponse.value!.discounts
-                                .map((e) => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          e.description,
-                                          style: CustomTheme.headerStyle,
-                                        ),
-                                        Text(
-                                          orderController.activeOrderResponse
-                                              .value!.couponCodes.first,
-                                          style: CustomTheme.headerStyle,
-                                        ),
-                                        Text(
-                                          '- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(e.amountWithTax)}',
-                                          style: CustomTheme.headerStyle,
-                                        ),
-                                      ],
-                                    ))
-                                .toList(),
+                        children: orderController
+                            .activeOrderResponse.value!.discounts
+                            .map((e) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      e.description,
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                    Text(
+                                      "- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.amountWithTax.toString()))}",
+                                      style: CustomTheme.headerStyle,
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
                       )),
                 SizedBox(
                   height: 20,

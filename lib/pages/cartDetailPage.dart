@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recipe.app/components/bottomNavigationComponent.dart';
@@ -260,6 +261,51 @@ class _CartDetailPageState extends State<CartDetailPage> {
                               ),
                           itemCount: orderController
                               .activeOrderResponse.value!.lines.length)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Visibility(
+                    visible: orderController
+                        .activeOrderResponse.value!.discounts.isNotEmpty,
+                    child: DottedLine(
+                      direction: Axis.horizontal,
+                      dashLength: 4.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Obx(() => orderController.isLoading.isTrue
+                      ? Center(
+                    child: CircularProgressIndicator(
+                      color: CustomTheme.progressIndicatorColor,
+                    ),
+                  )
+                      : Column(
+                    children: orderController
+                        .activeOrderResponse.value!.discounts
+                        .map((e) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          e.description,
+                          style: CustomTheme.headerStyle,
+                        ),
+                        Text(
+                          "- ${UtilService.getCurrencySymble(orderController.activeOrderResponse.value!.currencyCode.name)}${UtilService.formatPriceValue(int.parse(e.amountWithTax.toString()))}",
+                          style: CustomTheme.headerStyle,
+                        ),
+                      ],
+                    ))
+                        .toList(),
+                  )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  DottedLine(
+                    direction: Axis.horizontal,
+                    dashLength: 4.0,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -273,7 +319,7 @@ class _CartDetailPageState extends State<CartDetailPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          "${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.subTotal / 100).toStringAsFixed(2)}",
+                          "${UtilService.getCurrencySymble(userController.currentAuthenticatedUser.value!.orders.items.first.currencyCode.name)}${(orderController.activeOrderResponse.value!.subTotalWithTax / 100).toStringAsFixed(2)}",
                           style: CustomTheme.headerStyle,
                         ),
                       ),

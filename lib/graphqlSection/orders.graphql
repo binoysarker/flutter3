@@ -18,7 +18,19 @@ query GetOrderForCheckout {
 }
 
 query GetCouponCodeList{
-    getCouponCodeList
+    getCouponCodeList{
+        items {
+            id
+            name
+            couponCode
+            enabled
+            endsAt
+            startsAt
+
+        }
+        totalItems
+        __typename
+    }
 }
 
 

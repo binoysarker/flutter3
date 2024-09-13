@@ -71,7 +71,8 @@ enum LocalStorageStrings{
   password,
   phone,
   remember_me_status,
-  deviceToken
+  deviceToken,
+  selected_channel_token
 }
 
 enum SmsDeliveryType{

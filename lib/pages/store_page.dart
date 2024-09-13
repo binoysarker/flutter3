@@ -65,6 +65,7 @@ class _StorePageState extends State<StorePage> {
           .getAllCollections(collectionsController.currentSkipCount.value);
       orderController.getActiveOrders();
       userController.checkDeviceToken();
+
       printKeyHash();
     });
   }

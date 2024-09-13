@@ -11,12 +11,32 @@ class GraphqlService {
       HttpLink('${dotenv.env['HYGRAPH_API_URL']}');
   static String currentAuthToken = "";
 
+
+  static void setChannelToken(String token){
+    var localStorage2 = new LocalStorage(LocalStorageStrings.selected_channel_token.name);
+    localStorage2.ready.then((value) {
+        var channelToken = localStorage2.getItem(LocalStorageStrings.selected_channel_token.name);
+        debugPrint('channel token $channelToken');
+        if(channelToken != null){
+          GraphqlService.httpLink = HttpLink('${dotenv.env['SHOP_API_URL']}',
+              defaultHeaders: {
+                'vendure-token': "$channelToken"
+              });
+        }
+    });
+
+  }
+
   static void setToken(String token) {
     var localStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
+
     var localToken = localStorage.getItem(LocalStorageStrings.auth_token.name);
     AuthLink authLink =
         AuthLink(getToken: () async => 'Bearer ${localToken ?? token}');
+
+
     debugPrint('current totken $token');
+
     GraphqlService.link = authLink.concat(GraphqlService.httpLink);
   }
 

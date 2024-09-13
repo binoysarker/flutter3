@@ -74,7 +74,7 @@ class LoginPageController extends GetxController {
     lastName.text = '';
     otpController.text = '';
     checkboxStatus.value = true;
-    AllGlobalKeys.loginFormKey.currentState!.reset();
+    AllGlobalKeys.loginFormKey.currentState?.reset();
   }
 
   void setCurrentSignInProcess(String value) {
@@ -260,7 +260,7 @@ class LoginPageController extends GetxController {
       }
       if (res.data != null) {
         // true means it is unique and false means it is not unique
-        debugPrint("${res.parsedData?.checkUniquePhone}");
+        debugPrint("checkUniquePhone ${res.parsedData?.checkUniquePhone}");
         if (res.parsedData!.checkUniquePhone) {
           Get.snackbar('Error', 'This Phone is not present, Please register',
               colorText: Colors.white, backgroundColor: Colors.red);
@@ -312,7 +312,7 @@ class LoginPageController extends GetxController {
           await http.post(url, headers: headerData, body: jsonEncode(smsData));
       debugPrint('${res.body}');
       Get.offAll(() => VerifyOTPPage());
-      resetFormField();
+      // resetFormField();
       AllGlobalKeys.verifyOTPForm.currentState?.reset();
     } on Exception catch (e) {
       debugPrint(e.toString());

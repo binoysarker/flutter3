@@ -19,6 +19,14 @@ query GetAvailableCountries{
     }
 }
 
+query GetChannelList{
+    getChannelList {
+        id
+        code
+        token
+    }
+}
+
 query CheckCollectionIsPrivate($collectionId: ID!){
     checkCollectionIsPrivate(collectionId: $collectionId)
 }

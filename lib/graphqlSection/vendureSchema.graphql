@@ -630,6 +630,7 @@ type Mutation {
     setOrderShippingAddress(input: CreateAddressInput!): ActiveOrderResult!
     "Sets the shipping method by id, which can be obtained with the `eligibleShippingMethods` query"
     setOrderShippingMethod(shippingMethodId: ID!): SetOrderShippingMethodResult!
+    togglePromotionState(promotionId: ID!, value: Boolean!): Promotion!
     "Transitions an Order to a new state. Valid next states can be found by querying `nextOrderStates`"
     transitionOrderToState(state: String!): TransitionOrderToStateResult
     "Update an existing Customer"
@@ -1122,7 +1123,7 @@ type Promotion implements Node {
     conditions: [ConfigurableOperation!]!
     couponCode: String
     createdAt: DateTime!
-    customFields: JSON
+    customFields: PromotionCustomFields
     enabled: Boolean!
     endsAt: DateTime
     id: ID!
@@ -1130,6 +1131,10 @@ type Promotion implements Node {
     perCustomerUsageLimit: Int
     startsAt: DateTime
     updatedAt: DateTime!
+}
+
+type PromotionCustomFields {
+    shouldApply: Boolean
 }
 
 type PromotionList implements PaginatedList {
@@ -1165,6 +1170,7 @@ type Query {
     facet(id: ID!): Facet
     "A list of Facets available to the shop"
     facets(options: FacetListOptions): FacetList!
+    getChannelList: [Channel!]!
     getCouponCodeList: CoupcodesList!
     getPasswordResetToken: String!
     "Returns information about the current authenticated User"

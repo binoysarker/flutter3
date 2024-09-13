@@ -7,13 +7,12 @@ import 'package:recipe.app/components/errorMessageComponent.dart';
 import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
-import 'package:recipe.app/pages/forgetPasswordPage.dart';
 import 'package:recipe.app/services/commonVariables.dart';
-import 'package:recipe.app/services/util_service.dart';
 import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
 
 import '../allGlobalKeys.dart';
+import '../controllers/collectionsController.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -25,12 +24,15 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   final loginPageController = Get.find<LoginPageController>();
   final utilityController = Get.find<UtilityController>();
+  final CollectionsController collectionsController =
+      Get.find<CollectionsController>();
 
   @override
   initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       loginPageController.resetFormField();
+      collectionsController.getChannelList();
       // i have token now but need to check remember me
 
       rememberStorage.ready.then((isReady) {
@@ -209,7 +211,31 @@ class LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-
+                          Obx(() => collectionsController.isLoading.isTrue
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                  color: CustomTheme.progressIndicatorColor,
+                                ))
+                              : Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DropdownButtonFormField(
+                                    items: collectionsController.channelDropdownListOptions
+                                        .map((element) => DropdownMenuItem<
+                                                String>(
+                                      value: '$element',
+                                            child: Text('$element')))
+                                        .toList(),
+                                    onChanged: (data) {
+                                      debugPrint('selected city $data');
+                                      collectionsController.onCitySelected(data.toString());
+                                    },decoration: InputDecoration(
+                            label: Text(
+                                'Please select a city',
+                                style: CustomTheme.headerStyle,
+                            ),
+                            border: OutlineInputBorder(),
+                          ),),
+                              )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -237,14 +263,20 @@ class LoginPageState extends State<LoginPage> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 onPressed: () {
-                                  loginPageController.setCurrentSignInProcess(
-                                      SignInProcessNames.normal.name);
-                                  if (loginPageController.showSignIn.isTrue) {
-                                    loginPageController.beforeSignInProcess(
-                                        loginPageController.phoneNumber.text);
-                                  } else {
-                                    loginPageController.checkUniquePhone(
-                                        loginPageController.phoneNumber.text);
+                                  if(collectionsController.selectedChannel.value.isNotEmpty){
+
+                                    loginPageController.setCurrentSignInProcess(
+                                        SignInProcessNames.normal.name);
+                                    if (loginPageController.showSignIn.isTrue) {
+                                      loginPageController.beforeSignInProcess(
+                                          loginPageController.phoneNumber.text);
+                                    } else {
+                                      loginPageController.checkUniquePhone(
+                                          loginPageController.phoneNumber.text);
+                                    }
+                                  }else {
+                                    Get.snackbar('Error', 'Please select a city',
+                                        colorText: Colors.white, backgroundColor: Colors.red);
                                   }
                                 },
                               )),

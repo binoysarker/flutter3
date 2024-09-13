@@ -278,6 +278,41 @@ Map<String, dynamic>
           '__typename': instance.$__typename,
         };
 
+Query$GetChannelList _$Query$GetChannelListFromJson(
+        Map<String, dynamic> json) =>
+    Query$GetChannelList(
+      getChannelList: (json['getChannelList'] as List<dynamic>)
+          .map((e) => Query$GetChannelList$getChannelList.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+      $__typename: json['__typename'] as String,
+    );
+
+Map<String, dynamic> _$Query$GetChannelListToJson(
+        Query$GetChannelList instance) =>
+    <String, dynamic>{
+      'getChannelList': instance.getChannelList.map((e) => e.toJson()).toList(),
+      '__typename': instance.$__typename,
+    };
+
+Query$GetChannelList$getChannelList
+    _$Query$GetChannelList$getChannelListFromJson(Map<String, dynamic> json) =>
+        Query$GetChannelList$getChannelList(
+          id: json['id'] as String,
+          code: json['code'] as String,
+          token: json['token'] as String,
+          $__typename: json['__typename'] as String,
+        );
+
+Map<String, dynamic> _$Query$GetChannelList$getChannelListToJson(
+        Query$GetChannelList$getChannelList instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'code': instance.code,
+      'token': instance.token,
+      '__typename': instance.$__typename,
+    };
+
 Variables$Query$CheckCollectionIsPrivate
     _$Variables$Query$CheckCollectionIsPrivateFromJson(
             Map<String, dynamic> json) =>

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:localstorage/localstorage.dart';
+import 'package:recipe.app/allGlobalKeys.dart';
 import 'package:recipe.app/controllers/userController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/graphqlSection/collections.graphql.dart';
@@ -73,10 +73,9 @@ class CollectionsController extends GetxController {
   void onCitySelected(String city) {
     selectedChannel.value = city;
     var token = channelList.where((e) => e.code == city).first.token;
-    LocalStorage localStorage =
-        new LocalStorage(LocalStorageStrings.selected_channel_token.name);
-    localStorage.ready.then((value) => {
-          localStorage.setItem(
+
+    selectedChannelTokenStorage.ready.then((value) => {
+          selectedChannelTokenStorage.setItem(
               LocalStorageStrings.selected_channel_token.name, token.toString())
         });
     GraphqlService.setChannelToken(token);

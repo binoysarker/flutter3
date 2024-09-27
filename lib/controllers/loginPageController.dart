@@ -138,6 +138,7 @@ class LoginPageController extends GetxController {
       authTokenStorage.ready.then((value) => authTokenStorage.clear());
       phoneStorage.ready.then((value) => phoneStorage.clear());
       passwordStorage.ready.then((value) => passwordStorage.clear());
+      selectedChannelTokenStorage.ready.then((value) => selectedChannelTokenStorage.clear());
       orderController.resetData();
       // resetFormField();
       AllGlobalKeys.drawerComponentKey.currentState?.closeDrawer();

@@ -8,6 +8,7 @@ import 'package:recipe.app/components/loadingSpinnerComponent.dart';
 import 'package:recipe.app/controllers/loginPageController.dart';
 import 'package:recipe.app/controllers/utilityController.dart';
 import 'package:recipe.app/services/commonVariables.dart';
+import 'package:recipe.app/services/graphql_service.dart';
 import 'package:recipe.app/themes.dart';
 import 'package:recipe.app/validators/validatorDefinations.dart';
 
@@ -47,22 +48,37 @@ class LoginPageState extends State<LoginPage> {
                 phoneStorage.getItem(LocalStorageStrings.phone.name));
             debugPrint('phone $phone');
             if (rememberMe == 'true' && phone != null) {
-              passwordStorage.ready.then((value) {
-                password = Encryptor.decrypt(
-                    dotenv.env['ENCRYPT_KEY'].toString(),
-                    passwordStorage.getItem(LocalStorageStrings.password.name));
-                debugPrint('password data $password');
-                //  now let the user login using this phone and password
-                loginPageController.phoneNumber.text = phone;
-                loginPageController.passwordController.text = password;
-                loginPageController.currentlyGivenOTP.value = password;
-                loginPageController.checkboxStatus.value =
-                    rememberMe == 'true' ? true : false;
-                loginPageController.onUserSignIn();
+              selectedChannelTokenStorage.ready.then((value) {
+                if(value){
+                  var channelToken = selectedChannelTokenStorage
+                      .getItem(LocalStorageStrings.selected_channel_token.name);
+                  if (channelToken != null) {
+                    GraphqlService.setChannelToken(channelToken);
+                  }
+
+                }
+
+                passwordStorage.ready.then((value) {
+                  password = Encryptor.decrypt(
+                      dotenv.env['ENCRYPT_KEY'].toString(),
+                      passwordStorage
+                          .getItem(LocalStorageStrings.password.name));
+                  debugPrint('password data $password');
+                  //  now let the user login using this phone and password
+                  loginPageController.phoneNumber.text = phone;
+                  loginPageController.passwordController.text = password;
+                  loginPageController.currentlyGivenOTP.value = password;
+                  loginPageController.checkboxStatus.value =
+                  rememberMe == 'true' ? true : false;
+                  loginPageController.onUserSignIn();
+                });
+
               });
+
             }
           }
         });
+
       });
     });
   }
@@ -217,25 +233,29 @@ class LoginPageState extends State<LoginPage> {
                                   color: CustomTheme.progressIndicatorColor,
                                 ))
                               : Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: DropdownButtonFormField(
-                                    items: collectionsController.channelDropdownListOptions
-                                        .map((element) => DropdownMenuItem<
-                                                String>(
-                                      value: '$element',
-                                            child: Text('$element')))
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: DropdownButtonFormField(
+                                    items: collectionsController
+                                        .channelDropdownListOptions
+                                        .map((element) =>
+                                            DropdownMenuItem<String>(
+                                                value: '$element',
+                                                child: Text('$element')))
                                         .toList(),
                                     onChanged: (data) {
                                       debugPrint('selected city $data');
-                                      collectionsController.onCitySelected(data.toString());
-                                    },decoration: InputDecoration(
-                            label: Text(
-                                'Please select a city',
-                                style: CustomTheme.headerStyle,
-                            ),
-                            border: OutlineInputBorder(),
-                          ),),
-                              )),
+                                      collectionsController
+                                          .onCitySelected(data.toString());
+                                    },
+                                    decoration: InputDecoration(
+                                      label: Text(
+                                        'Please select a city',
+                                        style: CustomTheme.headerStyle,
+                                      ),
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -263,8 +283,8 @@ class LoginPageState extends State<LoginPage> {
                                   style: CustomTheme.headerStyle,
                                 ),
                                 onPressed: () {
-                                  if(collectionsController.selectedChannel.value.isNotEmpty){
-
+                                  if (collectionsController
+                                      .selectedChannel.value.isNotEmpty) {
                                     loginPageController.setCurrentSignInProcess(
                                         SignInProcessNames.normal.name);
                                     if (loginPageController.showSignIn.isTrue) {
@@ -274,9 +294,11 @@ class LoginPageState extends State<LoginPage> {
                                       loginPageController.checkUniquePhone(
                                           loginPageController.phoneNumber.text);
                                     }
-                                  }else {
-                                    Get.snackbar('Error', 'Please select a city',
-                                        colorText: Colors.white, backgroundColor: Colors.red);
+                                  } else {
+                                    Get.snackbar(
+                                        'Error', 'Please select a city',
+                                        colorText: Colors.white,
+                                        backgroundColor: Colors.red);
                                   }
                                 },
                               )),

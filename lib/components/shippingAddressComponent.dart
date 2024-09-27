@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -58,6 +59,10 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
         current = 'Online';
       }
       return current;
+    }
+
+    String formatCode(String code) {
+      return code.replaceAll('_${dotenv.env['CITY1'].toString()}', '').replaceAll('_${dotenv.env['CITY2'].toString()}', '');
     }
 
     return Column(
@@ -566,7 +571,7 @@ class ShippingAddressComponentState extends State<ShippingAddressComponent> {
                                         child: Text(
                                           option.couponCode == CouponCodeEnum.noCode.name
                                               ? 'Please select coupon code'
-                                              : option.couponCode as String,
+                                              : formatCode(option.couponCode as String),
                                           style: CustomTheme.headerStyle,
                                         ),
                                       );

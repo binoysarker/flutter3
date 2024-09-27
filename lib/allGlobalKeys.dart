@@ -15,6 +15,7 @@ class AllGlobalKeys{
 
 
 LocalStorage authTokenStorage = new LocalStorage(LocalStorageStrings.auth_token.name);
+LocalStorage selectedChannelTokenStorage = new LocalStorage(LocalStorageStrings.selected_channel_token.name);
 LocalStorage rememberStorage = new LocalStorage(LocalStorageStrings.remember_me_status.name);
 LocalStorage passwordStorage = new LocalStorage(LocalStorageStrings.password.name);
 LocalStorage phoneStorage = new LocalStorage(LocalStorageStrings.phone.name);

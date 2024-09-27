@@ -424,6 +424,7 @@ class OrderController extends GetxController {
   }
 
   Future<bool> applyCouponCode(String couponCode) async {
+    debugPrint('current couponCode $couponCode');
     isLoading.value = true;
     var status = true;
     graphqlService = GraphqlService();
